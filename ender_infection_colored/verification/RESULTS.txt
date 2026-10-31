@@ -1,30 +1,20 @@
 Ender Infection 0.2.3 / Minecraft 1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17
-BUILD: PASS, reobfuscated installable Forge JAR (ender-infection-0.2.3.jar, 3002425 bytes, JDK 17.0.20.1).
-GAME TESTS: All 54 required tests passed in a fresh isolated GameTest world (2026-10-31 16:05).
+BUILD: PASS, reobfuscated installable Forge JAR (ender-infection-0.2.3.jar, 3006298 bytes, JDK 17.0.20.1).
+GAME TESTS: All 57 required tests passed in a fresh isolated GameTest world (2026-10-31 22:27).
 
-SIEGE BEAST FIX (blocking): the crystal wave damage band was 3.5 blocks wide while the front advanced 3.9
-  blocks per 6 tick sample, leaving 0.4 block rings that never took damage. The lunge shortened the range to
-  a target until it landed inside one, which is why ravagerSiegeWarnsBeforeLunging and bossCrystalWave both
-  reported full health. The wave now hits anything the front has swept (waveVictims still allows one hit).
-SIEGE BEAST FIX: wave cut-off is derived from reach / growth / sample period instead of a magic 24 ticks;
-  lunge only pushes while on the ground; siege no longer draws the old crystal ring or the generic hit sound;
-  the generic gather emitter is skipped for siege beasts so windup particles are not doubled.
+EXPANSION: stage three and up no longer cap the node network or the placement distance. expansionReach() is
+  separate from expansionRange(), so units keep their 48/64/80 block duty leash while nodes may be planted anywhere.
+  Single node radius stays 16 for scan cost.
+LAND SPAWNING: ExpansionNodeEntity.spawnFromGround() picks a fully eroded column every SPAWN_BASE_TICKS and asks the
+  owning mother to birth one unit (spawnFromSoil). The mother pays 8/24 and the shared MotherBrain cap still applies,
+  so land births cannot exceed the normal army limit and are not free.
+NATURAL FLORA: growFlora() grows infected_flower / infected_fungus / infected_grass / infected_tendrils on fully
+  eroded columns every FLORA_BASE_TICKS, free of charge, density capped by hasPlantRoom (max two per 7x7x3).
+DEPTH: nodes also push the infection down to three blocks below an already infected column, one paid block per pass.
 
-LEARNING-L1: per mother tactic x host score table decides which host to hatch.
-LEARNING-L2: brood aggression (0..100 EMA) sets hunting scent radius 20..48 and hostile pack limit 1..4.
-LEARNING-L3: ColonyPolicy, a four armed bandit (HATCH / EXPAND / EVOLVE / RECOVER) over 600 tick windows,
-  scored by land weight, kills, losses and biomass earned; EXPAND also gets a bonus from the measured node
-  ledger (new territory per biomass spent). Epsilon greedy with optimism bonus, six window warm-up, saved per mother.
-
-EXPANSION: terrain rounds 40 -> 24 ticks, radius growth 300 -> 200 ticks, outpost evaluation 600 -> 300 ticks,
-  land income 32 -> 16 credits per biomass.
-HUNTING: hunters walk toward reachable prey they cannot see (search point only, no entity reveal), shorter
-  give-up blacklists, wider idle patrol radius, learned pack limit.
-
-TEST CHANGE: motherGrowsFromNearbyKillsAndWaitsForSpace now tops the wallet back up after the ceiling clears.
-  Faster nodes could drain the upgrade reserve while the mother waited for space, which made the old fixture
-  measure node throughput instead of the space check.
-
-LIMITS: no player saves opened. Client visual appearance, large-world performance, multiplayer and long-term
-  balance still require gameplay verification.
-JAR SHA256: 3afe6fe3ac99f3a5dfb2213f762a2f91db5daf1326f98757a3b47c6423ca516b
+NEW TESTS: stageThreeLiftsTheNodeCapWithoutFreeNodes, matureSoilGrowsFloraAndBirthsUnits, nodeErodesDownwardInsteadOfOnlyTheSurfaceLayer.
+PRIOR REGRESSION: hunting, recalls, climbing, tactics/learning, four armed economy policy, per-mother payments/refunds,
+  territorial depletion, network spread, siege beast wave, high-stage evolution, boss waves and loot/crafting all green.
+LIMITS: no player saves opened. Client visual appearance, large-world performance, multiplayer and long-term balance
+  still require gameplay verification.
+JAR SHA256: 8cb37e8bdc7a281d8f306e497250481bc055ec95dda46a13845c0a2a041197d0

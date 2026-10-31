@@ -48,6 +48,7 @@ Linux / macOS 使用 `./gradlew build`。首次构建需要联网下载 Forge �
 - [植物侵蚀、地表节点与晶刺技能](ender_infection_colored/植物侵蚀与晶刺技能_0.2.1.md)
 - [生态、五阶段母体、Boss、掉落与合成](ender_infection_colored/生态与高阶母体_0.2.0.md)
 - [狩猎嗅觉与母体自学习](ender_infection_colored/狩猎与学习_0.2.2.md)
+- [成熟地表生态与阶段三后的无界扩张](ender_infection_colored/成熟地表生态_0.2.3.md)
 
 ## 预览
 

@@ -33,6 +33,8 @@ public final class ExpansionNodeEntity extends BlockEntity {
     private int frontierCursor;
     /** One paid block per deep pass, always straight down from an already infected column. */
     private int deepClock,deepened;
+    /** Mature ground births units and grows its own flora on separate clocks. */
+    private int spawnClock,floraClock,soilBorn;
     private int legacyCanopyCursor;
     private long inhibitedUntil;
     public void inhibit(ServerLevel level,int ticks){inhibitedUntil=Math.max(inhibitedUntil,level.getGameTime()+Math.max(0,Math.min(1200,ticks)));setChanged();}
@@ -48,6 +50,10 @@ public final class ExpansionNodeEntity extends BlockEntity {
     public int purchasedChanges(){return purchasedChanges;}
     public int spentBiomass(){return spentBiomass;}
     public int deepenedBlocks(){return deepened;}
+    /** Units this node has birthed from mature ground. Debug and test hook. */
+    public int soilBorn(){return soilBorn;}
+    public String spawnNote="";
+    public String spawnNote(){return spawnNote;}
     /** Territory blocks produced per biomass this node has spent. Read by the mother's ledger. */
     public double territoryPerBiomass(){return spentBiomass<=0?0:(double)purchasedChanges/spentBiomass;}
     public int radius(){return radius;}
@@ -121,6 +127,8 @@ public final class ExpansionNodeEntity extends BlockEntity {
         }
         if(radius>=OUTPOST_RADIUS&&!outpostCreated&&++outpostClock>=ColonyEconomy.interval(ColonyEconomy.OUTPOST_BASE_TICKS,core.colonyBiomass())){outpostClock=0;establishOutpost(level,core);setChanged();}
         if(++deepClock>=ColonyEconomy.interval(ColonyEconomy.DEEP_BASE_TICKS,core.colonyBiomass())){deepClock=0;deepen(level,core);}
+        if(++floraClock>=ColonyEconomy.interval(ColonyEconomy.FLORA_BASE_TICKS,core.colonyBiomass())){floraClock=0;growFlora(level);}
+        if(++spawnClock>=ColonyEconomy.interval(ColonyEconomy.SPAWN_BASE_TICKS,core.colonyBiomass())){spawnClock=0;spawnFromGround(level,core);}
         if(++spreadClock<ColonyEconomy.interval(ColonyEconomy.SPREAD_BASE_TICKS,core.colonyBiomass()))return;spreadClock=0;
         setChanged();
         if(!level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING))return;
@@ -209,6 +217,42 @@ public final class ExpansionNodeEntity extends BlockEntity {
         return true;
     }
     private static boolean isGround(String key){return key!=null&&!key.contains("log")&&!key.contains("leaves");}
+    /** Fully eroded ground: mature terrain keys, or an eroded block that reached its last coverage level. */
+    private static boolean fullyEroded(BlockState state){
+        String key=InfectedContent.terrainKey(state);
+        if(key==null)return false;
+        if(key.equals("living_tissue")||key.equals("crystal_crust")||key.equals("mycelial_mat")||key.equals("necrotic_soil")||key.equals("tainted_grass"))return true;
+        return state.hasProperty(ErodedGroundBlock.EROSION)&&state.getValue(ErodedGroundBlock.EROSION)>=2;
+    }
+    /** Random fully eroded column inside the node that has two blocks of open air above it. */
+    private BlockPos matureSpot(ServerLevel level,int attempts){
+        for(int attempt=0;attempt<attempts;attempt++){
+            int dx=level.random.nextInt(radius*2+1)-radius,dz=level.random.nextInt(radius*2+1)-radius;
+            if(dx*dx+dz*dz>radius*radius)continue;
+            BlockPos column=worldPosition.offset(dx,0,dz);if(!level.hasChunkAt(column))continue;
+            for(int dy=3;dy>=-8;dy--){
+                BlockPos pos=column.offset(0,dy,0);
+                if(!fullyEroded(level.getBlockState(pos)))continue;
+                BlockPos above=pos.above();
+                if(!level.getBlockState(above).isAir()||!level.getBlockState(above.above()).isAir()||!level.getFluidState(above).isEmpty())break;
+                return above;
+            }
+        }
+        return null;
+    }
+    /** Mature ground grows its own plants. Free, but rate limited and density capped by hasPlantRoom. */
+    private void growFlora(ServerLevel level){
+        BlockPos spot=matureSpot(level,10);if(spot==null||!hasPlantRoom(level,spot))return;
+        String[] pool={"infected_flower","infected_flower","infected_fungus","infected_grass","infected_tendrils"};
+        BlockState plant=InfectedContent.PLANTS.get(pool[level.random.nextInt(pool.length)]).get().defaultBlockState();
+        if(plant.canSurvive(level,spot))level.setBlock(spot,plant,3);
+    }
+    /** Mature ground births a brood unit. The mother still pays and still obeys her population cap. */
+    private void spawnFromGround(ServerLevel level,InfectedMob core){
+        BlockPos spot=matureSpot(level,10);
+        if(spot==null){spawnNote="no mature column";return;}
+        if(core.spawnFromSoil(level,spot))soilBorn++;else spawnNote=core.lastSpawnNote+" @"+spot;
+    }
     /** Depth is what makes an infected cliff or a dug hole look infected instead of skinned.
      *  One block per pass, always straight down an already infected column, never through bedrock,
      *  block entities or anything outside the infectable ground tag. */
@@ -241,7 +285,7 @@ public final class ExpansionNodeEntity extends BlockEntity {
         for(int attempt=0;attempt<48;attempt++){
             double angle=start+(attempt%16)*Math.PI/8;double distance=radius-1-(attempt/16);
             BlockPos column=worldPosition.offset((int)Math.round(Math.cos(angle)*distance),0,(int)Math.round(Math.sin(angle)*distance));
-            if(!level.hasChunkAt(column)||core.position().distanceToSqr(net.minecraft.world.phys.Vec3.atCenterOf(column))>core.expansionRange()*core.expansionRange())continue;
+            if(!level.hasChunkAt(column)||core.position().distanceToSqr(net.minecraft.world.phys.Vec3.atCenterOf(column))>core.expansionReach()*core.expansionReach())continue;
             for(int dy=3;dy>=-4;dy--){
                 BlockPos pos=column.offset(0,dy,0);BlockState ground=level.getBlockState(pos.below());
                 if((!level.getBlockState(pos).isAir()&&!Vegetation.supported(level.getBlockState(pos)))||!isGround(InfectedContent.terrainKey(ground))||!(ground.isFaceSturdy(level,pos.below(),net.minecraft.core.Direction.UP)||ErodedGroundBlock.farmland(ground))||!core.nodeSiteAvailable(pos))continue;
@@ -320,6 +364,6 @@ public final class ExpansionNodeEntity extends BlockEntity {
         return changed;
     }
     private boolean isInfectedLog(BlockState state){String k=InfectedContent.terrainKey(state);return "eroded_log".equals(k)||"infected_log".equals(k);}
-    @Override protected void saveAdditional(CompoundTag tag){super.saveAdditional(tag);tag.putString("SubstrateBlock",substrate);tag.putInt("LegacyCanopyCursor",legacyCanopyCursor);tag.putLong("InhibitedUntil",inhibitedUntil);tag.putInt("FrontierCursor",frontierCursor);tag.putInt("ActiveTicks",activeTicks);tag.putInt("SpreadClock",spreadClock);tag.putInt("PurchasedChanges",purchasedChanges);tag.putInt("SpentBiomass",spentBiomass);tag.putInt("Radius",radius);tag.putInt("GrowthClock",growthClock);tag.putInt("OutpostClock",outpostClock);tag.putInt("DeepClock",deepClock);tag.putInt("Deepened",deepened);tag.putBoolean("OutpostCreated",outpostCreated);if(owner!=null)tag.putUUID("Owner",owner);}
-    @Override public void load(CompoundTag tag){super.load(tag);substrate=tag.getString("SubstrateBlock");legacyCanopyCursor=Math.max(0,tag.getInt("LegacyCanopyCursor"));inhibitedUntil=Math.max(0,tag.getLong("InhibitedUntil"));frontierCursor=Math.max(0,tag.getInt("FrontierCursor"));activeTicks=Math.max(0,tag.getInt("ActiveTicks"));spreadClock=Math.max(0,Math.min(40,tag.getInt("SpreadClock")));purchasedChanges=tag.contains("PurchasedChanges")?Math.max(0,Math.min(1000000,tag.getInt("PurchasedChanges"))):Math.min(224,activeTicks/300*16);radius=tag.contains("Radius")?Math.max(2,Math.min(MAX_RADIUS,tag.getInt("Radius"))):Math.min(MAX_RADIUS,2+activeTicks/300);spentBiomass=Math.max(0,tag.getInt("SpentBiomass"));growthClock=Math.max(0,Math.min(300,tag.getInt("GrowthClock")));outpostClock=tag.contains("OutpostClock")?Math.max(0,Math.min(600,tag.getInt("OutpostClock"))):600;deepClock=Math.max(0,tag.getInt("DeepClock"));deepened=Math.max(0,tag.getInt("Deepened"));outpostCreated=tag.getBoolean("OutpostCreated");owner=tag.hasUUID("Owner")?tag.getUUID("Owner"):null;}
+    @Override protected void saveAdditional(CompoundTag tag){super.saveAdditional(tag);tag.putString("SubstrateBlock",substrate);tag.putInt("LegacyCanopyCursor",legacyCanopyCursor);tag.putLong("InhibitedUntil",inhibitedUntil);tag.putInt("FrontierCursor",frontierCursor);tag.putInt("ActiveTicks",activeTicks);tag.putInt("SpreadClock",spreadClock);tag.putInt("PurchasedChanges",purchasedChanges);tag.putInt("SpentBiomass",spentBiomass);tag.putInt("Radius",radius);tag.putInt("GrowthClock",growthClock);tag.putInt("OutpostClock",outpostClock);tag.putInt("DeepClock",deepClock);tag.putInt("Deepened",deepened);tag.putInt("SpawnClock",spawnClock);tag.putInt("FloraClock",floraClock);tag.putInt("SoilBorn",soilBorn);tag.putBoolean("OutpostCreated",outpostCreated);if(owner!=null)tag.putUUID("Owner",owner);}
+    @Override public void load(CompoundTag tag){super.load(tag);substrate=tag.getString("SubstrateBlock");legacyCanopyCursor=Math.max(0,tag.getInt("LegacyCanopyCursor"));inhibitedUntil=Math.max(0,tag.getLong("InhibitedUntil"));frontierCursor=Math.max(0,tag.getInt("FrontierCursor"));activeTicks=Math.max(0,tag.getInt("ActiveTicks"));spreadClock=Math.max(0,Math.min(40,tag.getInt("SpreadClock")));purchasedChanges=tag.contains("PurchasedChanges")?Math.max(0,Math.min(1000000,tag.getInt("PurchasedChanges"))):Math.min(224,activeTicks/300*16);radius=tag.contains("Radius")?Math.max(2,Math.min(MAX_RADIUS,tag.getInt("Radius"))):Math.min(MAX_RADIUS,2+activeTicks/300);spentBiomass=Math.max(0,tag.getInt("SpentBiomass"));growthClock=Math.max(0,Math.min(300,tag.getInt("GrowthClock")));outpostClock=tag.contains("OutpostClock")?Math.max(0,Math.min(600,tag.getInt("OutpostClock"))):600;deepClock=Math.max(0,tag.getInt("DeepClock"));deepened=Math.max(0,tag.getInt("Deepened"));spawnClock=Math.max(0,tag.getInt("SpawnClock"));floraClock=Math.max(0,tag.getInt("FloraClock"));soilBorn=Math.max(0,tag.getInt("SoilBorn"));outpostCreated=tag.getBoolean("OutpostCreated");owner=tag.hasUUID("Owner")?tag.getUUID("Owner"):null;}
 }

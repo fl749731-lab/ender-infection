@@ -220,7 +220,7 @@ public final class InfectionGameTests {
     @GameTest(template="empty64",timeoutTicks=100,batch="outpost_limits")
     public static void outpostsRequireTerrainOwnFundsAndBoundedColonyCapacity(GameTestHelper helper){
         clearArenaMobs(helper);prepareOutpostArea(helper,false);var level=helper.getLevel();
-        var poor=fundedCore(helper,new BlockPos(4,1,4),16,3);var rich=fundedCore(helper,new BlockPos(1,1,1),400,3);
+        var poor=fundedCore(helper,new BlockPos(4,1,4),16,2);var rich=fundedCore(helper,new BlockPos(1,1,1),400,2);
         BlockPos p=new BlockPos(4,1,4);helper.setBlock(p,Blocks.AIR);helper.setBlock(p,InfectedContent.NEST.get());var node=(ExpansionNodeEntity)level.getBlockEntity(helper.absolutePos(p));node.setOwner(poor.getUUID());
         var tag=node.saveWithFullMetadata();tag.putInt("Radius",10);node.load(tag);for(int t=0;t<100;t++)node.serverTick(level);
         helper.assertTrue(poor.colonyNodeCount()==1&&poor.colonyBiomass()==16,"Blocked uninfected frontier consumed construction funds");
@@ -734,6 +734,39 @@ public final class InfectionGameTests {
         helper.assertTrue(core.colonyBiomass()==1000-node.spentBiomass(),"Deep erosion did not debit the owning mother");
         clearWideBattlefield(helper);helper.succeed();
     }
+    @GameTest(template="empty64",timeoutTicks=80,batch="ecology_network_open")
+    public static void stageThreeLiftsTheNodeCapWithoutFreeNodes(GameTestHelper helper){
+        clearArenaMobs(helper);flatBattlefield(helper,0,40,0,20);var level=helper.getLevel();
+        for(int x=0;x<=40;x++)for(int z=0;z<=20;z++)helper.setBlock(new BlockPos(x,0,z),InfectedContent.TERRAIN.get("crystal_crust").get());
+        var core=fundedCore(helper,new BlockPos(5,1,10),1000,3);
+        for(int[] site:new int[][]{{30,2},{34,2},{38,2},{30,8},{34,8},{38,8}}){
+            BlockPos pos=new BlockPos(site[0],1,site[1]);helper.setBlock(pos,Blocks.AIR);helper.setBlock(pos,InfectedContent.NEST.get());
+            var other=(ExpansionNodeEntity)level.getBlockEntity(helper.absolutePos(pos));other.setOwner(core.getUUID());core.observeExpansion(other);
+        }
+        helper.assertTrue(core.colonyNodeCount()==6,"Fixture did not establish the six node network: "+core.colonyNodeCount());
+        BlockPos p=new BlockPos(5,1,10);helper.setBlock(p,Blocks.AIR);helper.setBlock(p,InfectedContent.NEST.get());
+        var node=(ExpansionNodeEntity)level.getBlockEntity(helper.absolutePos(p));node.setOwner(core.getUUID());core.observeExpansion(node);
+        var tag=node.saveWithFullMetadata();tag.putInt("Radius",10);tag.putInt("OutpostClock",600);tag.putInt("DeepClock",0);tag.putInt("FloraClock",0);tag.putInt("SpawnClock",0);node.load(tag);
+        node.serverTick(level);
+        helper.assertTrue(core.colonyNodeCount()==8,"Stage three still capped the network at six nodes: "+core.colonyNodeCount());
+        helper.assertTrue(core.colonyBiomass()==992,"The new nodes were not paid for: "+core.colonyBiomass());
+        clearWideBattlefield(helper);helper.succeed();
+    }
+    @GameTest(template="empty64",timeoutTicks=120,batch="ecology_soil_life")
+    public static void matureSoilGrowsFloraAndBirthsUnits(GameTestHelper helper){
+        clearArenaMobs(helper);prepareBurstArena(helper);var level=helper.getLevel();
+        for(int x=1;x<=7;x++)for(int z=1;z<=7;z++)helper.setBlock(new BlockPos(x,0,z),InfectedContent.TERRAIN.get("living_tissue").get());
+        var core=fundedCore(helper,new BlockPos(4,1,4),1000,3);core.setNoAi(false);
+        BlockPos p=new BlockPos(4,1,4);helper.setBlock(p,InfectedContent.NEST.get());
+        var node=(ExpansionNodeEntity)level.getBlockEntity(helper.absolutePos(p));node.setOwner(core.getUUID());
+        var tag=node.saveWithFullMetadata();tag.putInt("Radius",4);tag.putInt("FloraClock",0);tag.putInt("SpawnClock",0);node.load(tag);
+        for(int i=0;i<220;i++)node.serverTick(level);
+        int plants=0;for(BlockPos q:BlockPos.betweenClosed(new BlockPos(1,1,1),new BlockPos(7,3,7)))if(helper.getBlockState(q).getBlock() instanceof dev.hui.enderinfection.block.InfectedPlantBlock)plants++;
+        helper.assertTrue(plants>0,"Fully eroded ground never grew its own flora");
+        helper.assertTrue(node.soilBorn()>0,"Fully eroded ground never birthed a unit: born="+node.soilBorn()+", note="+node.spawnNote()+", stock="+core.colonyBiomass()+", nodeRadius="+node.radius()+", changes="+node.purchasedChanges());
+        helper.assertTrue(core.colonyBiomass()<1000,"Land born units were free: "+core.colonyBiomass());
+        clearWideBattlefield(helper);helper.succeed();
+    }
     @GameTest(template="empty64",timeoutTicks=80,batch="ecology_slope")
     public static void frontierErosionClimbsConnectedOneBlockSteps(GameTestHelper helper){
         clearArenaMobs(helper);flatBattlefield(helper,0,12,0,8);var core=fundedCore(helper,new BlockPos(2,1,6),1000,2);
@@ -761,12 +794,12 @@ public final class InfectionGameTests {
     public static void bossBroodRequiresHighTierOwnFundsSpaceAndOwnedCap(GameTestHelper helper){
         clearWideBattlefield(helper);flatBattlefield(helper,0,32,0,24);var level=helper.getLevel();
         var young=fundedCore(helper,new BlockPos(3,1,4),1000,3);helper.assertTrue(!young.summonSiege(level),"Stage three spawned a boss before its unlock");young.discard();
-        var core=fundedCore(helper,new BlockPos(12,1,12),500,4);helper.assertTrue(core.getMaxHealth()==900&&core.maxAutoNodes()==10,"Stage four did not get its own attributes/network capacity");
+        var core=fundedCore(helper,new BlockPos(12,1,12),500,4);helper.assertTrue(core.getMaxHealth()==900&&core.maxAutoNodes()==dev.hui.enderinfection.entity.InfectedMob.UNLIMITED_NODES,"Stage four did not get its own attributes/network capacity");
         helper.assertTrue(core.summonSiege(level)&&core.colonyBiomass()==340,"Boss production failed to debit 160 biomass");
         var beasts=level.getEntitiesOfClass(dev.hui.enderinfection.entity.InfectedMob.class,core.getBoundingBox().inflate(24),e->e.kind==dev.hui.enderinfection.entity.InfectedKind.SIEGE_BEAST);
         helper.assertTrue(beasts.size()==1&&beasts.get(0).getMaxHealth()==400&&beasts.get(0).getPersistentData().getUUID("ColonyMother").equals(core.getUUID()),"Boss entity stats/ownership incorrect");
         helper.assertTrue(!core.summonSiege(level)&&core.colonyBiomass()==340,"Owned boss cap allowed duplicate or charged a failed spawn");
-        var saved=new net.minecraft.nbt.CompoundTag();core.addAdditionalSaveData(saved);saved.putInt("MotherStage",5);core.readAdditionalSaveData(saved);helper.assertTrue(core.motherStage()==5&&core.getMaxHealth()==1000&&core.maxAutoNodes()==16,"Stage five did not survive its NBT lifecycle");
+        var saved=new net.minecraft.nbt.CompoundTag();core.addAdditionalSaveData(saved);saved.putInt("MotherStage",5);core.readAdditionalSaveData(saved);helper.assertTrue(core.motherStage()==5&&core.getMaxHealth()==1000&&core.maxAutoNodes()==dev.hui.enderinfection.entity.InfectedMob.UNLIMITED_NODES,"Stage five did not survive its NBT lifecycle");
         core.spendBiomass(core.colonyBiomass());helper.assertTrue(!core.summonSiege(level)&&core.colonyBiomass()==0,"Empty high-tier mother produced a free boss");clearWideBattlefield(helper);helper.succeed();
     }
     @GameTest(template="empty64",timeoutTicks=170,batch="ecology_boss_wave")
@@ -775,7 +808,7 @@ public final class InfectionGameTests {
         var beast=battleUnit(helper,dev.hui.enderinfection.entity.InfectedKind.SIEGE_BEAST,new BlockPos(3,1,8),null,"hunter");
         var ally=battleUnit(helper,dev.hui.enderinfection.entity.InfectedKind.EARLY_COW,new BlockPos(12,1,11),null,"guard");ally.setNoAi(true);
         var enemy=net.minecraft.world.entity.EntityType.ZOMBIE.create(level);placeMob(helper,enemy,new BlockPos(17,1,8));enemy.setNoAi(true);enemy.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.MAX_HEALTH).setBaseValue(100);enemy.setHealth(100);level.addFreshEntity(enemy);beast.setTarget(enemy);
-        helper.runAfterDelay(115,()->{helper.assertTrue(enemy.getHealth()>=87&&enemy.getHealth()<=89,"Crystal wave failed to reach its target or damaged it more than once: "+enemy.getHealth());helper.assertTrue(ally.getHealth()==ally.getMaxHealth(),"Boss crystal wave hurt its own faction");clearWideBattlefield(helper);helper.succeed();});
+        helper.runAfterDelay(115,()->{helper.assertTrue(enemy.getHealth()>=87&&enemy.getHealth()<=89,"Crystal wave failed to reach its target or damaged it more than once: "+enemy.getHealth()+" beast="+beast.position()+" attacking="+beast.attacking()+" enemy="+enemy.position()+" onFire="+enemy.isOnFire()+" ally="+ally.getHealth());helper.assertTrue(ally.getHealth()==ally.getMaxHealth(),"Boss crystal wave hurt its own faction");clearWideBattlefield(helper);helper.succeed();});
     }
     @GameTest(template="empty64",timeoutTicks=80,batch="ecology_high_evolution")
     public static void highMotherEvolutionRequiresRealTerritoryAndPaysBothUpgradeCosts(GameTestHelper helper){

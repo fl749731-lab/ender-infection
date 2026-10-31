@@ -66,7 +66,12 @@ public final class InfectedMob extends Monster implements GeoEntity {
     private int colonyIncomeTotal;
     private BlockPos expansionAnchor;
     public static final int MAX_AUTO_NODES=16;
-    public int maxAutoNodes(){return motherStage()<4?6:motherStage()==4?10:MAX_AUTO_NODES;}
+    /** Stage three and up stop capping the network; the number only bounds memory, not gameplay. */
+    public static final int UNLIMITED_NODES=256;
+    public int maxAutoNodes(){return motherStage()<3?6:UNLIMITED_NODES;}
+    /** Placement and territory reach. Lifted at stage three, kept apart from the AI duty radius. */
+    public int expansionReach(){return motherStage()<3?48:1024;}
+    /** AI leash: how far units look for work and defend. Deliberately smaller than the reach. */
     public int expansionRange(){return motherStage()<4?48:motherStage()==4?64:80;}
     private final java.util.Set<BlockPos> colonyNodes=new java.util.HashSet<>();
     private long nextTerritoryHarvest;
@@ -130,7 +135,7 @@ public final class InfectedMob extends Monster implements GeoEntity {
     public boolean nodeSiteAvailable(BlockPos pos){colonyNodeCount();return colonyNodes.stream().noneMatch(existing->existing.distSqr(pos)<49);}
     public java.util.List<ExpansionNodeEntity> activeColonyNodes(){
         colonyNodeCount();var nodes=new java.util.ArrayList<ExpansionNodeEntity>();
-        for(BlockPos pos:colonyNodes)if(level().hasChunkAt(pos)&&position().distanceToSqr(Vec3.atCenterOf(pos))<=expansionRange()*expansionRange()&&level().getBlockEntity(pos) instanceof ExpansionNodeEntity node)nodes.add(node);
+        for(BlockPos pos:colonyNodes)if(level().hasChunkAt(pos)&&position().distanceToSqr(Vec3.atCenterOf(pos))<=expansionReach()*expansionReach()&&level().getBlockEntity(pos) instanceof ExpansionNodeEntity node)nodes.add(node);
         return nodes;
     }
     public int territoryColumns(){return territoryColumns;}
@@ -355,6 +360,32 @@ public final class InfectedMob extends Monster implements GeoEntity {
             if(server.addFreshEntity(child)){spawned++;budget--;FactionEffects.shatter(server,dest,10);}else refundBiomass(price);
         }
         return spawned>0;
+    }
+    /** Army size counted the same way incubation counts it, so land births share one cap. */
+    public int colonyPopulation(ServerLevel server){
+        return server.getEntitiesOfClass(Mob.class,getBoundingBox().inflate(expansionRange()+16),e->e!=this&&FactionAI.infected(e)&&FactionAI.home(e)==this).size();
+    }
+    /** One unit born from fully eroded ground instead of the mother's body. Paid, capped, same stamps as incubation. */
+    public String lastSpawnNote="";
+    public boolean spawnFromSoil(ServerLevel server,BlockPos pos){
+        if(kind!=InfectedKind.CORE||isNoAi()||!isAlive()){lastSpawnNote="state kind/noai/dead";return false;}
+        int population=colonyPopulation(server);
+        if(population>=MotherBrain.cap(motherStage())){lastSpawnNote="cap "+population+"/"+MotherBrain.cap(motherStage());return false;}
+        InfectedKind host=motherBrain.pickHost();
+        boolean advanced=motherStage()>=3&&host.evolved()!=null&&random.nextInt(motherStage()>=4?2:3)==0&&colonyBiomass-upgradeReserve()>=ColonyEconomy.ADVANCED_UNIT;
+        int price=advanced?ColonyEconomy.ADVANCED_UNIT:ColonyEconomy.EARLY_UNIT;
+        if(colonyBiomass-price<upgradeReserve()){lastSpawnNote="reserve "+upgradeReserve()+" stock "+colonyBiomass;return false;}
+        Monster child=advanced&&host==InfectedKind.EARLY_ZOMBIE?EnderInfection.MUTANT_ZOMBIE.get().create(server):InfectedContent.TYPES.get(advanced?host.evolved():host).get().create(server);
+        if(child==null){lastSpawnNote="create null "+host;return false;}
+        child.moveTo(pos.getX()+.5,pos.getY(),pos.getZ()+.5,random.nextFloat()*360,0);
+        if(!server.noCollision(child,child.getBoundingBox())||server.containsAnyLiquid(child.getBoundingBox())){lastSpawnNote="blocked at "+pos;return false;}
+        if(getTarget()!=null&&hasLineOfSight(getTarget()))child.setTarget(getTarget());
+        child.getPersistentData().putUUID("ColonyMother",getUUID());
+        child.getPersistentData().putString("ColonyDuty",FactionAI.assignDuty(this));
+        BroodLearning.stamp(child,host,motherBrain.tactic());
+        if(!spendForHatching(price)){lastSpawnNote="could not pay "+price;return false;}
+        if(server.addFreshEntity(child)){FactionEffects.shatter(server,child.position(),14);lastSpawnNote="";return true;}
+        refundBiomass(price);lastSpawnNote="addFreshEntity refused";return false;
     }
     boolean emergencyDefense(ServerLevel server){
         if(kind!=InfectedKind.CORE||colonyBiomass<ColonyEconomy.EARLY_UNIT)return false;

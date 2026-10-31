@@ -230,7 +230,7 @@ public final class InfectionGameTests {
         for(BlockPos site:new BlockPos[]{new BlockPos(12,1,4),new BlockPos(-4,1,4),new BlockPos(4,1,12),new BlockPos(4,1,-4),new BlockPos(12,1,12)}){
             helper.setBlock(site,Blocks.AIR);helper.setBlock(site,InfectedContent.NEST.get());var other=(ExpansionNodeEntity)level.getBlockEntity(helper.absolutePos(site));other.setOwner(poor.getUUID());poor.observeExpansion(other);
         }
-        tag=node.saveWithFullMetadata();tag.putInt("OutpostClock",600);tag.putInt("SpreadClock",0);tag.putInt("GrowthClock",0);node.load(tag);node.serverTick(level);
+        tag=node.saveWithFullMetadata();tag.putInt("OutpostClock",600);tag.putInt("SpreadClock",0);tag.putInt("GrowthClock",0);tag.putInt("DeepClock",0);node.load(tag);node.serverTick(level);
         helper.assertTrue(poor.colonyNodeCount()==6&&poor.colonyBiomass()==100,"Full colony: nodes "+poor.colonyNodeCount()+", stock "+poor.colonyBiomass());
         poor.discard();rich.discard();helper.succeed();
     }
@@ -713,6 +713,25 @@ public final class InfectionGameTests {
         var reloaded=core.motherBrain().policy();
         helper.assertTrue(reloaded.windows()==windows&&Math.abs(reloaded.expandValue()-hold)<1e-9&&Math.abs(reloaded.hatchValue()-hatch)<1e-9,"Learned economy policy was lost on reload");
         helper.assertTrue(!reloaded.skipHatching(core),"A reloaded policy skipped hatching without an owned node to spend the biomass");
+        clearWideBattlefield(helper);helper.succeed();
+    }
+    @GameTest(template="empty64",timeoutTicks=100,batch="ecology_depth")
+    public static void nodeErodesDownwardInsteadOfOnlyTheSurfaceLayer(GameTestHelper helper){
+        clearArenaMobs(helper);flatBattlefield(helper,0,12,0,8);var level=helper.getLevel();
+        for(int x=2;x<=9;x++)for(int z=1;z<=7;z++){helper.setBlock(new BlockPos(x,2,z),Blocks.DIRT);helper.setBlock(new BlockPos(x,1,z),Blocks.DIRT);}
+        var core=fundedCore(helper,new BlockPos(2,3,4),1000,2);
+        BlockPos p=new BlockPos(4,3,4);helper.setBlock(p,InfectedContent.NEST.get());
+        var node=(ExpansionNodeEntity)level.getBlockEntity(helper.absolutePos(p));node.setOwner(core.getUUID());
+        var tag=node.saveWithFullMetadata();tag.putInt("Radius",3);node.load(tag);
+        for(int i=0;i<240;i++)node.serverTick(level);
+        boolean surface=false,deep=false;
+        for(int x=2;x<=9;x++)for(int z=1;z<=7;z++){
+            if(InfectedContent.terrainKey(helper.getBlockState(new BlockPos(x,2,z)))!=null)surface=true;
+            if(InfectedContent.terrainKey(helper.getBlockState(new BlockPos(x,1,z)))!=null)deep=true;
+        }
+        helper.assertTrue(surface,"Node never eroded the surface layer");
+        helper.assertTrue(deep&&node.deepenedBlocks()>0,"Node only eroded the top layer: deepened="+node.deepenedBlocks());
+        helper.assertTrue(core.colonyBiomass()==1000-node.spentBiomass(),"Deep erosion did not debit the owning mother");
         clearWideBattlefield(helper);helper.succeed();
     }
     @GameTest(template="empty64",timeoutTicks=80,batch="ecology_slope")

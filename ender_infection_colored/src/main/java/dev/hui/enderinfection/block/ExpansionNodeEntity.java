@@ -22,6 +22,8 @@ import net.minecraft.world.level.block.state.BlockState;
 /** The sole source of terrain spread. Ordinary infected terrain and trees have no spreading ticker. */
 public final class ExpansionNodeEntity extends BlockEntity {
     public static final int MAX_RADIUS=16;
+    /** Deepest infected blocks below a column surface. */
+    private static final int MAX_DEPTH=3;
     public static final int OUTPOST_RADIUS=10;
     private static final TagKey<Block> GROUND=TagKey.create(Registries.BLOCK,new ResourceLocation("ender_infection","infectable_ground"));
     private int activeTicks,spreadClock,growthClock,purchasedChanges,spentBiomass,radius=2;
@@ -29,6 +31,8 @@ public final class ExpansionNodeEntity extends BlockEntity {
     private int outpostClock=600;
     private boolean outpostCreated;
     private int frontierCursor;
+    /** One paid block per deep pass, always straight down from an already infected column. */
+    private int deepClock,deepened;
     private int legacyCanopyCursor;
     private long inhibitedUntil;
     public void inhibit(ServerLevel level,int ticks){inhibitedUntil=Math.max(inhibitedUntil,level.getGameTime()+Math.max(0,Math.min(1200,ticks)));setChanged();}
@@ -43,6 +47,7 @@ public final class ExpansionNodeEntity extends BlockEntity {
     public void setOwner(UUID id){if(owner==null||owner.equals(id)){owner=id;setChanged();}}
     public int purchasedChanges(){return purchasedChanges;}
     public int spentBiomass(){return spentBiomass;}
+    public int deepenedBlocks(){return deepened;}
     /** Territory blocks produced per biomass this node has spent. Read by the mother's ledger. */
     public double territoryPerBiomass(){return spentBiomass<=0?0:(double)purchasedChanges/spentBiomass;}
     public int radius(){return radius;}
@@ -115,6 +120,7 @@ public final class ExpansionNodeEntity extends BlockEntity {
             radius++;spentBiomass+=ColonyEconomy.RADIUS;growthClock=0;setChanged();
         }
         if(radius>=OUTPOST_RADIUS&&!outpostCreated&&++outpostClock>=ColonyEconomy.interval(ColonyEconomy.OUTPOST_BASE_TICKS,core.colonyBiomass())){outpostClock=0;establishOutpost(level,core);setChanged();}
+        if(++deepClock>=ColonyEconomy.interval(ColonyEconomy.DEEP_BASE_TICKS,core.colonyBiomass())){deepClock=0;deepen(level,core);}
         if(++spreadClock<ColonyEconomy.interval(ColonyEconomy.SPREAD_BASE_TICKS,core.colonyBiomass()))return;spreadClock=0;
         setChanged();
         if(!level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING))return;
@@ -203,6 +209,31 @@ public final class ExpansionNodeEntity extends BlockEntity {
         return true;
     }
     private static boolean isGround(String key){return key!=null&&!key.contains("log")&&!key.contains("leaves");}
+    /** Depth is what makes an infected cliff or a dug hole look infected instead of skinned.
+     *  One block per pass, always straight down an already infected column, never through bedrock,
+     *  block entities or anything outside the infectable ground tag. */
+    private void deepen(ServerLevel level,InfectedMob core){
+        for(int attempt=0;attempt<12;attempt++){
+            int dx=level.random.nextInt(radius*2+1)-radius,dz=level.random.nextInt(radius*2+1)-radius;
+            if(dx*dx+dz*dz>radius*radius)continue;
+            BlockPos column=worldPosition.offset(dx,0,dz);if(!level.hasChunkAt(column))continue;
+            for(int dy=3;dy>=-8;dy--){
+                BlockPos pos=column.offset(0,dy,0);String key=InfectedContent.terrainKey(level.getBlockState(pos));
+                if(key==null)continue;
+                if(!isGround(key))return;
+                BlockPos cursor=pos.below();int depth=0;
+                while(depth<MAX_DEPTH&&level.hasChunkAt(cursor)&&InfectedContent.terrainKey(level.getBlockState(cursor))!=null){cursor=cursor.below();depth++;}
+                if(depth>=MAX_DEPTH||!level.hasChunkAt(cursor))return;
+                BlockState below=level.getBlockState(cursor);
+                if(!below.is(GROUND)||below.hasBlockEntity())return;
+                int allowance=Math.min(core.expansionAllowance(),ColonyEconomy.EXPANSION);
+                if(!core.spendForExpansion(ColonyEconomy.EXPANSION))return;
+                BlockState replacement=ErodedGroundBlock.fromNatural(below).setValue(ErodedGroundBlock.EROSION,2);
+                if(!level.setBlock(cursor,replacement,3)){core.refundExpansion(ColonyEconomy.EXPANSION,allowance);return;}
+                purchasedChanges=Math.min(1000000,purchasedChanges+1);spentBiomass+=ColonyEconomy.EXPANSION;deepened++;setChanged();return;
+            }
+        }
+    }
     private void establishOutpost(ServerLevel level,InfectedMob core){
         if(!core.canExpand(ColonyEconomy.NODE)||core.colonyNodeCount()>=core.maxAutoNodes())return;
         double start=level.random.nextDouble()*Math.PI*2;
@@ -289,6 +320,6 @@ public final class ExpansionNodeEntity extends BlockEntity {
         return changed;
     }
     private boolean isInfectedLog(BlockState state){String k=InfectedContent.terrainKey(state);return "eroded_log".equals(k)||"infected_log".equals(k);}
-    @Override protected void saveAdditional(CompoundTag tag){super.saveAdditional(tag);tag.putString("SubstrateBlock",substrate);tag.putInt("LegacyCanopyCursor",legacyCanopyCursor);tag.putLong("InhibitedUntil",inhibitedUntil);tag.putInt("FrontierCursor",frontierCursor);tag.putInt("ActiveTicks",activeTicks);tag.putInt("SpreadClock",spreadClock);tag.putInt("PurchasedChanges",purchasedChanges);tag.putInt("SpentBiomass",spentBiomass);tag.putInt("Radius",radius);tag.putInt("GrowthClock",growthClock);tag.putInt("OutpostClock",outpostClock);tag.putBoolean("OutpostCreated",outpostCreated);if(owner!=null)tag.putUUID("Owner",owner);}
-    @Override public void load(CompoundTag tag){super.load(tag);substrate=tag.getString("SubstrateBlock");legacyCanopyCursor=Math.max(0,tag.getInt("LegacyCanopyCursor"));inhibitedUntil=Math.max(0,tag.getLong("InhibitedUntil"));frontierCursor=Math.max(0,tag.getInt("FrontierCursor"));activeTicks=Math.max(0,tag.getInt("ActiveTicks"));spreadClock=Math.max(0,Math.min(40,tag.getInt("SpreadClock")));purchasedChanges=tag.contains("PurchasedChanges")?Math.max(0,Math.min(1000000,tag.getInt("PurchasedChanges"))):Math.min(224,activeTicks/300*16);radius=tag.contains("Radius")?Math.max(2,Math.min(MAX_RADIUS,tag.getInt("Radius"))):Math.min(MAX_RADIUS,2+activeTicks/300);spentBiomass=Math.max(0,tag.getInt("SpentBiomass"));growthClock=Math.max(0,Math.min(300,tag.getInt("GrowthClock")));outpostClock=tag.contains("OutpostClock")?Math.max(0,Math.min(600,tag.getInt("OutpostClock"))):600;outpostCreated=tag.getBoolean("OutpostCreated");owner=tag.hasUUID("Owner")?tag.getUUID("Owner"):null;}
+    @Override protected void saveAdditional(CompoundTag tag){super.saveAdditional(tag);tag.putString("SubstrateBlock",substrate);tag.putInt("LegacyCanopyCursor",legacyCanopyCursor);tag.putLong("InhibitedUntil",inhibitedUntil);tag.putInt("FrontierCursor",frontierCursor);tag.putInt("ActiveTicks",activeTicks);tag.putInt("SpreadClock",spreadClock);tag.putInt("PurchasedChanges",purchasedChanges);tag.putInt("SpentBiomass",spentBiomass);tag.putInt("Radius",radius);tag.putInt("GrowthClock",growthClock);tag.putInt("OutpostClock",outpostClock);tag.putInt("DeepClock",deepClock);tag.putInt("Deepened",deepened);tag.putBoolean("OutpostCreated",outpostCreated);if(owner!=null)tag.putUUID("Owner",owner);}
+    @Override public void load(CompoundTag tag){super.load(tag);substrate=tag.getString("SubstrateBlock");legacyCanopyCursor=Math.max(0,tag.getInt("LegacyCanopyCursor"));inhibitedUntil=Math.max(0,tag.getLong("InhibitedUntil"));frontierCursor=Math.max(0,tag.getInt("FrontierCursor"));activeTicks=Math.max(0,tag.getInt("ActiveTicks"));spreadClock=Math.max(0,Math.min(40,tag.getInt("SpreadClock")));purchasedChanges=tag.contains("PurchasedChanges")?Math.max(0,Math.min(1000000,tag.getInt("PurchasedChanges"))):Math.min(224,activeTicks/300*16);radius=tag.contains("Radius")?Math.max(2,Math.min(MAX_RADIUS,tag.getInt("Radius"))):Math.min(MAX_RADIUS,2+activeTicks/300);spentBiomass=Math.max(0,tag.getInt("SpentBiomass"));growthClock=Math.max(0,Math.min(300,tag.getInt("GrowthClock")));outpostClock=tag.contains("OutpostClock")?Math.max(0,Math.min(600,tag.getInt("OutpostClock"))):600;deepClock=Math.max(0,tag.getInt("DeepClock"));deepened=Math.max(0,tag.getInt("Deepened"));outpostCreated=tag.getBoolean("OutpostCreated");owner=tag.hasUUID("Owner")?tag.getUUID("Owner"):null;}
 }

@@ -1,20 +1,22 @@
 Ender Infection 0.2.3 / Minecraft 1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17
-BUILD: PASS, reobfuscated installable Forge JAR (ender-infection-0.2.3.jar, 3006298 bytes, JDK 17.0.20.1).
-GAME TESTS: All 57 required tests passed in a fresh isolated GameTest world (2026-10-31 22:27).
+BUILD: PASS, reobfuscated installable Forge JAR (ender-infection-0.2.3.jar, 3007384 bytes, JDK 17.0.20.1, clean build 23:32).
+GAME TESTS: All 58 required tests passed in a fresh isolated GameTest world (2026-10-31 23:39).
 
-EXPANSION: stage three and up no longer cap the node network or the placement distance. expansionReach() is
-  separate from expansionRange(), so units keep their 48/64/80 block duty leash while nodes may be planted anywhere.
-  Single node radius stays 16 for scan cost.
-LAND SPAWNING: ExpansionNodeEntity.spawnFromGround() picks a fully eroded column every SPAWN_BASE_TICKS and asks the
-  owning mother to birth one unit (spawnFromSoil). The mother pays 8/24 and the shared MotherBrain cap still applies,
-  so land births cannot exceed the normal army limit and are not free.
-NATURAL FLORA: growFlora() grows infected_flower / infected_fungus / infected_grass / infected_tendrils on fully
-  eroded columns every FLORA_BASE_TICKS, free of charge, density capped by hasPlantRoom (max two per 7x7x3).
-DEPTH: nodes also push the infection down to three blocks below an already infected column, one paid block per pass.
+EROSION DEPTH: converting a surface block now sinks the whole column (SINK_DEPTH 4) for free, so one biomass buys a
+  column instead of one visible block. Cliffs, pit walls and dug holes show infected ground instead of vanilla dirt.
+EROSION MATURITY: maturePass() runs on its own 40 tick clock with a ring cursor and pushes two eroded columns per pass
+  through EROSION 0->1->2 and then into living_tissue / mycelial_mat / necrotic_soil / tainted_grass / crystal_crust.
+  Before this, maturing only happened inside the random scan and lost the budget to the frontier, so fields stayed at
+  first-stage erosion forever. The pass starts only after 200 ticks and only once the node has converted terrain.
+EXPANSION: stage three and up no longer cap the node network or the placement distance; expansionReach() is separate
+  from expansionRange() so units keep their 48/64/80 duty leash.
+LAND LIFE: fully eroded ground births units (paid, shared cap) and grows infected flora (free, density capped).
 
-NEW TESTS: stageThreeLiftsTheNodeCapWithoutFreeNodes, matureSoilGrowsFloraAndBirthsUnits, nodeErodesDownwardInsteadOfOnlyTheSurfaceLayer.
-PRIOR REGRESSION: hunting, recalls, climbing, tactics/learning, four armed economy policy, per-mother payments/refunds,
-  territorial depletion, network spread, siege beast wave, high-stage evolution, boss waves and loot/crafting all green.
+NEW TESTS: nodeErodesDownwardInsteadOfOnlyTheSurfaceLayer (now also asserts buried ground),
+  erodedGroundMaturesInsteadOfStayingAtFirstStage, stageThreeLiftsTheNodeCapWithoutFreeNodes,
+  matureSoilGrowsFloraAndBirthsUnits.
+PRIOR REGRESSION: hunting, recalls, climbing, tactics/learning, four armed economy policy, siege beast wave,
+  per-mother payments/refunds, territorial depletion, network spread, high-stage evolution, boss waves, loot/crafting.
 LIMITS: no player saves opened. Client visual appearance, large-world performance, multiplayer and long-term balance
   still require gameplay verification.
-JAR SHA256: be59e2ea3ffb83aa749d1a5fd00f5e725634c3540c14be6ef9a215815eeb2a1c (clean rebuild 2026-10-31 22:34)
+JAR SHA256: 0afcdbd8383af5a72cc8a36438fab0e0296ed28e9133097c6f3fdcfbdb9fc8a4

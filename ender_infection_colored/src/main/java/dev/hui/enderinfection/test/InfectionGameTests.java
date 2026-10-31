@@ -230,7 +230,7 @@ public final class InfectionGameTests {
         for(BlockPos site:new BlockPos[]{new BlockPos(12,1,4),new BlockPos(-4,1,4),new BlockPos(4,1,12),new BlockPos(4,1,-4),new BlockPos(12,1,12)}){
             helper.setBlock(site,Blocks.AIR);helper.setBlock(site,InfectedContent.NEST.get());var other=(ExpansionNodeEntity)level.getBlockEntity(helper.absolutePos(site));other.setOwner(poor.getUUID());poor.observeExpansion(other);
         }
-        tag=node.saveWithFullMetadata();tag.putInt("OutpostClock",600);tag.putInt("SpreadClock",0);tag.putInt("GrowthClock",0);tag.putInt("DeepClock",0);node.load(tag);node.serverTick(level);
+        tag=node.saveWithFullMetadata();tag.putInt("OutpostClock",600);tag.putInt("SpreadClock",0);tag.putInt("GrowthClock",0);tag.putInt("DeepClock",0);tag.putInt("MatureClock",0);tag.putInt("FloraClock",0);tag.putInt("SpawnClock",0);node.load(tag);node.serverTick(level);
         helper.assertTrue(poor.colonyNodeCount()==6&&poor.colonyBiomass()==100,"Full colony: nodes "+poor.colonyNodeCount()+", stock "+poor.colonyBiomass());
         poor.discard();rich.discard();helper.succeed();
     }
@@ -731,6 +731,8 @@ public final class InfectionGameTests {
         }
         helper.assertTrue(surface,"Node never eroded the surface layer");
         helper.assertTrue(deep&&node.deepenedBlocks()>0,"Node only eroded the top layer: deepened="+node.deepenedBlocks());
+        int buried=0;for(int x=2;x<=9;x++)for(int z=1;z<=7;z++)if(InfectedContent.terrainKey(helper.getBlockState(new BlockPos(x,0,z)))!=null)buried++;
+        helper.assertTrue(buried>0,"Buried ground under the surface was left vanilla: "+buried);
         helper.assertTrue(core.colonyBiomass()==1000-node.spentBiomass(),"Deep erosion did not debit the owning mother");
         clearWideBattlefield(helper);helper.succeed();
     }
@@ -746,10 +748,10 @@ public final class InfectionGameTests {
         helper.assertTrue(core.colonyNodeCount()==6,"Fixture did not establish the six node network: "+core.colonyNodeCount());
         BlockPos p=new BlockPos(5,1,10);helper.setBlock(p,Blocks.AIR);helper.setBlock(p,InfectedContent.NEST.get());
         var node=(ExpansionNodeEntity)level.getBlockEntity(helper.absolutePos(p));node.setOwner(core.getUUID());core.observeExpansion(node);
-        var tag=node.saveWithFullMetadata();tag.putInt("Radius",10);tag.putInt("OutpostClock",600);tag.putInt("DeepClock",0);tag.putInt("FloraClock",0);tag.putInt("SpawnClock",0);node.load(tag);
+        var tag=node.saveWithFullMetadata();tag.putInt("Radius",10);tag.putInt("OutpostClock",600);tag.putInt("DeepClock",0);tag.putInt("MatureClock",0);tag.putInt("FloraClock",0);tag.putInt("SpawnClock",0);node.load(tag);
         node.serverTick(level);
         helper.assertTrue(core.colonyNodeCount()==8,"Stage three still capped the network at six nodes: "+core.colonyNodeCount());
-        helper.assertTrue(core.colonyBiomass()==992,"The new nodes were not paid for: "+core.colonyBiomass());
+        helper.assertTrue(core.colonyBiomass()==992,"The new nodes were not paid for: stock="+core.colonyBiomass()+", nodeSpent="+node.spentBiomass()+", changes="+node.purchasedChanges()+", deepened="+node.deepenedBlocks()+", born="+node.soilBorn()+", note="+node.spawnNote());
         clearWideBattlefield(helper);helper.succeed();
     }
     @GameTest(template="empty64",timeoutTicks=120,batch="ecology_soil_life")
@@ -765,6 +767,24 @@ public final class InfectionGameTests {
         helper.assertTrue(plants>0,"Fully eroded ground never grew its own flora");
         helper.assertTrue(node.soilBorn()>0,"Fully eroded ground never birthed a unit: born="+node.soilBorn()+", note="+node.spawnNote()+", stock="+core.colonyBiomass()+", nodeRadius="+node.radius()+", changes="+node.purchasedChanges());
         helper.assertTrue(core.colonyBiomass()<1000,"Land born units were free: "+core.colonyBiomass());
+        clearWideBattlefield(helper);helper.succeed();
+    }
+    @GameTest(template="empty64",timeoutTicks=100,batch="ecology_mature")
+    public static void erodedGroundMaturesInsteadOfStayingAtFirstStage(GameTestHelper helper){
+        clearArenaMobs(helper);prepareBurstArena(helper);var level=helper.getLevel();
+        for(int x=1;x<=7;x++)for(int z=1;z<=7;z++)helper.setBlock(new BlockPos(x,0,z),InfectedContent.TERRAIN.get("eroded_grass").get());
+        var core=fundedCore(helper,new BlockPos(4,1,4),1000,3);
+        BlockPos p=new BlockPos(4,1,4);helper.setBlock(p,InfectedContent.NEST.get());
+        var node=(ExpansionNodeEntity)level.getBlockEntity(helper.absolutePos(p));node.setOwner(core.getUUID());
+        var tag=node.saveWithFullMetadata();tag.putInt("Radius",3);tag.putInt("MatureClock",0);tag.putInt("SpreadClock",0);tag.putInt("SpawnClock",0);tag.putInt("FloraClock",0);tag.putInt("DeepClock",0);node.load(tag);
+        for(int i=0;i<200;i++)node.serverTick(level);
+        int mature=0;
+        for(BlockPos q:BlockPos.betweenClosed(new BlockPos(1,0,1),new BlockPos(7,0,7))){
+            String key=InfectedContent.terrainKey(helper.getBlockState(q));
+            if(key!=null&&!key.startsWith("eroded_"))mature++;
+        }
+        helper.assertTrue(mature>0,"Eroded ground never matured past its first stage: "+mature);
+        helper.assertTrue(core.colonyBiomass()<1000,"Maturing ground was free: "+core.colonyBiomass());
         clearWideBattlefield(helper);helper.succeed();
     }
     @GameTest(template="empty64",timeoutTicks=80,batch="ecology_slope")

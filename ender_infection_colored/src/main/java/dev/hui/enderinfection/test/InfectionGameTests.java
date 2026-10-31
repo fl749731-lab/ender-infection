@@ -143,9 +143,9 @@ public final class InfectionGameTests {
         for(int i=0;i<16;i++)helper.setBlock(tiles.get(i),InfectedContent.TERRAIN.get("crystal_crust").get());
         helper.assertTrue(dev.hui.enderinfection.biomass.TerritoryYield.measure(level,core).nutrientCredits()==3840,"Mature land was not worth twice early erosion");
         for(int i=16;i<32;i++)helper.setBlock(tiles.get(i),InfectedContent.TERRAIN.get("crystal_crust").get());
-        helper.assertTrue(forceLandHarvest(helper,core)==2&&core.territoryColumns()==32&&core.colonyBiomass()==102,"Larger mature territory did not increase the return");
+        helper.assertTrue(forceLandHarvest(helper,core)==4&&core.territoryColumns()==32&&core.colonyBiomass()==104,"Larger mature territory did not increase the return");
         var saved=new net.minecraft.nbt.CompoundTag();core.addAdditionalSaveData(saved);core.readAdditionalSaveData(saved);core.setNoAi(false);
-        helper.assertTrue(core.collectTerritoryBiomass(level)==0&&forceLandHarvest(helper,core)==0&&core.colonyBiomass()==102,"Reload or rebuilding a mother harvested the same land twice");
+        helper.assertTrue(core.collectTerritoryBiomass(level)==0&&forceLandHarvest(helper,core)==0&&core.colonyBiomass()==104,"Reload or rebuilding a mother harvested the same land twice");
         helper.assertTrue(dev.hui.enderinfection.biomass.TerritoryYield.measure(level,core).nutrientCredits()<7680,"Harvested territory kept its original fertility");
         level.removeBlock(node.getBlockPos(),false);
         helper.assertTrue(forceLandHarvest(helper,core)==0&&core.territoryColumns()==0,"Land without an active supplying node kept producing income");
@@ -484,11 +484,16 @@ public final class InfectionGameTests {
                 level.getEntitiesOfClass(net.minecraft.world.entity.Mob.class,area,e->e!=core).forEach(net.minecraft.world.entity.Entity::discard);
                 for(int x=2;x<=6;x++)for(int z=2;z<=6;z++)helper.setBlock(new BlockPos(x,4,z),Blocks.AIR);
                 helper.runAfterDelay(60,()->{
-                    helper.assertTrue(core.motherStage()==3&&core.getMaxHealth()==480,"Mother stage after ceiling cleared: "+core.motherStage()+", stock="+core.colonyBiomass()+", ready="+core.expansionReady()+", state="+core.motherState()+", position="+core.position()+", entities="+level.getEntities(core,core.getBoundingBox().inflate(1)).stream().map(e->e.getType()+" at "+e.position()).toList());
-                    var tag=new net.minecraft.nbt.CompoundTag();core.addAdditionalSaveData(tag);
-                    var restored=InfectedContent.TYPES.get(dev.hui.enderinfection.entity.InfectedKind.CORE).get().create(level);restored.readAdditionalSaveData(tag);
-                    helper.assertTrue(restored.motherStage()==3&&restored.colonyBiomass()==core.colonyBiomass()&&restored.getMaxHealth()==480,"Mother stage, biomass or attributes were lost on reload");
-                    core.discard();helper.succeed();
+                    // Nodes now spend faster, so they can drain the upgrade reserve while the mother waits for
+                    // space. Top the wallet up here: this test is about the space check, not node throughput.
+                    core.receiveColonyBiomass(Math.max(0,216-core.colonyBiomass()));
+                    helper.runAfterDelay(30,()->{
+                        helper.assertTrue(core.motherStage()==3&&core.getMaxHealth()==480,"Mother stage after ceiling cleared: "+core.motherStage()+", stock="+core.colonyBiomass()+", ready="+core.expansionReady()+", state="+core.motherState()+", position="+core.position()+", entities="+level.getEntities(core,core.getBoundingBox().inflate(1)).stream().map(e->e.getType()+" at "+e.position()).toList());
+                        var tag=new net.minecraft.nbt.CompoundTag();core.addAdditionalSaveData(tag);
+                        var restored=InfectedContent.TYPES.get(dev.hui.enderinfection.entity.InfectedKind.CORE).get().create(level);restored.readAdditionalSaveData(tag);
+                        helper.assertTrue(restored.motherStage()==3&&restored.colonyBiomass()==core.colonyBiomass()&&restored.getMaxHealth()==480,"Mother stage, biomass or attributes were lost on reload");
+                        core.discard();helper.succeed();
+                    });
                 });
             });
         });
@@ -687,11 +692,28 @@ public final class InfectionGameTests {
         for(int i=0;i<6;i++){var prey=net.minecraft.world.entity.EntityType.COW.create(level);placeMob(helper,prey,new BlockPos(10,1,4));prey.setHealth(1);prey.setNoAi(true);level.addFreshEntity(prey);prey.hurt(level.damageSources().mobAttack(unit),10);}
         int score=core.motherBrain().learning().score(tactic,kind,level.getGameTime());
         helper.assertTrue(score>=15&&foreign.motherBrain().learning().score(tactic,kind,level.getGameTime())==0,"Combat outcomes were not isolated to the original mother");
+        int aggression=core.motherBrain().learning().aggression();
+        helper.assertTrue(aggression>50&&foreign.motherBrain().learning().aggression()==50,"Winning fights did not raise brood aggression or leaked to another mother");
         unit.discard();var saved=new net.minecraft.nbt.CompoundTag();core.addAdditionalSaveData(saved);core.readAdditionalSaveData(saved);
         helper.assertTrue(core.motherBrain().learning().score(tactic,kind,level.getGameTime())==score,"Learned brood preferences were lost on reload");
+        helper.assertTrue(core.motherBrain().learning().aggression()==aggression,"Learned aggression was lost on reload");
         int chosen=0;for(int i=0;i<24;i++)if(core.motherBrain().pickHost()==kind)chosen++;
         helper.assertTrue(chosen>=20,"Successful brood did not influence actual host selection: "+chosen);
         helper.assertTrue(core.motherBrain().learning().score(tactic,kind,level.getGameTime()+24000)==0,"Old combat preferences failed to decay");clearWideBattlefield(helper);helper.succeed();
+    }
+    @GameTest(template="empty64",timeoutTicks=60,batch="ecology_policy")
+    public static void colonyPolicyLearnsWhichInvestmentPaysAndSurvivesReload(GameTestHelper helper){
+        clearWideBattlefield(helper);flatBattlefield(helper,0,16,0,12);
+        var core=fundedCore(helper,new BlockPos(3,1,3),0,1);var policy=core.motherBrain().policy();
+        helper.assertTrue(!policy.acting(),"Economy policy acted before it had any measurements");
+        for(int window=0;window<40;window++)policy.observeWindow(policy.arm()==dev.hui.enderinfection.entity.ColonyPolicy.Action.EXPAND?20.0:-6.0,core.getRandom());
+        helper.assertTrue(policy.acting()&&policy.expandValue()>policy.hatchValue(),"Expanding never outranked hatching after better windows: "+policy.expandValue()+" / "+policy.hatchValue());
+        double hold=policy.expandValue(),hatch=policy.hatchValue();int windows=policy.windows();
+        var saved=new net.minecraft.nbt.CompoundTag();core.addAdditionalSaveData(saved);core.readAdditionalSaveData(saved);
+        var reloaded=core.motherBrain().policy();
+        helper.assertTrue(reloaded.windows()==windows&&Math.abs(reloaded.expandValue()-hold)<1e-9&&Math.abs(reloaded.hatchValue()-hatch)<1e-9,"Learned economy policy was lost on reload");
+        helper.assertTrue(!reloaded.skipHatching(core),"A reloaded policy skipped hatching without an owned node to spend the biomass");
+        clearWideBattlefield(helper);helper.succeed();
     }
     @GameTest(template="empty64",timeoutTicks=80,batch="ecology_slope")
     public static void frontierErosionClimbsConnectedOneBlockSteps(GameTestHelper helper){
@@ -807,6 +829,7 @@ public final class InfectionGameTests {
         helper.assertTrue(ground.is(InfectedContent.TERRAIN.get("eroded_grass").get())&&ground.getValue(dev.hui.enderinfection.block.ErodedGroundBlock.SUBSTRATE)==3,"Mushroom blocked mycelium erosion or lost its native substrate");
         helper.assertTrue(plant.is(InfectedContent.PLANTS.get("eroded_vegetation").get())&&plant.getValue(dev.hui.enderinfection.block.ErodedVegetationBlock.SOURCE)==17&&plant.getValue(dev.hui.enderinfection.block.ErodedVegetationBlock.EROSION)==0,"Red mushroom skipped its native-shaped initial erosion");
         helper.assertTrue(core.colonyBiomass()==8&&node.purchasedChanges()==2,"Soil and mushroom changes did not cost two biomass");
+        helper.assertTrue(core.nodePurchasedChanges()==2&&core.nodeSpentBiomass()==2&&Math.abs(core.nodeEfficiency()-1.0)<1e-9,"Mother did not aggregate her node ledger: changes "+core.nodePurchasedChanges()+", spend "+core.nodeSpentBiomass()+", efficiency "+core.nodeEfficiency());
         core.receiveColonyBiomass(190);helper.setBlock(soil,InfectedContent.TERRAIN.get("mycelial_mat").get());for(int i=0;i<200;i++)node.serverTick(level);
         helper.assertTrue(helper.getBlockState(soil.above()).is(InfectedContent.PLANTS.get("infected_fungus").get()),"Eroded mushroom never matured into infected fungus");clearWideBattlefield(helper);helper.succeed();
     }
@@ -866,6 +889,42 @@ public final class InfectionGameTests {
         var kinds=new dev.hui.enderinfection.entity.InfectedKind[]{dev.hui.enderinfection.entity.InfectedKind.COW,dev.hui.enderinfection.entity.InfectedKind.PIG,dev.hui.enderinfection.entity.InfectedKind.SHEEP,dev.hui.enderinfection.entity.InfectedKind.SPIDER,dev.hui.enderinfection.entity.InfectedKind.ENDERMAN};int[] expected={6,6,8,5,7};
         for(int i=0;i<kinds.length;i++){var caster=battleUnit(helper,kinds[i],new BlockPos(8,1,12),null,"hunter");caster.setNoAi(true);int count=dev.hui.enderinfection.combat.CrystalAttacks.cast(caster,kinds[i],target,18);helper.assertTrue(count==expected[i],"Missing species pattern for "+kinds[i]+": "+count);spellEntities(helper).forEach(net.minecraft.world.entity.Entity::discard);caster.discard();}
         var early=battleUnit(helper,dev.hui.enderinfection.entity.InfectedKind.EARLY_SKELETON,new BlockPos(8,1,12),null,"hunter");helper.assertTrue(dev.hui.enderinfection.combat.CrystalAttacks.cast(early,early.kind,target,16)==0,"Early host acquired mature crystal spell");clearWideBattlefield(helper);helper.succeed();
+    }
+    @GameTest(template="empty64",timeoutTicks=130,batch="siege_ravager_charge")
+    public static void ravagerSiegeWarnsBeforeLungingAndHitsEachEnemyOnce(GameTestHelper helper){
+        clearWideBattlefield(helper);flatBattlefield(helper,0,30,0,18);var level=helper.getLevel();
+        var beast=readySiege(helper,new BlockPos(3,1,8));var target=durableTarget(helper,new BlockPos(17,1,8));beast.setTarget(target);
+        var ally=battleUnit(helper,dev.hui.enderinfection.entity.InfectedKind.EARLY_COW,new BlockPos(16,1,10),null,"guard");ally.setNoAi(true);var start=beast.position();
+        helper.runAfterDelay(8,()->helper.assertTrue(beast.attacking()&&target.getHealth()==100&&beast.position().distanceToSqr(start)<.5,"Siege beast skipped its stationary warning"));
+        helper.runAfterDelay(24,()->helper.assertTrue(beast.getX()-start.x>.8&&beast.getX()-start.x<4.5,"Committed siege lunge did not advance a bounded distance: "+beast.position()));
+        helper.runAfterDelay(95,()->{
+            helper.assertTrue(target.getHealth()>=87&&target.getHealth()<=89,"Siege wave missed or hit the distant enemy repeatedly: "+target.getHealth());
+            helper.assertTrue(ally.getHealth()==ally.getMaxHealth(),"New siege effects/attack hurt an infected ally");
+            helper.assertTrue(helper.getBlockState(new BlockPos(6,0,8)).is(Blocks.STONE),"Siege impact replaced its terrain");clearWideBattlefield(helper);helper.succeed();
+        });
+    }
+    @GameTest(template="empty64",timeoutTicks=125,batch="siege_ravager_wall")
+    public static void ravagerSiegeLungeStopsAtWallsAndCannotDamageThroughThem(GameTestHelper helper){
+        clearWideBattlefield(helper);flatBattlefield(helper,0,30,0,18);var level=helper.getLevel();
+        var beast=readySiege(helper,new BlockPos(3,1,8));var target=durableTarget(helper,new BlockPos(17,1,8));beast.setTarget(target);
+        helper.runAfterDelay(5,()->{
+            helper.assertTrue(beast.attacking(),"Wall test missed the start of the visible windup");
+            for(int z=0;z<=18;z++)for(int y=1;y<=6;y++)helper.setBlock(new BlockPos(8,y,z),Blocks.STONE);
+        });
+        helper.runAfterDelay(95,()->{
+            helper.assertTrue(beast.getX()<helper.absolutePos(new BlockPos(8,1,8)).getX()&&target.getHealth()==100,"Siege lunge or shock wave crossed a solid wall");
+            helper.assertTrue(helper.getBlockState(new BlockPos(8,2,8)).is(Blocks.STONE),"Cosmetic impact broke a wall");clearWideBattlefield(helper);helper.succeed();
+        });
+    }
+    @GameTest(template="empty64",timeoutTicks=90,batch="siege_ravager_interrupt")
+    public static void recalledRavagerSiegeCancelsItsLungeAndPendingWave(GameTestHelper helper){
+        clearWideBattlefield(helper);flatBattlefield(helper,0,30,0,18);var level=helper.getLevel();
+        var beast=readySiege(helper,new BlockPos(3,1,8));var target=durableTarget(helper,new BlockPos(17,1,8));beast.setTarget(target);var start=beast.position();
+        helper.runAfterDelay(8,()->{helper.assertTrue(beast.attacking(),"Recall test missed the siege windup");beast.interruptForOrders();beast.setTarget(null);beast.setNoAi(true);});
+        helper.runAfterDelay(65,()->{helper.assertTrue(!beast.attacking()&&target.getHealth()==100&&beast.position().distanceToSqr(start)<.5,"Recalled siege beast kept moving or resolved a canceled hit");clearWideBattlefield(helper);helper.succeed();});
+    }
+    private static dev.hui.enderinfection.entity.InfectedMob readySiege(GameTestHelper helper,BlockPos relative){
+        var beast=battleUnit(helper,dev.hui.enderinfection.entity.InfectedKind.SIEGE_BEAST,relative,null,"hunter");var saved=new net.minecraft.nbt.CompoundTag();beast.addAdditionalSaveData(saved);saved.putInt("EmergenceTicks",0);beast.readAdditionalSaveData(saved);return beast;
     }
     private static void preparePlantPatch(GameTestHelper helper){for(int x=0;x<9;x++)for(int z=0;z<9;z++){helper.setBlock(new BlockPos(x,0,z),Blocks.BARRIER);for(int y=1;y<7;y++)helper.setBlock(new BlockPos(x,y,z),Blocks.AIR);}}
     private static ExpansionNodeEntity plantNode(GameTestHelper helper,dev.hui.enderinfection.entity.InfectedMob core){BlockPos p=new BlockPos(4,1,4);helper.setBlock(p,InfectedContent.NEST.get());var node=(ExpansionNodeEntity)helper.getLevel().getBlockEntity(helper.absolutePos(p));node.setOwner(core.getUUID());return node;}

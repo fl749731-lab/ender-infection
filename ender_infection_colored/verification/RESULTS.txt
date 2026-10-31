@@ -1,8 +1,30 @@
-Ender Infection 0.2.1 / Minecraft 1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17
-BUILD: PASS, reobfuscated installable Forge JAR.
-GAME TESTS: All 50 required tests passed in a fresh isolated GameTest world.
-NEW TESTS: native mycelium plus red mushroom, moist farmland plus age-five wheat, atomic double-fern conversion and insufficient funds, actual mother's ground-replacing seed, rooted paid child nodes, real mature skeleton AI casting without arrows, warned/dodgeable one-hit crystal casts, faction safety, timed cleanup, interrupted cast cancellation and species-specific layouts.
-PRIOR REGRESSION: hunting, recalls, climbing, tactics/learning, per-mother payments/refunds, territorial depletion, network spread, high-stage evolution, boss waves and loot/crafting retained in the same suite.
-ASSETS: 156 plant model variants; native alpha/UV preserved, erosion grows from existing marks, base tint separated from purple overlays; editable/runtime skeleton mesh match; all model coordinates and mod texture references checked; source resources match this JAR.
-LIMITS: no player saves opened. Offline texture/model previews are not gameplay screenshots. Client visual appearance, large-world performance, multiplayer and long-term balance still require gameplay verification.
-JAR SHA256: 0c91a792d25fc8e3cad41aab83e5e6a1e1b24035a471123754676fd9f8ded5db
+Ender Infection 0.2.3 / Minecraft 1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17
+BUILD: PASS, reobfuscated installable Forge JAR (ender-infection-0.2.3.jar, 3002425 bytes, JDK 17.0.20.1).
+GAME TESTS: All 54 required tests passed in a fresh isolated GameTest world (2026-10-31 16:05).
+
+SIEGE BEAST FIX (blocking): the crystal wave damage band was 3.5 blocks wide while the front advanced 3.9
+  blocks per 6 tick sample, leaving 0.4 block rings that never took damage. The lunge shortened the range to
+  a target until it landed inside one, which is why ravagerSiegeWarnsBeforeLunging and bossCrystalWave both
+  reported full health. The wave now hits anything the front has swept (waveVictims still allows one hit).
+SIEGE BEAST FIX: wave cut-off is derived from reach / growth / sample period instead of a magic 24 ticks;
+  lunge only pushes while on the ground; siege no longer draws the old crystal ring or the generic hit sound;
+  the generic gather emitter is skipped for siege beasts so windup particles are not doubled.
+
+LEARNING-L1: per mother tactic x host score table decides which host to hatch.
+LEARNING-L2: brood aggression (0..100 EMA) sets hunting scent radius 20..48 and hostile pack limit 1..4.
+LEARNING-L3: ColonyPolicy, a four armed bandit (HATCH / EXPAND / EVOLVE / RECOVER) over 600 tick windows,
+  scored by land weight, kills, losses and biomass earned; EXPAND also gets a bonus from the measured node
+  ledger (new territory per biomass spent). Epsilon greedy with optimism bonus, six window warm-up, saved per mother.
+
+EXPANSION: terrain rounds 40 -> 24 ticks, radius growth 300 -> 200 ticks, outpost evaluation 600 -> 300 ticks,
+  land income 32 -> 16 credits per biomass.
+HUNTING: hunters walk toward reachable prey they cannot see (search point only, no entity reveal), shorter
+  give-up blacklists, wider idle patrol radius, learned pack limit.
+
+TEST CHANGE: motherGrowsFromNearbyKillsAndWaitsForSpace now tops the wallet back up after the ceiling clears.
+  Faster nodes could drain the upgrade reserve while the mother waited for space, which made the old fixture
+  measure node throughput instead of the space check.
+
+LIMITS: no player saves opened. Client visual appearance, large-world performance, multiplayer and long-term
+  balance still require gameplay verification.
+JAR SHA256: 3afe6fe3ac99f3a5dfb2213f762a2f91db5daf1326f98757a3b47c6423ca516b

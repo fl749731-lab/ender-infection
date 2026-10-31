@@ -26,6 +26,16 @@ public final class FactionAI {
         return e!=self && e.isAlive() && !infected(e) && !self.isAlliedTo(e)
             && (e instanceof Mob || e instanceof Player p && !p.isCreative() && !p.isSpectator());
     }
+    /** Learned aggression widens how far a brood looks for prey it cannot see yet. */
+    public static double huntScent(Mob mob){
+        var core=home(mob);
+        int aggression=core==null||core.motherBrain()==null?50:core.motherBrain().learning().aggression();
+        return 20+aggression*.28;
+    }
+    public static int packLimit(Mob mob){
+        var core=home(mob);
+        return core==null||core.motherBrain()==null?2:core.motherBrain().learning().packLimit();
+    }
     public static InfectedMob home(Mob mob){
         if(!(mob.level() instanceof ServerLevel level))return null;
         if(mob instanceof InfectedMob core&&core.kind==InfectedKind.CORE)return core;
@@ -78,7 +88,7 @@ public final class FactionAI {
     private static boolean canJoin(Mob mob,LivingEntity target){
         if(urgent(mob,target)||mob instanceof InfectedMob core&&core.kind==InfectedKind.CORE)return true;
         if(duty(mob).equals("guard")&&!(target instanceof Enemy)&&!(target instanceof Player))return false;
-        int limit=target instanceof Enemy||target instanceof Player?3:target.getMaxHealth()>=30?2:1;
+        int limit=target instanceof Enemy||target instanceof Player?Math.max(3,packLimit(mob)):target.getMaxHealth()>=30?2:1;
         return huntLoad(mob,target)<limit;
     }
     private static boolean inDutyRange(Mob mob,LivingEntity target){
@@ -137,7 +147,7 @@ public final class FactionAI {
         private UUID tracked;
         private Vec3 lastKnown;
         public HuntGoal(Mob mob) { this.mob=mob;scanAt=mob.getRandom().nextInt(10);setFlags(EnumSet.of(Flag.TARGET)); }
-        public void reject(LivingEntity e) { blocked.put(e.getUUID(),mob.tickCount+200);if(lastKnown!=null&&e.getUUID().equals(tracked)&&!mob.hasLineOfSight(e))search(mob,lastKnown,mob.level().getGameTime()+80);mob.setTarget(null);release(mob);task(mob,"重新搜寻","追击失败或目标丢失"); }
+        public void reject(LivingEntity e) { blocked.put(e.getUUID(),mob.tickCount+120);if(lastKnown!=null&&e.getUUID().equals(tracked)&&!mob.hasLineOfSight(e))search(mob,lastKnown,mob.level().getGameTime()+80);mob.setTarget(null);release(mob);task(mob,"重新搜寻","追击失败或目标丢失"); }
         private boolean available(LivingEntity e) {
             if(!inDutyRange(mob,e))return false;
             if(mob instanceof InfectedMob core&&core.kind==InfectedKind.CORE&&!(e instanceof Player)&&!(e instanceof Enemy)&&!(e instanceof Mob other&&infected(other.getTarget()))&&mob.distanceToSqr(e)>144)return false;
@@ -175,13 +185,35 @@ public final class FactionAI {
                     // Retry after landing instead of blacklisting a perfectly reachable prey.
                     if(!climber&&!mob.onGround()&&!mob.isInWater())continue;
                     var path=mob.getNavigation().createPath(e,0);
-                    if((path==null||path.getNodeCount()<2)&&!climber) {blocked.put(e.getUUID(),mob.tickCount+80);task(mob,"重新搜寻","候选猎物暂不可达");continue;}
+                    if((path==null||path.getNodeCount()<2)&&!climber) {blocked.put(e.getUUID(),mob.tickCount+60);task(mob,"重新搜寻","候选猎物暂不可达");continue;}
                 }
                 score=candidate;best=e;
             }
+            if(best==null)scentTrail();
             mob.setTarget(best);
             if(best!=null){reserve(mob,best);task(mob,defendedMother(mob)!=null?"回防":urgent(mob,best)?"应战":"狩猎","已分配目标");}
             else release(mob);
+        }
+        /** Proximity cue: walk toward prey the brood cannot see yet. Only a search point is
+         *  revealed, never the entity, so a real wall still ends the chase at the last seen spot. */
+        private void scentTrail(){
+            if(mob.getPersistentData().getLong("SearchUntil")>mob.level().getGameTime())return;
+            if(mob instanceof InfectedMob core&&core.kind==InfectedKind.CORE)return;
+            double scent=huntScent(mob);
+            var candidates=new ArrayList<>(mob.level().getEntitiesOfClass(LivingEntity.class,mob.getBoundingBox().inflate(scent,10,scent),
+                e->enemy(mob,e)&&inDutyRange(mob,e)&&canJoin(mob,e)&&blocked.getOrDefault(e.getUUID(),0)<=mob.tickCount));
+            candidates.sort(Comparator.comparingDouble((LivingEntity e)->score(e)).reversed());
+            boolean climber=mob instanceof InfectedMob unit&&(unit.kind==InfectedKind.SPIDER||unit.kind==InfectedKind.EARLY_SPIDER);
+            if(!climber&&!mob.onGround()&&!mob.isInWater())return;
+            int checked=0;
+            for(LivingEntity candidate:candidates){
+                if(checked++>=3)break;
+                var path=mob.getNavigation().createPath(candidate,0);
+                if(path==null||!path.canReach())continue;
+                Vec3 point=candidate.position().add((mob.getRandom().nextDouble()-.5)*6,0,(mob.getRandom().nextDouble()-.5)*6);
+                search(mob,point,mob.level().getGameTime()+200);
+                task(mob,"追踪","附近有可到达的猎物气味");return;
+            }
         }
         private double score(LivingEntity target){return (urgent(mob,target)?120:target instanceof Enemy?38:target instanceof Player?30:24)-mob.distanceTo(target)*.9-huntLoad(mob,target)*6+(target.getHealth()<target.getMaxHealth()*.3?4:0);}
         public Vec3 pursuitPoint(LivingEntity target){return mob.hasLineOfSight(target)||lastKnown==null?target.position():lastKnown;}
@@ -283,7 +315,7 @@ public final class FactionAI {
             if(!nodes.isEmpty())anchor=Vec3.atBottomCenterOf(nodes.stream().max(Comparator.comparingDouble(n->core.distanceToSqr(Vec3.atCenterOf(n.getBlockPos())))).get().getBlockPos());
             if(mob.distanceToSqr(core)>Math.pow(core.expansionRange()+16,2)){if(!walkTo(mob,core.position().add(4,0,0),1.1))return false;}
             else{
-                double radius=duty(mob).equals("patrol")?8:20;
+                double radius=duty(mob).equals("patrol")?8:Math.max(20,huntScent(mob));
                 for(int i=0;i<6;i++){
                     double angle=Math.floorMod(mob.getUUID().hashCode(),16)*Math.PI/8+(mob.tickCount/120.0)+i*Math.PI/3;
                     Vec3 desired=anchor.add(Math.cos(angle)*radius,0,Math.sin(angle)*radius);

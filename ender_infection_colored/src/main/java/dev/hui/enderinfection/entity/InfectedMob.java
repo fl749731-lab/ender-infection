@@ -62,6 +62,8 @@ public final class InfectedMob extends Monster implements GeoEntity {
     private MotherBrain motherBrain;
     public MotherBrain motherBrain(){return motherBrain;}
     private int colonyBiomass;
+    /** Lifetime biomass this mother has taken in. The economy bandit scores windows with it. */
+    private int colonyIncomeTotal;
     private BlockPos expansionAnchor;
     public static final int MAX_AUTO_NODES=16;
     public int maxAutoNodes(){return motherStage()<4?6:motherStage()==4?10:MAX_AUTO_NODES;}
@@ -73,9 +75,14 @@ public final class InfectedMob extends Monster implements GeoEntity {
     private final AnimatableInstanceCache cache=GeckoLibUtil.createInstanceCache(this);
     public final InfectedKind kind;
     private int attackTick, cooldown, teleportCooldown=60;
+    /** Crystal wave front speed and sampling period. The wave cut-off is derived from these. */
+    private static final double WAVE_GROWTH=.65;
+    private static final int WAVE_PERIOD=6;
     private int emergenceTicks=32;
     private boolean emergenceStarted;
     private int personalBiomass;
+    private int lastSiegeHurtFx=-20;
+    private boolean siegeDeathBurst;
     private final java.util.Set<java.util.UUID> waveVictims=new java.util.HashSet<>();
     private boolean expansionNodeCreated;
     public void feedBiomass(int amount){if(kind.early())personalBiomass=Math.min(1000,personalBiomass+Math.max(0,amount));}
@@ -97,10 +104,15 @@ public final class InfectedMob extends Monster implements GeoEntity {
     public int motherStage(){return entityData.get(MOTHER_STAGE);}
     @Override public net.minecraft.network.chat.Component getName(){return kind==InfectedKind.CORE&&!hasCustomName()?net.minecraft.network.chat.Component.translatable("entity.ender_infection.mother_stage"+motherStage()):super.getName();}
     public int colonyBiomass(){return colonyBiomass;}
+    public int colonyIncomeTotal(){return colonyIncomeTotal;}
+    /** Sum of every owned node's own ledger. The economy bandit scores the EXPAND arm with it. */
+    public int nodePurchasedChanges(){int sum=0;for(ExpansionNodeEntity node:activeColonyNodes())sum+=node.purchasedChanges();return sum;}
+    public int nodeSpentBiomass(){int sum=0;for(ExpansionNodeEntity node:activeColonyNodes())sum+=node.spentBiomass();return sum;}
+    public double nodeEfficiency(){int spend=nodeSpentBiomass();return spend<=0?0:(double)nodePurchasedChanges()/spend;}
     public PlayerTactics.Tactic motherTactic(){return motherBrain==null?PlayerTactics.Tactic.BALANCED:motherBrain.tactic();}
     public void receiveColonyBiomass(int value){
         if(kind!=InfectedKind.CORE||value<=0)return;int added=Math.min(10000-colonyBiomass,value);colonyBiomass+=added;
-        expansionAllowance=Math.min(10000,expansionAllowance+added);expansionRemainder=0;
+        expansionAllowance=Math.min(10000,expansionAllowance+added);expansionRemainder=0;colonyIncomeTotal=Math.min(1000000,colonyIncomeTotal+added);
     }
     public float morphSpeed(){return entityData.get(MORPH_SPEED);}
     public int expansionAllowance(){return expansionAllowance;}
@@ -142,11 +154,11 @@ public final class InfectedMob extends Monster implements GeoEntity {
     }
     public boolean spendBiomass(int amount){if(amount<=0||colonyBiomass<amount)return false;colonyBiomass-=amount;return true;}
     public void refundBiomass(int amount){if(amount>0)colonyBiomass=Math.min(10000,colonyBiomass+amount);}
-    public boolean spendForHatching(int price){return colonyBiomass-price>=upgradeReserve()&&spendBiomass(price);}
+    public boolean spendForHatching(int price){boolean paid=colonyBiomass-price>=upgradeReserve()&&spendBiomass(price);if(paid&&motherBrain!=null)motherBrain.policy().noteHatchSpend(price);return paid;}
     public boolean spendForRecovery(int price){return colonyBiomass-price>=Math.max(8,upgradeReserve())&&spendBiomass(price);}
     public boolean canExpand(){return canExpand(ColonyEconomy.EXPANSION);}
     public boolean canExpand(int amount){return amount>0&&colonyBiomass-amount>=8;}
-    public boolean spendForExpansion(int amount){if(!canExpand(amount))return false;colonyBiomass-=amount;expansionAllowance=Math.max(0,expansionAllowance-amount);return true;}
+    public boolean spendForExpansion(int amount){if(!canExpand(amount))return false;colonyBiomass-=amount;expansionAllowance=Math.max(0,expansionAllowance-amount);if(motherBrain!=null)motherBrain.policy().noteTerrainSpend(amount);return true;}
     public void refundExpansion(int amount,int usedAllowance){refundBiomass(amount);expansionAllowance=Math.min(10000,expansionAllowance+usedAllowance);}
 
     public MotherBrain.State motherState(){return MotherBrain.State.values()[Math.max(0,Math.min(MotherBrain.State.values().length-1,entityData.get(MOTHER_STATE)))];}
@@ -173,13 +185,13 @@ public final class InfectedMob extends Monster implements GeoEntity {
         for(var player:level.players())if(distanceToSqr(player)<96*96)player.sendSystemMessage(net.minecraft.network.chat.Component.translatable("message.ender_infection.mother_evolved",getName()));return true;
     }
     private double attackRadius(){return kind==InfectedKind.CORE?(motherStage()==1?4:motherStage()==2?8:10):kind.radius;}
-    @Override public void addAdditionalSaveData(CompoundTag tag){super.addAdditionalSaveData(tag);tag.putInt("EmergenceTicks",emergenceTicks);tag.putInt("PersonalBiomass",personalBiomass);tag.putBoolean("ExpansionNodeCreated",expansionNodeCreated);if(expansionAnchor!=null)tag.putLong("ExpansionAnchor",expansionAnchor.asLong());if(kind==InfectedKind.CORE){tag.putInt("MotherStage",motherStage());tag.putInt("ColonyBiomass",colonyBiomass);tag.putInt("ExpansionAllowance",expansionAllowance);tag.putInt("ExpansionRemainder",expansionRemainder);tag.putFloat("MorphSpeed",morphSpeed());var nodes=new net.minecraft.nbt.ListTag();for(BlockPos pos:colonyNodes)nodes.add(net.minecraft.nbt.LongTag.valueOf(pos.asLong()));tag.put("ColonyNodes",nodes);tag.putLong("NextTerritoryHarvest",nextTerritoryHarvest);tag.putInt("TerritoryRemainder",territoryRemainder);tag.putInt("TerritoryIncomeVersion",2);tag.putInt("TerritoryFertility",territoryFertility);tag.putInt("TerritoryColumns",territoryColumns);tag.putInt("TerritoryWeight",territoryWeight);tag.putInt("LastTerritoryIncome",lastTerritoryIncome);motherBrain.save(tag);}}
-    @Override public void readAdditionalSaveData(CompoundTag tag){super.readAdditionalSaveData(tag);if(getAttribute(Attributes.FOLLOW_RANGE)!=null&&getAttribute(Attributes.FOLLOW_RANGE).getBaseValue()<40)getAttribute(Attributes.FOLLOW_RANGE).setBaseValue(40);emergenceTicks=Math.max(0,Math.min(40,tag.getInt("EmergenceTicks")));entityData.set(EMERGING,emergenceTicks>0);emergenceStarted=false;personalBiomass=Math.max(0,tag.getInt("PersonalBiomass"));expansionNodeCreated=tag.getBoolean("ExpansionNodeCreated");expansionAnchor=tag.contains("ExpansionAnchor")?BlockPos.of(tag.getLong("ExpansionAnchor")):null;if(kind==InfectedKind.CORE){colonyBiomass=Math.max(0,Math.min(10000,tag.getInt("ColonyBiomass")));expansionAllowance=tag.contains("ExpansionAllowance")?Math.max(0,Math.min(10000,tag.getInt("ExpansionAllowance"))):4;expansionRemainder=Math.max(0,Math.min(3,tag.getInt("ExpansionRemainder")));entityData.set(MORPH_SPEED,tag.contains("MorphSpeed")?Math.max(.5F,Math.min(4F,tag.getFloat("MorphSpeed"))):1F);colonyNodes.clear();for(var entry:tag.getList("ColonyNodes",4))colonyNodes.add(BlockPos.of(((net.minecraft.nbt.LongTag)entry).getAsLong()));nextTerritoryHarvest=tag.contains("NextTerritoryHarvest")?Math.max(level().getGameTime(),Math.min(level().getGameTime()+200,tag.getLong("NextTerritoryHarvest"))):level().getGameTime()+200;territoryRemainder=tag.getInt("TerritoryIncomeVersion")>=2?Math.max(0,Math.min(dev.hui.enderinfection.biomass.LandNutrients.DENOMINATOR-1,tag.getInt("TerritoryRemainder"))):Math.max(0,Math.min(31,tag.getInt("TerritoryRemainder")))*dev.hui.enderinfection.biomass.LandNutrients.CYCLES;territoryFertility=tag.contains("TerritoryFertility")?Math.max(0,Math.min(100,tag.getInt("TerritoryFertility"))):100;territoryColumns=Math.max(0,tag.getInt("TerritoryColumns"));territoryWeight=Math.max(0,tag.getInt("TerritoryWeight"));lastTerritoryIncome=Math.max(0,tag.getInt("LastTerritoryIncome"));motherBrain.load(tag);applyMotherStage(tag.contains("MotherStage")?tag.getInt("MotherStage"):2);}}
+    @Override public void addAdditionalSaveData(CompoundTag tag){super.addAdditionalSaveData(tag);tag.putInt("EmergenceTicks",emergenceTicks);tag.putInt("PersonalBiomass",personalBiomass);tag.putBoolean("ExpansionNodeCreated",expansionNodeCreated);if(expansionAnchor!=null)tag.putLong("ExpansionAnchor",expansionAnchor.asLong());if(kind==InfectedKind.CORE){tag.putInt("MotherStage",motherStage());tag.putInt("ColonyBiomass",colonyBiomass);tag.putInt("ColonyIncome",colonyIncomeTotal);tag.putInt("ExpansionAllowance",expansionAllowance);tag.putInt("ExpansionRemainder",expansionRemainder);tag.putFloat("MorphSpeed",morphSpeed());var nodes=new net.minecraft.nbt.ListTag();for(BlockPos pos:colonyNodes)nodes.add(net.minecraft.nbt.LongTag.valueOf(pos.asLong()));tag.put("ColonyNodes",nodes);tag.putLong("NextTerritoryHarvest",nextTerritoryHarvest);tag.putInt("TerritoryRemainder",territoryRemainder);tag.putInt("TerritoryIncomeVersion",2);tag.putInt("TerritoryFertility",territoryFertility);tag.putInt("TerritoryColumns",territoryColumns);tag.putInt("TerritoryWeight",territoryWeight);tag.putInt("LastTerritoryIncome",lastTerritoryIncome);motherBrain.save(tag);}}
+    @Override public void readAdditionalSaveData(CompoundTag tag){super.readAdditionalSaveData(tag);if(getAttribute(Attributes.FOLLOW_RANGE)!=null&&getAttribute(Attributes.FOLLOW_RANGE).getBaseValue()<40)getAttribute(Attributes.FOLLOW_RANGE).setBaseValue(40);emergenceTicks=Math.max(0,Math.min(40,tag.getInt("EmergenceTicks")));entityData.set(EMERGING,emergenceTicks>0);emergenceStarted=false;personalBiomass=Math.max(0,tag.getInt("PersonalBiomass"));expansionNodeCreated=tag.getBoolean("ExpansionNodeCreated");expansionAnchor=tag.contains("ExpansionAnchor")?BlockPos.of(tag.getLong("ExpansionAnchor")):null;if(kind==InfectedKind.CORE){colonyBiomass=Math.max(0,Math.min(10000,tag.getInt("ColonyBiomass")));colonyIncomeTotal=Math.max(0,tag.getInt("ColonyIncome"));expansionAllowance=tag.contains("ExpansionAllowance")?Math.max(0,Math.min(10000,tag.getInt("ExpansionAllowance"))):4;expansionRemainder=Math.max(0,Math.min(3,tag.getInt("ExpansionRemainder")));entityData.set(MORPH_SPEED,tag.contains("MorphSpeed")?Math.max(.5F,Math.min(4F,tag.getFloat("MorphSpeed"))):1F);colonyNodes.clear();for(var entry:tag.getList("ColonyNodes",4))colonyNodes.add(BlockPos.of(((net.minecraft.nbt.LongTag)entry).getAsLong()));nextTerritoryHarvest=tag.contains("NextTerritoryHarvest")?Math.max(level().getGameTime(),Math.min(level().getGameTime()+200,tag.getLong("NextTerritoryHarvest"))):level().getGameTime()+200;territoryRemainder=tag.getInt("TerritoryIncomeVersion")>=2?Math.max(0,Math.min(dev.hui.enderinfection.biomass.LandNutrients.DENOMINATOR-1,tag.getInt("TerritoryRemainder"))):Math.max(0,Math.min(31,tag.getInt("TerritoryRemainder")))*dev.hui.enderinfection.biomass.LandNutrients.CYCLES;territoryFertility=tag.contains("TerritoryFertility")?Math.max(0,Math.min(100,tag.getInt("TerritoryFertility"))):100;territoryColumns=Math.max(0,tag.getInt("TerritoryColumns"));territoryWeight=Math.max(0,tag.getInt("TerritoryWeight"));lastTerritoryIncome=Math.max(0,tag.getInt("LastTerritoryIncome"));motherBrain.load(tag);applyMotherStage(tag.contains("MotherStage")?tag.getInt("MotherStage"):2);}}
     @Override public boolean isPushable(){return kind!=InfectedKind.CORE && super.isPushable();}
     private FactionAI.HuntGoal factionHunt;
     private FactionAI.Motion factionMotion;
     @Override public boolean isAlliedTo(net.minecraft.world.entity.Entity other){return FactionAI.infected(other)||super.isAlliedTo(other);}
-    @Override public boolean hurt(DamageSource source,float amount){if(FactionAI.infected(source.getEntity()))return false;if((kind==InfectedKind.CORE&&motherStage()>=4||kind==InfectedKind.SIEGE_BEAST)&&!source.is(net.minecraft.tags.DamageTypeTags.BYPASSES_INVULNERABILITY))amount=Math.min(amount,getMaxHealth()*.12F);boolean hit=super.hurt(source,amount);if(hit&&isAlive()&&source.getEntity() instanceof LivingEntity attacker)FactionAI.alert(this,attacker);return hit;}
+    @Override public boolean hurt(DamageSource source,float amount){if(FactionAI.infected(source.getEntity()))return false;if((kind==InfectedKind.CORE&&motherStage()>=4||kind==InfectedKind.SIEGE_BEAST)&&!source.is(net.minecraft.tags.DamageTypeTags.BYPASSES_INVULNERABILITY))amount=Math.min(amount,getMaxHealth()*.12F);boolean hit=super.hurt(source,amount);if(hit&&kind==InfectedKind.SIEGE_BEAST&&level() instanceof ServerLevel server&&tickCount-lastSiegeHurtFx>=8){lastSiegeHurtFx=tickCount;dev.hui.enderinfection.particle.SiegeEffects.wound(server,this);}if(hit&&isAlive()&&source.getEntity() instanceof LivingEntity attacker)FactionAI.alert(this,attacker);return hit;}
     @Override protected void registerGoals() {
         goalSelector.addGoal(0,new FloatGoal(this)); goalSelector.addGoal(1,new CombatGoal());
         goalSelector.addGoal(5,new WaterAvoidingRandomStrollGoal(this,.7){@Override public boolean canUse(){return kind!=InfectedKind.CORE&&super.canUse();}});
@@ -197,7 +209,8 @@ public final class InfectedMob extends Monster implements GeoEntity {
         setDeltaMovement(0,getDeltaMovement().y,0);
         triggerAnim("action","special");
         if(level() instanceof ServerLevel)dev.hui.enderinfection.combat.CrystalAttacks.cast(this,kind,target,kind.hitTick);
-        level().playSound(null,blockPosition(),SoundEvents.AMETHYST_BLOCK_CHIME,SoundSource.HOSTILE,1,.65F);
+        if(kind==InfectedKind.SIEGE_BEAST&&level() instanceof ServerLevel server)dev.hui.enderinfection.particle.SiegeEffects.begin(server,this,forward);
+        else level().playSound(null,blockPosition(),SoundEvents.AMETHYST_BLOCK_CHIME,SoundSource.HOSTILE,1,.65F);
     }
     @Override public void tick() {
         super.tick(); if (!(level() instanceof ServerLevel server) || !isAlive()) return;
@@ -214,11 +227,15 @@ public final class InfectedMob extends Monster implements GeoEntity {
         if(kind.early()&&personalBiomass>=40&&!attacking()&&evolve(server))return;
         FactionAI.support(this);
         if (cooldown>0)cooldown--;if(teleportCooldown>0)teleportCooldown--;
-        if (!attacking())return;
+        if (!attacking()){if(kind==InfectedKind.SIEGE_BEAST)dev.hui.enderinfection.particle.SiegeEffects.idle(server,this);return;}
         attackTick++;getNavigation().stop();
         float yaw=(float)Math.toDegrees(Math.atan2(-forward.x,forward.z));setYRot(yaw);yBodyRot=yaw;yHeadRot=yaw;
-        if (attackTick<kind.hitTick && attackTick%3==0)
+        if (attackTick<kind.hitTick && attackTick%3==0 && kind!=InfectedKind.SIEGE_BEAST)
             FactionEffects.gather(server,position().add(0,getBbHeight()*.6,0),kind==InfectedKind.CORE?5:2);
+        if(kind==InfectedKind.SIEGE_BEAST&&attackTick<kind.hitTick){
+            dev.hui.enderinfection.particle.SiegeEffects.windup(server,this,forward,attackTick);
+            if(attackTick>=10&&onGround()){double speed=getTarget()!=null&&distanceTo(getTarget())>3?.3:0;setDeltaMovement(forward.x*speed,getDeltaMovement().y,forward.z*speed);}
+        }
         if (kind==InfectedKind.COW && attackTick>=8 && attackTick<kind.hitTick) {
             double speed=getTarget()!=null && distanceTo(getTarget())>1.7?.38:0;
             setDeltaMovement(forward.x*speed,getDeltaMovement().y,forward.z*speed);
@@ -229,7 +246,7 @@ public final class InfectedMob extends Monster implements GeoEntity {
             impact(server);
             setDeltaMovement(0,getDeltaMovement().y,0);
         }
-        if((kind==InfectedKind.SIEGE_BEAST||kind==InfectedKind.CORE&&motherStage()>=4)&&attackTick>=kind.hitTick&&(attackTick-kind.hitTick)%6==0)crystalWave(server);
+        if((kind==InfectedKind.SIEGE_BEAST||kind==InfectedKind.CORE&&motherStage()>=4)&&attackTick>=kind.hitTick&&(attackTick-kind.hitTick)%WAVE_PERIOD==0)crystalWave(server);
         if(attackTick>=kind.duration){entityData.set(ATTACKING,false);cooldown=kind==InfectedKind.CORE?ColonyEconomy.interval(motherStage()==1?200:motherStage()==2?160:100,colonyBiomass):kind==InfectedKind.SIEGE_BEAST?90:kind==InfectedKind.SHEEP?100:35;}
     }
     private void establishExpansionNode(ServerLevel level){
@@ -262,13 +279,15 @@ public final class InfectedMob extends Monster implements GeoEntity {
         if(kind==InfectedKind.SKELETON)return;
         if(kind==InfectedKind.EARLY_SKELETON){fireArrows(server);return;}
         if(kind==InfectedKind.CORE)motherBrain.tryIncubate(server);
+        if(kind==InfectedKind.SIEGE_BEAST)dev.hui.enderinfection.particle.SiegeEffects.impact(server,this,forward);
         for(LivingEntity target:level().getEntitiesOfClass(LivingEntity.class,getBoundingBox().inflate(attackRadius(),1.5,attackRadius()),this::canHit)){
             Vec3 delta=target.position().subtract(position());double dist=delta.horizontalDistance();
             if(dist>attackRadius() || Math.abs(delta.y)>2 || !hasLineOfSight(target))continue;
             if(kind!=InfectedKind.SHEEP && kind!=InfectedKind.CORE && dist>.001 && (delta.x*forward.x+delta.z*forward.z)/dist<.15)continue;
             if(target.hurt(damageSources().mobAttack(this),kind==InfectedKind.CORE?(float)getAttributeValue(Attributes.ATTACK_DAMAGE):kind.damage)){
                 waveVictims.add(target.getUUID());
-                target.knockback(kind==InfectedKind.COW?1.3:.65,-delta.x,-delta.z);
+                target.knockback(kind==InfectedKind.SIEGE_BEAST?1.5:kind==InfectedKind.COW?1.3:.65,-delta.x,-delta.z);
+                if(kind==InfectedKind.SIEGE_BEAST)dev.hui.enderinfection.particle.SiegeEffects.hit(server,target.position());
                 if(kind==InfectedKind.SPIDER)target.addEffect(new MobEffectInstance(MobEffects.POISON,60,0));
                 if(kind==InfectedKind.SHEEP || kind==InfectedKind.CORE){
                     target.addEffect(new MobEffectInstance(MobEffects.WEAKNESS,80,0));
@@ -276,17 +295,19 @@ public final class InfectedMob extends Monster implements GeoEntity {
                 }
             }
         }
-        ring(server,kind==InfectedKind.CORE?attackRadius():kind==InfectedKind.SHEEP?5:2.2);
-        server.playSound(null,blockPosition(),kind==InfectedKind.SHEEP?SoundEvents.ENDERMAN_SCREAM:SoundEvents.PLAYER_ATTACK_STRONG,SoundSource.HOSTILE,1.3F,.7F);
+        if(kind!=InfectedKind.SIEGE_BEAST)ring(server,kind==InfectedKind.CORE?attackRadius():kind==InfectedKind.SHEEP?5:2.2);
+        if(kind!=InfectedKind.SIEGE_BEAST)server.playSound(null,blockPosition(),kind==InfectedKind.SHEEP?SoundEvents.ENDERMAN_SCREAM:SoundEvents.PLAYER_ATTACK_STRONG,SoundSource.HOSTILE,1.3F,.7F);
     }
     private void crystalWave(ServerLevel server){
         double reach=kind==InfectedKind.SIEGE_BEAST?18:motherStage()==4?16:22;
-        double radius=Math.min(reach,3+(attackTick-kind.hitTick)*.65);
-        FactionEffects.rune(server,position(),radius);
-        for(int i=0;i<12;i++){double angle=i*Math.PI/6;FactionEffects.shatter(server,position().add(Math.cos(angle)*radius,0,Math.sin(angle)*radius),2);}
+        int lastWaveSample=(int)Math.ceil((reach-3)/WAVE_GROWTH/WAVE_PERIOD)*WAVE_PERIOD;
+        if(kind==InfectedKind.SIEGE_BEAST&&attackTick-kind.hitTick>lastWaveSample)return;
+        double radius=Math.min(reach,3+(attackTick-kind.hitTick)*WAVE_GROWTH);
+        if(kind==InfectedKind.SIEGE_BEAST)dev.hui.enderinfection.particle.SiegeEffects.wave(server,this,radius);
+        else{FactionEffects.rune(server,position(),radius);for(int i=0;i<12;i++){double angle=i*Math.PI/6;FactionEffects.shatter(server,position().add(Math.cos(angle)*radius,0,Math.sin(angle)*radius),2);}}
         for(LivingEntity target:server.getEntitiesOfClass(LivingEntity.class,getBoundingBox().inflate(radius,3,radius),this::canHit)){
             Vec3 delta=target.position().subtract(position());
-            if(delta.horizontalDistance()>radius||delta.horizontalDistance()<radius-3.5||Math.abs(delta.y)>3||waveVictims.contains(target.getUUID())||!hasLineOfSight(target))continue;
+            if(delta.horizontalDistance()>radius||Math.abs(delta.y)>3||waveVictims.contains(target.getUUID())||!hasLineOfSight(target))continue;
             float damage=kind==InfectedKind.SIEGE_BEAST?12:motherStage()==4?10:14;
             if(target.hurt(damageSources().mobAttack(this),damage)){waveVictims.add(target.getUUID());target.knockback(1.2,-delta.x,-delta.z);target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN,60,1));}
         }
@@ -409,14 +430,23 @@ public final class InfectedMob extends Monster implements GeoEntity {
         }
         teleportCooldown=140;
     }
+    @Override protected net.minecraft.sounds.SoundEvent getAmbientSound(){return kind==InfectedKind.SIEGE_BEAST?SoundEvents.RAVAGER_AMBIENT:super.getAmbientSound();}
+    @Override protected net.minecraft.sounds.SoundEvent getHurtSound(DamageSource source){return kind==InfectedKind.SIEGE_BEAST?SoundEvents.RAVAGER_HURT:super.getHurtSound(source);}
+    @Override protected net.minecraft.sounds.SoundEvent getDeathSound(){return kind==InfectedKind.SIEGE_BEAST?SoundEvents.RAVAGER_DEATH:super.getDeathSound();}
+    @Override public void die(DamageSource source){
+        if(kind==InfectedKind.SIEGE_BEAST&&!siegeDeathBurst&&level() instanceof ServerLevel server){siegeDeathBurst=true;triggerAnim("action","death");dev.hui.enderinfection.particle.SiegeEffects.death(server,this);}
+        super.die(source);
+    }
     @Override public AnimatableInstanceCache getAnimatableInstanceCache(){return cache;}
     @Override public void registerControllers(AnimatableManager.ControllerRegistrar controllers){
         String prefix="animation.infected_"+kind.key+".";
         controllers.add(new AnimationController<>(this,"locomotion",4,state->{
-            if(attacking()||emerging())return PlayState.STOP;
+            if(!isAlive()||attacking()||emerging())return PlayState.STOP;
             return state.setAndContinue(RawAnimation.begin().thenLoop(prefix+(state.isMoving()?"walk":"idle")));
         }));
-        controllers.add(new AnimationController<>(this,"action",0,state->PlayState.STOP).setAnimationSpeedHandler(entity->entity.emerging()?(double)entity.morphSpeed():1.0).triggerableAnim("special",RawAnimation.begin().thenPlay(prefix+"special")).triggerableAnim("infection",RawAnimation.begin().thenPlay(prefix+"infection")));
+        var action=new AnimationController<InfectedMob>(this,"action",0,state->PlayState.STOP).setAnimationSpeedHandler(entity->entity.emerging()?(double)entity.morphSpeed():1.0).triggerableAnim("special",RawAnimation.begin().thenPlay(prefix+"special")).triggerableAnim("infection",RawAnimation.begin().thenPlay(prefix+"infection"));
+        if(kind==InfectedKind.SIEGE_BEAST)action.triggerableAnim("death",RawAnimation.begin().thenPlay(prefix+"death"));
+        controllers.add(action);
     }
     private final class CombatGoal extends Goal{
         CombatGoal(){setFlags(EnumSet.of(Flag.MOVE,Flag.LOOK));}

@@ -10,7 +10,10 @@ import java.util.Map;
 
 /** Soil history belongs to a world position, never to a replaceable node or mother. */
 public final class LandNutrients extends SavedData {
-    public static final int CYCLES=120,INTERVAL=200,DENOMINATOR=32*CYCLES;
+    public static final int CYCLES=120,INTERVAL=200;
+    /** Credits needed per biomass. Halved from the 32-column first balance so a young colony
+     *  pays for new terrain twice as fast without touching the ten second harvest cycle. */
+    public static final int CREDITS_PER_BIOMASS=16,DENOMINATOR=CREDITS_PER_BIOMASS*CYCLES;
     private record Soil(int used,long lastHarvest){}
     private final Map<Long,Soil> soils=new HashMap<>();
     public static LandNutrients get(ServerLevel level){return level.getDataStorage().computeIfAbsent(LandNutrients::load,LandNutrients::new,"ender_infection_land_nutrients");}

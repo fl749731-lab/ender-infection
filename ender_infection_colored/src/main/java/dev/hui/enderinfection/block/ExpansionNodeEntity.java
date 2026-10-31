@@ -43,6 +43,8 @@ public final class ExpansionNodeEntity extends BlockEntity {
     public void setOwner(UUID id){if(owner==null||owner.equals(id)){owner=id;setChanged();}}
     public int purchasedChanges(){return purchasedChanges;}
     public int spentBiomass(){return spentBiomass;}
+    /** Territory blocks produced per biomass this node has spent. Read by the mother's ledger. */
+    public double territoryPerBiomass(){return spentBiomass<=0?0:(double)purchasedChanges/spentBiomass;}
     public int radius(){return radius;}
     public net.minecraft.world.phys.Vec3 effectPosition(){return net.minecraft.world.phys.Vec3.atCenterOf(worldPosition).add(0,getBlockState().getValue(InfectedNestBlock.ROOTED)?.5:0,0);}
     public static boolean replaceSurface(ServerLevel level,BlockPos pos,InfectedMob core,boolean allowNatural){
@@ -109,16 +111,16 @@ public final class ExpansionNodeEntity extends BlockEntity {
         activeTicks++;InfectedMob core=mother(level);if(core==null)return;core.observeExpansion(this);
         if(inhibited(level)){if(activeTicks%40==0)dev.hui.enderinfection.particle.FactionEffects.suppress(level,effectPosition());return;}
         if(!level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING))return;
-        if(radius<MAX_RADIUS&&++growthClock>=ColonyEconomy.interval(300,core.colonyBiomass())&&(getBlockState().getValue(InfectedNestBlock.ROOTED)||purchasedChanges>0||isGround(InfectedContent.terrainKey(level.getBlockState(worldPosition.below()))))&&core.spendForExpansion(ColonyEconomy.RADIUS)){
+        if(radius<MAX_RADIUS&&(growthClock=Math.min(growthClock+1,ColonyEconomy.RADIUS_BASE_TICKS*2))>=ColonyEconomy.interval(ColonyEconomy.RADIUS_BASE_TICKS,core.colonyBiomass())&&(getBlockState().getValue(InfectedNestBlock.ROOTED)||purchasedChanges>0||isGround(InfectedContent.terrainKey(level.getBlockState(worldPosition.below()))))&&core.spendForExpansion(ColonyEconomy.RADIUS)){
             radius++;spentBiomass+=ColonyEconomy.RADIUS;growthClock=0;setChanged();
         }
-        if(radius>=OUTPOST_RADIUS&&!outpostCreated&&++outpostClock>=ColonyEconomy.interval(600,core.colonyBiomass())){outpostClock=0;establishOutpost(level,core);setChanged();}
-        if(++spreadClock<ColonyEconomy.interval(40,core.colonyBiomass()))return;spreadClock=0;
+        if(radius>=OUTPOST_RADIUS&&!outpostCreated&&++outpostClock>=ColonyEconomy.interval(ColonyEconomy.OUTPOST_BASE_TICKS,core.colonyBiomass())){outpostClock=0;establishOutpost(level,core);setChanged();}
+        if(++spreadClock<ColonyEconomy.interval(ColonyEconomy.SPREAD_BASE_TICKS,core.colonyBiomass()))return;spreadClock=0;
         setChanged();
         if(!level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING))return;
         if(!core.canExpand())return;
-        int changes=spreadFrontier(level,2);
-        for(int attempt=0;attempt<16&&changes<3;attempt++){
+        int changes=spreadFrontier(level,ColonyEconomy.SPREAD_PER_ROUND-1);
+        for(int attempt=0;attempt<16&&changes<ColonyEconomy.SPREAD_PER_ROUND;attempt++){
             int dx=level.random.nextInt(radius*2+1)-radius,dz=level.random.nextInt(radius*2+1)-radius;
             if(dx*dx+dz*dz>radius*radius)continue;
             BlockPos column=worldPosition.offset(dx,0,dz);
@@ -126,7 +128,7 @@ public final class ExpansionNodeEntity extends BlockEntity {
             for(int dy=3;dy>=-4;dy--){
                 BlockPos pos=column.offset(0,dy,0);BlockState state=level.getBlockState(pos);
                 if(isGround(InfectedContent.terrainKey(state))&&(level.getBlockState(pos.above()).is(BlockTags.LOGS)||level.getBlockState(pos.above()).getBlock() instanceof InfectedTimberBlock)){
-                    changes+=erodeTree(level,pos.above(),Math.min(1,3-changes));break;
+                    changes+=erodeTree(level,pos.above(),Math.min(1,ColonyEconomy.SPREAD_PER_ROUND-changes));break;
                 }
                 String previous=InfectedContent.terrainKey(state);
                 if(!(state.is(GROUND)||isGround(previous))||state.hasBlockEntity())continue;
@@ -142,19 +144,19 @@ public final class ExpansionNodeEntity extends BlockEntity {
                         if(level.hasChunkAt(neighbor)&&isGround(InfectedContent.terrainKey(level.getBlockState(neighbor))))connected=true;
                     }
                     if(!connected)continue;
-                    if(groundChangeCost(level,pos)<=3-changes)changes+=changeCount(level,pos,ErodedGroundBlock.fromNatural(state));break;
+                    if(groundChangeCost(level,pos)<=ColonyEconomy.SPREAD_PER_ROUND-changes)changes+=changeCount(level,pos,ErodedGroundBlock.fromNatural(state));break;
                 }
                 else if(previous.startsWith("eroded_")&&level.random.nextInt(3)==0){
                     if(state.hasProperty(ErodedGroundBlock.EROSION)&&state.getValue(ErodedGroundBlock.EROSION)<2){
-                        if(groundChangeCost(level,pos)<=3-changes)changes+=changeCount(level,pos,state.cycle(ErodedGroundBlock.EROSION));break;
+                        if(groundChangeCost(level,pos)<=ColonyEconomy.SPREAD_PER_ROUND-changes)changes+=changeCount(level,pos,state.cycle(ErodedGroundBlock.EROSION));break;
                     }
                     double distance=Math.sqrt(dx*dx+dz*dz)/Math.max(1,radius);
                     next=previous.equals("eroded_stone")?"crystal_crust":distance<.4?"living_tissue":distance<.7?(level.random.nextBoolean()?"mycelial_mat":"necrotic_soil"):"tainted_grass";
                 }
-                if(next!=null&&groundChangeCost(level,pos)<=3-changes)changes+=changeCount(level,pos,InfectedContent.TERRAIN.get(next).get().defaultBlockState());
-                changes+=erodeVegetation(level,pos.above(),3-changes);
-                changes+=erodeTree(level,pos.above(),3-changes);
-                if(changes<3&&previous!=null&&!previous.startsWith("eroded_")&&level.random.nextInt(48)==0&&level.getBlockState(pos.above()).isAir()&&hasPlantRoom(level,pos.above())){
+                if(next!=null&&groundChangeCost(level,pos)<=ColonyEconomy.SPREAD_PER_ROUND-changes)changes+=changeCount(level,pos,InfectedContent.TERRAIN.get(next).get().defaultBlockState());
+                changes+=erodeVegetation(level,pos.above(),ColonyEconomy.SPREAD_PER_ROUND-changes);
+                changes+=erodeTree(level,pos.above(),ColonyEconomy.SPREAD_PER_ROUND-changes);
+                if(changes<ColonyEconomy.SPREAD_PER_ROUND&&previous!=null&&!previous.startsWith("eroded_")&&level.random.nextInt(48)==0&&level.getBlockState(pos.above()).isAir()&&hasPlantRoom(level,pos.above())){
                     String plantKey=level.random.nextBoolean()?"infected_grass":"infected_tendrils";
                     if(dx*dx+dz*dz<=16&&level.random.nextInt(8)==0)plantKey=level.random.nextBoolean()?"infected_fungus":"infected_flower";
                     BlockState plant=InfectedContent.PLANTS.get(plantKey).get().defaultBlockState();
@@ -185,7 +187,7 @@ public final class ExpansionNodeEntity extends BlockEntity {
                     if(level.hasChunkAt(adjacent)&&isGround(InfectedContent.terrainKey(level.getBlockState(adjacent))))connected=true;
                 }
                 // A two-block plant may use the whole tick atomically; otherwise reserve one slot for canopy upkeep.
-                if(connected&&groundChangeCost(level,pos)<=(changes==0?3:budget-changes))changes+=changeCount(level,pos,ErodedGroundBlock.fromNatural(state));
+                if(connected&&groundChangeCost(level,pos)<=(changes==0?ColonyEconomy.SPREAD_PER_ROUND:budget-changes))changes+=changeCount(level,pos,ErodedGroundBlock.fromNatural(state));
                 break;
             }
         }

@@ -14,6 +14,8 @@ public final class FactionParticles {
     public static final RegistryObject<SimpleParticleType> SPORE=TYPES.register("infection_spore",()->new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> MOTE=TYPES.register("core_mote",()->new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> RUNE=TYPES.register("rupture_rune",()->new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> SIEGE_SHOCK=TYPES.register("siege_shockwave",()->new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> SIEGE_SPARK=TYPES.register("siege_spark",()->new SimpleParticleType(false));
     private FactionParticles(){}
     public static void register(IEventBus bus){TYPES.register(bus);}
 }

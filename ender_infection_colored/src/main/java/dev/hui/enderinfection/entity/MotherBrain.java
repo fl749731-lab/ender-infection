@@ -19,6 +19,8 @@ public final class MotherBrain {
     private long burstReadyAt,nextBurstRetry,burstDisplayUntil;
     private PlayerTactics.Tactic tactic=PlayerTactics.Tactic.BALANCED;
     private final BroodLearning learning=new BroodLearning();
+    /** Economy bandit: spend on brood now or leave biomass for the node network. */
+    private final ColonyPolicy policy=new ColonyPolicy();
     private java.util.UUID observedPlayer;
     private long observedUntil;
     public void rememberPlayer(java.util.UUID player,long now){observedPlayer=player;observedUntil=now+600;}
@@ -32,8 +34,9 @@ public final class MotherBrain {
     public static int brood(int stage){return Math.min(4,stage);}
     public PlayerTactics.Tactic tactic(){return tactic;}
     public BroodLearning learning(){return learning;}
-    public void save(CompoundTag tag){tag.putLong("LastBrood",lastBrood);tag.putLong("NextBroodRetry",nextRetry);tag.putLong("LastRecovery",lastRecovery);tag.putBoolean("BurstArmed",burstArmed);tag.putLong("BurstReadyAt",burstReadyAt);tag.putLong("NextBurstRetry",nextBurstRetry);tag.putLong("BurstDisplayUntil",burstDisplayUntil);tag.putLong("LastSiege",lastSiege);if(observedPlayer!=null)tag.putUUID("ObservedPlayer",observedPlayer);tag.putLong("ObservedPlayerUntil",observedUntil);learning.save(tag);}
-    public void load(CompoundTag tag){long now=mother.level().getGameTime();lastBrood=tag.contains("LastBrood")?Math.min(now,tag.getLong("LastBrood")):-1000000;nextRetry=Math.min(now+20,tag.getLong("NextBroodRetry"));lastRecovery=Math.min(now,tag.getLong("LastRecovery"));burstArmed=!tag.contains("BurstArmed")||tag.getBoolean("BurstArmed");burstReadyAt=Math.min(now+1200,tag.getLong("BurstReadyAt"));nextBurstRetry=Math.min(now+20,tag.getLong("NextBurstRetry"));burstDisplayUntil=Math.min(now+16,tag.getLong("BurstDisplayUntil"));lastSiege=tag.contains("LastSiege")?Math.min(now,tag.getLong("LastSiege")):-1000000;observedPlayer=tag.hasUUID("ObservedPlayer")?tag.getUUID("ObservedPlayer"):null;observedUntil=Math.min(now+600,Math.max(0,tag.getLong("ObservedPlayerUntil")));learning.load(tag,now);}
+    public ColonyPolicy policy(){return policy;}
+    public void save(CompoundTag tag){tag.putLong("LastBrood",lastBrood);tag.putLong("NextBroodRetry",nextRetry);tag.putLong("LastRecovery",lastRecovery);tag.putBoolean("BurstArmed",burstArmed);tag.putLong("BurstReadyAt",burstReadyAt);tag.putLong("NextBurstRetry",nextBurstRetry);tag.putLong("BurstDisplayUntil",burstDisplayUntil);tag.putLong("LastSiege",lastSiege);if(observedPlayer!=null)tag.putUUID("ObservedPlayer",observedPlayer);tag.putLong("ObservedPlayerUntil",observedUntil);learning.save(tag);policy.save(tag);}
+    public void load(CompoundTag tag){long now=mother.level().getGameTime();lastBrood=tag.contains("LastBrood")?Math.min(now,tag.getLong("LastBrood")):-1000000;nextRetry=Math.min(now+20,tag.getLong("NextBroodRetry"));lastRecovery=Math.min(now,tag.getLong("LastRecovery"));burstArmed=!tag.contains("BurstArmed")||tag.getBoolean("BurstArmed");burstReadyAt=Math.min(now+1200,tag.getLong("BurstReadyAt"));nextBurstRetry=Math.min(now+20,tag.getLong("NextBurstRetry"));burstDisplayUntil=Math.min(now+16,tag.getLong("BurstDisplayUntil"));lastSiege=tag.contains("LastSiege")?Math.min(now,tag.getLong("LastSiege")):-1000000;observedPlayer=tag.hasUUID("ObservedPlayer")?tag.getUUID("ObservedPlayer"):null;observedUntil=Math.min(now+600,Math.max(0,tag.getLong("ObservedPlayerUntil")));learning.load(tag,now);policy.load(tag);}
     public boolean tryIncubate(ServerLevel level){
         long now=level.getGameTime();if(mother.isNoAi()||now<nextRetry||now-lastBrood<ColonyEconomy.interval(interval(mother.motherStage()),mother.colonyBiomass()))return false;
         nextRetry=now+20;
@@ -43,6 +46,7 @@ public final class MotherBrain {
     public void tick(ServerLevel level){
         if(mother.isNoAi())return;
         long now=level.getGameTime();
+        policy.tick(level,mother,learning);
         if(!burstArmed&&mother.getHealth()>mother.getMaxHealth()*.5F&&now>=burstReadyAt)burstArmed=true;
         if(mother.emerging()){mother.setMotherState(now<burstDisplayUntil?State.BURSTING:mother.motherStage()==1?State.RISING:State.EVOLVING);return;}
         // A crisis can interrupt an attack and bypass ordinary incubation, never the resource or space checks.
@@ -72,6 +76,7 @@ public final class MotherBrain {
         if(mother.getHealth()<mother.getMaxHealth()*.6&&level.getGameTime()-lastRecovery>=ColonyEconomy.interval(100,mother.colonyBiomass())&&mother.spendForRecovery(5)){
             lastRecovery=level.getGameTime();mother.heal(Math.max(2,mother.getMaxHealth()*.03F));mother.setMotherState(State.RECOVERING);return;
         }
+        if(policy.skipHatching(mother)){mother.setMotherState(State.EXPANDING);return;}
         if(tryIncubate(level)){mother.setMotherState(State.INCUBATING);return;}
         mother.setMotherState(!mother.expansionReady()&&mother.motherStage()<5?State.EXPANDING:wantsUpgrade&&mother.colonyBiomass()>=threshold(mother.motherStage())+16?State.BLOCKED:State.WAITING);
     }

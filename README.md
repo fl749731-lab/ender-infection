@@ -1,6 +1,6 @@
 # 末影感染 · Ender Infection
 
-Minecraft **1.20.1** 的末影感染阵营 Mod，使用 **Forge 47.3.12、GeckoLib 4.4.9 和 Java 17**。当前版本为 **0.2.1**。
+Minecraft **1.20.1** 的末影感染阵营 Mod，使用 **Forge 47.3.12、GeckoLib 4.4.9 和 Java 17**。当前版本为 **0.2.3**。
 
 ## 内容
 
@@ -31,7 +31,7 @@ cd ender_infection_colored
 .\gradlew.bat build
 ```
 
-Linux / macOS 使用 `./gradlew build`。首次构建需要联网下载 Forge 与 GeckoLib 依赖。编译结果位于 `ender_infection_colored/build/libs/ender-infection-0.2.1.jar`。
+Linux / macOS 使用 `./gradlew build`。首次构建需要联网下载 Forge 与 GeckoLib 依赖。编译结果位于 `ender_infection_colored/build/libs/ender-infection-0.2.3.jar`。
 
 启动游戏需要 Minecraft 1.20.1、Forge 和对应版本的 GeckoLib。把编译后的 Mod JAR 与 GeckoLib JAR 放入实例的 `mods` 文件夹。
 
@@ -41,12 +41,13 @@ Linux / macOS 使用 `./gradlew build`。首次构建需要联网下载 Forge �
 .\gradlew.bat runGameTestServer
 ```
 
-测试会在工程 `build` 目录下创建新的测试世界。0.2.1 的本地构建记录为 **50 项必需 Forge GameTest 全部通过**；记录见 [verification/RESULTS.txt](ender_infection_colored/verification/RESULTS.txt)。客户端视觉、多人表现和长期平衡仍需游戏内验证。
+测试会在工程 `build` 目录下创建新的测试世界。0.2.3 的本地构建记录为 **54 项必需 Forge GameTest 全部通过**；记录见 [verification/RESULTS.txt](ender_infection_colored/verification/RESULTS.txt)。客户端视觉、多人表现和长期平衡仍需游戏内验证。
 
 ## 玩法说明
 
 - [植物侵蚀、地表节点与晶刺技能](ender_infection_colored/植物侵蚀与晶刺技能_0.2.1.md)
 - [生态、五阶段母体、Boss、掉落与合成](ender_infection_colored/生态与高阶母体_0.2.0.md)
+- [狩猎嗅觉与母体自学习](ender_infection_colored/狩猎与学习_0.2.2.md)
 
 ## 预览
 

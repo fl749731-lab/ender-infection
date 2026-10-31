@@ -44,6 +44,8 @@ public final class ClientEvents {
         event.registerSpriteSet(FactionParticles.SPORE.get(),sprites->new FactionParticle.Provider(sprites,FactionParticle.Kind.SPORE));
         event.registerSpriteSet(FactionParticles.MOTE.get(),sprites->new FactionParticle.Provider(sprites,FactionParticle.Kind.MOTE));
         event.registerSpriteSet(FactionParticles.RUNE.get(),sprites->new FactionParticle.Provider(sprites,FactionParticle.Kind.RUNE));
+        event.registerSpriteSet(FactionParticles.SIEGE_SHOCK.get(),sprites->new FactionParticle.Provider(sprites,FactionParticle.Kind.SHOCK));
+        event.registerSpriteSet(FactionParticles.SIEGE_SPARK.get(),sprites->new FactionParticle.Provider(sprites,FactionParticle.Kind.SPARK));
     }
     @SubscribeEvent public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(EnderInfection.MUTANT_ZOMBIE.get(), MutantZombieRenderer::new);

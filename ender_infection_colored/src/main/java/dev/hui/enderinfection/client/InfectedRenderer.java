@@ -11,6 +11,7 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 public final class InfectedRenderer extends GeoEntityRenderer<InfectedMob> {
     public InfectedRenderer(EntityRendererProvider.Context context,InfectedKind kind){
         super(context,new Model(kind));this.shadowRadius=kind.width*.5F;
+        if(kind==InfectedKind.SIEGE_BEAST)addRenderLayer(new software.bernie.geckolib.renderer.layer.AutoGlowingGeoLayer<>(this));
     }
     private static final class Model extends GeoModel<InfectedMob>{
         private final String key;

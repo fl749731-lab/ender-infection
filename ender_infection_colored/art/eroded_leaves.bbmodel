@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "eroded_leaves_oak",
+  "resolution": {
+    "width": 16,
+    "height": 16
+  },
+  "elements": [
+    {
+      "uuid": "85286811-bfd3-4618-a6a4-b3bc06dbd2ec",
+      "name": "eroded_leaves",
+      "type": "cube",
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "south": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "east": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "west": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "up": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        }
+      }
+    }
+  ],
+  "outliner": [
+    "85286811-bfd3-4618-a6a4-b3bc06dbd2ec"
+  ],
+  "textures": [
+    {
+      "name": "eroded_leaves_oak_top.png",
+      "id": "0",
+      "uuid": "1e6c47c3-9e0e-4f45-9c27-39232a280a6e",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB+UlEQVR4nF2ST08UQRDFqwajIOzGuG6MWQUOEOJmIQZEEwX/RDkJ3hQ/gh78NB74CghH4CREBP/EA2JkgwcxLgZjDCyRHXE3gGnya6hJSyc93VNTr96bqif5a+ccW0Tk3tOCP/sftTk290t3zjs2OTcKD3zMcolHZyp9svz2pxKcelZUEsvftyVer/lCH2fWNJWtl+MNdeIKiwm4sl6TXP6UeCCru+2uc87J4tcZNfb4MInCxOZHVzRUyop43Ox86AO7ezUptFz3ielsvcDMQpWBTamdxwDH1U1JNZyWWDblw8q0/xi/vCjp25+TZCuUaW78r4je6hr27JW/5QQ8eOWxW0tNyk71n2GTPlHkxK+8pE9m5NXSmGpP+4AvsPDlhSK/5f6W0CB+gRPpdJscGsokVFVQncu0H/RgZ7cqna19rrj6xrMAZgGGESVa6vC9miuOK+w0fGt7QyKqZNI5WSq99snfFsoeDDudRzojbOpd9awomHg/orxXzr47UDD76bmG/0mRo14g3ni5lHghnJLQSJu9udLcyP+HDk26euiHaOjqE8cEYARsKo56wYwVFmGUCoMlAbKE0HVmcd7ph7mTbx4AkwV+LP9O5h/OnrvlkgMp9ygE0/kLf4YkG/cnYBTCGqoyMLgIkC2CmASHGTNq2GYmQAZG0T5HoUhicUGerQAAAABJRU5ErkJggg==",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16,
+      "path": "E:/mc/colored_units/eroded_leaves_oak_top.png"
+    },
+    {
+      "name": "eroded_leaves_oak_side.png",
+      "id": "1",
+      "uuid": "e448646c-7421-481c-ad2b-7159667c0b92",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB40lEQVR4nFWTT0tbQRTF77y2otUkpTGLkuJGBUljsV0oCFbB7KxL234EXfhputCPoO3SuCxYFaGFomialbU0KFlItMS/FWTkN+S8PgeGl9w5554z996xwugzzzYzm5ovhu+b4owf+9AXfg9NPvdsMIqxpkfm/Ou+ko+yPZ1W3ao7gqsfKw5go3lkZ8fXBmHny6FL5dqtreOBuPZ2eNY3LxuWz/ZbtLG075JKJMum8waJJLgCw39h/cimdU1UzXtvIYAS4Jur26BAEojN42tL59rt949G7FKLcxw/FFmKWAYgMiCRuB5X1nX5OhUmSSb7UfVv7EiulIR66EoRRJE5lPV84YmpwBCoDwmIJesTEUQJslSwzkKBuJzglljmoGTRnwE7XytYlFQCTMFUAwhyIFVmpPx90aU6ntrZ1YkFB2qPHJCkUbu4NwvESeKL20GABOywAKmYL3pG42lkv+qd9AyOcJZYoQZT88XQRhQh/6xtBbX1ymeX6ez+r9LqVDIJrXRUF2ssrjLx8n0ArO0uxy0FKGeP+muhQ8Q4C3OggcFq/fSX/bu5DGMqN+rQ+OA7j6PDVDnUA14kcuh/64HwFkTGoR7S171PzjkXk+FFtEsr/TgbA6XMDLB5usRWvi04kXF/BycfTgNy+TIbAAAAAElFTkSuQmCC",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16,
+      "path": "E:/mc/colored_units/eroded_leaves_oak_side.png"
+    }
+  ],
+  "animations": []
+}

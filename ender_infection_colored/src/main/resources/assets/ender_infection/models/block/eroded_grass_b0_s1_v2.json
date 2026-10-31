@@ -1,0 +1,222 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "side_infection": "ender_infection:block/eroded_grass_b0_s1_v2_side_overlay",
+    "top_infection": "ender_infection:block/eroded_grass_b0_s1_v2_top_overlay",
+    "bottom_infection": "ender_infection:block/eroded_grass_b0_s1_v2_bottom_overlay",
+    "top": "minecraft:block/grass_block_top",
+    "side": "minecraft:block/grass_block_side",
+    "bottom": "minecraft:block/dirt",
+    "grass_overlay": "minecraft:block/grass_block_side_overlay",
+    "particle": "minecraft:block/dirt"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#side",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "cullface": "north"
+        },
+        "south": {
+          "texture": "#side",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "cullface": "south"
+        },
+        "east": {
+          "texture": "#side",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "cullface": "east"
+        },
+        "west": {
+          "texture": "#side",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "cullface": "west"
+        },
+        "up": {
+          "texture": "#top",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "cullface": "up",
+          "tintindex": 0
+        },
+        "down": {
+          "texture": "#bottom",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "cullface": "down"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#grass_overlay",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "cullface": "north",
+          "tintindex": 0
+        },
+        "south": {
+          "texture": "#grass_overlay",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "cullface": "south",
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#grass_overlay",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "cullface": "east",
+          "tintindex": 0
+        },
+        "west": {
+          "texture": "#grass_overlay",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "cullface": "west",
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#side_infection",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "cullface": "north"
+        },
+        "south": {
+          "texture": "#side_infection",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "cullface": "south"
+        },
+        "east": {
+          "texture": "#side_infection",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "cullface": "east"
+        },
+        "west": {
+          "texture": "#side_infection",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "cullface": "west"
+        },
+        "up": {
+          "texture": "#top_infection",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "cullface": "up"
+        },
+        "down": {
+          "texture": "#bottom_infection",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "cullface": "down"
+        }
+      }
+    }
+  ]
+}

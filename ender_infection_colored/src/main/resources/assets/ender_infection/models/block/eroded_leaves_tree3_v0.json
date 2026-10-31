@@ -1,0 +1,93 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "leaf": "minecraft:block/jungle_leaves",
+    "top": "ender_infection:block/eroded_leaves_tree3_v0_top_overlay",
+    "side": "ender_infection:block/eroded_leaves_tree3_v0_side_overlay",
+    "particle": "minecraft:block/jungle_leaves"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#leaf",
+          "cullface": "north",
+          "tintindex": 0
+        },
+        "south": {
+          "texture": "#leaf",
+          "cullface": "south",
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#leaf",
+          "cullface": "east",
+          "tintindex": 0
+        },
+        "west": {
+          "texture": "#leaf",
+          "cullface": "west",
+          "tintindex": 0
+        },
+        "up": {
+          "texture": "#leaf",
+          "cullface": "up",
+          "tintindex": 0
+        },
+        "down": {
+          "texture": "#leaf",
+          "cullface": "down",
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#side",
+          "cullface": "north"
+        },
+        "south": {
+          "texture": "#side",
+          "cullface": "south"
+        },
+        "east": {
+          "texture": "#side",
+          "cullface": "east"
+        },
+        "west": {
+          "texture": "#side",
+          "cullface": "west"
+        },
+        "up": {
+          "texture": "#top",
+          "cullface": "up"
+        },
+        "down": {
+          "texture": "#top",
+          "cullface": "down"
+        }
+      }
+    }
+  ]
+}

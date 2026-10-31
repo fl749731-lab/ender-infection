@@ -1,0 +1,129 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "crystal_crust",
+  "resolution": {
+    "width": 16,
+    "height": 16
+  },
+  "elements": [
+    {
+      "uuid": "ff330f22-747a-470a-b09b-d793bd3614eb",
+      "name": "crystal_crust",
+      "type": "cube",
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "south": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "east": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "west": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "up": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 2
+        }
+      }
+    }
+  ],
+  "outliner": [
+    "ff330f22-747a-470a-b09b-d793bd3614eb"
+  ],
+  "textures": [
+    {
+      "name": "crystal_crust_top.png",
+      "id": "0",
+      "uuid": "721ea1c0-740a-439b-9d3b-4d68316bc5ab",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA0klEQVR4nIVTSwoCMQxN6uBaXLnTm4g3EDynKw/gwouIxxCdkQQyvDzS8cEMbZrPe2mq281ukgKnw0Xuz6uvm678+4zv+ezxuvleLQE6V7DgcfqWyTQYmNEQjj0bJxz819ZzRgziwArDv2oVEkuBanFgPan6YEwZyrcQ+lAny0z+0qHHUjA45KYEraBoe3QOW+pBg+ZVVY77c7KxDO1NYgQs3YoPlSwApy/o497XAgbWG2MbYPp+W+jAdG1vPWC72SLOe8CPpZqDbh+4Mj8mlsX4AUBRgktRG8D+AAAAAElFTkSuQmCC",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16
+    },
+    {
+      "name": "crystal_crust_side.png",
+      "id": "1",
+      "uuid": "a09fdca8-0940-4b9e-93b0-3818f607022a",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA1klEQVR4nI1SUQoCQQh1LPa7oo8gqC4S0QGCoHMG3SC6SV0jaiY0FNd1moRBcPTp05dmk0WBho2xg1ze/MQwjb5/0DBKfOXnIEZGgGiD8mxnXyS2Wx/ZJ6JgESWZ0Z0P6UFltMiHFNGg+0X1OmE3oMEA2Yy435w00e/Dg1MuA4AZ8Xo/w3Z1CAuiE+oSIeAvY3sgilGT2+PC8TSfLkvEOwIMd5MrCa1CbQR/mCxWhNUTG7Q6GCnbc6vI7Nmi4hYVpI2Srq2MfxXL/UU3esYa95o6qZh08wG+bow5WI1waAAAAABJRU5ErkJggg==",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16
+    },
+    {
+      "name": "crystal_crust_bottom.png",
+      "id": "2",
+      "uuid": "0e10ca8d-3a26-4d86-836a-fcd21b9ce27e",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAwUlEQVR4nJVSSwrDQAgdTei6dNVdepPSGxR6/4uEdhIUlDdiZlIh8YP69Dl0u963MhCmSXXdfqpnvrjNr8dnVK/JVoC+fGQTCIoETCMSFmOu2iVBs5G/dW18zPFmJaDLShEx+iiUkYgj9mK6ZgkTmH8G3RtUKLaC3hpILmOCNXkub58knlliRm7KAeOJDvZu8rlzolGxNqhnkmhqiEV71l/nxdkazeMBrpQDaSDE/CN+enEisjAvTbORTQ6vkKH0ZAcZN5VzCK6IDQAAAABJRU5ErkJggg==",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16
+    }
+  ],
+  "animations": []
+}

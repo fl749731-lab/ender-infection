@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "eroded_log_mangrove",
+  "resolution": {
+    "width": 16,
+    "height": 16
+  },
+  "elements": [
+    {
+      "uuid": "af48246f-5296-4865-a2a1-424ebadb2281",
+      "name": "eroded_log",
+      "type": "cube",
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "south": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "east": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "west": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "up": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 0
+        }
+      }
+    }
+  ],
+  "outliner": [
+    "af48246f-5296-4865-a2a1-424ebadb2281"
+  ],
+  "textures": [
+    {
+      "name": "eroded_log_mangrove_top.png",
+      "id": "0",
+      "uuid": "eda3512a-91b3-4429-a769-d3b0f59d1222",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB40lEQVR4nIWTy27TUBCGPzu+5WqTNIFEaoNohXgBEBI3sUWIB+0SITYs4RWqLoBFFIlLgts4bm6OnaA5R04dQOWXrHPs45n55vfY6HcfbNNNwmGrT606oNOqIBqFc65mfcZRSJIt1DPLdGg3Dji5G6r7q8UaS4I9q8YLPwaaEMEyWnHoN1nyi7fbDU6pzGabYRolwviSl5GnEpw7a6zXTxoE3y2+DUcU5SY2q+Wa28GxosglieTde/c71BwbqxgkD0UfRj7P6pHa94g5nejqEiz6tKnzdeSTZTWseJ7iRfpguYDTwQLTSPhIm4cbTfUmMHk/Le1R/Lwc67YAPN/F9eydUXJwPPnMLJmr62Ia8ZhwR5BL/DNV5Wil+pX1VSPlqRnTbPhUnYq6ZJ+TdIKDvURmvaJtEAIhKSonyM9FzxtTes2eDjZK+yb+S0JWda5X0Un0hUe+z/jIujmBboE9AmmzKKtYqSgxLlcevDM8sf9O4BZeyk37X1tqlON5SuB7zMbaLKkgmH8aqs7KelZy1co2lmQBPdsyokKi2pneCKEK1CvpdQut9i21SnXBy0lEwR2XyY8V7yJDzYAMG8OMdLDWCc6dWOEomjZ0W2XOhhcsbYOjbpmzUO+TzFTfXn7v/N/4DRvm5l2a6k0FAAAAAElFTkSuQmCC",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16,
+      "path": "E:/mc/colored_units/eroded_log_mangrove_top.png"
+    },
+    {
+      "name": "eroded_log_mangrove_side.png",
+      "id": "1",
+      "uuid": "d6182e7d-4b93-4d50-af7f-fc343bec8b3f",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABnklEQVR4nG1TXUsCQRQ9a6PpoqH5lS1mYBC9RP+gf9D/7q3oIQiENE1RFjRtV3ZXjTPr1XHtwDAzd+/HuefOWk+Ptxtskc+lUbAVkph70e4s32nrdCvQN88LYdtpLPxQLzPR0PUhPkRvaOk9m9mgkO9B0fk/BqwgyeQb7+1m7oCZolEgDKRaMjGXJBYfZdJjG+YuwUkdaBO7apRzQDl3RNlkJNC+hi70VZ2vnyPVzb6TU2GwiD52PahlYGlFa2X7wFH6HLvA4reFyczFerNC24mD+Y2x6qqxV9WcgLB4/eDYhkhZJ3Hi3xaArj6fFxUUaYhw0q9Q/+zXAQy0jdW5CLLtDX0sgyhugeCFGQm+sNF0pINVKoNoHWj7ZclBrfqNsRsim2GMBSVBUvn5LYVoPdKBwcrXVUmf+8PdFHNvP8L9GBHDnDXBQC4m4s4JJCezO728FzGeTQCsdHXpuV6qYuAOtiLGb8V8L1bbudd/4zJaIKvy2sieGVA9qyBz2kcYNHXytuNrAU2xU1KJVQmhe1Gq4+ba3QlLm7wVqc5Efwoy9283vx6TAAAAAElFTkSuQmCC",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16,
+      "path": "E:/mc/colored_units/eroded_log_mangrove_side.png"
+    }
+  ],
+  "animations": []
+}

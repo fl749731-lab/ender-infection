@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "eroded_leaves_azalea",
+  "resolution": {
+    "width": 16,
+    "height": 16
+  },
+  "elements": [
+    {
+      "uuid": "85286811-bfd3-4618-a6a4-b3bc06dbd2ec",
+      "name": "eroded_leaves",
+      "type": "cube",
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "south": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "east": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "west": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "up": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        }
+      }
+    }
+  ],
+  "outliner": [
+    "85286811-bfd3-4618-a6a4-b3bc06dbd2ec"
+  ],
+  "textures": [
+    {
+      "name": "eroded_leaves_azalea_top.png",
+      "id": "0",
+      "uuid": "1e6c47c3-9e0e-4f45-9c27-39232a280a6e",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB40lEQVR4nG1Sy0pbURTd53J9oFLRQDLwOagWqfGNBidOanGgRVAcOS4oIv0EP0Gl6D/oRGxRcGbEJ6ItBiLqIEEHVTT4QKMmcGRtWfGmuOFyzj1nr7XXOnub/pF6uzAbMZ29tdZfkSuI8kCOuKVpiUWt/vPejTVKODJvcAYc8pzEWp0mbfw+Mhenz4IP4P+jpa1QGgZP5Md00JIUq5Ou/vua8PGLTUYrBCpQeWflScmq64yMTTQriMRQg3Vv916c9q950hUc0oNU+lFOloozVaGKwLPzlBLTVia6gkMW1amCEr0Bv/iwhxpvjrt6MKdVEJXd/yQWzQZDLqx41axO+bVwcOBYTGtNt7LlfYprEv3h0byPCekkAvgumZAyX404uHxOJeUu4s/yDc/eiK8EJCfepIo+FPjEWis395divoVG7eLWjILgLZ1wFYwekwSdQISnA1KUXyLoHGfG4SNROmVjBQkDxJ3DV9Ly/VBV4k4HqbJnU67XP2cY4ZVDQpLJ8QPzc2LfvDdgpq9jxP7anlUAVYCMFkjGFtIWzvFvCKQCvDT3SOLMszrfiB1x2bI3ya97jGlmWN6RzsJZFcAeXw7J7cOVpKr+ZLWVk4jKLIh30S5wzkFijBFMJ4EM2AHYGyB9AZB/GbvtwMd1AAAAAElFTkSuQmCC",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16,
+      "path": "E:/mc/colored_units/eroded_leaves_azalea_top.png"
+    },
+    {
+      "name": "eroded_leaves_azalea_side.png",
+      "id": "1",
+      "uuid": "e448646c-7421-481c-ad2b-7159667c0b92",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACC0lEQVR4nF1TT0tUURw99/EszJwRR22h4WyMJJUcRME/gYuEoqBFfYEWgRDRog/gB3AREQy0aNUqEAasFoWFiEOKjcYoRhZY6kIZh0xEyokb5yfnNdOFy33v3fM7v3POvc/dGO3wmfSy6792zjedPQGO4kw7Unc+YX3V27v2+Zx98dlxvd436rd21xC0nKmCNnY2foNz9+cW/h+pnhqb9x91GtHkXNo1J9oQ5BYODEAlVMCZiDVj/vUvI0u2O9wd67aisL5kWKnx3iPsHTmJVE+339w+MnCpGAJDq9jZOFbVO9LpWWh2titVFZveIhAzfZY/y+vDe3lXngUts6lshwSIUcDyQbm0IkLZkC3HUFgokPwxMIFFLgzzUviBADpCdWIm5UMFbFD6MIjsswTyE22wjiqiGobIYhaIhOFKBe9IKfkRVd8uYv+wiICdKUnSJZurunKQmO+8YGxYW10PzlCdZOHNeC1WvmfdpY5bRsgumfRUpFCEyatz/zLIpJcdJ4vjXQVT1HXzC+I1DVj8elwsFbTB/cdji/bdKRgp+DF7wda6gRUjVuLvnlbb9+Hbh6ZYJ2IKeGQEMV1KLuxtYu1lLPLPPC4/2EdDvAXrr/oq7kjUgaDck/OoO92IvYMCjlqXKo6VOK5/ckNovfLe9mjDFFASvcVOJWxjOv88usoatGN/auNU9I2kfwHLmCeEIV1jvgAAAABJRU5ErkJggg==",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16,
+      "path": "E:/mc/colored_units/eroded_leaves_azalea_side.png"
+    }
+  ],
+  "animations": []
+}

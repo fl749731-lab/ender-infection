@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "eroded_leaves_acacia",
+  "resolution": {
+    "width": 16,
+    "height": 16
+  },
+  "elements": [
+    {
+      "uuid": "85286811-bfd3-4618-a6a4-b3bc06dbd2ec",
+      "name": "eroded_leaves",
+      "type": "cube",
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "south": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "east": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "west": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "up": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        }
+      }
+    }
+  ],
+  "outliner": [
+    "85286811-bfd3-4618-a6a4-b3bc06dbd2ec"
+  ],
+  "textures": [
+    {
+      "name": "eroded_leaves_acacia_top.png",
+      "id": "0",
+      "uuid": "1e6c47c3-9e0e-4f45-9c27-39232a280a6e",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABqUlEQVR4nGVTy0rDUBCdBFuNNYW2UpTiA3ysgqJiK0hF8AHddOfKL9Af8gtcuRDcuBUfC3eKAUGkVkWkYCtYJVgXkTN6LjFeuLnznjkzEylVR0MRkcqWF+JK7HjlQSNb8jZCypY3J/Xa3bV5Vbae3iV462gg8AgMQ//k2QIP41T5Wl/KgnbnfxYa47I6HvCUGZ/Sr2B2fDX0RhaVjjrHocGRzpDbPXdFVbhOVpIJR4VHuzfW+UHdAg1YgEdnlJ/KdGsSyKx4iY6bFASI0lFn0DNjK2G6NyfW1MVPgLmJtdAt3htjwnDSSW3sy0Nb4IygaPqxv2fsbHw6X4E0z/IqIF4GQxCUjAO4mASrwFjt6sJ2mEsX5Kp+ahEXX+JHP8C3g5Yc7vhKD6w3xJ6+FAsBaol9UyKUdIj2Bm+20Kc8g0BuxTeOjSKUR7+pEOCMirA8SMCmdnEHEpnbPwqUjikMeTkN8vH6aYJHJyLAi2zRrYtvJnnYkoY9/Myes+NsGgz7h10zDUKinmPWMcKIP0a+UdEXuGFAR04EUJhMm8nsPJhKtPtxPeX8pb8BPn0fM0h3kPAAAAAASUVORK5CYII=",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16,
+      "path": "E:/mc/colored_units/eroded_leaves_acacia_top.png"
+    },
+    {
+      "name": "eroded_leaves_acacia_side.png",
+      "id": "1",
+      "uuid": "e448646c-7421-481c-ad2b-7159667c0b92",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABnUlEQVR4nHVTPUsDQRCdC0ckmChGESQiUUwao4gBI4KaQouAxkot8geMf8hfYGFrYytoo3aSykoUFcFEyKkxB7LyRt6yOXHg2N35ePPm46RUzRoRkUq9YPBJRAorY1ZHO3RbpbpZmF43sY+3rhpbj+/SaYfWCcBwbJw/e3iXa3nDE7r2Z1Myw7m/WSCrhR0DR7Kj4E2djSk5CjfLf6XBj8HQ+4lUXA39Q32SGIir8vSwobRxR1mdILTBoA9wJvPPjm7V+fLkTg0ExB3BtLv9gCAZ7L7bIDqrQyquTrC93gfCzOlMUsgQEuOFNFkvwQCC8ghKwQjXZndNDBkQjBLcJipoO9TxwkYwZk8l0hJ0WuJFKbIf0fHhBH0IQcDAi24cG4VdwIksWJjv4oUyIls21SflqKE7dS2jLxXL4qHRtOA9EynX8roo7taV5/Z6NpDsZiaW7RLBH3ExdBvU0OHNxX1TzG2Ys5tjD85sJrLBeWRwXLLd7Z6J6BgVJAjF/UGS8092MzmRr8kr8bxf5nYizEKpLh3Yt7uy0anw3/kBDB4djhZLFmIAAAAASUVORK5CYII=",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16,
+      "path": "E:/mc/colored_units/eroded_leaves_acacia_side.png"
+    }
+  ],
+  "animations": []
+}

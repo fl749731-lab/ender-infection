@@ -1,0 +1,129 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "necrotic_soil",
+  "resolution": {
+    "width": 16,
+    "height": 16
+  },
+  "elements": [
+    {
+      "uuid": "3ac06f01-d4c3-46ac-9f24-0a5990858137",
+      "name": "necrotic_soil",
+      "type": "cube",
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "south": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "east": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "west": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "up": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 2
+        }
+      }
+    }
+  ],
+  "outliner": [
+    "3ac06f01-d4c3-46ac-9f24-0a5990858137"
+  ],
+  "textures": [
+    {
+      "name": "necrotic_soil_top.png",
+      "id": "0",
+      "uuid": "188e94e9-5fd8-4c39-8dd5-700dbd77e164",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA5klEQVR4nIWSUQvCMAyEs6wMBR998tn///eE4TrJtgsfmWKhNE3bu8s1w+P+XM3M+rrEYj6MVvcRx1TcfMq967IexHj3OS9FzCGQyM/Ly5oYY40kFQSIYuV159Ju+50OeVRDRTyfxmsCbcTvIyCjVimjygruStI4xjQzahZgmth8Sgb+gvJSo7iW3KKEalj9wqwXRieQw10iMxfG/eyTfrDXA6pSSWJXOVvsMJHsrJejluhsUU1Kpjdfm8rK98WDvUXPphIwQILoBCDH/7V1ms762CQEkSp+qzxqfCz2TRpY6BPNjvMPXhgYUnxT+VoAAAAASUVORK5CYII=",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16
+    },
+    {
+      "name": "necrotic_soil_side.png",
+      "id": "1",
+      "uuid": "b9750cbf-d24d-4cf8-8cb7-0c4d9169549f",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA40lEQVR4nHWTUQuDMAyEay0yYY972vP+/98byKzj1JOvWRcopmmSSy5xeD5eWzrlU5eUh3HX67amkqfL7ru/sk3jnIoMOg6USNeRk0SO1m1XzLK+U7azH4nIRKxM+q3cj5i6rQ0qhTb6uQV9szMalaVaHGzdvgcfQ1vinjXYYgWspLBcIrh8nVgBp1YiCsclEdMWj5VklpiVdxNFnuLEsh8dxOWJyRh8cZLPSyxPy9M4nvoPRzUgcFX/bSiBSo9EttV7b7bXvfZQ3BZJ5p40HJCHHrFuiUB7DFGd1YniEvEfsP0L61EAdofL0HQAAAAASUVORK5CYII=",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16
+    },
+    {
+      "name": "necrotic_soil_bottom.png",
+      "id": "2",
+      "uuid": "b6600517-f31a-413b-aa53-0b3a77a347e7",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA5ElEQVR4nHWTzQrCMBCEt2koCh49efb9X08Q28qETPqx1kBYNvs/O5ke9+e+7WvolmkOHUnpOpY+sul+tnfUskR1MANtlHQAj94ti40McGUHOyml/Jt9Q+t6ZOs5qbu81NsoUP2Y53Q1dmPbe30dvtFnIVj/xshgNxADFXWX+TpAPEOfgDe/gJFV8/py4BgpupEIUyegGdyRoKSKrNaQ7ts521hh8NhtDzLi3JK7tF8ZrQDIDJySkDz0qdzvGXVpz1sZGGQCkY3UTSB31QpyNiJNzhswceQHzGMWrCaRhtzgd5b+BYrHDzjslmldAAAAAElFTkSuQmCC",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16
+    }
+  ],
+  "animations": []
+}

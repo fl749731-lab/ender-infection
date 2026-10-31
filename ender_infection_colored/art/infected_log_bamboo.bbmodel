@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "infected_log_bamboo",
+  "resolution": {
+    "width": 16,
+    "height": 16
+  },
+  "elements": [
+    {
+      "uuid": "c6b4911d-a4eb-45c8-b585-2a7ea470ff3b",
+      "name": "infected_log",
+      "type": "cube",
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "south": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "east": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "west": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "up": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 0
+        }
+      }
+    }
+  ],
+  "outliner": [
+    "c6b4911d-a4eb-45c8-b585-2a7ea470ff3b"
+  ],
+  "textures": [
+    {
+      "name": "infected_log_bamboo_top.png",
+      "id": "0",
+      "uuid": "afa23d0e-f53d-4101-84f4-83458ba0a4ed",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAcElEQVR4nGOUEVX//+//XwYQBgEWJjYwDeMzMTLj5bOAGL/+fkfR/OPPFzgfpAEv/x+RNuHisyDbDAOk8Fmw+RmE8dmMLM9CyM8ggDeM/g14GDAR8DOhMGJB9xNBPw++dMBEYrxjhBFBPxJIFwMfBgD0hpftaCEcswAAAABJRU5ErkJggg==",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16,
+      "path": "E:/mc/colored_units/infected_log_bamboo_top.png"
+    },
+    {
+      "name": "infected_log_bamboo_side.png",
+      "id": "1",
+      "uuid": "070df2e4-1f96-458d-80ba-0c9690f1cdb8",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAeklEQVR4nKVS7QqAIAyca/QC/elv7/+GYRoLAjXdhx0ITnfHHVvYtyNjWCDl6zl8d9UwADdZQC2JcHWJUFmwpZjOqh6JvDFI+uy9tw5J9ag5hAmUsXBGoBKDjqoH5B3bRyAaxyZGQANp1EMaSYsoClg20zRGKeLvPbgB+zNAq6dt+Q0AAAAASUVORK5CYII=",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16,
+      "path": "E:/mc/colored_units/infected_log_bamboo_side.png"
+    }
+  ],
+  "animations": []
+}

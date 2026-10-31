@@ -1,0 +1,196 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "infected_fungus",
+  "resolution": {
+    "width": 16,
+    "height": 16
+  },
+  "elements": [
+    {
+      "name": "botanical_cross_a",
+      "uuid": "ecd4109d-bf9f-494c-a772-b6bf2974fb6e",
+      "type": "cube",
+      "from": [
+        0,
+        0,
+        8
+      ],
+      "to": [
+        16,
+        16,
+        8
+      ],
+      "origin": [
+        8,
+        0,
+        8
+      ],
+      "rotation": [
+        0,
+        45,
+        0
+      ],
+      "box_uv": false,
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "botanical_cross_b",
+      "uuid": "2b5c68d2-8cf8-478a-9083-803bba0fe310",
+      "type": "cube",
+      "from": [
+        0,
+        0,
+        8
+      ],
+      "to": [
+        16,
+        16,
+        8
+      ],
+      "origin": [
+        8,
+        0,
+        8
+      ],
+      "rotation": [
+        0,
+        -45,
+        0
+      ],
+      "box_uv": false,
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        }
+      }
+    }
+  ],
+  "outliner": [
+    "ecd4109d-bf9f-494c-a772-b6bf2974fb6e",
+    "2b5c68d2-8cf8-478a-9083-803bba0fe310"
+  ],
+  "textures": [
+    {
+      "name": "infected_fungus.png",
+      "uuid": "9d4894be-9437-4f3c-829e-78eebfd2493e",
+      "id": "0",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAr0lEQVR4nGNgGPKAEZugkqTef2zi955fwlDPgktzY2wfw4xNE9Gl/6MbxIhNsyS/PIbtGpJGDDeen2N4/vEhimsYkTVj04gNgAxBMUAJh5+RgaNGIJy9/8Z6uCsYYYLJjvV4DYFpQgYoBihJ6v1HD2VrDV8UQ4/e2IwRC0zIpmGzGRR4uDSjGEAuYEHmIIcDNj8TNIBYTcgA7gVsUQlLNCCAHqAYBmADoIQFSn34AADBkkgPfs0gmQAAAABJRU5ErkJggg==",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16
+    }
+  ],
+  "animations": []
+}

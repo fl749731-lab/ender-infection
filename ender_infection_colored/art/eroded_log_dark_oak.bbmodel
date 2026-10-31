@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "eroded_log_dark_oak",
+  "resolution": {
+    "width": 16,
+    "height": 16
+  },
+  "elements": [
+    {
+      "uuid": "af48246f-5296-4865-a2a1-424ebadb2281",
+      "name": "eroded_log",
+      "type": "cube",
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "south": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "east": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "west": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "up": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 0
+        }
+      }
+    }
+  ],
+  "outliner": [
+    "af48246f-5296-4865-a2a1-424ebadb2281"
+  ],
+  "textures": [
+    {
+      "name": "eroded_log_dark_oak_top.png",
+      "id": "0",
+      "uuid": "eda3512a-91b3-4429-a769-d3b0f59d1222",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB2UlEQVR4nIVT7W7TQBCccy7n2A44IU7SBqGqgFBRK8H7P0T5RUEIqS1IpY1TtaaOk1ziGM2aSwJCdKTV3ufu7NyeOtg/qlZrixe9A/j+V0S+wnRRYXyXIw7fI81uYcsZCO0Z9J8mSDrnuLqdouF5UM+HL6uWbuNkOIaDLSuYhhL/OU3gqQbWVSmecGfvqyb0u8MVmnaMy0khi6GpD+mmwmpZYdgZCAsHBkp/LrCfBIigoEm3o+rNV6O2+B/5W3TNRyDg7BNu7nsbFrJfjIB8D2VZwnOUmXll1zj91sXNXYrUHss67ag/kQDOCJ4ZZyk8isV6SdkJJZnmp5japVg2tei3LjYMHCi+d7j3RLKwXvrXvSvE+jviyCAyTTGOCTIZdJI/AnnUwIlGJrtCOgZunxj4Zxg9G9WXVQMaj4DMYLaeUIsPeJMYqMCHzvICYfjvOKTvLjkGLNOB7HXcDoG1rTPIs9WgcIUtpRx3mdgVnA+g2brVbJuBcKLF0f/LCn0N7/z6YSOey+D83xYGtbi70HxGWCsTtqhr4cfAgO2wtW3lbmBEAxHJ1AecYMxczEp8mQylB9hs6fx3I+XFHJcPSyyNkd9VeAYXmZU5x7Sz65l4fmsGoOdljn8Bwuv8eBYRXvwAAAAASUVORK5CYII=",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16,
+      "path": "E:/mc/colored_units/eroded_log_dark_oak_top.png"
+    },
+    {
+      "name": "eroded_log_dark_oak_side.png",
+      "id": "1",
+      "uuid": "d6182e7d-4b93-4d50-af7f-fc343bec8b3f",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABfElEQVR4nHVSa0/CQBAcjmdKBSpRCsYPRvwB/gL/f/xkojFqjAZQChF5yKsIxczBXvqQSZrsXXdnZvc2dXN9vh1P52hUi5j5WxD94RQX7lHkfOrYKOZT+BzMTO5yeQmlMwCUbAvT+RKHzmEI8Tp42BH4vwFe2gMcQj6706F6HIq2CNsqRAq6oeS02hFQSCB1KqwgCCfWq0UTW/kMyrYFzkxEFQO55AWZhXATRBXDZ9NCb7hIXNIyB0jiyZ5YhBIE+Me2FFCVE/f9Jp7aFbR6pchMNIFtFUxP7FeeSPDuFdEddhFsNzshv5l0ULatxCCJ0fTKxCRYByvj8M370XFGEqRfghv2NfEAfCCjcqaw4ZzhuPSKmR9zMN4XEp2+A2/k6UKq8lOptP43WdzpDSXEsQq/c7x/FvITB4QsmAzSzIC2OWUqhtVrzokhCs9JXkrdPua07c53K6FYrzSQzT7DrbimkO3KGmsCUaIqsdosNInr1LDa3EfaiS8Sl+0PIDnEtxGf4pwAAAAASUVORK5CYII=",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16,
+      "path": "E:/mc/colored_units/eroded_log_dark_oak_side.png"
+    }
+  ],
+  "animations": []
+}

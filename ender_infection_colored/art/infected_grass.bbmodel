@@ -1,0 +1,196 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "infected_grass",
+  "resolution": {
+    "width": 16,
+    "height": 16
+  },
+  "elements": [
+    {
+      "name": "botanical_cross_a",
+      "uuid": "1026bbcd-500e-4cd3-979f-304750fa0655",
+      "type": "cube",
+      "from": [
+        0,
+        0,
+        8
+      ],
+      "to": [
+        16,
+        16,
+        8
+      ],
+      "origin": [
+        8,
+        0,
+        8
+      ],
+      "rotation": [
+        0,
+        45,
+        0
+      ],
+      "box_uv": false,
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "botanical_cross_b",
+      "uuid": "f1c68c4d-0994-4722-a423-939352ede327",
+      "type": "cube",
+      "from": [
+        0,
+        0,
+        8
+      ],
+      "to": [
+        16,
+        16,
+        8
+      ],
+      "origin": [
+        8,
+        0,
+        8
+      ],
+      "rotation": [
+        0,
+        -45,
+        0
+      ],
+      "box_uv": false,
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        }
+      }
+    }
+  ],
+  "outliner": [
+    "1026bbcd-500e-4cd3-979f-304750fa0655",
+    "f1c68c4d-0994-4722-a423-939352ede327"
+  ],
+  "textures": [
+    {
+      "name": "infected_grass.png",
+      "uuid": "9ace0d21-1352-43c1-94e1-e7774468217e",
+      "id": "0",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAApUlEQVR4nGNgGDJgcdme/9jEmbAJWmv4/kfnHzh9mIFoAygGSpJ6/2GuANHJjvX/cbmOiRSDQZqP3tjMiNUAazSTsWnGxmcipEhD0ojhxvNzOF3CBBOECeBzCbrz4QZYE3A+LtvhBhy9sZkRWwCh2w7zEoYLGJBMB9GS/PIMzz8+xLAZpHnu/kbssYDNdmwBiA6ITgfYbMcwAOQKmEtA3kAGuFwCAFI2UyZgUcSuAAAAAElFTkSuQmCC",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16
+    }
+  ],
+  "animations": []
+}

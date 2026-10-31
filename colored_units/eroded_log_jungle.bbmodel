@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "eroded_log_jungle",
+  "resolution": {
+    "width": 16,
+    "height": 16
+  },
+  "elements": [
+    {
+      "uuid": "af48246f-5296-4865-a2a1-424ebadb2281",
+      "name": "eroded_log",
+      "type": "cube",
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "south": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "east": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "west": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "up": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 0
+        }
+      }
+    }
+  ],
+  "outliner": [
+    "af48246f-5296-4865-a2a1-424ebadb2281"
+  ],
+  "textures": [
+    {
+      "name": "eroded_log_jungle_top.png",
+      "id": "0",
+      "uuid": "eda3512a-91b3-4429-a769-d3b0f59d1222",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB+klEQVR4nH1TTUtUYRR+7vX1zlQyDl5HmQEZRyuNcPQPZBRBtAlatMuC1q7aaLQw3BVB/yAwcdVGXLcIxR9gQVhRUyQTehudD0rn6syV5+S5TBf1gXM/3vec9zznOee1sunh4KDpo8/N4nK+AOLrtyqavgXfz8OrlOA3dmXd2A5SiW6MjP2Q/0y7A8PguOnA04lBADSgmisjkUiiWi1jam4LTtsZNIMGbKsNpdoO7o7eEL83a29hLmTLmL5zHYWf39GKP3t/sVf30ZvsERYKHkTf4fNDwtQeHEiEm1ykzS8HSPdkkOvrF2aanW/i+eIvPHm1jt1aHjZPIVWiXq/j4Yt32NzxMLtQkHXasweX5AA1gj5bFQ82xWK98ZgTCsVME+OWlEErVcp4dNsNGSionzU+5gaTt66Jk9uZlI3Wb4WuvVzaRnG7KInYHdt2AnEgAzKJCknTfWLm3gAyXRn5ZjnmylA3TgM7cS5+NnwT96/acDsv4sPGe5jTghmgQcpABSeK+z4MHyNHmaI1KzSYYJlaFjtovqzXcDP3v1NUwJPKYgdN9FQd4aigRCwWk1lphdEuEBxRMmGG1hKOAxMwNhSRo6sikZ4yIVKpXnjeJh6//izDxBkASjhopmF4F1Y/LmPl02+piafq/eB1FWz8U9xvtEvvZYCO7sYhtir8pCBfRS8AAAAASUVORK5CYII=",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16,
+      "path": "E:/mc/colored_units/eroded_log_jungle_top.png"
+    },
+    {
+      "name": "eroded_log_jungle_side.png",
+      "id": "1",
+      "uuid": "d6182e7d-4b93-4d50-af7f-fc343bec8b3f",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB70lEQVR4nG1T227TQBA9TlfbJA12QtM4ToqUXkFCAp76hsQTj7zzB/wj34AEKAIqtQERWXHjpqqtNnEsO0Yz7iTGMNJq9jJzZs7ZXeP9215mVTX2LA2yi6s7LJYJyta16ut5EMXsR+NTKNmgMbmN+MBpVtnTWuZyvooNXld0htqjr1CSRNa2qzh0GpiFMS5HIQe70yUHl4FfP23DD2IYH94NsmJbRIesTKm2rf6hRnvqhxcysiQKUJHSOthUsHY0dk2N0eQOWAIGiShBxQoSHNzHuL7KgYgS0REdOM4qVCalpYNFmGAW5oDNmuIOxI7tBnvW4M3Z4+x/yP3O9prW54sD+MEMqyzFyxP/b1rOg7Llt0D8J4jwc9wh3VExtvjM85/jYP98Q2HyINSilsAL5th16ngyaKAeanwfHgFwc/5ZykOuUbpVZ6/afO9k85uYx/DLAN6tx8mqopGs8vNeq4/9o3NYOyav6TbU+Fferqjs+n0kK48T43TBVal98k7nG6bjFNc6wrOuiXAebyiIFu5GI06kQUDkSbSKzm+G3g9TICTiTh9jGlB2ytWFs93agztzGaD4N0R49fET8TERJb9RVfn9EmdKcJo9vDi8RJoOGJyKlV+rEmWpKhm1S/Nuy4bdHiKI8gdEgJRQ/g9/ANN4G+xTHqGdAAAAAElFTkSuQmCC",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16,
+      "path": "E:/mc/colored_units/eroded_log_jungle_side.png"
+    }
+  ],
+  "animations": []
+}

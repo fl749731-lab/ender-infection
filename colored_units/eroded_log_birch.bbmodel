@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "eroded_log_birch",
+  "resolution": {
+    "width": 16,
+    "height": 16
+  },
+  "elements": [
+    {
+      "uuid": "af48246f-5296-4865-a2a1-424ebadb2281",
+      "name": "eroded_log",
+      "type": "cube",
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "south": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "east": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "west": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "up": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 0
+        }
+      }
+    }
+  ],
+  "outliner": [
+    "af48246f-5296-4865-a2a1-424ebadb2281"
+  ],
+  "textures": [
+    {
+      "name": "eroded_log_birch_top.png",
+      "id": "0",
+      "uuid": "eda3512a-91b3-4429-a769-d3b0f59d1222",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB/UlEQVR4nH1TTUhUURT+3vMVjUYzOE/nJ2KoRfRLYIGLxIUh/hAoQoS0SaeCaJltgmpRm/bZRp0W4igEQaiRGyOibZtAdxEtJuuNNG/hTKjPF9+ZznOeaR+cd+69795zvvPdc41M6oS/ubWOI/EMZt/nQbx6OSb+xbN3cNxVrHsVmVvmfjQdsjH/YUbmtp2EcThxzD9gHcRc/ioUbnkN0foG8YPZ1zCNOmz5nnhC99qnhmE9fHQd7afr8OnzN1mMNETFlyIllCsGErFmYaFgoOUvLk6eSQhTw3G++8WlnARoaT0um7JDbzAx2hEc6h3MBywUqcYkPM+DySikKpnLv9Hbl8OPXw6ydxZlnTY90ScB1Aju+ek6MN8ufJR66yN+IBQzjdw9j5K7IVZY2cTTx50hBgTFN1U01ks/OdaDJ/fbkE5aiEX3iXFMkElzzA4FMru7LsqADMgkJORfBvqfyD2/hHRjunqYJd26/QD/A5nVeuLeyAVMjV/G18Iyqtz2QLUEhBiwTEWxuAKLn50ZCApXWXOlHD1MsEz2CMEbtPg5d3Q7A6GiAfE9y1Jmpl5jbQb1/5gdDsizIQ3YomTCDAW4u+TeXtNEll5jJhULRCI9fUyy2Y7DLa7i2o056QE2G8FGkrfAZznQ3w0NNnDlpniu1yrecrY9aGV9G38AG6zomCHPdRUAAAAASUVORK5CYII=",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16,
+      "path": "E:/mc/colored_units/eroded_log_birch_top.png"
+    },
+    {
+      "name": "eroded_log_birch_side.png",
+      "id": "1",
+      "uuid": "d6182e7d-4b93-4d50-af7f-fc343bec8b3f",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB6ElEQVR4nF1TS0sbYRQ9n47WhVhTzANtF6GCOpG2dmURFUuhmy4raBchrv0D6rpIcCm4ly6UuteupF31sahuJMaVBY0NScxDCtVoMnLucIfJHPj45vHdc885c8dUy0UHAMq5AuodN7xELPIEinzhDJ23D/BoIOLd65m3E7Mw2eyB4z+geBjq865rlZJHpGAzkhjHcUQBcXqUaXlJEhb7QSJ9RxglODk5xMXFH3za3EIm4xLZto2llZWWAgXPDw2NuRbUM9mVhCCRkvCw3056dRXJ1AeYVPK9KOAhDcfvV+1oeASLVaUhAZlevphsSZ1gsMEwiWa7g8Lfc1Fr9Cuwk8oM4lXiNYq1SzSdBn4ff5VnbQ0jzQxDVF9qQbtWrooYG55yC0y77NHeCPZ+fEaoJyz3lv+bc5i4KJF4NzHvqWB3LoLyuWQOstkDJ9h53J5Bvpp3O7R14q5Zd9X1xrC9s4H4qO1lYgWLBx8/lwIW1hv/pSvlc//yc8eTrrYtBkjZOmF+sJCLRJpBcOCsuYVZpNc+YnlxHYVa0ZOtnqOhMHKXOSGgb/8MyBw8HXgmGVzf/UOX1S0PaYEF4Z4+/Dr+JpmQfPrNiAycf1pNvD8hBOymvrnHQlF8P9oXr/xtS1dl7O5vtkwlLd8Dfs8rdo6kivsAAAAASUVORK5CYII=",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16,
+      "path": "E:/mc/colored_units/eroded_log_birch_side.png"
+    }
+  ],
+  "animations": []
+}

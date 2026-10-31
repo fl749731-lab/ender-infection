@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "top": "ender_infection:block/eroded_log_tree9_strip0_bark0_v2_top",
+    "side": "ender_infection:block/eroded_log_tree9_strip0_bark0_v2_side",
+    "particle": "ender_infection:block/eroded_log_tree9_strip0_bark0_v2_side"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#side",
+          "cullface": "north"
+        },
+        "south": {
+          "texture": "#side",
+          "cullface": "south"
+        },
+        "east": {
+          "texture": "#side",
+          "cullface": "east"
+        },
+        "west": {
+          "texture": "#side",
+          "cullface": "west"
+        },
+        "up": {
+          "texture": "#top",
+          "cullface": "up"
+        },
+        "down": {
+          "texture": "#top",
+          "cullface": "down"
+        }
+      }
+    }
+  ]
+}

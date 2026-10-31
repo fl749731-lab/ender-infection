@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "eroded_leaves_mangrove",
+  "resolution": {
+    "width": 16,
+    "height": 16
+  },
+  "elements": [
+    {
+      "uuid": "85286811-bfd3-4618-a6a4-b3bc06dbd2ec",
+      "name": "eroded_leaves",
+      "type": "cube",
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "south": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "east": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "west": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "up": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        }
+      }
+    }
+  ],
+  "outliner": [
+    "85286811-bfd3-4618-a6a4-b3bc06dbd2ec"
+  ],
+  "textures": [
+    {
+      "name": "eroded_leaves_mangrove_top.png",
+      "id": "0",
+      "uuid": "1e6c47c3-9e0e-4f45-9c27-39232a280a6e",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB8klEQVR4nGVTQU8aURCefYZFVJbQNTWUSECxB2rUtFGbtKTGyrXx5sEf1t/gsV64YGKTNmljotEoHkqQYGgTCligiELTZ77ZzHaXzmV25r33zffNzBqJTFQ/exOn/Ptzg4hIYrFW7Tf9KLUplo5QsLxKavmUQpZJFx9rfK6SassNFrMxDX993uRYQMUms5f8WMyyx0lV/hb4Axb4nnEuRoPu41DY5HN4yUkBZkBEZP/KcjD8c0dWzwHxVY4GqXzy08cKoMir1FiOuv0WH5qBEFGizNW8JrFInE6E/zEwDIOOSwXjeXpLBzIlPpz6tuk+QOV+d+DKhLW/zDJrAKvDsz2H0nqVeqdO9yvBDzwNUPQykNiasJl1uPSW1IuFHNNqfn5Mk8s1ribWu7l3GmiZ3ODxqzUGBoDWmtq9Bqm4vcCX7Vd19o/iU77miUVeXnNVjL0+k6fhkyLdzx05UxDzPvZqZhmWyTJb0U+uJO5BZ75AG0s7ulHtumPqNO98LLCNWDavPOQBqtCIzm2TE7KR1eINN/brfoU9VlkqYkrebVTd9AENYhc+uhu7TzVYrL9LaoDgPxADU7CEXHglaEBHZVmW0R4gFgm4IxvJTZxdtF1aqcE26bMV3/xHNxMyME4G6HccVPHYzInXxf+0ctNGgJB/AMaLxywYFOHqAAAAAElFTkSuQmCC",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16,
+      "path": "E:/mc/colored_units/eroded_leaves_mangrove_top.png"
+    },
+    {
+      "name": "eroded_leaves_mangrove_side.png",
+      "id": "1",
+      "uuid": "e448646c-7421-481c-ad2b-7159667c0b92",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB2ElEQVR4nG1TTU9TQRQ9M20Klb6SfiwgFazGLpTGkLBg0wYXsNWlP43fYNzgwmjCSmGlQRNSYIGhpKFpSL9CWyhtYsac+7g4rZzNvPvm3nPP/Riz/DLlVjZy+LxdMQBAO283MVc+oYlOfYDG7yssPp9HOpfAsDdGPBlD9GcZ9fYpLJ2OvtbFuVhedDzbvdBWUh8MjhyU0LtpI5cphATJzOyEUyb5T1E8iMk9T/13PvMR1T+7cM6FBIq51Iw4j579wPT/s1/NCVX0ay58gZ3OrlkfsrXE7HJwf2d77VtU9hrmoUv+Y+ZhfzxRJvugxLZ23DUaeN0dyUWr1pdpULqvQG1iqZgJFRTvMqsDsylIKA28y0iQmFO43F2AO1yF9VkJztonVGhp3BE2L4in0R92EPUb5gdPN1dVtFL7yAYBEvG02FGVxbpZF8ek24guMB52EBkVcDh4L9uooAomtL7c2qekfLOxndQ+vlU+GEr1x8lS/J5YX24/Ee7/61fvHMe7/ibvSCI1D16guZeVCVEls/O0/kyZea2w5VpXFxLgwzypIjv/GPnRW9kP3UhRwNqViA+Eb4EB2mA9b59+hzFGymCfhIDPk9CTeFQ6/q/WWGNFiKqxnQllfwGlnbeP18kFdQAAAABJRU5ErkJggg==",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16,
+      "path": "E:/mc/colored_units/eroded_leaves_mangrove_side.png"
+    }
+  ],
+  "animations": []
+}

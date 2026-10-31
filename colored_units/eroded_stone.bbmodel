@@ -1,0 +1,129 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "eroded_stone",
+  "resolution": {
+    "width": 16,
+    "height": 16
+  },
+  "elements": [
+    {
+      "uuid": "fabf8881-9eec-4410-9b94-69673fb2f5bc",
+      "name": "eroded_stone",
+      "type": "cube",
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "south": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "east": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "west": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "up": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 2
+        }
+      }
+    }
+  ],
+  "outliner": [
+    "fabf8881-9eec-4410-9b94-69673fb2f5bc"
+  ],
+  "textures": [
+    {
+      "name": "eroded_stone_top.png",
+      "id": "0",
+      "uuid": "ec441b5d-95bf-42ac-8803-856d2995894a",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABl0lEQVR4nG1TPUvDYBC+xJcu6RBFjdLdjCJuoo4qgoODgrv4N/oDFAriWHBzEDuIYEVHq5v6KxKM1RqhWUQTec7ey6V6UN7rfTx399zFaTQaBQ3k6OCY8uKbXGeENndWyPM8yrKM+v0+VatVjoFNi0nTlBUETvrjFPdiBpBAvKInSWLBBNxIMhyzSzMUn8cUjE78qQwJgqBUHSBGlFqt9hu0F5Dv+4TOYIcOkU6loB0hyzIORIA4xCb/ASJA2s8A3qCKVBxuERJFEd21H6koClpcn+fRIOja6HZ0FSTJWNdnt/T8nvCGNKkoajSJYBmkCXkAub96spsxbqXUPsRtnbS5vTAMmWVUxSvEdtMeJ0LQAWI1FwbIL+mrNQrbGOe0ecFJX/mn7WB7d6N8SDRAPtxv0vTYFC2szdmjAWnwiQBIb6sEYNwK5XnOLTqOw068ctr4QZeVAgivU6/XC42o13rT6jBo9+ONzxyXCtFEG40IIA2GcTqXD/bD0leIZL4DPdN/h7S6tVyyyW2UOBhO1JWGvwcpKDk/pdgCrcFI/RYAAAAASUVORK5CYII=",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16
+    },
+    {
+      "name": "eroded_stone_side.png",
+      "id": "1",
+      "uuid": "a21bd231-0017-4fcc-901f-5020cf8af89f",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABgUlEQVR4nG1Tu07DQBBcmxONXSQgdEEu6fkCQgcpQDQkPxAKWiq+BlEhGgJUCIGoQPxJQrAgyEhxg8BGszCnuygjWXuPfczcrqO1bL22zRXpHewKUBSFlGWp68vzW7VxtCBV/SOtppXtblt8GARv7W/IaDSSJEk0GJZgMFDXteR5LmmaOt8YwVhMp1O9BLDH19lry3f15ZJFUSTWWlcA1nCRZZmT0Gg01OL86PhQBqc3MnwfukSUqAzL/w0CIAN7WDrivNvfkWz5rwCSs6gySJIkqOiDeySEfq4hFwBr49NhdjpSFnygf/zx6iqTtaEDHxEvjDUsO+Mzm+2SYRVmvB88uV77jChhNplBkO88L5g+q0ut4FwZ5HmuvfUHCeBMcGgAzIw/qZrAWhtQY1d8ST5wx67BGmqZbR0czk6ug38ArPyH1jd4uHqWqqrUgSNMIJj/AQC2vEcSnYOXyVgP7i4epdPbDOjOg981fQNWevucBBeohHMTL0ocx043H5FSfwFlK/5tWJaM+QAAAABJRU5ErkJggg==",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16
+    },
+    {
+      "name": "eroded_stone_bottom.png",
+      "id": "2",
+      "uuid": "f40d0e2b-54db-4b5f-8b5d-b720b9ec44f2",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABmElEQVR4nH1TsUoDQRCdvSwBScCLMV6Sq0QkhZAPkGgXLcSAGAmIhWi0tPM78gFiY2MRxcZG7VTsbe0Dnha5IteI3skbnGUTQx4sO5nsm5k3M6c6nU5CFsIwpCiK2M5kMmzfXN7Td/xF2klTYTpP6zur5r0GAcBDIeAWwAYZiJMfUkoNvdVCHgwGfLLZrKkAv1+f3jgzyI5K0VpzZSi4FsP3fSPBdV2+4f8IX8jLFai+XTNESQCoBb+azLmzHNn+A+SLsyu2T07bdpuo1+sZmRr63vsB3XUfh5oDFHMeJUnCBJEEibgBVK3my0uJ6CvnS9Q82DBZRJYEkMpsKEiAgUoQpDRTpGptkTPZhFF5Zoz0h3RqyozL8zy+0cxJeLh+Jr3X3jKPZSdGyeIXX/f8loL+J49WB0HAGaWzUir8AKTYfiCOY7MXjpQrumQnKpUKB7b9UkXrqMFk04NoTINGvwmpCgdV1TeXeUt5jFjV3cPGP8K4wLaP9wBjhB6c/ePWxK6Pm4wDIhsqxdsoQCaMSUhChDQ0HDfOL7jg5G1nlK3YAAAAAElFTkSuQmCC",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16
+    }
+  ],
+  "animations": []
+}

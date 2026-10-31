@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "leaf": "ender_infection:block/infected_leaves_tree7_v1",
+    "particle": "ender_infection:block/infected_leaves_tree7_v1"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#leaf",
+          "cullface": "north"
+        },
+        "south": {
+          "texture": "#leaf",
+          "cullface": "south"
+        },
+        "east": {
+          "texture": "#leaf",
+          "cullface": "east"
+        },
+        "west": {
+          "texture": "#leaf",
+          "cullface": "west"
+        },
+        "up": {
+          "texture": "#leaf",
+          "cullface": "up"
+        },
+        "down": {
+          "texture": "#leaf",
+          "cullface": "down"
+        }
+      }
+    }
+  ]
+}

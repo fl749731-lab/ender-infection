@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "infected_log_warped",
+  "resolution": {
+    "width": 16,
+    "height": 16
+  },
+  "elements": [
+    {
+      "uuid": "c6b4911d-a4eb-45c8-b585-2a7ea470ff3b",
+      "name": "infected_log",
+      "type": "cube",
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "south": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "east": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "west": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "up": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 0
+        }
+      }
+    }
+  ],
+  "outliner": [
+    "c6b4911d-a4eb-45c8-b585-2a7ea470ff3b"
+  ],
+  "textures": [
+    {
+      "name": "infected_log_warped_top.png",
+      "id": "0",
+      "uuid": "afa23d0e-f53d-4101-84f4-83458ba0a4ed",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAq0lEQVR4nJ1TywrDMAxzPZN7Ybf9/0+O9UFMFDyj9KVDCZEj2TKd3vNnEwKdXrJui5gW+a1fylWYf7QwDS8c8ZWrwoaikQt4oDtrcc5iUXbKj6MzxFQeIAobu4QD7mLb3blxmmfrym1Gn3MQsgtYI9m8VRTCkY+ZaU6fieQOcf5bIwNGwJnxhkDyzmNn+XEM11jRUWjDLchD9A7QdvxRbgmcBXYowFZ59XfeAR/xYd+6kXb+AAAAAElFTkSuQmCC",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16,
+      "path": "E:/mc/colored_units/infected_log_warped_top.png"
+    },
+    {
+      "name": "infected_log_warped_side.png",
+      "id": "1",
+      "uuid": "070df2e4-1f96-458d-80ba-0c9690f1cdb8",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAfUlEQVR4nLVSQQrAIAzT7AWD3fb/ZzoHw45YulqF5aSpTUNqPvazpgbkLV21yDXEIS2ABSGKusC8BanBsmhN+hLB6JFVZ8dwuwOiWBHotgAnqN8cMPAEIStZcIP34KzTFUBrjDZrl5geqQW7RI0MNKczG2bADZqb+okswsNuuoNJZblOX7wAAAAASUVORK5CYII=",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16,
+      "path": "E:/mc/colored_units/infected_log_warped_side.png"
+    }
+  ],
+  "animations": []
+}

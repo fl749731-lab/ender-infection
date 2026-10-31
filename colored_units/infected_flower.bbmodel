@@ -1,0 +1,196 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "infected_flower",
+  "resolution": {
+    "width": 16,
+    "height": 16
+  },
+  "elements": [
+    {
+      "name": "botanical_cross_a",
+      "uuid": "1db26c01-1704-4b42-a7eb-cf78c36986fb",
+      "type": "cube",
+      "from": [
+        0,
+        0,
+        8
+      ],
+      "to": [
+        16,
+        16,
+        8
+      ],
+      "origin": [
+        8,
+        0,
+        8
+      ],
+      "rotation": [
+        0,
+        45,
+        0
+      ],
+      "box_uv": false,
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "botanical_cross_b",
+      "uuid": "29cba26e-3a69-432e-a70f-c79e364b173c",
+      "type": "cube",
+      "from": [
+        0,
+        0,
+        8
+      ],
+      "to": [
+        16,
+        16,
+        8
+      ],
+      "origin": [
+        8,
+        0,
+        8
+      ],
+      "rotation": [
+        0,
+        -45,
+        0
+      ],
+      "box_uv": false,
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": 0
+        }
+      }
+    }
+  ],
+  "outliner": [
+    "1db26c01-1704-4b42-a7eb-cf78c36986fb",
+    "29cba26e-3a69-432e-a70f-c79e364b173c"
+  ],
+  "textures": [
+    {
+      "name": "infected_flower.png",
+      "uuid": "58b98315-2646-49ec-87b2-1ed59e150a35",
+      "id": "0",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA0UlEQVR4nGNgIACsNXz/E1KDV/Pisj3/8RnMSKztR29sZkR3DUiMBVmxhqQRw43n53AaiCwP0ozhAmuoISCAbhC64TADWNBtgSkCadh6eRGKAdgAE7qf0A3qTpqN4SJkdYy4/Avyzt03V+B8ZREdDM1YDbAmIt6RDWEiRTEMKEnq/QdhFAOsNXz/w2xH14TOl+SXZ7j3/BLuaLzx/Bw84Tz/+BDDVTDNOKNRAxJlWMMCWTOGC2CuANEwl4BcgK4JGWC4AMm/YIPwaQYBgrFACAAA+Pp0YABz/AAAAAAASUVORK5CYII=",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16
+    }
+  ],
+  "animations": []
+}

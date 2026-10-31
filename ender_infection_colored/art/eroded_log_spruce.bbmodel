@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "eroded_log_spruce",
+  "resolution": {
+    "width": 16,
+    "height": 16
+  },
+  "elements": [
+    {
+      "uuid": "af48246f-5296-4865-a2a1-424ebadb2281",
+      "name": "eroded_log",
+      "type": "cube",
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "south": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "east": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "west": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "up": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 0
+        }
+      }
+    }
+  ],
+  "outliner": [
+    "af48246f-5296-4865-a2a1-424ebadb2281"
+  ],
+  "textures": [
+    {
+      "name": "eroded_log_spruce_top.png",
+      "id": "0",
+      "uuid": "eda3512a-91b3-4429-a769-d3b0f59d1222",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB5ElEQVR4nI1TTUsbURQ9mby8Scbg2NSkmFJilBIpVHctiohdVtx24U/zF5RuC4UutRS6cCG4qriobRZiokxH25h5mZmUc6dPE6nYA5f3ee859777co2ZhWGcGjx52MBcvY1Bb4AgcvDATdH+OYdueA6TXIFQjkZ1chqNyrGsZS9ODYqqjI2XEYCabPYjg6Kr8TS6xNudBDpfQjpM4OTyOL8MsLn8WO59OjiBWplP8LxVxtd2RzZd15PRdw3CCHg0VRMVFgz0rfMLrfqEqHSuTwAsNqtycPi9iopfRrOWKbPsHImd/QTvv3j4ETSzAJRMZhPnsP3hAqdBFx/3SrJP21ovSQBrBO90wi4cFoz5+u7fojhamFqNLnp9I3YSGqwuJdcKLFg/h3mQhflyfLOWx/KzCDO+hlfMjHOCSmpT02OBHDuhAioZLSSZafaceP2ij3qlnjnn8lD4T1ChV8zmC7NneOVrHB2HUKzBXbDSRxUwTQv6KtbAMlRGnCk9inqSjnUmsoJnQeirbjOMM+t701H2GflclsG28m1oNYSJb9ZjKRBsUSohA3CT679AgrEU2LqsAdkpzyohJicKuPg9wLtdIz3AZvuMK8RpOQvAXzWqxH5nouAV0AkSWZtEy9vze9u/8QfJquUiCQLpyAAAAABJRU5ErkJggg==",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16,
+      "path": "E:/mc/colored_units/eroded_log_spruce_top.png"
+    },
+    {
+      "name": "eroded_log_spruce_side.png",
+      "id": "1",
+      "uuid": "d6182e7d-4b93-4d50-af7f-fc343bec8b3f",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABfklEQVR4nHVS207CQBQ83RJsuQQqaUDw8uiL+gP+f2KMMT6R+AhyqSEFsUALtGBmy1m2VCZp2t3umZkze4zn+8Z+FUZ07VZouogJCGZLurupZdZVp0yXlQINJgt1NhaPJOQJIrIuLAqWIZ1b62DiMHhNCZIooc/+hM7BtEz5hvopBGwB1bKdKRj5x8PJbp++o0TtcZ3QFVSBdrDdqBx/FAWVbIuQGYsKfPAmNsDMhKYwMor6WrXQ+w5ym7CMAEEcrVNiFsoR0D+2uQCqSDwxn6jrNWkUtDKZSIJq2VY9oV++Isbg16XxbEy7fSoAspyDkm3lggT89YP6BkG82yiHva95toXSoV8AEzZPbmnoD6kgioqk7XTItbt5B6tDC4C36JD348lCqOIRRuou9F/khALsWOj3fNo/CvGwdYAHjINUGcA2Uoairt50XEWk58Q3Jd57NWl7MO3nFK/qbTK2H9Sqp9fH7fIYSwJW4rA2SShJWk6Ttqu3TDung4Rh+wMms8NMEHBAnQAAAABJRU5ErkJggg==",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16,
+      "path": "E:/mc/colored_units/eroded_log_spruce_side.png"
+    }
+  ],
+  "animations": []
+}

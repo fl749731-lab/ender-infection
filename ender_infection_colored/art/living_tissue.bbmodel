@@ -1,0 +1,129 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "living_tissue",
+  "resolution": {
+    "width": 16,
+    "height": 16
+  },
+  "elements": [
+    {
+      "uuid": "0ac59747-3289-4b76-befe-5aeb7245a304",
+      "name": "living_tissue",
+      "type": "cube",
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "south": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "east": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "west": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "up": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 2
+        }
+      }
+    }
+  ],
+  "outliner": [
+    "0ac59747-3289-4b76-befe-5aeb7245a304"
+  ],
+  "textures": [
+    {
+      "name": "living_tissue_top.png",
+      "id": "0",
+      "uuid": "5e27569b-daf2-4754-9bb1-657d60001656",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA5UlEQVR4nG2TwQrDMAxDE6cUdt5p1/3//w3K2g5leZlqJihxEtuxZLc+7s/zOPeyxFq0Ykdt5X1scy9bZ4L7hh9gE8jeV0H3v+S1fTONFVsgCXecUWH/YhhOw/cAOycLDoVtf12CeWk6Dxt9ui7HuV844wSg5ZScxqJgYW23fqG9bFWTK/BAEHBTwD/+XhkaeXuD/uKQO+BU8r7HRlY1aZC18CHqCcrgn7n6i1TnbZ53UduFvwOBfYXybPPxZ/Y9UW6d6zQp+E8y+2vjShJVmmdjmWIkMR08wKyA/oir6s7umCtwfACibBWIMRZisAAAAABJRU5ErkJggg==",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16
+    },
+    {
+      "name": "living_tissue_side.png",
+      "id": "1",
+      "uuid": "66b19cdf-398a-4e52-9423-331b4907e3c3",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA4ElEQVR4nHWSwQ6EMAhEsTYme97TXvf//28To3UD6TRPVA6CUAYYmD7v72FmVqbZlW1tDb3Mr9Dt2IfPpZYl3rrPYyU+0xw/GWjdf8PniQKkv3hAIFk8puqu9UYFA6B0pzqQlq2W1QFBHLSy+kBFN3k8gboOe0NrFAFljkhqdGYQVhKw7Dyeuqi5fbVGm7Nf7NYfiySu64lQFimck0zf3YcSyUflzJn1u6oXjlpCVYCJ8pPIcYDWRbevAO8/DqYDcjPuO21h7BYgd1s4jcGASGTi04GNf65Jia7zhRKUXf0BdFwDTNsGnYAAAAAASUVORK5CYII=",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16
+    },
+    {
+      "name": "living_tissue_bottom.png",
+      "id": "2",
+      "uuid": "65d224bc-55c9-40d5-bf36-143d609f0ea2",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA4klEQVR4nG1T0QqEMAybVYR7vqd7vf//P2G4KRmmxLDB3IxrmmZ1+X3/V5ERy1r61cZ+i73UdiSGFZNjYPEADOIKHMH7+slgfucc5+JhRzYnAsZg4p4k8ECWs9eUrRlIoDhLGfvajgzUgXdMluBnkqiLNAwowUFmoDKuzJ4KitTkRGqe31Qq3cQ8BiCYq5akalDawLuZpVk9uxqZCkMOg5XMM0IlTU9OMQd7le1XNvMrNJj7manE9Vs2Upn8AxpAZVTzKtPlvtil/93YbHMawqzeytp93lzZiZpZTdSyZj4BuwEkTPSPEFAW/wAAAABJRU5ErkJggg==",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16
+    }
+  ],
+  "animations": []
+}

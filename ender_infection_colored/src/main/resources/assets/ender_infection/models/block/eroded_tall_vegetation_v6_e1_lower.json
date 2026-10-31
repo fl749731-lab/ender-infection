@@ -1,0 +1,330 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "t0": "minecraft:block/pitcher_crop_bottom_stage_4",
+    "particle": "minecraft:block/pitcher_crop_bottom_stage_4",
+    "ot0": "ender_infection:block/eroded_tall_vegetation_v6_e1_lower_t0_e1"
+  },
+  "elements": [
+    {
+      "name": "pitcher_plant_bottom",
+      "from": [
+        8,
+        -5,
+        0
+      ],
+      "to": [
+        8,
+        11,
+        16
+      ],
+      "shade": false,
+      "rotation": {
+        "angle": 45,
+        "axis": "y",
+        "origin": [
+          8,
+          3,
+          8
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            0,
+            16
+          ],
+          "texture": "#t0"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#t0"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            0,
+            16
+          ],
+          "texture": "#t0"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#t0"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            16,
+            0
+          ],
+          "rotation": 90,
+          "texture": "#t0"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            16,
+            0
+          ],
+          "rotation": 270,
+          "texture": "#t0"
+        }
+      }
+    },
+    {
+      "name": "pitcher_plant_bottom",
+      "from": [
+        0,
+        -5,
+        8
+      ],
+      "to": [
+        16,
+        11,
+        8
+      ],
+      "shade": false,
+      "rotation": {
+        "angle": 45,
+        "axis": "y",
+        "origin": [
+          8,
+          3,
+          8
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#t0"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            0,
+            16
+          ],
+          "texture": "#t0"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#t0"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            0,
+            16
+          ],
+          "texture": "#t0"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            16,
+            0
+          ],
+          "texture": "#t0"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            16,
+            0
+          ],
+          "texture": "#t0"
+        }
+      }
+    },
+    {
+      "name": "pitcher_plant_bottom",
+      "from": [
+        8.012,
+        -4.988,
+        0.012
+      ],
+      "to": [
+        8.012,
+        11.012,
+        16.012
+      ],
+      "shade": false,
+      "rotation": {
+        "angle": 45,
+        "axis": "y",
+        "origin": [
+          8,
+          3,
+          8
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            0,
+            16
+          ],
+          "texture": "#ot0"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#ot0"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            0,
+            16
+          ],
+          "texture": "#ot0"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#ot0"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            16,
+            0
+          ],
+          "rotation": 90,
+          "texture": "#ot0"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            16,
+            0
+          ],
+          "rotation": 270,
+          "texture": "#ot0"
+        }
+      }
+    },
+    {
+      "name": "pitcher_plant_bottom",
+      "from": [
+        0.012,
+        -4.988,
+        8.012
+      ],
+      "to": [
+        16.012,
+        11.012,
+        8.012
+      ],
+      "shade": false,
+      "rotation": {
+        "angle": 45,
+        "axis": "y",
+        "origin": [
+          8,
+          3,
+          8
+        ]
+      },
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#ot0"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            0,
+            16
+          ],
+          "texture": "#ot0"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "texture": "#ot0"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            0,
+            16
+          ],
+          "texture": "#ot0"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            16,
+            0
+          ],
+          "texture": "#ot0"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            16,
+            0
+          ],
+          "texture": "#ot0"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "eroded_leaves_cherry",
+  "resolution": {
+    "width": 16,
+    "height": 16
+  },
+  "elements": [
+    {
+      "uuid": "85286811-bfd3-4618-a6a4-b3bc06dbd2ec",
+      "name": "eroded_leaves",
+      "type": "cube",
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "south": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "east": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "west": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "up": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        }
+      }
+    }
+  ],
+  "outliner": [
+    "85286811-bfd3-4618-a6a4-b3bc06dbd2ec"
+  ],
+  "textures": [
+    {
+      "name": "eroded_leaves_cherry_top.png",
+      "id": "0",
+      "uuid": "1e6c47c3-9e0e-4f45-9c27-39232a280a6e",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACfElEQVR4nFVTXUiTURh+vrHNzZ+Nb8tYEmRhBua8cEhZphH2MwXFysKL/igSSqLLLuqmgrqpSOhCAjOKJPKmQqhIQwgqhxL9CIoXXdSMdBtuc/OPTjyvnY964Tvvd857nvd93p9j4K9Mdw6prpwOXGz/bPC/8FydwfNE74hy+bxyx723RM5oX5pOw1GYDzmIXupX3iPbtC9kXnyCvTAfZltI7NmXk0rb6GQ5MqUS7ybAIDZGoKcdDa2oCR9Ezuw86H15Oi3Rr3YF1Y1vLf+BU5NRmNWlcmbMTSRUw4F2pLJxLC5l5fBjXx8WvC7celOLRHwBpi8HZz09yI79FNoE0wnFpsEFbh+cDrcFDu8/LfXQYDJylwWQDfzG9dE9uJM8vsJgZ8VhyS+ZiWG49wGykSjaeu7i8cNryCs1rUJSO0MbBMRUPbl+rA8PrxQmtHG3Ym7l67aLZlFZaX66eKwFbbXlraoueEhVltSLzeASLK6RzftXz+UyI//bqtx9FVbUge7baOm4jO8zE5K20bT1jCL9R81HJUfdOt1vtlNTZ6fyXSYG73VKnSwGy5Ep9evZKLrXXpDCca+d2KvWWHvWx11VZGk6sdFYf/I8VjdVSsuY61J8TsDUZMGhYQANouaeqRq8yIKMTr6WSAQln46gYMtmpD58hac5hMTbcRRdaZSZ0cx0hwyOKS9QyIKyOBbDTP8gVjXugrPMb6WSuf9FHOQeK7dG3MYfs2aT9Q7IgJEJptbpaLBuKcHz8VnYufC1sV2nnlQjNhSWoRo4UQtPYIU+bULb68fN+TapFYohOBsXXuJT9ptOGIYhvaY4fHnSWgpfnqbO8U6P/5DzP4ZMWFQHyqIoAAAAAElFTkSuQmCC",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16,
+      "path": "E:/mc/colored_units/eroded_leaves_cherry_top.png"
+    },
+    {
+      "name": "eroded_leaves_cherry_side.png",
+      "id": "1",
+      "uuid": "e448646c-7421-481c-ad2b-7159667c0b92",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACdklEQVR4nH1TW0hUURRdd5gcR3OGeRimERGThY8+RmzogQMiWZg9PrLPXh8VhgQGFZQR9tFPRNJUGmTZRxEMPSjK6IEhvaYRogcoQ/RRYzTOXEYdx8fQjbX1XqY+2nDPOfecvfZeZ+19gDmLdfRppzsrNa5rKrbLTFNvhrV0b0S+bN9G3wHN66mb3YueeKilhlTjK1+8RiNQB+gB9CCbVu3X/JVNsjbTMRMbhyU5iSl7rswuWwm4x7PA6C6c/bYNrUvuwFrvUTKhYW0sEkWBpxjm6ttQmJGgdCgKa3WxMTPYuRc1UBNTcDgtaLZdQ/rLT8wrnA/H6lIwCM3Egc4ExbtfGmDa8X0fFR1MRtayIqSLfuPMwHqQGU35H4P8UoeiC8k5p2qpLgvagj7E1WkouogLNnsNDX7dHxCqtMIWv/iwQke9T/7yKW5vUBS9LHkbVhrRmZl7M7FxCcSzbJZbm08hmoigwOqEiY4EJW+8wnT4q0GbmQk2zzHRdard3YK7gZMCHksnYKYjS0NKujD819mYqxfKufRDKIrn3R0yM4CImMmq65Gnfjy+5Mb7Kz2obz0mDsxS4lqGrvpG/KuToUEmNKwxEzuQ4NF7YRT4yrHjYgDJ1AhseS48eHdZKpatkzBI90Y0tX9QNpmhbu8hWfesWAt3Qy1yylzGVZgg1N6FvJ0VAiZWGsmxbrk4UV1SHkl+x8Y3tzD29jNmEik5m7j+SXPbF6EpcEFKSvBkIgkTBxoVH52Iy335Fj4Eg7BtqQLZqa+HkErG8ehwGxRFkfam5TrtMHGgU6floNyV9uzq+dmgznxpX72spO7b0y9vY3zwh+z/ATDvY5c4lOYUAAAAAElFTkSuQmCC",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16,
+      "path": "E:/mc/colored_units/eroded_leaves_cherry_side.png"
+    }
+  ],
+  "animations": []
+}

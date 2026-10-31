@@ -1,0 +1,129 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "mycelial_mat",
+  "resolution": {
+    "width": 16,
+    "height": 16
+  },
+  "elements": [
+    {
+      "uuid": "581bfc05-a6f6-48f1-9439-abf9e95a4e90",
+      "name": "mycelial_mat",
+      "type": "cube",
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "south": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "east": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "west": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "up": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 2
+        }
+      }
+    }
+  ],
+  "outliner": [
+    "581bfc05-a6f6-48f1-9439-abf9e95a4e90"
+  ],
+  "textures": [
+    {
+      "name": "mycelial_mat_top.png",
+      "id": "0",
+      "uuid": "ddcba52b-ebe9-4264-a41c-9f00a53717cd",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA30lEQVR4nH1T0QoCMQxzc/gFej74IIgeiP7/x8m8k8ylZmWzcIx1adKlu3CeHmteXhtEDNvyIZb1bTnd+4gEpbhrgFiRB/mo2Ai8ohaQWDu5Tnfbh9P+tnqAEikhr4iuiI96ACAVe+osRt4E5uPTAIyecSi6HGYjYReBUwBAV0+q5MQV4lxHyCKuo/HxnPmkSr1J8JyqyKtXyTvsVX9K32IlhydBx6gAnYYSKaY8wFSZvVH/chQoJLma6MEjEr1OyWkB3oS67dWVsHnK3t3eO/Bm04PYzrT1o/cvaHfIfwAuTtH0jywTDAAAAABJRU5ErkJggg==",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16
+    },
+    {
+      "name": "mycelial_mat_side.png",
+      "id": "1",
+      "uuid": "d3580880-fdd6-4ff8-a156-8bf9a0b16660",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA4ElEQVR4nIWSUQoCMQxE27h4A/VLBD8WQe9/GD+8gDcQ3ZURR16zBQtLupmmmZmmHrbneZpfRcsx6urzOee8Me5DoJMu1JeLhliXvJ7Toww8yD27s6v/HSMD6kRJZnTcjA0TxyB1FeggaSsnqrf7dcFS+0oTneyxyLguXUiYvocFZgk0lPhA09zZkdIcjf8uLMkDPw/nIDfhit6QkCbp+0JhjsFJo2Hj7tJ0JyvGut+cZjLozUD2gOejV8xCS3GUB83oUxu7aC8Zzvll3MQS/0rImHP2pJkDOs9Z4HM6+jnfwH3uH3KPHkoAAAAASUVORK5CYII=",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16
+    },
+    {
+      "name": "mycelial_mat_bottom.png",
+      "id": "2",
+      "uuid": "08da3925-810e-4266-8b1b-290958e91f89",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA5klEQVR4nIVTQQ7CMAxLS7UfME6IC0Ig+P9LOO3AHfEDBB1Kh4uxVuhlWefETpyF9XI/mpnl8Wkpdh7aI9/LM4aF8fF3x3GcGKCJKOr3nIxnwdr7gtkAQDLfOY6xCclgUAArUhW71cnCpj+OzuJsLI0PWgEB8KW1zP00mLQYF40OxvRbSXNqapwFzA5Uq0g+E2z7w+SCOqCutNq63IapAKzSg2FxEqsoRJmkahsowoqULHK/KhUD1uLuf8Wn2E12yIB+xcP1/Fk8fHRpPtW5gfGW6h4E/xvVKk1WFV9W6+T/rTMKYBYvY9TmQPjAhi8AAAAASUVORK5CYII=",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16
+    }
+  ],
+  "animations": []
+}

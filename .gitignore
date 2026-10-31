@@ -1,0 +1,34 @@
+# Generated Gradle / Minecraft development files
+**/.gradle/
+**/build/
+**/run/
+**/.bootstrap/
+**/.idea/
+**/.vscode/
+*.iml
+*.class
+*.log
+*.lck
+*.lock
+*.jar
+!**/gradle/wrapper/gradle-wrapper.jar
+
+# Credentials and machine-local data
+.env
+.env.*
+*.pem
+*.key
+*.pfx
+*.p12
+*.jks
+*.keystore
+accounts.json
+credentials.json
+local.properties
+/migration-report.json
+/文件位置.md
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini

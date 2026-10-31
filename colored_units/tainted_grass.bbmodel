@@ -1,0 +1,129 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "tainted_grass",
+  "resolution": {
+    "width": 16,
+    "height": 16
+  },
+  "elements": [
+    {
+      "uuid": "12b1fd58-e9ab-4c37-a276-6aa4f00a324c",
+      "name": "tainted_grass",
+      "type": "cube",
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "south": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "east": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "west": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "up": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 2
+        }
+      }
+    }
+  ],
+  "outliner": [
+    "12b1fd58-e9ab-4c37-a276-6aa4f00a324c"
+  ],
+  "textures": [
+    {
+      "name": "tainted_grass_top.png",
+      "id": "0",
+      "uuid": "62a1415f-a140-49c7-be32-5364f86f3837",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA4klEQVR4nHWT3QqDMAyFtRZh17vZ7d7/AQeidZzMr5wGFyhJbHKan+P8er7PMi9TO484klrWaW/b4MsmTloiXWQoGAFISToeDCA6vreETEIGzT4xBUeJBDkQ2tvwampHsqRcpreV2ylyQOclf1l6XR5xABpartfESdiOz1CBz4TBEh8g+3WByBYIG2CdVOkV9C3kybr2RD9q6df+vPQPuRpv4+6hmEGxIZI8EOWGI9iR2y6ScOnJuQrnCXc1E8bljsa+8qjCJ/xP/GXa6XzJ5foPlLngdl8vgZm6/ovDwrxe+V8/UACoUYp+vAAAAABJRU5ErkJggg==",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16
+    },
+    {
+      "name": "tainted_grass_side.png",
+      "id": "1",
+      "uuid": "78571db7-48b1-4a9c-84c0-6b6627119dfb",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA40lEQVR4nG2TzQrDMAyDHScUdt9p573/6w1Kf4a9fUE1NYylri3Jctpez/dpZnacuxHDF9uO1ch76/m89Ef+x3vqPQ5aHFGLIqI5nsnTNwJdC4l4Ge8UGCWonAq89fnThln0zwOqIzqMOmtlIypB9pggMzs59aeOhZKh0usGdIwAw0jq1/3zU0CCZjU1zlko8lGW5JuwgX63Ql3vxRcTw1hpNU/BUQrQgE3NuWvWs14orwXIrOZWYLxyvUggY1plvszeenrjd8j1Y1Kf9MLNESJgVUOrYboNYujq6rx1OwCSC9IvkfH3K9NgDzsAAAAASUVORK5CYII=",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16
+    },
+    {
+      "name": "tainted_grass_bottom.png",
+      "id": "2",
+      "uuid": "b74ef5ab-ac9e-4318-bd17-764cd74a0a24",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA4UlEQVR4nG2T2wqEMAxEay2C7/u0z/v/vyeIl2WCp4yhgWLJZTKT1On7+d3XfZY6zUWmOyYfsePauw9/q0upCpBAMmc/txeYF+soXpd57Wh0IUExNweN7gI8ns44XQJ3vsp10ACoRouvF3nM2YmJABuOEQjz8RlhYiJ/c+10xNBJoYoAArzFJJ8iT4aBb8Ab9YbFBua6nUlm53LbqLNYQR9wL3r5S9KbtaN1xDRyi03bwfqQ0pBdZuRUe5pZAuDc83yCqe/UzTeQQYgHg6wrr1EA7H8E3vJq/H9wef6cyZHvDzPIAES+aEX5AAAAAElFTkSuQmCC",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16
+    }
+  ],
+  "animations": []
+}

@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "eroded_log_acacia",
+  "resolution": {
+    "width": 16,
+    "height": 16
+  },
+  "elements": [
+    {
+      "uuid": "af48246f-5296-4865-a2a1-424ebadb2281",
+      "name": "eroded_log",
+      "type": "cube",
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "south": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "east": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "west": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "up": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 0
+        }
+      }
+    }
+  ],
+  "outliner": [
+    "af48246f-5296-4865-a2a1-424ebadb2281"
+  ],
+  "textures": [
+    {
+      "name": "eroded_log_acacia_top.png",
+      "id": "0",
+      "uuid": "eda3512a-91b3-4429-a769-d3b0f59d1222",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB/klEQVR4nIVTy27TQBQ9dsZ2SGvqpElKI1VREEgFdkAlWCI+pKxZsKoQS0AsuuAXWPABiB/gsaZ7dgUkpIqGvOUkxG90rjNpjVRxpOuZ8cy999w7Z4z29m4WpyF2Ntto75ZBBGEk4+n3BL3JAGHyR9bKtNG4XEfnZkXWNc+DonNZrePl/TkAGuCHEVzbgl+NcPAxgV26hDRLYBolDPwRXlUXcu7NCFB7e1fxeMvH164vPyvKyIPYqTDZ8prCQoOBfgymuLFTR9CNYDq2tdq802nIxtvjK2i5DjqbOTOdnSNxeAQ8+6zw61sMcziaCGVmXswX2H/XR3fUw/Mv6/Kf9vqhIwG0ETzze9KDadtK6tVM2Chm2r92Cj9Ixfp+gIO74YqBBvtn6qaxXo6HDww8uZ2h7jpwHVOMc4JMml69EMi0LFsmZEAmhUYuGeh94sW9GVq1Vu5slKC2mw0gGuIikJnrOKuReHS9K6w+WLegLvQEliU4BQYsU2M4HkPxgzWtvvwwwcbN40zKOX/VIjA7L4s+ShzXzjIQumn/K4tQURTmUYPgLMNSyv+iXCmLVjToW+gBJUomzNBHHrCAwbRQijAIw1gmlC57INkdZ8WEaHguemMfTz/FogGKDQgRp1OoWnUD7zMPP09OcF4TmOXPVTADhrMxwuRY7p7PW7+Nv8s6/E73hDl+AAAAAElFTkSuQmCC",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16,
+      "path": "E:/mc/colored_units/eroded_log_acacia_top.png"
+    },
+    {
+      "name": "eroded_log_acacia_side.png",
+      "id": "1",
+      "uuid": "d6182e7d-4b93-4d50-af7f-fc343bec8b3f",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABl0lEQVR4nHVTTUsCURS9Pocwc7SJxFSoUCHBcNMiatvGfkLbdv3BwjYta6W0MIQ+KEHGktIpQRE/4rzxvt6b8MCM775595xz732GLs7P5j2vT/ndHfrqeQS47y6VikUjTqfStOEk6Pn1TZ2t3bok5Aki+fH7Z0DLYh1MXNi3fYLRaEi1+wdahkhkVf5CPQgBJSBux4yEp5eWisPCIhbSHUoC0hQY+sFCblut16I2OYl1Qs9YVGDBm9gAMxNOZxNDUY9VCa+t9r9NWEYDQYyGcXmIg7AM24sDSAABVEFQv+tQ12vQbD6lSqWseiIdxO2Yqgn18ogYl1d1cnuuTAZAZpRAC2vBRgI31Ue1BsFkNlYOG82mWYKzqBfADev0fSVLrKjEjJOlk9M9w6XAi0sArqsNmYxEqOIRobD8ls79zZ8dC33OwfqRiIcdAHzBuJHyDfuw/eF1lW1WTzlJan+2JZHeJx5tKJ8tz+UYJwOKWP4mFJGQjG/SwXFGkR8e+W71f65gJagC4+lQJm85KcqVokY5wYuEu/ILgwjK0p4O+X8AAAAASUVORK5CYII=",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16,
+      "path": "E:/mc/colored_units/eroded_log_acacia_side.png"
+    }
+  ],
+  "animations": []
+}

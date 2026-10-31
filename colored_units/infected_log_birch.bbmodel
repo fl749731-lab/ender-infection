@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "infected_log_birch",
+  "resolution": {
+    "width": 16,
+    "height": 16
+  },
+  "elements": [
+    {
+      "uuid": "c6b4911d-a4eb-45c8-b585-2a7ea470ff3b",
+      "name": "infected_log",
+      "type": "cube",
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "origin": [
+        8,
+        8,
+        8
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "south": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "east": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "west": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 1
+        },
+        "up": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "texture": 0
+        }
+      }
+    }
+  ],
+  "outliner": [
+    "c6b4911d-a4eb-45c8-b585-2a7ea470ff3b"
+  ],
+  "textures": [
+    {
+      "name": "infected_log_birch_top.png",
+      "id": "0",
+      "uuid": "afa23d0e-f53d-4101-84f4-83458ba0a4ed",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAA4UlEQVR4nJ1T7QrCMAzMYp0iQ0Hwx/77Br7/EwmCMnTOfchVU2KsZfOgpOuSy6Vpsn15GPqho7qtaOkKArAH2r7x1nHu/1XNidaLHcEf4GxGThzhJAH4oRcCmu7mSWAFiHHXx/krGJAsYu0eflDqwKqlxoBAIdZEXnndVkGqzWJJrEIkZLBo9imAeo7V+0tFTAnrusNhQpEuwZe+mm/+kh8IaSJsW3lMvR8ZVXm+g/X72UbljegO2zbqi4wtDf+QUvUlM9s22gypvXwX+fY1Czi43I9hFmSs7fvHfcHK7GC0n65Di909vWByAAAAAElFTkSuQmCC",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16,
+      "path": "E:/mc/colored_units/infected_log_birch_top.png"
+    },
+    {
+      "name": "infected_log_birch_side.png",
+      "id": "1",
+      "uuid": "070df2e4-1f96-458d-80ba-0c9690f1cdb8",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABAklEQVR4nG1SywrCQAxMaxSRguJBPHnwC/z/XxIEpfiotcoEZ4ljA+3u5jGZnWy13x7eZmbD+2W0upqUPf306dnVoSBYkZMbEAgx93pWnP3Q/YGMMcC+MLBUjOC9bwsQwBfT5U8BV+QgXrOQSXNvIoAPsevz/EMfe/q7182qzXoXIqKT0h67CgzFhaWZRVdVmYUqJqyZrYuwzs5xwJ1kGiquauEoIhoSc1d2zJPSSbiOaOz+uTDnBUD/pReHkU65iMa8uLaJWEpTJ6FsXSlpN52APji/PI4xFtJSEVWX/AbiOvi13ak826w8weBDDow5YBB5q/m2FAEdbFR5fPmlEgj7D5Z/6f+/UgenAAAAAElFTkSuQmCC",
+      "mode": "bitmap",
+      "width": 16,
+      "height": 16,
+      "uv_width": 16,
+      "uv_height": 16,
+      "path": "E:/mc/colored_units/infected_log_birch_side.png"
+    }
+  ],
+  "animations": []
+}

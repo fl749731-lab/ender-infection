@@ -3,10 +3,22 @@ plugins {
     id 'idea'
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
 }
-version = '0.2.1'
+version = '0.2.3'
 group = 'dev.hui.enderinfection'
 base { archivesName = 'ender-infection' }
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+jar {
+    manifest {
+        attributes([
+                "Specification-Title"     : "ender_infection",
+                "Specification-Vendor"    : "hui",
+                "Specification-Version"   : "1",
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : project.jar.archiveVersion,
+                "Implementation-Vendor"   : "hui"
+        ])
+    }
+}
 minecraft {
     mappings channel: 'official', version: '1.20.1'
     copyIdeResources = true

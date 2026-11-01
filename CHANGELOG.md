@@ -1,5 +1,15 @@
 # Changelog
 
+<!-- qegg:release 0.5.1 -->
+## v0.5.1 - 2026-11-01
+
+### Bug Fixes
+
+- [`32a6a30`](https://github.com/fl749731-lab/ender-infection/commit/32a6a30a1bfb656c5a264afa32412fb85a9de5c9): 雪层盖住的感染地表现在照常计入土地收入；之前雪会让整片殖民地收不到生物质，扩张因此停摆。
+
+**Full Changelog**: https://github.com/fl749731-lab/ender-infection/compare/v0.5.0...v0.5.1
+<!-- qegg:release:end -->
+
 <!-- qegg:release 0.5.0 -->
 ## v0.5.0 - 2026-11-01
 

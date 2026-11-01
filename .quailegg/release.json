@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "version": "0.5.0",
-  "created_at": "2026-11-01T19:36:24.353531877Z",
+  "version": "0.5.1",
+  "created_at": "2026-11-01T20:15:38.847429724Z",
   "mode": "pr",
-  "fingerprint": "sha256:9c38ce74fb41350bf0a2599226243fd4bd28d988ebd5f0b1235ae0f0d1f7ec64",
+  "fingerprint": "sha256:88149ef57725ac9a9a5571e7627cfc9d099f55e78f6f09c72f3cb0faf4f229f4",
   "repo": {
     "host": "github.com",
     "owner": "fl749731-lab",
@@ -15,25 +15,25 @@
       "cd ender_infection_colored \u0026\u0026 java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain build"
     ],
     "skipped": false,
-    "at": "2026-11-01T19:36:24.353532468Z"
+    "at": "2026-11-01T20:15:38.847430275Z"
   },
   "packages": [
     {
       "name": "java@ender_infection_colored",
       "path": "ender_infection_colored",
       "resolver": "java",
-      "current": "0.4.1",
-      "next": "0.5.0",
-      "bump": "minor",
-      "tag": "v0.5.0",
+      "current": "0.5.0",
+      "next": "0.5.1",
+      "bump": "patch",
+      "tag": "v0.5.1",
       "publish": false
     }
   ],
   "releases": [
     {
-      "version": "0.5.0",
-      "tag": "v0.5.0",
-      "previous_tag": "v0.4.1",
+      "version": "0.5.1",
+      "tag": "v0.5.1",
+      "previous_tag": "v0.5.0",
       "packages": [
         "java@ender_infection_colored"
       ]
@@ -41,16 +41,16 @@
   ],
   "changes": [
     {
-      "file": ".changes/ender-erosion.md",
-      "type": "feat",
-      "scope": "effect",
-      "bump": "minor",
+      "file": ".changes/snow-income.md",
+      "type": "fix",
+      "scope": "erosion",
+      "bump": "patch",
       "packages": [
         "java@ender_infection_colored"
       ],
-      "body": "进入被侵蚀区域的所有非本阵营单位都会获得末影侵蚀：凋零、反胃，以及本模组自己的末影菌丝感染（持续伤害、减速、饥饿）。",
-      "commit": "0c5722fa1c65939d2a6cd45abb46abfc9bf47d64",
-      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/0c5722fa1c65939d2a6cd45abb46abfc9bf47d64",
+      "body": "雪层盖住的感染地表现在照常计入土地收入；之前雪会让整片殖民地收不到生物质，扩张因此停摆。",
+      "commit": "32a6a30a1bfb656c5a264afa32412fb85a9de5c9",
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/32a6a30a1bfb656c5a264afa32412fb85a9de5c9",
       "author": "fl749731-lab"
     }
   ],

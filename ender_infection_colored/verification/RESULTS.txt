@@ -1,18 +1,19 @@
-Ender Infection 0.5.0 / Minecraft 1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17
-RELEASE: v0.5.0  https://github.com/fl749731-lab/ender-infection/releases/tag/v0.5.0
-  asset: ender-infection-0.5.0.jar 3007781 bytes  sha256 5af11d6241dd3a2ee5fc04a497dcf92b11f8a040ba86dee2c3ac4bdb10bb090a
-GAME TESTS: All 62 required tests passed locally (2026-11-01 20:31, JDK 17.0.20.1).
+Ender Infection 0.5.1 / Minecraft 1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17
+RELEASE: v0.5.1  https://github.com/fl749731-lab/ender-infection/releases/tag/v0.5.1
+  asset: ender-infection-0.5.1.jar 3008068 bytes  sha256 ca0522953f0c800ec575162c6ff1fcb0734973e82eb6dcd2f6608c04ef7138d4
+GAME TESTS: All 63 required tests passed locally (2026-11-01 21:11, JDK 17.0.20.1).
+
+0.5.1 FIX
+- TerritoryYield and frontierScore now accept a snow layer above infected ground. A snow covered colony used to
+  count zero columns on every 10 second harvest, so the wallet stayed empty and expansion stalled.
 
 0.5.0
-- ender_infection:ender_erosion 末影侵蚀: any non faction living entity standing on infected ground catches it,
-  200 tick refresh, and it ticks every 40 ticks to apply wither and nausea plus our own mycelium infection
-- ender_infection:mycelium_infection 末影菌丝: 1 magic damage, slowness and hunger every 40 ticks
-- icons under textures/mob_effect and zh/en names; EnderErosionEvents checks the feet block and its four neighbours
-  every 20 ticks and skips faction units
+- ender_infection:ender_erosion (wither + nausea + own mycelium infection) for every non faction living entity
+  standing on infected ground, and ender_infection:mycelium_infection (damage, slowness, hunger)
 
 0.4.x
-- erosion vertical scan +3/-10, snow/ice infectable, snow layers cleared
-- stage three total war, four armed economy policy, siege beast rework, free maturation
+- erosion vertical scan +3/-10, snow and ice infectable, snow layers cleared, whole column sinking,
+  free maturation, stage three total war, four armed economy policy, siege beast rework
 
 LIMITS: no player saves opened. Client visual appearance, large-world performance, multiplayer and long-term balance
   still require gameplay verification.

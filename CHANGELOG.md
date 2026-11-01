@@ -1,5 +1,15 @@
 # Changelog
 
+<!-- qegg:release 0.5.0 -->
+## v0.5.0 - 2026-11-01
+
+### Features
+
+- [`0c5722f`](https://github.com/fl749731-lab/ender-infection/commit/0c5722fa1c65939d2a6cd45abb46abfc9bf47d64): 进入被侵蚀区域的所有非本阵营单位都会获得末影侵蚀：凋零、反胃，以及本模组自己的末影菌丝感染（持续伤害、减速、饥饿）。
+
+**Full Changelog**: https://github.com/fl749731-lab/ender-infection/compare/v0.4.1...v0.5.0
+<!-- qegg:release:end -->
+
 <!-- qegg:release 0.4.1 -->
 ## v0.4.1 - 2026-11-01
 

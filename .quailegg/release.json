@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "version": "0.4.1",
-  "created_at": "2026-11-01T11:32:59.733065514Z",
+  "version": "0.5.0",
+  "created_at": "2026-11-01T19:36:24.353531877Z",
   "mode": "pr",
-  "fingerprint": "sha256:668aa44cbc030f26263cea483387ec0711bf8e72d49a7966fc8cc46ffc5b6b1b",
+  "fingerprint": "sha256:9c38ce74fb41350bf0a2599226243fd4bd28d988ebd5f0b1235ae0f0d1f7ec64",
   "repo": {
     "host": "github.com",
     "owner": "fl749731-lab",
@@ -15,25 +15,25 @@
       "cd ender_infection_colored \u0026\u0026 java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain build"
     ],
     "skipped": false,
-    "at": "2026-11-01T11:32:59.733065914Z"
+    "at": "2026-11-01T19:36:24.353532468Z"
   },
   "packages": [
     {
       "name": "java@ender_infection_colored",
       "path": "ender_infection_colored",
       "resolver": "java",
-      "current": "0.4.0",
-      "next": "0.4.1",
-      "bump": "patch",
-      "tag": "v0.4.1",
+      "current": "0.4.1",
+      "next": "0.5.0",
+      "bump": "minor",
+      "tag": "v0.5.0",
       "publish": false
     }
   ],
   "releases": [
     {
-      "version": "0.4.1",
-      "tag": "v0.4.1",
-      "previous_tag": "v0.4.0",
+      "version": "0.5.0",
+      "tag": "v0.5.0",
+      "previous_tag": "v0.4.1",
       "packages": [
         "java@ender_infection_colored"
       ]
@@ -41,16 +41,16 @@
   ],
   "changes": [
     {
-      "file": ".changes/snow-slope.md",
-      "type": "fix",
-      "scope": "erosion",
-      "bump": "patch",
+      "file": ".changes/ender-erosion.md",
+      "type": "feat",
+      "scope": "effect",
+      "bump": "minor",
       "packages": [
         "java@ender_infection_colored"
       ],
-      "body": "侵蚀的垂直扫描从 +3/-4 扩到 +3/-10：雪坡、坑底和落差较大的雪面现在也会被侵蚀，地表雪层不再阻挡转换。",
-      "commit": "e42e71eb23abb6d0f9968aad17b69e26371cff3f",
-      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/e42e71eb23abb6d0f9968aad17b69e26371cff3f",
+      "body": "进入被侵蚀区域的所有非本阵营单位都会获得末影侵蚀：凋零、反胃，以及本模组自己的末影菌丝感染（持续伤害、减速、饥饿）。",
+      "commit": "0c5722fa1c65939d2a6cd45abb46abfc9bf47d64",
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/0c5722fa1c65939d2a6cd45abb46abfc9bf47d64",
       "author": "fl749731-lab"
     }
   ],

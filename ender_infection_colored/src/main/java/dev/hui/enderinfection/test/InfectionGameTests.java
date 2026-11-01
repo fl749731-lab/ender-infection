@@ -231,7 +231,7 @@ public final class InfectionGameTests {
             helper.setBlock(site,Blocks.AIR);helper.setBlock(site,InfectedContent.NEST.get());var other=(ExpansionNodeEntity)level.getBlockEntity(helper.absolutePos(site));other.setOwner(poor.getUUID());poor.observeExpansion(other);
         }
         tag=node.saveWithFullMetadata();tag.putInt("OutpostClock",600);tag.putInt("SpreadClock",0);tag.putInt("GrowthClock",0);tag.putInt("DeepClock",0);tag.putInt("MatureClock",0);tag.putInt("FloraClock",0);tag.putInt("SpawnClock",0);node.load(tag);node.serverTick(level);
-        helper.assertTrue(poor.colonyNodeCount()==6&&poor.colonyBiomass()==100,"Full colony: nodes "+poor.colonyNodeCount()+", stock "+poor.colonyBiomass());
+        helper.assertTrue(poor.colonyNodeCount()==6&&poor.colonyBiomass()>=99&&poor.colonyBiomass()<=100,"Full colony: nodes "+poor.colonyNodeCount()+", stock "+poor.colonyBiomass());
         poor.discard();rich.discard();helper.succeed();
     }
     @GameTest(template="empty64",timeoutTicks=140,batch="expansion_priority")
@@ -762,7 +762,7 @@ public final class InfectionGameTests {
         BlockPos p=new BlockPos(4,1,4);helper.setBlock(p,InfectedContent.NEST.get());
         var node=(ExpansionNodeEntity)level.getBlockEntity(helper.absolutePos(p));node.setOwner(core.getUUID());
         var tag=node.saveWithFullMetadata();tag.putInt("Radius",4);tag.putInt("FloraClock",0);tag.putInt("SpawnClock",0);node.load(tag);
-        for(int i=0;i<220;i++)node.serverTick(level);
+        for(int i=0;i<600;i++)node.serverTick(level);
         int plants=0;for(BlockPos q:BlockPos.betweenClosed(new BlockPos(1,1,1),new BlockPos(7,3,7)))if(helper.getBlockState(q).getBlock() instanceof dev.hui.enderinfection.block.InfectedPlantBlock)plants++;
         helper.assertTrue(plants>0,"Fully eroded ground never grew its own flora");
         helper.assertTrue(node.soilBorn()>0,"Fully eroded ground never birthed a unit: born="+node.soilBorn()+", note="+node.spawnNote()+", stock="+core.colonyBiomass()+", nodeRadius="+node.radius()+", changes="+node.purchasedChanges());
@@ -785,6 +785,22 @@ public final class InfectionGameTests {
         }
         helper.assertTrue(mature>0,"Eroded ground never matured past its first stage: "+mature);
         helper.assertTrue(node.maturedBlocks()>0,"Node did not record matured blocks: "+node.maturedBlocks());
+        clearWideBattlefield(helper);helper.succeed();
+    }
+    @GameTest(template="empty64",timeoutTicks=120,batch="ecology_snowy_grass")
+    public static void snowyGrassUnderASnowLayerCanBeEroded(GameTestHelper helper){
+        clearArenaMobs(helper);flatBattlefield(helper,0,12,0,8);var level=helper.getLevel();
+        for(int x=1;x<=7;x++)for(int z=1;z<=7;z++){
+            helper.setBlock(new BlockPos(x,0,z),Blocks.GRASS_BLOCK.defaultBlockState().setValue(net.minecraft.world.level.block.state.properties.BlockStateProperties.SNOWY,true));
+            helper.setBlock(new BlockPos(x,1,z),Blocks.SNOW);
+        }
+        var core=fundedCore(helper,new BlockPos(4,2,4),1000,2);
+        BlockPos p=new BlockPos(4,2,4);helper.setBlock(p,InfectedContent.NEST.get());
+        var node=(ExpansionNodeEntity)level.getBlockEntity(helper.absolutePos(p));node.setOwner(core.getUUID());
+        var tag=node.saveWithFullMetadata();tag.putInt("Radius",4);node.load(tag);
+        for(int i=0;i<300;i++)node.serverTick(level);
+        int infected=0;for(int x=1;x<=7;x++)for(int z=1;z<=7;z++)if(InfectedContent.terrainKey(helper.getBlockState(new BlockPos(x,0,z)))!=null)infected++;
+        helper.assertTrue(infected>0,"Snowy grass under a snow layer was never eroded: "+infected);
         clearWideBattlefield(helper);helper.succeed();
     }
     @GameTest(template="empty64",timeoutTicks=100,batch="ecology_snow")

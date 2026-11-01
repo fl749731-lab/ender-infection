@@ -157,7 +157,7 @@ public final class ExpansionNodeEntity extends BlockEntity {
             if(dx*dx+dz*dz>radius*radius)continue;
             BlockPos column=worldPosition.offset(dx,0,dz);
             if(!level.hasChunkAt(column))continue;
-            for(int dy=3;dy>=-4;dy--){
+            for(int dy=3;dy>=-10;dy--){
                 BlockPos pos=column.offset(0,dy,0);BlockState state=level.getBlockState(pos);
                 if(isGround(InfectedContent.terrainKey(state))&&(level.getBlockState(pos.above()).is(BlockTags.LOGS)||level.getBlockState(pos.above()).getBlock() instanceof InfectedTimberBlock)){
                     changes+=erodeTree(level,pos.above(),Math.min(1,ColonyEconomy.SPREAD_PER_ROUND-changes));break;
@@ -207,7 +207,7 @@ public final class ExpansionNodeEntity extends BlockEntity {
         for(int scan=0;scan<Math.min(96,extent)&&changes<budget;scan++){
             BlockPos offset=OFFSETS.get(Math.floorMod(matureCursor++,extent));
             BlockPos column=worldPosition.offset(offset);if(!level.hasChunkAt(column))continue;
-            for(int dy=3;dy>=-4;dy--){
+            for(int dy=3;dy>=-10;dy--){
                 BlockPos pos=column.offset(0,dy,0);BlockState state=level.getBlockState(pos);String key=InfectedContent.terrainKey(state);
                 if(key==null)continue;
                 if(!isGround(key)||!key.startsWith("eroded_"))break;
@@ -229,7 +229,7 @@ public final class ExpansionNodeEntity extends BlockEntity {
         for(int scan=0;scan<Math.min(64,extent)&&changes<budget;scan++){
             BlockPos offset=OFFSETS.get(Math.floorMod(frontierCursor++,extent));
             BlockPos column=worldPosition.offset(offset);if(!level.hasChunkAt(column))continue;
-            for(int dy=3;dy>=-4;dy--){
+            for(int dy=3;dy>=-10;dy--){
                 BlockPos pos=column.offset(0,dy,0);BlockState state=level.getBlockState(pos);
                 if(isGround(InfectedContent.terrainKey(state))&&Vegetation.supported(level.getBlockState(pos.above()))){changes+=erodeVegetation(level,pos.above(),budget-changes);break;}
                 if(isGround(InfectedContent.terrainKey(state))&&(level.getBlockState(pos.above()).is(BlockTags.LOGS)||level.getBlockState(pos.above()).getBlock() instanceof InfectedTimberBlock)){
@@ -305,7 +305,7 @@ public final class ExpansionNodeEntity extends BlockEntity {
             double angle=start+(attempt%16)*Math.PI/8;double distance=radius-1-(attempt/16);
             BlockPos column=worldPosition.offset((int)Math.round(Math.cos(angle)*distance),0,(int)Math.round(Math.sin(angle)*distance));
             if(!level.hasChunkAt(column)||core.position().distanceToSqr(net.minecraft.world.phys.Vec3.atCenterOf(column))>core.expansionReach()*core.expansionReach())continue;
-            for(int dy=3;dy>=-4;dy--){
+            for(int dy=3;dy>=-10;dy--){
                 BlockPos pos=column.offset(0,dy,0);BlockState ground=level.getBlockState(pos.below());
                 if((!level.getBlockState(pos).isAir()&&!Vegetation.supported(level.getBlockState(pos)))||!isGround(InfectedContent.terrainKey(ground))||!(ground.isFaceSturdy(level,pos.below(),net.minecraft.core.Direction.UP)||ErodedGroundBlock.farmland(ground))||!core.nodeSiteAvailable(pos))continue;
                 BlockPos surface=pos.below();if(!core.nodeSiteAvailable(surface))continue;

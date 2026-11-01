@@ -1,5 +1,16 @@
 # Changelog
 
+<!-- qegg:release 0.4.0 -->
+## v0.4.0 - 2026-11-01
+
+### Features
+
+- [`f13d23c`](https://github.com/fl749731-lab/ender-infection/commit/f13d23c8413778dc5c0f5cd980a4b3dd270f7a90): 雪块、细雪与冰现在和其它地面一样会被侵蚀，盖在地表上的雪层会被一并化掉。
+- [`f13d23c`](https://github.com/fl749731-lab/ender-infection/commit/f13d23c8413778dc5c0f5cd980a4b3dd270f7a90): 三阶之后母体对所有非本阵营生物宣战：守卫也会猎杀动物，猎手不再受活动范围束缚。
+
+**Full Changelog**: https://github.com/fl749731-lab/ender-infection/compare/v0.3.0...v0.4.0
+<!-- qegg:release:end -->
+
 <!-- qegg:release 0.3.0 -->
 ## v0.3.0 - 2026-11-01
 

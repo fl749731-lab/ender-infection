@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "version": "0.3.0",
-  "created_at": "2026-11-01T11:14:30.5125847+01:00",
+  "version": "0.4.0",
+  "created_at": "2026-11-01T10:46:33.739525375Z",
   "mode": "pr",
-  "fingerprint": "sha256:12c651fc624fe2ddb67048b09361e9d38d16ccce49991f4a493d7c29b8f4bd56",
+  "fingerprint": "sha256:104ae8b123501e1758d49dc731e4c9c771e46337147fb4e423178bf0fef806d3",
   "repo": {
     "host": "github.com",
     "owner": "fl749731-lab",
@@ -15,24 +15,25 @@
       "cd ender_infection_colored \u0026\u0026 java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain build"
     ],
     "skipped": false,
-    "at": "2026-11-01T11:14:30.5125847+01:00"
+    "at": "2026-11-01T10:46:33.739525876Z"
   },
   "packages": [
     {
       "name": "java@ender_infection_colored",
       "path": "ender_infection_colored",
       "resolver": "java",
-      "current": "0.2.3",
-      "next": "0.3.0",
+      "current": "0.3.0",
+      "next": "0.4.0",
       "bump": "minor",
-      "tag": "v0.3.0",
+      "tag": "v0.4.0",
       "publish": false
     }
   ],
   "releases": [
     {
-      "version": "0.3.0",
-      "tag": "v0.3.0",
+      "version": "0.4.0",
+      "tag": "v0.4.0",
+      "previous_tag": "v0.3.0",
       "packages": [
         "java@ender_infection_colored"
       ]
@@ -40,65 +41,30 @@
   ],
   "changes": [
     {
-      "file": ".changes/brood-learning.md",
+      "file": ".changes/snow-erosion.md",
+      "type": "feat",
+      "scope": "erosion",
+      "bump": "minor",
+      "packages": [
+        "java@ender_infection_colored"
+      ],
+      "body": "雪块、细雪与冰现在和其它地面一样会被侵蚀，盖在地表上的雪层会被一并化掉。",
+      "commit": "f13d23c8413778dc5c0f5cd980a4b3dd270f7a90",
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/f13d23c8413778dc5c0f5cd980a4b3dd270f7a90",
+      "author": "fl749731-lab"
+    },
+    {
+      "file": ".changes/total-war.md",
       "type": "feat",
       "scope": "ai",
       "bump": "minor",
       "packages": [
         "java@ender_infection_colored"
       ],
-      "body": "猎手会循着可达的猎物气味外出，而不是只在视线内才追；每只母体新增攻击性与四臂经济策略学习，战果会改变嗅觉半径、围攻上限以及孵化/扩张/进阶/储备之间的取舍。",
-      "commit": "04612f3f33e0288c1eb6e6f814c355bfae1e3765",
-      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/04612f3f33e0288c1eb6e6f814c355bfae1e3765"
-    },
-    {
-      "file": ".changes/configure-release-automation.md",
-      "type": "chore",
-      "scope": "release",
-      "bump": "patch",
-      "packages": [
-        "java@ender_infection_colored"
-      ],
-      "body": "Automate version bumps and GitHub releases for the mod.",
-      "commit": "657a68dce2e62d977e8063d049e1aac63f8d206b",
-      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/657a68dce2e62d977e8063d049e1aac63f8d206b",
+      "body": "三阶之后母体对所有非本阵营生物宣战：守卫也会猎杀动物，猎手不再受活动范围束缚。",
+      "commit": "f13d23c8413778dc5c0f5cd980a4b3dd270f7a90",
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/f13d23c8413778dc5c0f5cd980a4b3dd270f7a90",
       "author": "fl749731-lab"
-    },
-    {
-      "file": ".changes/erosion-depth.md",
-      "type": "fix",
-      "scope": "erosion",
-      "bump": "patch",
-      "packages": [
-        "java@ender_infection_colored"
-      ],
-      "body": "地表改为整列向下侵蚀，悬崖与挖开的洞不再露出原版泥土；成熟化改走独立且免费的通道，老地块会真正推进到深色成熟地表。",
-      "commit": "04612f3f33e0288c1eb6e6f814c355bfae1e3765",
-      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/04612f3f33e0288c1eb6e6f814c355bfae1e3765"
-    },
-    {
-      "file": ".changes/land-life.md",
-      "type": "feat",
-      "scope": "colony",
-      "bump": "minor",
-      "packages": [
-        "java@ender_infection_colored"
-      ],
-      "body": "三阶后不再限制节点数量与铺设距离；成熟地表会自己长出感染植物，并能让母体付出生物质产出单位。",
-      "commit": "04612f3f33e0288c1eb6e6f814c355bfae1e3765",
-      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/04612f3f33e0288c1eb6e6f814c355bfae1e3765"
-    },
-    {
-      "file": ".changes/siege-beast.md",
-      "type": "feat",
-      "scope": "siege",
-      "bump": "minor",
-      "packages": [
-        "java@ender_infection_colored"
-      ],
-      "body": "攻城兽模型、动画与粒子重做，并修复冲击波漏伤：伤害带窄于波前步长，导致部分距离永远打不中。",
-      "commit": "04612f3f33e0288c1eb6e6f814c355bfae1e3765",
-      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/04612f3f33e0288c1eb6e6f814c355bfae1e3765"
     }
   ],
   "qegg": {

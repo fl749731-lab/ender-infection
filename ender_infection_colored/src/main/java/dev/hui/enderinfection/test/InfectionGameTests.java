@@ -857,6 +857,21 @@ public final class InfectionGameTests {
         helper.assertTrue(paid>0,"Snow covered infected ground paid no land income: "+paid+", columns="+core.territoryColumns());
         clearWideBattlefield(helper);helper.succeed();
     }
+    @GameTest(template="empty64",timeoutTicks=120,batch="attack_modes")
+    public static void broodSwingsSeveralAttackPatterns(GameTestHelper helper){
+        clearWideBattlefield(helper);flatBattlefield(helper,0,24,0,14);var level=helper.getLevel();
+        var core=battleUnit(helper,dev.hui.enderinfection.entity.InfectedKind.EARLY_COW,new BlockPos(1,1,7),null,"guard");core.setInvulnerable(true);core.setNoAi(true);
+        var singer=battleUnit(helper,dev.hui.enderinfection.entity.InfectedKind.EARLY_SHEEP,new BlockPos(6,1,7),null,"hunter");
+        var mate=battleUnit(helper,dev.hui.enderinfection.entity.InfectedKind.EARLY_COW,new BlockPos(7,1,9),null,"guard");mate.setNoAi(true);
+        var prey=net.minecraft.world.entity.EntityType.COW.create(level);placeMob(helper,prey,new BlockPos(11,1,7));prey.setNoAi(true);prey.setInvulnerable(true);level.addFreshEntity(prey);
+        singer.forceAttackMode(dev.hui.enderinfection.entity.InfectedMob.AttackMode.ROAR);singer.setTarget(prey);
+        helper.runAfterDelay(90,()->{
+            helper.assertTrue(singer.attackMode()==dev.hui.enderinfection.entity.InfectedMob.AttackMode.ROAR,"Forced roar mode was not used: "+singer.attackMode());
+            helper.assertTrue(mate.hasEffect(net.minecraft.world.effect.MobEffects.MOVEMENT_SPEED),"Roar did not buff nearby brood");
+            clearWideBattlefield(helper);helper.succeed();
+
+        });
+    }
     @GameTest(template="empty64",timeoutTicks=80,batch="ecology_slope")
     public static void frontierErosionClimbsConnectedOneBlockSteps(GameTestHelper helper){
         clearArenaMobs(helper);flatBattlefield(helper,0,12,0,8);var core=fundedCore(helper,new BlockPos(2,1,6),1000,2);

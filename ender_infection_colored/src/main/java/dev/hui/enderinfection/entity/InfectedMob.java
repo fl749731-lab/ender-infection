@@ -80,6 +80,12 @@ public final class InfectedMob extends Monster implements GeoEntity {
     private final AnimatableInstanceCache cache=GeckoLibUtil.createInstanceCache(this);
     public final InfectedKind kind;
     private int attackTick, cooldown, teleportCooldown=60;
+    /** Each swing rolls one of several patterns so a pack does not fight like one repeated animation. */
+    public enum AttackMode { SLAM, LUNGE, POUND, ROAR }
+    private AttackMode attackMode=AttackMode.SLAM;
+    private AttackMode forcedMode;
+    public AttackMode attackMode(){return attackMode;}
+    public void forceAttackMode(AttackMode mode){forcedMode=mode;}
     /** Crystal wave front speed and sampling period. The wave cut-off is derived from these. */
     private static final double WAVE_GROWTH=.65;
     private static final int WAVE_PERIOD=6;
@@ -213,13 +219,26 @@ public final class InfectedMob extends Monster implements GeoEntity {
         targetSelector.addGoal(1,factionHunt);
         goalSelector.addGoal(4,new FactionAI.ReturnToCoreGoal(this));
     }
+    /** Which pattern this swing uses. A forced mode wins so tests can pin one. */
+    private AttackMode pickMode(){
+        if(forcedMode!=null)return forcedMode;
+        return switch(kind){
+            case COW,EARLY_COW->random.nextBoolean()?AttackMode.LUNGE:AttackMode.SLAM;
+            case PIG,EARLY_PIG->AttackMode.LUNGE;
+            case SPIDER,EARLY_SPIDER->random.nextBoolean()?AttackMode.LUNGE:AttackMode.POUND;
+            case ENDERMAN,EARLY_ENDERMAN->AttackMode.POUND;
+            case SHEEP,EARLY_SHEEP->random.nextInt(3)==0?AttackMode.ROAR:AttackMode.SLAM;
+            case SIEGE_BEAST->AttackMode.LUNGE;
+            default->AttackMode.SLAM;
+        };
+    }
     private void startAttack(LivingEntity target) {
         forward=target.position().subtract(position()).multiply(1,0,1).normalize();
         if (forward.lengthSqr()<.001) forward=new Vec3(0,0,1);
-        attackTick=0;waveVictims.clear();entityData.set(ATTACKING,true);getNavigation().stop();
+        attackMode=pickMode();attackTick=0;waveVictims.clear();entityData.set(ATTACKING,true);getNavigation().stop();
         setDeltaMovement(0,getDeltaMovement().y,0);
         triggerAnim("action","special");
-        if(level() instanceof ServerLevel)dev.hui.enderinfection.combat.CrystalAttacks.cast(this,kind,target,kind.hitTick);
+        if(attackMode==AttackMode.SLAM&&level() instanceof ServerLevel)dev.hui.enderinfection.combat.CrystalAttacks.cast(this,kind,target,kind.hitTick);
         if(kind==InfectedKind.SIEGE_BEAST&&level() instanceof ServerLevel server)dev.hui.enderinfection.particle.SiegeEffects.begin(server,this,forward);
         else level().playSound(null,blockPosition(),SoundEvents.AMETHYST_BLOCK_CHIME,SoundSource.HOSTILE,1,.65F);
     }
@@ -246,6 +265,10 @@ public final class InfectedMob extends Monster implements GeoEntity {
         if(kind==InfectedKind.SIEGE_BEAST&&attackTick<kind.hitTick){
             dev.hui.enderinfection.particle.SiegeEffects.windup(server,this,forward,attackTick);
             if(attackTick>=10&&onGround()){double speed=getTarget()!=null&&distanceTo(getTarget())>3?.3:0;setDeltaMovement(forward.x*speed,getDeltaMovement().y,forward.z*speed);}
+        }
+        if(attackMode==AttackMode.LUNGE&&kind!=InfectedKind.SIEGE_BEAST&&attackTick>=6&&attackTick<kind.hitTick&&onGround()){
+            double speed=getTarget()!=null&&distanceTo(getTarget())>2?.3:0;
+            setDeltaMovement(forward.x*speed,getDeltaMovement().y,forward.z*speed);
         }
         if (kind==InfectedKind.COW && attackTick>=8 && attackTick<kind.hitTick) {
             double speed=getTarget()!=null && distanceTo(getTarget())>1.7?.38:0;
@@ -286,7 +309,41 @@ public final class InfectedMob extends Monster implements GeoEntity {
     private boolean canHit(LivingEntity target) {
         return FactionAI.enemy(this,target);
     }
-    private void impact(ServerLevel server) {
+    private void impact(ServerLevel server){
+        switch(attackMode){
+            case ROAR->roar(server);
+            case POUND->pound(server);
+            case LUNGE->slam(server);
+            default->slam(server);
+        }
+    }
+    /** Radial shock that trades reach for a wide hit box. */
+    private void pound(ServerLevel server){
+        double reach=attackRadius()*1.8;
+        FactionEffects.rune(server,position(),reach);
+        server.playSound(null,blockPosition(),SoundEvents.GENERIC_EXPLODE,SoundSource.HOSTILE,1.1F,.6F);
+        for(LivingEntity target:level().getEntitiesOfClass(LivingEntity.class,getBoundingBox().inflate(reach,3,reach),this::canHit)){
+            Vec3 delta=target.position().subtract(position());
+            if(delta.horizontalDistance()>reach||Math.abs(delta.y)>3||waveVictims.contains(target.getUUID())||!hasLineOfSight(target))continue;
+            float damage=kind.damage*.8F;
+            if(target.hurt(damageSources().mobAttack(this),damage)){
+                waveVictims.add(target.getUUID());
+                target.knockback(.8,-delta.x,-delta.z);
+                target.setDeltaMovement(target.getDeltaMovement().x,target.getDeltaMovement().y+.45,target.getDeltaMovement().z);
+            }
+        }
+    }
+    /** Support pattern: the pack gets faster and hits harder instead of the unit dealing damage itself. */
+    private void roar(ServerLevel server){
+        FactionEffects.rune(server,position(),3.0);
+        server.playSound(null,blockPosition(),SoundEvents.RAVAGER_ROAR,SoundSource.HOSTILE,1.0F,.8F);
+        for(Mob ally:level().getEntitiesOfClass(Mob.class,getBoundingBox().inflate(10,6,10),e->FactionAI.infected(e)&&e!=this)){
+            ally.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED,200,1));
+            ally.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST,200,0));
+        }
+        addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST,200,0));
+    }
+    private void slam(ServerLevel server) {
         if(kind==InfectedKind.SKELETON)return;
         if(kind==InfectedKind.EARLY_SKELETON){fireArrows(server);return;}
         if(kind==InfectedKind.CORE)motherBrain.tryIncubate(server);

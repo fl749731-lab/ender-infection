@@ -1,5 +1,15 @@
 # Changelog
 
+<!-- qegg:release 0.5.2 -->
+## v0.5.2 - 2026-11-01
+
+### Bug Fixes
+
+- [`8103c62`](https://github.com/fl749731-lab/ender-infection/commit/8103c6257735f1dd6b7b19a83582fcb33647f45b): 孵化与地表产卵在和平时期必须给节点留 16 生物质，扩张不再被自家兵源饿死；母体受袭时该保底解除。
+
+**Full Changelog**: https://github.com/fl749731-lab/ender-infection/compare/v0.5.1...v0.5.2
+<!-- qegg:release:end -->
+
 <!-- qegg:release 0.5.1 -->
 ## v0.5.1 - 2026-11-01
 

@@ -1,5 +1,15 @@
 # Changelog
 
+<!-- qegg:release 0.7.0 -->
+## v0.7.0 - 2026-11-01
+
+### Features
+
+- [`dc95ad2`](https://github.com/fl749731-lab/ender-infection/commit/dc95ad2746d3ca7b8acce847a716f42885694c2a): 畸变单位每次出手会从多种攻击模式中随机选择：重砸、前冲、范围震荡与战吼（给周围友军加速和力量）。
+
+**Full Changelog**: https://github.com/fl749731-lab/ender-infection/compare/v0.6.0...v0.7.0
+<!-- qegg:release:end -->
+
 <!-- qegg:release 0.6.0 -->
 ## v0.6.0 - 2026-11-01
 

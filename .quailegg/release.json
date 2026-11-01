@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "version": "0.6.0",
-  "created_at": "2026-11-01T22:25:17.546837315Z",
+  "version": "0.7.0",
+  "created_at": "2026-11-01T23:06:12.45830928Z",
   "mode": "pr",
-  "fingerprint": "sha256:cde4ae4202b20ba61871ba39b3d0564b1a2706fbbe3d8ebebb3cd1963c9db7ee",
+  "fingerprint": "sha256:1c827f1683ec6ca83416adde5bbaef53795c4a7f8c8b5583d4d475e9090d841c",
   "repo": {
     "host": "github.com",
     "owner": "fl749731-lab",
@@ -15,25 +15,25 @@
       "cd ender_infection_colored \u0026\u0026 java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain build"
     ],
     "skipped": false,
-    "at": "2026-11-01T22:25:17.54683777Z"
+    "at": "2026-11-01T23:06:12.458309862Z"
   },
   "packages": [
     {
       "name": "java@ender_infection_colored",
       "path": "ender_infection_colored",
       "resolver": "java",
-      "current": "0.5.2",
-      "next": "0.6.0",
+      "current": "0.6.0",
+      "next": "0.7.0",
       "bump": "minor",
-      "tag": "v0.6.0",
+      "tag": "v0.7.0",
       "publish": false
     }
   ],
   "releases": [
     {
-      "version": "0.6.0",
-      "tag": "v0.6.0",
-      "previous_tag": "v0.5.2",
+      "version": "0.7.0",
+      "tag": "v0.7.0",
+      "previous_tag": "v0.6.0",
       "packages": [
         "java@ender_infection_colored"
       ]
@@ -41,16 +41,16 @@
   ],
   "changes": [
     {
-      "file": ".changes/balance-buff.md",
+      "file": ".changes/attack-modes.md",
       "type": "feat",
-      "scope": "balance",
+      "scope": "ai",
       "bump": "minor",
       "packages": [
         "java@ender_infection_colored"
       ],
-      "body": "畸变单位整体加强：血量与伤害上调约 50–80%，新增护甲，攻击间隔从 35 tick 缩到 26 tick；母体与攻城兽受到的单次伤害按最大生命封顶（母体 8%、攻城兽 10%），不会再被一击带走。",
-      "commit": "bd19b4426606afda308df27f1142b0a302092fe3",
-      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/bd19b4426606afda308df27f1142b0a302092fe3",
+      "body": "畸变单位每次出手会从多种攻击模式中随机选择：重砸、前冲、范围震荡与战吼（给周围友军加速和力量）。",
+      "commit": "dc95ad2746d3ca7b8acce847a716f42885694c2a",
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/dc95ad2746d3ca7b8acce847a716f42885694c2a",
       "author": "fl749731-lab"
     }
   ],

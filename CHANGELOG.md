@@ -1,5 +1,15 @@
 # Changelog
 
+<!-- qegg:release 0.4.1 -->
+## v0.4.1 - 2026-11-01
+
+### Bug Fixes
+
+- [`e42e71e`](https://github.com/fl749731-lab/ender-infection/commit/e42e71eb23abb6d0f9968aad17b69e26371cff3f): 侵蚀的垂直扫描从 +3/-4 扩到 +3/-10：雪坡、坑底和落差较大的雪面现在也会被侵蚀，地表雪层不再阻挡转换。
+
+**Full Changelog**: https://github.com/fl749731-lab/ender-infection/compare/v0.4.0...v0.4.1
+<!-- qegg:release:end -->
+
 <!-- qegg:release 0.4.0 -->
 ## v0.4.0 - 2026-11-01
 

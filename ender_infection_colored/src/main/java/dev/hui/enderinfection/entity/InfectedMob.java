@@ -100,7 +100,7 @@ public final class InfectedMob extends Monster implements GeoEntity {
     public static AttributeSupplier.Builder attributes(InfectedKind kind) {
         return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH,kind.health)
             .add(Attributes.MOVEMENT_SPEED,kind.speed).add(Attributes.ATTACK_DAMAGE,kind.damage)
-            .add(Attributes.FOLLOW_RANGE,40).add(Attributes.KNOCKBACK_RESISTANCE,kind==InfectedKind.CORE?1:kind==InfectedKind.COW?.6:.2);
+            .add(Attributes.FOLLOW_RANGE,40).add(Attributes.ARMOR,kind.armor()).add(Attributes.KNOCKBACK_RESISTANCE,kind==InfectedKind.CORE?1:kind==InfectedKind.COW?.6:.2);
     }
     @Override protected void defineSynchedData() { super.defineSynchedData(); entityData.define(ATTACKING,false);entityData.define(EMERGING,true);entityData.define(MOTHER_STAGE,1);entityData.define(MOTHER_STATE,0);entityData.define(CLIMBING,false);entityData.define(MORPH_SPEED,1F); }
     public boolean attacking() { return entityData.get(ATTACKING); }
@@ -202,7 +202,7 @@ public final class InfectedMob extends Monster implements GeoEntity {
     private FactionAI.HuntGoal factionHunt;
     private FactionAI.Motion factionMotion;
     @Override public boolean isAlliedTo(net.minecraft.world.entity.Entity other){return FactionAI.infected(other)||super.isAlliedTo(other);}
-    @Override public boolean hurt(DamageSource source,float amount){if(FactionAI.infected(source.getEntity()))return false;if((kind==InfectedKind.CORE&&motherStage()>=4||kind==InfectedKind.SIEGE_BEAST)&&!source.is(net.minecraft.tags.DamageTypeTags.BYPASSES_INVULNERABILITY))amount=Math.min(amount,getMaxHealth()*.12F);boolean hit=super.hurt(source,amount);if(hit&&kind==InfectedKind.SIEGE_BEAST&&level() instanceof ServerLevel server&&tickCount-lastSiegeHurtFx>=8){lastSiegeHurtFx=tickCount;dev.hui.enderinfection.particle.SiegeEffects.wound(server,this);}if(hit&&isAlive()&&source.getEntity() instanceof LivingEntity attacker)FactionAI.alert(this,attacker);return hit;}
+    @Override public boolean hurt(DamageSource source,float amount){if(FactionAI.infected(source.getEntity()))return false;if(!source.is(net.minecraft.tags.DamageTypeTags.BYPASSES_INVULNERABILITY)){if(kind==InfectedKind.CORE)amount=Math.min(amount,getMaxHealth()*.08F);else if(kind==InfectedKind.SIEGE_BEAST)amount=Math.min(amount,getMaxHealth()*.10F);}boolean hit=super.hurt(source,amount);if(hit&&kind==InfectedKind.SIEGE_BEAST&&level() instanceof ServerLevel server&&tickCount-lastSiegeHurtFx>=8){lastSiegeHurtFx=tickCount;dev.hui.enderinfection.particle.SiegeEffects.wound(server,this);}if(hit&&isAlive()&&source.getEntity() instanceof LivingEntity attacker)FactionAI.alert(this,attacker);return hit;}
     @Override protected void registerGoals() {
         goalSelector.addGoal(0,new FloatGoal(this)); goalSelector.addGoal(1,new CombatGoal());
         goalSelector.addGoal(5,new WaterAvoidingRandomStrollGoal(this,.7){@Override public boolean canUse(){return kind!=InfectedKind.CORE&&super.canUse();}});
@@ -258,7 +258,7 @@ public final class InfectedMob extends Monster implements GeoEntity {
             setDeltaMovement(0,getDeltaMovement().y,0);
         }
         if((kind==InfectedKind.SIEGE_BEAST||kind==InfectedKind.CORE&&motherStage()>=4)&&attackTick>=kind.hitTick&&(attackTick-kind.hitTick)%WAVE_PERIOD==0)crystalWave(server);
-        if(attackTick>=kind.duration){entityData.set(ATTACKING,false);cooldown=kind==InfectedKind.CORE?ColonyEconomy.interval(motherStage()==1?200:motherStage()==2?160:100,colonyBiomass):kind==InfectedKind.SIEGE_BEAST?90:kind==InfectedKind.SHEEP?100:35;}
+        if(attackTick>=kind.duration){entityData.set(ATTACKING,false);cooldown=kind==InfectedKind.CORE?ColonyEconomy.interval(motherStage()==1?200:motherStage()==2?160:100,colonyBiomass):kind==InfectedKind.SIEGE_BEAST?70:kind==InfectedKind.SHEEP?70:26;}
     }
     private void establishExpansionNode(ServerLevel level){
         BlockPos center=blockPosition();

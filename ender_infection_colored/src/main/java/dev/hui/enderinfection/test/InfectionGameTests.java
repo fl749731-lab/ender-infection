@@ -243,7 +243,7 @@ public final class InfectionGameTests {
             var data=node.saveWithFullMetadata();data.putInt("Radius",6);node.load(data);node.serverTick(helper.getLevel());
             helper.runAfterDelay(30,()->{
                 helper.assertTrue(core.motherStage()==2&&!core.expansionReady(),"First territory milestone did not allow only stage two");
-                var next=node.saveWithFullMetadata();next.putInt("Radius",10);node.load(next);node.serverTick(helper.getLevel());
+                core.receiveColonyBiomass(Math.max(0,200-core.colonyBiomass()));var next=node.saveWithFullMetadata();next.putInt("Radius",10);node.load(next);node.serverTick(helper.getLevel());
                 helper.runAfterDelay(30,()->{
                     helper.assertTrue(core.motherStage()==3&&core.colonyBiomass()>=16,"Second territory milestone did not allow stage three with working reserve");
                     clearArenaMobs(helper);helper.succeed();
@@ -284,7 +284,7 @@ public final class InfectionGameTests {
         var core=fundedCore(helper,new BlockPos(4,1,4),100,1);
         var attacker=net.minecraft.world.entity.EntityType.ZOMBIE.create(helper.getLevel());
         var pos=helper.absolutePos(new BlockPos(4,1,2));attacker.moveTo(pos.getX()+.5,pos.getY(),pos.getZ()+.5,0,0);attacker.setNoAi(true);helper.getLevel().addFreshEntity(attacker);
-        core.setInvulnerable(false);core.hurt(helper.getLevel().damageSources().mobAttack(attacker),90);core.setInvulnerable(true);core.setNoAi(false);
+        core.setInvulnerable(false);core.hurt(helper.getLevel().damageSources().mobAttack(attacker),90);core.setHealth(core.getMaxHealth()*.2F);core.setInvulnerable(true);core.setNoAi(false);
         helper.runAfterDelay(4,()->{
             var guards=burstGuards(helper,core);
             helper.assertTrue(core.motherStage()==1&&core.colonyBiomass()==30,"Crisis failed to take priority over upgrading or did not spend seventy percent: "+core.colonyBiomass());
@@ -887,7 +887,7 @@ public final class InfectionGameTests {
         var core=fundedCore(helper,new BlockPos(12,1,12),500,4);helper.assertTrue(core.getMaxHealth()==900&&core.maxAutoNodes()==dev.hui.enderinfection.entity.InfectedMob.UNLIMITED_NODES,"Stage four did not get its own attributes/network capacity");
         helper.assertTrue(core.summonSiege(level)&&core.colonyBiomass()==340,"Boss production failed to debit 160 biomass");
         var beasts=level.getEntitiesOfClass(dev.hui.enderinfection.entity.InfectedMob.class,core.getBoundingBox().inflate(24),e->e.kind==dev.hui.enderinfection.entity.InfectedKind.SIEGE_BEAST);
-        helper.assertTrue(beasts.size()==1&&beasts.get(0).getMaxHealth()==400&&beasts.get(0).getPersistentData().getUUID("ColonyMother").equals(core.getUUID()),"Boss entity stats/ownership incorrect");
+        helper.assertTrue(beasts.size()==1&&beasts.get(0).getMaxHealth()==600&&beasts.get(0).getPersistentData().getUUID("ColonyMother").equals(core.getUUID()),"Boss entity stats/ownership incorrect");
         helper.assertTrue(!core.summonSiege(level)&&core.colonyBiomass()==340,"Owned boss cap allowed duplicate or charged a failed spawn");
         var saved=new net.minecraft.nbt.CompoundTag();core.addAdditionalSaveData(saved);saved.putInt("MotherStage",5);core.readAdditionalSaveData(saved);helper.assertTrue(core.motherStage()==5&&core.getMaxHealth()==1000&&core.maxAutoNodes()==dev.hui.enderinfection.entity.InfectedMob.UNLIMITED_NODES,"Stage five did not survive its NBT lifecycle");
         core.spendBiomass(core.colonyBiomass());helper.assertTrue(!core.summonSiege(level)&&core.colonyBiomass()==0,"Empty high-tier mother produced a free boss");clearWideBattlefield(helper);helper.succeed();
@@ -1041,7 +1041,7 @@ public final class InfectionGameTests {
         helper.runAfterDelay(24,()->helper.assertTrue(beast.getX()-start.x>.8&&beast.getX()-start.x<4.5,"Committed siege lunge did not advance a bounded distance: "+beast.position()));
         helper.runAfterDelay(95,()->{
             helper.assertTrue(target.getHealth()>=87&&target.getHealth()<=89,"Siege wave missed or hit the distant enemy repeatedly: "+target.getHealth());
-            helper.assertTrue(ally.getHealth()==ally.getMaxHealth(),"New siege effects/attack hurt an infected ally");
+            helper.assertTrue(ally.getHealth()==ally.getMaxHealth(),"New siege effects/attack hurt an infected ally: hp="+ally.getHealth()+"/"+ally.getMaxHealth()+" erosion="+ally.hasEffect(InfectedContent.ENDER_EROSION.get())+" mycelium="+ally.hasEffect(InfectedContent.MYCELIUM_INFECTION.get())+" pos="+ally.position());
             helper.assertTrue(helper.getBlockState(new BlockPos(6,0,8)).is(Blocks.STONE),"Siege impact replaced its terrain");clearWideBattlefield(helper);helper.succeed();
         });
     }

@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import net.minecraft.commands.Commands;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
@@ -94,6 +95,14 @@ public final class PlayerTactics {
             level.getEntitiesOfClass(InfectedMob.class,player.getBoundingBox().inflate(64),e->e.kind==InfectedKind.CORE&&e.isAlive()).stream().min(Comparator.comparingDouble(player::distanceToSqr)).ifPresent(core->context.getSource().sendSuccess(()->Component.literal("最近母体：阶段 "+core.motherStage()+"，生物质 "+core.colonyBiomass()+"，状态 "+core.motherState().label),false));
             level.getEntitiesOfClass(InfectedMob.class,player.getBoundingBox().inflate(64),e->e.kind==InfectedKind.CORE&&e.isAlive()).stream().min(Comparator.comparingDouble(player::distanceToSqr)).ifPresent(core->context.getSource().sendSuccess(()->Component.literal("母体教导：攻击性 "+core.motherBrain().learning().aggression()+"，围攻上限 "+core.motherBrain().learning().packLimit()+"，狩猎嗅觉半径 "+Math.round(FactionAI.huntScent(core))+" 格"),false));
             level.getEntitiesOfClass(InfectedMob.class,player.getBoundingBox().inflate(64),e->e.kind==InfectedKind.CORE&&e.isAlive()).stream().min(Comparator.comparingDouble(player::distanceToSqr)).ifPresent(core->context.getSource().sendSuccess(()->Component.literal("经济策略：倾向 "+core.motherBrain().policy().arm().name()+"，已观察 "+core.motherBrain().policy().windows()+" 个窗口，孵化/扩张收益 "+String.format("%.1f",core.motherBrain().policy().hatchValue())+" / "+String.format("%.1f",core.motherBrain().policy().expandValue())+"，节点效率 "+String.format("%.2f",core.nodeEfficiency())+" 格/生物质"),false));
+            int shown=0;
+            for(BlockPos p:BlockPos.betweenClosed(player.blockPosition().offset(-24,-8,-24),player.blockPosition().offset(24,8,24))){
+                if(shown>=4)break;
+                if(!(level.getBlockEntity(p) instanceof dev.hui.enderinfection.block.ExpansionNodeEntity node))continue;
+                shown++;
+                final BlockPos at=p.immutable();
+                context.getSource().sendSuccess(()->Component.literal("节点 "+at.toShortString()+"：半径 "+node.radius()+"，活跃 "+node.activeTicks()+" tick，改格 "+node.purchasedChanges()+"，下沉 "+node.deepenedBlocks()+"，成熟 "+node.maturedBlocks()+"，单位 "+node.soilBorn()),false);
+            }
             level.getEntitiesOfClass(net.minecraft.world.entity.Mob.class,player.getBoundingBox().inflate(48),e->FactionAI.infected(e)).stream().sorted(Comparator.comparingDouble(player::distanceToSqr)).limit(8).forEach(unit->context.getSource().sendSuccess(()->Component.literal(unit.getName().getString()+"："+unit.getPersistentData().getString("ColonyTask")+" / "+unit.getPersistentData().getString("TaskReason")),false));
             return 1;
         }));

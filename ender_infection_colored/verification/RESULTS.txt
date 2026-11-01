@@ -1,22 +1,21 @@
 Ender Infection 0.2.3 / Minecraft 1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17
-BUILD: PASS, reobfuscated installable Forge JAR (ender-infection-0.2.3.jar, 3007384 bytes, JDK 17.0.20.1, clean build 23:32).
-GAME TESTS: All 58 required tests passed in a fresh isolated GameTest world (2026-10-31 23:39).
+BUILD: PASS, reobfuscated installable Forge JAR (ender-infection-0.2.3.jar, 3007705 bytes, clean build 2026-11-01 11:02).
+GAME TESTS: All 58 required tests passed in a fresh isolated GameTest world (2026-11-01 11:00).
 
-EROSION DEPTH: converting a surface block now sinks the whole column (SINK_DEPTH 4) for free, so one biomass buys a
+EROSION DEPTH: converting a surface block sinks the whole column (SINK_DEPTH 4) for free, so one biomass buys a
   column instead of one visible block. Cliffs, pit walls and dug holes show infected ground instead of vanilla dirt.
-EROSION MATURITY: maturePass() runs on its own 40 tick clock with a ring cursor and pushes two eroded columns per pass
-  through EROSION 0->1->2 and then into living_tissue / mycelial_mat / necrotic_soil / tainted_grass / crystal_crust.
-  Before this, maturing only happened inside the random scan and lost the budget to the frontier, so fields stayed at
-  first-stage erosion forever. The pass starts only after 200 ticks and only once the node has converted terrain.
-EXPANSION: stage three and up no longer cap the node network or the placement distance; expansionReach() is separate
-  from expansionRange() so units keep their 48/64/80 duty leash.
-LAND LIFE: fully eroded ground births units (paid, shared cap) and grows infected flora (free, density capped).
+EROSION MATURITY (now free): maturePass() runs on a 40 tick clock with a ring cursor and pushes two eroded columns
+  per pass through EROSION 0->1->2 and then into living_tissue / mycelial_mat / necrotic_soil / tainted_grass /
+  crystal_crust. It used to cost one biomass per block, which the frontier always outbid, so old ground stayed at
+  first-stage erosion. The old paid random deepen pass is gone; deepenedBlocks now counts sunk blocks.
+OUTPOSTS: site selection is deterministic (angle offset from the node position instead of level.random).
+DIAGNOSTICS: /enderstrategy prints up to four nearby nodes with radius, active ticks, changed blocks, sunk blocks,
+  matured blocks and land born units.
 
-NEW TESTS: nodeErodesDownwardInsteadOfOnlyTheSurfaceLayer (now also asserts buried ground),
-  erodedGroundMaturesInsteadOfStayingAtFirstStage, stageThreeLiftsTheNodeCapWithoutFreeNodes,
-  matureSoilGrowsFloraAndBirthsUnits.
+NEW TESTS: nodeErodesDownwardInsteadOfOnlyTheSurfaceLayer, erodedGroundMaturesInsteadOfStayingAtFirstStage,
+  stageThreeLiftsTheNodeCapWithoutFreeNodes, matureSoilGrowsFloraAndBirthsUnits.
 PRIOR REGRESSION: hunting, recalls, climbing, tactics/learning, four armed economy policy, siege beast wave,
   per-mother payments/refunds, territorial depletion, network spread, high-stage evolution, boss waves, loot/crafting.
 LIMITS: no player saves opened. Client visual appearance, large-world performance, multiplayer and long-term balance
   still require gameplay verification.
-JAR SHA256: 0afcdbd8383af5a72cc8a36438fab0e0296ed28e9133097c6f3fdcfbdb9fc8a4
+JAR SHA256: 010b638a8586090c0de1206962d1fa4b1636cc4bb62445662148bfff73a47ee3

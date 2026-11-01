@@ -39,7 +39,7 @@ jobs:
       - uses: actions/setup-java@v4
         with: { distribution: temurin, java-version: '17' }
       - name: Install qegg
-        run: go install github.com/SuperQuail/QuailEgg/cmd/qegg@latest
+        run: go install github.com/SuperQuail/QuailEgg/cmd/qegg@v0.11.0
       - name: Release
         run: qegg release --yes
         env:

@@ -31,8 +31,8 @@ registries = []
 commands = ["cd ender_infection_colored && java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain clean build"]
 files = ["ender_infection_colored/build/libs/*.jar"]
 
-[packages."java@ender-infection"]
-name = "ender-infection"
+[packages."java@ender_infection_colored"]
+name = "ender_infection_colored"
 path = "ender_infection_colored"
 resolver = "java"
 publish = false

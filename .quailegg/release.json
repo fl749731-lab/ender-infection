@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "version": "0.5.2",
-  "created_at": "2026-11-01T20:59:13.000179214Z",
+  "version": "0.6.0",
+  "created_at": "2026-11-01T22:25:17.546837315Z",
   "mode": "pr",
-  "fingerprint": "sha256:07a93412b7ea850fd7f4af2dd1c1e728040ce30fcd49d153fe970ac463739b04",
+  "fingerprint": "sha256:cde4ae4202b20ba61871ba39b3d0564b1a2706fbbe3d8ebebb3cd1963c9db7ee",
   "repo": {
     "host": "github.com",
     "owner": "fl749731-lab",
@@ -15,25 +15,25 @@
       "cd ender_infection_colored \u0026\u0026 java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain build"
     ],
     "skipped": false,
-    "at": "2026-11-01T20:59:13.000179905Z"
+    "at": "2026-11-01T22:25:17.54683777Z"
   },
   "packages": [
     {
       "name": "java@ender_infection_colored",
       "path": "ender_infection_colored",
       "resolver": "java",
-      "current": "0.5.1",
-      "next": "0.5.2",
-      "bump": "patch",
-      "tag": "v0.5.2",
+      "current": "0.5.2",
+      "next": "0.6.0",
+      "bump": "minor",
+      "tag": "v0.6.0",
       "publish": false
     }
   ],
   "releases": [
     {
-      "version": "0.5.2",
-      "tag": "v0.5.2",
-      "previous_tag": "v0.5.1",
+      "version": "0.6.0",
+      "tag": "v0.6.0",
+      "previous_tag": "v0.5.2",
       "packages": [
         "java@ender_infection_colored"
       ]
@@ -41,16 +41,16 @@
   ],
   "changes": [
     {
-      "file": ".changes/expansion-floor.md",
-      "type": "fix",
-      "scope": "economy",
-      "bump": "patch",
+      "file": ".changes/balance-buff.md",
+      "type": "feat",
+      "scope": "balance",
+      "bump": "minor",
       "packages": [
         "java@ender_infection_colored"
       ],
-      "body": "孵化与地表产卵在和平时期必须给节点留 16 生物质，扩张不再被自家兵源饿死；母体受袭时该保底解除。",
-      "commit": "8103c6257735f1dd6b7b19a83582fcb33647f45b",
-      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/8103c6257735f1dd6b7b19a83582fcb33647f45b",
+      "body": "畸变单位整体加强：血量与伤害上调约 50–80%，新增护甲，攻击间隔从 35 tick 缩到 26 tick；母体与攻城兽受到的单次伤害按最大生命封顶（母体 8%、攻城兽 10%），不会再被一击带走。",
+      "commit": "bd19b4426606afda308df27f1142b0a302092fe3",
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/bd19b4426606afda308df27f1142b0a302092fe3",
       "author": "fl749731-lab"
     }
   ],

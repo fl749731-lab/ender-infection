@@ -1,5 +1,15 @@
 # Changelog
 
+<!-- qegg:release 0.6.0 -->
+## v0.6.0 - 2026-11-01
+
+### Features
+
+- [`bd19b44`](https://github.com/fl749731-lab/ender-infection/commit/bd19b4426606afda308df27f1142b0a302092fe3): 畸变单位整体加强：血量与伤害上调约 50–80%，新增护甲，攻击间隔从 35 tick 缩到 26 tick；母体与攻城兽受到的单次伤害按最大生命封顶（母体 8%、攻城兽 10%），不会再被一击带走。
+
+**Full Changelog**: https://github.com/fl749731-lab/ender-infection/compare/v0.5.2...v0.6.0
+<!-- qegg:release:end -->
+
 <!-- qegg:release 0.5.2 -->
 ## v0.5.2 - 2026-11-01
 

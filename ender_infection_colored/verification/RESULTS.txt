@@ -1,16 +1,18 @@
-Ender Infection 0.3.0 / Minecraft 1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17
-BUILD: PASS, built and published by the QuailEgg release workflow (GitHub Actions run 41296819968, 2026-11-01 10:19Z).
-RELEASE: v0.3.0  https://github.com/fl749731-lab/ender-infection/releases/tag/v0.3.0
-  asset: ender-infection-0.3.0.jar 3001135 bytes  sha256 cabd1ad71c66ea4aff71d921fa2bb99bd135c8017020e051b423c360db4998b8
+Ender Infection 0.4.0 / Minecraft 1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17
+BUILD: PASS, built and published by the QuailEgg release workflow (GitHub Actions run 41299178828, 2026-11-01 10:52Z).
+RELEASE: v0.4.0  https://github.com/fl749731-lab/ender-infection/releases/tag/v0.4.0
+  asset: ender-infection-0.4.0.jar 3001835 bytes  sha256 c6e483ae4b9174557f818d0f58c840e65b9816dfa1e9854d99cb79ab56ba9040
   asset: checksums.txt
-GAME TESTS: All 58 required tests passed in a fresh isolated GameTest world (2026-11-01 11:00, local JDK 17.0.20.1).
+GAME TESTS: All 60 required tests passed locally (2026-11-01 11:43, JDK 17.0.20.1).
 
 CONTENTS
-- hunting scent + per mother aggression and four armed economy policy
-- siege beast rework and crystal wave band fix (the 3.5 block band was narrower than the 3.9 block front step)
-- whole column erosion sinking (SINK_DEPTH 4, free) and a free maturation pass, so cliffs and old ground really change
+- snow_block / powder_snow / ice / packed_ice / blue_ice are infectable, and a snow layer on top is cleared
+- stage three declares war on every non infected living thing: guards hunt animals and hunters lose the leash
+- hunting scent, per mother aggression, four armed economy policy
+- siege beast rework and crystal wave band fix
+- whole column erosion sinking and a free maturation pass
 - stage three lifts the node cap and placement reach; mature ground births units and grows infected flora
 
-NOTE: the release jar was verified to contain maturePass, sinkColumn and growFlora.
+NOTE: the release jar was verified to contain the snow and ice entries in infectable_ground.
 LIMITS: no player saves opened. Client visual appearance, large-world performance, multiplayer and long-term balance
   still require gameplay verification.

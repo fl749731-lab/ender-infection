@@ -12,6 +12,8 @@ public final class ColonyEconomy {
     /** Old ground matures on its own clock instead of competing with the frontier for the spread budget. */
     public static final int MATURE_BASE_TICKS=40;
     public static final int BOSS_UNIT=160;
+    /** Hatching and land births must leave this much behind so the nodes can keep paying for terrain. */
+    public static final int EXPANSION_FLOOR=16;
     public static int upgradePrice(int stage){return switch(stage){case 1->40;case 2->160;case 3->500;case 4->1400;default->Integer.MAX_VALUE;};}
     public static double speed(int reserve){return 1+Math.min(3,Math.max(0,reserve)/80.0);}
     public static int interval(int baseTicks,int reserve){return Math.max(5,(int)Math.ceil(baseTicks/speed(reserve)));}

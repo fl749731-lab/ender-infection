@@ -199,7 +199,7 @@ public final class InfectionGameTests {
     public static void matureNodeBuildsOnePaidOwnedFrontierOutpostAndPersistsIt(GameTestHelper helper){
         clearArenaMobs(helper);prepareOutpostArea(helper,true);
         var core=fundedCore(helper,new BlockPos(4,1,4),200,3);BlockPos p=new BlockPos(4,1,4);helper.setBlock(p,Blocks.AIR);helper.setBlock(p,InfectedContent.NEST.get());var level=helper.getLevel();var node=(ExpansionNodeEntity)level.getBlockEntity(helper.absolutePos(p));node.setOwner(core.getUUID());
-        var tag=node.saveWithFullMetadata();tag.putInt("Radius",9);tag.putInt("GrowthClock",0);tag.putInt("SpreadClock",0);tag.putInt("OutpostClock",0);node.load(tag);node.serverTick(level);
+        var tag=node.saveWithFullMetadata();tag.putInt("Radius",9);tag.putInt("ActiveTicks",0);tag.putInt("GrowthClock",0);tag.putInt("SpreadClock",0);tag.putInt("OutpostClock",0);tag.putInt("MatureClock",0);tag.putInt("FloraClock",0);tag.putInt("SpawnClock",0);tag.putInt("DeepClock",0);node.load(tag);node.serverTick(level);
         helper.assertTrue(core.colonyNodeCount()==1&&core.colonyBiomass()==200,"Node branched before reaching the frontier radius");
         tag=node.saveWithFullMetadata();tag.putInt("Radius",10);tag.putInt("OutpostClock",600);node.load(tag);node.serverTick(level);
         helper.assertTrue(core.colonyNodeCount()==2&&core.colonyBiomass()<=192&&core.colonyBiomass()>=180&&node.spentBiomass()>=8,"Frontier outpost was missing: nodes="+core.colonyNodeCount()+", stock="+core.colonyBiomass()+", spent="+node.spentBiomass());

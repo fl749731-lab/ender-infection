@@ -159,7 +159,13 @@ public final class InfectedMob extends Monster implements GeoEntity {
     }
     public boolean spendBiomass(int amount){if(amount<=0||colonyBiomass<amount)return false;colonyBiomass-=amount;return true;}
     public void refundBiomass(int amount){if(amount>0)colonyBiomass=Math.min(10000,colonyBiomass+amount);}
-    public boolean spendForHatching(int price){boolean paid=colonyBiomass-price>=upgradeReserve()&&spendBiomass(price);if(paid&&motherBrain!=null)motherBrain.policy().noteHatchSpend(price);return paid;}
+    /** Keep terrain money in peace time; a mother that is being attacked may spend it on defenders. */
+    private int expansionFloor(){
+        if(colonyNodes.isEmpty())return 0;
+        if(getTarget()!=null||getLastHurtByMob()!=null&&tickCount-getLastHurtByMobTimestamp()<200)return 0;
+        return ColonyEconomy.EXPANSION_FLOOR;
+    }
+    public boolean spendForHatching(int price){boolean paid=colonyBiomass-price>=Math.max(upgradeReserve(),expansionFloor())&&spendBiomass(price);if(paid&&motherBrain!=null)motherBrain.policy().noteHatchSpend(price);return paid;}
     public boolean spendForRecovery(int price){return colonyBiomass-price>=Math.max(8,upgradeReserve())&&spendBiomass(price);}
     public boolean canExpand(){return canExpand(ColonyEconomy.EXPANSION);}
     public boolean canExpand(int amount){return amount>0&&colonyBiomass-amount>=8;}
@@ -374,7 +380,7 @@ public final class InfectedMob extends Monster implements GeoEntity {
         InfectedKind host=motherBrain.pickHost();
         boolean advanced=motherStage()>=3&&host.evolved()!=null&&random.nextInt(motherStage()>=4?2:3)==0&&colonyBiomass-upgradeReserve()>=ColonyEconomy.ADVANCED_UNIT;
         int price=advanced?ColonyEconomy.ADVANCED_UNIT:ColonyEconomy.EARLY_UNIT;
-        if(colonyBiomass-price<upgradeReserve()){lastSpawnNote="reserve "+upgradeReserve()+" stock "+colonyBiomass;return false;}
+        if(colonyBiomass-price<Math.max(upgradeReserve(),expansionFloor())){lastSpawnNote="reserve "+Math.max(upgradeReserve(),ColonyEconomy.EXPANSION_FLOOR)+" stock "+colonyBiomass;return false;}
         Monster child=advanced&&host==InfectedKind.EARLY_ZOMBIE?EnderInfection.MUTANT_ZOMBIE.get().create(server):InfectedContent.TYPES.get(advanced?host.evolved():host).get().create(server);
         if(child==null){lastSpawnNote="create null "+host;return false;}
         child.moveTo(pos.getX()+.5,pos.getY(),pos.getZ()+.5,random.nextFloat()*360,0);

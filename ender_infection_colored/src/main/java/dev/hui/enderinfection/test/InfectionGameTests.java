@@ -787,6 +787,35 @@ public final class InfectionGameTests {
         helper.assertTrue(node.maturedBlocks()>0,"Node did not record matured blocks: "+node.maturedBlocks());
         clearWideBattlefield(helper);helper.succeed();
     }
+    @GameTest(template="empty64",timeoutTicks=100,batch="ecology_snow")
+    public static void snowAndIceCanBeErodedLikeAnyGround(GameTestHelper helper){
+        clearArenaMobs(helper);flatBattlefield(helper,0,12,0,8);var level=helper.getLevel();
+        for(int x=1;x<=7;x++)for(int z=1;z<=7;z++){
+            helper.setBlock(new BlockPos(x,0,z),Blocks.SNOW_BLOCK);
+            if(x%2==0)helper.setBlock(new BlockPos(x,1,z),Blocks.SNOW);
+        }
+        var core=fundedCore(helper,new BlockPos(4,1,4),1000,2);
+        BlockPos p=new BlockPos(4,1,4);helper.setBlock(p,InfectedContent.NEST.get());
+        var node=(ExpansionNodeEntity)level.getBlockEntity(helper.absolutePos(p));node.setOwner(core.getUUID());
+        var tag=node.saveWithFullMetadata();tag.putInt("Radius",4);node.load(tag);
+        for(int i=0;i<300;i++)node.serverTick(level);
+        int infected=0;for(int x=1;x<=7;x++)for(int z=1;z<=7;z++)if(InfectedContent.terrainKey(helper.getBlockState(new BlockPos(x,0,z)))!=null)infected++;
+        helper.assertTrue(infected>0,"Snow block was never eroded");
+        helper.assertTrue(core.colonyBiomass()<1000,"Snow erosion was free");
+        clearWideBattlefield(helper);helper.succeed();
+    }
+
+    @GameTest(template="empty64",timeoutTicks=120,batch="ai_total_war")
+    public static void stageThreeBroodAttacksAnimalsOnSight(GameTestHelper helper){
+        clearWideBattlefield(helper);flatBattlefield(helper,0,32,0,16);var level=helper.getLevel();
+        var core=fundedCore(helper,new BlockPos(3,1,8),0,3);
+        var guard=battleUnit(helper,dev.hui.enderinfection.entity.InfectedKind.EARLY_COW,new BlockPos(6,1,8),core,"guard");
+        var cow=net.minecraft.world.entity.EntityType.COW.create(level);placeMob(helper,cow,new BlockPos(20,1,8));cow.setNoAi(true);level.addFreshEntity(cow);
+        helper.runAfterDelay(80,()->{
+            helper.assertTrue(guard.getTarget()==cow,"Stage three guard ignored an animal: "+(guard.getTarget()==null?"none":guard.getTarget().getType()));
+            clearWideBattlefield(helper);helper.succeed();
+        });
+    }
     @GameTest(template="empty64",timeoutTicks=80,batch="ecology_slope")
     public static void frontierErosionClimbsConnectedOneBlockSteps(GameTestHelper helper){
         clearArenaMobs(helper);flatBattlefield(helper,0,12,0,8);var core=fundedCore(helper,new BlockPos(2,1,6),1000,2);

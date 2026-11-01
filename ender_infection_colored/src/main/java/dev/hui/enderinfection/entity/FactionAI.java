@@ -87,7 +87,7 @@ public final class FactionAI {
     }
     private static boolean canJoin(Mob mob,LivingEntity target){
         if(urgent(mob,target)||mob instanceof InfectedMob core&&core.kind==InfectedKind.CORE)return true;
-        if(duty(mob).equals("guard")&&!(target instanceof Enemy)&&!(target instanceof Player))return false;
+        if(duty(mob).equals("guard")&&!(target instanceof Enemy)&&!(target instanceof Player)){var owner=home(mob);if(owner==null||owner.motherStage()<3)return false;}
         int limit=target instanceof Enemy||target instanceof Player?Math.max(3,packLimit(mob)):target.getMaxHealth()>=30?2:1;
         return huntLoad(mob,target)<limit;
     }
@@ -96,7 +96,11 @@ public final class FactionAI {
             var data=mob.getPersistentData();boolean ordered=data.hasUUID("CommandTarget")&&data.getUUID("CommandTarget").equals(target.getUUID())&&data.getLong("CommandUntil")>mob.level().getGameTime();
             if(!ordered&&!(target instanceof Player)&&!(target instanceof Enemy)&&!(target instanceof Mob other&&infected(other.getTarget()))&&mob.getLastHurtByMob()!=target)return false;
         }
-        Vec3 defense=defenseCenter(mob);if(defense!=null)return target.position().distanceToSqr(defense)<=defenseRadius(mob)*defenseRadius(mob);var core=home(mob);return core==null||core.distanceToSqr(target)<=Math.pow(core.expansionRange()+16,2);
+        var core=home(mob);if(core==null)return true;
+        // Stage three declares war on everything: no defense ring and no colony leash for hunting.
+        if(core.motherStage()>=3)return true;
+        Vec3 defense=defenseCenter(mob);if(defense!=null)return target.position().distanceToSqr(defense)<=defenseRadius(mob)*defenseRadius(mob);
+        return core.distanceToSqr(target)<=Math.pow(core.expansionRange()+16,2);
     }
     private static void search(Mob mob,Vec3 pos,long until){mob.getPersistentData().putLong("SearchPos",BlockPos.containing(pos).asLong());mob.getPersistentData().putLong("SearchUntil",until);}
     private static void issue(Mob ally,LivingEntity target,Vec3 seen){

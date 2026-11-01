@@ -65,7 +65,7 @@ public final class ExpansionNodeEntity extends BlockEntity {
     public static boolean replaceSurface(ServerLevel level,BlockPos pos,InfectedMob core,boolean allowNatural){
         if(!level.hasChunkAt(pos)||!level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING))return false;
         BlockState original=level.getBlockState(pos),above=level.getBlockState(pos.above());String key=InfectedContent.terrainKey(original);
-        if(original.hasBlockEntity()||!(isGround(key)||allowNatural&&original.is(GROUND))||!(original.isFaceSturdy(level,pos,net.minecraft.core.Direction.UP)||original.getBlock() instanceof net.minecraft.world.level.block.FarmBlock||ErodedGroundBlock.farmland(original))||!above.getFluidState().isEmpty()||!above.isAir()&&!above.canBeReplaced()&&!Vegetation.supported(above))return false;
+        if(original.hasBlockEntity()||!(isGround(key)||allowNatural&&original.is(GROUND))||!(original.isFaceSturdy(level,pos,net.minecraft.core.Direction.UP)||original.getBlock() instanceof net.minecraft.world.level.block.FarmBlock||ErodedGroundBlock.farmland(original))||!above.getFluidState().isEmpty()||!above.isAir()&&!above.canBeReplaced()&&!Vegetation.supported(above)&&!above.is(net.minecraft.world.level.block.Blocks.SNOW))return false;
         boolean tall=Vegetation.tallBottom(above);BlockState upper=level.getBlockState(pos.above(2));
         int allowance=Math.min(core.expansionAllowance(),ColonyEconomy.NODE);if(!core.spendForExpansion(ColonyEconomy.NODE))return false;
         if(!above.isAir())level.setBlock(pos.above(),net.minecraft.world.level.block.Blocks.AIR.defaultBlockState(),2);
@@ -166,7 +166,7 @@ public final class ExpansionNodeEntity extends BlockEntity {
                 if(!(state.is(GROUND)||isGround(previous))||state.hasBlockEntity())continue;
                 BlockState above=level.getBlockState(pos.above());
                 if(!above.getFluidState().isEmpty())continue;
-                if(!above.isAir()&&!above.canBeReplaced()&&!above.is(BlockTags.LOGS)&&!Vegetation.supported(above))continue;
+                if(!above.isAir()&&!above.canBeReplaced()&&!above.is(BlockTags.LOGS)&&!Vegetation.supported(above)&&!above.is(net.minecraft.world.level.block.Blocks.SNOW))continue;
                 String next=null;
                 if(previous==null){
                     // Grow out from the node or an existing patch rather than scattering isolated stamps.
@@ -237,7 +237,7 @@ public final class ExpansionNodeEntity extends BlockEntity {
                 }
                 if(!state.is(GROUND)||state.hasBlockEntity()||InfectedContent.terrainKey(state)!=null)continue;
                 BlockState above=level.getBlockState(pos.above());
-                if(!above.getFluidState().isEmpty()||!above.isAir()&&!above.canBeReplaced()&&!above.is(BlockTags.LOGS)&&!Vegetation.supported(above))continue;
+                if(!above.getFluidState().isEmpty()||!above.isAir()&&!above.canBeReplaced()&&!above.is(BlockTags.LOGS)&&!Vegetation.supported(above)&&!above.is(net.minecraft.world.level.block.Blocks.SNOW))continue;
                 boolean connected=offset.distSqr(BlockPos.ZERO)<=2;
                 for(var direction:net.minecraft.core.Direction.Plane.HORIZONTAL)for(int step=-1;step<=1;step++){
                     BlockPos adjacent=pos.relative(direction).offset(0,step,0);

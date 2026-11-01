@@ -15,8 +15,8 @@ public final class ErodedGroundBlock extends Block {
     public static final List<List<String>> BASES=List.of(
         List.of("grass_block","moss_block","podzol","mycelium"),
         List.of("dirt","coarse_dirt","rooted_dirt","mud","dirt_path","farmland","farmland_moist"),
-        List.of("sand","red_sand","gravel","sandstone","red_sandstone","smooth_sandstone","cut_sandstone","smooth_red_sandstone","cut_red_sandstone"),
-        List.of("stone","andesite","diorite","granite","deepslate","end_stone","netherrack","blackstone","basalt","tuff","calcite","clay","terracotta","white_terracotta","orange_terracotta","magenta_terracotta","light_blue_terracotta","yellow_terracotta","lime_terracotta","pink_terracotta","gray_terracotta","light_gray_terracotta","cyan_terracotta","purple_terracotta","blue_terracotta","brown_terracotta","green_terracotta","red_terracotta","black_terracotta")
+        List.of("sand","snow_block","powder_snow","red_sand","gravel","sandstone","red_sandstone","smooth_sandstone","cut_sandstone","smooth_red_sandstone","cut_red_sandstone"),
+        List.of("stone","ice","packed_ice","blue_ice","andesite","diorite","granite","deepslate","end_stone","netherrack","blackstone","basalt","tuff","calcite","clay","terracotta","white_terracotta","orange_terracotta","magenta_terracotta","light_blue_terracotta","yellow_terracotta","lime_terracotta","pink_terracotta","gray_terracotta","light_gray_terracotta","cyan_terracotta","purple_terracotta","blue_terracotta","brown_terracotta","green_terracotta","red_terracotta","black_terracotta")
     );
     private static final List<String> KEYS=List.of("eroded_grass","eroded_soil","eroded_sand","eroded_stone");
     public ErodedGroundBlock(Properties properties){super(properties);registerDefaultState(stateDefinition.any().setValue(EROSION,0).setValue(SUBSTRATE,0));}

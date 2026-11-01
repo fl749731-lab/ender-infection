@@ -845,6 +845,18 @@ public final class InfectionGameTests {
             clearWideBattlefield(helper);helper.succeed();
         });
     }
+    @GameTest(template="empty64",timeoutTicks=100,batch="territory_snow")
+    public static void snowyInfectedGroundStillPaysLandIncome(GameTestHelper helper){
+        clearArenaMobs(helper);prepareBurstArena(helper);var level=helper.getLevel();
+        for(int x=0;x<9;x++)for(int z=0;z<9;z++){
+            helper.setBlock(new BlockPos(x,0,z),InfectedContent.TERRAIN.get("crystal_crust").get());
+            helper.setBlock(new BlockPos(x,1,z),Blocks.SNOW);
+        }
+        var core=fundedCore(helper,new BlockPos(7,2,7),100,3);var node=incomeNode(helper,new BlockPos(4,2,4),core,4);
+        int paid=forceLandHarvest(helper,core);
+        helper.assertTrue(paid>0,"Snow covered infected ground paid no land income: "+paid+", columns="+core.territoryColumns());
+        clearWideBattlefield(helper);helper.succeed();
+    }
     @GameTest(template="empty64",timeoutTicks=80,batch="ecology_slope")
     public static void frontierErosionClimbsConnectedOneBlockSteps(GameTestHelper helper){
         clearArenaMobs(helper);flatBattlefield(helper,0,12,0,8);var core=fundedCore(helper,new BlockPos(2,1,6),1000,2);

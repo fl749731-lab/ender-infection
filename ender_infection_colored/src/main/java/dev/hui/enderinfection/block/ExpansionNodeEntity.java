@@ -322,7 +322,7 @@ public final class ExpansionNodeEntity extends BlockEntity {
             BlockPos sample=pos.offset(x,0,z);if(!level.hasChunkAt(sample))continue;
             for(int y=2;y>=-3;y--){BlockPos ground=sample.offset(0,y-1,0);BlockState state=level.getBlockState(ground);String key=InfectedContent.terrainKey(state);
                 if(!state.is(GROUND)&&!isGround(key))continue;
-                if(!level.getBlockState(ground.above()).isAir()&&!level.getBlockState(ground.above()).canBeReplaced()&&!Vegetation.supported(level.getBlockState(ground.above())))continue;
+                if(!level.getBlockState(ground.above()).isAir()&&!level.getBlockState(ground.above()).canBeReplaced()&&!Vegetation.supported(level.getBlockState(ground.above()))&&!level.getBlockState(ground.above()).is(net.minecraft.world.level.block.Blocks.SNOW))continue;
                 boolean covered=false;for(var node:nodes)if(node!=this&&node.getBlockPos().distSqr(ground)<node.radius()*node.radius()){covered=true;break;}
                 if(!covered)score+=(key==null?4:1)*soil.remaining(ground)/(double)dev.hui.enderinfection.biomass.LandNutrients.CYCLES;
                 break;

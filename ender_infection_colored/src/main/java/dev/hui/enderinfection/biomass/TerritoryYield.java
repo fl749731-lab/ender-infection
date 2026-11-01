@@ -33,7 +33,7 @@ public final class TerritoryYield {
                     BlockPos pos=column.offset(0,dy,0);String key=InfectedContent.terrainKey(level.getBlockState(pos));
                     if(!ground(key))continue;
                     var above=level.getBlockState(pos.above());
-                    if(!above.isAir()&&!above.canBeReplaced()&&!(above.getBlock() instanceof InfectedPlantBlock)&&!above.is(BlockTags.LOGS))continue;
+                    if(!above.isAir()&&!above.canBeReplaced()&&!(above.getBlock() instanceof InfectedPlantBlock)&&!above.is(BlockTags.LOGS)&&!above.is(net.minecraft.world.level.block.Blocks.SNOW))continue;
                     long id=((long)pos.getX()<<32)^(pos.getZ()&0xffffffffL);BlockPos previous=columns.get(id);
                     if(previous==null||pos.getY()>previous.getY())columns.put(id,pos.immutable());break;
                 }

@@ -10,6 +10,9 @@ import dev.hui.enderinfection.entity.InfectedKind;
 import dev.hui.enderinfection.entity.InfectedMob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.effect.MobEffect;
+import dev.hui.enderinfection.effect.EnderErosionEffect;
+import dev.hui.enderinfection.effect.MyceliumInfectionEffect;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
@@ -35,6 +38,10 @@ public final class InfectedContent {
     private static final DeferredRegister<Item> ITEMS=DeferredRegister.create(ForgeRegistries.ITEMS,EnderInfection.MOD_ID);
     private static final DeferredRegister<Block> BLOCKS=DeferredRegister.create(ForgeRegistries.BLOCKS,EnderInfection.MOD_ID);
     private static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES=DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES,EnderInfection.MOD_ID);
+    private static final DeferredRegister<MobEffect> MOB_EFFECTS=DeferredRegister.create(ForgeRegistries.MOB_EFFECTS,EnderInfection.MOD_ID);
+    /** Standing inside infected ground: any outsider catches this. */
+    public static final RegistryObject<MobEffect> ENDER_EROSION=MOB_EFFECTS.register("ender_erosion",EnderErosionEffect::new);
+    public static final RegistryObject<MobEffect> MYCELIUM_INFECTION=MOB_EFFECTS.register("mycelium_infection",MyceliumInfectionEffect::new);
     public static final Map<InfectedKind,RegistryObject<EntityType<InfectedMob>>> TYPES=new EnumMap<>(InfectedKind.class);
     public static final Map<InfectedKind,RegistryObject<Item>> EGGS=new EnumMap<>(InfectedKind.class);
     public static final RegistryObject<Block> NEST=BLOCKS.register("infected_nest",()->new InfectedNestBlock(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.AMETHYST).lightLevel(s->6).noOcclusion()));
@@ -67,7 +74,7 @@ public final class InfectedContent {
     }
     private InfectedContent(){}
     public static void register(IEventBus bus){
-        BLOCKS.register(bus);BLOCK_ENTITIES.register(bus);ENTITIES.register(bus);ITEMS.register(bus);
+        BLOCKS.register(bus);BLOCK_ENTITIES.register(bus);ENTITIES.register(bus);ITEMS.register(bus);MOB_EFFECTS.register(bus);
         bus.addListener(InfectedContent::attributes);bus.addListener(InfectedContent::creative);
     }
     private static void attributes(EntityAttributeCreationEvent event){TYPES.forEach((kind,type)->event.put(type.get(),InfectedMob.attributes(kind).build()));}

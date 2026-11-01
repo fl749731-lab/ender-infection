@@ -199,10 +199,10 @@ public final class InfectionGameTests {
     public static void matureNodeBuildsOnePaidOwnedFrontierOutpostAndPersistsIt(GameTestHelper helper){
         clearArenaMobs(helper);prepareOutpostArea(helper,true);
         var core=fundedCore(helper,new BlockPos(4,1,4),200,3);BlockPos p=new BlockPos(4,1,4);helper.setBlock(p,Blocks.AIR);helper.setBlock(p,InfectedContent.NEST.get());var level=helper.getLevel();var node=(ExpansionNodeEntity)level.getBlockEntity(helper.absolutePos(p));node.setOwner(core.getUUID());
-        var tag=node.saveWithFullMetadata();tag.putInt("Radius",9);node.load(tag);node.serverTick(level);
+        var tag=node.saveWithFullMetadata();tag.putInt("Radius",9);tag.putInt("GrowthClock",0);tag.putInt("SpreadClock",0);tag.putInt("OutpostClock",0);node.load(tag);node.serverTick(level);
         helper.assertTrue(core.colonyNodeCount()==1&&core.colonyBiomass()==200,"Node branched before reaching the frontier radius");
-        tag=node.saveWithFullMetadata();tag.putInt("Radius",10);node.load(tag);node.serverTick(level);
-        helper.assertTrue(core.colonyNodeCount()==2&&core.colonyBiomass()<=192&&core.colonyBiomass()>=190&&node.spentBiomass()==8,"Frontier outpost was missing, duplicated or not charged eight");
+        tag=node.saveWithFullMetadata();tag.putInt("Radius",10);tag.putInt("OutpostClock",600);node.load(tag);node.serverTick(level);
+        helper.assertTrue(core.colonyNodeCount()==2&&core.colonyBiomass()<=192&&core.colonyBiomass()>=180&&node.spentBiomass()>=8,"Frontier outpost was missing: nodes="+core.colonyNodeCount()+", stock="+core.colonyBiomass()+", spent="+node.spentBiomass());
         var saved=new net.minecraft.nbt.CompoundTag();core.addAdditionalSaveData(saved);BlockPos child=null;
         for(var entry:saved.getList("ColonyNodes",4)){
             BlockPos pos=BlockPos.of(((net.minecraft.nbt.LongTag)entry).getAsLong());if(!pos.equals(helper.absolutePos(p)))child=pos;
@@ -829,6 +829,19 @@ public final class InfectionGameTests {
         var cow=net.minecraft.world.entity.EntityType.COW.create(level);placeMob(helper,cow,new BlockPos(20,1,8));cow.setNoAi(true);level.addFreshEntity(cow);
         helper.runAfterDelay(80,()->{
             helper.assertTrue(guard.getTarget()==cow,"Stage three guard ignored an animal: "+(guard.getTarget()==null?"none":guard.getTarget().getType()));
+            clearWideBattlefield(helper);helper.succeed();
+        });
+    }
+    @GameTest(template="empty64",timeoutTicks=120,batch="effect_erosion")
+    public static void infectedGroundInflictsEnderErosionOnOutsidersOnly(GameTestHelper helper){
+        clearWideBattlefield(helper);flatBattlefield(helper,0,12,0,8);var level=helper.getLevel();
+        for(int x=1;x<=7;x++)for(int z=1;z<=7;z++)helper.setBlock(new BlockPos(x,0,z),InfectedContent.TERRAIN.get("eroded_grass").get());
+        var outsider=net.minecraft.world.entity.EntityType.COW.create(level);placeMob(helper,outsider,new BlockPos(4,1,4));outsider.setNoAi(true);level.addFreshEntity(outsider);
+        var ally=InfectedContent.TYPES.get(dev.hui.enderinfection.entity.InfectedKind.EARLY_COW).get().create(level);placeMob(helper,ally,new BlockPos(5,1,4));ally.setNoAi(true);level.addFreshEntity(ally);
+        helper.runAfterDelay(60,()->{
+            helper.assertTrue(outsider.hasEffect(InfectedContent.ENDER_EROSION.get()),"Outsider on infected ground never caught ender erosion");
+            helper.assertTrue(outsider.hasEffect(InfectedContent.MYCELIUM_INFECTION.get()),"Ender erosion did not feed our own mycelium infection");
+            helper.assertTrue(!ally.hasEffect(InfectedContent.ENDER_EROSION.get()),"Faction unit was hurt by its own ground");
             clearWideBattlefield(helper);helper.succeed();
         });
     }

@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "version": "0.11.0-alpha.1",
-  "created_at": "2026-11-02T16:31:22.589906618Z",
+  "version": "0.11.0-alpha.2",
+  "created_at": "2026-11-02T19:30:12.422898027Z",
   "mode": "pr",
   "channel": "alpha",
-  "fingerprint": "sha256:663e59b86858ca90036ebcbf2528af216f3374993bcb1d34e622309d47fe67eb",
+  "fingerprint": "sha256:dad474d4c26c02b8198de73c72796c7a1153eeb4c7f4bbc9fbf1e9dcad4bf58b",
   "repo": {
     "host": "github.com",
     "owner": "fl749731-lab",
@@ -16,25 +16,25 @@
       "cd ender_infection_colored \u0026\u0026 java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain build"
     ],
     "skipped": false,
-    "at": "2026-11-02T16:31:22.589907249Z"
+    "at": "2026-11-02T19:30:12.422898928Z"
   },
   "packages": [
     {
       "name": "java@ender_infection_colored",
       "path": "ender_infection_colored",
       "resolver": "java",
-      "current": "0.10.1-alpha.1",
-      "next": "0.11.0-alpha.1",
+      "current": "0.11.0-alpha.1",
+      "next": "0.11.0-alpha.2",
       "bump": "minor",
-      "tag": "v0.11.0-alpha.1",
+      "tag": "v0.11.0-alpha.2",
       "publish": false
     }
   ],
   "releases": [
     {
-      "version": "0.11.0-alpha.1",
-      "tag": "v0.11.0-alpha.1",
-      "previous_tag": "v0.10.1-alpha.1",
+      "version": "0.11.0-alpha.2",
+      "tag": "v0.11.0-alpha.2",
+      "previous_tag": "v0.11.0-alpha.1",
       "packages": [
         "java@ender_infection_colored"
       ],
@@ -67,9 +67,23 @@
       "commit": "3d4ee59d66f420bd441de4e5c37621dd8aa92e23",
       "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/3d4ee59d66f420bd441de4e5c37621dd8aa92e23",
       "author": "fl749731-lab"
+    },
+    {
+      "file": ".changes/lab-styles.md",
+      "type": "feat",
+      "scope": "worldgen",
+      "bump": "minor",
+      "packages": [
+        "java@ender_infection_colored"
+      ],
+      "body": "按真菌的做法把实验室拆成三款并按群系投放：蘑菇岛=白瓷砖研究站、平原=病房、丛林=牢房；新增 grid 放置修饰符（32/10），彻底解决实验室扎堆。",
+      "commit": "f736b96e9f2730960f0fe151229934612a88b706",
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/f736b96e9f2730960f0fe151229934612a88b706",
+      "author": "fl749731-lab"
     }
   ],
   "previous_changes": [
+    ".changes/lab-detail.md",
     ".changes/lab-rarity.md"
   ],
   "qegg": {

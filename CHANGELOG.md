@@ -1,5 +1,19 @@
 # Changelog
 
+<!-- qegg:release 0.9.0 -->
+## v0.9.0 - 2026-11-02
+
+### Features
+
+- [`e5aef2f`](https://github.com/fl749731-lab/ender-infection/commit/e5aef2f6f4645eeb2c24589d73f02c41222eeabf): 成熟地表自己孵出的畸变兽不再向母体收生物质；人口上限与三十秒节拍仍然生效。另修复末影阵营单位离开视野后被按距离刷掉。
+
+### Bug Fixes
+
+- [`e5aef2f`](https://github.com/fl749731-lab/ender-infection/commit/e5aef2f6f4645eeb2c24589d73f02c41222eeabf): 阶段刷怪蛋改用原版刷怪蛋渲染：五个阶段各一套配色，并补上 template_spawn_egg 模型，不再是缺省占位图。
+
+**Full Changelog**: https://github.com/fl749731-lab/ender-infection/compare/v0.8.0...v0.9.0
+<!-- qegg:release:end -->
+
 <!-- qegg:release 0.8.0 -->
 ## v0.8.0 - 2026-11-02
 

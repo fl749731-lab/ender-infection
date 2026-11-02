@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "version": "0.8.0",
-  "created_at": "2026-11-02T09:58:27.539209362Z",
+  "version": "0.9.0",
+  "created_at": "2026-11-02T11:11:22.370092903Z",
   "mode": "pr",
-  "fingerprint": "sha256:140cff56dc194bf7604bdc0d65e5430632853b2808b881093c99252b6e9b7879",
+  "fingerprint": "sha256:270ffce670fcd0ede8cbdc5dc343a98419a327239b2b5ceb4b17f701fb4f52fb",
   "repo": {
     "host": "github.com",
     "owner": "fl749731-lab",
@@ -15,25 +15,25 @@
       "cd ender_infection_colored \u0026\u0026 java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain build"
     ],
     "skipped": false,
-    "at": "2026-11-02T09:58:27.539210013Z"
+    "at": "2026-11-02T11:11:22.370093283Z"
   },
   "packages": [
     {
       "name": "java@ender_infection_colored",
       "path": "ender_infection_colored",
       "resolver": "java",
-      "current": "0.7.0",
-      "next": "0.8.0",
+      "current": "0.8.0",
+      "next": "0.9.0",
       "bump": "minor",
-      "tag": "v0.8.0",
+      "tag": "v0.9.0",
       "publish": false
     }
   ],
   "releases": [
     {
-      "version": "0.8.0",
-      "tag": "v0.8.0",
-      "previous_tag": "v0.7.0",
+      "version": "0.9.0",
+      "tag": "v0.9.0",
+      "previous_tag": "v0.8.0",
       "packages": [
         "java@ender_infection_colored"
       ]
@@ -41,16 +41,29 @@
   ],
   "changes": [
     {
-      "file": ".changes/stage-eggs.md",
-      "type": "feat",
+      "file": ".changes/egg-icons.md",
+      "type": "fix",
       "scope": "item",
+      "bump": "patch",
+      "packages": [
+        "java@ender_infection_colored"
+      ],
+      "body": "阶段刷怪蛋改用原版刷怪蛋渲染：五个阶段各一套配色，并补上 template_spawn_egg 模型，不再是缺省占位图。",
+      "commit": "e5aef2f6f4645eeb2c24589d73f02c41222eeabf",
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/e5aef2f6f4645eeb2c24589d73f02c41222eeabf",
+      "author": "fl749731-lab"
+    },
+    {
+      "file": ".changes/free-land-births.md",
+      "type": "feat",
+      "scope": "ecology",
       "bump": "minor",
       "packages": [
         "java@ender_infection_colored"
       ],
-      "body": "新增独立的末影感染创造模式物品栏，内含五个阶段的母体刷怪蛋与全部单位刷怪蛋、节点和地形方块。",
-      "commit": "f10e600b9d12b63e260438f19ef01ab0313bc2f7",
-      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/f10e600b9d12b63e260438f19ef01ab0313bc2f7",
+      "body": "成熟地表自己孵出的畸变兽不再向母体收生物质；人口上限与三十秒节拍仍然生效。另修复末影阵营单位离开视野后被按距离刷掉。",
+      "commit": "e5aef2f6f4645eeb2c24589d73f02c41222eeabf",
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/e5aef2f6f4645eeb2c24589d73f02c41222eeabf",
       "author": "fl749731-lab"
     }
   ],

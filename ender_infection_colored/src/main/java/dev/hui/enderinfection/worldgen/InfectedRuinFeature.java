@@ -21,7 +21,7 @@ public final class InfectedRuinFeature extends Feature<NoneFeatureConfiguration>
 
     private static final int HALF_WIDTH = 6;
     private static final int HALF_DEPTH = 4;
-    private static final int WALL_HEIGHT = 5;
+    private static final int WALL_HEIGHT = 7;
 
     private final Style style;
 
@@ -69,7 +69,7 @@ public final class InfectedRuinFeature extends Feature<NoneFeatureConfiguration>
                     BlockPos pos = base.offset(dx, dy, dz);
                     if (door && dy < 3) { level.setBlock(pos, Blocks.AIR.defaultBlockState(), 2); continue; }
                     if (corner) { level.setBlock(pos, dy == WALL_HEIGHT - 1 ? trim : accent, 2); continue; }
-                    boolean window = (dy == 2 || dy == 3) && (Math.abs(dx) % 3 == 1 || Math.abs(dz) % 3 == 1);
+                    boolean window = (dy >= 2 && dy <= 5) && (Math.abs(dx) % 3 == 1 || Math.abs(dz) % 3 == 1);
                     if (window) level.setBlock(pos, glass, 2);
                     else if (dy == WALL_HEIGHT - 1) level.setBlock(pos, trim, 2);
                     else level.setBlock(pos, wall, 2);
@@ -81,6 +81,19 @@ public final class InfectedRuinFeature extends Feature<NoneFeatureConfiguration>
                 boolean edge = Math.abs(dx) == width || Math.abs(dz) == depth;
                 boolean rib = (Math.abs(dx) + Math.abs(dz)) % 4 == 0;
                 level.setBlock(base.offset(dx, WALL_HEIGHT, dz), edge || rib ? trim : accent, 2);
+            }
+        }
+        for (int dx = -width - 1; dx <= width + 1; dx++) {
+            for (int dz = -depth - 1; dz <= depth + 1; dz++) {
+                boolean rim = Math.abs(dx) == width + 1 || Math.abs(dz) == depth + 1;
+                if (rim) level.setBlock(base.offset(dx, WALL_HEIGHT + 1, dz), trim, 2);
+            }
+        }
+        for (int sx = -1; sx <= 1; sx += 2) {
+            for (int sz = -1; sz <= 1; sz += 2) {
+                for (int dy = 0; dy < WALL_HEIGHT; dy++) {
+                    level.setBlock(base.offset(sx * (width + 1), dy, sz * (depth + 1)), dy >= WALL_HEIGHT - 1 ? trim : accent, 2);
+                }
             }
         }
         for (int dx = -1; dx <= 1; dx++) {
@@ -123,7 +136,7 @@ public final class InfectedRuinFeature extends Feature<NoneFeatureConfiguration>
                 ? InfectedContent.PLANTS.get("infected_flower").get().defaultBlockState()
                 : InfectedContent.PLANTS.get("infected_grass").get().defaultBlockState(), 2);
         }
-        if (level.getBlockEntity(base.offset(0, -1, 0)) instanceof ExpansionNodeEntity node) node.markWild();
+        if (level.getBlockEntity(base) instanceof ExpansionNodeEntity node) node.markWild();
         return true;
     }
 

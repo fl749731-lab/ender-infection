@@ -57,8 +57,12 @@ public final class BiomassEvents {
                 .executes(context->{
                     var player=context.getSource().getPlayerOrException();
                     String style=com.mojang.brigadier.arguments.StringArgumentType.getString(context,"style");
-                    placeLab(player.serverLevel(),player.blockPosition().offset(0,1,0),style);
-                    context.getSource().sendSuccess(()->Component.literal("已生成实验室："+style),false);
+                    if(!java.util.Set.of("research","hospital","prison").contains(style)){context.getSource().sendFailure(Component.literal("类型：research / hospital / prison"));return 0;}
+                    var origin=player.blockPosition().offset(40,style.equals("research")?-20:1,0);
+                    if(style.equals("research")){
+                        if(!dev.hui.enderinfection.worldgen.ResearchLabPlacement.place(player.serverLevel(),origin)){context.getSource().sendFailure(Component.literal("实验室放置失败：高度不足或模板缺失"));return 0;}
+                    }else placeLab(player.serverLevel(),origin,style);
+                    context.getSource().sendSuccess(()->Component.literal("已生成实验室："+style+"，底层坐标 "+origin.toShortString()+"；入口在其上方 21 格。"),false);
                     return 1;
                 })));
         event.getDispatcher().register(Commands.literal("enderbiomass").requires(source->source.hasPermission(2))

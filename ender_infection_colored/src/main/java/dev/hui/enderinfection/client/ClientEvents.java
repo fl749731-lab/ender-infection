@@ -50,6 +50,8 @@ public final class ClientEvents {
     @SubscribeEvent public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(EnderInfection.MUTANT_ZOMBIE.get(), MutantZombieRenderer::new);
         event.registerEntityRenderer(EnderInfection.CRYSTAL_SPIKE.get(),CrystalSpikeRenderer::new);
+        event.registerEntityRenderer(dev.hui.enderinfection.design.DesignContent.PROJECTILE.get(),net.minecraft.client.renderer.entity.ThrownItemRenderer::new);
+        event.registerBlockEntityRenderer(dev.hui.enderinfection.design.DesignContent.FIXTURE_ENTITY.get(),context->new LabFixtureRenderer());
         InfectedContent.TYPES.forEach((kind,type)->event.registerEntityRenderer(type.get(),context->new InfectedRenderer(context,kind)));
     }
 }

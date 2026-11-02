@@ -20,6 +20,11 @@ public final class FactionLoot {
         var random=victim.getRandom();int loot=Math.min(3,Math.max(0,event.getLootingLevel()));
         add(event,new ItemStack(InfectionItems.TISSUE.get(),core?4+((InfectedMob)victim).motherStage()*2:boss?8+random.nextInt(5):early?1+random.nextInt(2):2+random.nextInt(3)));
         if(core||boss||!early||random.nextInt(4)==0)add(event,new ItemStack(InfectionItems.SHARD.get(),boss?6+random.nextInt(5):core?2*((InfectedMob)victim).motherStage():1+random.nextInt(2+loot)));
+        if(victim instanceof InfectedMob unit&&unit.kind.designed()){
+            String extra=switch(unit.kind){case THROAT_SPITTER,HATCH_SAC,SPIDER_MOTHER->"spore_pod";case SHIELD_SENTINEL,CARRIER,SIEGEBREAKER->"chitin_plate";case RESONANCE_PRIEST,ROOT_TURRET->"resonance_organ";case WALKING_NEST,BURROW_KING->"condensed_biomass";default->"mycelium_bundle";};
+            add(event,new ItemStack(dev.hui.enderinfection.design.DesignContent.ITEMS_BY_KEY.get(extra).get(),1+random.nextInt(2+loot)));
+            if(unit.kind==InfectedKind.WALKING_NEST||unit.kind==InfectedKind.BURROW_KING)add(event,new ItemStack(InfectionItems.HEART.get()));
+        }
         if(core||boss)add(event,new ItemStack(InfectionItems.HEART.get(),core&&((InfectedMob)victim).motherStage()>=4?2:1));
     }
     private static void add(LivingDropsEvent event,ItemStack stack){

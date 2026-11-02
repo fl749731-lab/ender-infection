@@ -319,7 +319,8 @@ public final class FactionAI {
             if(!nodes.isEmpty())anchor=Vec3.atBottomCenterOf(nodes.stream().max(Comparator.comparingDouble(n->core.distanceToSqr(Vec3.atCenterOf(n.getBlockPos())))).get().getBlockPos());
             if(mob.distanceToSqr(core)>Math.pow(core.expansionRange()+16,2)){if(!walkTo(mob,core.position().add(4,0,0),1.1))return false;}
             else{
-                double radius=duty(mob).equals("patrol")?8:Math.max(20,huntScent(mob));
+                // Search scent can be wider than a single reachable patrol leg.
+                double radius=duty(mob).equals("patrol")?8:Math.min(20,Math.max(16,huntScent(mob)*.6));
                 for(int i=0;i<6;i++){
                     double angle=Math.floorMod(mob.getUUID().hashCode(),16)*Math.PI/8+(mob.tickCount/120.0)+i*Math.PI/3;
                     Vec3 desired=anchor.add(Math.cos(angle)*radius,0,Math.sin(angle)*radius);

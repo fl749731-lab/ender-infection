@@ -1,3 +1,24 @@
+Ender Infection design integration / 2026-11-02
+Target: 0.11.0-alpha.3 / Minecraft 1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17
+
+PASS: All 73 required Forge GameTests passed; isolated new world.
+PASS: qegg check and qegg verify (Forge build + reobfJar).
+PASS: final isolated client: CLIENT_ASSET_SMOKE_PASS geo=52 animations=52 design_items=107.
+PASS: source mapping: 61 component models + 2 complete/cutaway scene sources.
+PASS: asset graph: 40 exported geometry files, 45090 per-face UVs, 66 OBJ models.
+PASS: E:/mc/Minecraft1201 migration: 4514 files copied, critical executable/JRE/GeckoLib hashes match.
+
+GameTest coverage added: entity registry/dimensions/faction, directional shield, paid recruitment,
+crystal projectile damage and poison, rotating multi-block props, linked breaking and door collision,
+four-storey structure placement and natural structure registry.
+
+The client check validates resource baking. Multiplayer, long-running balance, detailed visual
+review of every unit/armor combination and compatibility with other mods are not covered by it.
+Player's existing Prism saves were not opened or modified. E drive destination keeps its own copy.
+Development worlds under build/design-client are separate and retained.
+
+Historical results follow; they apply only to the versions stated below.
+
 Ender Infection 0.5.2 / Minecraft 1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17
 RELEASE: v0.5.2  https://github.com/fl749731-lab/ender-infection/releases/tag/v0.5.2
   asset: ender-infection-0.5.2.jar 3008244 bytes  sha256 00f2166f06d2d8da519b7fc3f10b847adaf33a6bc1a26f5cbcc336623e0e0788

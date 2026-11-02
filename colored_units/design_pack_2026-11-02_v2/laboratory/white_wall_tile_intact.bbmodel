@@ -1,0 +1,139 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "白色实验室墙砖 · 完好 | white_wall_tile_intact",
+  "model_identifier": "white_wall_tile_intact",
+  "resolution": {
+    "width": 64,
+    "height": 64
+  },
+  "elements": [
+    {
+      "name": "tile_1",
+      "uuid": "b0e75bbe-3c3a-598f-a8ea-05ce181fd696",
+      "type": "cube",
+      "from": [
+        -8.0,
+        0.0,
+        -8.0
+      ],
+      "to": [
+        8.0,
+        16.0,
+        8.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            2,
+            2,
+            18,
+            18
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            2,
+            2,
+            18,
+            18
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            2,
+            2,
+            18,
+            18
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            2,
+            2,
+            18,
+            18
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            2,
+            2,
+            18,
+            18
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            2,
+            2,
+            18,
+            18
+          ],
+          "texture": 0
+        }
+      }
+    }
+  ],
+  "outliner": [
+    {
+      "name": "root",
+      "uuid": "007f5dc8-6a45-5fc6-b26a-009f57fc46f2",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "children": [
+        "b0e75bbe-3c3a-598f-a8ea-05ce181fd696"
+      ],
+      "export": true,
+      "isOpen": false,
+      "visibility": true
+    }
+  ],
+  "textures": [
+    {
+      "name": "white_wall_tile_intact.png",
+      "uuid": "10501576-374a-5e28-b61d-c5aec08086d6",
+      "id": "0",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAA1klEQVR4nO3YwQrCMAyA4Rh6FnVPoHgTPSj4BEPwiQXxUURPAy9T8QUUhY4eJnM6kC7/d1lTQqA0gVER4zp+sdtu7r8USlfrolZMtInDN1XjH1wYTGcTybKT9Prd0uTr5Va6f85ziZWGwfPw1riqmw67IVyHOYMkkVZ0gEUqxrmqhLrjEBsV41SMc2Hg2/pdS38yDrFRMU7FOBcGh/3x9R2Nh8Ve3XGIjYpxKsa5MPD/9H4UvhmHKDsgbeAxY75YRvkgAgAAAAAAAAAAAAAAAAAAAADSRg99Pju8rSmK2wAAAABJRU5ErkJggg==",
+      "mode": "bitmap",
+      "width": 64,
+      "height": 64,
+      "uv_width": 64,
+      "uv_height": 64,
+      "render_mode": "default"
+    }
+  ],
+  "animations": [],
+  "notes": "Original concept conversion. 16 units = 1 block. Editable cuboids, embedded native-density UV atlas. Design source 2026-11-02. Game integration is separate.",
+  "texture_width": 64,
+  "texture_height": 64
+}

@@ -102,6 +102,7 @@ public final class InfectedMob extends Monster implements GeoEntity {
         super(type,level); this.kind=kind; this.xpReward=kind==InfectedKind.CORE?50:12;
         if(kind==InfectedKind.CORE){colonyBiomass=ColonyEconomy.STARTER;motherBrain=new MotherBrain(this);applyMotherStage(1);nextTerritoryHarvest=level.getGameTime()+200;}
         if(kind==InfectedKind.SPIDER||kind==InfectedKind.EARLY_SPIDER)this.navigation=new WallClimberNavigation(this,level);
+        if(kind==InfectedKind.SPOREWING_SCOUT){this.navigation=new net.minecraft.world.entity.ai.navigation.FlyingPathNavigation(this,level);this.moveControl=new net.minecraft.world.entity.ai.control.FlyingMoveControl(this,20,true);setNoGravity(true);}
     }
     public static AttributeSupplier.Builder attributes(InfectedKind kind) {
         return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH,kind.health)
@@ -211,10 +212,10 @@ public final class InfectedMob extends Monster implements GeoEntity {
     private FactionAI.HuntGoal factionHunt;
     private FactionAI.Motion factionMotion;
     @Override public boolean isAlliedTo(net.minecraft.world.entity.Entity other){return FactionAI.infected(other)||super.isAlliedTo(other);}
-    @Override public boolean hurt(DamageSource source,float amount){if(FactionAI.infected(source.getEntity()))return false;if(!source.is(net.minecraft.tags.DamageTypeTags.BYPASSES_INVULNERABILITY)){if(kind==InfectedKind.CORE)amount=Math.min(amount,getMaxHealth()*.08F);else if(kind==InfectedKind.SIEGE_BEAST)amount=Math.min(amount,getMaxHealth()*.10F);}boolean hit=super.hurt(source,amount);if(hit&&kind==InfectedKind.SIEGE_BEAST&&level() instanceof ServerLevel server&&tickCount-lastSiegeHurtFx>=8){lastSiegeHurtFx=tickCount;dev.hui.enderinfection.particle.SiegeEffects.wound(server,this);}if(hit&&isAlive()&&source.getEntity() instanceof LivingEntity attacker)FactionAI.alert(this,attacker);return hit;}
+    @Override public boolean hurt(DamageSource source,float amount){if(FactionAI.infected(source.getEntity()))return false;if(!source.is(net.minecraft.tags.DamageTypeTags.BYPASSES_INVULNERABILITY)){if(kind==InfectedKind.CORE)amount=Math.min(amount,getMaxHealth()*.08F);else if(kind==InfectedKind.SIEGE_BEAST)amount=Math.min(amount,getMaxHealth()*.10F);}amount=dev.hui.enderinfection.design.DesignBehavior.filterDamage(this,source,amount);boolean hit=super.hurt(source,amount);if(hit&&kind==InfectedKind.SIEGE_BEAST&&level() instanceof ServerLevel server&&tickCount-lastSiegeHurtFx>=8){lastSiegeHurtFx=tickCount;dev.hui.enderinfection.particle.SiegeEffects.wound(server,this);}if(hit&&isAlive()&&source.getEntity() instanceof LivingEntity attacker)FactionAI.alert(this,attacker);return hit;}
     @Override protected void registerGoals() {
         goalSelector.addGoal(0,new FloatGoal(this)); goalSelector.addGoal(1,new CombatGoal());
-        goalSelector.addGoal(5,new WaterAvoidingRandomStrollGoal(this,.7){@Override public boolean canUse(){return kind!=InfectedKind.CORE&&super.canUse();}});
+        goalSelector.addGoal(5,new WaterAvoidingRandomStrollGoal(this,.7){@Override public boolean canUse(){return !kind.stationary()&&kind!=InfectedKind.SPOREWING_SCOUT&&super.canUse();}});
         goalSelector.addGoal(3,new FactionAI.GuardMotherGoal(this));
         goalSelector.addGoal(2,new FactionAI.InvestigateGoal(this));
         factionHunt=new FactionAI.HuntGoal(this);
@@ -241,7 +242,7 @@ public final class InfectedMob extends Monster implements GeoEntity {
         attackMode=pickMode();attackTick=0;waveVictims.clear();entityData.set(ATTACKING,true);getNavigation().stop();
         setDeltaMovement(0,getDeltaMovement().y,0);
         triggerAnim("action","special");
-        if(attackMode==AttackMode.SLAM&&level() instanceof ServerLevel)dev.hui.enderinfection.combat.CrystalAttacks.cast(this,kind,target,kind.hitTick);
+        if(attackMode==AttackMode.SLAM&&!kind.designed()&&level() instanceof ServerLevel)dev.hui.enderinfection.combat.CrystalAttacks.cast(this,kind,target,kind.hitTick);
         if(kind==InfectedKind.SIEGE_BEAST&&level() instanceof ServerLevel server)dev.hui.enderinfection.particle.SiegeEffects.begin(server,this,forward);
         else level().playSound(null,blockPosition(),SoundEvents.AMETHYST_BLOCK_CHIME,SoundSource.HOSTILE,1,.65F);
     }
@@ -259,6 +260,7 @@ public final class InfectedMob extends Monster implements GeoEntity {
         }
         if(kind.early()&&personalBiomass>=40&&!attacking()&&evolve(server))return;
         FactionAI.support(this);
+        if(!isNoAi())dev.hui.enderinfection.design.DesignBehavior.tick(this,server);
         if (cooldown>0)cooldown--;if(teleportCooldown>0)teleportCooldown--;
         if (!attacking()){if(kind==InfectedKind.SIEGE_BEAST)dev.hui.enderinfection.particle.SiegeEffects.idle(server,this);return;}
         attackTick++;getNavigation().stop();
@@ -313,6 +315,7 @@ public final class InfectedMob extends Monster implements GeoEntity {
         return FactionAI.enemy(this,target);
     }
     private void impact(ServerLevel server){
+        if(kind.designed()){dev.hui.enderinfection.design.DesignBehavior.impact(this,server);return;}
         switch(attackMode){
             case ROAR->roar(server);
             case POUND->pound(server);
@@ -530,6 +533,7 @@ public final class InfectedMob extends Monster implements GeoEntity {
     @Override protected net.minecraft.sounds.SoundEvent getDeathSound(){return kind==InfectedKind.SIEGE_BEAST?SoundEvents.RAVAGER_DEATH:super.getDeathSound();}
     @Override public void die(DamageSource source){
         if(kind==InfectedKind.SIEGE_BEAST&&!siegeDeathBurst&&level() instanceof ServerLevel server){siegeDeathBurst=true;triggerAnim("action","death");dev.hui.enderinfection.particle.SiegeEffects.death(server,this);}
+        if(kind.designed()||kind==InfectedKind.SKELETON||kind==InfectedKind.CORE)triggerAnim("action","death");
         super.die(source);
     }
     @Override public AnimatableInstanceCache getAnimatableInstanceCache(){return cache;}
@@ -540,7 +544,7 @@ public final class InfectedMob extends Monster implements GeoEntity {
             return state.setAndContinue(RawAnimation.begin().thenLoop(prefix+(state.isMoving()?"walk":"idle")));
         }));
         var action=new AnimationController<InfectedMob>(this,"action",0,state->PlayState.STOP).setAnimationSpeedHandler(entity->entity.emerging()?(double)entity.morphSpeed():1.0).triggerableAnim("special",RawAnimation.begin().thenPlay(prefix+"special")).triggerableAnim("infection",RawAnimation.begin().thenPlay(prefix+"infection"));
-        if(kind==InfectedKind.SIEGE_BEAST)action.triggerableAnim("death",RawAnimation.begin().thenPlay(prefix+"death"));
+        if(kind==InfectedKind.SIEGE_BEAST||kind.designed()||kind==InfectedKind.SKELETON||kind==InfectedKind.CORE)action.triggerableAnim("death",RawAnimation.begin().thenPlay(prefix+"death"));
         controllers.add(action);
     }
     private final class CombatGoal extends Goal{
@@ -552,20 +556,20 @@ public final class InfectedMob extends Monster implements GeoEntity {
         @Override public void tick(){
             if(attacking())return;LivingEntity target=getTarget();if(target==null)return;
             getLookControl().setLookAt(target,25,25);double distance=distanceTo(target);
-            boolean ranged=kind==InfectedKind.SKELETON||kind==InfectedKind.EARLY_SKELETON;
+            boolean ranged=kind.ranged();
             if(ranged){
-                if(!hasLineOfSight(target)){factionMotion.chase(target,true);return;}
-                boolean clear=kind==InfectedKind.SKELETON?hasLineOfSight(target):FactionAI.clearShot(InfectedMob.this,target);
-                if((distance<4||!clear)&&factionMotion.rangedPosition(target))return;
+                if(!hasLineOfSight(target)){if(!kind.stationary())factionMotion.chase(target,true);return;}
+                boolean clear=kind!=InfectedKind.EARLY_SKELETON?hasLineOfSight(target):FactionAI.clearShot(InfectedMob.this,target);
+                if(!kind.stationary()&&(distance<4||!clear)&&factionMotion.rangedPosition(target))return;
                 if(cooldown==0&&distance<=kind.radius&&clear)startAttack(target);
                 else if(distance>=4&&distance<=kind.radius&&clear)getNavigation().stop();
-                else if(clear)factionMotion.chase(target,true);
+                else if(clear&&!kind.stationary())factionMotion.chase(target,true);
                 return;
             }
             if(kind==InfectedKind.ENDERMAN&&teleportCooldown==0&&distance>3.5&&distance<12){blinkBehind(target);return;}
             double specialReach=switch(kind){case COW->10;case PIG->7;case SHEEP->5;case SPIDER,ENDERMAN->8;default->kind.radius;};
             if(cooldown==0&&Math.abs(target.getY()-getY())<3&&distance<=(kind==InfectedKind.CORE?(motherStage()==1?8:motherStage()==2?16:motherStage()==5?22:motherStage()==4?16:20):kind==InfectedKind.SIEGE_BEAST?18:specialReach)&&hasLineOfSight(target))startAttack(target);
-            else if(kind==InfectedKind.CORE)getNavigation().stop();
+            else if(kind.stationary())getNavigation().stop();
             else factionMotion.chase(target,false);
         }
     }

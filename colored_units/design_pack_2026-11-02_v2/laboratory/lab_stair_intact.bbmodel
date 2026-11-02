@@ -1,0 +1,224 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "实验室楼梯 · 完好 | lab_stair_intact",
+  "model_identifier": "lab_stair_intact",
+  "resolution": {
+    "width": 64,
+    "height": 64
+  },
+  "elements": [
+    {
+      "name": "lower_step_1",
+      "uuid": "846a2c04-1259-58f0-a14c-e5fc2b2268d5",
+      "type": "cube",
+      "from": [
+        -8.0,
+        0.0,
+        -8.0
+      ],
+      "to": [
+        8.0,
+        8.0,
+        8.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            22,
+            2,
+            38,
+            10
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            22,
+            2,
+            38,
+            10
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            22,
+            2,
+            38,
+            10
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            22,
+            2,
+            38,
+            10
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            2,
+            2,
+            18,
+            18
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            2,
+            2,
+            18,
+            18
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "upper_step_2",
+      "uuid": "e9f481c1-52f3-5856-941f-faedd8c6d399",
+      "type": "cube",
+      "from": [
+        -8.0,
+        8.0,
+        0.0
+      ],
+      "to": [
+        8.0,
+        16.0,
+        8.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            22,
+            2,
+            38,
+            10
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            22,
+            2,
+            38,
+            10
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            42,
+            2,
+            50,
+            10
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            42,
+            2,
+            50,
+            10
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            22,
+            2,
+            38,
+            10
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            22,
+            2,
+            38,
+            10
+          ],
+          "texture": 0
+        }
+      }
+    }
+  ],
+  "outliner": [
+    {
+      "name": "root",
+      "uuid": "dea684e3-1893-569d-b238-4647cb3d730a",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "children": [
+        "846a2c04-1259-58f0-a14c-e5fc2b2268d5",
+        "e9f481c1-52f3-5856-941f-faedd8c6d399"
+      ],
+      "export": true,
+      "isOpen": false,
+      "visibility": true
+    }
+  ],
+  "textures": [
+    {
+      "name": "lab_stair_intact.png",
+      "uuid": "1727a167-5eca-5075-b9c3-88abf6aebf97",
+      "id": "0",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAA+0lEQVR4nO3WTQrCMBCG4WnoWtSewOJCEF0oeAIRPLEgHkV0JbjxBy+guKgMGrRNa6PkfVZJGL7SdtJGJHBRNlgtF9cyQdPZ/JHlI++5Pi+TJzwPneEjz/WasZ4Mhn3Z7fbSbDWsxefTxbp+PBys63XnOXdA5h5epV/Pe+kA25vRT1uPdU07SWwxteeV7oAQGQlc/KmgaPv6zHNhJHDmG6GuhxJtNJ5ERfJ0fRGRPkSk3U7utrJ9fdO0V/rG62YkcEYCF+vJZr0VvRXebYcqDyM+GQmckcDFepKdwbOt4LId/rIDphX/twEAAAAAAAAAAAAAAAAAAAAA4tcNb+137pyPifkAAAAASUVORK5CYII=",
+      "mode": "bitmap",
+      "width": 64,
+      "height": 64,
+      "uv_width": 64,
+      "uv_height": 64,
+      "render_mode": "default"
+    }
+  ],
+  "animations": [],
+  "notes": "Original concept conversion. 16 units = 1 block. Editable cuboids, embedded native-density UV atlas. Design source 2026-11-02. Game integration is separate.",
+  "texture_width": 64,
+  "texture_height": 64
+}

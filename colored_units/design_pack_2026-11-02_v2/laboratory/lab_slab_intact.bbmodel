@@ -1,0 +1,139 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "实验室半砖 · 完好 | lab_slab_intact",
+  "model_identifier": "lab_slab_intact",
+  "resolution": {
+    "width": 64,
+    "height": 64
+  },
+  "elements": [
+    {
+      "name": "slab_1",
+      "uuid": "f6684e8a-233e-57e9-adf7-bb7cbe64cbec",
+      "type": "cube",
+      "from": [
+        -8.0,
+        0.0,
+        -8.0
+      ],
+      "to": [
+        8.0,
+        8.0,
+        8.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            42,
+            2,
+            58,
+            10
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            42,
+            2,
+            58,
+            10
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            42,
+            2,
+            58,
+            10
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            42,
+            2,
+            58,
+            10
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            22,
+            2,
+            38,
+            18
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            2,
+            2,
+            18,
+            18
+          ],
+          "texture": 0
+        }
+      }
+    }
+  ],
+  "outliner": [
+    {
+      "name": "root",
+      "uuid": "f74bf730-c8d7-5f32-b3b7-f64b0cee68e1",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "children": [
+        "f6684e8a-233e-57e9-adf7-bb7cbe64cbec"
+      ],
+      "export": true,
+      "isOpen": false,
+      "visibility": true
+    }
+  ],
+  "textures": [
+    {
+      "name": "lab_slab_intact.png",
+      "uuid": "4317c1f1-fa0f-5ef8-af89-6c6bcfab74f7",
+      "id": "0",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABZ0lEQVR4nO3YXUrDQBDA8cmS59JaPYDaN1GoBU8ggsfQB68i4g18qMcQxKNEhUpB0NrSCygRNgzpbtM2Hwr7/710s12GfMxkh4gELrKDy4ur7zKBhvd3WazU0+NDqXinZ+e1xrNMFRefj1H2ZPMxqo6nxfpg0O/L6G0krXZnYeFzksjOdtcZ/ONz4pw/PDqQ8fhd2p2W8//ZdO6c/5o0Ey/LACu9+CqlJ/uf4y1kgDWfTbOxzgY91mt8meF6Mvrp6bFes9VtLp6RwBkJXFy0QKe65iuHIuumb93xjAQuXmU701vhX0ibmLK9wPHgJCq8Afu9njel05uj3/auXiHPpqEvBVdJ36JOriwjgTMSuNhV47YUlr3hfc2S9pK8/v7u9XazuXXLoW5GAmckcLE+sG95vd3Zcli2RfrKxPbgthQ2KYdGMmCY+5ixiZvb66jKLcu3bwMAAAAAAAAAAAAAAAAAAAAApNgPUs6kTrWHCxoAAAAASUVORK5CYII=",
+      "mode": "bitmap",
+      "width": 64,
+      "height": 64,
+      "uv_width": 64,
+      "uv_height": 64,
+      "render_mode": "default"
+    }
+  ],
+  "animations": [],
+  "notes": "Original concept conversion. 16 units = 1 block. Editable cuboids, embedded native-density UV atlas. Design source 2026-11-02. Game integration is separate.",
+  "texture_width": 64,
+  "texture_height": 64
+}

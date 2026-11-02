@@ -28,7 +28,7 @@ minecraft {
             property 'forge.logging.console.level', 'info'
             mods { ender_infection { source sourceSets.main } }
         }
-        client {}
+        client { property 'mixin.env.remapRefMap','true'; property 'mixin.env.refMapRemappingFile',project.file('build/createSrgToMcp/output.srg').absolutePath; if (project.hasProperty('designSmoke')) { workingDirectory project.file('build/design-smoke'); property 'ender_infection.designSmoke','true' } }
         server { args '--nogui' }
         gameTestServer {
             workingDirectory project.file("build/gametest-${System.currentTimeMillis()}")

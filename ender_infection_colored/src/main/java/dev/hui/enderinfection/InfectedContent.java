@@ -70,9 +70,9 @@ public final class InfectedContent {
     public static final RegistryObject<Block> LAB_TILE_LIGHT=BLOCKS.register("lab_tile_light",()->new Block(BlockBehaviour.Properties.of().strength(3.5F).sound(SoundType.METAL).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> LAB_CHECKER=BLOCKS.register("lab_checker",()->new Block(BlockBehaviour.Properties.of().strength(3.5F).sound(SoundType.STONE).requiresCorrectToolForDrops()));
     public static final RegistryObject<Item> LAB_CHECKER_ITEM=ITEMS.register("lab_checker",()->new BlockItem(LAB_CHECKER.get(),new Item.Properties()));
-    public static final RegistryObject<Block> LAB_CABINET=BLOCKS.register("lab_cabinet",()->new Block(BlockBehaviour.Properties.of().strength(3F).sound(SoundType.METAL).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> INCUBATOR=BLOCKS.register("incubator",()->new dev.hui.enderinfection.block.IncubatorBlock(BlockBehaviour.Properties.of().strength(3F).sound(SoundType.METAL).lightLevel(s->7).requiresCorrectToolForDrops().randomTicks()));
-    public static final RegistryObject<Block> SURGERY_TABLE=BLOCKS.register("surgery_table",()->new dev.hui.enderinfection.block.SurgeryTableBlock(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD).randomTicks()));
+    public static final RegistryObject<Block> LAB_CABINET=BLOCKS.register("lab_cabinet",()->new dev.hui.enderinfection.design.LabFixtureBlock("lab_cabinet",BlockBehaviour.Properties.of().strength(3F).sound(SoundType.METAL).noOcclusion()));
+    public static final RegistryObject<Block> INCUBATOR=BLOCKS.register("incubator",()->new dev.hui.enderinfection.design.LabFixtureBlock("incubator",BlockBehaviour.Properties.of().strength(3F).sound(SoundType.METAL).lightLevel(s->7).requiresCorrectToolForDrops().randomTicks()));
+    public static final RegistryObject<Block> SURGERY_TABLE=BLOCKS.register("surgery_table",()->new dev.hui.enderinfection.design.LabFixtureBlock("surgery_table",BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD).randomTicks()));
     public static final RegistryObject<Item> LAB_TILE_ITEM=ITEMS.register("lab_tile",()->new BlockItem(LAB_TILE.get(),new Item.Properties()));
     public static final RegistryObject<Item> LAB_TILE_DARK_ITEM=ITEMS.register("lab_tile_dark",()->new BlockItem(LAB_TILE_DARK.get(),new Item.Properties()));
     public static final RegistryObject<Item> LAB_TILE_LIGHT_ITEM=ITEMS.register("lab_tile_light",()->new BlockItem(LAB_TILE_LIGHT.get(),new Item.Properties()));
@@ -113,6 +113,8 @@ public final class InfectedContent {
         .title(Component.translatable("itemGroup.ender_infection"))
         .icon(()->new ItemStack(NEST_ITEM.get()))
         .displayItems((params,output)->{
+            dev.hui.enderinfection.design.DesignContent.ITEMS_BY_KEY.values().forEach(i->output.accept(i.get()));
+            output.accept(dev.hui.enderinfection.item.InfectionItems.TISSUE.get());output.accept(dev.hui.enderinfection.item.InfectionItems.SHARD.get());output.accept(dev.hui.enderinfection.item.InfectionItems.HEART.get());
             STAGE_EGGS.values().forEach(egg->output.accept(egg.get()));
             EGGS.values().forEach(egg->output.accept(egg.get()));
             output.accept(NEST_ITEM.get());

@@ -1,0 +1,139 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "棋盘地砖 · 完好 | checker_floor_intact",
+  "model_identifier": "checker_floor_intact",
+  "resolution": {
+    "width": 64,
+    "height": 64
+  },
+  "elements": [
+    {
+      "name": "floor_1",
+      "uuid": "f5eda3c7-ed5e-5147-8246-d4e92414b4aa",
+      "type": "cube",
+      "from": [
+        -8.0,
+        0.0,
+        -8.0
+      ],
+      "to": [
+        8.0,
+        16.0,
+        8.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            42,
+            2,
+            58,
+            18
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            42,
+            2,
+            58,
+            18
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            42,
+            2,
+            58,
+            18
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            42,
+            2,
+            58,
+            18
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            22,
+            2,
+            38,
+            18
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            2,
+            2,
+            18,
+            18
+          ],
+          "texture": 0
+        }
+      }
+    }
+  ],
+  "outliner": [
+    {
+      "name": "root",
+      "uuid": "0214b5c1-5217-5820-9462-14570edc6084",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "children": [
+        "f5eda3c7-ed5e-5147-8246-d4e92414b4aa"
+      ],
+      "export": true,
+      "isOpen": false,
+      "visibility": true
+    }
+  ],
+  "textures": [
+    {
+      "name": "checker_floor_intact.png",
+      "uuid": "a3502a2f-e7ea-5a5c-a0f4-6687d8b773d0",
+      "id": "0",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABy0lEQVR4nO3YQS8DQRQH8Ge7ZyG06FXPZUMi6aehUs4SH8BFBDc3EqUHNwffQeK0qJ7rUkkTLSGOvVSmMZu325ntdrfdYP+/y86M6YtZ781MESXchGwUN7a6UQKVL86cWIJt3zrxUqkUedvF4g51Op2+cdm27TtXvL39o+7CfCb077e9ue6KJxmjWLw3Bl98WKurhS5ffNR4p+eXyhgm76xYFjVeGjQ5Nd038blep/TsjDJ4++2d4nD/UO09s9ms8ufNZlM53npta2MavCMW/9v5LSbMXFM1+PX54bR5NvA2n6PLjHHIzKVdf2meDbwt5oi58jNDvYCo+Ibm7cuNTzxVmyOfEweDEs4cNIGnOqcrh7gFLQcdgxLOHOY4E0dhEKXSrquvuvBUKifaupfjllWgWF/AYi6nTWnxcvhur7orjJtMa11KBykHL4MSzqCEM1U1LkvBb4fXXZZU57jqvBdPvy9DKtXHp95z2VpyxoYth0RlQCvAVdigf8zvCqwsgfTPLs+PO1kOfkfkuC9CMvV1/UEGfhsse/6ZEcbh8YETo1azI8fL59ecGDfXV5HjjSIGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP0V30WerR63ehFaAAAAAElFTkSuQmCC",
+      "mode": "bitmap",
+      "width": 64,
+      "height": 64,
+      "uv_width": 64,
+      "uv_height": 64,
+      "render_mode": "default"
+    }
+  ],
+  "animations": [],
+  "notes": "Original concept conversion. 16 units = 1 block. Editable cuboids, embedded native-density UV atlas. Design source 2026-11-02. Game integration is separate.",
+  "texture_width": 64,
+  "texture_height": 64
+}

@@ -910,7 +910,7 @@ public final class InfectionGameTests {
         @SuppressWarnings("unchecked") var feature=(net.minecraft.world.level.levelgen.feature.Feature<net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration>)InfectedContent.INFECTED_RUIN.get();
         helper.assertTrue(feature.place(context),"Laboratory feature refused to place");
         int glass=0,chests=0,stands=0,lanterns=0,crystals=0,airInside=0;
-        for(int dx=-5;dx<=5;dx++)for(int dz=-3;dz<=3;dz++)for(int dy=0;dy<=4;dy++){
+        for(int dx=-5;dx<=5;dx++)for(int dz=-3;dz<=3;dz++)for(int dy=0;dy<=7;dy++){
             var state=level.getBlockState(origin.offset(dx,dy,dz));
             if(state.is(net.minecraft.world.level.block.Blocks.TINTED_GLASS))glass++;
             if(state.is(net.minecraft.world.level.block.Blocks.CHEST))chests++;
@@ -919,7 +919,7 @@ public final class InfectionGameTests {
             if(state.is(InfectedContent.TERRAIN.get("crystal_crust").get()))crystals++;
             if(state.isAir())airInside++;
         }
-        int roof=0;for(int dx=-5;dx<=5;dx++)for(int dz=-3;dz<=3;dz++)if(!level.getBlockState(origin.offset(dx,5,dz)).isAir())roof++;
+        int roof=0;for(int dx=-5;dx<=5;dx++)for(int dz=-3;dz<=3;dz++)if(!level.getBlockState(origin.offset(dx,7,dz)).isAir())roof++;
         helper.assertTrue(glass>=6,"Laboratory has no windows: "+glass);
         helper.assertTrue(chests>=2,"Laboratory has no loot chests: "+chests);
         helper.assertTrue(stands>=1,"Laboratory has no benches: "+stands);

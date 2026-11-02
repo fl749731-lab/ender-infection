@@ -11,7 +11,7 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 public final class InfectedRenderer extends GeoEntityRenderer<InfectedMob> {
     public InfectedRenderer(EntityRendererProvider.Context context,InfectedKind kind){
         super(context,new Model(kind));this.shadowRadius=kind.width*.5F;
-        if(kind==InfectedKind.SIEGE_BEAST)addRenderLayer(new software.bernie.geckolib.renderer.layer.AutoGlowingGeoLayer<>(this));
+        if(kind==InfectedKind.SIEGE_BEAST||kind.designed()||kind==InfectedKind.CORE||kind==InfectedKind.SKELETON)addRenderLayer(new software.bernie.geckolib.renderer.layer.AutoGlowingGeoLayer<>(this));
     }
     private static final class Model extends GeoModel<InfectedMob>{
         private final String key;
@@ -19,6 +19,6 @@ public final class InfectedRenderer extends GeoEntityRenderer<InfectedMob> {
         private String appearance(InfectedMob entity){return entity.kind==InfectedKind.CORE&&entity.motherStage()!=2?"infected_core_stage"+entity.motherStage():key;}
         @Override public ResourceLocation getModelResource(InfectedMob entity){return new ResourceLocation(EnderInfection.MOD_ID,"geo/"+appearance(entity)+".geo.json");}
         @Override public ResourceLocation getTextureResource(InfectedMob entity){return new ResourceLocation(EnderInfection.MOD_ID,"textures/entity/"+appearance(entity)+".png");}
-        @Override public ResourceLocation getAnimationResource(InfectedMob entity){return new ResourceLocation(EnderInfection.MOD_ID,"animations/"+key+".animation.json");}
+        @Override public ResourceLocation getAnimationResource(InfectedMob entity){return new ResourceLocation(EnderInfection.MOD_ID,"animations/"+(entity.kind==InfectedKind.CORE?appearance(entity):key)+".animation.json");}
     }
 }

@@ -36,6 +36,7 @@ public final class EnderInfection {
         ITEMS.register(bus);
         InfectedContent.register(bus);
         dev.hui.enderinfection.item.InfectionItems.register(bus);
+        dev.hui.enderinfection.design.DesignContent.register(bus);
         FactionParticles.register(bus);
         bus.addListener(this::attributes);
         bus.addListener(this::creativeTab);

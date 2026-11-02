@@ -8,5 +8,6 @@ public final class MutantZombieRenderer extends GeoEntityRenderer<MutantZombie> 
     public MutantZombieRenderer(EntityRendererProvider.Context context) {
         super(context, new MutantZombieModel());
         this.shadowRadius = 0.75F;
+        addRenderLayer(new software.bernie.geckolib.renderer.layer.AutoGlowingGeoLayer<>(this));
     }
 }

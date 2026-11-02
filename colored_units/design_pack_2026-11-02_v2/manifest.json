@@ -1,0 +1,1107 @@
+{
+  "version": "2026-11-02-v2",
+  "status": "editable-model-assets; not game-integrated",
+  "units_per_block": 16,
+  "count": 63,
+  "models": [
+    {
+      "id": "crystal_hunter",
+      "name": "晶蚀追猎者",
+      "category": "monsters",
+      "role": "追猎 / 扑击",
+      "file": "monsters/crystal_hunter.bbmodel",
+      "cubes": 133,
+      "bones": 11,
+      "animations": [
+        "idle",
+        "walk",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "atlas": [
+        128,
+        128
+      ],
+      "uv_islands": 67
+    },
+    {
+      "id": "rib_crystal_caster",
+      "name": "棱骨术士",
+      "category": "monsters",
+      "role": "远程 / 晶刺法阵",
+      "file": "monsters/rib_crystal_caster.bbmodel",
+      "cubes": 123,
+      "bones": 12,
+      "animations": [
+        "cast_focus_orbit",
+        "idle",
+        "walk",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 47
+    },
+    {
+      "id": "ravager_siege_concept",
+      "name": "裂地攻城兽",
+      "category": "monsters",
+      "role": "冲撞 / 地刺",
+      "file": "monsters/ravager_siege_concept.bbmodel",
+      "cubes": 450,
+      "bones": 13,
+      "animations": [
+        "idle",
+        "walk",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "atlas": [
+        256,
+        256
+      ],
+      "uv_islands": 167
+    },
+    {
+      "id": "brood_mother",
+      "name": "巢心母体",
+      "category": "monsters",
+      "role": "指挥 / 孵化 / 回防",
+      "file": "monsters/brood_mother.bbmodel",
+      "cubes": 474,
+      "bones": 13,
+      "animations": [
+        "idle",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "atlas": [
+        128,
+        128
+      ],
+      "uv_islands": 129
+    },
+    {
+      "id": "lurking_forager",
+      "name": "潜伏觅食虫",
+      "category": "monsters",
+      "role": "侦察 / 猎物标记",
+      "file": "monsters/lurking_forager.bbmodel",
+      "cubes": 139,
+      "bones": 15,
+      "animations": [
+        "idle",
+        "walk",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 46
+    },
+    {
+      "id": "sporewing_scout",
+      "name": "孢翼侦察者",
+      "category": "monsters",
+      "role": "飞行 / 传播标记",
+      "file": "monsters/sporewing_scout.bbmodel",
+      "cubes": 143,
+      "bones": 6,
+      "animations": [
+        "idle",
+        "fly",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 52
+    },
+    {
+      "id": "mycelial_burrower",
+      "name": "菌丝掘地者",
+      "category": "monsters",
+      "role": "掘地 / 前线开拓",
+      "file": "monsters/mycelial_burrower.bbmodel",
+      "cubes": 127,
+      "bones": 11,
+      "animations": [
+        "idle",
+        "walk",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "atlas": [
+        128,
+        128
+      ],
+      "uv_islands": 73
+    },
+    {
+      "id": "crystalback_carrier",
+      "name": "晶背搬运兽",
+      "category": "monsters",
+      "role": "回收 / 运送生物质",
+      "file": "monsters/crystalback_carrier.bbmodel",
+      "cubes": 468,
+      "bones": 17,
+      "animations": [
+        "idle",
+        "walk",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "atlas": [
+        128,
+        128
+      ],
+      "uv_islands": 88
+    },
+    {
+      "id": "parasitic_spider_mother",
+      "name": "寄生蛛母",
+      "category": "monsters",
+      "role": "结网 / 孵化幼体",
+      "file": "monsters/parasitic_spider_mother.bbmodel",
+      "cubes": 463,
+      "bones": 23,
+      "animations": [
+        "idle",
+        "walk",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "atlas": [
+        128,
+        128
+      ],
+      "uv_islands": 126
+    },
+    {
+      "id": "pulsing_hatch_sac",
+      "name": "脉动孵化囊",
+      "category": "monsters",
+      "role": "驻扎 / 孵化支援",
+      "file": "monsters/pulsing_hatch_sac.bbmodel",
+      "cubes": 193,
+      "bones": 5,
+      "animations": [
+        "idle",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 43
+    },
+    {
+      "id": "crystal_shield_sentinel",
+      "name": "晶盾卫士",
+      "category": "monsters",
+      "role": "格挡 / 回防",
+      "file": "monsters/crystal_shield_sentinel.bbmodel",
+      "cubes": 117,
+      "bones": 11,
+      "animations": [
+        "idle",
+        "walk",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "atlas": [
+        128,
+        128
+      ],
+      "uv_islands": 79
+    },
+    {
+      "id": "rift_throat_spitter",
+      "name": "裂喉喷吐者",
+      "category": "monsters",
+      "role": "远程喷吐 / 压制",
+      "file": "monsters/rift_throat_spitter.bbmodel",
+      "cubes": 203,
+      "bones": 12,
+      "animations": [
+        "idle",
+        "walk",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "atlas": [
+        128,
+        128
+      ],
+      "uv_islands": 100
+    },
+    {
+      "id": "leapblade_ambusher",
+      "name": "跃刃伏击者",
+      "category": "monsters",
+      "role": "跳跃 / 镰刃伏击",
+      "file": "monsters/leapblade_ambusher.bbmodel",
+      "cubes": 110,
+      "bones": 10,
+      "animations": [
+        "idle",
+        "walk",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "atlas": [
+        128,
+        128
+      ],
+      "uv_islands": 61
+    },
+    {
+      "id": "rootspike_turret",
+      "name": "根刺炮台",
+      "category": "monsters",
+      "role": "地刺封锁 / 驻地防守",
+      "file": "monsters/rootspike_turret.bbmodel",
+      "cubes": 175,
+      "bones": 12,
+      "animations": [
+        "idle",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "atlas": [
+        128,
+        128
+      ],
+      "uv_islands": 74
+    },
+    {
+      "id": "resonance_priest",
+      "name": "共鸣祭司",
+      "category": "monsters",
+      "role": "强化集群 / 共鸣支援",
+      "file": "monsters/resonance_priest.bbmodel",
+      "cubes": 101,
+      "bones": 6,
+      "animations": [
+        "idle",
+        "fly",
+        "attack",
+        "emerge",
+        "death",
+        "halo_orbit"
+      ],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 48
+    },
+    {
+      "id": "siegebreaker_colossus",
+      "name": "破城巨像",
+      "category": "monsters",
+      "role": "砸墙 / 震地",
+      "file": "monsters/siegebreaker_colossus.bbmodel",
+      "cubes": 170,
+      "bones": 9,
+      "animations": [
+        "idle",
+        "walk",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "atlas": [
+        128,
+        128
+      ],
+      "uv_islands": 111
+    },
+    {
+      "id": "walking_brood_crab",
+      "name": "行巢巨蟹",
+      "category": "monsters",
+      "role": "移动巢穴 / 释放护卫",
+      "file": "monsters/walking_brood_crab.bbmodel",
+      "cubes": 730,
+      "bones": 26,
+      "animations": [
+        "idle",
+        "walk",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "atlas": [
+        512,
+        512
+      ],
+      "uv_islands": 175
+    },
+    {
+      "id": "abyssal_burrow_king",
+      "name": "深渊掘王",
+      "category": "monsters",
+      "role": "地下突袭 / 环形地刺",
+      "file": "monsters/abyssal_burrow_king.bbmodel",
+      "cubes": 143,
+      "bones": 11,
+      "animations": [
+        "idle",
+        "walk",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "atlas": [
+        512,
+        512
+      ],
+      "uv_islands": 148
+    },
+    {
+      "id": "calamity_brood_mother",
+      "name": "灾厄母巢",
+      "category": "monsters",
+      "role": "高阶指挥 / 紧急孵化",
+      "file": "monsters/calamity_brood_mother.bbmodel",
+      "cubes": 566,
+      "bones": 15,
+      "animations": [
+        "idle",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "atlas": [
+        256,
+        256
+      ],
+      "uv_islands": 159
+    },
+    {
+      "id": "crystal_carapace_light_armor",
+      "name": "晶壳轻甲",
+      "category": "armor",
+      "role": "四件套可编辑分组 / 人形骨架",
+      "file": "armor/crystal_carapace_light_armor.bbmodel",
+      "cubes": 127,
+      "bones": 9,
+      "animations": [
+        "inspection_pose"
+      ],
+      "atlas": [
+        128,
+        128
+      ],
+      "uv_islands": 86
+    },
+    {
+      "id": "brood_heavy_armor",
+      "name": "母巢重甲",
+      "category": "armor",
+      "role": "四件套可编辑分组 / 人形骨架",
+      "file": "armor/brood_heavy_armor.bbmodel",
+      "cubes": 202,
+      "bones": 9,
+      "animations": [
+        "inspection_pose"
+      ],
+      "atlas": [
+        128,
+        128
+      ],
+      "uv_islands": 97
+    },
+    {
+      "id": "prism_spear",
+      "name": "棱晶长枪",
+      "category": "weapons",
+      "role": "突刺武器",
+      "file": "weapons/prism_spear.bbmodel",
+      "cubes": 49,
+      "bones": 2,
+      "animations": [
+        "attack"
+      ],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 31
+    },
+    {
+      "id": "earthsplitter_hammer",
+      "name": "裂地战锤",
+      "category": "weapons",
+      "role": "震地 / 地刺",
+      "file": "weapons/earthsplitter_hammer.bbmodel",
+      "cubes": 37,
+      "bones": 2,
+      "animations": [
+        "attack"
+      ],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 36
+    },
+    {
+      "id": "crystal_spike_crossbow",
+      "name": "晶刺弩",
+      "category": "weapons",
+      "role": "晶刺发射器",
+      "file": "weapons/crystal_spike_crossbow.bbmodel",
+      "cubes": 35,
+      "bones": 4,
+      "animations": [
+        "attack",
+        "reload"
+      ],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 40
+    },
+    {
+      "id": "resonance_staff",
+      "name": "共鸣法杖",
+      "category": "weapons",
+      "role": "共鸣施法",
+      "file": "weapons/resonance_staff.bbmodel",
+      "cubes": 42,
+      "bones": 3,
+      "animations": [
+        "focus_orbit",
+        "attack"
+      ],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 17
+    },
+    {
+      "id": "infected_tissue_pickup",
+      "name": "感染组织",
+      "category": "loot",
+      "role": "基础组织",
+      "file": "loot/infected_tissue_pickup.bbmodel",
+      "cubes": 14,
+      "bones": 1,
+      "animations": [],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 9
+    },
+    {
+      "id": "mycelium_bundle",
+      "name": "菌丝束",
+      "category": "loot",
+      "role": "纤维材料",
+      "file": "loot/mycelium_bundle.bbmodel",
+      "cubes": 21,
+      "bones": 1,
+      "animations": [],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 9
+    },
+    {
+      "id": "amethyst_fragment_cluster",
+      "name": "晶体碎片",
+      "category": "loot",
+      "role": "晶体材料",
+      "file": "loot/amethyst_fragment_cluster.bbmodel",
+      "cubes": 24,
+      "bones": 1,
+      "animations": [],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 11
+    },
+    {
+      "id": "spore_pod_drop",
+      "name": "孢子囊",
+      "category": "loot",
+      "role": "孢子材料",
+      "file": "loot/spore_pod_drop.bbmodel",
+      "cubes": 56,
+      "bones": 1,
+      "animations": [],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 30
+    },
+    {
+      "id": "chitin_plate_drop",
+      "name": "甲壳板",
+      "category": "loot",
+      "role": "护甲材料",
+      "file": "loot/chitin_plate_drop.bbmodel",
+      "cubes": 12,
+      "bones": 1,
+      "animations": [],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 14
+    },
+    {
+      "id": "condensed_biomass_drop",
+      "name": "浓缩生物质",
+      "category": "loot",
+      "role": "浓缩资源",
+      "file": "loot/condensed_biomass_drop.bbmodel",
+      "cubes": 43,
+      "bones": 1,
+      "animations": [],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 24
+    },
+    {
+      "id": "resonant_organ_drop",
+      "name": "共鸣器官",
+      "category": "loot",
+      "role": "特化器官",
+      "file": "loot/resonant_organ_drop.bbmodel",
+      "cubes": 91,
+      "bones": 1,
+      "animations": [],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 18
+    },
+    {
+      "id": "brood_core_drop",
+      "name": "母体核心",
+      "category": "loot",
+      "role": "母体稀有材料",
+      "file": "loot/brood_core_drop.bbmodel",
+      "cubes": 29,
+      "bones": 1,
+      "animations": [],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 20
+    },
+    {
+      "id": "white_wall_tile_intact",
+      "name": "白色实验室墙砖 · 完好",
+      "category": "laboratory",
+      "role": "独立组件 / 16× 纹素密度",
+      "file": "laboratory/white_wall_tile_intact.bbmodel",
+      "cubes": 1,
+      "bones": 1,
+      "animations": [],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 1
+    },
+    {
+      "id": "white_wall_tile_eroded",
+      "name": "白色实验室墙砖 · 侵蚀",
+      "category": "laboratory",
+      "role": "独立组件 / 16× 纹素密度",
+      "file": "laboratory/white_wall_tile_eroded.bbmodel",
+      "cubes": 25,
+      "bones": 2,
+      "animations": [],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 11
+    },
+    {
+      "id": "dark_wall_tile_intact",
+      "name": "深灰墙砖 · 完好",
+      "category": "laboratory",
+      "role": "独立组件 / 16× 纹素密度",
+      "file": "laboratory/dark_wall_tile_intact.bbmodel",
+      "cubes": 1,
+      "bones": 1,
+      "animations": [],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 1
+    },
+    {
+      "id": "dark_wall_tile_eroded",
+      "name": "深灰墙砖 · 侵蚀",
+      "category": "laboratory",
+      "role": "独立组件 / 16× 纹素密度",
+      "file": "laboratory/dark_wall_tile_eroded.bbmodel",
+      "cubes": 23,
+      "bones": 2,
+      "animations": [],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 11
+    },
+    {
+      "id": "lab_brick_tile_intact",
+      "name": "实验室砖墙 · 完好",
+      "category": "laboratory",
+      "role": "独立组件 / 16× 纹素密度",
+      "file": "laboratory/lab_brick_tile_intact.bbmodel",
+      "cubes": 1,
+      "bones": 1,
+      "animations": [],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 1
+    },
+    {
+      "id": "lab_brick_tile_eroded",
+      "name": "实验室砖墙 · 侵蚀",
+      "category": "laboratory",
+      "role": "独立组件 / 16× 纹素密度",
+      "file": "laboratory/lab_brick_tile_eroded.bbmodel",
+      "cubes": 23,
+      "bones": 2,
+      "animations": [],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 12
+    },
+    {
+      "id": "checker_floor_intact",
+      "name": "棋盘地砖 · 完好",
+      "category": "laboratory",
+      "role": "独立组件 / 16× 纹素密度",
+      "file": "laboratory/checker_floor_intact.bbmodel",
+      "cubes": 1,
+      "bones": 1,
+      "animations": [],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 3
+    },
+    {
+      "id": "checker_floor_eroded",
+      "name": "棋盘地砖 · 侵蚀",
+      "category": "laboratory",
+      "role": "独立组件 / 16× 纹素密度",
+      "file": "laboratory/checker_floor_eroded.bbmodel",
+      "cubes": 23,
+      "bones": 2,
+      "animations": [],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 13
+    },
+    {
+      "id": "lab_slab_intact",
+      "name": "实验室半砖 · 完好",
+      "category": "laboratory",
+      "role": "独立组件 / 16× 纹素密度",
+      "file": "laboratory/lab_slab_intact.bbmodel",
+      "cubes": 1,
+      "bones": 1,
+      "animations": [],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 3
+    },
+    {
+      "id": "lab_slab_eroded",
+      "name": "实验室半砖 · 侵蚀",
+      "category": "laboratory",
+      "role": "独立组件 / 16× 纹素密度",
+      "file": "laboratory/lab_slab_eroded.bbmodel",
+      "cubes": 23,
+      "bones": 2,
+      "animations": [],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 13
+    },
+    {
+      "id": "lab_stair_intact",
+      "name": "实验室楼梯 · 完好",
+      "category": "laboratory",
+      "role": "独立组件 / 16× 纹素密度",
+      "file": "laboratory/lab_stair_intact.bbmodel",
+      "cubes": 2,
+      "bones": 1,
+      "animations": [],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 3
+    },
+    {
+      "id": "lab_stair_eroded",
+      "name": "实验室楼梯 · 侵蚀",
+      "category": "laboratory",
+      "role": "独立组件 / 16× 纹素密度",
+      "file": "laboratory/lab_stair_eroded.bbmodel",
+      "cubes": 26,
+      "bones": 2,
+      "animations": [],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 15
+    },
+    {
+      "id": "vent_panel_intact",
+      "name": "通风百叶板 · 完好",
+      "category": "laboratory",
+      "role": "独立组件 / 16× 纹素密度",
+      "file": "laboratory/vent_panel_intact.bbmodel",
+      "cubes": 11,
+      "bones": 1,
+      "animations": [],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 11
+    },
+    {
+      "id": "vent_panel_eroded",
+      "name": "通风百叶板 · 侵蚀",
+      "category": "laboratory",
+      "role": "独立组件 / 16× 纹素密度",
+      "file": "laboratory/vent_panel_eroded.bbmodel",
+      "cubes": 35,
+      "bones": 2,
+      "animations": [],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 22
+    },
+    {
+      "id": "service_hatch_intact",
+      "name": "检修口 · 完好",
+      "category": "laboratory",
+      "role": "独立组件 / 16× 纹素密度",
+      "file": "laboratory/service_hatch_intact.bbmodel",
+      "cubes": 12,
+      "bones": 2,
+      "animations": [
+        "open",
+        "close"
+      ],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 9
+    },
+    {
+      "id": "service_hatch_eroded",
+      "name": "检修口 · 侵蚀",
+      "category": "laboratory",
+      "role": "独立组件 / 16× 纹素密度",
+      "file": "laboratory/service_hatch_eroded.bbmodel",
+      "cubes": 34,
+      "bones": 3,
+      "animations": [
+        "open",
+        "close"
+      ],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 19
+    },
+    {
+      "id": "reinforced_door_intact",
+      "name": "加固隔离门 · 完好",
+      "category": "laboratory",
+      "role": "独立组件 / 16× 纹素密度",
+      "file": "laboratory/reinforced_door_intact.bbmodel",
+      "cubes": 22,
+      "bones": 2,
+      "animations": [
+        "open",
+        "close"
+      ],
+      "atlas": [
+        64,
+        64
+      ],
+      "uv_islands": 29
+    },
+    {
+      "id": "reinforced_door_eroded",
+      "name": "加固隔离门 · 侵蚀",
+      "category": "laboratory",
+      "role": "独立组件 / 16× 纹素密度",
+      "file": "laboratory/reinforced_door_eroded.bbmodel",
+      "cubes": 44,
+      "bones": 3,
+      "animations": [
+        "open",
+        "close"
+      ],
+      "atlas": [
+        128,
+        128
+      ],
+      "uv_islands": 40
+    },
+    {
+      "id": "lab_cabinet_intact",
+      "name": "实验储柜 · 完好",
+      "category": "laboratory",
+      "role": "独立组件 / 16× 纹素密度",
+      "file": "laboratory/lab_cabinet_intact.bbmodel",
+      "cubes": 47,
+      "bones": 3,
+      "animations": [
+        "open_-1",
+        "open_1"
+      ],
+      "atlas": [
+        128,
+        128
+      ],
+      "uv_islands": 30
+    },
+    {
+      "id": "lab_cabinet_eroded",
+      "name": "实验储柜 · 侵蚀",
+      "category": "laboratory",
+      "role": "独立组件 / 16× 纹素密度",
+      "file": "laboratory/lab_cabinet_eroded.bbmodel",
+      "cubes": 93,
+      "bones": 4,
+      "animations": [
+        "open_-1",
+        "open_1"
+      ],
+      "atlas": [
+        128,
+        128
+      ],
+      "uv_islands": 43
+    },
+    {
+      "id": "crystal_incubator_intact",
+      "name": "晶体培养舱 · 完好",
+      "category": "laboratory",
+      "role": "独立组件 / 16× 纹素密度",
+      "file": "laboratory/crystal_incubator_intact.bbmodel",
+      "cubes": 44,
+      "bones": 5,
+      "animations": [
+        "pulse",
+        "bubble_rise_0",
+        "bubble_rise_1",
+        "bubble_rise_2"
+      ],
+      "atlas": [
+        128,
+        128
+      ],
+      "uv_islands": 39
+    },
+    {
+      "id": "crystal_incubator_eroded",
+      "name": "晶体培养舱 · 侵蚀",
+      "category": "laboratory",
+      "role": "独立组件 / 16× 纹素密度",
+      "file": "laboratory/crystal_incubator_eroded.bbmodel",
+      "cubes": 94,
+      "bones": 6,
+      "animations": [
+        "pulse",
+        "bubble_rise_0",
+        "bubble_rise_1",
+        "bubble_rise_2"
+      ],
+      "atlas": [
+        128,
+        128
+      ],
+      "uv_islands": 60
+    },
+    {
+      "id": "surgery_table_intact",
+      "name": "手术台 · 完好",
+      "category": "laboratory",
+      "role": "独立组件 / 16× 纹素密度",
+      "file": "laboratory/surgery_table_intact.bbmodel",
+      "cubes": 36,
+      "bones": 2,
+      "animations": [],
+      "atlas": [
+        128,
+        128
+      ],
+      "uv_islands": 44
+    },
+    {
+      "id": "surgery_table_eroded",
+      "name": "手术台 · 侵蚀",
+      "category": "laboratory",
+      "role": "独立组件 / 16× 纹素密度",
+      "file": "laboratory/surgery_table_eroded.bbmodel",
+      "cubes": 78,
+      "bones": 3,
+      "animations": [],
+      "atlas": [
+        128,
+        128
+      ],
+      "uv_islands": 59
+    },
+    {
+      "id": "equipment_bench_intact",
+      "name": "设备工作台 · 完好",
+      "category": "laboratory",
+      "role": "独立组件 / 16× 纹素密度",
+      "file": "laboratory/equipment_bench_intact.bbmodel",
+      "cubes": 58,
+      "bones": 1,
+      "animations": [],
+      "atlas": [
+        128,
+        128
+      ],
+      "uv_islands": 45
+    },
+    {
+      "id": "equipment_bench_eroded",
+      "name": "设备工作台 · 侵蚀",
+      "category": "laboratory",
+      "role": "独立组件 / 16× 纹素密度",
+      "file": "laboratory/equipment_bench_eroded.bbmodel",
+      "cubes": 82,
+      "bones": 2,
+      "animations": [],
+      "atlas": [
+        128,
+        128
+      ],
+      "uv_islands": 56
+    },
+    {
+      "id": "observation_window_intact",
+      "name": "观察隔离窗 · 完好",
+      "category": "laboratory",
+      "role": "独立组件 / 16× 纹素密度",
+      "file": "laboratory/observation_window_intact.bbmodel",
+      "cubes": 16,
+      "bones": 1,
+      "animations": [],
+      "atlas": [
+        128,
+        128
+      ],
+      "uv_islands": 19
+    },
+    {
+      "id": "observation_window_eroded",
+      "name": "观察隔离窗 · 侵蚀",
+      "category": "laboratory",
+      "role": "独立组件 / 16× 纹素密度",
+      "file": "laboratory/observation_window_eroded.bbmodel",
+      "cubes": 42,
+      "bones": 2,
+      "animations": [],
+      "atlas": [
+        128,
+        128
+      ],
+      "uv_islands": 36
+    },
+    {
+      "id": "laboratory_complex_cutaway",
+      "name": "末影实验室 · 四层剖视布局",
+      "category": "scenes",
+      "role": "三层地下设施 + 地表入口层；整体分组可编辑",
+      "file": "scenes/laboratory_complex_cutaway.bbmodel",
+      "cubes": 9590,
+      "bones": 247,
+      "animations": [],
+      "atlas": [
+        2048,
+        2048
+      ],
+      "uv_islands": 279
+    },
+    {
+      "id": "laboratory_complex_complete",
+      "name": "末影实验室 · 四层完整建筑",
+      "category": "scenes",
+      "role": "三层地下设施 + 地表入口层；整体分组可编辑",
+      "file": "scenes/laboratory_complex_complete.bbmodel",
+      "cubes": 9590,
+      "bones": 247,
+      "animations": [],
+      "atlas": [
+        2048,
+        2048
+      ],
+      "uv_islands": 279
+    }
+  ]
+}

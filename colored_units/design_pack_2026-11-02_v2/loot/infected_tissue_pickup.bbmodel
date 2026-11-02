@@ -1,0 +1,1280 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "感染组织 | infected_tissue_pickup",
+  "model_identifier": "infected_tissue_pickup",
+  "resolution": {
+    "width": 64,
+    "height": 64
+  },
+  "elements": [
+    {
+      "name": "tissue_fold_1",
+      "uuid": "a8961535-e7fa-5e64-b137-afaa903dc965",
+      "type": "cube",
+      "from": [
+        -5.5,
+        0.5,
+        -3.0
+      ],
+      "to": [
+        -0.5,
+        3.5,
+        3.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        -10
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            31,
+            2,
+            36,
+            5
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            31,
+            2,
+            36,
+            5
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            21,
+            2,
+            27,
+            5
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            21,
+            2,
+            27,
+            5
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            2,
+            2,
+            7,
+            8
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            2,
+            2,
+            7,
+            8
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "fiber_band_2",
+      "uuid": "9aeb28e2-07e7-5eac-818f-9ba370d605ac",
+      "type": "cube",
+      "from": [
+        -3.5,
+        3.2,
+        -2.5
+      ],
+      "to": [
+        -2.5,
+        4.2,
+        2.5
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            54,
+            2,
+            55,
+            3
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            54,
+            2,
+            55,
+            3
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            45,
+            2,
+            50,
+            3
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            45,
+            2,
+            50,
+            3
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            16,
+            2,
+            17,
+            7
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            16,
+            2,
+            17,
+            7
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "tissue_fold_3",
+      "uuid": "c0ed8b68-fa73-585b-90c5-489aef37522f",
+      "type": "cube",
+      "from": [
+        -2.5,
+        1.0,
+        -3.0
+      ],
+      "to": [
+        2.5,
+        4.0,
+        3.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        12,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            31,
+            2,
+            36,
+            5
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            31,
+            2,
+            36,
+            5
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            21,
+            2,
+            27,
+            5
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            21,
+            2,
+            27,
+            5
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            2,
+            2,
+            7,
+            8
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            2,
+            2,
+            7,
+            8
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "fiber_band_4",
+      "uuid": "f685f39f-c2fe-5721-b48e-2b93fa5287cf",
+      "type": "cube",
+      "from": [
+        -0.5,
+        3.7,
+        -2.5
+      ],
+      "to": [
+        0.5,
+        4.7,
+        2.5
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            54,
+            2,
+            55,
+            3
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            54,
+            2,
+            55,
+            3
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            45,
+            2,
+            50,
+            3
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            45,
+            2,
+            50,
+            3
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            16,
+            2,
+            17,
+            7
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            16,
+            2,
+            17,
+            7
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "tissue_fold_5",
+      "uuid": "87a489fa-6467-549e-a192-b9e1cdfc9b83",
+      "type": "cube",
+      "from": [
+        0.5,
+        1.5,
+        -3.0
+      ],
+      "to": [
+        5.5,
+        4.5,
+        3.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        24,
+        10
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            31,
+            2,
+            36,
+            5
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            31,
+            2,
+            36,
+            5
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            21,
+            2,
+            27,
+            5
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            21,
+            2,
+            27,
+            5
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            2,
+            2,
+            7,
+            8
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            2,
+            2,
+            7,
+            8
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "fiber_band_6",
+      "uuid": "68eb77e5-37ac-558c-a722-ca5620668367",
+      "type": "cube",
+      "from": [
+        2.5,
+        4.2,
+        -2.5
+      ],
+      "to": [
+        3.5,
+        5.2,
+        2.5
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            54,
+            2,
+            55,
+            3
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            54,
+            2,
+            55,
+            3
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            45,
+            2,
+            50,
+            3
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            45,
+            2,
+            50,
+            3
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            16,
+            2,
+            17,
+            7
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            16,
+            2,
+            17,
+            7
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "tendon_7",
+      "uuid": "448aed32-5d3a-56c1-8519-8602ee730f70",
+      "type": "cube",
+      "from": [
+        -5.225,
+        2.0,
+        -2.225
+      ],
+      "to": [
+        -4.775,
+        7.096076922496363,
+        -1.775
+      ],
+      "origin": [
+        -5.0,
+        2,
+        -2
+      ],
+      "rotation": [
+        59.701556817458936,
+        0,
+        -13.495733280795806
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            11,
+            2,
+            12,
+            8
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            11,
+            2,
+            12,
+            8
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            11,
+            2,
+            12,
+            8
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            11,
+            2,
+            12,
+            8
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            54,
+            2,
+            55,
+            3
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            54,
+            2,
+            55,
+            3
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "tendon_8",
+      "uuid": "b86545ff-3684-5904-80ff-d073f81d9613",
+      "type": "cube",
+      "from": [
+        -3.4250000000000003,
+        2.0,
+        -2.225
+      ],
+      "to": [
+        -2.975,
+        7.096076922496363,
+        -1.775
+      ],
+      "origin": [
+        -3.2,
+        2,
+        -2
+      ],
+      "rotation": [
+        59.701556817458936,
+        0,
+        -13.495733280795815
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            11,
+            2,
+            12,
+            8
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            11,
+            2,
+            12,
+            8
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            11,
+            2,
+            12,
+            8
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            11,
+            2,
+            12,
+            8
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            54,
+            2,
+            55,
+            3
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            54,
+            2,
+            55,
+            3
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "tendon_9",
+      "uuid": "52184248-b7ec-5381-baf8-dce82731ced5",
+      "type": "cube",
+      "from": [
+        -1.625,
+        2.0,
+        -2.225
+      ],
+      "to": [
+        -1.1749999999999998,
+        7.096076922496363,
+        -1.775
+      ],
+      "origin": [
+        -1.4,
+        2,
+        -2
+      ],
+      "rotation": [
+        59.701556817458936,
+        0,
+        -13.495733280795811
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            11,
+            2,
+            12,
+            8
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            11,
+            2,
+            12,
+            8
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            11,
+            2,
+            12,
+            8
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            11,
+            2,
+            12,
+            8
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            54,
+            2,
+            55,
+            3
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            54,
+            2,
+            55,
+            3
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "tendon_10",
+      "uuid": "43e00295-9b92-5975-bdf4-2ccf9c85e52b",
+      "type": "cube",
+      "from": [
+        0.17500000000000035,
+        2.0,
+        -2.225
+      ],
+      "to": [
+        0.6250000000000003,
+        7.096076922496363,
+        -1.775
+      ],
+      "origin": [
+        0.40000000000000036,
+        2,
+        -2
+      ],
+      "rotation": [
+        59.701556817458936,
+        0,
+        -13.495733280795815
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            11,
+            2,
+            12,
+            8
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            11,
+            2,
+            12,
+            8
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            11,
+            2,
+            12,
+            8
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            11,
+            2,
+            12,
+            8
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            54,
+            2,
+            55,
+            3
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            54,
+            2,
+            55,
+            3
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "tendon_11",
+      "uuid": "dea5fa22-56e1-5094-b571-abd2c6b50d92",
+      "type": "cube",
+      "from": [
+        1.975,
+        2.0,
+        -2.225
+      ],
+      "to": [
+        2.4250000000000003,
+        7.096076922496363,
+        -1.775
+      ],
+      "origin": [
+        2.2,
+        2,
+        -2
+      ],
+      "rotation": [
+        59.701556817458936,
+        0,
+        -13.495733280795815
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            11,
+            2,
+            12,
+            8
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            11,
+            2,
+            12,
+            8
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            11,
+            2,
+            12,
+            8
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            11,
+            2,
+            12,
+            8
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            54,
+            2,
+            55,
+            3
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            54,
+            2,
+            55,
+            3
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "tendon_12",
+      "uuid": "71221860-a790-5cca-8791-ccd80a1d6b6c",
+      "type": "cube",
+      "from": [
+        3.775,
+        2.0,
+        -2.225
+      ],
+      "to": [
+        4.225,
+        7.096076922496363,
+        -1.775
+      ],
+      "origin": [
+        4.0,
+        2,
+        -2
+      ],
+      "rotation": [
+        59.701556817458936,
+        0,
+        -13.495733280795806
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            11,
+            2,
+            12,
+            8
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            11,
+            2,
+            12,
+            8
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            11,
+            2,
+            12,
+            8
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            11,
+            2,
+            12,
+            8
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            54,
+            2,
+            55,
+            3
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            54,
+            2,
+            55,
+            3
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "frayed_edge_13",
+      "uuid": "6ae288e7-69af-563e-be6d-a36f6dfef1b9",
+      "type": "cube",
+      "from": [
+        -5.3,
+        2.0,
+        -0.3
+      ],
+      "to": [
+        -4.7,
+        4.974894956128704,
+        0.3
+      ],
+      "origin": [
+        -5,
+        2,
+        0
+      ],
+      "rotation": [
+        -42.24425983358366,
+        0,
+        129.47245984834382
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            40,
+            2,
+            41,
+            5
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            40,
+            2,
+            41,
+            5
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            40,
+            2,
+            41,
+            5
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            40,
+            2,
+            41,
+            5
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            59,
+            2,
+            60,
+            3
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            59,
+            2,
+            60,
+            3
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "frayed_edge_14",
+      "uuid": "84472338-d146-58a2-9fbb-22f6d2797773",
+      "type": "cube",
+      "from": [
+        4.7,
+        2.0,
+        -0.3
+      ],
+      "to": [
+        5.3,
+        4.974894956128704,
+        0.3
+      ],
+      "origin": [
+        5,
+        2,
+        0
+      ],
+      "rotation": [
+        -42.24425983358366,
+        0,
+        -129.47245984834382
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            40,
+            2,
+            41,
+            5
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            40,
+            2,
+            41,
+            5
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            40,
+            2,
+            41,
+            5
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            40,
+            2,
+            41,
+            5
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            59,
+            2,
+            60,
+            3
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            59,
+            2,
+            60,
+            3
+          ],
+          "texture": 0
+        }
+      }
+    }
+  ],
+  "outliner": [
+    {
+      "name": "root",
+      "uuid": "dd7e946a-2af6-5fe4-8af7-300cf64a35f1",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "children": [
+        "a8961535-e7fa-5e64-b137-afaa903dc965",
+        "9aeb28e2-07e7-5eac-818f-9ba370d605ac",
+        "c0ed8b68-fa73-585b-90c5-489aef37522f",
+        "f685f39f-c2fe-5721-b48e-2b93fa5287cf",
+        "87a489fa-6467-549e-a192-b9e1cdfc9b83",
+        "68eb77e5-37ac-558c-a722-ca5620668367",
+        "448aed32-5d3a-56c1-8519-8602ee730f70",
+        "b86545ff-3684-5904-80ff-d073f81d9613",
+        "52184248-b7ec-5381-baf8-dce82731ced5",
+        "43e00295-9b92-5975-bdf4-2ccf9c85e52b",
+        "dea5fa22-56e1-5094-b571-abd2c6b50d92",
+        "71221860-a790-5cca-8791-ccd80a1d6b6c",
+        "6ae288e7-69af-563e-be6d-a36f6dfef1b9",
+        "84472338-d146-58a2-9fbb-22f6d2797773"
+      ],
+      "export": true,
+      "isOpen": false,
+      "visibility": true
+    }
+  ],
+  "textures": [
+    {
+      "name": "infected_tissue_pickup.png",
+      "uuid": "e051c643-0770-5c43-8282-e719f7e37e6e",
+      "id": "0",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABAElEQVR4nO3VPw8BMRjH8ZIbhJD4s5msEpOwms0WL8DL8gIsZpvEJsQksYnJbLOeVFSaR+sqSFx8P4mU+nmenuvdKfXnMuZNs96J9VjKFVU5X77OzbbT+/dau9GLN4dF4pyrlqteSE+d2R3XDz31WC3UVOX2u8lqHLQuWStrL0TqtwaxbGpG35yvlqwX0tNk7KzdyzbsjoLWJftmVcrIs2rYO8Bk7Kw583IHRCqFfH9CUkYevHcHnM6n++tVriaGfX37cq7Ms5rviuwP+mb0CaELDsl98+Dfvge4rrVUPwZLYgcs9/PERwsAAAAAAAAAAAAAAAAAAAAAAAAAAFC/4gKlQIIPU9Vk5QAAAABJRU5ErkJggg==",
+      "mode": "bitmap",
+      "width": 64,
+      "height": 64,
+      "uv_width": 64,
+      "uv_height": 64,
+      "render_mode": "default"
+    }
+  ],
+  "animations": [],
+  "notes": "Original concept conversion. 16 units = 1 block. Editable cuboids, embedded native-density UV atlas. Design source 2026-11-02. Game integration is separate.",
+  "texture_width": 64,
+  "texture_height": 64,
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [
+        0,
+        90,
+        0
+      ],
+      "translation": [
+        0,
+        2,
+        0
+      ],
+      "scale": [
+        0.75,
+        0.75,
+        0.75
+      ]
+    },
+    "gui": {
+      "rotation": [
+        30,
+        225,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.7,
+        0.7,
+        0.7
+      ]
+    }
+  }
+}

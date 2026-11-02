@@ -41,6 +41,7 @@ public final class MotherBrain {
         long now=level.getGameTime();if(mother.isNoAi()||now<nextRetry||now-lastBrood<ColonyEconomy.interval(interval(mother.motherStage()),mother.colonyBiomass()))return false;
         nextRetry=now+20;
         if(mother.motherStage()>=4&&now-lastSiege>=ColonyEconomy.interval(1200,mother.colonyBiomass())&&mother.summonSiege(level)){lastSiege=now;lastBrood=now;return true;}
+        if(dev.hui.enderinfection.design.DesignBehavior.recruit(mother,level)){lastBrood=now;return true;}
         if(!mother.summonBrood(level))return false;lastBrood=now;return true;
     }
     public void tick(ServerLevel level){

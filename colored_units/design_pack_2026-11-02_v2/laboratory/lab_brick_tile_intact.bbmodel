@@ -1,0 +1,139 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "实验室砖墙 · 完好 | lab_brick_tile_intact",
+  "model_identifier": "lab_brick_tile_intact",
+  "resolution": {
+    "width": 64,
+    "height": 64
+  },
+  "elements": [
+    {
+      "name": "tile_1",
+      "uuid": "755be817-21a1-5f10-9f7d-7125853d104b",
+      "type": "cube",
+      "from": [
+        -8.0,
+        0.0,
+        -8.0
+      ],
+      "to": [
+        8.0,
+        16.0,
+        8.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            2,
+            2,
+            18,
+            18
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            2,
+            2,
+            18,
+            18
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            2,
+            2,
+            18,
+            18
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            2,
+            2,
+            18,
+            18
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            2,
+            2,
+            18,
+            18
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            2,
+            2,
+            18,
+            18
+          ],
+          "texture": 0
+        }
+      }
+    }
+  ],
+  "outliner": [
+    {
+      "name": "root",
+      "uuid": "9cae0816-705c-55bf-96f1-92c987d7b6d1",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "children": [
+        "755be817-21a1-5f10-9f7d-7125853d104b"
+      ],
+      "export": true,
+      "isOpen": false,
+      "visibility": true
+    }
+  ],
+  "textures": [
+    {
+      "name": "lab_brick_tile_intact.png",
+      "uuid": "fcbf3819-2aac-52a1-a590-117e29ebbe03",
+      "id": "0",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAA6klEQVR4nO3YQQrCMBBA0TFkLYp6AnuB4ol04VVEvIGLerG6qUsVxQsoXaQM2FbEgqTz3yopYaBhJhMiYtwgDFbL9fOXQNlhX8WKievi57uK8Q9eTxZpKsWpkOFo/LbwmOcym05qg5wvV4mV05Py563xdR8f91s11tmgx3pNU2ZElwEWOTHOf1qgU11rKofYODHOf9POylbY6w2YJ0ljSpebo0/7urtCjJwY58Q4X1fjoRTaTvimy1JsnBjnxDivJ+GU1+0ulENbi4z+IpR18Jix3W2ifBABAAAAAAAAAAAAAAAAAAAAAOmjF6kZQRAzpVKrAAAAAElFTkSuQmCC",
+      "mode": "bitmap",
+      "width": 64,
+      "height": 64,
+      "uv_width": 64,
+      "uv_height": 64,
+      "render_mode": "default"
+    }
+  ],
+  "animations": [],
+  "notes": "Original concept conversion. 16 units = 1 block. Editable cuboids, embedded native-density UV atlas. Design source 2026-11-02. Game integration is separate.",
+  "texture_width": 64,
+  "texture_height": 64
+}

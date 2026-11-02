@@ -1,5 +1,15 @@
 # Changelog
 
+<!-- qegg:release 0.8.0 -->
+## v0.8.0 - 2026-11-02
+
+### Features
+
+- [`f10e600`](https://github.com/fl749731-lab/ender-infection/commit/f10e600b9d12b63e260438f19ef01ab0313bc2f7): 新增独立的末影感染创造模式物品栏，内含五个阶段的母体刷怪蛋与全部单位刷怪蛋、节点和地形方块。
+
+**Full Changelog**: https://github.com/fl749731-lab/ender-infection/compare/v0.7.0...v0.8.0
+<!-- qegg:release:end -->
+
 <!-- qegg:release 0.7.0 -->
 ## v0.7.0 - 2026-11-01
 

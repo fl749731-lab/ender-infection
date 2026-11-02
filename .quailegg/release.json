@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "version": "0.7.0",
-  "created_at": "2026-11-01T23:06:12.45830928Z",
+  "version": "0.8.0",
+  "created_at": "2026-11-02T09:58:27.539209362Z",
   "mode": "pr",
-  "fingerprint": "sha256:1c827f1683ec6ca83416adde5bbaef53795c4a7f8c8b5583d4d475e9090d841c",
+  "fingerprint": "sha256:140cff56dc194bf7604bdc0d65e5430632853b2808b881093c99252b6e9b7879",
   "repo": {
     "host": "github.com",
     "owner": "fl749731-lab",
@@ -15,25 +15,25 @@
       "cd ender_infection_colored \u0026\u0026 java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain build"
     ],
     "skipped": false,
-    "at": "2026-11-01T23:06:12.458309862Z"
+    "at": "2026-11-02T09:58:27.539210013Z"
   },
   "packages": [
     {
       "name": "java@ender_infection_colored",
       "path": "ender_infection_colored",
       "resolver": "java",
-      "current": "0.6.0",
-      "next": "0.7.0",
+      "current": "0.7.0",
+      "next": "0.8.0",
       "bump": "minor",
-      "tag": "v0.7.0",
+      "tag": "v0.8.0",
       "publish": false
     }
   ],
   "releases": [
     {
-      "version": "0.7.0",
-      "tag": "v0.7.0",
-      "previous_tag": "v0.6.0",
+      "version": "0.8.0",
+      "tag": "v0.8.0",
+      "previous_tag": "v0.7.0",
       "packages": [
         "java@ender_infection_colored"
       ]
@@ -41,16 +41,16 @@
   ],
   "changes": [
     {
-      "file": ".changes/attack-modes.md",
+      "file": ".changes/stage-eggs.md",
       "type": "feat",
-      "scope": "ai",
+      "scope": "item",
       "bump": "minor",
       "packages": [
         "java@ender_infection_colored"
       ],
-      "body": "畸变单位每次出手会从多种攻击模式中随机选择：重砸、前冲、范围震荡与战吼（给周围友军加速和力量）。",
-      "commit": "dc95ad2746d3ca7b8acce847a716f42885694c2a",
-      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/dc95ad2746d3ca7b8acce847a716f42885694c2a",
+      "body": "新增独立的末影感染创造模式物品栏，内含五个阶段的母体刷怪蛋与全部单位刷怪蛋、节点和地形方块。",
+      "commit": "f10e600b9d12b63e260438f19ef01ab0313bc2f7",
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/f10e600b9d12b63e260438f19ef01ab0313bc2f7",
       "author": "fl749731-lab"
     }
   ],

@@ -1,5 +1,15 @@
 # Changelog
 
+<!-- qegg:release 0.10.0 -->
+## v0.10.0 - 2026-11-02
+
+### Features
+
+- [`82ce615`](https://github.com/fl749731-lab/ender-infection/commit/82ce6157356eab44d1f5e82e4ddb5b77ca01f96d): 新增世界生成结构「感染的实验室」：三间房、培养罐、宝箱与野生母体，按 1/42 的稀有度出现在主世界地表；/enderlab 可就地生成用于查看。
+
+**Full Changelog**: https://github.com/fl749731-lab/ender-infection/compare/v0.9.0...v0.10.0
+<!-- qegg:release:end -->
+
 <!-- qegg:release 0.9.0 -->
 ## v0.9.0 - 2026-11-02
 

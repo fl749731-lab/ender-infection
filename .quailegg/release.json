@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "version": "0.9.0",
-  "created_at": "2026-11-02T11:11:22.370092903Z",
+  "version": "0.10.0",
+  "created_at": "2026-11-02T15:40:56.789828609Z",
   "mode": "pr",
-  "fingerprint": "sha256:270ffce670fcd0ede8cbdc5dc343a98419a327239b2b5ceb4b17f701fb4f52fb",
+  "fingerprint": "sha256:17c07d5a257fba0b3beb3b33e8cfc97b1f0f464eff83e80b52a910da88b078bb",
   "repo": {
     "host": "github.com",
     "owner": "fl749731-lab",
@@ -15,25 +15,25 @@
       "cd ender_infection_colored \u0026\u0026 java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain build"
     ],
     "skipped": false,
-    "at": "2026-11-02T11:11:22.370093283Z"
+    "at": "2026-11-02T15:40:56.789829059Z"
   },
   "packages": [
     {
       "name": "java@ender_infection_colored",
       "path": "ender_infection_colored",
       "resolver": "java",
-      "current": "0.8.0",
-      "next": "0.9.0",
+      "current": "0.9.0",
+      "next": "0.10.0",
       "bump": "minor",
-      "tag": "v0.9.0",
+      "tag": "v0.10.0",
       "publish": false
     }
   ],
   "releases": [
     {
-      "version": "0.9.0",
-      "tag": "v0.9.0",
-      "previous_tag": "v0.8.0",
+      "version": "0.10.0",
+      "tag": "v0.10.0",
+      "previous_tag": "v0.9.0",
       "packages": [
         "java@ender_infection_colored"
       ]
@@ -41,29 +41,16 @@
   ],
   "changes": [
     {
-      "file": ".changes/egg-icons.md",
-      "type": "fix",
-      "scope": "item",
-      "bump": "patch",
-      "packages": [
-        "java@ender_infection_colored"
-      ],
-      "body": "阶段刷怪蛋改用原版刷怪蛋渲染：五个阶段各一套配色，并补上 template_spawn_egg 模型，不再是缺省占位图。",
-      "commit": "e5aef2f6f4645eeb2c24589d73f02c41222eeabf",
-      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/e5aef2f6f4645eeb2c24589d73f02c41222eeabf",
-      "author": "fl749731-lab"
-    },
-    {
-      "file": ".changes/free-land-births.md",
+      "file": ".changes/infected-lab.md",
       "type": "feat",
-      "scope": "ecology",
+      "scope": "worldgen",
       "bump": "minor",
       "packages": [
         "java@ender_infection_colored"
       ],
-      "body": "成熟地表自己孵出的畸变兽不再向母体收生物质；人口上限与三十秒节拍仍然生效。另修复末影阵营单位离开视野后被按距离刷掉。",
-      "commit": "e5aef2f6f4645eeb2c24589d73f02c41222eeabf",
-      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/e5aef2f6f4645eeb2c24589d73f02c41222eeabf",
+      "body": "新增世界生成结构「感染的实验室」：三间房、培养罐、宝箱与野生母体，按 1/42 的稀有度出现在主世界地表；/enderlab 可就地生成用于查看。",
+      "commit": "82ce6157356eab44d1f5e82e4ddb5b77ca01f96d",
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/82ce6157356eab44d1f5e82e4ddb5b77ca01f96d",
       "author": "fl749731-lab"
     }
   ],

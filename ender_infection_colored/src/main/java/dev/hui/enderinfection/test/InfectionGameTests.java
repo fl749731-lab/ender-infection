@@ -873,6 +873,36 @@ public final class InfectionGameTests {
 
         });
     }
+    @GameTest(template="empty64",timeoutTicks=60,batch="worldgen_lab")
+    public static void laboratoryHasRoomsWindowsBenchesAndLoot(GameTestHelper helper){
+        clearWideBattlefield(helper);flatBattlefield(helper,0,20,0,16);var level=helper.getLevel();
+        for(int x=0;x<=28;x++)for(int z=0;z<=20;z++)helper.setBlock(new BlockPos(x,0,z),Blocks.STONE);
+        BlockPos origin=helper.absolutePos(new BlockPos(12,1,9));
+        var context=new net.minecraft.world.level.levelgen.feature.FeaturePlaceContext<net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration>(
+            java.util.Optional.empty(),level,level.getChunkSource().getGenerator(),level.random,origin,
+            net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration.INSTANCE);
+        @SuppressWarnings("unchecked") var feature=(net.minecraft.world.level.levelgen.feature.Feature<net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration>)InfectedContent.INFECTED_RUIN.get();
+        helper.assertTrue(feature.place(context),"Laboratory feature refused to place");
+        int glass=0,chests=0,stands=0,lanterns=0,crystals=0,airInside=0;
+        for(int dx=-5;dx<=5;dx++)for(int dz=-3;dz<=3;dz++)for(int dy=0;dy<=4;dy++){
+            var state=level.getBlockState(origin.offset(dx,dy,dz));
+            if(state.is(net.minecraft.world.level.block.Blocks.TINTED_GLASS))glass++;
+            if(state.is(net.minecraft.world.level.block.Blocks.CHEST))chests++;
+            if(state.is(net.minecraft.world.level.block.Blocks.BREWING_STAND))stands++;
+            if(state.is(net.minecraft.world.level.block.Blocks.SOUL_LANTERN))lanterns++;
+            if(state.is(InfectedContent.TERRAIN.get("crystal_crust").get()))crystals++;
+            if(state.isAir())airInside++;
+        }
+        int roof=0;for(int dx=-5;dx<=5;dx++)for(int dz=-3;dz<=3;dz++)if(!level.getBlockState(origin.offset(dx,5,dz)).isAir())roof++;
+        helper.assertTrue(glass>=6,"Laboratory has no windows: "+glass);
+        helper.assertTrue(chests>=2,"Laboratory has no loot chests: "+chests);
+        helper.assertTrue(stands>=1,"Laboratory has no benches: "+stands);
+        helper.assertTrue(lanterns>=4,"Laboratory has no lighting: "+lanterns);
+        helper.assertTrue(crystals>=20,"Laboratory has too little crystal trim: "+crystals);
+        helper.assertTrue(airInside>=60,"Interior is not hollow: "+airInside);
+        helper.assertTrue(roof>=60,"Roof is not closed: "+roof);
+        clearWideBattlefield(helper);helper.succeed();
+    }
     @GameTest(template="empty64",timeoutTicks=80,batch="ecology_slope")
     public static void frontierErosionClimbsConnectedOneBlockSteps(GameTestHelper helper){
         clearArenaMobs(helper);flatBattlefield(helper,0,12,0,8);var core=fundedCore(helper,new BlockPos(2,1,6),1000,2);

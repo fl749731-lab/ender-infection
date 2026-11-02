@@ -873,6 +873,32 @@ public final class InfectionGameTests {
 
         });
     }
+    @GameTest(template="empty64",timeoutTicks=80,batch="worldgen_lab_styles")
+    public static void eachLabStyleBuildsItsOwnSignature(GameTestHelper helper){
+        clearWideBattlefield(helper);flatBattlefield(helper,0,40,0,24);var level=helper.getLevel();
+        for(int x=0;x<=44;x++)for(int z=0;z<=28;z++)helper.setBlock(new BlockPos(x,0,z),Blocks.STONE);
+        placeLabAt(helper,new BlockPos(10,1,10),InfectedContent.LAB_RESEARCH.get());
+        placeLabAt(helper,new BlockPos(28,1,10),InfectedContent.LAB_HOSPITAL.get());
+        placeLabAt(helper,new BlockPos(46,1,10),InfectedContent.LAB_PRISON.get());
+        int beds=0,bars=0,stands=0;
+        for(int x=0;x<=56;x++)for(int z=0;z<=28;z++)for(int y=0;y<=5;y++){
+            var s=level.getBlockState(helper.absolutePos(new BlockPos(x,y,z)));
+            if(s.is(Blocks.WHITE_BED))beds++;
+            if(s.is(Blocks.IRON_BARS))bars++;
+            if(s.is(Blocks.BREWING_STAND))stands++;
+        }
+        helper.assertTrue(stands>=1,"Research lab has no benches: "+stands);
+        helper.assertTrue(beds>=4,"Hospital lab has no beds: "+beds);
+        helper.assertTrue(bars>=8,"Prison lab has no bars: "+bars);
+        clearWideBattlefield(helper);helper.succeed();
+    }
+    private static void placeLabAt(GameTestHelper helper,BlockPos relative,net.minecraft.world.level.levelgen.feature.Feature<?> feature){
+        var level=helper.getLevel();
+        var context=new net.minecraft.world.level.levelgen.feature.FeaturePlaceContext<net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration>(
+            java.util.Optional.empty(),level,level.getChunkSource().getGenerator(),level.random,helper.absolutePos(relative),
+            net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration.INSTANCE);
+        ((net.minecraft.world.level.levelgen.feature.Feature)feature).place(context);
+    }
     @GameTest(template="empty64",timeoutTicks=60,batch="worldgen_lab")
     public static void laboratoryHasRoomsWindowsBenchesAndLoot(GameTestHelper helper){
         clearWideBattlefield(helper);flatBattlefield(helper,0,20,0,16);var level=helper.getLevel();

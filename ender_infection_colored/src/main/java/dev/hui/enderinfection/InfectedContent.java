@@ -55,10 +55,32 @@ public final class InfectedContent {
     public static final Map<Integer,RegistryObject<Item>> STAGE_EGGS=new LinkedHashMap<>();
     private static final DeferredRegister<Feature<?>> FEATURES=DeferredRegister.create(ForgeRegistries.FEATURES,EnderInfection.MOD_ID);
     public static final RegistryObject<Feature<?>> INFECTED_RUIN=FEATURES.register("infected_ruin",()->new InfectedRuinFeature(NoneFeatureConfiguration.CODEC));
+    public static final RegistryObject<Feature<?>> LAB_RESEARCH=FEATURES.register("lab_research",()->new InfectedRuinFeature(NoneFeatureConfiguration.CODEC,InfectedRuinFeature.Style.RESEARCH));
+    public static final RegistryObject<Feature<?>> LAB_HOSPITAL=FEATURES.register("lab_hospital",()->new InfectedRuinFeature(NoneFeatureConfiguration.CODEC,InfectedRuinFeature.Style.HOSPITAL));
+    public static final RegistryObject<Feature<?>> LAB_PRISON=FEATURES.register("lab_prison",()->new InfectedRuinFeature(NoneFeatureConfiguration.CODEC,InfectedRuinFeature.Style.PRISON));
+    private static final DeferredRegister<net.minecraft.world.level.levelgen.placement.PlacementModifierType<?>> PLACEMENTS=DeferredRegister.create(net.minecraft.core.registries.Registries.PLACEMENT_MODIFIER_TYPE,EnderInfection.MOD_ID);
+    public static final RegistryObject<net.minecraft.world.level.levelgen.placement.PlacementModifierType<dev.hui.enderinfection.worldgen.GridPlacement>> GRID_PLACEMENT=PLACEMENTS.register("grid",()->()->dev.hui.enderinfection.worldgen.GridPlacement.CODEC);
     private static final DeferredRegister<CreativeModeTab> TABS=DeferredRegister.create(net.minecraft.core.registries.Registries.CREATIVE_MODE_TAB,EnderInfection.MOD_ID);
     public static final RegistryObject<Block> NEST=BLOCKS.register("infected_nest",()->new InfectedNestBlock(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.AMETHYST).lightLevel(s->6).noOcclusion()));
     public static final RegistryObject<Item> NEST_ITEM=ITEMS.register("infected_nest",()->new BlockItem(NEST.get(),new Item.Properties()));
     public static final RegistryObject<BlockEntityType<ExpansionNodeEntity>> NODE_ENTITY=BLOCK_ENTITIES.register("expansion_node",()->BlockEntityType.Builder.of(ExpansionNodeEntity::new,NEST.get()).build(null));
+    /** Laboratory set: tiles, cabinet, incubator, surgery table and the two syringes. */
+    public static final RegistryObject<Block> LAB_TILE=BLOCKS.register("lab_tile",()->new Block(BlockBehaviour.Properties.of().strength(3.5F).sound(SoundType.METAL).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> LAB_TILE_DARK=BLOCKS.register("lab_tile_dark",()->new Block(BlockBehaviour.Properties.of().strength(3.5F).sound(SoundType.METAL).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> LAB_TILE_LIGHT=BLOCKS.register("lab_tile_light",()->new Block(BlockBehaviour.Properties.of().strength(3.5F).sound(SoundType.METAL).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> LAB_CHECKER=BLOCKS.register("lab_checker",()->new Block(BlockBehaviour.Properties.of().strength(3.5F).sound(SoundType.STONE).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Item> LAB_CHECKER_ITEM=ITEMS.register("lab_checker",()->new BlockItem(LAB_CHECKER.get(),new Item.Properties()));
+    public static final RegistryObject<Block> LAB_CABINET=BLOCKS.register("lab_cabinet",()->new Block(BlockBehaviour.Properties.of().strength(3F).sound(SoundType.METAL).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> INCUBATOR=BLOCKS.register("incubator",()->new dev.hui.enderinfection.block.IncubatorBlock(BlockBehaviour.Properties.of().strength(3F).sound(SoundType.METAL).lightLevel(s->7).requiresCorrectToolForDrops().randomTicks()));
+    public static final RegistryObject<Block> SURGERY_TABLE=BLOCKS.register("surgery_table",()->new dev.hui.enderinfection.block.SurgeryTableBlock(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOD).randomTicks()));
+    public static final RegistryObject<Item> LAB_TILE_ITEM=ITEMS.register("lab_tile",()->new BlockItem(LAB_TILE.get(),new Item.Properties()));
+    public static final RegistryObject<Item> LAB_TILE_DARK_ITEM=ITEMS.register("lab_tile_dark",()->new BlockItem(LAB_TILE_DARK.get(),new Item.Properties()));
+    public static final RegistryObject<Item> LAB_TILE_LIGHT_ITEM=ITEMS.register("lab_tile_light",()->new BlockItem(LAB_TILE_LIGHT.get(),new Item.Properties()));
+    public static final RegistryObject<Item> LAB_CABINET_ITEM=ITEMS.register("lab_cabinet",()->new BlockItem(LAB_CABINET.get(),new Item.Properties()));
+    public static final RegistryObject<Item> INCUBATOR_ITEM=ITEMS.register("incubator",()->new BlockItem(INCUBATOR.get(),new Item.Properties()));
+    public static final RegistryObject<Item> SURGERY_TABLE_ITEM=ITEMS.register("surgery_table",()->new BlockItem(SURGERY_TABLE.get(),new Item.Properties()));
+    public static final RegistryObject<Item> SYRINGE=ITEMS.register("syringe",()->new Item(new Item.Properties()));
+    public static final RegistryObject<Item> MUTATION_SYRINGE=ITEMS.register("mutation_syringe",()->new dev.hui.enderinfection.item.MutationSyringeItem(new Item.Properties().stacksTo(1)));
     public static final Map<String,RegistryObject<Block>> TERRAIN=new LinkedHashMap<>();
     public static final Map<String,RegistryObject<Item>> TERRAIN_ITEMS=new LinkedHashMap<>();
     public static final Map<String,RegistryObject<Block>> PLANTS=new LinkedHashMap<>();
@@ -94,13 +116,16 @@ public final class InfectedContent {
             STAGE_EGGS.values().forEach(egg->output.accept(egg.get()));
             EGGS.values().forEach(egg->output.accept(egg.get()));
             output.accept(NEST_ITEM.get());
+            output.accept(LAB_TILE_ITEM.get());output.accept(LAB_CHECKER_ITEM.get());output.accept(LAB_TILE_DARK_ITEM.get());output.accept(LAB_TILE_LIGHT_ITEM.get());
+            output.accept(LAB_CABINET_ITEM.get());output.accept(INCUBATOR_ITEM.get());output.accept(SURGERY_TABLE_ITEM.get());
+            output.accept(SYRINGE.get());output.accept(MUTATION_SYRINGE.get());
             PLANT_ITEMS.values().forEach(item->output.accept(item.get()));
             TERRAIN_ITEMS.values().forEach(item->output.accept(item.get()));
         }).build());
     private InfectedContent(){}
     public static void register(IEventBus bus){
         BLOCKS.register(bus);BLOCK_ENTITIES.register(bus);ENTITIES.register(bus);ITEMS.register(bus);MOB_EFFECTS.register(bus);
-        bus.addListener(InfectedContent::attributes);bus.addListener(InfectedContent::creative);TABS.register(bus);FEATURES.register(bus);
+        bus.addListener(InfectedContent::attributes);bus.addListener(InfectedContent::creative);TABS.register(bus);FEATURES.register(bus);PLACEMENTS.register(bus);
     }
     private static void attributes(EntityAttributeCreationEvent event){TYPES.forEach((kind,type)->event.put(type.get(),InfectedMob.attributes(kind).build()));}
     private static void creative(BuildCreativeModeTabContentsEvent event){

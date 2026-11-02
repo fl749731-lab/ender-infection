@@ -37,21 +37,30 @@ public final class BiomassEvents {
         return source.getLevel().getEntitiesOfClass(InfectedMob.class,new net.minecraft.world.phys.AABB(net.minecraft.core.BlockPos.containing(source.getPosition())).inflate(32,12,32),core->core.kind==InfectedKind.CORE&&core.isAlive()).stream().min(java.util.Comparator.comparingDouble(core->core.distanceToSqr(source.getPosition()))).orElse(null);
     }
     /** Debug helper: drop one laboratory right here so the structure can be inspected without a world hunt. */
-    private static void placeLab(net.minecraft.server.level.ServerLevel level,net.minecraft.core.BlockPos pos){
+    private static void placeLab(net.minecraft.server.level.ServerLevel level,net.minecraft.core.BlockPos pos,String style){
         var context=new net.minecraft.world.level.levelgen.feature.FeaturePlaceContext<net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration>(
             java.util.Optional.empty(),level,level.getChunkSource().getGenerator(),level.random,pos,
             net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration.INSTANCE);
+        Object picked=switch(style){
+            case "hospital"->dev.hui.enderinfection.InfectedContent.LAB_HOSPITAL.get();
+            case "prison"->dev.hui.enderinfection.InfectedContent.LAB_PRISON.get();
+            default->dev.hui.enderinfection.InfectedContent.LAB_RESEARCH.get();
+        };
         @SuppressWarnings("unchecked") net.minecraft.world.level.levelgen.feature.Feature<net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration> feature=
-            (net.minecraft.world.level.levelgen.feature.Feature<net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration>)dev.hui.enderinfection.InfectedContent.INFECTED_RUIN.get();
+            (net.minecraft.world.level.levelgen.feature.Feature<net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration>)picked;
         feature.place(context);
     }
     @SubscribeEvent public static void commands(RegisterCommandsEvent event){
-        event.getDispatcher().register(Commands.literal("enderlab").requires(source->source.hasPermission(2)).executes(context->{
-            var player=context.getSource().getPlayerOrException();
-            placeLab(player.serverLevel(),player.blockPosition().offset(0,1,0));
-            context.getSource().sendSuccess(()->Component.literal("已在此处生成感染的实验室。"),false);
-            return 1;
-        }));
+        event.getDispatcher().register(Commands.literal("enderlab").requires(source->source.hasPermission(2))
+            .then(Commands.argument("style",com.mojang.brigadier.arguments.StringArgumentType.word())
+                .suggests((ctx,builder)->net.minecraft.commands.SharedSuggestionProvider.suggest(new String[]{"research","hospital","prison"},builder))
+                .executes(context->{
+                    var player=context.getSource().getPlayerOrException();
+                    String style=com.mojang.brigadier.arguments.StringArgumentType.getString(context,"style");
+                    placeLab(player.serverLevel(),player.blockPosition().offset(0,1,0),style);
+                    context.getSource().sendSuccess(()->Component.literal("已生成实验室："+style),false);
+                    return 1;
+                })));
         event.getDispatcher().register(Commands.literal("enderbiomass").requires(source->source.hasPermission(2))
             .executes(context->{
                 var source=context.getSource();int reserve=BiomassData.get(source.getLevel()).amount();var core=nearest(source);

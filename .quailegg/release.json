@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "version": "0.10.1-alpha.1",
-  "created_at": "2026-11-02T15:52:21.491946005Z",
+  "version": "0.11.0-alpha.1",
+  "created_at": "2026-11-02T16:31:22.589906618Z",
   "mode": "pr",
   "channel": "alpha",
-  "fingerprint": "sha256:163e6b94fe1edd800bfe78da6702b189d0bff711804133c0758e4aa2539cec59",
+  "fingerprint": "sha256:663e59b86858ca90036ebcbf2528af216f3374993bcb1d34e622309d47fe67eb",
   "repo": {
     "host": "github.com",
     "owner": "fl749731-lab",
@@ -16,25 +16,25 @@
       "cd ender_infection_colored \u0026\u0026 java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain build"
     ],
     "skipped": false,
-    "at": "2026-11-02T15:52:21.491946917Z"
+    "at": "2026-11-02T16:31:22.589907249Z"
   },
   "packages": [
     {
       "name": "java@ender_infection_colored",
       "path": "ender_infection_colored",
       "resolver": "java",
-      "current": "0.10.0",
-      "next": "0.10.1-alpha.1",
-      "bump": "patch",
-      "tag": "v0.10.1-alpha.1",
+      "current": "0.10.1-alpha.1",
+      "next": "0.11.0-alpha.1",
+      "bump": "minor",
+      "tag": "v0.11.0-alpha.1",
       "publish": false
     }
   ],
   "releases": [
     {
-      "version": "0.10.1-alpha.1",
-      "tag": "v0.10.1-alpha.1",
-      "previous_tag": "v0.10.0",
+      "version": "0.11.0-alpha.1",
+      "tag": "v0.11.0-alpha.1",
+      "previous_tag": "v0.10.1-alpha.1",
       "packages": [
         "java@ender_infection_colored"
       ],
@@ -42,6 +42,19 @@
     }
   ],
   "changes": [
+    {
+      "file": ".changes/lab-detail.md",
+      "type": "feat",
+      "scope": "worldgen",
+      "bump": "minor",
+      "packages": [
+        "java@ender_infection_colored"
+      ],
+      "body": "实验室重做为有细节的封闭建筑：加厚地基、四角活体组织立柱、两层染色玻璃窗、晶体檐口与带肋屋顶、门廊与天线，内部三间房各有操作台、培养罐、灵魂灯与两个战利品箱；同时把出现概率降到 1/600 区块。",
+      "commit": "275b564425159c1c08c0c90ce40d33463b393a7c",
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/275b564425159c1c08c0c90ce40d33463b393a7c",
+      "author": "fl749731-lab"
+    },
     {
       "file": ".changes/lab-rarity.md",
       "type": "fix",
@@ -55,6 +68,9 @@
       "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/3d4ee59d66f420bd441de4e5c37621dd8aa92e23",
       "author": "fl749731-lab"
     }
+  ],
+  "previous_changes": [
+    ".changes/lab-rarity.md"
   ],
   "qegg": {
     "version": "0.11.0"

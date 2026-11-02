@@ -80,7 +80,7 @@ public final class InfectedContent {
         }
     }
     static {
-        for(int stage=1;stage<=5;stage++){final int s=stage;STAGE_EGGS.put(stage,ITEMS.register("mother_stage"+stage,()->new StageEggItem(s,new Item.Properties())));}
+        for(int stage=1;stage<=5;stage++){final int s=stage;STAGE_EGGS.put(stage,ITEMS.register("mother_stage"+stage,()->new StageEggItem(s)));}
     }
     public static final RegistryObject<CreativeModeTab> TAB=TABS.register("ender_infection",()->CreativeModeTab.builder()
         .title(Component.translatable("itemGroup.ender_infection"))

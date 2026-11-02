@@ -204,6 +204,9 @@ public final class InfectedMob extends Monster implements GeoEntity {
     private double attackRadius(){return kind==InfectedKind.CORE?(motherStage()==1?4:motherStage()==2?8:10):kind.radius;}
     @Override public void addAdditionalSaveData(CompoundTag tag){super.addAdditionalSaveData(tag);tag.putInt("EmergenceTicks",emergenceTicks);tag.putInt("PersonalBiomass",personalBiomass);tag.putBoolean("ExpansionNodeCreated",expansionNodeCreated);if(expansionAnchor!=null)tag.putLong("ExpansionAnchor",expansionAnchor.asLong());if(kind==InfectedKind.CORE){tag.putInt("MotherStage",motherStage());tag.putInt("ColonyBiomass",colonyBiomass);tag.putInt("ColonyIncome",colonyIncomeTotal);tag.putInt("ExpansionAllowance",expansionAllowance);tag.putInt("ExpansionRemainder",expansionRemainder);tag.putFloat("MorphSpeed",morphSpeed());var nodes=new net.minecraft.nbt.ListTag();for(BlockPos pos:colonyNodes)nodes.add(net.minecraft.nbt.LongTag.valueOf(pos.asLong()));tag.put("ColonyNodes",nodes);tag.putLong("NextTerritoryHarvest",nextTerritoryHarvest);tag.putInt("TerritoryRemainder",territoryRemainder);tag.putInt("TerritoryIncomeVersion",2);tag.putInt("TerritoryFertility",territoryFertility);tag.putInt("TerritoryColumns",territoryColumns);tag.putInt("TerritoryWeight",territoryWeight);tag.putInt("LastTerritoryIncome",lastTerritoryIncome);motherBrain.save(tag);}}
     @Override public void readAdditionalSaveData(CompoundTag tag){super.readAdditionalSaveData(tag);if(getAttribute(Attributes.FOLLOW_RANGE)!=null&&getAttribute(Attributes.FOLLOW_RANGE).getBaseValue()<40)getAttribute(Attributes.FOLLOW_RANGE).setBaseValue(40);emergenceTicks=Math.max(0,Math.min(40,tag.getInt("EmergenceTicks")));entityData.set(EMERGING,emergenceTicks>0);emergenceStarted=false;personalBiomass=Math.max(0,tag.getInt("PersonalBiomass"));expansionNodeCreated=tag.getBoolean("ExpansionNodeCreated");expansionAnchor=tag.contains("ExpansionAnchor")?BlockPos.of(tag.getLong("ExpansionAnchor")):null;if(kind==InfectedKind.CORE){colonyBiomass=Math.max(0,Math.min(10000,tag.getInt("ColonyBiomass")));colonyIncomeTotal=Math.max(0,tag.getInt("ColonyIncome"));expansionAllowance=tag.contains("ExpansionAllowance")?Math.max(0,Math.min(10000,tag.getInt("ExpansionAllowance"))):4;expansionRemainder=Math.max(0,Math.min(3,tag.getInt("ExpansionRemainder")));entityData.set(MORPH_SPEED,tag.contains("MorphSpeed")?Math.max(.5F,Math.min(4F,tag.getFloat("MorphSpeed"))):1F);colonyNodes.clear();for(var entry:tag.getList("ColonyNodes",4))colonyNodes.add(BlockPos.of(((net.minecraft.nbt.LongTag)entry).getAsLong()));nextTerritoryHarvest=tag.contains("NextTerritoryHarvest")?Math.max(level().getGameTime(),Math.min(level().getGameTime()+200,tag.getLong("NextTerritoryHarvest"))):level().getGameTime()+200;territoryRemainder=tag.getInt("TerritoryIncomeVersion")>=2?Math.max(0,Math.min(dev.hui.enderinfection.biomass.LandNutrients.DENOMINATOR-1,tag.getInt("TerritoryRemainder"))):Math.max(0,Math.min(31,tag.getInt("TerritoryRemainder")))*dev.hui.enderinfection.biomass.LandNutrients.CYCLES;territoryFertility=tag.contains("TerritoryFertility")?Math.max(0,Math.min(100,tag.getInt("TerritoryFertility"))):100;territoryColumns=Math.max(0,tag.getInt("TerritoryColumns"));territoryWeight=Math.max(0,tag.getInt("TerritoryWeight"));lastTerritoryIncome=Math.max(0,tag.getInt("LastTerritoryIncome"));motherBrain.load(tag);applyMotherStage(tag.contains("MotherStage")?tag.getInt("MotherStage"):2);}}
+    /** The colony is a faction, not a mob spawn: units must not vanish when the player walks away. */
+    @Override public boolean removeWhenFarAway(double distance){return false;}
+    @Override public boolean requiresCustomPersistence(){return true;}
     @Override public boolean isPushable(){return kind!=InfectedKind.CORE && super.isPushable();}
     private FactionAI.HuntGoal factionHunt;
     private FactionAI.Motion factionMotion;
@@ -435,9 +438,8 @@ public final class InfectedMob extends Monster implements GeoEntity {
         int population=colonyPopulation(server);
         if(population>=MotherBrain.cap(motherStage())){lastSpawnNote="cap "+population+"/"+MotherBrain.cap(motherStage());return false;}
         InfectedKind host=motherBrain.pickHost();
-        boolean advanced=motherStage()>=3&&host.evolved()!=null&&random.nextInt(motherStage()>=4?2:3)==0&&colonyBiomass-upgradeReserve()>=ColonyEconomy.ADVANCED_UNIT;
-        int price=advanced?ColonyEconomy.ADVANCED_UNIT:ColonyEconomy.EARLY_UNIT;
-        if(colonyBiomass-price<Math.max(upgradeReserve(),expansionFloor())){lastSpawnNote="reserve "+Math.max(upgradeReserve(),ColonyEconomy.EXPANSION_FLOOR)+" stock "+colonyBiomass;return false;}
+        boolean advanced=motherStage()>=3&&host.evolved()!=null&&random.nextInt(motherStage()>=4?2:3)==0;
+        // Mature land births its own brood: the mother pays nothing for it.
         Monster child=advanced&&host==InfectedKind.EARLY_ZOMBIE?EnderInfection.MUTANT_ZOMBIE.get().create(server):InfectedContent.TYPES.get(advanced?host.evolved():host).get().create(server);
         if(child==null){lastSpawnNote="create null "+host;return false;}
         child.moveTo(pos.getX()+.5,pos.getY(),pos.getZ()+.5,random.nextFloat()*360,0);
@@ -446,9 +448,8 @@ public final class InfectedMob extends Monster implements GeoEntity {
         child.getPersistentData().putUUID("ColonyMother",getUUID());
         child.getPersistentData().putString("ColonyDuty",FactionAI.assignDuty(this));
         BroodLearning.stamp(child,host,motherBrain.tactic());
-        if(!spendForHatching(price)){lastSpawnNote="could not pay "+price;return false;}
         if(server.addFreshEntity(child)){FactionEffects.shatter(server,child.position(),14);lastSpawnNote="";return true;}
-        refundBiomass(price);lastSpawnNote="addFreshEntity refused";return false;
+        lastSpawnNote="addFreshEntity refused";return false;
     }
     boolean emergencyDefense(ServerLevel server){
         if(kind!=InfectedKind.CORE||colonyBiomass<ColonyEconomy.EARLY_UNIT)return false;

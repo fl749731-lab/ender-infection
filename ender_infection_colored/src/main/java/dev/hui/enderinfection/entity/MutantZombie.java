@@ -96,6 +96,9 @@ public final class MutantZombie extends Monster implements GeoEntity {
     public boolean isAttacking() { return entityData.get(ATTACK) != 0; }
     public boolean emerging(){return entityData.get(EMERGING);}
     @Override public void addAdditionalSaveData(CompoundTag tag){super.addAdditionalSaveData(tag);tag.putInt("EmergenceTicks",emergenceTicks);}
+    /** Same as the rest of the brood: never despawn just because the player left. */
+    @Override public boolean removeWhenFarAway(double distance){return false;}
+    @Override public boolean requiresCustomPersistence(){return true;}
     @Override public void readAdditionalSaveData(CompoundTag tag){super.readAdditionalSaveData(tag);if(getAttribute(Attributes.FOLLOW_RANGE)!=null&&getAttribute(Attributes.FOLLOW_RANGE).getBaseValue()<40)getAttribute(Attributes.FOLLOW_RANGE).setBaseValue(40);emergenceTicks=tag.getInt("EmergenceTicks")>0?32:0;entityData.set(EMERGING,emergenceTicks>0);emergenceStarted=false;}
 
     private void startAttack(AttackSpec attack, LivingEntity target) {

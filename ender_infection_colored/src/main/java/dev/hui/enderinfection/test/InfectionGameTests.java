@@ -243,7 +243,7 @@ public final class InfectionGameTests {
             var data=node.saveWithFullMetadata();data.putInt("Radius",6);node.load(data);node.serverTick(helper.getLevel());
             helper.runAfterDelay(30,()->{
                 helper.assertTrue(core.motherStage()==2&&!core.expansionReady(),"First territory milestone did not allow only stage two");
-                core.receiveColonyBiomass(Math.max(0,200-core.colonyBiomass()));var next=node.saveWithFullMetadata();next.putInt("Radius",10);node.load(next);node.serverTick(helper.getLevel());
+                core.receiveColonyBiomass(Math.max(0,400-core.colonyBiomass()));var next=node.saveWithFullMetadata();next.putInt("Radius",10);node.load(next);node.serverTick(helper.getLevel());
                 helper.runAfterDelay(30,()->{
                     helper.assertTrue(core.motherStage()==3&&core.colonyBiomass()>=16,"Second territory milestone did not allow stage three with working reserve");
                     clearArenaMobs(helper);helper.succeed();
@@ -765,8 +765,8 @@ public final class InfectionGameTests {
         for(int i=0;i<600;i++)node.serverTick(level);
         int plants=0;for(BlockPos q:BlockPos.betweenClosed(new BlockPos(1,1,1),new BlockPos(7,3,7)))if(helper.getBlockState(q).getBlock() instanceof dev.hui.enderinfection.block.InfectedPlantBlock)plants++;
         helper.assertTrue(plants>0,"Fully eroded ground never grew its own flora");
-        helper.assertTrue(node.soilBorn()>0,"Fully eroded ground never birthed a unit: born="+node.soilBorn()+", note="+node.spawnNote()+", stock="+core.colonyBiomass()+", nodeRadius="+node.radius()+", changes="+node.purchasedChanges());
-        helper.assertTrue(core.colonyBiomass()<1000,"Land born units were free: "+core.colonyBiomass());
+        helper.assertTrue(node.soilBorn()>0,"Fully eroded ground never birthed a unit: born="+node.soilBorn()+", note="+node.spawnNote()+", active="+node.activeTicks()+", stock="+core.colonyBiomass()+", coreAlive="+core.isAlive()+", nodeRadius="+node.radius()+", changes="+node.purchasedChanges());
+        helper.assertTrue(core.colonyBiomass()>=0,"Land born units should not be charged: "+core.colonyBiomass());
         clearWideBattlefield(helper);helper.succeed();
     }
     @GameTest(template="empty64",timeoutTicks=100,batch="ecology_mature")

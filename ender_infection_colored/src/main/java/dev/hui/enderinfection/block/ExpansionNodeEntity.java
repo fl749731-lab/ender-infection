@@ -30,6 +30,9 @@ public final class ExpansionNodeEntity extends BlockEntity {
     private static final TagKey<Block> GROUND=TagKey.create(Registries.BLOCK,new ResourceLocation("ender_infection","infectable_ground"));
     private int activeTicks,spreadClock,growthClock,purchasedChanges,spentBiomass,radius=2;
     private UUID owner;
+    /** World generated nests have no mother yet; they raise one on their first ticks. */
+    private boolean wild;
+    public void markWild(){wild=true;setChanged();}
     private int outpostClock=600;
     private boolean outpostCreated;
     private int frontierCursor;
@@ -138,7 +141,9 @@ public final class ExpansionNodeEntity extends BlockEntity {
     }
     public ExpansionNodeEntity(BlockPos pos,BlockState state){super(InfectedContent.NODE_ENTITY.get(),pos,state);}
     public void serverTick(ServerLevel level){
-        activeTicks++;InfectedMob core=mother(level);if(core==null)return;core.observeExpansion(this);
+        activeTicks++;
+        if(wild&&owner==null&&activeTicks%20==0)sproutMother(level);
+        InfectedMob core=mother(level);if(core==null)return;core.observeExpansion(this);
         if(inhibited(level)){if(activeTicks%40==0)dev.hui.enderinfection.particle.FactionEffects.suppress(level,effectPosition());return;}
         if(!level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING))return;
         if(radius<MAX_RADIUS&&(growthClock=Math.min(growthClock+1,ColonyEconomy.RADIUS_BASE_TICKS*2))>=ColonyEconomy.interval(ColonyEconomy.RADIUS_BASE_TICKS,core.colonyBiomass())&&(getBlockState().getValue(InfectedNestBlock.ROOTED)||purchasedChanges>0||isGround(InfectedContent.terrainKey(level.getBlockState(worldPosition.below()))))&&core.spendForExpansion(ColonyEconomy.RADIUS)){
@@ -383,6 +388,14 @@ public final class ExpansionNodeEntity extends BlockEntity {
         return changed;
     }
     private boolean isInfectedLog(BlockState state){String k=InfectedContent.terrainKey(state);return "eroded_log".equals(k)||"infected_log".equals(k);}
-    @Override protected void saveAdditional(CompoundTag tag){super.saveAdditional(tag);tag.putString("SubstrateBlock",substrate);tag.putInt("LegacyCanopyCursor",legacyCanopyCursor);tag.putLong("InhibitedUntil",inhibitedUntil);tag.putInt("FrontierCursor",frontierCursor);tag.putInt("ActiveTicks",activeTicks);tag.putInt("SpreadClock",spreadClock);tag.putInt("PurchasedChanges",purchasedChanges);tag.putInt("SpentBiomass",spentBiomass);tag.putInt("Radius",radius);tag.putInt("GrowthClock",growthClock);tag.putInt("OutpostClock",outpostClock);tag.putInt("DeepClock",deepClock);tag.putInt("Deepened",deepened);tag.putInt("MatureClock",matureClock);tag.putInt("MatureCursor",matureCursor);tag.putInt("SpawnClock",spawnClock);tag.putInt("FloraClock",floraClock);tag.putInt("SoilBorn",soilBorn);tag.putInt("Matured",matured);tag.putBoolean("OutpostCreated",outpostCreated);if(owner!=null)tag.putUUID("Owner",owner);}
-    @Override public void load(CompoundTag tag){super.load(tag);substrate=tag.getString("SubstrateBlock");legacyCanopyCursor=Math.max(0,tag.getInt("LegacyCanopyCursor"));inhibitedUntil=Math.max(0,tag.getLong("InhibitedUntil"));frontierCursor=Math.max(0,tag.getInt("FrontierCursor"));activeTicks=Math.max(0,tag.getInt("ActiveTicks"));spreadClock=Math.max(0,Math.min(40,tag.getInt("SpreadClock")));purchasedChanges=tag.contains("PurchasedChanges")?Math.max(0,Math.min(1000000,tag.getInt("PurchasedChanges"))):Math.min(224,activeTicks/300*16);radius=tag.contains("Radius")?Math.max(2,Math.min(MAX_RADIUS,tag.getInt("Radius"))):Math.min(MAX_RADIUS,2+activeTicks/300);spentBiomass=Math.max(0,tag.getInt("SpentBiomass"));growthClock=Math.max(0,Math.min(300,tag.getInt("GrowthClock")));outpostClock=tag.contains("OutpostClock")?Math.max(0,Math.min(600,tag.getInt("OutpostClock"))):600;deepClock=Math.max(0,tag.getInt("DeepClock"));deepened=Math.max(0,tag.getInt("Deepened"));matureClock=Math.max(0,tag.getInt("MatureClock"));matureCursor=Math.max(0,tag.getInt("MatureCursor"));spawnClock=Math.max(0,tag.getInt("SpawnClock"));floraClock=Math.max(0,tag.getInt("FloraClock"));soilBorn=Math.max(0,tag.getInt("SoilBorn"));matured=Math.max(0,tag.getInt("Matured"));outpostCreated=tag.getBoolean("OutpostCreated");owner=tag.hasUUID("Owner")?tag.getUUID("Owner"):null;}
+    /** Entities cannot be added while a chunk is generating, so the mother is raised after the chunk loads. */
+    private void sproutMother(ServerLevel level){
+        InfectedMob core=InfectedContent.TYPES.get(InfectedKind.CORE).get().create(level);
+        if(core==null)return;
+        core.moveTo(worldPosition.getX()+.5,worldPosition.getY()+1,worldPosition.getZ()+.5,level.random.nextFloat()*360,0);
+        if(!level.noCollision(core,core.getBoundingBox())||!level.addFreshEntity(core))return;
+        setOwner(core.getUUID());wild=false;setChanged();
+    }
+    @Override protected void saveAdditional(CompoundTag tag){super.saveAdditional(tag);tag.putString("SubstrateBlock",substrate);tag.putBoolean("Wild",wild);tag.putInt("LegacyCanopyCursor",legacyCanopyCursor);tag.putLong("InhibitedUntil",inhibitedUntil);tag.putInt("FrontierCursor",frontierCursor);tag.putInt("ActiveTicks",activeTicks);tag.putInt("SpreadClock",spreadClock);tag.putInt("PurchasedChanges",purchasedChanges);tag.putInt("SpentBiomass",spentBiomass);tag.putInt("Radius",radius);tag.putInt("GrowthClock",growthClock);tag.putInt("OutpostClock",outpostClock);tag.putInt("DeepClock",deepClock);tag.putInt("Deepened",deepened);tag.putInt("MatureClock",matureClock);tag.putInt("MatureCursor",matureCursor);tag.putInt("SpawnClock",spawnClock);tag.putInt("FloraClock",floraClock);tag.putInt("SoilBorn",soilBorn);tag.putInt("Matured",matured);tag.putBoolean("OutpostCreated",outpostCreated);if(owner!=null)tag.putUUID("Owner",owner);}
+    @Override public void load(CompoundTag tag){super.load(tag);substrate=tag.getString("SubstrateBlock");wild=tag.getBoolean("Wild");legacyCanopyCursor=Math.max(0,tag.getInt("LegacyCanopyCursor"));inhibitedUntil=Math.max(0,tag.getLong("InhibitedUntil"));frontierCursor=Math.max(0,tag.getInt("FrontierCursor"));activeTicks=Math.max(0,tag.getInt("ActiveTicks"));spreadClock=Math.max(0,Math.min(40,tag.getInt("SpreadClock")));purchasedChanges=tag.contains("PurchasedChanges")?Math.max(0,Math.min(1000000,tag.getInt("PurchasedChanges"))):Math.min(224,activeTicks/300*16);radius=tag.contains("Radius")?Math.max(2,Math.min(MAX_RADIUS,tag.getInt("Radius"))):Math.min(MAX_RADIUS,2+activeTicks/300);spentBiomass=Math.max(0,tag.getInt("SpentBiomass"));growthClock=Math.max(0,Math.min(300,tag.getInt("GrowthClock")));outpostClock=tag.contains("OutpostClock")?Math.max(0,Math.min(600,tag.getInt("OutpostClock"))):600;deepClock=Math.max(0,tag.getInt("DeepClock"));deepened=Math.max(0,tag.getInt("Deepened"));matureClock=Math.max(0,tag.getInt("MatureClock"));matureCursor=Math.max(0,tag.getInt("MatureCursor"));spawnClock=Math.max(0,tag.getInt("SpawnClock"));floraClock=Math.max(0,tag.getInt("FloraClock"));soilBorn=Math.max(0,tag.getInt("SoilBorn"));matured=Math.max(0,tag.getInt("Matured"));outpostCreated=tag.getBoolean("OutpostCreated");owner=tag.hasUUID("Owner")?tag.getUUID("Owner"):null;}
 }

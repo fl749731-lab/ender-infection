@@ -19,6 +19,9 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.network.chat.Component;
 import dev.hui.enderinfection.item.StageEggItem;
+import dev.hui.enderinfection.worldgen.InfectedRuinFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
@@ -50,6 +53,8 @@ public final class InfectedContent {
     public static final Map<InfectedKind,RegistryObject<Item>> EGGS=new EnumMap<>(InfectedKind.class);
     /** One egg per mother stage so every tier can be spawned directly. */
     public static final Map<Integer,RegistryObject<Item>> STAGE_EGGS=new LinkedHashMap<>();
+    private static final DeferredRegister<Feature<?>> FEATURES=DeferredRegister.create(ForgeRegistries.FEATURES,EnderInfection.MOD_ID);
+    public static final RegistryObject<Feature<?>> INFECTED_RUIN=FEATURES.register("infected_ruin",()->new InfectedRuinFeature(NoneFeatureConfiguration.CODEC));
     private static final DeferredRegister<CreativeModeTab> TABS=DeferredRegister.create(net.minecraft.core.registries.Registries.CREATIVE_MODE_TAB,EnderInfection.MOD_ID);
     public static final RegistryObject<Block> NEST=BLOCKS.register("infected_nest",()->new InfectedNestBlock(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.AMETHYST).lightLevel(s->6).noOcclusion()));
     public static final RegistryObject<Item> NEST_ITEM=ITEMS.register("infected_nest",()->new BlockItem(NEST.get(),new Item.Properties()));
@@ -95,7 +100,7 @@ public final class InfectedContent {
     private InfectedContent(){}
     public static void register(IEventBus bus){
         BLOCKS.register(bus);BLOCK_ENTITIES.register(bus);ENTITIES.register(bus);ITEMS.register(bus);MOB_EFFECTS.register(bus);
-        bus.addListener(InfectedContent::attributes);bus.addListener(InfectedContent::creative);TABS.register(bus);
+        bus.addListener(InfectedContent::attributes);bus.addListener(InfectedContent::creative);TABS.register(bus);FEATURES.register(bus);
     }
     private static void attributes(EntityAttributeCreationEvent event){TYPES.forEach((kind,type)->event.put(type.get(),InfectedMob.attributes(kind).build()));}
     private static void creative(BuildCreativeModeTabContentsEvent event){

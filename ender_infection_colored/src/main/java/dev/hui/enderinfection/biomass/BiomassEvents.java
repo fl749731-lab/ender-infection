@@ -36,7 +36,22 @@ public final class BiomassEvents {
     private static InfectedMob nearest(net.minecraft.commands.CommandSourceStack source){
         return source.getLevel().getEntitiesOfClass(InfectedMob.class,new net.minecraft.world.phys.AABB(net.minecraft.core.BlockPos.containing(source.getPosition())).inflate(32,12,32),core->core.kind==InfectedKind.CORE&&core.isAlive()).stream().min(java.util.Comparator.comparingDouble(core->core.distanceToSqr(source.getPosition()))).orElse(null);
     }
+    /** Debug helper: drop one laboratory right here so the structure can be inspected without a world hunt. */
+    private static void placeLab(net.minecraft.server.level.ServerLevel level,net.minecraft.core.BlockPos pos){
+        var context=new net.minecraft.world.level.levelgen.feature.FeaturePlaceContext<net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration>(
+            java.util.Optional.empty(),level,level.getChunkSource().getGenerator(),level.random,pos,
+            net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration.INSTANCE);
+        @SuppressWarnings("unchecked") net.minecraft.world.level.levelgen.feature.Feature<net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration> feature=
+            (net.minecraft.world.level.levelgen.feature.Feature<net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration>)dev.hui.enderinfection.InfectedContent.INFECTED_RUIN.get();
+        feature.place(context);
+    }
     @SubscribeEvent public static void commands(RegisterCommandsEvent event){
+        event.getDispatcher().register(Commands.literal("enderlab").requires(source->source.hasPermission(2)).executes(context->{
+            var player=context.getSource().getPlayerOrException();
+            placeLab(player.serverLevel(),player.blockPosition().offset(0,1,0));
+            context.getSource().sendSuccess(()->Component.literal("已在此处生成感染的实验室。"),false);
+            return 1;
+        }));
         event.getDispatcher().register(Commands.literal("enderbiomass").requires(source->source.hasPermission(2))
             .executes(context->{
                 var source=context.getSource();int reserve=BiomassData.get(source.getLevel()).amount();var core=nearest(source);

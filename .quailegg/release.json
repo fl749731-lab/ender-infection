@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "version": "0.11.0-alpha.2",
-  "created_at": "2026-11-02T19:30:12.422898027Z",
+  "version": "0.11.0-alpha.3",
+  "created_at": "2026-11-02T23:02:25.106131+01:00",
   "mode": "pr",
   "channel": "alpha",
-  "fingerprint": "sha256:dad474d4c26c02b8198de73c72796c7a1153eeb4c7f4bbc9fbf1e9dcad4bf58b",
+  "fingerprint": "sha256:ea88069db6b50381446797d2ff138af740a59ec85e4830017e160785ca9e02a9",
   "repo": {
     "host": "github.com",
     "owner": "fl749731-lab",
@@ -16,25 +16,25 @@
       "cd ender_infection_colored \u0026\u0026 java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain build"
     ],
     "skipped": false,
-    "at": "2026-11-02T19:30:12.422898928Z"
+    "at": "2026-11-02T23:02:25.106131+01:00"
   },
   "packages": [
     {
       "name": "java@ender_infection_colored",
       "path": "ender_infection_colored",
       "resolver": "java",
-      "current": "0.11.0-alpha.1",
-      "next": "0.11.0-alpha.2",
+      "current": "0.11.0-alpha.2",
+      "next": "0.11.0-alpha.3",
       "bump": "minor",
-      "tag": "v0.11.0-alpha.2",
+      "tag": "v0.11.0-alpha.3",
       "publish": false
     }
   ],
   "releases": [
     {
-      "version": "0.11.0-alpha.2",
-      "tag": "v0.11.0-alpha.2",
-      "previous_tag": "v0.11.0-alpha.1",
+      "version": "0.11.0-alpha.3",
+      "tag": "v0.11.0-alpha.3",
+      "previous_tag": "v0.11.0-alpha.2",
       "packages": [
         "java@ender_infection_colored"
       ],
@@ -42,6 +42,18 @@
     }
   ],
   "changes": [
+    {
+      "file": ".changes/integrate-design-pack.md",
+      "type": "feat",
+      "scope": "integration",
+      "bump": "minor",
+      "packages": [
+        "java@ender_infection_colored"
+      ],
+      "body": "接入 63 个 Blockbench 设计源：14 个新专职单位、母体及攻城单位重做、两套护甲、四种武器、掉落材料与 28 个实验室方块；新增四层原生研究实验室、资源导出、73 项 GameTest 和客户端资源验证，更新仓库说明与 E 盘启动位置。",
+      "commit": "8019a83a7a52861157d28192a2a8c78dec6c29ad",
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/8019a83a7a52861157d28192a2a8c78dec6c29ad"
+    },
     {
       "file": ".changes/lab-detail.md",
       "type": "feat",
@@ -84,7 +96,8 @@
   ],
   "previous_changes": [
     ".changes/lab-detail.md",
-    ".changes/lab-rarity.md"
+    ".changes/lab-rarity.md",
+    ".changes/lab-styles.md"
   ],
   "qegg": {
     "version": "0.11.0"

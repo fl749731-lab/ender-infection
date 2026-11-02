@@ -15,6 +15,10 @@ import dev.hui.enderinfection.effect.EnderErosionEffect;
 import dev.hui.enderinfection.effect.MyceliumInfectionEffect;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.network.chat.Component;
+import dev.hui.enderinfection.item.StageEggItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
@@ -44,6 +48,9 @@ public final class InfectedContent {
     public static final RegistryObject<MobEffect> MYCELIUM_INFECTION=MOB_EFFECTS.register("mycelium_infection",MyceliumInfectionEffect::new);
     public static final Map<InfectedKind,RegistryObject<EntityType<InfectedMob>>> TYPES=new EnumMap<>(InfectedKind.class);
     public static final Map<InfectedKind,RegistryObject<Item>> EGGS=new EnumMap<>(InfectedKind.class);
+    /** One egg per mother stage so every tier can be spawned directly. */
+    public static final Map<Integer,RegistryObject<Item>> STAGE_EGGS=new LinkedHashMap<>();
+    private static final DeferredRegister<CreativeModeTab> TABS=DeferredRegister.create(net.minecraft.core.registries.Registries.CREATIVE_MODE_TAB,EnderInfection.MOD_ID);
     public static final RegistryObject<Block> NEST=BLOCKS.register("infected_nest",()->new InfectedNestBlock(BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.AMETHYST).lightLevel(s->6).noOcclusion()));
     public static final RegistryObject<Item> NEST_ITEM=ITEMS.register("infected_nest",()->new BlockItem(NEST.get(),new Item.Properties()));
     public static final RegistryObject<BlockEntityType<ExpansionNodeEntity>> NODE_ENTITY=BLOCK_ENTITIES.register("expansion_node",()->BlockEntityType.Builder.of(ExpansionNodeEntity::new,NEST.get()).build(null));
@@ -72,10 +79,23 @@ public final class InfectedContent {
             EGGS.put(kind,ITEMS.register("infected_"+kind.key+"_spawn_egg",()->new ForgeSpawnEggItem(type,0x15121D,0xBB6CEF,new Item.Properties())));
         }
     }
+    static {
+        for(int stage=1;stage<=5;stage++){final int s=stage;STAGE_EGGS.put(stage,ITEMS.register("mother_stage"+stage,()->new StageEggItem(s,new Item.Properties())));}
+    }
+    public static final RegistryObject<CreativeModeTab> TAB=TABS.register("ender_infection",()->CreativeModeTab.builder()
+        .title(Component.translatable("itemGroup.ender_infection"))
+        .icon(()->new ItemStack(NEST_ITEM.get()))
+        .displayItems((params,output)->{
+            STAGE_EGGS.values().forEach(egg->output.accept(egg.get()));
+            EGGS.values().forEach(egg->output.accept(egg.get()));
+            output.accept(NEST_ITEM.get());
+            PLANT_ITEMS.values().forEach(item->output.accept(item.get()));
+            TERRAIN_ITEMS.values().forEach(item->output.accept(item.get()));
+        }).build());
     private InfectedContent(){}
     public static void register(IEventBus bus){
         BLOCKS.register(bus);BLOCK_ENTITIES.register(bus);ENTITIES.register(bus);ITEMS.register(bus);MOB_EFFECTS.register(bus);
-        bus.addListener(InfectedContent::attributes);bus.addListener(InfectedContent::creative);
+        bus.addListener(InfectedContent::attributes);bus.addListener(InfectedContent::creative);TABS.register(bus);
     }
     private static void attributes(EntityAttributeCreationEvent event){TYPES.forEach((kind,type)->event.put(type.get(),InfectedMob.attributes(kind).build()));}
     private static void creative(BuildCreativeModeTabContentsEvent event){

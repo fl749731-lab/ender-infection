@@ -1,9 +1,10 @@
 {
   "schema_version": 1,
-  "version": "0.10.0",
-  "created_at": "2026-11-02T15:40:56.789828609Z",
+  "version": "0.10.1-alpha.1",
+  "created_at": "2026-11-02T15:52:21.491946005Z",
   "mode": "pr",
-  "fingerprint": "sha256:17c07d5a257fba0b3beb3b33e8cfc97b1f0f464eff83e80b52a910da88b078bb",
+  "channel": "alpha",
+  "fingerprint": "sha256:163e6b94fe1edd800bfe78da6702b189d0bff711804133c0758e4aa2539cec59",
   "repo": {
     "host": "github.com",
     "owner": "fl749731-lab",
@@ -15,42 +16,43 @@
       "cd ender_infection_colored \u0026\u0026 java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain build"
     ],
     "skipped": false,
-    "at": "2026-11-02T15:40:56.789829059Z"
+    "at": "2026-11-02T15:52:21.491946917Z"
   },
   "packages": [
     {
       "name": "java@ender_infection_colored",
       "path": "ender_infection_colored",
       "resolver": "java",
-      "current": "0.9.0",
-      "next": "0.10.0",
-      "bump": "minor",
-      "tag": "v0.10.0",
+      "current": "0.10.0",
+      "next": "0.10.1-alpha.1",
+      "bump": "patch",
+      "tag": "v0.10.1-alpha.1",
       "publish": false
     }
   ],
   "releases": [
     {
-      "version": "0.10.0",
-      "tag": "v0.10.0",
-      "previous_tag": "v0.9.0",
+      "version": "0.10.1-alpha.1",
+      "tag": "v0.10.1-alpha.1",
+      "previous_tag": "v0.10.0",
       "packages": [
         "java@ender_infection_colored"
-      ]
+      ],
+      "prerelease": "alpha"
     }
   ],
   "changes": [
     {
-      "file": ".changes/infected-lab.md",
-      "type": "feat",
+      "file": ".changes/lab-rarity.md",
+      "type": "fix",
       "scope": "worldgen",
-      "bump": "minor",
+      "bump": "patch",
       "packages": [
         "java@ender_infection_colored"
       ],
-      "body": "新增世界生成结构「感染的实验室」：三间房、培养罐、宝箱与野生母体，按 1/42 的稀有度出现在主世界地表；/enderlab 可就地生成用于查看。",
-      "commit": "82ce6157356eab44d1f5e82e4ddb5b77ca01f96d",
-      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/82ce6157356eab44d1f5e82e4ddb5b77ca01f96d",
+      "body": "感染的实验室出现概率从 1/42 区块提高到 1/30，便于在正常探索中遇到。",
+      "commit": "3d4ee59d66f420bd441de4e5c37621dd8aa92e23",
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/3d4ee59d66f420bd441de4e5c37621dd8aa92e23",
       "author": "fl749731-lab"
     }
   ],

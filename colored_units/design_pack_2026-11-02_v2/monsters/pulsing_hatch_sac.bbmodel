@@ -8,7 +8,7 @@
   "model_identifier": "pulsing_hatch_sac",
   "resolution": {
     "width": 64,
-    "height": 64
+    "height": 256
   },
   "elements": [
     {
@@ -16222,6 +16222,2274 @@
           "texture": 0
         }
       }
+    },
+    {
+      "name": "relief_cage_root_-1",
+      "uuid": "d6ffa760-d3c5-5a1c-99d5-da515612a258",
+      "type": "cube",
+      "from": [
+        -7.3,
+        4.4,
+        -5.4
+      ],
+      "to": [
+        -4.7,
+        7.6,
+        3.0
+      ],
+      "origin": [
+        -6,
+        6,
+        -1.2
+      ],
+      "rotation": [
+        0,
+        0,
+        -13
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            1,
+            65,
+            4,
+            68
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            5,
+            65,
+            8,
+            68
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            9,
+            65,
+            17,
+            68
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            18,
+            65,
+            26,
+            68
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            27,
+            65,
+            30,
+            73
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            31,
+            65,
+            34,
+            73
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_cage_rib_-1_0",
+      "uuid": "8e68c6c3-f327-5e8c-bed2-c61866ee9d8e",
+      "type": "cube",
+      "from": [
+        -7.3,
+        6.3,
+        -4.6
+      ],
+      "to": [
+        -5.1,
+        11.196,
+        -2.4
+      ],
+      "origin": [
+        -6.2,
+        6.3,
+        -3.5
+      ],
+      "rotation": [
+        17,
+        0,
+        -23
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            35,
+            65,
+            37,
+            70
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            38,
+            65,
+            40,
+            70
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            41,
+            65,
+            43,
+            70
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            44,
+            65,
+            46,
+            70
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            47,
+            65,
+            49,
+            67
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            50,
+            65,
+            52,
+            67
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_cage_rib_-1_1",
+      "uuid": "18a0efd1-c7a6-5980-a94f-d621cfdc11e4",
+      "type": "cube",
+      "from": [
+        -6.97,
+        11.196,
+        -4.27
+      ],
+      "to": [
+        -5.43,
+        12.564,
+        -2.73
+      ],
+      "origin": [
+        -6.2,
+        6.3,
+        -3.5
+      ],
+      "rotation": [
+        17,
+        0,
+        -23
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            53,
+            65,
+            55,
+            66
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            56,
+            65,
+            58,
+            66
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            59,
+            65,
+            61,
+            66
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            1,
+            74,
+            3,
+            75
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            4,
+            74,
+            6,
+            76
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            7,
+            74,
+            9,
+            76
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_cage_rib_-1_2",
+      "uuid": "a3c9ead1-f2cd-5929-b0f8-546f19cf9989",
+      "type": "cube",
+      "from": [
+        -6.618,
+        12.564,
+        -3.918
+      ],
+      "to": [
+        -5.782,
+        13.5,
+        -3.082
+      ],
+      "origin": [
+        -6.2,
+        6.3,
+        -3.5
+      ],
+      "rotation": [
+        17,
+        0,
+        -23
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            10,
+            74,
+            11,
+            75
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            12,
+            74,
+            13,
+            75
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            14,
+            74,
+            15,
+            75
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            16,
+            74,
+            17,
+            75
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            18,
+            74,
+            19,
+            75
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            20,
+            74,
+            21,
+            75
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_cage_root_1",
+      "uuid": "a108071b-b359-5005-9d8a-51b8f806dcf6",
+      "type": "cube",
+      "from": [
+        4.7,
+        4.4,
+        -5.4
+      ],
+      "to": [
+        7.3,
+        7.6,
+        3.0
+      ],
+      "origin": [
+        6,
+        6,
+        -1.2
+      ],
+      "rotation": [
+        0,
+        0,
+        13
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            22,
+            74,
+            25,
+            77
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            26,
+            74,
+            29,
+            77
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            30,
+            74,
+            38,
+            77
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            39,
+            74,
+            47,
+            77
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            48,
+            74,
+            51,
+            82
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            52,
+            74,
+            55,
+            82
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_cage_rib_1_0",
+      "uuid": "8259453f-50e6-5833-8796-70183188ca50",
+      "type": "cube",
+      "from": [
+        5.1,
+        6.3,
+        -4.6
+      ],
+      "to": [
+        7.3,
+        11.196,
+        -2.4
+      ],
+      "origin": [
+        6.2,
+        6.3,
+        -3.5
+      ],
+      "rotation": [
+        17,
+        0,
+        23
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            56,
+            74,
+            58,
+            79
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            59,
+            74,
+            61,
+            79
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            1,
+            83,
+            3,
+            88
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            4,
+            83,
+            6,
+            88
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            7,
+            83,
+            9,
+            85
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            10,
+            83,
+            12,
+            85
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_cage_rib_1_1",
+      "uuid": "30f7ef30-9824-55d3-97ca-d747f937a548",
+      "type": "cube",
+      "from": [
+        5.43,
+        11.196,
+        -4.27
+      ],
+      "to": [
+        6.97,
+        12.564,
+        -2.73
+      ],
+      "origin": [
+        6.2,
+        6.3,
+        -3.5
+      ],
+      "rotation": [
+        17,
+        0,
+        23
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            13,
+            83,
+            15,
+            84
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            16,
+            83,
+            18,
+            84
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            19,
+            83,
+            21,
+            84
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            22,
+            83,
+            24,
+            84
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            25,
+            83,
+            27,
+            85
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            28,
+            83,
+            30,
+            85
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_cage_rib_1_2",
+      "uuid": "680fcc85-dd7a-5a29-8c8e-c23e1cee77c8",
+      "type": "cube",
+      "from": [
+        5.782,
+        12.564,
+        -3.918
+      ],
+      "to": [
+        6.618,
+        13.5,
+        -3.082
+      ],
+      "origin": [
+        6.2,
+        6.3,
+        -3.5
+      ],
+      "rotation": [
+        17,
+        0,
+        23
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            31,
+            83,
+            32,
+            84
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            33,
+            83,
+            34,
+            84
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            35,
+            83,
+            36,
+            84
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            37,
+            83,
+            38,
+            84
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            39,
+            83,
+            40,
+            84
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            41,
+            83,
+            42,
+            84
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_unhatched_kernel_0",
+      "uuid": "2e87613e-3905-56c5-9d08-dcde4e5507da",
+      "type": "cube",
+      "from": [
+        -1.4,
+        10.8,
+        -2.4
+      ],
+      "to": [
+        1.4,
+        13.18,
+        0.4
+      ],
+      "origin": [
+        0,
+        10.8,
+        -1
+      ],
+      "rotation": [
+        -15,
+        26,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            43,
+            83,
+            46,
+            85
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            47,
+            83,
+            50,
+            85
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            51,
+            83,
+            54,
+            85
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            55,
+            83,
+            58,
+            85
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            59,
+            83,
+            62,
+            86
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            1,
+            89,
+            4,
+            92
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_unhatched_kernel_1",
+      "uuid": "54dcb09a-bba8-5e16-a55c-2e6ac31e0fb5",
+      "type": "cube",
+      "from": [
+        -0.98,
+        13.18,
+        -1.98
+      ],
+      "to": [
+        0.98,
+        13.845,
+        -0.02
+      ],
+      "origin": [
+        0,
+        10.8,
+        -1
+      ],
+      "rotation": [
+        -15,
+        26,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            5,
+            89,
+            7,
+            90
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            8,
+            89,
+            10,
+            90
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            11,
+            89,
+            13,
+            90
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            14,
+            89,
+            16,
+            90
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            17,
+            89,
+            19,
+            91
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            20,
+            89,
+            22,
+            91
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_unhatched_kernel_2",
+      "uuid": "f5ee311d-6549-5a0d-8d57-ffe6a819ebb3",
+      "type": "cube",
+      "from": [
+        -0.532,
+        13.845,
+        -1.532
+      ],
+      "to": [
+        0.532,
+        14.3,
+        -0.468
+      ],
+      "origin": [
+        0,
+        10.8,
+        -1
+      ],
+      "rotation": [
+        -15,
+        26,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            23,
+            89,
+            24,
+            90
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            25,
+            89,
+            26,
+            90
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            27,
+            89,
+            28,
+            90
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            29,
+            89,
+            30,
+            90
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            31,
+            89,
+            32,
+            90
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            33,
+            89,
+            34,
+            90
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_larval_shell_0_0",
+      "uuid": "71093637-5638-5634-8857-4714208aa469",
+      "type": "cube",
+      "from": [
+        -5.373,
+        4.675,
+        -4.373
+      ],
+      "to": [
+        -2.827,
+        5.925,
+        -1.827
+      ],
+      "origin": [
+        -4.1,
+        5.3,
+        -3.1
+      ],
+      "rotation": [
+        0,
+        -17,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            1,
+            94,
+            4,
+            95
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            5,
+            94,
+            8,
+            95
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            9,
+            94,
+            12,
+            95
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            13,
+            94,
+            16,
+            95
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            17,
+            94,
+            20,
+            97
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            21,
+            94,
+            24,
+            97
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_larval_shell_0_1",
+      "uuid": "a1845415-984d-556a-b66f-cc25741288e1",
+      "type": "cube",
+      "from": [
+        -5.775,
+        5.9,
+        -4.775
+      ],
+      "to": [
+        -2.425,
+        8.5,
+        -1.425
+      ],
+      "origin": [
+        -4.1,
+        7.2,
+        -3.1
+      ],
+      "rotation": [
+        0,
+        -17,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            25,
+            94,
+            28,
+            97
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            29,
+            94,
+            32,
+            97
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            33,
+            94,
+            36,
+            97
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            37,
+            94,
+            40,
+            97
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            41,
+            94,
+            44,
+            97
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            45,
+            94,
+            48,
+            97
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_larval_shell_0_2",
+      "uuid": "f7af7229-767a-592c-b0f2-4c27a99175f1",
+      "type": "cube",
+      "from": [
+        -5.4567,
+        8.35,
+        -4.4568
+      ],
+      "to": [
+        -2.7432,
+        9.65,
+        -1.7432
+      ],
+      "origin": [
+        -4.1,
+        9.0,
+        -3.1
+      ],
+      "rotation": [
+        0,
+        -17,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            49,
+            94,
+            52,
+            95
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            53,
+            94,
+            56,
+            95
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            57,
+            94,
+            60,
+            95
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            1,
+            98,
+            4,
+            99
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            5,
+            98,
+            8,
+            101
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            9,
+            98,
+            12,
+            101
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_larval_shell_0_3",
+      "uuid": "23764140-4e41-52cf-ba9b-97a24e452df8",
+      "type": "cube",
+      "from": [
+        -4.971,
+        9.6,
+        -3.971
+      ],
+      "to": [
+        -3.229,
+        10.4,
+        -2.229
+      ],
+      "origin": [
+        -4.1,
+        10,
+        -3.1
+      ],
+      "rotation": [
+        0,
+        -17,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            13,
+            98,
+            15,
+            99
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            16,
+            98,
+            18,
+            99
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            19,
+            98,
+            21,
+            99
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            22,
+            98,
+            24,
+            99
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            25,
+            98,
+            27,
+            100
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            28,
+            98,
+            30,
+            100
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_larval_shell_1_0",
+      "uuid": "ef79131c-4748-5f5c-8dfa-aa50eacc01d1",
+      "type": "cube",
+      "from": [
+        -1.672,
+        4.675,
+        -5.472
+      ],
+      "to": [
+        1.672,
+        5.925,
+        -2.128
+      ],
+      "origin": [
+        0.0,
+        5.3,
+        -3.8
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            31,
+            98,
+            34,
+            99
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            35,
+            98,
+            38,
+            99
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            39,
+            98,
+            42,
+            99
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            43,
+            98,
+            46,
+            99
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            47,
+            98,
+            50,
+            101
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            51,
+            98,
+            54,
+            101
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_larval_shell_1_1",
+      "uuid": "abebfcf8-b7ef-54d1-9090-7e83d370db8b",
+      "type": "cube",
+      "from": [
+        -2.2,
+        5.9,
+        -6.0
+      ],
+      "to": [
+        2.2,
+        8.5,
+        -1.6
+      ],
+      "origin": [
+        0.0,
+        7.2,
+        -3.8
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            55,
+            98,
+            59,
+            101
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            1,
+            102,
+            5,
+            105
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            6,
+            102,
+            10,
+            105
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            11,
+            102,
+            15,
+            105
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            16,
+            102,
+            20,
+            106
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            21,
+            102,
+            25,
+            106
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_larval_shell_1_2",
+      "uuid": "44ecac23-fc15-5231-b83e-c837ecfeff53",
+      "type": "cube",
+      "from": [
+        -1.782,
+        8.35,
+        -5.582
+      ],
+      "to": [
+        1.782,
+        9.65,
+        -2.018
+      ],
+      "origin": [
+        0.0,
+        9.0,
+        -3.8
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            26,
+            102,
+            30,
+            103
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            31,
+            102,
+            35,
+            103
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            36,
+            102,
+            40,
+            103
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            41,
+            102,
+            45,
+            103
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            46,
+            102,
+            50,
+            106
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            51,
+            102,
+            55,
+            106
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_larval_shell_1_3",
+      "uuid": "f3717831-7a35-5daf-a086-6370e50682d9",
+      "type": "cube",
+      "from": [
+        -1.144,
+        9.6,
+        -4.944
+      ],
+      "to": [
+        1.144,
+        10.4,
+        -2.656
+      ],
+      "origin": [
+        0.0,
+        10,
+        -3.8
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            56,
+            102,
+            58,
+            103
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            59,
+            102,
+            61,
+            103
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            1,
+            107,
+            3,
+            108
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            4,
+            107,
+            6,
+            108
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            7,
+            107,
+            9,
+            109
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            10,
+            107,
+            12,
+            109
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_larval_shell_2_0",
+      "uuid": "d3d95327-3f61-50e1-adcc-911ad5542ff1",
+      "type": "cube",
+      "from": [
+        2.865,
+        4.675,
+        -4.335
+      ],
+      "to": [
+        5.335,
+        5.925,
+        -1.865
+      ],
+      "origin": [
+        4.1,
+        5.3,
+        -3.1
+      ],
+      "rotation": [
+        0,
+        17,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            13,
+            107,
+            15,
+            108
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            16,
+            107,
+            18,
+            108
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            19,
+            107,
+            21,
+            108
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            22,
+            107,
+            24,
+            108
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            25,
+            107,
+            27,
+            109
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            28,
+            107,
+            30,
+            109
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_larval_shell_2_1",
+      "uuid": "26ab3efd-b143-58af-8d04-81fd4b7ba34e",
+      "type": "cube",
+      "from": [
+        2.475,
+        5.9,
+        -4.725
+      ],
+      "to": [
+        5.725,
+        8.5,
+        -1.475
+      ],
+      "origin": [
+        4.1,
+        7.2,
+        -3.1
+      ],
+      "rotation": [
+        0,
+        17,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            31,
+            107,
+            34,
+            110
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            35,
+            107,
+            38,
+            110
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            39,
+            107,
+            42,
+            110
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            43,
+            107,
+            46,
+            110
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            47,
+            107,
+            50,
+            110
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            51,
+            107,
+            54,
+            110
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_larval_shell_2_2",
+      "uuid": "193b266d-3ade-50d5-ad5c-ed073d46076e",
+      "type": "cube",
+      "from": [
+        2.7837,
+        8.35,
+        -4.4162
+      ],
+      "to": [
+        5.4162,
+        9.65,
+        -1.7837
+      ],
+      "origin": [
+        4.1,
+        9.0,
+        -3.1
+      ],
+      "rotation": [
+        0,
+        17,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            55,
+            107,
+            58,
+            108
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            59,
+            107,
+            62,
+            108
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            1,
+            111,
+            4,
+            112
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            5,
+            111,
+            8,
+            112
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            9,
+            111,
+            12,
+            114
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            13,
+            111,
+            16,
+            114
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_larval_shell_2_3",
+      "uuid": "7a58e3ef-dcaf-5edf-b6d4-44e7fa0822c2",
+      "type": "cube",
+      "from": [
+        3.255,
+        9.6,
+        -3.945
+      ],
+      "to": [
+        4.945,
+        10.4,
+        -2.255
+      ],
+      "origin": [
+        4.1,
+        10,
+        -3.1
+      ],
+      "rotation": [
+        0,
+        17,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            17,
+            111,
+            19,
+            112
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            20,
+            111,
+            22,
+            112
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            23,
+            111,
+            25,
+            112
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            26,
+            111,
+            28,
+            112
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            29,
+            111,
+            31,
+            113
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            32,
+            111,
+            34,
+            113
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_brood_canopy_-1",
+      "uuid": "186b8ada-4102-5264-8bff-a4fb8beeb577",
+      "type": "cube",
+      "from": [
+        -7.15,
+        7.35,
+        -6.9
+      ],
+      "to": [
+        -5.05,
+        17.85,
+        0.5
+      ],
+      "origin": [
+        -6.1,
+        12.6,
+        -3.2
+      ],
+      "rotation": [
+        10,
+        17,
+        -24
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            35,
+            111,
+            37,
+            121
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            38,
+            111,
+            40,
+            121
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            41,
+            111,
+            48,
+            121
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            49,
+            111,
+            56,
+            121
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            57,
+            111,
+            59,
+            118
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            60,
+            111,
+            62,
+            118
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_canopy_collar_-1",
+      "uuid": "f652e411-57f7-55ed-8779-a120246e6ab2",
+      "type": "cube",
+      "from": [
+        -4.7,
+        15.05,
+        -6.9
+      ],
+      "to": [
+        -2.1,
+        21.55,
+        -0.9
+      ],
+      "origin": [
+        -3.4,
+        18.3,
+        -3.9
+      ],
+      "rotation": [
+        10,
+        13,
+        -35
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            1,
+            122,
+            4,
+            128
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            5,
+            122,
+            8,
+            128
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            9,
+            122,
+            15,
+            128
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            16,
+            122,
+            22,
+            128
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            23,
+            122,
+            26,
+            128
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            27,
+            122,
+            30,
+            128
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_brood_canopy_1",
+      "uuid": "62ee177f-3163-5be7-b122-8f13425fdbfc",
+      "type": "cube",
+      "from": [
+        5.05,
+        7.35,
+        -6.9
+      ],
+      "to": [
+        7.15,
+        17.85,
+        0.5
+      ],
+      "origin": [
+        6.1,
+        12.6,
+        -3.2
+      ],
+      "rotation": [
+        10,
+        -17,
+        24
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            31,
+            122,
+            33,
+            132
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            34,
+            122,
+            36,
+            132
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            37,
+            122,
+            44,
+            132
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            45,
+            122,
+            52,
+            132
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            53,
+            122,
+            55,
+            129
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            56,
+            122,
+            58,
+            129
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_canopy_collar_1",
+      "uuid": "37651348-17f5-5f23-bba2-6b0751960a29",
+      "type": "cube",
+      "from": [
+        2.1,
+        15.05,
+        -6.9
+      ],
+      "to": [
+        4.7,
+        21.55,
+        -0.9
+      ],
+      "origin": [
+        3.4,
+        18.3,
+        -3.9
+      ],
+      "rotation": [
+        10,
+        -13,
+        35
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            59,
+            122,
+            62,
+            128
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            1,
+            133,
+            4,
+            139
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            5,
+            133,
+            11,
+            139
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            12,
+            133,
+            18,
+            139
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            19,
+            133,
+            22,
+            139
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            23,
+            133,
+            26,
+            139
+          ],
+          "texture": 0
+        }
+      }
     }
   ],
   "outliner": [
@@ -16330,7 +18598,11 @@
                 "652292f6-794f-5b4a-af42-b84b64a8705c",
                 "1774a2ec-8d5d-599a-95ff-546c5b778ee6",
                 "d828bc0b-dc52-5cec-ab8a-d690b57398e5",
-                "90dcb9f5-f0a3-5fde-a8a5-683d59244d17"
+                "90dcb9f5-f0a3-5fde-a8a5-683d59244d17",
+                "71093637-5638-5634-8857-4714208aa469",
+                "a1845415-984d-556a-b66f-cc25741288e1",
+                "f7af7229-767a-592c-b0f2-4c27a99175f1",
+                "23764140-4e41-52cf-ba9b-97a24e452df8"
               ],
               "export": true,
               "isOpen": false,
@@ -16388,7 +18660,14 @@
                 "0b79b71f-36ab-51c8-bedd-b74c46611ac9",
                 "40a957b5-5c6f-58ea-8671-4bf6830fec35",
                 "71dc7186-126b-51c0-b794-794e83ddb748",
-                "6745a3db-4708-5d1a-a940-8e0576cfd583"
+                "6745a3db-4708-5d1a-a940-8e0576cfd583",
+                "2e87613e-3905-56c5-9d08-dcde4e5507da",
+                "54dcb09a-bba8-5e16-a55c-2e6ac31e0fb5",
+                "f5ee311d-6549-5a0d-8d57-ffe6a819ebb3",
+                "ef79131c-4748-5f5c-8dfa-aa50eacc01d1",
+                "abebfcf8-b7ef-54d1-9090-7e83d370db8b",
+                "44ecac23-fc15-5231-b83e-c837ecfeff53",
+                "f3717831-7a35-5daf-a086-6370e50682d9"
               ],
               "export": true,
               "isOpen": false,
@@ -16446,7 +18725,11 @@
                 "4a92db7c-12d2-51de-8b8f-137ffbc559d8",
                 "6d68d885-d2e6-5358-bf61-7e590f0f9e09",
                 "c91753c5-b057-57c3-865b-e5b4eba0e6c0",
-                "338a5c82-d8a2-589b-bed8-ee31afa8abdc"
+                "338a5c82-d8a2-589b-bed8-ee31afa8abdc",
+                "d3d95327-3f61-50e1-adcc-911ad5542ff1",
+                "26ab3efd-b143-58af-8d04-81fd4b7ba34e",
+                "193b266d-3ade-50d5-ad5c-ed073d46076e",
+                "7a58e3ef-dcaf-5edf-b6d4-44e7fa0822c2"
               ],
               "export": true,
               "isOpen": false,
@@ -16502,7 +18785,19 @@
             "232441c2-6a1e-5919-b36d-4f9e309749b3",
             "bc6bde23-6311-5e3c-8bbb-81f72925442f",
             "0f55bb5f-eaf7-526a-aa54-49a5c6465dfd",
-            "3a51fd20-ecd7-5c64-b590-78d29b7ede18"
+            "3a51fd20-ecd7-5c64-b590-78d29b7ede18",
+            "d6ffa760-d3c5-5a1c-99d5-da515612a258",
+            "8e68c6c3-f327-5e8c-bed2-c61866ee9d8e",
+            "18a0efd1-c7a6-5980-a94f-d621cfdc11e4",
+            "a3c9ead1-f2cd-5929-b0f8-546f19cf9989",
+            "a108071b-b359-5005-9d8a-51b8f806dcf6",
+            "8259453f-50e6-5833-8796-70183188ca50",
+            "30f7ef30-9824-55d3-97ca-d747f937a548",
+            "680fcc85-dd7a-5a29-8c8e-c23e1cee77c8",
+            "186b8ada-4102-5264-8bff-a4fb8beeb577",
+            "f652e411-57f7-55ed-8779-a120246e6ab2",
+            "62ee177f-3163-5be7-b122-8f13425fdbfc",
+            "37651348-17f5-5f23-bba2-6b0751960a29"
           ],
           "export": true,
           "isOpen": false,
@@ -16519,12 +18814,12 @@
       "name": "pulsing_hatch_sac.png",
       "uuid": "40063f19-5b91-503e-aced-585c5e591c5d",
       "id": "0",
-      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAADw0lEQVR4nO2bQWgUMRRAs2EOorbYVrB1C9qrCIqyHrzUU9HDgtBLjx4KgthTBcH2qIKHniqCtIgIgpeCUFApKO5FxNVSUYpCpQptrRe7VPG6ki1/+fObn0lmVzs7mQezk8nk/8nPJH/yJ7NCeE4OEmOj41W1vzFxvZ6nKBzvr/Yd7nVWvPx1RZQXSiFdJ/v6a9fo2rNfdO7uEI/eTLPn5z7OhM5x9VMy75ZLsfIUEiunaWW8aAAsD8Zhhk4Ns+cHjg5q64TTIINlbfOAwGRAx772+t3Ex5SNyqZoVWQcoW8rqyItBC6FuTuNe4Ztb/j5Z0O0bA9oBOXgGjmfiAZo39uWmmEQxBVUjQDdHQ8BzlEmFSk8J2jlsa+Tsc0LNUD+YLfxQtCtOQ+P87khoGZ+pqcAPY/h6qeTsc0DpPAcKTwnUD9v598bC8Ej71Bvvp5nMxxMmLolJap+UaigS8UdNPhKZQ8AI6mxOuMjnwJ0stMqkx/OWB1S/fR0HwhtwOeleWtFOrC8rlI4z3TH7j2c0qa5u+1CjsbYupcOaUYKz5HCc6TwHLnTFUgMY6PjVeoMMzLST851MeFIvlAbJourZeMCSqWyKeZezm4ro/Z0wQQPPRX6Xhq9rJXD4TbVjXW4zGMkGIr3XB4YT9PcAsrAmaK2DE7r/M6didtOuqkOF18WiCZgu4CSRKTwHPkvlKp3ArC5srq2XtsA6i8A7APomHfxAUGsV+K72kLHYOjm71/OulRlo4IxrhFMMv/VB5QXSjmds8LhMC5DDdrJ6DNoliKbu2RTJtE+YBE9+19/eZE4Y2L3gC6HxQQ6AUpFA3Q6LiakCcmdaMb7tpZiCH2vk5HhDzlTyEnhprau4S33zd9w4Wb1WP6EGHl81iqM5kJzpd92ciXxBeLiEt5y3/wp4yE9ef5ZZBjNheag0zYkDkRCWN74tCPXlc2YomJ5XdfDQwCfx+nnSw/q6enytVAMoUvjbo/ToNOn1a2MRshBYnbmft1pdPdsrRAXTp8Lx+WvntbLrH//UdsXBy+EymA9a2tbZS6OXHX6apzWJaoeUXWg19/mA2aRAHchnOYuxum5O3nL+qtxnY6oekTVAV9f2wBF0oIAbnl6FwAsy+nBd0D3zT7uATodUfWIqoOpB2RkoLGpNvxPDTyuYKPn1JiELY4cJ0PzdTM7PHsEnlz5sC1P53e0K0MAbgRaGXxMDcDHtnKcDE7rprdgPG4EMB43gunvMiF87QEZGZYTEFO5VkZio3SOSuek0tYIXveAjIwM4TV/AeJ1rpHBsipUAAAAAElFTkSuQmCC",
+      "source": "data:image/png;base64,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",
       "mode": "bitmap",
       "width": 64,
-      "height": 64,
+      "height": 256,
       "uv_width": 64,
-      "uv_height": 64,
+      "uv_height": 256,
       "render_mode": "default"
     }
   ],

@@ -50,7 +50,7 @@ public final class CrystalEquipment {
     static {
         for (CrystalMaterial material : CrystalMaterial.values()) {
             for (ArmorItem.Type slot : ArmorItem.Type.values()) {
-                add(COMBAT, material, slot.getName(), () -> new ArmorItem(material, slot, new Item.Properties()));
+                add(COMBAT, material, slot.getName(), () -> new CrystalArmor(material, slot, new Item.Properties()));
             }
             add(COMBAT, material, "sword", () -> new CrystalSword(material));
             add(TOOLS, material, "pickaxe", () -> new PickaxeItem(material, 1, -2.8F, new Item.Properties()));

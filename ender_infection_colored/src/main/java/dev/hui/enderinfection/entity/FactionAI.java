@@ -91,7 +91,10 @@ public final class FactionAI {
         int limit=target instanceof Enemy||target instanceof Player?Math.max(3,packLimit(mob)):target.getMaxHealth()>=30?2:1;
         return huntLoad(mob,target)<limit;
     }
+    static boolean recalled(Mob mob) { return defendedMother(mob) != null; }
     private static boolean inDutyRange(Mob mob,LivingEntity target){
+        if (mob instanceof InfectedMob unit && unit.kind.designed()
+            && !BroodTactics.accepts(unit, target, urgent(mob, target))) return false;
         if(defendedMother(mob)!=null){
             var data=mob.getPersistentData();boolean ordered=data.hasUUID("CommandTarget")&&data.getUUID("CommandTarget").equals(target.getUUID())&&data.getLong("CommandUntil")>mob.level().getGameTime();
             if(!ordered&&!(target instanceof Player)&&!(target instanceof Enemy)&&!(target instanceof Mob other&&infected(other.getTarget()))&&mob.getLastHurtByMob()!=target)return false;
@@ -181,7 +184,7 @@ public final class FactionAI {
             int paths=0;
             for(LivingEntity e:candidates) {
                 double candidate=score(e);if(candidate<=score)continue;
-                boolean ranged=mob instanceof InfectedMob unit&&(unit.kind==InfectedKind.SKELETON||unit.kind==InfectedKind.EARLY_SKELETON);
+                boolean ranged=mob instanceof InfectedMob unit&&(unit.kind.ranged()||unit.kind.stationary());
                 if(e!=current&&!ranged&&mob.distanceToSqr(e)>64){
                     if(paths++>=3)break;
                     boolean climber=mob instanceof InfectedMob unit&&(unit.kind==InfectedKind.SPIDER||unit.kind==InfectedKind.EARLY_SPIDER);
@@ -219,7 +222,11 @@ public final class FactionAI {
                 task(mob,"追踪","附近有可到达的猎物气味");return;
             }
         }
-        private double score(LivingEntity target){return (urgent(mob,target)?120:target instanceof Enemy?38:target instanceof Player?30:24)-mob.distanceTo(target)*.9-huntLoad(mob,target)*6+(target.getHealth()<target.getMaxHealth()*.3?4:0);}
+        private double score(LivingEntity target){
+            int preference = mob instanceof InfectedMob unit ? BroodTactics.targetPreference(unit, target) : 0;
+            return (urgent(mob,target)?120:target instanceof Enemy?38:target instanceof Player?30:24)
+                -mob.distanceTo(target)*.9-huntLoad(mob,target)*6+(target.getHealth()<target.getMaxHealth()*.3?4:0)+preference;
+        }
         public Vec3 pursuitPoint(LivingEntity target){return mob.hasLineOfSight(target)||lastKnown==null?target.position():lastKnown;}
     }
     public static final class Motion {
@@ -274,7 +281,7 @@ public final class FactionAI {
             if((ally.getTarget()==null||!enemy(ally,ally.getTarget()))&&canJoin(ally,enemy)){issue(ally,enemy,enemy.position());sent++;}
         }
     }
-    private static boolean walkTo(Mob mob,Vec3 desired,double speed){
+    static boolean walkTo(Mob mob,Vec3 desired,double speed){
         BlockPos column=BlockPos.containing(desired);if(!mob.level().hasChunkAt(column))return false;
         for(int dy=3;dy>=-4;dy--){
             BlockPos pos=column.offset(0,dy,0);
@@ -287,7 +294,7 @@ public final class FactionAI {
         private final Mob mob;private Vec3 destination;private int retry;
         public InvestigateGoal(Mob mob){this.mob=mob;setFlags(EnumSet.of(Flag.MOVE));}
         @Override public boolean canUse(){
-            var data=mob.getPersistentData();if(emerging(mob)||mob.getTarget()!=null||!data.contains("SearchPos")||data.getLong("SearchUntil")<=mob.level().getGameTime())return false;
+            var data=mob.getPersistentData();if(mob instanceof InfectedMob unit && unit.kind.stationary() || emerging(mob)||mob.getTarget()!=null||!data.contains("SearchPos")||data.getLong("SearchUntil")<=mob.level().getGameTime())return false;
             destination=Vec3.atBottomCenterOf(BlockPos.of(data.getLong("SearchPos")));Vec3 defense=defenseCenter(mob);if(defense!=null&&destination.distanceToSqr(defense)>defenseRadius(mob)*defenseRadius(mob))destination=defense;return mob.position().distanceToSqr(destination)>4;
         }
         @Override public boolean canContinueToUse(){return mob.getTarget()==null&&mob.getPersistentData().getLong("SearchUntil")>mob.level().getGameTime()&&mob.position().distanceToSqr(destination)>4;}
@@ -303,7 +310,7 @@ public final class FactionAI {
     public static final class GuardMotherGoal extends Goal {
         private final Mob mob;private Vec3 point;
         public GuardMotherGoal(Mob mob){this.mob=mob;setFlags(EnumSet.of(Flag.MOVE));}
-        @Override public boolean canUse(){point=defenseCenter(mob);return !emerging(mob)&&point!=null&&mob.getTarget()==null&&mob.position().distanceToSqr(point)>36;}
+        @Override public boolean canUse(){point=defenseCenter(mob);return !(mob instanceof InfectedMob unit && unit.kind.stationary())&&!emerging(mob)&&point!=null&&mob.getTarget()==null&&mob.position().distanceToSqr(point)>36;}
         @Override public boolean canContinueToUse(){return defenseCenter(mob)!=null&&mob.getTarget()==null&&mob.position().distanceToSqr(point)>25;}
         @Override public void tick(){if(mob.tickCount%10==0){task(mob,"驻守","守卫母体或警报地点");double angle=Math.floorMod(mob.getUUID().hashCode(),6)*Math.PI/3;walkTo(mob,point.add(Math.cos(angle)*3,0,Math.sin(angle)*3),1.15);}}
         @Override public void stop(){mob.getNavigation().stop();}
@@ -312,7 +319,7 @@ public final class FactionAI {
         private final Mob mob;private InfectedMob core;private int scanAt,deadline;
         public ReturnToCoreGoal(Mob mob){this.mob=mob;setFlags(EnumSet.of(Flag.MOVE));}
         @Override public boolean canUse(){
-            if(mob instanceof InfectedMob infected && infected.kind==InfectedKind.CORE)return false;
+            if(mob instanceof InfectedMob infected && infected.kind.stationary())return false;
             if(emerging(mob)||mob.getTarget()!=null||mob.tickCount<scanAt||defenseCenter(mob)!=null)return false;scanAt=mob.tickCount+60;
             core=home(mob);if(core==null)return false;
             Vec3 anchor=core.position();var nodes=core.activeColonyNodes();

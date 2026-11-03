@@ -94,7 +94,7 @@
       "category": "monsters",
       "role": "侦察 / 猎物标记",
       "file": "monsters/lurking_forager.bbmodel",
-      "cubes": 139,
+      "cubes": 151,
       "bones": 15,
       "animations": [
         "idle",
@@ -105,9 +105,13 @@
       ],
       "atlas": [
         64,
-        64
+        128
       ],
-      "uv_islands": 46
+      "uv_islands": 118,
+      "runtime_normalization": {
+        "scale": 1.019467869792783,
+        "offset_y": 0.10556980192198506
+      }
     },
     {
       "id": "sporewing_scout",
@@ -115,7 +119,7 @@
       "category": "monsters",
       "role": "飞行 / 传播标记",
       "file": "monsters/sporewing_scout.bbmodel",
-      "cubes": 143,
+      "cubes": 169,
       "bones": 6,
       "animations": [
         "idle",
@@ -126,9 +130,13 @@
       ],
       "atlas": [
         64,
-        64
+        128
       ],
-      "uv_islands": 52
+      "uv_islands": 208,
+      "runtime_normalization": {
+        "scale": 1.1316138898457981,
+        "offset_y": -4.7912044343495435
+      }
     },
     {
       "id": "mycelial_burrower",
@@ -136,7 +144,7 @@
       "category": "monsters",
       "role": "掘地 / 前线开拓",
       "file": "monsters/mycelial_burrower.bbmodel",
-      "cubes": 127,
+      "cubes": 156,
       "bones": 11,
       "animations": [
         "idle",
@@ -147,9 +155,13 @@
       ],
       "atlas": [
         128,
-        128
+        256
       ],
-      "uv_islands": 73
+      "uv_islands": 247,
+      "runtime_normalization": {
+        "scale": 1.0841452468661998,
+        "offset_y": -2.6045746724224514
+      }
     },
     {
       "id": "crystalback_carrier",
@@ -157,7 +169,7 @@
       "category": "monsters",
       "role": "回收 / 运送生物质",
       "file": "monsters/crystalback_carrier.bbmodel",
-      "cubes": 468,
+      "cubes": 486,
       "bones": 17,
       "animations": [
         "idle",
@@ -168,9 +180,13 @@
       ],
       "atlas": [
         128,
-        128
+        256
       ],
-      "uv_islands": 88
+      "uv_islands": 196,
+      "runtime_normalization": {
+        "scale": 1.1731160896130346,
+        "offset_y": 0.050000000000000044
+      }
     },
     {
       "id": "parasitic_spider_mother",
@@ -178,7 +194,7 @@
       "category": "monsters",
       "role": "结网 / 孵化幼体",
       "file": "monsters/parasitic_spider_mother.bbmodel",
-      "cubes": 463,
+      "cubes": 483,
       "bones": 23,
       "animations": [
         "idle",
@@ -189,9 +205,13 @@
       ],
       "atlas": [
         128,
-        128
+        256
       ],
-      "uv_islands": 126
+      "uv_islands": 246,
+      "runtime_normalization": {
+        "scale": 1.4465965346404002,
+        "offset_y": 0.4087992473030506
+      }
     },
     {
       "id": "pulsing_hatch_sac",
@@ -199,7 +219,7 @@
       "category": "monsters",
       "role": "驻扎 / 孵化支援",
       "file": "monsters/pulsing_hatch_sac.bbmodel",
-      "cubes": 193,
+      "cubes": 220,
       "bones": 5,
       "animations": [
         "idle",
@@ -209,9 +229,13 @@
       ],
       "atlas": [
         64,
-        64
+        256
       ],
-      "uv_islands": 43
+      "uv_islands": 205,
+      "runtime_normalization": {
+        "scale": 1.0399577262952642,
+        "offset_y": -0.22951847860537278
+      }
     },
     {
       "id": "crystal_shield_sentinel",
@@ -219,7 +243,7 @@
       "category": "monsters",
       "role": "格挡 / 回防",
       "file": "monsters/crystal_shield_sentinel.bbmodel",
-      "cubes": 117,
+      "cubes": 132,
       "bones": 11,
       "animations": [
         "idle",
@@ -230,9 +254,13 @@
       ],
       "atlas": [
         128,
-        128
+        256
       ],
-      "uv_islands": 79
+      "uv_islands": 169,
+      "runtime_normalization": {
+        "scale": 1.1069182389937107,
+        "offset_y": 0.050000000000000044
+      }
     },
     {
       "id": "rift_throat_spitter",
@@ -240,7 +268,7 @@
       "category": "monsters",
       "role": "远程喷吐 / 压制",
       "file": "monsters/rift_throat_spitter.bbmodel",
-      "cubes": 203,
+      "cubes": 218,
       "bones": 12,
       "animations": [
         "idle",
@@ -251,9 +279,13 @@
       ],
       "atlas": [
         128,
-        128
+        256
       ],
-      "uv_islands": 100
+      "uv_islands": 190,
+      "runtime_normalization": {
+        "scale": 1.1339126147778393,
+        "offset_y": 0.050000000000000044
+      }
     },
     {
       "id": "leapblade_ambusher",
@@ -261,7 +293,7 @@
       "category": "monsters",
       "role": "跳跃 / 镰刃伏击",
       "file": "monsters/leapblade_ambusher.bbmodel",
-      "cubes": 110,
+      "cubes": 125,
       "bones": 10,
       "animations": [
         "idle",
@@ -272,9 +304,13 @@
       ],
       "atlas": [
         128,
-        128
+        256
       ],
-      "uv_islands": 61
+      "uv_islands": 151,
+      "runtime_normalization": {
+        "scale": 1.089524479673756,
+        "offset_y": 0.050000000000000044
+      }
     },
     {
       "id": "rootspike_turret",
@@ -282,7 +318,7 @@
       "category": "monsters",
       "role": "地刺封锁 / 驻地防守",
       "file": "monsters/rootspike_turret.bbmodel",
-      "cubes": 175,
+      "cubes": 192,
       "bones": 12,
       "animations": [
         "idle",
@@ -292,9 +328,13 @@
       ],
       "atlas": [
         128,
-        128
+        256
       ],
-      "uv_islands": 74
+      "uv_islands": 176,
+      "runtime_normalization": {
+        "scale": 1.2445571489183131,
+        "offset_y": 0.6264862643799765
+      }
     },
     {
       "id": "resonance_priest",
@@ -302,7 +342,7 @@
       "category": "monsters",
       "role": "强化集群 / 共鸣支援",
       "file": "monsters/resonance_priest.bbmodel",
-      "cubes": 101,
+      "cubes": 111,
       "bones": 6,
       "animations": [
         "idle",
@@ -314,9 +354,13 @@
       ],
       "atlas": [
         64,
-        64
+        128
       ],
-      "uv_islands": 48
+      "uv_islands": 108,
+      "runtime_normalization": {
+        "scale": 1.1113005690132831,
+        "offset_y": -6.836873876274861
+      }
     },
     {
       "id": "siegebreaker_colossus",
@@ -324,7 +368,7 @@
       "category": "monsters",
       "role": "砸墙 / 震地",
       "file": "monsters/siegebreaker_colossus.bbmodel",
-      "cubes": 170,
+      "cubes": 190,
       "bones": 9,
       "animations": [
         "idle",
@@ -335,9 +379,13 @@
       ],
       "atlas": [
         128,
-        128
+        256
       ],
-      "uv_islands": 111
+      "uv_islands": 231,
+      "runtime_normalization": {
+        "scale": 1.1606279652254823,
+        "offset_y": 0.050000000000000044
+      }
     },
     {
       "id": "walking_brood_crab",
@@ -345,7 +393,7 @@
       "category": "monsters",
       "role": "移动巢穴 / 释放护卫",
       "file": "monsters/walking_brood_crab.bbmodel",
-      "cubes": 730,
+      "cubes": 779,
       "bones": 26,
       "animations": [
         "idle",
@@ -356,9 +404,13 @@
       ],
       "atlas": [
         512,
-        512
+        1024
       ],
-      "uv_islands": 175
+      "uv_islands": 469,
+      "runtime_normalization": {
+        "scale": 0.8700166474054449,
+        "offset_y": 2.5552320202452776
+      }
     },
     {
       "id": "abyssal_burrow_king",
@@ -366,7 +418,7 @@
       "category": "monsters",
       "role": "地下突袭 / 环形地刺",
       "file": "monsters/abyssal_burrow_king.bbmodel",
-      "cubes": 143,
+      "cubes": 184,
       "bones": 11,
       "animations": [
         "idle",
@@ -377,9 +429,13 @@
       ],
       "atlas": [
         512,
-        512
+        1024
       ],
-      "uv_islands": 148
+      "uv_islands": 394,
+      "runtime_normalization": {
+        "scale": 0.6613522203105358,
+        "offset_y": -11.95499774641906
+      }
     },
     {
       "id": "calamity_brood_mother",

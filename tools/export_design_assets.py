@@ -139,7 +139,12 @@ def obj(key,d,kind='item',filter_fn=lambda e:True,normalize=True,transform=None)
 
 def export():
  for enum,key,source,label,hp,spd,dmg,hit,dur,reach,width,height,stage,price in UNITS:
-  d=load(source);lo,hi=bounds(d);s=height*16/(hi[1]-lo[1]);offset=(0,-lo[1],0)
+  d=load(source)
+  normalization=SOURCES[source].get('runtime_normalization')
+  if normalization:
+   s=normalization['scale'];offset=(0,normalization['offset_y'],0)
+  else:
+   lo,hi=bounds(d);s=height*16/(hi[1]-lo[1]);offset=(0,-lo[1],0)
   geo('infected_'+key,d,s,offset);texture(d,ASSETS/'textures/entity'/f'infected_{key}.png',True);animations('infected_'+key,d,s)
   REPORT.append({'source':source,'runtime':'infected_'+key,'kind':'entity','scale':s})
  for source,key,height in [('crystal_hunter','ender_mutant_zombie',2.2),('rib_crystal_caster','infected_skeleton',2.3),('ravager_siege_concept','infected_siege_beast',3.2)]:

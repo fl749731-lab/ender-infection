@@ -8,7 +8,7 @@
   "model_identifier": "rootspike_turret",
   "resolution": {
     "width": 128,
-    "height": 128
+    "height": 256
   },
   "elements": [
     {
@@ -14710,6 +14710,1434 @@
           "texture": 0
         }
       }
+    },
+    {
+      "name": "relief_barrel_jacket_-1",
+      "uuid": "1d17275a-8c0e-5a4d-8818-20dc1b7dd08a",
+      "type": "cube",
+      "from": [
+        -7.1,
+        14.0,
+        -6.8
+      ],
+      "to": [
+        -3.3,
+        17.0,
+        1.2
+      ],
+      "origin": [
+        -5.2,
+        15.5,
+        -2.8
+      ],
+      "rotation": [
+        -30,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            1,
+            129,
+            5,
+            132
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            6,
+            129,
+            10,
+            132
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            11,
+            129,
+            19,
+            132
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            20,
+            129,
+            28,
+            132
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            29,
+            129,
+            33,
+            137
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            34,
+            129,
+            38,
+            137
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_muzzle_fork_-1_0",
+      "uuid": "e1059696-89d0-5c14-be7b-480cb9078fbb",
+      "type": "cube",
+      "from": [
+        -5.2,
+        15.2,
+        -6.4
+      ],
+      "to": [
+        -2.6,
+        21.66,
+        -3.8
+      ],
+      "origin": [
+        -3.9,
+        15.2,
+        -5.1
+      ],
+      "rotation": [
+        -67,
+        0,
+        17
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            39,
+            129,
+            42,
+            135
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            43,
+            129,
+            46,
+            135
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            47,
+            129,
+            50,
+            135
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            51,
+            129,
+            54,
+            135
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            55,
+            129,
+            58,
+            132
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            59,
+            129,
+            62,
+            132
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_muzzle_fork_-1_1",
+      "uuid": "c2819536-7793-59b0-9cc9-5cc54b7d9489",
+      "type": "cube",
+      "from": [
+        -4.81,
+        21.66,
+        -6.01
+      ],
+      "to": [
+        -2.99,
+        23.465,
+        -4.19
+      ],
+      "origin": [
+        -3.9,
+        15.2,
+        -5.1
+      ],
+      "rotation": [
+        -67,
+        0,
+        17
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            63,
+            129,
+            65,
+            131
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            66,
+            129,
+            68,
+            131
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            69,
+            129,
+            71,
+            131
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            72,
+            129,
+            74,
+            131
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            75,
+            129,
+            77,
+            131
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            78,
+            129,
+            80,
+            131
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_muzzle_fork_-1_2",
+      "uuid": "5b680906-9f44-5acb-8bc4-ddbcce254a6f",
+      "type": "cube",
+      "from": [
+        -4.394,
+        23.465,
+        -5.594
+      ],
+      "to": [
+        -3.406,
+        24.7,
+        -4.606
+      ],
+      "origin": [
+        -3.9,
+        15.2,
+        -5.1
+      ],
+      "rotation": [
+        -67,
+        0,
+        17
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            81,
+            129,
+            82,
+            130
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            83,
+            129,
+            84,
+            130
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            85,
+            129,
+            86,
+            130
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            87,
+            129,
+            88,
+            130
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            89,
+            129,
+            90,
+            130
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            91,
+            129,
+            92,
+            130
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_barrel_jacket_1",
+      "uuid": "d04caeb4-6bc5-5291-ac0d-8a170b759e56",
+      "type": "cube",
+      "from": [
+        3.3,
+        14.0,
+        -6.8
+      ],
+      "to": [
+        7.1,
+        17.0,
+        1.2
+      ],
+      "origin": [
+        5.2,
+        15.5,
+        -2.8
+      ],
+      "rotation": [
+        -30,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            93,
+            129,
+            97,
+            132
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            98,
+            129,
+            102,
+            132
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            103,
+            129,
+            111,
+            132
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            112,
+            129,
+            120,
+            132
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            121,
+            129,
+            125,
+            137
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            1,
+            138,
+            5,
+            146
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_muzzle_fork_1_0",
+      "uuid": "023c3683-be54-52b8-be7d-87750a09f181",
+      "type": "cube",
+      "from": [
+        2.6,
+        15.2,
+        -6.4
+      ],
+      "to": [
+        5.2,
+        21.66,
+        -3.8
+      ],
+      "origin": [
+        3.9,
+        15.2,
+        -5.1
+      ],
+      "rotation": [
+        -67,
+        0,
+        -17
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            6,
+            138,
+            9,
+            144
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            10,
+            138,
+            13,
+            144
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            14,
+            138,
+            17,
+            144
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            18,
+            138,
+            21,
+            144
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            22,
+            138,
+            25,
+            141
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            26,
+            138,
+            29,
+            141
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_muzzle_fork_1_1",
+      "uuid": "280875eb-54c0-5836-a0cd-0caffc00f5b5",
+      "type": "cube",
+      "from": [
+        2.99,
+        21.66,
+        -6.01
+      ],
+      "to": [
+        4.81,
+        23.465,
+        -4.19
+      ],
+      "origin": [
+        3.9,
+        15.2,
+        -5.1
+      ],
+      "rotation": [
+        -67,
+        0,
+        -17
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            30,
+            138,
+            32,
+            140
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            33,
+            138,
+            35,
+            140
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            36,
+            138,
+            38,
+            140
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            39,
+            138,
+            41,
+            140
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            42,
+            138,
+            44,
+            140
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            45,
+            138,
+            47,
+            140
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_muzzle_fork_1_2",
+      "uuid": "ec659580-0b3c-57d0-975a-5d3af4d48260",
+      "type": "cube",
+      "from": [
+        3.406,
+        23.465,
+        -5.594
+      ],
+      "to": [
+        4.394,
+        24.7,
+        -4.606
+      ],
+      "origin": [
+        3.9,
+        15.2,
+        -5.1
+      ],
+      "rotation": [
+        -67,
+        0,
+        -17
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            48,
+            138,
+            49,
+            139
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            50,
+            138,
+            51,
+            139
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            52,
+            138,
+            53,
+            139
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            54,
+            138,
+            55,
+            139
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            56,
+            138,
+            57,
+            139
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            58,
+            138,
+            59,
+            139
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_muzzle_reserve_0",
+      "uuid": "790630ef-161d-5f19-9dae-3f81efa001c3",
+      "type": "cube",
+      "from": [
+        6.5608,
+        9.2193,
+        5.5608
+      ],
+      "to": [
+        8.8392,
+        10.1028,
+        7.8392
+      ],
+      "origin": [
+        7.7,
+        9.661000000000001,
+        6.7
+      ],
+      "rotation": [
+        0,
+        17,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            1,
+            148,
+            3,
+            149
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            4,
+            148,
+            6,
+            149
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            7,
+            148,
+            9,
+            149
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            10,
+            148,
+            12,
+            149
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            13,
+            148,
+            15,
+            150
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            16,
+            148,
+            18,
+            150
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_muzzle_reserve_1",
+      "uuid": "e3beed2f-fad4-5e7f-b60d-456694713592",
+      "type": "cube",
+      "from": [
+        5.8167,
+        10.033,
+        4.8167
+      ],
+      "to": [
+        9.5832,
+        11.149,
+        8.5832
+      ],
+      "origin": [
+        7.7,
+        10.591000000000001,
+        6.7
+      ],
+      "rotation": [
+        0,
+        17,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            19,
+            148,
+            23,
+            149
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            24,
+            148,
+            28,
+            149
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            29,
+            148,
+            33,
+            149
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            34,
+            148,
+            38,
+            149
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            39,
+            148,
+            43,
+            152
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            44,
+            148,
+            48,
+            152
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_muzzle_reserve_2",
+      "uuid": "776d7c91-1b4b-5534-ad87-eaa4bbf9541c",
+      "type": "cube",
+      "from": [
+        5.375,
+        11.0793,
+        4.375
+      ],
+      "to": [
+        10.025,
+        12.5208,
+        9.025
+      ],
+      "origin": [
+        7.7,
+        11.8,
+        6.7
+      ],
+      "rotation": [
+        0,
+        17,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            49,
+            148,
+            54,
+            149
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            55,
+            148,
+            60,
+            149
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            61,
+            148,
+            66,
+            149
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            67,
+            148,
+            72,
+            149
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            73,
+            148,
+            78,
+            153
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            79,
+            148,
+            84,
+            153
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_muzzle_reserve_3",
+      "uuid": "584d84e6-144d-5f68-a57e-19ef0efb8777",
+      "type": "cube",
+      "from": [
+        5.8167,
+        12.4975,
+        4.8167
+      ],
+      "to": [
+        9.5832,
+        13.5205,
+        8.5832
+      ],
+      "origin": [
+        7.7,
+        13.009,
+        6.7
+      ],
+      "rotation": [
+        0,
+        17,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            85,
+            148,
+            89,
+            149
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            90,
+            148,
+            94,
+            149
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            95,
+            148,
+            99,
+            149
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            100,
+            148,
+            104,
+            149
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            105,
+            148,
+            109,
+            152
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            110,
+            148,
+            114,
+            152
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_muzzle_reserve_4",
+      "uuid": "ebe9f856-a8b3-5a84-8456-fa3699938690",
+      "type": "cube",
+      "from": [
+        6.5143,
+        13.4507,
+        5.5143
+      ],
+      "to": [
+        8.8857,
+        14.1483,
+        7.8857
+      ],
+      "origin": [
+        7.7,
+        13.7995,
+        6.7
+      ],
+      "rotation": [
+        0,
+        17,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            115,
+            148,
+            117,
+            149
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            118,
+            148,
+            120,
+            149
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            121,
+            148,
+            123,
+            149
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            124,
+            148,
+            126,
+            149
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            1,
+            154,
+            3,
+            156
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            4,
+            154,
+            6,
+            156
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_root_shoe_-1_-1",
+      "uuid": "62874b93-7afc-57cc-abd6-76dbacf8a8be",
+      "type": "cube",
+      "from": [
+        -12.4,
+        3.7,
+        -10.5
+      ],
+      "to": [
+        -9.0,
+        5.7,
+        -7.3
+      ],
+      "origin": [
+        -10.7,
+        4.7,
+        -8.9
+      ],
+      "rotation": [
+        -14,
+        0,
+        14
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            7,
+            154,
+            10,
+            156
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            11,
+            154,
+            14,
+            156
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            15,
+            154,
+            18,
+            156
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            19,
+            154,
+            22,
+            156
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            23,
+            154,
+            26,
+            157
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            27,
+            154,
+            30,
+            157
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_root_shoe_-1_1",
+      "uuid": "ddd9df50-cfaf-5fa2-8697-ff617709c505",
+      "type": "cube",
+      "from": [
+        -12.4,
+        3.7,
+        7.3
+      ],
+      "to": [
+        -9.0,
+        5.7,
+        10.5
+      ],
+      "origin": [
+        -10.7,
+        4.7,
+        8.9
+      ],
+      "rotation": [
+        14,
+        0,
+        14
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            31,
+            154,
+            34,
+            156
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            35,
+            154,
+            38,
+            156
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            39,
+            154,
+            42,
+            156
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            43,
+            154,
+            46,
+            156
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            47,
+            154,
+            50,
+            157
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            51,
+            154,
+            54,
+            157
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_root_shoe_1_-1",
+      "uuid": "a50a1ebf-a37a-5913-a9af-571508055eb7",
+      "type": "cube",
+      "from": [
+        9.0,
+        3.7,
+        -10.5
+      ],
+      "to": [
+        12.4,
+        5.7,
+        -7.3
+      ],
+      "origin": [
+        10.7,
+        4.7,
+        -8.9
+      ],
+      "rotation": [
+        -14,
+        0,
+        -14
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            55,
+            154,
+            58,
+            156
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            59,
+            154,
+            62,
+            156
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            63,
+            154,
+            66,
+            156
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            67,
+            154,
+            70,
+            156
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            71,
+            154,
+            74,
+            157
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            75,
+            154,
+            78,
+            157
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_root_shoe_1_1",
+      "uuid": "7ecd3ade-6307-513f-baf9-121e4e825b88",
+      "type": "cube",
+      "from": [
+        9.0,
+        3.7,
+        7.3
+      ],
+      "to": [
+        12.4,
+        5.7,
+        10.5
+      ],
+      "origin": [
+        10.7,
+        4.7,
+        8.9
+      ],
+      "rotation": [
+        14,
+        0,
+        -14
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            79,
+            154,
+            82,
+            156
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            83,
+            154,
+            86,
+            156
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            87,
+            154,
+            90,
+            156
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            91,
+            154,
+            94,
+            156
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            95,
+            154,
+            98,
+            157
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            99,
+            154,
+            102,
+            157
+          ],
+          "texture": 0
+        }
+      }
     }
   ],
   "outliner": [
@@ -14782,7 +16210,8 @@
                     "606c5ae6-89ce-5f05-bd7d-117d593c1dfa",
                     "a2a3fab0-c6a9-509e-b08b-d062961d2afe",
                     "42753f24-3cab-53f9-ab5d-1851def8ccfc",
-                    "44420fbf-e7de-5b79-ac60-808858748fcc"
+                    "44420fbf-e7de-5b79-ac60-808858748fcc",
+                    "62874b93-7afc-57cc-abd6-76dbacf8a8be"
                   ],
                   "export": true,
                   "isOpen": false,
@@ -14835,7 +16264,8 @@
                     "f1b72d13-f966-5de9-aab6-abbd2d794a8b",
                     "a9a3d274-cf5e-5d1f-ba68-d463ded2cdc5",
                     "d5e03e2e-f13b-50e2-af51-a0a530e0b447",
-                    "c27b236d-f815-547a-91c6-d014abaf5c6a"
+                    "c27b236d-f815-547a-91c6-d014abaf5c6a",
+                    "ddd9df50-cfaf-5fa2-8697-ff617709c505"
                   ],
                   "export": true,
                   "isOpen": false,
@@ -14888,7 +16318,8 @@
                     "b640cd6b-d0ff-526e-b1c6-4815a9f88156",
                     "c8178b19-c86a-558e-a058-1c4104667843",
                     "ce1f90e6-dfac-5368-ae32-b79edc527d0f",
-                    "012b422a-0362-52ac-b055-cfde1bbfa2b4"
+                    "012b422a-0362-52ac-b055-cfde1bbfa2b4",
+                    "a50a1ebf-a37a-5913-a9af-571508055eb7"
                   ],
                   "export": true,
                   "isOpen": false,
@@ -14941,7 +16372,8 @@
                     "5fb30f0d-a226-5fef-bd5f-2f35e6da15a1",
                     "97020e56-c97e-5f7c-9b20-9be3f0c254c6",
                     "99271288-f5ac-568e-878f-6bb002cd2a29",
-                    "78ec9725-8417-5903-8d1c-69b06d48b95b"
+                    "78ec9725-8417-5903-8d1c-69b06d48b95b",
+                    "7ecd3ade-6307-513f-baf9-121e4e825b88"
                   ],
                   "export": true,
                   "isOpen": false,
@@ -15022,7 +16454,15 @@
                 "648afe4b-c9cb-5f84-ae0b-80d7da84a56d",
                 "063840fe-68c6-537f-a758-2a36a78aad92",
                 "2139041a-8dab-59d7-aa1f-05fbe6dd91b1",
-                "35cd9150-eda7-5f9c-b195-8efb80cce303"
+                "35cd9150-eda7-5f9c-b195-8efb80cce303",
+                "1d17275a-8c0e-5a4d-8818-20dc1b7dd08a",
+                "e1059696-89d0-5c14-be7b-480cb9078fbb",
+                "c2819536-7793-59b0-9cc9-5cc54b7d9489",
+                "5b680906-9f44-5acb-8bc4-ddbcce254a6f",
+                "d04caeb4-6bc5-5291-ac0d-8a170b759e56",
+                "023c3683-be54-52b8-be7d-87750a09f181",
+                "280875eb-54c0-5836-a0cd-0caffc00f5b5",
+                "ec659580-0b3c-57d0-975a-5d3af4d48260"
               ],
               "export": true,
               "isOpen": false,
@@ -15094,7 +16534,12 @@
                 "f3772b0d-17bc-53d8-bf28-e57c181e6124",
                 "3797a316-7437-5b85-86c2-384952e4da65",
                 "242933fa-88af-5bd3-8138-b33f6e0a6579",
-                "f445deb1-6f19-5191-89c4-ada01e8c4ccf"
+                "f445deb1-6f19-5191-89c4-ada01e8c4ccf",
+                "790630ef-161d-5f19-9dae-3f81efa001c3",
+                "e3beed2f-fad4-5e7f-b60d-456694713592",
+                "776d7c91-1b4b-5534-ad87-eaa4bbf9541c",
+                "584d84e6-144d-5f68-a57e-19ef0efb8777",
+                "ebe9f856-a8b3-5a84-8456-fa3699938690"
               ],
               "export": true,
               "isOpen": false,
@@ -15122,12 +16567,12 @@
       "name": "rootspike_turret.png",
       "uuid": "ff1a9d8f-c6f2-5192-8233-fc440fc10ee0",
       "id": "0",
-      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAFhElEQVR4nO3cS6gbVRjA8cmlC1Es3upCvKK9KLSIxWJJ6a6icPGBIrgRBBdSN6KrKoJ1aQXRrhQ3FheC4EYQxQcBRXell0qhPiqtRMVqRWguVyndRc61J37z5Ty+mUkyrfn/ICSTmfOY1zlzHklRYK51/IcD+18cuveDh14afefcttTd+H7zFVcXi1cujr4fnB+MPq9f+Kvw2xz58Yva4b87s1oK2925dyOss3jN5qL35Uel9T7PztIN1xdP7X96bH2d/TmS2Ae97pNnTwzvf21HMF867V3Le4fH+l9N9Pju6748vGPpzmLbtq3FyivbS+ssFmSG9WefuSr23HJ37fBye3nyvZW7Hgzm03vz0Btj6+vsz57EPsh17uTLd52e/OxOvnyvkp9Y+u7ky3W9509Wjm9T1QD4z7ff94s29QcnG8exUQJgflUqAWS9JOsrX0dNM/xgbT25/sxvZ015sOSnLU2P79QuAPfwEfPzuV+y2zQNP2mW/GjTzF+bx4cqYM4tNCmudJHlX03Ct2Wg8jMLutlrIZuBn59+pxT+mQ/urRwfrYCW1bkIpNFFsDqFEsDVO6m6xz+c3LzlpqmEnzRrfqqE0WTnj/zsO4B0R1DbNvletBBdJMeKyNj3TcK7nr9UK0DnWbcCQvvkik/ZkWK5K3UYWQQ/9/FDnVcf+HDo3mV43QPoXWon/7KuAly3r+z50wfer9fdw7or1SIVRp/8y81UL4BPT7zfuW/HI8M6B9r1+8uuX2f1ePkO0idXy63HxcGgJx57snSg3373rdGBkydQF9VykKLJHYZLuARwd/FssoI20BGEf7lqQFcFAIC5mRK2e9fO5MZHjx0f6+RwM3eWt944Wl5bW688dUtP/QrxHUG6KZibNqanXOmH2u7F8DpenecQ1/mkj4dlmpr/rMOmpnfJ/dR5TU1Zi01Pi04Jy5HbhqZtVZ26FYsjRm6fmzYWmnIlm7XdSFx1j4d1mlpoOTW9S++nXE5NWcvlbawr2N3hcjnH3639n34tLaOd6V110Ayccwuxus2/JFcypEoHV0/7V0woXkscrnTxr1zYpmP+ByP1ZW7bUDj5DKDXy+XU2L6u8+WyHk6WzwC5vDkdWT/8fvaPwsJ3Ffu6aP3v8WHUH05/XYpbkxmKPQeETrZ+yNNhUw9Ijn5I6kYeAueyFWC5AOQ4gT+A+gLwJ1/GXfcOAwDMpApo8rtA/TDifwJ17VXXFVtE2HPnB0Xvm3JnzMrt8TkDqW19vKf+PBWccRPLw3tHD5vS7xnTtqRrSdOSno4n1IlWpSOu1BHU5HeBcnv5+7cQuWOpk191W5luKg+P7t5ninPFmLYlXUualvRkPJPoiKMfYM4tTGq6stw+N/lRFnW62GuyrUw3lQdZjPYScVrTtqRrSdOSnown1nSVVUCub6Ko0/8NAPg/6MSaLrnmRqqpUWWcWz7tpppBel1qfDw2Bu7zoX9D103MCQjFcXj1hexfv7i8h/YntB+p7mvr39hUaXaPPQSGmi655kaqqWEd59ZNnVQzSC6nxsdjY+AyH68//Jl5TsCBQBwyrtBfv/i8hvYntB+p8f0YOe5fpdk9818GtTXOPY189GewL641ZbkIZAngSp/URZAqAWZSBdxz6+PD5cXtRaj4nWUV4POhi/BuhSrAxaGHbiddBQDAbIyKHgZk6g/I5KrPutWctRUS+rPKULUUqm42WgEMyNQfkMm1oOq2dKytkNCfVYZaJqEWx+gCoD++fn98qO8/1e+fil8u+ztflgD+zpclgL/zZQkQ+jcSf+fzwAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARcw/xfeP7HpaaFYAAAAASUVORK5CYII=",
+      "source": "data:image/png;base64,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",
       "mode": "bitmap",
       "width": 128,
-      "height": 128,
+      "height": 256,
       "uv_width": 128,
-      "uv_height": 128,
+      "uv_height": 256,
       "render_mode": "default"
     }
   ],

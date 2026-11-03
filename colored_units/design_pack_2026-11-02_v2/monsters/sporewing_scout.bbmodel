@@ -8,7 +8,7 @@
   "model_identifier": "sporewing_scout",
   "resolution": {
     "width": 64,
-    "height": 64
+    "height": 128
   },
   "elements": [
     {
@@ -12022,6 +12022,2190 @@
           "texture": 0
         }
       }
+    },
+    {
+      "name": "relief_spar_-1",
+      "uuid": "0bfee47e-da76-5f66-bbbc-7e2c7aba2bdd",
+      "type": "cube",
+      "from": [
+        -5.2,
+        17.8,
+        0.9
+      ],
+      "to": [
+        -3.6,
+        19.4,
+        9.7
+      ],
+      "origin": [
+        -4.4,
+        18.6,
+        5.3
+      ],
+      "rotation": [
+        0,
+        -13,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            1,
+            65,
+            3,
+            67
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            4,
+            65,
+            6,
+            67
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            7,
+            65,
+            16,
+            67
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            17,
+            65,
+            26,
+            67
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            27,
+            65,
+            29,
+            74
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            30,
+            65,
+            32,
+            74
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_antenna_-1_0",
+      "uuid": "5d5b1676-f02d-56d0-97c2-f8725ef372b3",
+      "type": "cube",
+      "from": [
+        -2.35,
+        20.5,
+        -2.85
+      ],
+      "to": [
+        -0.85,
+        23.22,
+        -1.35
+      ],
+      "origin": [
+        -1.6,
+        20.5,
+        -2.1
+      ],
+      "rotation": [
+        -19,
+        0,
+        28
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            33,
+            65,
+            35,
+            68
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            36,
+            65,
+            38,
+            68
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            39,
+            65,
+            41,
+            68
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            42,
+            65,
+            44,
+            68
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            45,
+            65,
+            47,
+            67
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            48,
+            65,
+            50,
+            67
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_antenna_-1_1",
+      "uuid": "929b967b-3d0b-53e2-8324-e0a1095580fa",
+      "type": "cube",
+      "from": [
+        -2.125,
+        23.22,
+        -2.625
+      ],
+      "to": [
+        -1.075,
+        23.98,
+        -1.575
+      ],
+      "origin": [
+        -1.6,
+        20.5,
+        -2.1
+      ],
+      "rotation": [
+        -19,
+        0,
+        28
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            51,
+            65,
+            52,
+            66
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            53,
+            65,
+            54,
+            66
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            55,
+            65,
+            56,
+            66
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            57,
+            65,
+            58,
+            66
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            59,
+            65,
+            60,
+            66
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            61,
+            65,
+            62,
+            66
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_antenna_-1_2",
+      "uuid": "0e4e84da-c918-5236-815d-27a122feeacb",
+      "type": "cube",
+      "from": [
+        -1.885,
+        23.98,
+        -2.385
+      ],
+      "to": [
+        -1.315,
+        24.5,
+        -1.815
+      ],
+      "origin": [
+        -1.6,
+        20.5,
+        -2.1
+      ],
+      "rotation": [
+        -19,
+        0,
+        28
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            1,
+            75,
+            2,
+            76
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            3,
+            75,
+            4,
+            76
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            5,
+            75,
+            6,
+            76
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            7,
+            75,
+            8,
+            76
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            9,
+            75,
+            10,
+            76
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            11,
+            75,
+            12,
+            76
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_spar_1",
+      "uuid": "f2b73843-cd1f-58fa-a2e8-abd66dfe188c",
+      "type": "cube",
+      "from": [
+        3.6,
+        17.8,
+        0.9
+      ],
+      "to": [
+        5.2,
+        19.4,
+        9.7
+      ],
+      "origin": [
+        4.4,
+        18.6,
+        5.3
+      ],
+      "rotation": [
+        0,
+        13,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            13,
+            75,
+            15,
+            77
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            16,
+            75,
+            18,
+            77
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            19,
+            75,
+            28,
+            77
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            29,
+            75,
+            38,
+            77
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            39,
+            75,
+            41,
+            84
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            42,
+            75,
+            44,
+            84
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_antenna_1_0",
+      "uuid": "3564badb-ae0e-5274-ab7e-f3126245f6e3",
+      "type": "cube",
+      "from": [
+        0.85,
+        20.5,
+        -2.85
+      ],
+      "to": [
+        2.35,
+        23.22,
+        -1.35
+      ],
+      "origin": [
+        1.6,
+        20.5,
+        -2.1
+      ],
+      "rotation": [
+        -19,
+        0,
+        -28
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            45,
+            75,
+            47,
+            78
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            48,
+            75,
+            50,
+            78
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            51,
+            75,
+            53,
+            78
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            54,
+            75,
+            56,
+            78
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            57,
+            75,
+            59,
+            77
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            60,
+            75,
+            62,
+            77
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_antenna_1_1",
+      "uuid": "36d1892f-6854-5865-8ac9-9b8f2e5fab4f",
+      "type": "cube",
+      "from": [
+        1.075,
+        23.22,
+        -2.625
+      ],
+      "to": [
+        2.125,
+        23.98,
+        -1.575
+      ],
+      "origin": [
+        1.6,
+        20.5,
+        -2.1
+      ],
+      "rotation": [
+        -19,
+        0,
+        -28
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            1,
+            85,
+            2,
+            86
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            3,
+            85,
+            4,
+            86
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            5,
+            85,
+            6,
+            86
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            7,
+            85,
+            8,
+            86
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            9,
+            85,
+            10,
+            86
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            11,
+            85,
+            12,
+            86
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_antenna_1_2",
+      "uuid": "9d463899-1d1d-5cc6-a79e-ca44dcb06b0b",
+      "type": "cube",
+      "from": [
+        1.315,
+        23.98,
+        -2.385
+      ],
+      "to": [
+        1.885,
+        24.5,
+        -1.815
+      ],
+      "origin": [
+        1.6,
+        20.5,
+        -2.1
+      ],
+      "rotation": [
+        -19,
+        0,
+        -28
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            13,
+            85,
+            14,
+            86
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            15,
+            85,
+            16,
+            86
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            17,
+            85,
+            18,
+            86
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            19,
+            85,
+            20,
+            86
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            21,
+            85,
+            22,
+            86
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            23,
+            85,
+            24,
+            86
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_membrane_scallop_-1_0",
+      "uuid": "c2c38d49-a2c5-558d-9bc3-7d8680dcc954",
+      "type": "cube",
+      "from": [
+        -5.4,
+        17.56,
+        7.475
+      ],
+      "to": [
+        -2.8,
+        18.04,
+        11.975
+      ],
+      "origin": [
+        -4.1,
+        17.8,
+        9.725
+      ],
+      "rotation": [
+        0,
+        9,
+        -10
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            1,
+            88,
+            4,
+            89
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            5,
+            88,
+            8,
+            89
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            9,
+            88,
+            13,
+            89
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            14,
+            88,
+            18,
+            89
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            19,
+            88,
+            22,
+            92
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            23,
+            88,
+            26,
+            92
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_membrane_scallop_-1_1",
+      "uuid": "37532839-56bb-53a7-88f1-297dc7a5bfbd",
+      "type": "cube",
+      "from": [
+        -8.4,
+        18.82,
+        8.005
+      ],
+      "to": [
+        -5.8,
+        19.3,
+        11.105
+      ],
+      "origin": [
+        -7.1,
+        19.060000000000002,
+        9.555
+      ],
+      "rotation": [
+        0,
+        9,
+        -10
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            27,
+            88,
+            30,
+            89
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            31,
+            88,
+            34,
+            89
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            35,
+            88,
+            38,
+            89
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            39,
+            88,
+            42,
+            89
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            43,
+            88,
+            46,
+            91
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            47,
+            88,
+            50,
+            91
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_membrane_scallop_-1_2",
+      "uuid": "635ba24b-5916-5d1a-883c-9d183dd6c528",
+      "type": "cube",
+      "from": [
+        -11.4,
+        20.08,
+        7.885
+      ],
+      "to": [
+        -8.8,
+        20.56,
+        12.185
+      ],
+      "origin": [
+        -10.1,
+        20.32,
+        10.034999999999998
+      ],
+      "rotation": [
+        0,
+        9,
+        -10
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            51,
+            88,
+            54,
+            89
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            55,
+            88,
+            58,
+            89
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            1,
+            93,
+            5,
+            94
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            6,
+            93,
+            10,
+            94
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            11,
+            93,
+            14,
+            97
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            15,
+            93,
+            18,
+            97
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_membrane_scallop_-1_3",
+      "uuid": "76f20f77-675f-5657-a7fb-6642b75b0f8f",
+      "type": "cube",
+      "from": [
+        -14.4,
+        21.34,
+        8.34
+      ],
+      "to": [
+        -11.8,
+        21.82,
+        11.54
+      ],
+      "origin": [
+        -13.1,
+        21.580000000000002,
+        9.940000000000001
+      ],
+      "rotation": [
+        0,
+        9,
+        -10
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            19,
+            93,
+            22,
+            94
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            23,
+            93,
+            26,
+            94
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            27,
+            93,
+            30,
+            94
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            31,
+            93,
+            34,
+            94
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            35,
+            93,
+            38,
+            96
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            39,
+            93,
+            42,
+            96
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_membrane_scallop_-1_4",
+      "uuid": "1041e515-ea37-5d20-a285-41a62e84d377",
+      "type": "cube",
+      "from": [
+        -17.4,
+        21.34,
+        8.62
+      ],
+      "to": [
+        -14.8,
+        21.82,
+        11.42
+      ],
+      "origin": [
+        -16.1,
+        21.580000000000002,
+        10.02
+      ],
+      "rotation": [
+        0,
+        9,
+        -10
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            43,
+            93,
+            46,
+            94
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            47,
+            93,
+            50,
+            94
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            51,
+            93,
+            54,
+            94
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            55,
+            93,
+            58,
+            94
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            59,
+            93,
+            62,
+            96
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            1,
+            98,
+            4,
+            101
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_membrane_scallop_-1_5",
+      "uuid": "04212705-a5ab-5d1f-8f1a-134df1745f9d",
+      "type": "cube",
+      "from": [
+        -20.4,
+        21.34,
+        8.9375
+      ],
+      "to": [
+        -17.8,
+        21.82,
+        11.1875
+      ],
+      "origin": [
+        -19.1,
+        21.580000000000002,
+        10.0625
+      ],
+      "rotation": [
+        0,
+        9,
+        -10
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            5,
+            98,
+            8,
+            99
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            9,
+            98,
+            12,
+            99
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            13,
+            98,
+            15,
+            99
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            16,
+            98,
+            18,
+            99
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            19,
+            98,
+            22,
+            100
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            23,
+            98,
+            26,
+            100
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_wing_tip_-1_0",
+      "uuid": "edde77ef-8ad2-551a-9536-466c1ee46ac8",
+      "type": "cube",
+      "from": [
+        -20.65,
+        21.1,
+        3.25
+      ],
+      "to": [
+        -19.55,
+        23.004,
+        4.35
+      ],
+      "origin": [
+        -20.1,
+        21.1,
+        3.8
+      ],
+      "rotation": [
+        0,
+        0,
+        74
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            27,
+            98,
+            28,
+            100
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            29,
+            98,
+            30,
+            100
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            31,
+            98,
+            32,
+            100
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            33,
+            98,
+            34,
+            100
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            35,
+            98,
+            36,
+            99
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            37,
+            98,
+            38,
+            99
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_wing_tip_-1_1",
+      "uuid": "5e9adeaf-f5ad-57e2-a2bf-813e23b8addd",
+      "type": "cube",
+      "from": [
+        -20.485,
+        23.004,
+        3.415
+      ],
+      "to": [
+        -19.715,
+        23.536,
+        4.185
+      ],
+      "origin": [
+        -20.1,
+        21.1,
+        3.8
+      ],
+      "rotation": [
+        0,
+        0,
+        74
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            39,
+            98,
+            40,
+            99
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            41,
+            98,
+            42,
+            99
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            43,
+            98,
+            44,
+            99
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            45,
+            98,
+            46,
+            99
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            47,
+            98,
+            48,
+            99
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            49,
+            98,
+            50,
+            99
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_wing_tip_-1_2",
+      "uuid": "b80cb51e-c2ca-59d1-ab0a-adc197a43f44",
+      "type": "cube",
+      "from": [
+        -20.309,
+        23.536,
+        3.591
+      ],
+      "to": [
+        -19.891,
+        23.9,
+        4.009
+      ],
+      "origin": [
+        -20.1,
+        21.1,
+        3.8
+      ],
+      "rotation": [
+        0,
+        0,
+        74
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            51,
+            98,
+            52,
+            99
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            53,
+            98,
+            54,
+            99
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            55,
+            98,
+            56,
+            99
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            57,
+            98,
+            58,
+            99
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            59,
+            98,
+            60,
+            99
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            61,
+            98,
+            62,
+            99
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_membrane_scallop_1_0",
+      "uuid": "f5a668e8-5178-505b-8d1a-1db963dcf4ce",
+      "type": "cube",
+      "from": [
+        2.8,
+        17.56,
+        7.475
+      ],
+      "to": [
+        5.4,
+        18.04,
+        11.975
+      ],
+      "origin": [
+        4.1,
+        17.8,
+        9.725
+      ],
+      "rotation": [
+        0,
+        -9,
+        10
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            1,
+            102,
+            4,
+            103
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            5,
+            102,
+            8,
+            103
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            9,
+            102,
+            13,
+            103
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            14,
+            102,
+            18,
+            103
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            19,
+            102,
+            22,
+            106
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            23,
+            102,
+            26,
+            106
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_membrane_scallop_1_1",
+      "uuid": "e3703486-8100-5fc3-ba01-0fd84d7e8d6d",
+      "type": "cube",
+      "from": [
+        5.8,
+        18.82,
+        8.005
+      ],
+      "to": [
+        8.4,
+        19.3,
+        11.105
+      ],
+      "origin": [
+        7.1,
+        19.060000000000002,
+        9.555
+      ],
+      "rotation": [
+        0,
+        -9,
+        10
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            27,
+            102,
+            30,
+            103
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            31,
+            102,
+            34,
+            103
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            35,
+            102,
+            38,
+            103
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            39,
+            102,
+            42,
+            103
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            43,
+            102,
+            46,
+            105
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            47,
+            102,
+            50,
+            105
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_membrane_scallop_1_2",
+      "uuid": "8951c447-e0ab-5e87-a106-1065e280fa09",
+      "type": "cube",
+      "from": [
+        8.8,
+        20.08,
+        7.885
+      ],
+      "to": [
+        11.4,
+        20.56,
+        12.185
+      ],
+      "origin": [
+        10.1,
+        20.32,
+        10.034999999999998
+      ],
+      "rotation": [
+        0,
+        -9,
+        10
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            51,
+            102,
+            54,
+            103
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            55,
+            102,
+            58,
+            103
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            1,
+            107,
+            5,
+            108
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            6,
+            107,
+            10,
+            108
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            11,
+            107,
+            14,
+            111
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            15,
+            107,
+            18,
+            111
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_membrane_scallop_1_3",
+      "uuid": "2b8de01b-260e-5e6c-a898-6af25ebc12f5",
+      "type": "cube",
+      "from": [
+        11.8,
+        21.34,
+        8.34
+      ],
+      "to": [
+        14.4,
+        21.82,
+        11.54
+      ],
+      "origin": [
+        13.1,
+        21.580000000000002,
+        9.940000000000001
+      ],
+      "rotation": [
+        0,
+        -9,
+        10
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            19,
+            107,
+            22,
+            108
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            23,
+            107,
+            26,
+            108
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            27,
+            107,
+            30,
+            108
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            31,
+            107,
+            34,
+            108
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            35,
+            107,
+            38,
+            110
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            39,
+            107,
+            42,
+            110
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_membrane_scallop_1_4",
+      "uuid": "b7ac2656-0ff9-5b12-952a-04cd41f5bc65",
+      "type": "cube",
+      "from": [
+        14.8,
+        21.34,
+        8.62
+      ],
+      "to": [
+        17.4,
+        21.82,
+        11.42
+      ],
+      "origin": [
+        16.1,
+        21.580000000000002,
+        10.02
+      ],
+      "rotation": [
+        0,
+        -9,
+        10
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            43,
+            107,
+            46,
+            108
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            47,
+            107,
+            50,
+            108
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            51,
+            107,
+            54,
+            108
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            55,
+            107,
+            58,
+            108
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            59,
+            107,
+            62,
+            110
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            1,
+            112,
+            4,
+            115
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_membrane_scallop_1_5",
+      "uuid": "1048208a-e592-51b8-9eb5-b4ae290f52b4",
+      "type": "cube",
+      "from": [
+        17.8,
+        21.34,
+        8.9375
+      ],
+      "to": [
+        20.4,
+        21.82,
+        11.1875
+      ],
+      "origin": [
+        19.1,
+        21.580000000000002,
+        10.0625
+      ],
+      "rotation": [
+        0,
+        -9,
+        10
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            5,
+            112,
+            8,
+            113
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            9,
+            112,
+            12,
+            113
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            13,
+            112,
+            15,
+            113
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            16,
+            112,
+            18,
+            113
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            19,
+            112,
+            22,
+            114
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            23,
+            112,
+            26,
+            114
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_wing_tip_1_0",
+      "uuid": "c74c024e-fe36-5ea5-a067-80922f127728",
+      "type": "cube",
+      "from": [
+        19.55,
+        21.1,
+        3.25
+      ],
+      "to": [
+        20.65,
+        23.004,
+        4.35
+      ],
+      "origin": [
+        20.1,
+        21.1,
+        3.8
+      ],
+      "rotation": [
+        0,
+        0,
+        -74
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            27,
+            112,
+            28,
+            114
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            29,
+            112,
+            30,
+            114
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            31,
+            112,
+            32,
+            114
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            33,
+            112,
+            34,
+            114
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            35,
+            112,
+            36,
+            113
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            37,
+            112,
+            38,
+            113
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_wing_tip_1_1",
+      "uuid": "0ecd8052-3923-5ed6-b143-86a0a037fccb",
+      "type": "cube",
+      "from": [
+        19.715,
+        23.004,
+        3.415
+      ],
+      "to": [
+        20.485,
+        23.536,
+        4.185
+      ],
+      "origin": [
+        20.1,
+        21.1,
+        3.8
+      ],
+      "rotation": [
+        0,
+        0,
+        -74
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            39,
+            112,
+            40,
+            113
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            41,
+            112,
+            42,
+            113
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            43,
+            112,
+            44,
+            113
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            45,
+            112,
+            46,
+            113
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            47,
+            112,
+            48,
+            113
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            49,
+            112,
+            50,
+            113
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_wing_tip_1_2",
+      "uuid": "875949b5-d5b7-5103-b2f4-585bfdfe24a9",
+      "type": "cube",
+      "from": [
+        19.891,
+        23.536,
+        3.591
+      ],
+      "to": [
+        20.309,
+        23.9,
+        4.009
+      ],
+      "origin": [
+        20.1,
+        21.1,
+        3.8
+      ],
+      "rotation": [
+        0,
+        0,
+        -74
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            51,
+            112,
+            52,
+            113
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            53,
+            112,
+            54,
+            113
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            55,
+            112,
+            56,
+            113
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            57,
+            112,
+            58,
+            113
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            59,
+            112,
+            60,
+            113
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            61,
+            112,
+            62,
+            113
+          ],
+          "texture": 0
+        }
+      }
     }
   ],
   "outliner": [
@@ -12082,7 +14266,13 @@
                 "e3dc62f8-8057-53de-8f2d-d6ec8073e9f3",
                 "3b03b4d7-f660-55bf-9e1e-700445cff998",
                 "ffd39c81-2d3b-5b2c-a2d2-86c0faa1a96f",
-                "16029113-8dc4-5bf2-8824-d56b3bc2e506"
+                "16029113-8dc4-5bf2-8824-d56b3bc2e506",
+                "5d5b1676-f02d-56d0-97c2-f8725ef372b3",
+                "929b967b-3d0b-53e2-8324-e0a1095580fa",
+                "0e4e84da-c918-5236-815d-27a122feeacb",
+                "3564badb-ae0e-5274-ab7e-f3126245f6e3",
+                "36d1892f-6854-5865-8ac9-9b8f2e5fab4f",
+                "9d463899-1d1d-5cc6-a79e-ca44dcb06b0b"
               ],
               "export": true,
               "isOpen": false,
@@ -12125,7 +14315,17 @@
                 "a1aa7f17-aee1-501a-a701-26ce0f962c80",
                 "f3893508-cf2e-5b69-a617-a1b005ded788",
                 "9bc2a95e-7d52-501a-9b1e-d1dd59334665",
-                "474b5878-338c-51ec-9108-445f4e3b2c89"
+                "474b5878-338c-51ec-9108-445f4e3b2c89",
+                "0bfee47e-da76-5f66-bbbc-7e2c7aba2bdd",
+                "c2c38d49-a2c5-558d-9bc3-7d8680dcc954",
+                "37532839-56bb-53a7-88f1-297dc7a5bfbd",
+                "635ba24b-5916-5d1a-883c-9d183dd6c528",
+                "76f20f77-675f-5657-a7fb-6642b75b0f8f",
+                "1041e515-ea37-5d20-a285-41a62e84d377",
+                "04212705-a5ab-5d1f-8f1a-134df1745f9d",
+                "edde77ef-8ad2-551a-9536-466c1ee46ac8",
+                "5e9adeaf-f5ad-57e2-a2bf-813e23b8addd",
+                "b80cb51e-c2ca-59d1-ab0a-adc197a43f44"
               ],
               "export": true,
               "isOpen": false,
@@ -12169,7 +14369,17 @@
                 "ab3b247e-716d-59f9-acad-208210b36c59",
                 "be6431f7-5af1-58d2-bb48-8dcd9498246f",
                 "88254a77-24ad-5348-9563-66ed81bad85c",
-                "4e3e3a0b-fee9-5154-9255-18cc18b4a9b4"
+                "4e3e3a0b-fee9-5154-9255-18cc18b4a9b4",
+                "f2b73843-cd1f-58fa-a2e8-abd66dfe188c",
+                "f5a668e8-5178-505b-8d1a-1db963dcf4ce",
+                "e3703486-8100-5fc3-ba01-0fd84d7e8d6d",
+                "8951c447-e0ab-5e87-a106-1065e280fa09",
+                "2b8de01b-260e-5e6c-a898-6af25ebc12f5",
+                "b7ac2656-0ff9-5b12-952a-04cd41f5bc65",
+                "1048208a-e592-51b8-9eb5-b4ae290f52b4",
+                "c74c024e-fe36-5ea5-a067-80922f127728",
+                "0ecd8052-3923-5ed6-b143-86a0a037fccb",
+                "875949b5-d5b7-5103-b2f4-585bfdfe24a9"
               ],
               "export": true,
               "isOpen": false,
@@ -12288,12 +14498,12 @@
       "name": "sporewing_scout.png",
       "uuid": "b5191a00-4ce8-522a-aa5b-4b2444baec97",
       "id": "0",
-      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAADVklEQVR4nO1avYsTQRSfHVKIYjBq5wceFsJxgnBE7E4sAhZWafwDrhK7s9NS7a4TK/8AGyvBgyvE68RwcnAiHCgnfrQmRLFdmfUmvn3z3sxsjCTZeT9YdvLy9r03s7Pva1cpwR/cXbuXm0MhLJ5qO7TlhZXcHJ2lbn7z8qrz/zzIsdCYAY6tMqjUKMJCoFJ7/SzLcRYgZWiVOBr/KuD7r/5EDJmWHD2uohNHTo576UzJ0SpxaJU4tJpzbO9vZZi2+e7ZiPZg/X4Gz5WcYPPQ0Yk8a5QcYziO4dhwE7uh4e+/9TKTA5gzluXTz03eoPjj8fqjkiG31m4X9OsXuyP6xu5f40zGxRlugA03uHL+Wv7640uvodNA5lsAuwhw8sn5gI0aT74EswvwThAI6o/MDmyJaUJW63CLfP4p796+tJIvnDtdEjoYDNXmq+clvhj5RpYdt441i3NIToyNQSe4SDQZcBik6mpoMEbn6g2njvfJ52SF5IRs/K/VYOvgLu1/+lr6PU/QKnE0KGJ/zNq8PxjG8UXIj5E1rp3sDmgSObvXgMGwOIY/f5AHhk9+b4fO5yEd1wAGML0OFT4T9wG9na2Mc157H946RQzmwbUBtwgQ1CJAVJm8EwbxHcIGVg0xAsHsI/NlYVQmFpOtnT1zoeD5/GXPoWNabAZqzlQWiv2GbbKYxs3xA3m4Wwz7FxpPypeJxWRrdvLcGNKqZKB4bG2BNlFviUh7QUNHqxoh1BqjdkBDTRFceISPgO0N2jEOwfgRiF2EmfEBAsF0kcWGD9z69vFj3tjHi5L59M2TEg9uyVO2QR5OTikKLEeEDyg0xA95Y0MsJxN+7EBNHtM5HurLkdECxHhOuMohfsjrK3DgDuBkwjuH7zRF53i4HSBIHVmV+I6dVMhBhZwTvh7bULUjDO3z6Y6uBToBJxVyUCHnBK+nbKjSEcb2+XQ7tUCPcVQhJxVyUCHnBK+nbID6qU4Q3AHYPp9uzlEKkkZnqVt8ako9q6aIgXU8/kSVkxVLp97krLYfOrQXd3ZJGyg9MbSRD/A5Ca7BARXDMed8uDH1OstOHi6CnTxcBKuX0k/p4xYh6R0gEHgSEa5pWSdorsNKfZtfa7QT3QECgUAgEAgEAoFAJYnfOKOqXO6ablkAAAAASUVORK5CYII=",
+      "source": "data:image/png;base64,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",
       "mode": "bitmap",
       "width": 64,
-      "height": 64,
+      "height": 128,
       "uv_width": 64,
-      "uv_height": 64,
+      "uv_height": 128,
       "render_mode": "default"
     }
   ],

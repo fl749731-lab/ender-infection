@@ -8,7 +8,7 @@
   "model_identifier": "walking_brood_crab",
   "resolution": {
     "width": 512,
-    "height": 512
+    "height": 1024
   },
   "elements": [
     {
@@ -61330,6 +61330,4122 @@
           "texture": 0
         }
       }
+    },
+    {
+      "name": "relief_roof_bastion_-1",
+      "uuid": "778f3fa0-630e-5f25-9d44-fb7f396d1956",
+      "type": "cube",
+      "from": [
+        -38.5,
+        77.5,
+        -6.0
+      ],
+      "to": [
+        -25.5,
+        86.5,
+        28.0
+      ],
+      "origin": [
+        -32,
+        82,
+        11
+      ],
+      "rotation": [
+        8,
+        0,
+        17
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            1,
+            513,
+            6,
+            517
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            7,
+            513,
+            12,
+            517
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            13,
+            513,
+            25,
+            517
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            26,
+            513,
+            38,
+            517
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            39,
+            513,
+            44,
+            525
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            45,
+            513,
+            50,
+            525
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_roof_tine_-1_0",
+      "uuid": "c4b09319-16b8-5b4d-ad6f-d8b2161a505a",
+      "type": "cube",
+      "from": [
+        -38.25,
+        83.5,
+        10.75
+      ],
+      "to": [
+        -29.75,
+        97.78,
+        19.25
+      ],
+      "origin": [
+        -34,
+        83.5,
+        15
+      ],
+      "rotation": [
+        22,
+        -24,
+        31
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            51,
+            513,
+            54,
+            519
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            55,
+            513,
+            58,
+            519
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            59,
+            513,
+            62,
+            519
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            63,
+            513,
+            66,
+            519
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            67,
+            513,
+            70,
+            516
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            71,
+            513,
+            74,
+            516
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_roof_tine_-1_1",
+      "uuid": "5dc719fd-e50f-584a-ae3e-a5ab53d09c60",
+      "type": "cube",
+      "from": [
+        -36.975,
+        97.78,
+        12.025
+      ],
+      "to": [
+        -31.025,
+        101.77,
+        17.975
+      ],
+      "origin": [
+        -34,
+        83.5,
+        15
+      ],
+      "rotation": [
+        22,
+        -24,
+        31
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            75,
+            513,
+            77,
+            515
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            78,
+            513,
+            80,
+            515
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            81,
+            513,
+            83,
+            515
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            84,
+            513,
+            86,
+            515
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            87,
+            513,
+            89,
+            515
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            90,
+            513,
+            92,
+            515
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_roof_tine_-1_2",
+      "uuid": "ca23295a-8e20-5aa9-9570-6eb22a264ff3",
+      "type": "cube",
+      "from": [
+        -35.615,
+        101.77,
+        13.385
+      ],
+      "to": [
+        -32.385,
+        104.5,
+        16.615
+      ],
+      "origin": [
+        -34,
+        83.5,
+        15
+      ],
+      "rotation": [
+        22,
+        -24,
+        31
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            93,
+            513,
+            94,
+            514
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            95,
+            513,
+            96,
+            514
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            97,
+            513,
+            98,
+            514
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            99,
+            513,
+            100,
+            514
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            101,
+            513,
+            102,
+            514
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            103,
+            513,
+            104,
+            514
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_pincer_cheek_-1",
+      "uuid": "77b3308b-56e1-56eb-8012-8f1bb869839d",
+      "type": "cube",
+      "from": [
+        -37.5,
+        19.5,
+        -71.0
+      ],
+      "to": [
+        -26.5,
+        28.5,
+        -57.0
+      ],
+      "origin": [
+        -32,
+        24,
+        -64
+      ],
+      "rotation": [
+        12,
+        0,
+        -9
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            105,
+            513,
+            109,
+            517
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            110,
+            513,
+            114,
+            517
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            115,
+            513,
+            121,
+            517
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            122,
+            513,
+            128,
+            517
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            129,
+            513,
+            133,
+            519
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            134,
+            513,
+            138,
+            519
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_pincer_tusk_-1_0",
+      "uuid": "ca6077d8-33cc-5491-a571-8ce42b0de89f",
+      "type": "cube",
+      "from": [
+        -39.5,
+        24.0,
+        -68.5
+      ],
+      "to": [
+        -32.5,
+        36.92,
+        -61.5
+      ],
+      "origin": [
+        -36,
+        24,
+        -65
+      ],
+      "rotation": [
+        -84,
+        0,
+        -18
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            139,
+            513,
+            142,
+            518
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            143,
+            513,
+            146,
+            518
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            147,
+            513,
+            150,
+            518
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            151,
+            513,
+            154,
+            518
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            155,
+            513,
+            158,
+            516
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            159,
+            513,
+            162,
+            516
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_pincer_tusk_-1_1",
+      "uuid": "4d34d01f-d9c1-5952-98c1-b7af1cd112a2",
+      "type": "cube",
+      "from": [
+        -38.45,
+        36.92,
+        -67.45
+      ],
+      "to": [
+        -33.55,
+        40.53,
+        -62.55
+      ],
+      "origin": [
+        -36,
+        24,
+        -65
+      ],
+      "rotation": [
+        -84,
+        0,
+        -18
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            163,
+            513,
+            165,
+            514
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            166,
+            513,
+            168,
+            514
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            169,
+            513,
+            171,
+            514
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            172,
+            513,
+            174,
+            514
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            175,
+            513,
+            177,
+            515
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            178,
+            513,
+            180,
+            515
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_pincer_tusk_-1_2",
+      "uuid": "a40149f5-350d-5b9e-b429-5311e864851a",
+      "type": "cube",
+      "from": [
+        -37.33,
+        40.53,
+        -66.33
+      ],
+      "to": [
+        -34.67,
+        43.0,
+        -63.67
+      ],
+      "origin": [
+        -36,
+        24,
+        -65
+      ],
+      "rotation": [
+        -84,
+        0,
+        -18
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            181,
+            513,
+            182,
+            514
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            183,
+            513,
+            184,
+            514
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            185,
+            513,
+            186,
+            514
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            187,
+            513,
+            188,
+            514
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            189,
+            513,
+            190,
+            514
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            191,
+            513,
+            192,
+            514
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_roof_bastion_1",
+      "uuid": "b927be69-50f5-5791-886a-88dd2a588caa",
+      "type": "cube",
+      "from": [
+        25.5,
+        77.5,
+        -6.0
+      ],
+      "to": [
+        38.5,
+        86.5,
+        28.0
+      ],
+      "origin": [
+        32,
+        82,
+        11
+      ],
+      "rotation": [
+        8,
+        0,
+        -17
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            193,
+            513,
+            198,
+            517
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            199,
+            513,
+            204,
+            517
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            205,
+            513,
+            217,
+            517
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            218,
+            513,
+            230,
+            517
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            231,
+            513,
+            236,
+            525
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            237,
+            513,
+            242,
+            525
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_roof_tine_1_0",
+      "uuid": "7eae2697-a12a-5aeb-9ce6-df074b24be8a",
+      "type": "cube",
+      "from": [
+        29.75,
+        83.5,
+        10.75
+      ],
+      "to": [
+        38.25,
+        97.78,
+        19.25
+      ],
+      "origin": [
+        34,
+        83.5,
+        15
+      ],
+      "rotation": [
+        22,
+        24,
+        -31
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            243,
+            513,
+            246,
+            519
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            247,
+            513,
+            250,
+            519
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            251,
+            513,
+            254,
+            519
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            255,
+            513,
+            258,
+            519
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            259,
+            513,
+            262,
+            516
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            263,
+            513,
+            266,
+            516
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_roof_tine_1_1",
+      "uuid": "a7c8f9e4-557b-54ea-bc47-4520417af856",
+      "type": "cube",
+      "from": [
+        31.025,
+        97.78,
+        12.025
+      ],
+      "to": [
+        36.975,
+        101.77,
+        17.975
+      ],
+      "origin": [
+        34,
+        83.5,
+        15
+      ],
+      "rotation": [
+        22,
+        24,
+        -31
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            267,
+            513,
+            269,
+            515
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            270,
+            513,
+            272,
+            515
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            273,
+            513,
+            275,
+            515
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            276,
+            513,
+            278,
+            515
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            279,
+            513,
+            281,
+            515
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            282,
+            513,
+            284,
+            515
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_roof_tine_1_2",
+      "uuid": "3aae51a0-5982-5d72-b7b2-4257090ec3d4",
+      "type": "cube",
+      "from": [
+        32.385,
+        101.77,
+        13.385
+      ],
+      "to": [
+        35.615,
+        104.5,
+        16.615
+      ],
+      "origin": [
+        34,
+        83.5,
+        15
+      ],
+      "rotation": [
+        22,
+        24,
+        -31
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            285,
+            513,
+            286,
+            514
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            287,
+            513,
+            288,
+            514
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            289,
+            513,
+            290,
+            514
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            291,
+            513,
+            292,
+            514
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            293,
+            513,
+            294,
+            514
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            295,
+            513,
+            296,
+            514
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_pincer_cheek_1",
+      "uuid": "4ad4b92d-7b71-5989-a140-d97b6711ad9c",
+      "type": "cube",
+      "from": [
+        26.5,
+        19.5,
+        -71.0
+      ],
+      "to": [
+        37.5,
+        28.5,
+        -57.0
+      ],
+      "origin": [
+        32,
+        24,
+        -64
+      ],
+      "rotation": [
+        12,
+        0,
+        9
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            297,
+            513,
+            301,
+            517
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            302,
+            513,
+            306,
+            517
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            307,
+            513,
+            313,
+            517
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            314,
+            513,
+            320,
+            517
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            321,
+            513,
+            325,
+            519
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            326,
+            513,
+            330,
+            519
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_pincer_tusk_1_0",
+      "uuid": "0fb509ec-67b0-562f-be02-ff7c90211e48",
+      "type": "cube",
+      "from": [
+        32.5,
+        24.0,
+        -68.5
+      ],
+      "to": [
+        39.5,
+        36.92,
+        -61.5
+      ],
+      "origin": [
+        36,
+        24,
+        -65
+      ],
+      "rotation": [
+        -84,
+        0,
+        18
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            331,
+            513,
+            334,
+            518
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            335,
+            513,
+            338,
+            518
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            339,
+            513,
+            342,
+            518
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            343,
+            513,
+            346,
+            518
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            347,
+            513,
+            350,
+            516
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            351,
+            513,
+            354,
+            516
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_pincer_tusk_1_1",
+      "uuid": "20f5b7fd-2f3f-5b8a-bf13-9656187dc581",
+      "type": "cube",
+      "from": [
+        33.55,
+        36.92,
+        -67.45
+      ],
+      "to": [
+        38.45,
+        40.53,
+        -62.55
+      ],
+      "origin": [
+        36,
+        24,
+        -65
+      ],
+      "rotation": [
+        -84,
+        0,
+        18
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            355,
+            513,
+            357,
+            514
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            358,
+            513,
+            360,
+            514
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            361,
+            513,
+            363,
+            514
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            364,
+            513,
+            366,
+            514
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            367,
+            513,
+            369,
+            515
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            370,
+            513,
+            372,
+            515
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_pincer_tusk_1_2",
+      "uuid": "2c028b29-920c-5d68-8379-c78fc2f0ea32",
+      "type": "cube",
+      "from": [
+        34.67,
+        40.53,
+        -66.33
+      ],
+      "to": [
+        37.33,
+        43.0,
+        -63.67
+      ],
+      "origin": [
+        36,
+        24,
+        -65
+      ],
+      "rotation": [
+        -84,
+        0,
+        18
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            373,
+            513,
+            374,
+            514
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            375,
+            513,
+            376,
+            514
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            377,
+            513,
+            378,
+            514
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            379,
+            513,
+            380,
+            514
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            381,
+            513,
+            382,
+            514
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            383,
+            513,
+            384,
+            514
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_brood_vault_0_0",
+      "uuid": "b0a6bdb6-95fc-551c-aa6e-3ba1194602b4",
+      "type": "cube",
+      "from": [
+        -37.4,
+        93.15,
+        -29.5
+      ],
+      "to": [
+        -28.6,
+        98.85,
+        -16.5
+      ],
+      "origin": [
+        -33.0,
+        96.0,
+        -23
+      ],
+      "rotation": [
+        0,
+        0,
+        90.0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            1,
+            527,
+            5,
+            529
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            6,
+            527,
+            10,
+            529
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            11,
+            527,
+            16,
+            529
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            17,
+            527,
+            22,
+            529
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            23,
+            527,
+            27,
+            532
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            28,
+            527,
+            32,
+            532
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_brood_vault_0_1",
+      "uuid": "b3569dc0-80a3-5116-bbf4-d25220250ce0",
+      "type": "cube",
+      "from": [
+        -35.3904,
+        100.65,
+        -29.5
+      ],
+      "to": [
+        -26.5904,
+        106.35,
+        -16.5
+      ],
+      "origin": [
+        -30.99038105676658,
+        103.5,
+        -23
+      ],
+      "rotation": [
+        0,
+        0,
+        59.99999999999999
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            33,
+            527,
+            37,
+            529
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            38,
+            527,
+            42,
+            529
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            43,
+            527,
+            48,
+            529
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            49,
+            527,
+            54,
+            529
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            55,
+            527,
+            59,
+            532
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            60,
+            527,
+            64,
+            532
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_brood_vault_0_2",
+      "uuid": "5a641d4e-750e-5a09-927d-4bae618ddf4b",
+      "type": "cube",
+      "from": [
+        -29.9,
+        106.1404,
+        -29.5
+      ],
+      "to": [
+        -21.1,
+        111.8404,
+        -16.5
+      ],
+      "origin": [
+        -25.5,
+        108.99038105676658,
+        -23
+      ],
+      "rotation": [
+        0,
+        0,
+        29.999999999999996
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            65,
+            527,
+            69,
+            529
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            70,
+            527,
+            74,
+            529
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            75,
+            527,
+            80,
+            529
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            81,
+            527,
+            86,
+            529
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            87,
+            527,
+            91,
+            532
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            92,
+            527,
+            96,
+            532
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_brood_vault_0_3",
+      "uuid": "a9f73b8f-cac5-56cf-b758-8a59fce986fa",
+      "type": "cube",
+      "from": [
+        -22.4,
+        108.15,
+        -29.5
+      ],
+      "to": [
+        -13.6,
+        113.85,
+        -16.5
+      ],
+      "origin": [
+        -18.0,
+        111.0,
+        -23
+      ],
+      "rotation": [
+        0,
+        0,
+        -0.0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            97,
+            527,
+            101,
+            529
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            102,
+            527,
+            106,
+            529
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            107,
+            527,
+            112,
+            529
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            113,
+            527,
+            118,
+            529
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            119,
+            527,
+            123,
+            532
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            124,
+            527,
+            128,
+            532
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_brood_vault_0_4",
+      "uuid": "e0ad758e-4ee8-5085-9d07-ea728cd833a3",
+      "type": "cube",
+      "from": [
+        -14.9,
+        106.1404,
+        -29.5
+      ],
+      "to": [
+        -6.1,
+        111.8404,
+        -16.5
+      ],
+      "origin": [
+        -10.5,
+        108.99038105676658,
+        -23
+      ],
+      "rotation": [
+        0,
+        0,
+        -29.999999999999996
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            129,
+            527,
+            133,
+            529
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            134,
+            527,
+            138,
+            529
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            139,
+            527,
+            144,
+            529
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            145,
+            527,
+            150,
+            529
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            151,
+            527,
+            155,
+            532
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            156,
+            527,
+            160,
+            532
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_brood_vault_0_5",
+      "uuid": "44372656-a6fa-5a8f-8c8a-d241b1a40c2a",
+      "type": "cube",
+      "from": [
+        -9.4096,
+        100.65,
+        -29.5
+      ],
+      "to": [
+        -0.6096,
+        106.35,
+        -16.5
+      ],
+      "origin": [
+        -5.009618943233422,
+        103.5,
+        -23
+      ],
+      "rotation": [
+        0,
+        0,
+        -59.99999999999999
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            161,
+            527,
+            165,
+            529
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            166,
+            527,
+            170,
+            529
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            171,
+            527,
+            176,
+            529
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            177,
+            527,
+            182,
+            529
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            183,
+            527,
+            187,
+            532
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            188,
+            527,
+            192,
+            532
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_brood_vault_0_6",
+      "uuid": "1234c71e-a18c-52e5-9f54-9011fbe68a3e",
+      "type": "cube",
+      "from": [
+        -7.4,
+        93.15,
+        -29.5
+      ],
+      "to": [
+        1.4,
+        98.85,
+        -16.5
+      ],
+      "origin": [
+        -3.0,
+        96.0,
+        -23
+      ],
+      "rotation": [
+        0,
+        0,
+        -90.0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            193,
+            527,
+            197,
+            529
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            198,
+            527,
+            202,
+            529
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            203,
+            527,
+            208,
+            529
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            209,
+            527,
+            214,
+            529
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            215,
+            527,
+            219,
+            532
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            220,
+            527,
+            224,
+            532
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_vault_support_0_-1",
+      "uuid": "67476003-5cc7-53f1-83d7-082968ff3eec",
+      "type": "cube",
+      "from": [
+        -36.3,
+        81.1,
+        -29.5
+      ],
+      "to": [
+        -29.7,
+        94.5,
+        -16.5
+      ],
+      "origin": [
+        -33,
+        87.8,
+        -23
+      ],
+      "rotation": [
+        0,
+        0,
+        4
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            225,
+            527,
+            228,
+            532
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            229,
+            527,
+            232,
+            532
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            233,
+            527,
+            238,
+            532
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            239,
+            527,
+            244,
+            532
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            245,
+            527,
+            248,
+            532
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            249,
+            527,
+            252,
+            532
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_vault_support_0_1",
+      "uuid": "db16a7c9-7fb1-5e94-b89b-8c98012bea27",
+      "type": "cube",
+      "from": [
+        -6.3,
+        81.1,
+        -29.5
+      ],
+      "to": [
+        0.3,
+        94.5,
+        -16.5
+      ],
+      "origin": [
+        -3,
+        87.8,
+        -23
+      ],
+      "rotation": [
+        0,
+        0,
+        -4
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            253,
+            527,
+            256,
+            532
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            257,
+            527,
+            260,
+            532
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            261,
+            527,
+            266,
+            532
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            267,
+            527,
+            272,
+            532
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            273,
+            527,
+            276,
+            532
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            277,
+            527,
+            280,
+            532
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_brood_vault_1_0",
+      "uuid": "02136cee-d483-53f9-9df1-2bc3acd639df",
+      "type": "cube",
+      "from": [
+        -1.4,
+        93.15,
+        -29.5
+      ],
+      "to": [
+        7.4,
+        98.85,
+        -16.5
+      ],
+      "origin": [
+        3.0,
+        96.0,
+        -23
+      ],
+      "rotation": [
+        0,
+        0,
+        90.0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            281,
+            527,
+            285,
+            529
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            286,
+            527,
+            290,
+            529
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            291,
+            527,
+            296,
+            529
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            297,
+            527,
+            302,
+            529
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            303,
+            527,
+            307,
+            532
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            308,
+            527,
+            312,
+            532
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_brood_vault_1_1",
+      "uuid": "0cad342f-da5f-58d2-9c30-5d5590b79c35",
+      "type": "cube",
+      "from": [
+        0.6096,
+        100.65,
+        -29.5
+      ],
+      "to": [
+        9.4096,
+        106.35,
+        -16.5
+      ],
+      "origin": [
+        5.009618943233422,
+        103.5,
+        -23
+      ],
+      "rotation": [
+        0,
+        0,
+        59.99999999999999
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            313,
+            527,
+            317,
+            529
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            318,
+            527,
+            322,
+            529
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            323,
+            527,
+            328,
+            529
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            329,
+            527,
+            334,
+            529
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            335,
+            527,
+            339,
+            532
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            340,
+            527,
+            344,
+            532
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_brood_vault_1_2",
+      "uuid": "710f4092-7c81-578c-93ee-93ee92cc4fdb",
+      "type": "cube",
+      "from": [
+        6.1,
+        106.1404,
+        -29.5
+      ],
+      "to": [
+        14.9,
+        111.8404,
+        -16.5
+      ],
+      "origin": [
+        10.5,
+        108.99038105676658,
+        -23
+      ],
+      "rotation": [
+        0,
+        0,
+        29.999999999999996
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            345,
+            527,
+            349,
+            529
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            350,
+            527,
+            354,
+            529
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            355,
+            527,
+            360,
+            529
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            361,
+            527,
+            366,
+            529
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            367,
+            527,
+            371,
+            532
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            372,
+            527,
+            376,
+            532
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_brood_vault_1_3",
+      "uuid": "3fcbc9be-5119-57a2-97f6-2d51a5d92229",
+      "type": "cube",
+      "from": [
+        13.6,
+        108.15,
+        -29.5
+      ],
+      "to": [
+        22.4,
+        113.85,
+        -16.5
+      ],
+      "origin": [
+        18.0,
+        111.0,
+        -23
+      ],
+      "rotation": [
+        0,
+        0,
+        -0.0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            377,
+            527,
+            381,
+            529
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            382,
+            527,
+            386,
+            529
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            387,
+            527,
+            392,
+            529
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            393,
+            527,
+            398,
+            529
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            399,
+            527,
+            403,
+            532
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            404,
+            527,
+            408,
+            532
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_brood_vault_1_4",
+      "uuid": "cf565735-694d-5d56-9a5f-4b9b6864817b",
+      "type": "cube",
+      "from": [
+        21.1,
+        106.1404,
+        -29.5
+      ],
+      "to": [
+        29.9,
+        111.8404,
+        -16.5
+      ],
+      "origin": [
+        25.5,
+        108.99038105676658,
+        -23
+      ],
+      "rotation": [
+        0,
+        0,
+        -29.999999999999996
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            409,
+            527,
+            413,
+            529
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            414,
+            527,
+            418,
+            529
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            419,
+            527,
+            424,
+            529
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            425,
+            527,
+            430,
+            529
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            431,
+            527,
+            435,
+            532
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            436,
+            527,
+            440,
+            532
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_brood_vault_1_5",
+      "uuid": "69597c21-5584-5d5a-a947-b7c9c5a1f013",
+      "type": "cube",
+      "from": [
+        26.5904,
+        100.65,
+        -29.5
+      ],
+      "to": [
+        35.3904,
+        106.35,
+        -16.5
+      ],
+      "origin": [
+        30.99038105676658,
+        103.5,
+        -23
+      ],
+      "rotation": [
+        0,
+        0,
+        -59.99999999999999
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            441,
+            527,
+            445,
+            529
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            446,
+            527,
+            450,
+            529
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            451,
+            527,
+            456,
+            529
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            457,
+            527,
+            462,
+            529
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            463,
+            527,
+            467,
+            532
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            468,
+            527,
+            472,
+            532
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_brood_vault_1_6",
+      "uuid": "754b842e-fbd5-5702-8066-362556e1a6c1",
+      "type": "cube",
+      "from": [
+        28.6,
+        93.15,
+        -29.5
+      ],
+      "to": [
+        37.4,
+        98.85,
+        -16.5
+      ],
+      "origin": [
+        33.0,
+        96.0,
+        -23
+      ],
+      "rotation": [
+        0,
+        0,
+        -90.0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            473,
+            527,
+            477,
+            529
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            478,
+            527,
+            482,
+            529
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            483,
+            527,
+            488,
+            529
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            489,
+            527,
+            494,
+            529
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            495,
+            527,
+            499,
+            532
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            500,
+            527,
+            504,
+            532
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_vault_support_1_-1",
+      "uuid": "783e3ee6-c49b-52bd-9850-fb14e2132f10",
+      "type": "cube",
+      "from": [
+        -0.3,
+        81.1,
+        -29.5
+      ],
+      "to": [
+        6.3,
+        94.5,
+        -16.5
+      ],
+      "origin": [
+        3,
+        87.8,
+        -23
+      ],
+      "rotation": [
+        0,
+        0,
+        4
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            505,
+            527,
+            508,
+            532
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            1,
+            533,
+            4,
+            538
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            5,
+            533,
+            10,
+            538
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            11,
+            533,
+            16,
+            538
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            17,
+            533,
+            20,
+            538
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            21,
+            533,
+            24,
+            538
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_vault_support_1_1",
+      "uuid": "06dcb62c-a996-5c26-92d5-beadd80b1fd3",
+      "type": "cube",
+      "from": [
+        29.7,
+        81.1,
+        -29.5
+      ],
+      "to": [
+        36.3,
+        94.5,
+        -16.5
+      ],
+      "origin": [
+        33,
+        87.8,
+        -23
+      ],
+      "rotation": [
+        0,
+        0,
+        -4
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            25,
+            533,
+            28,
+            538
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            29,
+            533,
+            32,
+            538
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            33,
+            533,
+            38,
+            538
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            39,
+            533,
+            44,
+            538
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            45,
+            533,
+            48,
+            538
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            49,
+            533,
+            52,
+            538
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_brood_vault_2_0",
+      "uuid": "3b120839-8872-51ad-8599-6889892576d7",
+      "type": "cube",
+      "from": [
+        -20.4,
+        95.15,
+        7.5
+      ],
+      "to": [
+        -11.6,
+        100.85,
+        20.5
+      ],
+      "origin": [
+        -16.0,
+        98.0,
+        14
+      ],
+      "rotation": [
+        0,
+        0,
+        90.0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            53,
+            533,
+            57,
+            535
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            58,
+            533,
+            62,
+            535
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            63,
+            533,
+            68,
+            535
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            69,
+            533,
+            74,
+            535
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            75,
+            533,
+            79,
+            538
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            80,
+            533,
+            84,
+            538
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_brood_vault_2_1",
+      "uuid": "7a3d0dbc-4165-514e-951b-4fe220b6794b",
+      "type": "cube",
+      "from": [
+        -18.2564,
+        103.15,
+        7.5
+      ],
+      "to": [
+        -9.4564,
+        108.85,
+        20.5
+      ],
+      "origin": [
+        -13.856406460551018,
+        106.0,
+        14
+      ],
+      "rotation": [
+        0,
+        0,
+        59.99999999999999
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            85,
+            533,
+            89,
+            535
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            90,
+            533,
+            94,
+            535
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            95,
+            533,
+            100,
+            535
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            101,
+            533,
+            106,
+            535
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            107,
+            533,
+            111,
+            538
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            112,
+            533,
+            116,
+            538
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_brood_vault_2_2",
+      "uuid": "7b4642cb-c048-5401-a4d2-b91ed52b3044",
+      "type": "cube",
+      "from": [
+        -12.4,
+        109.0064,
+        7.5
+      ],
+      "to": [
+        -3.6,
+        114.7064,
+        20.5
+      ],
+      "origin": [
+        -7.999999999999999,
+        111.85640646055101,
+        14
+      ],
+      "rotation": [
+        0,
+        0,
+        29.999999999999996
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            117,
+            533,
+            121,
+            535
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            122,
+            533,
+            126,
+            535
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            127,
+            533,
+            132,
+            535
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            133,
+            533,
+            138,
+            535
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            139,
+            533,
+            143,
+            538
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            144,
+            533,
+            148,
+            538
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_brood_vault_2_3",
+      "uuid": "6de35d60-78ec-5509-a349-07801c656d6d",
+      "type": "cube",
+      "from": [
+        -4.4,
+        111.15,
+        7.5
+      ],
+      "to": [
+        4.4,
+        116.85,
+        20.5
+      ],
+      "origin": [
+        0.0,
+        114.0,
+        14
+      ],
+      "rotation": [
+        0,
+        0,
+        -0.0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            149,
+            533,
+            153,
+            535
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            154,
+            533,
+            158,
+            535
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            159,
+            533,
+            164,
+            535
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            165,
+            533,
+            170,
+            535
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            171,
+            533,
+            175,
+            538
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            176,
+            533,
+            180,
+            538
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_brood_vault_2_4",
+      "uuid": "d73fc92b-8480-5f92-83cb-f807b94f2d6c",
+      "type": "cube",
+      "from": [
+        3.6,
+        109.0064,
+        7.5
+      ],
+      "to": [
+        12.4,
+        114.7064,
+        20.5
+      ],
+      "origin": [
+        7.999999999999999,
+        111.85640646055101,
+        14
+      ],
+      "rotation": [
+        0,
+        0,
+        -29.999999999999996
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            181,
+            533,
+            185,
+            535
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            186,
+            533,
+            190,
+            535
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            191,
+            533,
+            196,
+            535
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            197,
+            533,
+            202,
+            535
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            203,
+            533,
+            207,
+            538
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            208,
+            533,
+            212,
+            538
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_brood_vault_2_5",
+      "uuid": "cf5988dd-4bf2-5461-8b71-1177c466426a",
+      "type": "cube",
+      "from": [
+        9.4564,
+        103.15,
+        7.5
+      ],
+      "to": [
+        18.2564,
+        108.85,
+        20.5
+      ],
+      "origin": [
+        13.856406460551018,
+        106.0,
+        14
+      ],
+      "rotation": [
+        0,
+        0,
+        -59.99999999999999
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            213,
+            533,
+            217,
+            535
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            218,
+            533,
+            222,
+            535
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            223,
+            533,
+            228,
+            535
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            229,
+            533,
+            234,
+            535
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            235,
+            533,
+            239,
+            538
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            240,
+            533,
+            244,
+            538
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_brood_vault_2_6",
+      "uuid": "72dbaf2f-d43f-5865-af5d-d851dbfcae37",
+      "type": "cube",
+      "from": [
+        11.6,
+        95.15,
+        7.5
+      ],
+      "to": [
+        20.4,
+        100.85,
+        20.5
+      ],
+      "origin": [
+        16.0,
+        98.0,
+        14
+      ],
+      "rotation": [
+        0,
+        0,
+        -90.0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            245,
+            533,
+            249,
+            535
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            250,
+            533,
+            254,
+            535
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            255,
+            533,
+            260,
+            535
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            261,
+            533,
+            266,
+            535
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            267,
+            533,
+            271,
+            538
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            272,
+            533,
+            276,
+            538
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_vault_support_2_-1",
+      "uuid": "61fdf431-02eb-5b9c-affc-51a94d563355",
+      "type": "cube",
+      "from": [
+        -19.3,
+        83.1,
+        7.5
+      ],
+      "to": [
+        -12.7,
+        96.5,
+        20.5
+      ],
+      "origin": [
+        -16,
+        89.8,
+        14
+      ],
+      "rotation": [
+        0,
+        0,
+        4
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            277,
+            533,
+            280,
+            538
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            281,
+            533,
+            284,
+            538
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            285,
+            533,
+            290,
+            538
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            291,
+            533,
+            296,
+            538
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            297,
+            533,
+            300,
+            538
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            301,
+            533,
+            304,
+            538
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_vault_support_2_1",
+      "uuid": "b02cf6c3-5efb-564e-85ec-2a6f9d9204db",
+      "type": "cube",
+      "from": [
+        12.7,
+        83.1,
+        7.5
+      ],
+      "to": [
+        19.3,
+        96.5,
+        20.5
+      ],
+      "origin": [
+        16,
+        89.8,
+        14
+      ],
+      "rotation": [
+        0,
+        0,
+        -4
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            305,
+            533,
+            308,
+            538
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            309,
+            533,
+            312,
+            538
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            313,
+            533,
+            318,
+            538
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            319,
+            533,
+            324,
+            538
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            325,
+            533,
+            328,
+            538
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            329,
+            533,
+            332,
+            538
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_outer_spire_-1_0",
+      "uuid": "05139a71-3deb-5eb4-b916-e2245e42c261",
+      "type": "cube",
+      "from": [
+        -38.75,
+        81.6,
+        -31.25
+      ],
+      "to": [
+        -32.25,
+        93.16,
+        -24.75
+      ],
+      "origin": [
+        -35.5,
+        81.6,
+        -28
+      ],
+      "rotation": [
+        5,
+        19,
+        12
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            333,
+            533,
+            336,
+            538
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            337,
+            533,
+            340,
+            538
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            341,
+            533,
+            344,
+            538
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            345,
+            533,
+            348,
+            538
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            349,
+            533,
+            352,
+            536
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            353,
+            533,
+            356,
+            536
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_outer_spire_-1_1",
+      "uuid": "ae73f3dc-e081-5b62-bcd7-7050431460bb",
+      "type": "cube",
+      "from": [
+        -37.775,
+        93.16,
+        -30.275
+      ],
+      "to": [
+        -33.225,
+        96.39,
+        -25.725
+      ],
+      "origin": [
+        -35.5,
+        81.6,
+        -28
+      ],
+      "rotation": [
+        5,
+        19,
+        12
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            357,
+            533,
+            359,
+            534
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            360,
+            533,
+            362,
+            534
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            363,
+            533,
+            365,
+            534
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            366,
+            533,
+            368,
+            534
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            369,
+            533,
+            371,
+            535
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            372,
+            533,
+            374,
+            535
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_outer_spire_-1_2",
+      "uuid": "2b102053-efd1-5087-aaff-91f13c44f0f9",
+      "type": "cube",
+      "from": [
+        -36.735,
+        96.39,
+        -29.235
+      ],
+      "to": [
+        -34.265,
+        98.6,
+        -26.765
+      ],
+      "origin": [
+        -35.5,
+        81.6,
+        -28
+      ],
+      "rotation": [
+        5,
+        19,
+        12
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            375,
+            533,
+            376,
+            534
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            377,
+            533,
+            378,
+            534
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            379,
+            533,
+            380,
+            534
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            381,
+            533,
+            382,
+            534
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            383,
+            533,
+            384,
+            534
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            385,
+            533,
+            386,
+            534
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_outer_spire_1_0",
+      "uuid": "61a45a03-55fa-53b4-a46d-cfaaa45188d2",
+      "type": "cube",
+      "from": [
+        32.25,
+        81.6,
+        -31.25
+      ],
+      "to": [
+        38.75,
+        93.16,
+        -24.75
+      ],
+      "origin": [
+        35.5,
+        81.6,
+        -28
+      ],
+      "rotation": [
+        5,
+        19,
+        -12
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            387,
+            533,
+            390,
+            538
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            391,
+            533,
+            394,
+            538
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            395,
+            533,
+            398,
+            538
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            399,
+            533,
+            402,
+            538
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            403,
+            533,
+            406,
+            536
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            407,
+            533,
+            410,
+            536
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_outer_spire_1_1",
+      "uuid": "31670ccb-b44a-5681-8da4-e1775e9b9152",
+      "type": "cube",
+      "from": [
+        33.225,
+        93.16,
+        -30.275
+      ],
+      "to": [
+        37.775,
+        96.39,
+        -25.725
+      ],
+      "origin": [
+        35.5,
+        81.6,
+        -28
+      ],
+      "rotation": [
+        5,
+        19,
+        -12
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            411,
+            533,
+            413,
+            534
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            414,
+            533,
+            416,
+            534
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            417,
+            533,
+            419,
+            534
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            420,
+            533,
+            422,
+            534
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            423,
+            533,
+            425,
+            535
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            426,
+            533,
+            428,
+            535
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "relief_outer_spire_1_2",
+      "uuid": "22e70d45-b848-5bec-b44c-3d33556c5417",
+      "type": "cube",
+      "from": [
+        34.265,
+        96.39,
+        -29.235
+      ],
+      "to": [
+        36.735,
+        98.6,
+        -26.765
+      ],
+      "origin": [
+        35.5,
+        81.6,
+        -28
+      ],
+      "rotation": [
+        5,
+        19,
+        -12
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            429,
+            533,
+            430,
+            534
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            431,
+            533,
+            432,
+            534
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            433,
+            533,
+            434,
+            534
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            435,
+            533,
+            436,
+            534
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            437,
+            533,
+            438,
+            534
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            439,
+            533,
+            440,
+            534
+          ],
+          "texture": 0
+        }
+      }
     }
   ],
   "outliner": [
@@ -61556,7 +65672,11 @@
               "children": [
                 "eb7956a7-1a1b-5fe9-9d99-c8dde50d1079",
                 "f00b2a1e-38c9-5025-a8ef-2f696a6c111f",
-                "a765b5cf-009e-5533-bce4-9c9f6a894cb2"
+                "a765b5cf-009e-5533-bce4-9c9f6a894cb2",
+                "77b3308b-56e1-56eb-8012-8f1bb869839d",
+                "ca6077d8-33cc-5491-a571-8ce42b0de89f",
+                "4d34d01f-d9c1-5952-98c1-b7af1cd112a2",
+                "a40149f5-350d-5b9e-b429-5311e864851a"
               ],
               "export": true,
               "isOpen": false,
@@ -61981,7 +66101,11 @@
               "children": [
                 "afccafb8-e4a1-5ac0-8a73-b376567fd292",
                 "f1d9b5f6-7404-5d2f-93ba-72b3f58ae798",
-                "360c9732-2e86-5891-8047-f6a8456f4612"
+                "360c9732-2e86-5891-8047-f6a8456f4612",
+                "4ad4b92d-7b71-5989-a140-d97b6711ad9c",
+                "0fb509ec-67b0-562f-be02-ff7c90211e48",
+                "20f5b7fd-2f3f-5b8a-bf13-9656187dc581",
+                "2c028b29-920c-5d68-8379-c78fc2f0ea32"
               ],
               "export": true,
               "isOpen": false,
@@ -62546,7 +66670,48 @@
             "bbcb7747-8a54-5a72-8c09-9e0af826677c",
             "915753df-9cad-5d9b-a7f5-1f60a119791d",
             "7872f634-87f2-5fca-913d-73e8ddcb1199",
-            "40032d90-92c0-5ee9-a703-92866d397625"
+            "40032d90-92c0-5ee9-a703-92866d397625",
+            "778f3fa0-630e-5f25-9d44-fb7f396d1956",
+            "c4b09319-16b8-5b4d-ad6f-d8b2161a505a",
+            "5dc719fd-e50f-584a-ae3e-a5ab53d09c60",
+            "ca23295a-8e20-5aa9-9570-6eb22a264ff3",
+            "b927be69-50f5-5791-886a-88dd2a588caa",
+            "7eae2697-a12a-5aeb-9ce6-df074b24be8a",
+            "a7c8f9e4-557b-54ea-bc47-4520417af856",
+            "3aae51a0-5982-5d72-b7b2-4257090ec3d4",
+            "b0a6bdb6-95fc-551c-aa6e-3ba1194602b4",
+            "b3569dc0-80a3-5116-bbf4-d25220250ce0",
+            "5a641d4e-750e-5a09-927d-4bae618ddf4b",
+            "a9f73b8f-cac5-56cf-b758-8a59fce986fa",
+            "e0ad758e-4ee8-5085-9d07-ea728cd833a3",
+            "44372656-a6fa-5a8f-8c8a-d241b1a40c2a",
+            "1234c71e-a18c-52e5-9f54-9011fbe68a3e",
+            "67476003-5cc7-53f1-83d7-082968ff3eec",
+            "db16a7c9-7fb1-5e94-b89b-8c98012bea27",
+            "02136cee-d483-53f9-9df1-2bc3acd639df",
+            "0cad342f-da5f-58d2-9c30-5d5590b79c35",
+            "710f4092-7c81-578c-93ee-93ee92cc4fdb",
+            "3fcbc9be-5119-57a2-97f6-2d51a5d92229",
+            "cf565735-694d-5d56-9a5f-4b9b6864817b",
+            "69597c21-5584-5d5a-a947-b7c9c5a1f013",
+            "754b842e-fbd5-5702-8066-362556e1a6c1",
+            "783e3ee6-c49b-52bd-9850-fb14e2132f10",
+            "06dcb62c-a996-5c26-92d5-beadd80b1fd3",
+            "3b120839-8872-51ad-8599-6889892576d7",
+            "7a3d0dbc-4165-514e-951b-4fe220b6794b",
+            "7b4642cb-c048-5401-a4d2-b91ed52b3044",
+            "6de35d60-78ec-5509-a349-07801c656d6d",
+            "d73fc92b-8480-5f92-83cb-f807b94f2d6c",
+            "cf5988dd-4bf2-5461-8b71-1177c466426a",
+            "72dbaf2f-d43f-5865-af5d-d851dbfcae37",
+            "61fdf431-02eb-5b9c-affc-51a94d563355",
+            "b02cf6c3-5efb-564e-85ec-2a6f9d9204db",
+            "05139a71-3deb-5eb4-b916-e2245e42c261",
+            "ae73f3dc-e081-5b62-bcd7-7050431460bb",
+            "2b102053-efd1-5087-aaff-91f13c44f0f9",
+            "61a45a03-55fa-53b4-a46d-cfaaa45188d2",
+            "31670ccb-b44a-5681-8da4-e1775e9b9152",
+            "22e70d45-b848-5bec-b44c-3d33556c5417"
           ],
           "export": true,
           "isOpen": false,
@@ -62563,12 +66728,12 @@
       "name": "walking_brood_crab.png",
       "uuid": "14c9305f-f6fd-55d1-a586-432b25b74f25",
       "id": "0",
-      "source": "data:image/png;base64,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",
+      "source": "data:image/png;base64,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",
       "mode": "bitmap",
       "width": 512,
-      "height": 512,
+      "height": 1024,
       "uv_width": 512,
-      "uv_height": 512,
+      "uv_height": 1024,
       "render_mode": "default"
     }
   ],

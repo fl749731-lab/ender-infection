@@ -2,14 +2,12 @@ package dev.hui.enderinfection.design;
 
 import dev.hui.enderinfection.*;
 import dev.hui.enderinfection.entity.*;
-import dev.hui.enderinfection.item.InfectionItems;
 import dev.hui.enderinfection.particle.FactionEffects;
 import dev.hui.enderinfection.combat.CrystalAttacks;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.*;
 import net.minecraft.world.phys.Vec3;
@@ -47,7 +45,7 @@ public final class DesignBehavior {
                 child.moveTo(pos.getX()+.5,pos.getY()+(kind==InfectedKind.SPOREWING_SCOUT?1:0),pos.getZ()+.5,source.getRandom().nextFloat()*360,0);
                 if(!level.noCollision(child,child.getBoundingBox())||level.containsAnyLiquid(child.getBoundingBox()))continue;
                 if(!core.spendForHatching(price(kind)))return false;
-                child.getPersistentData().putUUID("ColonyMother",core.getUUID());child.getPersistentData().putString("ColonyDuty",FactionAI.assignDuty(core));
+                child.getPersistentData().putUUID("ColonyMother",core.getUUID());child.getPersistentData().putString("ColonyDuty",kind==InfectedKind.SHIELD_SENTINEL?"guard":FactionAI.assignDuty(core));
                 if(source.getTarget()!=null&&FactionAI.enemy(child,source.getTarget()))child.setTarget(source.getTarget());
                 if(level.addFreshEntity(child)){FactionEffects.rune(level,child.position(),Math.min(3,kind.width));FactionEffects.shatter(level,child.position(),16);return true;}
                 core.refundBiomass(price(kind));return false;
@@ -59,15 +57,7 @@ public final class DesignBehavior {
         if(!mob.kind.designed())return;
         var target=mob.getTarget();var core=FactionAI.home(mob);
         if(mob.kind==InfectedKind.SPOREWING_SCOUT){
-            if(target!=null&&!mob.attacking())mob.getNavigation().moveTo(target.getX(),target.getY()+3,target.getZ(),1.1);
             if(mob.tickCount%60==0&&target!=null&&mob.hasLineOfSight(target)){target.addEffect(new MobEffectInstance(MobEffects.GLOWING,100));FactionAI.alert(mob,target);FactionEffects.rune(level,target.position(),1);}
-        }
-        if(mob.kind==InfectedKind.CARRIER&&mob.tickCount%20==0){
-            int carried=mob.getPersistentData().getInt("CarriedBiomass");
-            if(carried>=16&&core!=null){mob.getNavigation().moveTo(core,1);if(mob.distanceTo(core)<core.getBbWidth()+3){core.receiveColonyBiomass(carried);mob.getPersistentData().putInt("CarriedBiomass",0);FactionEffects.harvest(level,mob.position(),core.position());}}
-            else if(core!=null)for(ItemEntity item:level.getEntitiesOfClass(ItemEntity.class,mob.getBoundingBox().inflate(6),e->e.isAlive()&&(e.getItem().is(InfectionItems.TISSUE.get())||e.getItem().is(DesignContent.ITEMS_BY_KEY.get("condensed_biomass").get())))){
-                mob.getNavigation().moveTo(item,1);if(mob.distanceTo(item)<2){int n=Math.min(item.getItem().getCount(),Math.max(0,(64-carried)/4));item.getItem().shrink(n);carried+=n*4;mob.getPersistentData().putInt("CarriedBiomass",carried);if(item.getItem().isEmpty())item.discard();}break;
-            }
         }
         if(mob.kind==InfectedKind.RESONANCE_PRIEST&&mob.tickCount%80==0){
             for(InfectedMob ally:level.getEntitiesOfClass(InfectedMob.class,mob.getBoundingBox().inflate(10),e->e.isAlive()&&e.kind!=InfectedKind.CORE)){ally.heal(3);ally.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE,100,0));}
@@ -87,7 +77,7 @@ public final class DesignBehavior {
             }
             case ROOT_TURRET,BURROW_KING -> CrystalAttacks.cast(mob,InfectedKind.SKELETON,target,16);
             case BURROWER -> {CrystalAttacks.cast(mob,InfectedKind.SPIDER,target,12);melee(mob,target);}
-            case LEAP_AMBUSHER -> {Vec3 d=target.position().subtract(mob.position()).normalize();mob.setDeltaMovement(d.x*.8,.45,d.z*.8);melee(mob,target);}
+            case LEAP_AMBUSHER -> melee(mob,target,2.3);
             case SIEGEBREAKER,WALKING_NEST -> {
                 CrystalAttacks.cast(mob,InfectedKind.COW,target,12);FactionEffects.shatter(level,mob.position(),32);
                 for(LivingEntity e:level.getEntitiesOfClass(LivingEntity.class,mob.getBoundingBox().inflate(3,1,3),e->FactionAI.enemy(mob,e)))melee(mob,e);
@@ -96,8 +86,9 @@ public final class DesignBehavior {
             default -> melee(mob,target);
         }
     }
-    private static void melee(InfectedMob mob,LivingEntity target){
-        if(mob.distanceTo(target)>mob.kind.radius+target.getBbWidth()*.5||!mob.hasLineOfSight(target))return;
+    private static void melee(InfectedMob mob,LivingEntity target){melee(mob,target,mob.kind.radius);}
+    private static void melee(InfectedMob mob,LivingEntity target,double reach){
+        if(mob.distanceTo(target)>reach+target.getBbWidth()*.5||!mob.hasLineOfSight(target))return;
         if(target.hurt(mob.damageSources().mobAttack(mob),mob.kind.damage)){Vec3 d=target.position().subtract(mob.position());target.knockback(.5,-d.x,-d.z);if(mob.level() instanceof ServerLevel s)FactionEffects.shatter(s,target.position().add(0,.8,0),8);}
     }
 }

@@ -1,4 +1,6 @@
 Ender Infection 0.11.0-alpha.4 / 2026-11-03
+FIX JAR: ender-infection-0.11.0-alpha.4.jar; 4088700 bytes; sha256 d2338b254c3dfcbf29c31c8ee1e7b5d2b70fe882ed524b29f156d47c6c8be19e
+PASS: Final qegg build and reobfJar; packaged JAR contains 33 nonempty masks and no empty vent mask.
 FIX: Empty optional glow masks crashed GeckoLib on laboratory fixture rendering.
 PASS: Before-fix regression validation identified all 7 empty masks.
 PASS: After-fix asset validation: 33 nonempty masks; dimensions match their base textures.

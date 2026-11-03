@@ -1,0 +1,103 @@
+{
+  "server": {
+    "name": "Blockbench MCP",
+    "version": "1.10.1"
+  },
+  "project": {
+    "project": {
+      "name": "walking_brood_crab",
+      "uuid": "ec32cf4f-ed2c-8029-c51d-09cec7d01259",
+      "save_path": "E:/mc/ender_infection_colored/build/blockbench-review/mcp-delivery/walking_brood_crab.bbmodel"
+    },
+    "format": {
+      "id": "free",
+      "name": "通用模型"
+    },
+    "resolution": {
+      "texture_width": 512,
+      "texture_height": 512
+    },
+    "counts": {
+      "cubes": 1270,
+      "meshes": 0,
+      "groups": 24,
+      "textures": 1,
+      "outliner_elements": 1270
+    },
+    "root_groups": [
+      {
+        "name": "root",
+        "uuid": "970d3ad5-4227-565d-b358-8c5da8b31d9a",
+        "children": 1
+      }
+    ]
+  },
+  "bounds": {
+    "min": [
+      -64.84721259862198,
+      -1.4678102085521498,
+      -70.24946769596997
+    ],
+    "max": [
+      64.84721259862198,
+      90.40282003431952,
+      43.36314997610917
+    ]
+  },
+  "views": [
+    {
+      "name": "front",
+      "position": [
+        136.38292598324213,
+        105.08213868321351,
+        -225.59437705608485
+      ],
+      "target": [
+        0.0,
+        44.46750491288368,
+        -13.4431588599304
+      ]
+    },
+    {
+      "name": "side",
+      "position": [
+        256.27930561061817,
+        84.51114641454276,
+        -13.4431588599304
+      ],
+      "target": [
+        0.0,
+        44.46750491288368,
+        -13.4431588599304
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -136.38292598324213,
+        105.08213868321351,
+        198.70805933622404
+      ],
+      "target": [
+        0.0,
+        44.46750491288368,
+        -13.4431588599304
+      ]
+    },
+    {
+      "name": "walk",
+      "animation": "animation.walking_brood_crab.walk",
+      "time": 0.125
+    },
+    {
+      "name": "attack_prepare",
+      "animation": "animation.walking_brood_crab.attack",
+      "time": 0.5
+    },
+    {
+      "name": "attack",
+      "animation": "animation.walking_brood_crab.attack",
+      "time": 0.8
+    }
+  ]
+}

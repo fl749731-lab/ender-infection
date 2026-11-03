@@ -35,6 +35,20 @@ minecraft {
                 property 'ender_infection.crystalCheck','true'
             }
         }
+        if (project.hasProperty('crystalGlowCheck')) {
+            client {
+                workingDirectory project.file('build/crystal-glow-check')
+                property 'ender_infection.crystalGlowCheck','true'
+                property 'ender_infection.crystalGlowSubjects',project.findProperty('crystalGlowSubjects') ?: ''
+            }
+        }
+        if (project.hasProperty('conceptCheck')) {
+            client {
+                workingDirectory project.file('build/concept-check')
+                property 'ender_infection.conceptCheck','true'
+                property 'ender_infection.conceptSubjects',project.findProperty('conceptSubjects') ?: ''
+            }
+        }
         if (project.hasProperty('labVisualCheck')) {
             client { workingDirectory project.file('build/lab-visual-check'); property 'ender_infection.labVisualCheck','true' }
         }

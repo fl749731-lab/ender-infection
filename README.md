@@ -1,8 +1,17 @@
 # 末影感染 · Ender Infection
 
-Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当前开发版本：**0.11.0-alpha.11**。
+Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当前稳定版本：**0.11.0**。
 
 感染从母体与扩张节点开始。每个母体拥有独立的生物质储备；召唤、进阶与节点扩张消费储备，土地收益随领土扩大而增加，重复收割同一片土地的收益逐渐下降。
+
+## v0.11.0 稳定版
+
+- 14 种新怪物通过 Blockbench MCP 细化模型、骨骼和动画，游戏资源与可编辑原件同步。
+- 补齐新旧怪物及母体各阶段的紫晶自发光，包含晶体暗面与尖端。
+- 修复蛛母接近目标后不出手、搬运兽被击退后放弃反击的问题；21 项原生 Forge AI 回归通过，覆盖新单位对原版动物和敌对怪物的战斗与孵化行为。
+- 收录本轮晶矿、装备、陨石开局、连通扩张与实验室更新，完整变更见 [更新日志](CHANGELOG.md)。
+
+下载 [v0.11.0](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.11.0) 的 JAR，替换旧版后重启游戏。仅保留一个末影感染 JAR，并同时安装下面列出的 GeckoLib 前置。
 
 ## 必装前置：GeckoLib
 
@@ -111,7 +120,9 @@ Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当
 | 行巢巨蟹 | 在近处交战，消耗生物质孵化护卫 | 5 |
 | 深渊掘王 | 维持距离，以远程晶刺法阵封锁地面 | 5 |
 
-14 种单位的 Blockbench 模型与游戏资源同步更新。孢翼有破边翼膜，孵化囊有前部卵室，晶盾有骨质盾缘，行巢巨蟹和深渊掘王分别新增拱形孵化舱和环形骨颚。[生态单位、战斗单位与巨兽的原始设计图](previews/ender_faction_concepts_2026-11-02/)。
+14 种单位按设计图重建主体轮廓：低伏虫体、横向宽翼、鼓胀货囊、外张八足与吊卵、低垂三卵孵化腔、分离双喉囊、弧形长镰和拱尾、三联晶矛、根须裙摆与分层巨拳。行巢巨蟹改为隆起叠甲和粗壮外张步足，深渊掘王改为连续弯曲的长躯与开放环形口器。骨甲、软组织和紫晶分层着色，Blockbench 模型、UV、动画与游戏资源同步导出。[生态单位、战斗单位与巨兽的原始设计图](previews/ender_faction_concepts_2026-11-02/)。
+
+新增单位、重做怪物、旧感染生物与母体各阶段，紫晶的暗面和尖端均纳入自发光蒙版，暗处保留晶体颜色与棱面层次，飞行晶刺也保持自发光。可用 `gradlew.bat runClient -PcrystalGlowCheck` 在独立暗室生成 34 个实体的正反面截图，检查天空光和方块光均为 0 时的效果。
 
 单位分别选择接敌和支援方式，并响应所属母体的回防命令。低于 64 生物质时，母体优先使用原有低成本兵种；大型单位还需要足够的出生空间。
 
@@ -165,7 +176,11 @@ Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当
 
 Blockbench 原件保留完整的逐面 UV。墙地使用 Forge 烘焙模型，大型实验设备使用 GeckoLib 方块实体；实验室整栋场景转换为原生方块结构。
 
-运行 gradlew.bat runClient -PcrystalCheck 可在隔离世界生成三套护甲的正反面和 14 种单位的实机截图。运行 gradlew.bat runGameTestServer -PaiChecks 可验证侦察标记、搬运入账、跳袭和喷吐距离。历次记录见 [RESULTS.txt](ender_infection_colored/verification/RESULTS.txt)。
+运行 gradlew.bat runClient -PcrystalCheck 可在隔离世界生成三套护甲的正反面和 14 种单位的实机截图。运行 gradlew.bat runGameTestServer -PaiChecks 可验证 14 种新单位的自主战斗与孵化：战斗单位自行选中原版动物、造成伤害并转向原版敌对怪物，同时覆盖侦察标记、搬运入账、跳袭和喷吐距离。历次记录见 [RESULTS.txt](ender_infection_colored/verification/RESULTS.txt)。
+
+这 14 种怪物的正式原件已由 Blockbench MCP 编辑并保存为 BB5，位于设计包 `monsters/`。`python tools/rebuild_creature_silhouettes.py --preview` 从已保存的原件导出游戏资源及离线预览，保留 MCP 对几何和骨骼的修改；只有显式传入 `--regenerate` 才会用生成模板覆盖原件。`source/concept_*.py` 保留基础造型模板，最终原件以 `monsters/*.bbmodel` 为准。`gradlew.bat runClient -PconceptCheck` 在独立隐藏客户端生成正面、背面、蓄力和命中姿态截图，取景范围由实际几何计算；可用 `-PconceptSubjects=walking_nest,burrow_king` 选择检查对象。
+
+本机已接入第三方 [Blockbench MCP v1.10.1](https://github.com/jasonjgardner/blockbench-mcp-plugin/releases/tag/v1.10.1)，地址为 `http://127.0.0.1:3000/bb-mcp`，使用时保持 Blockbench 开启。`python tools/blockbench-mcp/review_models.py --revision review-name` 通过 MCP 读取真实模型、拍摄三面并采样行走、蓄力、命中动画，结果存入 `previews/blockbench-mcp-2026-11-03/review-name/`。新路径副本避免编辑器复用旧标签页；脚本不保存模型改动。插件下载校验与连接记录见 `tools/blockbench-mcp/README.txt` 和 `ender_infection_colored/verification/blockbench_mcp.json`。
 
 ## 构建与验证
 

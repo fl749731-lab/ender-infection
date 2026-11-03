@@ -1,0 +1,103 @@
+{
+  "server": {
+    "name": "Blockbench MCP",
+    "version": "1.10.1"
+  },
+  "project": {
+    "project": {
+      "name": "parasitic_spider_mother",
+      "uuid": "43f4ca77-9b95-4bac-8460-e6c697ea67ba",
+      "save_path": "E:/mc/ender_infection_colored/build/blockbench-review/mcp-delivery/parasitic_spider_mother.bbmodel"
+    },
+    "format": {
+      "id": "free",
+      "name": "通用模型"
+    },
+    "resolution": {
+      "texture_width": 256,
+      "texture_height": 256
+    },
+    "counts": {
+      "cubes": 640,
+      "meshes": 0,
+      "groups": 21,
+      "textures": 1,
+      "outliner_elements": 640
+    },
+    "root_groups": [
+      {
+        "name": "root",
+        "uuid": "09d8026f-9f6a-5c5a-9b5d-6141284d48d1",
+        "children": 1
+      }
+    ]
+  },
+  "bounds": {
+    "min": [
+      -21.726518245872715,
+      -0.1695208272412323,
+      -21.589196345291818
+    ],
+    "max": [
+      21.726518245872715,
+      23.221613167611512,
+      22.28840471877468
+    ]
+  },
+  "views": [
+    {
+      "name": "front",
+      "position": [
+        46.140422837310766,
+        32.03290076454548,
+        -71.42438689351975
+      ],
+      "target": [
+        0.0,
+        11.52604617018514,
+        0.34960418674143057
+      ]
+    },
+    {
+      "name": "side",
+      "position": [
+        86.70319572685565,
+        25.073420502506337,
+        0.34960418674143057
+      ],
+      "target": [
+        0.0,
+        11.52604617018514,
+        0.34960418674143057
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -46.140422837310766,
+        32.03290076454548,
+        72.12359526700261
+      ],
+      "target": [
+        0.0,
+        11.52604617018514,
+        0.34960418674143057
+      ]
+    },
+    {
+      "name": "walk",
+      "animation": "animation.parasitic_spider_mother.walk",
+      "time": 0.125
+    },
+    {
+      "name": "attack_prepare",
+      "animation": "animation.parasitic_spider_mother.attack",
+      "time": 0.5
+    },
+    {
+      "name": "attack",
+      "animation": "animation.parasitic_spider_mother.attack",
+      "time": 0.8
+    }
+  ]
+}

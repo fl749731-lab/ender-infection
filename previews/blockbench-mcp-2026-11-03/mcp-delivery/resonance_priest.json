@@ -1,0 +1,103 @@
+{
+  "server": {
+    "name": "Blockbench MCP",
+    "version": "1.10.1"
+  },
+  "project": {
+    "project": {
+      "name": "resonance_priest",
+      "uuid": "9c9c84ab-a608-cf28-7286-e57781b474b9",
+      "save_path": "E:/mc/ender_infection_colored/build/blockbench-review/mcp-delivery/resonance_priest.bbmodel"
+    },
+    "format": {
+      "id": "free",
+      "name": "通用模型"
+    },
+    "resolution": {
+      "texture_width": 256,
+      "texture_height": 256
+    },
+    "counts": {
+      "cubes": 234,
+      "meshes": 0,
+      "groups": 20,
+      "textures": 1,
+      "outliner_elements": 234
+    },
+    "root_groups": [
+      {
+        "name": "root",
+        "uuid": "15ab681a-ae5e-5f61-8030-17c8d9dfeff2",
+        "children": 1
+      }
+    ]
+  },
+  "bounds": {
+    "min": [
+      -14.757640356545338,
+      1.8262547887650005,
+      -6.3280860163874655
+    ],
+    "max": [
+      14.757640356545338,
+      49.969340035126244,
+      5.78801819549569
+    ]
+  },
+  "views": [
+    {
+      "name": "front",
+      "position": [
+        50.62588327735562,
+        48.398189979659236,
+        -79.02140789744352
+      ],
+      "target": [
+        0.0,
+        25.89779741194562,
+        -0.27003391044588776
+      ]
+    },
+    {
+      "name": "side",
+      "position": [
+        95.13189513062004,
+        40.762156026105,
+        -0.27003391044588776
+      ],
+      "target": [
+        0.0,
+        25.89779741194562,
+        -0.27003391044588776
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -50.62588327735562,
+        48.398189979659236,
+        78.48134007655175
+      ],
+      "target": [
+        0.0,
+        25.89779741194562,
+        -0.27003391044588776
+      ]
+    },
+    {
+      "name": "walk",
+      "animation": "animation.resonance_priest.walk",
+      "time": 0.125
+    },
+    {
+      "name": "attack_prepare",
+      "animation": "animation.resonance_priest.attack",
+      "time": 0.5
+    },
+    {
+      "name": "attack",
+      "animation": "animation.resonance_priest.attack",
+      "time": 0.8
+    }
+  ]
+}

@@ -573,7 +573,9 @@ public final class InfectedMob extends Monster implements GeoEntity {
                 return;
             }
             double specialReach=switch(kind){case COW->10;case PIG->7;case SHEEP->5;case SPIDER,ENDERMAN->8;case BURROWER->4.8;case SIEGEBREAKER->6;default->kind.radius;};
-            if(cooldown==0&&Math.abs(target.getY()-getY())<3&&distance<=(kind==InfectedKind.CORE?(motherStage()==1?8:motherStage()==2?16:motherStage()==5?22:motherStage()==4?16:20):kind==InfectedKind.SIEGE_BEAST?18:specialReach)&&hasLineOfSight(target))startAttack(target);
+            double reach=kind==InfectedKind.CORE?(motherStage()==1?8:motherStage()==2?16:motherStage()==5?22:motherStage()==4?16:20):kind==InfectedKind.SIEGE_BEAST?18:specialReach;
+            boolean inReach=kind.designed()?dev.hui.enderinfection.design.DesignBehavior.withinMeleeReach(InfectedMob.this,target,reach):distance<=reach;
+            if(cooldown==0&&Math.abs(target.getY()-getY())<3&&inReach&&hasLineOfSight(target))startAttack(target);
             else if(kind.stationary())getNavigation().stop();
             else factionMotion.chase(target,false);
         }

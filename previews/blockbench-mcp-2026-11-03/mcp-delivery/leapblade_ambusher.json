@@ -1,0 +1,103 @@
+{
+  "server": {
+    "name": "Blockbench MCP",
+    "version": "1.10.1"
+  },
+  "project": {
+    "project": {
+      "name": "leapblade_ambusher",
+      "uuid": "04e64a0d-ae62-4fd2-4275-f152914ede52",
+      "save_path": "E:/mc/ender_infection_colored/build/blockbench-review/mcp-delivery/leapblade_ambusher.bbmodel"
+    },
+    "format": {
+      "id": "free",
+      "name": "通用模型"
+    },
+    "resolution": {
+      "texture_width": 256,
+      "texture_height": 256
+    },
+    "counts": {
+      "cubes": 221,
+      "meshes": 0,
+      "groups": 17,
+      "textures": 1,
+      "outliner_elements": 221
+    },
+    "root_groups": [
+      {
+        "name": "root",
+        "uuid": "207523c8-6b09-5a06-b799-e156dc9b5542",
+        "children": 1
+      }
+    ]
+  },
+  "bounds": {
+    "min": [
+      -23.933701521415415,
+      0.14999961853027344,
+      -18.43614192886912
+    ],
+    "max": [
+      23.933701521415415,
+      41.512466846658604,
+      47.07688931708898
+    ]
+  },
+  "views": [
+    {
+      "name": "front",
+      "position": [
+        68.89161872429658,
+        51.44973044339292,
+        -92.84436654368473
+      ],
+      "target": [
+        0.0,
+        20.83123323259444,
+        14.320373694109929
+      ]
+    },
+    {
+      "name": "side",
+      "position": [
+        129.45532647703703,
+        41.05862799463148,
+        14.320373694109929
+      ],
+      "target": [
+        0.0,
+        20.83123323259444,
+        14.320373694109929
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -68.89161872429658,
+        51.44973044339292,
+        121.48511393190459
+      ],
+      "target": [
+        0.0,
+        20.83123323259444,
+        14.320373694109929
+      ]
+    },
+    {
+      "name": "walk",
+      "animation": "animation.leapblade_ambusher.walk",
+      "time": 0.125
+    },
+    {
+      "name": "attack_prepare",
+      "animation": "animation.leapblade_ambusher.attack",
+      "time": 0.5
+    },
+    {
+      "name": "attack",
+      "animation": "animation.leapblade_ambusher.attack",
+      "time": 0.8
+    }
+  ]
+}

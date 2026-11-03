@@ -1,0 +1,103 @@
+{
+  "server": {
+    "name": "Blockbench MCP",
+    "version": "1.10.1"
+  },
+  "project": {
+    "project": {
+      "name": "rift_throat_spitter",
+      "uuid": "ad2e0528-84ad-aa20-033b-5065cde209d3",
+      "save_path": "E:/mc/ender_infection_colored/build/blockbench-review/mcp-delivery/rift_throat_spitter.bbmodel"
+    },
+    "format": {
+      "id": "free",
+      "name": "通用模型"
+    },
+    "resolution": {
+      "texture_width": 256,
+      "texture_height": 256
+    },
+    "counts": {
+      "cubes": 440,
+      "meshes": 0,
+      "groups": 13,
+      "textures": 1,
+      "outliner_elements": 440
+    },
+    "root_groups": [
+      {
+        "name": "root",
+        "uuid": "b34bfa55-2cf5-5cd3-8f6e-37cd33ab0fa6",
+        "children": 1
+      }
+    ]
+  },
+  "bounds": {
+    "min": [
+      -10.140418163853129,
+      0.28181612498639375,
+      -19.51547877635386
+    ],
+    "max": [
+      10.140418163853129,
+      34.62253763171485,
+      12.851328661259451
+    ]
+  },
+  "views": [
+    {
+      "name": "front",
+      "position": [
+        36.11171468889631,
+        33.501827851193426,
+        -59.505853462497015
+      ],
+      "target": [
+        0.0,
+        17.45217687835062,
+        -3.332075057547204
+      ]
+    },
+    {
+      "name": "side",
+      "position": [
+        67.85809219268593,
+        28.0550037834578,
+        -3.332075057547204
+      ],
+      "target": [
+        0.0,
+        17.45217687835062,
+        -3.332075057547204
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -36.11171468889631,
+        33.501827851193426,
+        52.841703347402614
+      ],
+      "target": [
+        0.0,
+        17.45217687835062,
+        -3.332075057547204
+      ]
+    },
+    {
+      "name": "walk",
+      "animation": "animation.rift_throat_spitter.walk",
+      "time": 0.125
+    },
+    {
+      "name": "attack_prepare",
+      "animation": "animation.rift_throat_spitter.attack",
+      "time": 0.5
+    },
+    {
+      "name": "attack",
+      "animation": "animation.rift_throat_spitter.attack",
+      "time": 0.8
+    }
+  ]
+}

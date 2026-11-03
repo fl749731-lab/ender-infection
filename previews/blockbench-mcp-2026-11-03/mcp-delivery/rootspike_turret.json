@@ -1,0 +1,103 @@
+{
+  "server": {
+    "name": "Blockbench MCP",
+    "version": "1.10.1"
+  },
+  "project": {
+    "project": {
+      "name": "rootspike_turret",
+      "uuid": "19d2207f-2cd0-f3fa-8b21-cf324ca42308",
+      "save_path": "E:/mc/ender_infection_colored/build/blockbench-review/mcp-delivery/rootspike_turret.bbmodel"
+    },
+    "format": {
+      "id": "free",
+      "name": "通用模型"
+    },
+    "resolution": {
+      "texture_width": 256,
+      "texture_height": 256
+    },
+    "counts": {
+      "cubes": 304,
+      "meshes": 0,
+      "groups": 12,
+      "textures": 1,
+      "outliner_elements": 304
+    },
+    "root_groups": [
+      {
+        "name": "root",
+        "uuid": "87aa31ab-31cc-544d-a6ef-601f88359677",
+        "children": 1
+      }
+    ]
+  },
+  "bounds": {
+    "min": [
+      -19.063752418732925,
+      -0.5901851676737317,
+      -22.1080226021299
+    ],
+    "max": [
+      19.063752418732925,
+      42.14956851506444,
+      13.708783718829384
+    ]
+  },
+  "views": [
+    {
+      "name": "front",
+      "position": [
+        44.943895269129484,
+        40.7547562377529,
+        -74.11234541585166
+      ],
+      "target": [
+        0.0,
+        20.779691673695353,
+        -4.199619441650258
+      ]
+    },
+    {
+      "name": "side",
+      "position": [
+        84.45478191620651,
+        33.97575134810262,
+        -4.199619441650258
+      ],
+      "target": [
+        0.0,
+        20.779691673695353,
+        -4.199619441650258
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -44.943895269129484,
+        40.7547562377529,
+        65.71310653255115
+      ],
+      "target": [
+        0.0,
+        20.779691673695353,
+        -4.199619441650258
+      ]
+    },
+    {
+      "name": "walk",
+      "animation": "animation.rootspike_turret.walk",
+      "time": 0.125
+    },
+    {
+      "name": "attack_prepare",
+      "animation": "animation.rootspike_turret.attack",
+      "time": 0.5
+    },
+    {
+      "name": "attack",
+      "animation": "animation.rootspike_turret.attack",
+      "time": 0.8
+    }
+  ]
+}

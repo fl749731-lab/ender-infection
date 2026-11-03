@@ -275,14 +275,26 @@ class Model:
         file=folder/(self.key+'.bbmodel');file.write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding='utf-8');image.save(folder/(self.key+'.png'))
         return data,image,{'id':self.key,'name':self.label,'category':self.category,'role':self.role,'file':str(file),'cubes':len(data['elements']),'bones':len(self.groups),'animations':[a['name'].split('.')[-1] for a in data['animations']],'atlas':list(image.size),'uv_islands':len(positions)}
 
+def resolve_groups(data):
+    """Resolve Blockbench 5's UUID-only outliner without rewriting authored files."""
+    model=copy.deepcopy(data)
+    definitions={g['uuid']:g for g in model.get('groups',[])}
+    def resolve(node):
+        if not isinstance(node,dict):return node
+        group={**definitions.get(node['uuid'],{}),**node}
+        group['children']=[resolve(c) for c in node.get('children',[])]
+        return group
+    model['outliner']=[resolve(g) for g in model['outliner']]
+    return model
+
 def prepare_render(data,frame=None):
-    model=copy.deepcopy(data);world={};group_for={};tracks={}
+    model=resolve_groups(data);world={};group_for={};tracks={}
     if frame:
         animation,time=frame
         for uid,a in animation.get('animators',{}).items():
             values={}
             for ch in ('position','rotation','scale'):
-                keys=sorted([k for k in a['keyframes'] if k['channel']==ch],key=lambda k:k['time'])
+                keys=sorted([k for k in a.get('keyframes',[]) if k['channel']==ch],key=lambda k:k['time'])
                 if not keys:continue
                 lower=next((k for k in reversed(keys) if k['time']<=time),keys[0]);upper=next((k for k in keys if k['time']>=time),keys[-1]);span=upper['time']-lower['time'];factor=0 if span==0 else (time-lower['time'])/span
                 av=np.array([float(lower['data_points'][0][k]) for k in ('x','y','z')]);bv=np.array([float(upper['data_points'][0][k]) for k in ('x','y','z')]);values[ch]=av+(bv-av)*factor
@@ -299,5 +311,5 @@ def prepare_render(data,frame=None):
     for g in model['outliner']:visit(g,np.eye(4))
     model['elements']=[e for e in model['elements'] if e['uuid'] not in hidden and e.get('visibility',True)]
     for e in model['elements']:
-        e['_pose']=(group_for[e['uuid']]@transform_at(e['origin'],e['rotation'])).tolist();e['rotation']=[0,0,0]
+        e['_pose']=(group_for[e['uuid']]@transform_at(e.get('origin',[0,0,0]),e.get('rotation',[0,0,0]))).tolist();e['rotation']=[0,0,0]
     return model

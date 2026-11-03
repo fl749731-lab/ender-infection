@@ -1,8 +1,13 @@
 """Check resource graph, UV bounds, animation bone names and required source coverage."""
-import json,math,re
+import json,math,re,sys
 from pathlib import Path
+import numpy as np
 from PIL import Image
 from design_catalog import *
+from export_legacy_creature_glow import LEGACY_CREATURE_SOURCES,legacy_crystal_pixels
+sys.path.insert(0,str(PACK/'source'))
+from modelkit import PALETTES,rgb
+from concept_materials import CONCEPT_PALETTES
 report=json.loads((PROJECT/'verification/design_asset_manifest.json').read_text('utf-8'));errors=[];checked_geo=checked_uv=checked_obj=0
 for row in report['assets']:
  if row['kind'] in ('entity','mother','armor_set','block'):
@@ -51,7 +56,52 @@ for p in (ASSETS/'textures').rglob('*_glowmask.png'):
    with Image.open(base) as texture:
     if texture.size!=mask.size:errors.append('Glow mask size mismatch '+str(p))
  checked_glow+=1
+crystal_colors={rgb(c) for material in ('crystal','glow') for c in PALETTES[material]}
+crystal_colors.update(((57,33,79),(100,59,133),(150,96,181),(206,149,226)))
+non_crystal_colors={rgb(c) for material in ('tissue','membrane','shell','bone') for c in PALETTES[material]}
+non_crystal_colors.update(rgb(c) for colors in CONCEPT_PALETTES.values() for c in colors)
+# Other existing emissive accents, including relief brood sacs, remain compatible.
+def color_pixels(pixels,colors):
+ selected=np.zeros(pixels.shape[:2],dtype=bool)
+ for color in colors:selected|=(pixels[:,:,:3]==color).all(axis=2)
+ return selected&(pixels[:,:,3]>0)
+creature_glow_textures=crystal_pixels=missing_crystal_pixels=non_crystal_glow_pixels=0
+for row in report['assets']:
+ if row['kind'] not in ('entity','mother'):continue
+ base=ASSETS/'textures/entity'/f"{row['runtime']}.png";mask=base.with_name(base.stem+'_glowmask.png')
+ if not base.exists():errors.append('Missing creature texture '+str(base));continue
+ with Image.open(base) as texture:pixels=np.array(texture.convert('RGBA'))
+ expected=color_pixels(pixels,crystal_colors);crystal_pixels+=int(expected.sum());creature_glow_textures+=1
+ if not mask.exists():
+  errors.append('Missing creature glow mask '+str(mask));missing_crystal_pixels+=int(expected.sum());continue
+ with Image.open(mask) as texture:glow=np.array(texture.convert('RGBA'))
+ if glow.shape!=pixels.shape:
+  errors.append('Creature glow mask size mismatch '+str(mask));missing_crystal_pixels+=int(expected.sum());continue
+ missing=int((expected&(glow[:,:,3]!=pixels[:,:,3])).sum())
+ recolored=int((expected&(glow[:,:,:3]!=pixels[:,:,:3]).any(axis=2)).sum())
+ unwanted=int((color_pixels(pixels,non_crystal_colors)&(glow[:,:,3]>0)).sum())
+ missing_crystal_pixels+=missing;non_crystal_glow_pixels+=unwanted
+ if missing:errors.append(f'Incomplete crystal glow {row["runtime"]}: {missing} pixels')
+ if recolored:errors.append(f'Recolored crystal glow {row["runtime"]}: {recolored} pixels')
+ if unwanted:errors.append(f'Non-crystal material glows {row["runtime"]}: {unwanted} pixels')
+legacy_glow=[]
+for runtime,source in LEGACY_CREATURE_SOURCES.items():
+ try:pixels,expected,elements=legacy_crystal_pixels(runtime)
+ except (ValueError,OSError,KeyError) as error:errors.append('Legacy creature glow '+str(error));continue
+ count=int(expected.sum());crystal_pixels+=count;creature_glow_textures+=1
+ legacy_glow.append({'runtime':runtime,'source':source.relative_to(ROOT).as_posix(),'crystal_elements':elements,'crystal_pixels':count})
+ mask=ASSETS/'textures/entity'/f'{runtime}_glowmask.png'
+ if not mask.exists():errors.append('Missing legacy creature glow mask '+str(mask));missing_crystal_pixels+=count;continue
+ with Image.open(mask) as texture:glow=np.array(texture.convert('RGBA'))
+ if glow.shape!=pixels.shape:errors.append('Legacy creature glow mask size mismatch '+str(mask));missing_crystal_pixels+=count;continue
+ missing=int((expected&(glow[:,:,3]!=pixels[:,:,3])).sum())
+ recolored=int((expected&(glow[:,:,:3]!=pixels[:,:,:3]).any(axis=2)).sum())
+ unwanted=int((~expected&(glow[:,:,3]>0)).sum())
+ missing_crystal_pixels+=missing;non_crystal_glow_pixels+=unwanted
+ if missing:errors.append(f'Incomplete legacy crystal glow {runtime}: {missing} pixels')
+ if recolored:errors.append(f'Recolored legacy crystal glow {runtime}: {recolored} pixels')
+ if unwanted:errors.append(f'Non-crystal legacy geometry glows {runtime}: {unwanted} pixels')
 manifest=json.loads((PACK/'manifest.json').read_text());sources={r['source'] for r in report['assets']};missing={r['id'] for r in manifest['models'] if r['category']!='scenes'}-sources
 if missing:errors.append('Unmapped source '+str(missing))
-result={'status':'FAIL' if errors else 'PASS','geometry_files':checked_geo,'validated_faces':checked_uv,'obj_files':checked_obj,'glow_masks':checked_glow,'mapped_source_models':len(sources),'scene_source_models':2,'errors':errors}
+result={'status':'FAIL' if errors else 'PASS','geometry_files':checked_geo,'validated_faces':checked_uv,'obj_files':checked_obj,'glow_masks':checked_glow,'creature_glow_textures':creature_glow_textures,'crystal_pixels':crystal_pixels,'missing_crystal_pixels':missing_crystal_pixels,'non_crystal_glow_pixels':non_crystal_glow_pixels,'legacy_creature_glow':legacy_glow,'mapped_source_models':len(sources),'scene_source_models':2,'errors':errors}
 (PROJECT/'verification/design_assets_validation.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8');print(json.dumps(result,ensure_ascii=False));raise SystemExit(bool(errors))

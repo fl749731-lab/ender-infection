@@ -1,0 +1,103 @@
+{
+  "server": {
+    "name": "Blockbench MCP",
+    "version": "1.10.1"
+  },
+  "project": {
+    "project": {
+      "name": "mycelial_burrower",
+      "uuid": "d8364c06-6258-5390-dd94-0801703ae3de",
+      "save_path": "E:/mc/ender_infection_colored/build/blockbench-review/mcp-delivery/mycelial_burrower.bbmodel"
+    },
+    "format": {
+      "id": "free",
+      "name": "通用模型"
+    },
+    "resolution": {
+      "texture_width": 128,
+      "texture_height": 128
+    },
+    "counts": {
+      "cubes": 135,
+      "meshes": 0,
+      "groups": 10,
+      "textures": 1,
+      "outliner_elements": 135
+    },
+    "root_groups": [
+      {
+        "name": "root",
+        "uuid": "e3f761ab-0a71-5f00-a349-a257fdfae50c",
+        "children": 1
+      }
+    ]
+  },
+  "bounds": {
+    "min": [
+      -7.231818860418635,
+      0.7061114775387249,
+      -14.995260548029268
+    ],
+    "max": [
+      10.245640184676692,
+      39.49999997615814,
+      20.541283524086094
+    ]
+  },
+  "views": [
+    {
+      "name": "front",
+      "position": [
+        42.30144763365178,
+        38.23396104752521,
+        -60.685157134340315
+      ],
+      "target": [
+        1.5069106621290285,
+        20.103055726848435,
+        2.7730114880284127
+      ]
+    },
+    {
+      "name": "side",
+      "position": [
+        78.16456800739789,
+        32.0808146870467,
+        2.7730114880284127
+      ],
+      "target": [
+        1.5069106621290285,
+        20.103055726848435,
+        2.7730114880284127
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -39.28762630939372,
+        38.23396104752521,
+        66.23118011039713
+      ],
+      "target": [
+        1.5069106621290285,
+        20.103055726848435,
+        2.7730114880284127
+      ]
+    },
+    {
+      "name": "walk",
+      "animation": "animation.mycelial_burrower.walk",
+      "time": 0.125
+    },
+    {
+      "name": "attack_prepare",
+      "animation": "animation.mycelial_burrower.attack",
+      "time": 0.5
+    },
+    {
+      "name": "attack",
+      "animation": "animation.mycelial_burrower.attack",
+      "time": 0.8
+    }
+  ]
+}

@@ -4,24 +4,37 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 from design_catalog import *
+from export_legacy_creature_glow import export as export_legacy_glow
 sys.path.insert(0,str(PACK/'source'))
-from modelkit import prepare_render
+from modelkit import prepare_render,resolve_groups,PALETTES,rgb
 MAN=json.loads((PACK/'manifest.json').read_text('utf-8'))
 SOURCES={r['id']:r for r in MAN['models']}
 REPORT=[]
 def write(path,obj):
  path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(obj,ensure_ascii=False,separators=(',',':'))+'\n',encoding='utf-8')
-def load(key):return json.loads((PACK/SOURCES[key]['file']).read_text('utf-8'))
-def texture(d,path,glow=False):
+def load(key):return resolve_groups(json.loads((PACK/SOURCES[key]['file']).read_text('utf-8')))
+# Both source palettes and the alpha.11 crystal relief palette are emissive,
+# including dark facets. Brightness thresholds alone cut holes in crystals.
+CRYSTAL_COLORS={rgb(c) for name in ('crystal','glow') for c in PALETTES[name]}|{
+ (57,33,79),(100,59,133),(150,96,181),(206,149,226)}
+
+def texture(d,path,glow=False,full_crystals=False):
  im=Image.open(io.BytesIO(base64.b64decode(d['textures'][0]['source'].split(',')[1]))).convert('RGBA');path.parent.mkdir(parents=True,exist_ok=True);im.save(path)
  if glow:
-  a=np.array(im);mask=(a[:,:,0]>100)&(a[:,:,2]>130)&(a[:,:,0]>a[:,:,1]*1.2)&(a[:,:,2]>a[:,:,1]*1.2);a[~mask]=0
+  a=np.array(im);mask=(a[:,:,0]>100)&(a[:,:,2]>130)&(a[:,:,0]>a[:,:,1]*1.2)&(a[:,:,2]>a[:,:,1]*1.2)
+  if full_crystals:
+   from concept_materials import CONCEPT_PALETTES
+   for colors in CONCEPT_PALETTES.values():
+    for color in colors:mask&=~np.all(a[:,:,:3]==rgb(color),axis=2)
+   for color in CRYSTAL_COLORS:mask|=np.all(a[:,:,:3]==color,axis=2)
+  a[~mask]=0
   target=path.with_name(path.stem+'_glowmask.png')
   if (a[:,:,3]>0).any():Image.fromarray(a).save(target)
   else:target.unlink(missing_ok=True)
  return im
 
 def groups(d):
+ d=resolve_groups(d)
  out=[]
  def visit(g,parent=None):
   out.append((g,parent))
@@ -85,7 +98,7 @@ def animations(key,d,scale=1,mutant=False,hit=16,ticks=40):
    factor={'claw_sweep':12/16,'heavy_slam':18/16,'crystal_burst':28/16}[name]
   tracks={}
   for anim in a.get('animators',{}).values():
-   if anim.get('type')!='bone':continue
+   if anim.get('type')!='bone' or not anim.get('keyframes'):continue
    channels={}
    for k in anim['keyframes']:
     channel=k['channel'];vals=[float(k['data_points'][0][axis]) for axis in ('x','y','z')]
@@ -145,13 +158,13 @@ def export():
    s=normalization['scale'];offset=(0,normalization['offset_y'],0)
   else:
    lo,hi=bounds(d);s=height*16/(hi[1]-lo[1]);offset=(0,-lo[1],0)
-  geo('infected_'+key,d,s,offset);texture(d,ASSETS/'textures/entity'/f'infected_{key}.png',True);animations('infected_'+key,d,s)
+  geo('infected_'+key,d,s,offset);texture(d,ASSETS/'textures/entity'/f'infected_{key}.png',True,full_crystals=True);animations('infected_'+key,d,s)
   REPORT.append({'source':source,'runtime':'infected_'+key,'kind':'entity','scale':s})
  for source,key,height in [('crystal_hunter','ender_mutant_zombie',2.2),('rib_crystal_caster','infected_skeleton',2.3),('ravager_siege_concept','infected_siege_beast',3.2)]:
-  d=load(source);lo,hi=bounds(d);s=height*16/(hi[1]-lo[1]);geo(key,d,s,(0,-lo[1],0));texture(d,ASSETS/'textures/entity'/f'{key}.png',True);animations(key,d,s,key=='ender_mutant_zombie',20 if 'siege' in key else 16,64 if 'siege' in key else 32);REPORT.append({'source':source,'runtime':key,'kind':'entity'})
+  d=load(source);lo,hi=bounds(d);s=height*16/(hi[1]-lo[1]);geo(key,d,s,(0,-lo[1],0));texture(d,ASSETS/'textures/entity'/f'{key}.png',True,full_crystals=True);animations(key,d,s,key=='ender_mutant_zombie',20 if 'siege' in key else 16,64 if 'siege' in key else 32);REPORT.append({'source':source,'runtime':key,'kind':'entity'})
  for stage,height in [(1,1.4),(2,2.4),(3,3.1),(4,4),(5,4.8)]:
   source='calamity_brood_mother' if stage==5 else 'brood_mother';d=load(source);lo,hi=bounds(d);s=height*16/(hi[1]-lo[1]);key='infected_core' if stage==2 else f'infected_core_stage{stage}'
-  geo(key,d,s,(0,-lo[1],0));texture(d,ASSETS/'textures/entity'/f'{key}.png',True);animations(key,d,s,False,24,56)
+  geo(key,d,s,(0,-lo[1],0));texture(d,ASSETS/'textures/entity'/f'{key}.png',True,full_crystals=True);animations(key,d,s,False,24,56)
   # Controllers keep the core prefix at every stage.
   f=ASSETS/'animations'/f'{key}.animation.json';f.write_text(f.read_text('utf-8').replace('animation.'+key+'.','animation.infected_core.'),encoding='utf-8');REPORT.append({'source':source,'runtime':key,'kind':'mother'})
  for source,key in {**MATERIALS,**WEAPONS}.items():obj(key,load(source));REPORT.append({'source':source,'runtime':key,'kind':'item'})
@@ -194,6 +207,7 @@ def export():
     write(ASSETS/'models/block'/f'{runtime}.json',{'parent':'minecraft:block/block','textures':{'particle':f'ender_infection:block/design/{runtime}'}})
     write(ASSETS/'blockstates'/f'{runtime}.json',{'variants':{'':{'model':f'ender_infection:block/{runtime}'}}});obj(runtime,d,'item')
    REPORT.append({'source':source+'_'+state,'runtime':runtime,'kind':'block'})
+ export_legacy_glow()
  write(PROJECT/'verification/design_asset_manifest.json',{'source_pack':MAN['version'],'assets':REPORT,'scenes':'research_lab.nbt is current; complete/cutaway BB scenes retain the earlier schematic'})
  print('Exported',len(REPORT),'runtime asset mappings')
 if __name__=='__main__':export()

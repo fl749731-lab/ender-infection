@@ -28,7 +28,8 @@ final class BroodTactics {
         double distance = mob.distanceToSqr(target);
         return switch (mob.kind) {
             case ROOT_TURRET, HATCH_SAC -> distance <= mob.kind.radius * mob.kind.radius;
-            case CARRIER -> distance < 16 && urgent;
+            // A normal hit can knock the carrier beyond four blocks before its next target scan.
+            case CARRIER -> distance < 144 && urgent;
             case SPIDER_MOTHER, WALKING_NEST -> urgent || distance < 144;
             default -> true;
         };

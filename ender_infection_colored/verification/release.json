@@ -1,24 +1,19 @@
 {
-  "version": "0.11.0-alpha.10",
-  "jar": "ender-infection-0.11.0-alpha.10.jar",
-  "bytes": 4553022,
-  "sha256": "f1be2de8be50912645bd1360dbd645566f1c2836385e3d362b8620de59b2e708",
+  "version": "0.11.0-alpha.11",
+  "jar": "ender-infection-0.11.0-alpha.11.jar",
+  "bytes": 4628319,
+  "sha256": "cd4599edf5b419e8215946fc75de109e498a92d38a764b77ea98866d14d7bd56",
   "required_dependency": "geckolib-forge-1.20.1-4.4.9.jar",
-  "imported_structures": 4,
-  "lua_lab_bundled": false,
   "forge_build": "PASS: qegg verify",
-  "focused_gametests": "4/4",
-  "meteor_checks": [
-    "actual native explosion",
-    "visible crater in stone",
-    "damage and knockback",
-    "intact chest",
-    "one mother below the surface",
-    "midflight and completed save/load"
-  ],
-  "armor_checks": [
-    "six worn atlas textures and twelve inventory icons packaged",
-    "front and rear texture projection reviewed"
-  ],
+  "focused_gametests": {
+    "ai": "7/7",
+    "equipment_and_impact": "4/4"
+  },
+  "native_visual_check": {
+    "screenshots": 20,
+    "creature_models": 14,
+    "armor_views": 6,
+    "command": "gradlew.bat runClient -PcrystalCheck"
+  },
   "full_suite_rerun": false
 }

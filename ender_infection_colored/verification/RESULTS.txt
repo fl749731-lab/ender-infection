@@ -1,3 +1,24 @@
+Ender Infection 0.11.0-alpha.5 / 2026-11-03
+PASS: All 76 required Forge GameTests, isolated world; completed 10:34:39.
+PASS: qegg check, local release versioning and final verify (build + reobfJar).
+PASS: 24 distinct final NBT room layouts; 24 themed chests accessible; fixture footprints and stair headroom.
+PASS: Three stair flights have reachable landings using native zombie pathfinding.
+PASS: Final data/model regeneration is byte-identical (10 detail models, structure and resources).
+PASS: CLIENT_ASSET_SMOKE_PASS geo=52 animations=52 design_items=117 registered_glows=33 non_glowing_fixtures=7
+PASS: Native Minecraft world rendered entrance closed/open plus control, ward, culture and reactor views.
+Six screenshots manually reviewed; copies in docs/images, hashes in laboratory_visual.json.
+PASS: Packaged research_lab.nbt equals generated source; 10 detail blocks and recipes present; 33 glow masks.
+FINAL JAR: ender-infection-0.11.0-alpha.5.jar; 4198220 bytes; sha256 516b303c9286bf482219b4ba733f3e2255324d251536249b717d7d02295a7090
+Installed and dist copies match. Previous alpha.4 backed up under Minecraft1201/mod-backups/before-alpha5.
+FIX: Open door retains frame collision; multipart shapes must be dynamic to follow root OPEN state.
+First full run found this collision failure and one intermittent idle-hunter excursion failure.
+Collision cache was fixed; no AI code changed. The complete rerun passed all 76 tests.
+LIMITS: Native visual review covers six representative views, not every room, natural terrain fitting,
+multiplayer compatibility or long-running balance. Existing placed laboratories are not rebuilt automatically.
+Player saves were not opened or modified. Development visual/test worlds are isolated.
+
+Previous version validation follows:
+
 Ender Infection 0.11.0-alpha.4 / 2026-11-03
 FIX JAR: ender-infection-0.11.0-alpha.4.jar; 4088700 bytes; sha256 d2338b254c3dfcbf29c31c8ee1e7b5d2b70fe882ed524b29f156d47c6c8be19e
 PASS: Final qegg build and reobfJar; packaged JAR contains 33 nonempty masks and no empty vent mask.

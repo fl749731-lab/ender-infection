@@ -1,3 +1,14 @@
+Ender Infection 0.11.0-alpha.8 / 2026-11-03
+PASS: 1/1 ore GameTest (build/ore-gametest.log). Verified biome placement on the intended dimensions,
+actual configured ore placement in stone, deepslate, netherrack and end stone, pickaxe tiers,
+normal, Fortune and Silk Touch drops, and both crystal recipes loaded.
+PASS: qegg verify ran Forge Gradle build and reobfJar (build/ore-qegg-verify.log).
+FINAL JAR: ender-infection-0.11.0-alpha.8.jar, 4473830 bytes, SHA-256 9097d7c16340ea2c4d91d559ffa6507ecbc0edd9883bed8a616f335693e84fdd.
+The focused test uses controlled rock fixtures in a separate test world. Full suite and natural
+vein density across world seeds were outside this pass.
+
+Previous version validation follows:
+
 Ender Infection 0.11.0-alpha.7 / 2026-11-03
 PASS: 28/28 final expansion GameTests (alpha7-expansion-final.log), including six-step ascent,
 exposed vertical cliff growth, high-ledge outposts, new-catchment scoring, parent-belt escape,

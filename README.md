@@ -1,6 +1,6 @@
 # 末影感染 · Ender Infection
 
-Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当前开发版本：**0.11.0-alpha.7**。
+Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当前开发版本：**0.11.0-alpha.8**。
 
 感染从母体与扩张节点开始。每个母体拥有独立的生物质储备；召唤、进阶与节点扩张消费储备，土地收益随领土扩大而增加，重复收割同一片土地的收益逐渐下降。
 
@@ -13,6 +13,16 @@ Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当
 | GeckoLib | `4.4.9 ≤ 版本 < 5`，对应 Minecraft 1.20.1 / Forge | **4.4.9** | [GeckoLib 4.4.9（Forge 1.20.1）](https://modrinth.com/mod/geckolib/version/RBA7lJaW) |
 
 将 `geckolib-forge-1.20.1-4.4.9.jar` 和本 Mod 的 JAR 放入同一个实例的 `mods` 文件夹；专用服务器也放入其 `mods` 文件夹。GeckoLib 需单独下载，未打包进本 Mod。缺少前置或版本不满足要求时，Forge 会阻止加载并提示依赖错误。
+
+## alpha.8 晶矿
+
+| 矿石 | 矿脉起始高度 | 最低镐等级 | 用途 |
+|---|---|---|---|
+| 共鸣晶矿、深层共鸣晶矿 | 主世界 Y -56 到 48，矿脉在 Y -4 附近更常见 | 铁镐 | 掉落共鸣碎片，用作晶刺弩弹药和抑制粉原料 |
+| 余烬晶矿 | 下界地狱岩中，Y 20 到 100 | 铁镐 | 用余烬晶体替代灯板配方的萤石粉，每次做出两块实验室灯板 |
+| 虚空晶矿 | 末地外岛高地和中地，Y 32 到 72 | 钻石镐 | 一颗虚空晶体和一个雪球做出六份抑制粉 |
+
+矿脉随新区块自然生成。矿石支持时运和精准采集，普通开采会掉落经验。四种矿石方块和两种晶体可在「末影感染」创造栏找到。
 
 ## alpha.7：连通扩张与高处蔓延
 
@@ -118,7 +128,7 @@ Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当
 
 本机启动入口为 `E:\mc\启动MC.cmd`，Prism Launcher 与游戏实例位于 `E:\mc\Minecraft1201`。账号、存档和启动器数据属于本机文件，不进入 Git 仓库。
 
-编译后的 `ender-infection-0.11.0-alpha.7.jar` 与 `geckolib-forge-1.20.1-4.4.9.jar` 放入同一个 Forge 1.20.1 实例的 `mods` 目录。更新时只保留一个版本的 Ender Infection JAR。模型改变需要重新启动游戏。
+编译后的 `ender-infection-0.11.0-alpha.8.jar` 与 `geckolib-forge-1.20.1-4.4.9.jar` 放入同一个 Forge 1.20.1 实例的 `mods` 目录。更新时只保留一个版本的 Ender Infection JAR。模型改变需要重新启动游戏。
 
 ## 工程与可编辑资源
 
@@ -135,7 +145,7 @@ Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当
 
 Blockbench 原件保留完整的逐面 UV。墙地使用 Forge 烘焙模型，大型实验设备使用 GeckoLib 方块实体；实验室整栋场景转换为原生方块结构。
 
-验证记录见 [RESULTS.txt](ender_infection_colored/verification/RESULTS.txt)。alpha.7 最终扩张专项 **28/28**、建筑专项 **8/8** 通过，qegg 的 Forge `build + reobfJar` 通过。首次全量 **92/94** 暴露薄雪上旧节点扎根与建筑测试的地形前提问题，两处已修复，并在最终专项中用原断言复验通过；没有重跑最终整套 94 项。测试均使用独立开发世界，没有打开玩家存档。更详细的范围与限制见 [扩张验证记录](ender_infection_colored/verification/expansion.json)。
+alpha.8 的矿石专项通过。测试覆盖三维度的群系配置、四种宿主岩石上的矿脉生成、镐等级、时运与精准采集，以及两条新配方。qegg 的 Forge 构建通过。历次验证记录见 [RESULTS.txt](ender_infection_colored/verification/RESULTS.txt)。
 
 ## 构建与验证
 
@@ -146,6 +156,7 @@ cd ender_infection_colored
 .\gradlew.bat build
 .\gradlew.bat runGameTestServer
 .\gradlew.bat runGameTestServer -PexpansionChecks
+.\gradlew.bat runGameTestServer -PoreChecks
 .\gradlew.bat runClient -PdesignSmoke
 .\gradlew.bat runClient -ParchitectureCheck
 .\gradlew.bat runClient -PnaturalLabCheck -PnaturalBiome=birch_forest -PnaturalBuilding=imported/church

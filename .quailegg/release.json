@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "version": "0.11.0-alpha.10",
-  "created_at": "2026-11-03T21:00:09.6838208+01:00",
+  "version": "0.11.0-alpha.11",
+  "created_at": "2026-11-03T21:36:52.4344718+01:00",
   "mode": "pr",
   "channel": "alpha",
-  "fingerprint": "sha256:fca7d7077b77541897cb5fcc19f562d1b4b8a149445caabf0edb741fe1afcbd8",
+  "fingerprint": "sha256:ad4aa2ea29d9428fd33525eeecc0592aa97c1549147f9298b693bc84a02e3a84",
   "repo": {
     "host": "github.com",
     "owner": "fl749731-lab",
@@ -13,28 +13,28 @@
   },
   "verified": {
     "commands": [
-      "cd ender_infection_colored && java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain build"
+      "cd ender_infection_colored \u0026\u0026 java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain build"
     ],
-    "skipped": false,
-    "at": "2026-11-03T20:01:57.583214+00:00"
+    "skipped": true,
+    "at": "2026-11-03T21:36:52.4344718+01:00"
   },
   "packages": [
     {
       "name": "java@ender_infection_colored",
       "path": "ender_infection_colored",
       "resolver": "java",
-      "current": "0.11.0-alpha.9",
-      "next": "0.11.0-alpha.10",
+      "current": "0.11.0-alpha.10",
+      "next": "0.11.0-alpha.11",
       "bump": "minor",
-      "tag": "v0.11.0-alpha.10",
+      "tag": "v0.11.0-alpha.11",
       "publish": false
     }
   ],
   "releases": [
     {
-      "version": "0.11.0-alpha.10",
-      "tag": "v0.11.0-alpha.10",
-      "previous_tag": "v0.11.0-alpha.9",
+      "version": "0.11.0-alpha.11",
+      "tag": "v0.11.0-alpha.11",
+      "previous_tag": "v0.11.0-alpha.10",
       "packages": [
         "java@ender_infection_colored"
       ],
@@ -78,7 +78,20 @@
       ],
       "body": "重绘三套晶体护甲的穿戴贴图和物品图标。细化头盔、背甲、肩臂、关节和靴子，分别采用共鸣紫晶纹、余烬橙色熔纹和虚空青色晶脊。",
       "commit": "c8da94973198327c276ec7cd646705aca6eb7846",
-      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/c8da94973198327c276ec7cd646705aca6eb7846"
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/c8da94973198327c276ec7cd646705aca6eb7846",
+      "author": "fl749731-lab"
+    },
+    {
+      "file": ".changes/crystal-brood-detail.md",
+      "type": "feat",
+      "scope": "models",
+      "bump": "patch",
+      "packages": [
+        "java@ender_infection_colored"
+      ],
+      "body": "为共鸣、余烬和虚空三套晶甲加入立体肩甲与背晶。按原始设计图加深 14 个怪物的轮廓，补上孵化舱、环形骨颚和破边翼膜，并细化侦察、搬运、回防、远程牵制与突袭等行动。",
+      "commit": "4d1dd4ad34ec0db5c477467f1fa69292c52f3a7d",
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/4d1dd4ad34ec0db5c477467f1fa69292c52f3a7d"
     },
     {
       "file": ".changes/crystal-equipment.md",
@@ -181,7 +194,8 @@
       ],
       "body": "开局陨石以真实爆炸撞击地表。冲击击退并伤害附近生物，在自然地面炸出陨石坑，随后在坑内生成母体。地形破坏遵守 mobGriefing，容器与设备保留，读档继续时不会重复爆炸。",
       "commit": "c8da94973198327c276ec7cd646705aca6eb7846",
-      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/c8da94973198327c276ec7cd646705aca6eb7846"
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/c8da94973198327c276ec7cd646705aca6eb7846",
+      "author": "fl749731-lab"
     },
     {
       "file": ".changes/skip-empty-optional.md",
@@ -193,12 +207,14 @@
       ],
       "body": "修复实验室通风口等完整设备的全透明发光蒙版导致 GeckoLib 注册纹理崩溃；为全部发光渲染层增加有效像素检查和重载缓存清理，导出器不再生成空蒙版，客户端验证实际注册发光纹理。",
       "commit": "0d316ac623e21d1cf8d847cc547c6b39f7060ad3",
-      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/0d316ac623e21d1cf8d847cc547c6b39f7060ad3"
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/0d316ac623e21d1cf8d847cc547c6b39f7060ad3",
+      "author": "fl749731-lab"
     }
   ],
   "previous_changes": [
     ".changes/add-biome-specific.md",
     ".changes/connected-highland-expansion.md",
+    ".changes/crystal-armor-detail.md",
     ".changes/crystal-equipment.md",
     ".changes/crystal-ores.md",
     ".changes/give-all-24.md",
@@ -206,6 +222,7 @@
     ".changes/lab-detail.md",
     ".changes/lab-rarity.md",
     ".changes/lab-styles.md",
+    ".changes/opening-meteor-crater.md",
     ".changes/skip-empty-optional.md"
   ],
   "qegg": {

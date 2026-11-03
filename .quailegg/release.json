@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "version": "0.11.0-alpha.7",
-  "created_at": "2026-11-03T17:38:13.1885293+01:00",
+  "version": "0.11.0-alpha.8",
+  "created_at": "2026-11-03T20:34:36.1319115+01:00",
   "mode": "pr",
   "channel": "alpha",
-  "fingerprint": "sha256:d971e1c27714d2792d3bce2b1500537f2985c2af510fdb2a817f7a9fb62eb792",
+  "fingerprint": "sha256:1db97d54bb14f2da40a4d2327eaae1454f913b014ed060160d0a365f3d9222eb",
   "repo": {
     "host": "github.com",
     "owner": "fl749731-lab",
@@ -13,28 +13,28 @@
   },
   "verified": {
     "commands": [
-      "cd ender_infection_colored && java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain build"
+      "cd ender_infection_colored \u0026\u0026 java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain build"
     ],
-    "skipped": false,
-    "at": "2026-11-03T16:46:01.366709+00:00"
+    "skipped": true,
+    "at": "2026-11-03T20:34:36.1319115+01:00"
   },
   "packages": [
     {
       "name": "java@ender_infection_colored",
       "path": "ender_infection_colored",
       "resolver": "java",
-      "current": "0.11.0-alpha.6",
-      "next": "0.11.0-alpha.7",
+      "current": "0.11.0-alpha.7",
+      "next": "0.11.0-alpha.8",
       "bump": "minor",
-      "tag": "v0.11.0-alpha.7",
+      "tag": "v0.11.0-alpha.8",
       "publish": false
     }
   ],
   "releases": [
     {
-      "version": "0.11.0-alpha.7",
-      "tag": "v0.11.0-alpha.7",
-      "previous_tag": "v0.11.0-alpha.6",
+      "version": "0.11.0-alpha.8",
+      "tag": "v0.11.0-alpha.8",
+      "previous_tag": "v0.11.0-alpha.7",
       "packages": [
         "java@ender_infection_colored"
       ],
@@ -65,7 +65,20 @@
       ],
       "body": "修复节点忽略扩张计时、只搜索上方三格和偏向旧覆盖的问题。新增连通坡面与崖面攀升、高台前哨、旧感染带接力、按未覆盖地形与肥力选址、付费补建和旧节点记录兼容；半径只为可用前沿付费，母体升级/和平孵化保留网络周转金，高地收入与扩张搜索高度一致。增加原生 Forge 扩张回归与 /enderstrategy 诊断。",
       "commit": "f44e1a434e9ac8c97f36032a0f35bc8e05c12cce",
-      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/f44e1a434e9ac8c97f36032a0f35bc8e05c12cce"
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/f44e1a434e9ac8c97f36032a0f35bc8e05c12cce",
+      "author": "fl749731-lab"
+    },
+    {
+      "file": ".changes/crystal-ores.md",
+      "type": "feat",
+      "scope": "ores",
+      "bump": "minor",
+      "packages": [
+        "java@ender_infection_colored"
+      ],
+      "body": "新增主世界共鸣晶矿及深板岩变种、下界余烬晶矿和末地外岛虚空晶矿。矿石使用独立的像素贴图与自然矿脉，支持时运、精准采集和经验。共鸣碎片可供晶刺弩使用，余烬晶体用于实验室灯板，虚空晶体用于抑制粉。",
+      "commit": "67e1a1af0a141d80ab092bce1ff6c9e44bcb6320",
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/67e1a1af0a141d80ab092bce1ff6c9e44bcb6320"
     },
     {
       "file": ".changes/give-all-24.md",
@@ -148,6 +161,7 @@
   ],
   "previous_changes": [
     ".changes/add-biome-specific.md",
+    ".changes/connected-highland-expansion.md",
     ".changes/give-all-24.md",
     ".changes/integrate-design-pack.md",
     ".changes/lab-detail.md",

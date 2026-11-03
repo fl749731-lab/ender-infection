@@ -1,0 +1,47 @@
+{
+  "display": {
+    "icon": {
+      "item": "ender_infection:void_crystal_chestplate"
+    },
+    "title": {
+      "translate": "advancement.ender_infection.void_crystal_armor_set.title"
+    },
+    "description": {
+      "translate": "advancement.ender_infection.void_crystal_armor_set.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "have_materials": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ender_infection:void_crystal_helmet"
+            ]
+          },
+          {
+            "items": [
+              "ender_infection:void_crystal_chestplate"
+            ]
+          },
+          {
+            "items": [
+              "ender_infection:void_crystal_leggings"
+            ]
+          },
+          {
+            "items": [
+              "ender_infection:void_crystal_boots"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "parent": "ender_infection:void_crystal_found"
+}

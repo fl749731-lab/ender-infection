@@ -36,6 +36,7 @@ public final class EnderInfection {
         ITEMS.register(bus);
         InfectedContent.register(bus);
         dev.hui.enderinfection.item.InfectionItems.register(bus);
+        dev.hui.enderinfection.item.CrystalEquipment.register(bus);
         dev.hui.enderinfection.design.DesignContent.register(bus);
         FactionParticles.register(bus);
         dev.hui.enderinfection.worldgen.SurfaceBuildingStructure.TYPES.register(bus);

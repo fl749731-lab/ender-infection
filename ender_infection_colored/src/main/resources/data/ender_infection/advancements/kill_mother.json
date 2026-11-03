@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+      "item": "ender_infection:mother_heart"
+    },
+    "title": {
+      "translate": "advancement.ender_infection.kill_mother.title"
+    },
+    "description": {
+      "translate": "advancement.ender_infection.kill_mother.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "kill": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "ender_infection:infected_core"
+        }
+      }
+    }
+  },
+  "parent": "ender_infection:root"
+}

@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "item": "ender_infection:infected_nest"
+    },
+    "title": {
+      "translate": "advancement.ender_infection.meteor_impact.title"
+    },
+    "description": {
+      "translate": "advancement.ender_infection.meteor_impact.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "impact": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "ender_infection:root"
+}

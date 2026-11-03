@@ -1,0 +1,30 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_crystal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ender_infection:void_crystal"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "ender_infection:void_crystal_helmet",
+      "ender_infection:void_crystal_chestplate",
+      "ender_infection:void_crystal_leggings",
+      "ender_infection:void_crystal_boots",
+      "ender_infection:void_crystal_sword",
+      "ender_infection:void_crystal_pickaxe",
+      "ender_infection:void_crystal_axe",
+      "ender_infection:void_crystal_shovel",
+      "ender_infection:void_crystal_hoe"
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "item": "ender_infection:infected_nest"
+    },
+    "title": {
+      "translate": "advancement.ender_infection.root.title"
+    },
+    "description": {
+      "translate": "advancement.ender_infection.root.description"
+    },
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false,
+    "background": "minecraft:textures/block/crying_obsidian.png"
+  },
+  "criteria": {
+    "entered": {
+      "trigger": "minecraft:tick"
+    }
+  }
+}

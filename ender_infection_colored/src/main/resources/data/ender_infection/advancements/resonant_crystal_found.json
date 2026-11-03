@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "item": "ender_infection:resonant_shard"
+    },
+    "title": {
+      "translate": "advancement.ender_infection.resonant_crystal_found.title"
+    },
+    "description": {
+      "translate": "advancement.ender_infection.resonant_crystal_found.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "have_materials": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ender_infection:resonant_shard"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "parent": "ender_infection:root"
+}

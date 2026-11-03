@@ -1,0 +1,30 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_crystal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "ender_infection:resonant_shard"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "ender_infection:resonant_crystal_helmet",
+      "ender_infection:resonant_crystal_chestplate",
+      "ender_infection:resonant_crystal_leggings",
+      "ender_infection:resonant_crystal_boots",
+      "ender_infection:resonant_crystal_sword",
+      "ender_infection:resonant_crystal_pickaxe",
+      "ender_infection:resonant_crystal_axe",
+      "ender_infection:resonant_crystal_shovel",
+      "ender_infection:resonant_crystal_hoe"
+    ]
+  }
+}

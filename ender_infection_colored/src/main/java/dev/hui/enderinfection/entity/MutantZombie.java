@@ -78,7 +78,7 @@ public final class MutantZombie extends Monster implements GeoEntity {
     private FactionAI.HuntGoal factionHunt;
     private FactionAI.Motion factionMotion;
     @Override public boolean isAlliedTo(net.minecraft.world.entity.Entity other){return FactionAI.infected(other)||super.isAlliedTo(other);}
-    @Override public boolean hurt(DamageSource source,float amount){if(FactionAI.infected(source.getEntity()))return false;boolean hit=super.hurt(source,amount);if(hit&&isAlive()&&source.getEntity() instanceof LivingEntity attacker)FactionAI.alert(this,attacker);return hit;}
+    @Override public boolean hurt(DamageSource source,float amount){if(FactionAI.infected(source.getEntity())||InfectionBlink.avoidsProjectile(this,source))return false;boolean hit=super.hurt(source,amount);if(hit&&isAlive()&&source.getEntity() instanceof LivingEntity attacker)FactionAI.alert(this,attacker);return hit;}
     @Override protected void registerGoals() {
         goalSelector.addGoal(0, new FloatGoal(this));
         goalSelector.addGoal(1, new MutantCombatGoal());
@@ -213,6 +213,7 @@ public final class MutantZombie extends Monster implements GeoEntity {
             if (isAttacking()) { getNavigation().stop(); return; }
             LivingEntity target = getTarget();
             if (target == null || !target.isAlive()) return;
+            if (InfectionBlink.pursue(MutantZombie.this, target, false)) return;
             getLookControl().setLookAt(target, 20, 20);
             double distance = distanceTo(target);
             if (meleeCooldown > 0 || !hasLineOfSight(target)) {

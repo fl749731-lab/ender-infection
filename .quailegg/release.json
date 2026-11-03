@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "version": "0.11.0-alpha.5",
-  "created_at": "2026-11-03T10:29:19.4765465+01:00",
+  "version": "0.11.0-alpha.6",
+  "created_at": "2026-11-03T15:15:11.5258155+01:00",
   "mode": "pr",
   "channel": "alpha",
-  "fingerprint": "sha256:fd957390ea6ad8c96fb4c9afac1e75e3245a568d8259e13857e7bc34c346e9c2",
+  "fingerprint": "sha256:4aa1e631ef54793f85374631099bcc5f7a858c438aeb2e111474a0cc31eae491",
   "repo": {
     "host": "github.com",
     "owner": "fl749731-lab",
@@ -15,26 +15,26 @@
     "commands": [
       "cd ender_infection_colored \u0026\u0026 java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain build"
     ],
-    "skipped": false,
-    "at": "2026-11-03T10:29:19.4765465+01:00"
+    "skipped": true,
+    "at": "2026-11-03T15:15:11.5258155+01:00"
   },
   "packages": [
     {
       "name": "java@ender_infection_colored",
       "path": "ender_infection_colored",
       "resolver": "java",
-      "current": "0.11.0-alpha.4",
-      "next": "0.11.0-alpha.5",
+      "current": "0.11.0-alpha.5",
+      "next": "0.11.0-alpha.6",
       "bump": "minor",
-      "tag": "v0.11.0-alpha.5",
+      "tag": "v0.11.0-alpha.6",
       "publish": false
     }
   ],
   "releases": [
     {
-      "version": "0.11.0-alpha.5",
-      "tag": "v0.11.0-alpha.5",
-      "previous_tag": "v0.11.0-alpha.4",
+      "version": "0.11.0-alpha.6",
+      "tag": "v0.11.0-alpha.6",
+      "previous_tag": "v0.11.0-alpha.5",
       "packages": [
         "java@ender_infection_colored"
       ],
@@ -42,6 +42,18 @@
     }
   ],
   "changes": [
+    {
+      "file": ".changes/add-biome-specific.md",
+      "type": "feat",
+      "scope": "laboratory",
+      "bump": "minor",
+      "packages": [
+        "java@ender_infection_colored"
+      ],
+      "body": "Fix the natural laboratory chunk-lighting deadlock and open-door clearance. Import attributed HBM laboratory, ruined factory and arctic station structures, plus the MIT Church of Sin; preserve upstream architecture, licenses and source NBTs. Add chunk-bounded, resumable /enderbuild placement and optional local Lua Lab import. Stop naturally generating the old box-shaped laboratories while retaining six debug layouts, lift platforms and metal service ladders. GeckoLib 4.4.9 for Forge 1.20.1 remains required: https://modrinth.com/mod/geckolib/version/RBA7lJaW",
+      "commit": "8eec4e05af7e6ccf28bd83e07996b2a026ead594",
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/8eec4e05af7e6ccf28bd83e07996b2a026ead594"
+    },
     {
       "file": ".changes/give-all-24.md",
       "type": "feat",
@@ -52,7 +64,8 @@
       ],
       "body": "Add ten original editable room-detail models, themed loot, functional room partitions, a fitted entrance, dynamic part collision and native-world visual checks. Reference actual Spore structures without copying assets.",
       "commit": "21d996c0582047b59bec07b50b76f25e2045e3ff",
-      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/21d996c0582047b59bec07b50b76f25e2045e3ff"
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/21d996c0582047b59bec07b50b76f25e2045e3ff",
+      "author": "fl749731-lab"
     },
     {
       "file": ".changes/integrate-design-pack.md",
@@ -121,6 +134,7 @@
     }
   ],
   "previous_changes": [
+    ".changes/give-all-24.md",
     ".changes/integrate-design-pack.md",
     ".changes/lab-detail.md",
     ".changes/lab-rarity.md",

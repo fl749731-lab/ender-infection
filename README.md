@@ -1,6 +1,6 @@
 # 末影感染 · Ender Infection
 
-Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当前开发版本：**0.11.0-alpha.6**。
+Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当前开发版本：**0.11.0-alpha.7**。
 
 感染从母体与扩张节点开始。每个母体拥有独立的生物质储备；召唤、进阶与节点扩张消费储备，土地收益随领土扩大而增加，重复收割同一片土地的收益逐渐下降。
 
@@ -14,7 +14,7 @@ Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当
 
 将 `geckolib-forge-1.20.1-4.4.9.jar` 和本 Mod 的 JAR 放入同一个实例的 `mods` 文件夹；专用服务器也放入其 `mods` 文件夹。GeckoLib 需单独下载，未打包进本 Mod。缺少前置或版本不满足要求时，Forge 会阻止加载并提示依赖错误。
 
-## 扩张逻辑修复
+## alpha.7：连通扩张与高处蔓延
 
 节点按生物质储备计时扩张，修复之前每个 tick 都扫描和扣费的问题。连续坡面与裸露崖面都能向上感染；搜索高度随节点范围增长，高台也能成为子节点的落脚点。新前哨按**尚未被节点覆盖的可感染地形和剩余肥力**评分，扣除母节点本身的覆盖，优先向新领土推进。年轻节点可沿相连的旧感染带向外增长，避免被母节点的覆盖困住。
 
@@ -118,7 +118,7 @@ Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当
 
 本机启动入口为 `E:\mc\启动MC.cmd`，Prism Launcher 与游戏实例位于 `E:\mc\Minecraft1201`。账号、存档和启动器数据属于本机文件，不进入 Git 仓库。
 
-编译后的 `ender-infection-0.11.0-alpha.6.jar` 与 `geckolib-forge-1.20.1-4.4.9.jar` 放入同一个 Forge 1.20.1 实例的 `mods` 目录。更新时只保留一个版本的 Ender Infection JAR。模型改变需要重新启动游戏。
+编译后的 `ender-infection-0.11.0-alpha.7.jar` 与 `geckolib-forge-1.20.1-4.4.9.jar` 放入同一个 Forge 1.20.1 实例的 `mods` 目录。更新时只保留一个版本的 Ender Infection JAR。模型改变需要重新启动游戏。
 
 ## 工程与可编辑资源
 
@@ -135,7 +135,7 @@ Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当
 
 Blockbench 原件保留完整的逐面 UV。墙地使用 Forge 烘焙模型，大型实验设备使用 GeckoLib 方块实体；实验室整栋场景转换为原生方块结构。
 
-验证记录见 [RESULTS.txt](ender_infection_colored/verification/RESULTS.txt)。本轮建筑专项 **8/8**、独立自然生成及完整建筑方块检查通过；全量回归为 **79/81**，两项战斗 AI 检查在隔离复查中 **2/2** 通过，仍记录为间歇性问题。本轮专项测试已验证六类入口的站立玩家通行、双向升降与堵塞检查；静态检查覆盖六套调试 NBT 的占位和全部补给点路径。导入建筑另有方块注册、状态属性、分区块放置与恢复检查。
+验证记录见 [RESULTS.txt](ender_infection_colored/verification/RESULTS.txt)。alpha.7 最终扩张专项 **28/28**、建筑专项 **8/8** 通过，qegg 的 Forge `build + reobfJar` 通过。首次全量 **92/94** 暴露薄雪上旧节点扎根与建筑测试的地形前提问题，两处已修复，并在最终专项中用原断言复验通过；没有重跑最终整套 94 项。测试均使用独立开发世界，没有打开玩家存档。更详细的范围与限制见 [扩张验证记录](ender_infection_colored/verification/expansion.json)。
 
 ## 构建与验证
 

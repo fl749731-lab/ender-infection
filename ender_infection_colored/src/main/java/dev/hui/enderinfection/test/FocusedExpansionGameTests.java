@@ -59,4 +59,6 @@ public final class FocusedExpansionGameTests {
  public static void check25(GameTestHelper h){InfectionGameTests.oldOutpostLatchAdoptsSavedChildBeforeRebuilding(h);}
  @GameTest(template="empty64",templateNamespace="ender_expansion_checks",timeoutTicks=500,batch="expansion_check_26")
  public static void check26(GameTestHelper h){InfectionGameTests.aHighLedgeCanHostAnOutpostInsideTheHorizontalRing(h);}
+ @GameTest(template="empty64",templateNamespace="ender_expansion_checks",timeoutTicks=500,batch="expansion_check_27")
+ public static void check27(GameTestHelper h){InfectionGameTests.snowyGrassUnderASnowLayerCanBeEroded(h);}
 }

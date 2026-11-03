@@ -23,7 +23,11 @@ public final class ImportedArchitectureGameTests {
     }
    }catch(java.io.IOException e){throw new RuntimeException(e);}
    var structure=level.registryAccess().registryOrThrow(net.minecraft.core.registries.Registries.STRUCTURE).get(new ResourceLocation("ender_infection","imported/"+spec.key()));
-   var generation=new net.minecraft.world.level.levelgen.structure.Structure.GenerationContext(level.registryAccess(),level.getChunkSource().getGenerator(),level.getChunkSource().getGenerator().getBiomeSource(),level.getChunkSource().randomState(),level.getStructureManager(),level.getSeed(),new net.minecraft.world.level.ChunkPos(h.absolutePos(BlockPos.ZERO)),level,b->true);
+   // This assertion promises flat dry terrain. Do not inherit the host world's noise terrain:
+   // adding unrelated tests changes the chunk coordinates and can otherwise turn this into ocean.
+   var access=level.registryAccess();
+   var flat=new net.minecraft.world.level.levelgen.FlatLevelSource(net.minecraft.world.level.levelgen.flat.FlatLevelGeneratorSettings.getDefault(access.registryOrThrow(net.minecraft.core.registries.Registries.BIOME).asLookup(),access.registryOrThrow(net.minecraft.core.registries.Registries.STRUCTURE_SET).asLookup(),access.registryOrThrow(net.minecraft.core.registries.Registries.PLACED_FEATURE).asLookup()));
+   var generation=new net.minecraft.world.level.levelgen.structure.Structure.GenerationContext(access,flat,flat.getBiomeSource(),level.getChunkSource().randomState(),level.getStructureManager(),level.getSeed(),new net.minecraft.world.level.ChunkPos(h.absolutePos(BlockPos.ZERO)),level,b->true);
    var point=structure.findValidGenerationPoint(generation);h.assertTrue(point.isPresent()&&!point.get().getPiecesBuilder().isEmpty(),"Imported structure produces no pieces on flat dry terrain: "+spec.key());
    var template=ImportedBuildings.template(level,spec);h.assertTrue(template.getSize().getX()==spec.width()&&template.getSize().getY()==spec.height()&&template.getSize().getZ()==spec.length(),"Import size mismatch "+spec.key());
   }h.succeed();

@@ -98,7 +98,7 @@ public final class PlayerTactics {
             int shown=0;
             for(BlockPos p:BlockPos.betweenClosed(player.blockPosition().offset(-24,-8,-24),player.blockPosition().offset(24,8,24))){
                 if(shown>=4)break;
-                if(!(level.getBlockEntity(p) instanceof dev.hui.enderinfection.block.ExpansionNodeEntity node))continue;
+                if(!level.hasChunkAt(p)||!level.getBlockState(p).is(InfectedContent.NEST.get())||!(level.getBlockEntity(p) instanceof dev.hui.enderinfection.block.ExpansionNodeEntity node))continue;
                 shown++;
                 final BlockPos at=p.immutable();
                 context.getSource().sendSuccess(()->Component.literal("节点 "+at.toShortString()+"：半径 "+node.radius()+"，纵向 "+node.surfaceBottom()+"~"+node.surfaceTop()+"，扩张轮次 "+node.spreadRounds()+"，下轮等待 "+node.spreadWait(level)+" tick，活跃 "+node.activeTicks()+" tick，改格 "+node.purchasedChanges()+"，下沉 "+node.deepenedBlocks()+"，成熟 "+node.maturedBlocks()+"，单位 "+node.soilBorn()),false);

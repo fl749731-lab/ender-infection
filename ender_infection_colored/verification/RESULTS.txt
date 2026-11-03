@@ -1,3 +1,23 @@
+Ender Infection 0.11.0-alpha.7 / 2026-11-03
+PASS: 28/28 final expansion GameTests (alpha7-expansion-final.log), including six-step ascent,
+exposed vertical cliff growth, high-ledge outposts, new-catchment scoring, parent-belt escape,
+child rebuild/reload and old-latch migration, snow rooting, real biomass timing, exact owner
+billing, atomic plants, highland yield and no remote chunk loading.
+PASS: 8/8 final building GameTests (alpha7-buildings-final.log). The generation fixture explicitly
+uses dry flat terrain, preserving the registered-block and real structure-piece assertions.
+INITIAL FULL SUITE: 92/94 (expansion-full-suite.log). Snow-layer node rooting and the old
+host-terrain-dependent building fixture failed. Both fixed and passed their exact assertions
+in the final focused runs. The whole 94-test suite was not rerun after these two final fixes.
+PASS: qegg generated alpha.7; final qegg verify ran Gradle build + reobfJar.
+FINAL JAR: ender-infection-0.11.0-alpha.7.jar; 4451015 bytes; sha256 92a34b6b38485b633b6750d06c189da44200234eb5d3a726f7d955a65611890a
+INSTALLED: build, dist and playable-instance JAR hashes match. Only alpha.7 Ender Infection
+remains in the playable mods directory; previous JAR backed up before replacement.
+LIMITS: Isolated development worlds; no player saves opened or changed by tests. No long-running
+multiplayer or large-colony performance benchmark. Existing infected terrain is retained.
+Evidence: verification/expansion.json.
+
+Previous version validation follows:
+
 Ender Infection 0.11.0-alpha.6 / 2026-11-03
 PASS: qegg-generated alpha version; final qegg verify ran Forge build + reobfJar, 33 seconds.
 PASS: 8/8 final building GameTests (final-building-checks.log), including registered block states,

@@ -87,10 +87,22 @@ public final class ExpansionNodeEntity extends BlockEntity {
     }
     private boolean infectedSupport(ServerLevel level,BlockPos pos){
         if(!level.hasChunkAt(pos))return false;
-        if(isGround(InfectedContent.terrainKey(level.getBlockState(pos))))return true;
-        return level.getBlockEntity(pos) instanceof ExpansionNodeEntity node&&owner!=null&&owner.equals(node.ownerId());
+        BlockState state=level.getBlockState(pos);
+        if(isGround(InfectedContent.terrainKey(state)))return true;
+        return state.is(InfectedContent.NEST.get())&&level.getBlockEntity(pos) instanceof ExpansionNodeEntity node&&owner!=null&&owner.equals(node.ownerId());
     }
     private boolean connectedSurface(ServerLevel level,BlockPos pos){
+        // Old/hand-placed nodes can sit on a thin snow layer or two-block plant. Seed only their
+        // own column through that cover, never across an air gap or onto a diagonal island.
+        int cover=worldPosition.getY()-pos.getY();
+        if(pos.getX()==worldPosition.getX()&&pos.getZ()==worldPosition.getZ()&&cover>=2&&cover<=3){
+            boolean rooted=true;
+            for(int step=1;step<cover;step++){
+                BlockState between=level.getBlockState(pos.above(step));
+                if(!between.getFluidState().isEmpty()||!between.is(net.minecraft.world.level.block.Blocks.SNOW)&&!Vegetation.supported(between)){rooted=false;break;}
+            }
+            if(rooted)return true;
+        }
         if(infectedSupport(level,pos.below())||infectedSupport(level,pos.above()))return true;
         for(var direction:net.minecraft.core.Direction.Plane.HORIZONTAL)for(int step=-1;step<=1;step++)
             if(infectedSupport(level,pos.relative(direction).offset(0,step,0)))return true;

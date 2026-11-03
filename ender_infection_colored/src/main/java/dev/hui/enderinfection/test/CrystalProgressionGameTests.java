@@ -22,6 +22,7 @@ import net.minecraft.world.entity.projectile.ThrownEnderpearl;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.GameType;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.common.MinecraftForge;
@@ -145,9 +146,20 @@ public final class CrystalProgressionGameTests {
         var data = WorldIntroduction.Data.forWorldAge(0);
         var player = UUID.randomUUID();
         helper.assertTrue(data.schedule(player, 0) && !data.ready(99) && data.ready(100), "New-world warning timer changed");
-        BlockPos origin = new BlockPos(13, 1, 13);
-        helper.setBlock(origin.below(), Blocks.STONE);
+        BlockPos origin = new BlockPos(13, 7, 13);
         BlockPos site = helper.absolutePos(origin);
+        for (BlockPos pos : BlockPos.betweenClosed(site.offset(-7, -7, -7), site.offset(7, -1, 7))) {
+            level.setBlock(pos, Blocks.STONE.defaultBlockState(), Block.UPDATE_CLIENTS);
+        }
+        BlockPos container = site.east(3);
+        level.setBlockAndUpdate(container, Blocks.CHEST.defaultBlockState());
+        var witness = EntityType.COW.create(level);
+        witness.setNoAi(true);
+        witness.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.MAX_HEALTH).setBaseValue(100);
+        witness.setHealth(100);
+        witness.moveTo(site.getX() + 2.5, site.getY(), site.getZ() + .5, 0, 0);
+        level.addFreshEntity(witness);
+        float witnessHealth = witness.getHealth();
         data.beginFlight(site);
         helper.assertTrue(WorldIntroduction.advanceMeteor(level, data) == null, "Mother appeared before impact");
         var state = data.save(new CompoundTag());
@@ -165,8 +177,17 @@ public final class CrystalProgressionGameTests {
 
         InfectedMob mother = null;
         for (int tick = 0; tick < 60 && mother == null; tick++) mother = WorldIntroduction.advanceMeteor(level, data);
-        helper.assertTrue(mother != null && mother.kind == InfectedKind.CORE && mother.blockPosition().equals(site)
-            && display.isRemoved() && level.getBlockState(site.below()).is(Blocks.STONE), "Impact failed to leave one mother and preserve the floor");
+        long excavated = BlockPos.betweenClosedStream(site.offset(-3, -1, -3), site.offset(3, -1, 3))
+            .filter(pos -> level.getBlockState(pos).isAir()).count();
+        helper.assertTrue(excavated >= 12 && level.getBlockState(site.below()).isAir(),
+            "Meteor blast did not excavate a visible crater: " + excavated + " surface blocks");
+        helper.assertTrue(mother != null && mother.kind == InfectedKind.CORE && mother.getY() < site.getY()
+            && display.isRemoved(), "Mother did not emerge inside the crater. Impact: " + site + ", mother: "
+                + (mother == null ? "missing" : mother.blockPosition()) + ", excavated surface blocks: " + excavated);
+        helper.assertTrue(witness.getHealth() < witnessHealth && witness.getDeltaMovement().horizontalDistanceSqr() > .01,
+            "Meteor blast did not damage and knock back a nearby creature");
+        helper.assertTrue(level.getBlockState(container).is(Blocks.CHEST), "Meteor blast destroyed a container");
+        witness.discard();
         data = WorldIntroduction.Data.load(data.save(new CompoundTag()));
         var nearby = level.getEntitiesOfClass(InfectedMob.class, new AABB(site).inflate(4), m -> m.kind == InfectedKind.CORE);
         helper.assertTrue(!data.ready(200) && WorldIntroduction.advanceMeteor(level, data) == null && nearby.size() == 1,

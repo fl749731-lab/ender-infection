@@ -35,6 +35,7 @@ public final class WorldIntroduction {
         private BlockPos landing;
         private int flight;
         private UUID display;
+        private boolean impacted;
 
         public static Data forWorldAge(long age) {
             Data data = new Data();
@@ -52,6 +53,7 @@ public final class WorldIntroduction {
             if (tag.contains("Landing")) data.landing = BlockPos.of(tag.getLong("Landing"));
             data.flight = Math.max(0, Math.min(OpeningMeteor.FLIGHT_TICKS, tag.getInt("Flight")));
             if (tag.hasUUID("Display")) data.display = tag.getUUID("Display");
+            data.impacted = tag.getBoolean("Impacted");
             return data;
         }
 
@@ -82,6 +84,7 @@ public final class WorldIntroduction {
             landing = null;
             flight = 0;
             display = null;
+            impacted = false;
             setDirty();
         }
 
@@ -91,6 +94,7 @@ public final class WorldIntroduction {
             tag.putBoolean("Completed", completed);
             tag.putLong("Due", due);
             tag.putInt("Flight", flight);
+            tag.putBoolean("Impacted", impacted);
             if (player != null) tag.putUUID("Player", player);
             if (landing != null) tag.putLong("Landing", landing.asLong());
             if (display != null) tag.putUUID("Display", display);
@@ -131,6 +135,7 @@ public final class WorldIntroduction {
             player.sendSystemMessage(Component.translatable("message.ender_infection.meteor_incoming", site.getX(), site.getZ()));
         }
 
+        if (data.impacted && now % 40 != 0) return;
         InfectedMob mother = advanceMeteor(world, data);
         if (mother == null) return;
         BlockPos site = mother.blockPosition();
@@ -157,15 +162,43 @@ public final class WorldIntroduction {
             return null;
         }
 
-        OpeningMeteor.remove(world, data.display);
-        InfectedMob mother = prepareMother(world, site);
-        if (mother == null || !world.addFreshEntity(mother)) {
-            data.clearFlight();
-            return null;
+        if (!data.impacted) {
+            if (!OpeningMeteor.blastAreaLoaded(world, site)) return null;
+            OpeningMeteor.remove(world, data.display);
+            OpeningMeteor.impact(world, site);
+            data.display = null;
+            data.impacted = true;
+            data.setDirty();
         }
+
+        InfectedMob mother = findCraterSpawn(world, site);
+        if (mother == null || !world.addFreshEntity(mother)) return null;
         data.complete();
-        OpeningMeteor.impact(world, site);
         return mother;
+    }
+
+    private static InfectedMob findCraterSpawn(ServerLevel world, BlockPos site) {
+        BlockPos center = world.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, site);
+        InfectedMob mother = Math.abs(center.getY() - site.getY()) <= 5 ? prepareMother(world, center) : null;
+        if (mother != null && center.getY() < site.getY()) return mother;
+        InfectedMob rim = mother;
+
+        // Prefer a lower landing inside the bowl over an open ledge at the original surface.
+        for (int radius = 1; radius <= 4; radius++) {
+            for (int x = -radius; x <= radius; x++) {
+                for (int z = -radius; z <= radius; z++) {
+                    if (Math.max(Math.abs(x), Math.abs(z)) != radius) continue;
+                    BlockPos column = site.offset(x, 0, z);
+                    if (!world.hasChunkAt(column)) continue;
+                    BlockPos floor = world.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, column);
+                    if (Math.abs(floor.getY() - site.getY()) > 5) continue;
+                    mother = prepareMother(world, floor);
+                    if (mother != null && floor.getY() < site.getY()) return mother;
+                    if (rim == null) rim = mother;
+                }
+            }
+        }
+        return rim;
     }
 
     private static BlockPos findLanding(ServerLevel world, ServerPlayer player) {
@@ -181,7 +214,7 @@ public final class WorldIntroduction {
             if (!world.hasChunkAt(column)) continue;
             BlockPos site = world.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, column);
             if (site.getY() > world.getMaxBuildHeight() - 16 || !world.canSeeSky(site)) continue;
-            if (prepareMother(world, site) != null) return site;
+            if (OpeningMeteor.canLand(world, site) && prepareMother(world, site) != null) return site;
         }
         return null;
     }

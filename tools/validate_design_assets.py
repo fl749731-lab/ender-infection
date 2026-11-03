@@ -40,7 +40,18 @@ for p in (ASSETS/'models').rglob('*.obj'):
     v,t,n=map(int,token.split('/'))
     if not (0<v<=vertices and 0<t<=uvs and 0<n<=normals):errors.append('Invalid OBJ index '+str(p))
  checked_obj+=1
+checked_glow=0
+for p in (ASSETS/'textures').rglob('*_glowmask.png'):
+ with Image.open(p) as source:
+  mask=source.convert('RGBA')
+  if mask.getchannel('A').getbbox() is None:errors.append('Empty glow mask '+str(p.relative_to(ASSETS)))
+  base=p.with_name(p.name.replace('_glowmask.png','.png'))
+  if not base.exists():errors.append('Glow mask has no base texture '+str(p))
+  else:
+   with Image.open(base) as texture:
+    if texture.size!=mask.size:errors.append('Glow mask size mismatch '+str(p))
+ checked_glow+=1
 manifest=json.loads((PACK/'manifest.json').read_text());sources={r['source'] for r in report['assets']};missing={r['id'] for r in manifest['models'] if r['category']!='scenes'}-sources
 if missing:errors.append('Unmapped source '+str(missing))
-result={'status':'FAIL' if errors else 'PASS','geometry_files':checked_geo,'validated_faces':checked_uv,'obj_files':checked_obj,'mapped_source_models':len(sources),'scene_source_models':2,'errors':errors}
+result={'status':'FAIL' if errors else 'PASS','geometry_files':checked_geo,'validated_faces':checked_uv,'obj_files':checked_obj,'glow_masks':checked_glow,'mapped_source_models':len(sources),'scene_source_models':2,'errors':errors}
 (PROJECT/'verification/design_assets_validation.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8');print(json.dumps(result,ensure_ascii=False));raise SystemExit(bool(errors))

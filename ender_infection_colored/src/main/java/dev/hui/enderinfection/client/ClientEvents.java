@@ -20,6 +20,9 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = EnderInfection.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public final class ClientEvents {
     private ClientEvents() {}
+    @SubscribeEvent public static void reloadListeners(net.minecraftforge.client.event.RegisterClientReloadListenersEvent event){
+        event.registerReloadListener((net.minecraft.server.packs.resources.ResourceManagerReloadListener)manager->GuardedGlowLayer.clearCache());
+    }
     @SubscribeEvent public static void setup(FMLClientSetupEvent event){event.enqueueWork(()->{
         InfectedContent.TERRAIN.forEach((name,block)->{if(name.endsWith("leaves"))ItemBlockRenderTypes.setRenderLayer(block.get(),RenderType.cutout());});
         ItemBlockRenderTypes.setRenderLayer(InfectedContent.TERRAIN.get("eroded_grass").get(),RenderType.cutoutMipped());

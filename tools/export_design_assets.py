@@ -15,7 +15,10 @@ def load(key):return json.loads((PACK/SOURCES[key]['file']).read_text('utf-8'))
 def texture(d,path,glow=False):
  im=Image.open(io.BytesIO(base64.b64decode(d['textures'][0]['source'].split(',')[1]))).convert('RGBA');path.parent.mkdir(parents=True,exist_ok=True);im.save(path)
  if glow:
-  a=np.array(im);mask=(a[:,:,0]>100)&(a[:,:,2]>130)&(a[:,:,0]>a[:,:,1]*1.2)&(a[:,:,2]>a[:,:,1]*1.2);a[~mask]=0;Image.fromarray(a).save(path.with_name(path.stem+'_glowmask.png'))
+  a=np.array(im);mask=(a[:,:,0]>100)&(a[:,:,2]>130)&(a[:,:,0]>a[:,:,1]*1.2)&(a[:,:,2]>a[:,:,1]*1.2);a[~mask]=0
+  target=path.with_name(path.stem+'_glowmask.png')
+  if (a[:,:,3]>0).any():Image.fromarray(a).save(target)
+  else:target.unlink(missing_ok=True)
  return im
 
 def groups(d):

@@ -7,7 +7,7 @@ import software.bernie.geckolib.renderer.GeoBlockRenderer;
 import software.bernie.geckolib.core.animation.AnimationState;
 
 public final class LabFixtureRenderer extends GeoBlockRenderer<LabFixtureEntity> {
-    public LabFixtureRenderer(){super(new Model());addRenderLayer(new software.bernie.geckolib.renderer.layer.AutoGlowingGeoLayer<>(this));}
+    public LabFixtureRenderer(){super(new Model());addRenderLayer(new GuardedGlowLayer<>(this));}
     private static final class Model extends GeoModel<LabFixtureEntity>{
         public ResourceLocation getModelResource(LabFixtureEntity e){return new ResourceLocation("ender_infection","geo/"+e.key()+".geo.json");}
         public ResourceLocation getTextureResource(LabFixtureEntity e){return new ResourceLocation("ender_infection","textures/block/design/"+e.key()+".png");}

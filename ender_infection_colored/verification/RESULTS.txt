@@ -1,3 +1,15 @@
+Ender Infection 0.11.0-alpha.4 / 2026-11-03
+FIX: Empty optional glow masks crashed GeckoLib on laboratory fixture rendering.
+PASS: Before-fix regression validation identified all 7 empty masks.
+PASS: After-fix asset validation: 33 nonempty masks; dimensions match their base textures.
+PASS: Isolated client invoked actual GeckoLib emissive texture registration:
+CLIENT_ASSET_SMOKE_PASS geo=52 animations=52 design_items=107 registered_glows=33 non_glowing_fixtures=7
+Also checks fully transparent NativeImage rejection and opaque image acceptance.
+Prior 73 server GameTests cover alpha.3 gameplay; they were not repeated for this client rendering fix.
+Player world data was not modified by this fix.
+
+Previous version validation follows:
+
 Ender Infection design integration / 2026-11-02
 Version: 0.11.0-alpha.3 / Minecraft 1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17
 

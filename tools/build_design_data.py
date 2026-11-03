@@ -19,7 +19,7 @@ for key in allblocks:
 write(DATA/'loot_tables/blocks/lab_fixture_part.json',{'type':'minecraft:block','pools':[]})
 write(ASSETS/'blockstates/lab_fixture_part.json',{'variants':{'':{'model':'ender_infection:block/lab_fixture_part'}}})
 write(ASSETS/'models/block/lab_fixture_part.json',{'textures':{'particle':'ender_infection:block/design/lab_tile_light'},'elements':[]})
-write(PROJECT/'src/main/resources/data/minecraft/tags/blocks/mineable/pickaxe.json',{'replace':False,'values':['ender_infection:'+key for key in allblocks]+['ender_infection:lab_fixture_part']})
+write(PROJECT/'src/main/resources/data/minecraft/tags/blocks/mineable/pickaxe.json',{'replace':False,'values':['ender_infection:'+key for key in allblocks]+['ender_infection:lab_fixture_part','#ender_infection:crystal_ores']})
 
 def recipe(key,pattern,materials,count=1):
  def ingredient(v):return {'item':v if ':' in v else 'ender_infection:'+v}

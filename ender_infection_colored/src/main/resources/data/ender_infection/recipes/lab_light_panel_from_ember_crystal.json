@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "IRI",
+    "IQI"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_nugget"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "Q": {
+      "item": "ender_infection:ember_crystal"
+    }
+  },
+  "result": {
+    "item": "ender_infection:lab_light_panel",
+    "count": 2
+  }
+}

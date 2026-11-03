@@ -1,3 +1,29 @@
+Ender Infection 0.11.0-alpha.6 / 2026-11-03
+PASS: qegg-generated alpha version; final qegg verify ran Forge build + reobfJar, 33 seconds.
+PASS: 8/8 final building GameTests (final-building-checks.log), including registered block states,
+valid dry-flat structure pieces, native standing-player door clearance, lift safety, chunk placement and resume.
+FULL SUITE: 79/81 (alpha6-final-full-gametest.log). Boss crystal wave and skeleton fire-lane checks failed.
+ISOLATED RECHECK: The exact two AI assertions passed 2/2 (isolated-ai-final.log); intermittent issue remains.
+Earlier full baseline after test node cleanup passed 79/79; no production AI code changed in this iteration.
+PASS: Reproduced natural laboratory lighting deadlock before fix; LabPartBlock lighting no longer reads roots.
+PASS: Original research and badlands layouts each generated 36 FULL chunks after fix.
+PASS: Attributed HBM laboratory and Church of Sin generated naturally, each with 56 FULL chunks.
+Church rejected 7 unsuitable candidates and retained all 11,428 major architecture blocks.
+PASS: Final native client screenshots reviewed; proof and hashes in laboratory_visual.json.
+PASS: Four converted upstream structures match packaged NBTs; upstream attribution and licenses included.
+PASS: Asset validator: 40 geometry files, 45,090 faces, 90 OBJ files, 33 valid glow masks.
+PASS: Six retained debug facilities have 56 accessible functional zones; old box layouts no longer generate naturally.
+PASS: Independent Litematic sample: 42 cells, negative dimensions, 3D axes and cross-long bit packing.
+NOT INSTALLED: Lua Lab author download unavailable; local import tool and loader ready, actual map untested.
+FINAL JAR: ender-infection-0.11.0-alpha.6.jar; 4441438 bytes; sha256 a8e35311e91f663804a698fe3f593eb5694b4f3798d11546d9bf84da8a09bbdd
+INSTALLED: Source, dist and playable-instance JAR SHA-256 match; previous alpha.5 backed up
+under Minecraft1201/mod-backups/before-alpha6-20261103.
+LIMITS: Tests use isolated development worlds. No player saves opened. Existing structures are not rebuilt.
+New imported buildings require fresh chunks or /enderbuild. Natural tests use fixed-biome noise worlds,
+not a long-running mixed-mod multiplayer session. Two full-suite AI checks remain intermittent.
+
+Previous version validation follows:
+
 Ender Infection 0.11.0-alpha.5 / 2026-11-03
 PASS: All 76 required Forge GameTests, isolated world; completed 10:34:39.
 PASS: qegg check, local release versioning and final verify (build + reobfJar).

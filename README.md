@@ -29,6 +29,8 @@ Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当
 | 极地科考站 | HBM | 38×14×24 | `/enderbuild hbm_arctic` |
 | 废弃教堂 | Church of Sin | 37×58×70 | `/enderbuild church` |
 
+![白桦林中自然生成的教堂](docs/images/imported_church_natural.png)
+
 ![游戏内教堂主厅](docs/images/imported_church_nave.png)
 
 四套建筑跳过水域和大于 5 格高差的陡坡，分别在对应群系尝试自然生成，完整群系和转换说明见 [导入建筑说明](docs/imported-buildings.md)。旧方盒布局已停止自然生成，原有六套 `/enderlab` 调试布局与旧存档中的建筑保留。
@@ -125,7 +127,7 @@ Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当
 
 Blockbench 原件保留完整的逐面 UV。墙地使用 Forge 烘焙模型，大型实验设备使用 GeckoLib 方块实体；实验室整栋场景转换为原生方块结构。
 
-验证记录见 [RESULTS.txt](ender_infection_colored/verification/RESULTS.txt)。本轮专项测试已验证六类入口的站立玩家通行、双向升降与堵塞检查；静态检查覆盖六套调试 NBT 的占位和全部补给点路径。导入建筑另有方块注册、状态属性、分区块放置与恢复检查。
+验证记录见 [RESULTS.txt](ender_infection_colored/verification/RESULTS.txt)。本轮建筑专项 **8/8**、独立自然生成及完整建筑方块检查通过；全量回归为 **79/81**，两项战斗 AI 检查在隔离复查中 **2/2** 通过，仍记录为间歇性问题。本轮专项测试已验证六类入口的站立玩家通行、双向升降与堵塞检查；静态检查覆盖六套调试 NBT 的占位和全部补给点路径。导入建筑另有方块注册、状态属性、分区块放置与恢复检查。
 
 ## 构建与验证
 

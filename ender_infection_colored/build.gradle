@@ -29,10 +29,13 @@ minecraft {
             mods { ender_infection { source sourceSets.main } }
         }
         client { property 'mixin.env.remapRefMap','true'; property 'mixin.env.refMapRemappingFile',project.file('build/createSrgToMcp/output.srg').absolutePath; if (project.hasProperty('designSmoke')) { workingDirectory project.file('build/design-smoke'); property 'ender_infection.designSmoke','true' } }
+        if (project.hasProperty('labVisualCheck')) {
+            client { workingDirectory project.file('build/lab-visual-check'); property 'ender_infection.labVisualCheck','true' }
+        }
         server { args '--nogui' }
         gameTestServer {
             workingDirectory project.file("build/gametest-${System.currentTimeMillis()}")
-            property 'forge.enabledGameTestNamespaces','ender_infection'
+            property 'forge.enabledGameTestNamespaces',project.hasProperty('labChecks')?'ender_lab_checks':'ender_infection,ender_lab_checks'
         }
     }
 }

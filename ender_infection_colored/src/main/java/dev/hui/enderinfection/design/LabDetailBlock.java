@@ -1,0 +1,30 @@
+package dev.hui.enderinfection.design;
+import net.minecraft.core.*;
+import net.minecraft.world.level.*;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.*;
+import net.minecraft.world.level.block.state.properties.*;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.phys.shapes.*;
+
+/** Baked, directional single-block room dressing; no per-tick block entity cost. */
+public final class LabDetailBlock extends HorizontalDirectionalBlock {
+    private final String key;
+    public LabDetailBlock(String key,Properties p){super(p);this.key=key;registerDefaultState(stateDefinition.any().setValue(FACING,Direction.NORTH));}
+    @Override protected void createBlockStateDefinition(StateDefinition.Builder<Block,BlockState> b){b.add(FACING);}
+    @Override public BlockState getStateForPlacement(BlockPlaceContext c){return defaultBlockState().setValue(FACING,c.getHorizontalDirection().getOpposite());}
+    @Override public BlockState rotate(BlockState s,Rotation r){return s.setValue(FACING,r.rotate(s.getValue(FACING)));}
+    @Override public BlockState mirror(BlockState s,Mirror m){return rotate(s,m.getRotation(s.getValue(FACING)));}
+    @Override public VoxelShape getShape(BlockState s,BlockGetter level,BlockPos p,CollisionContext c){
+        VoxelShape shape=switch(key){
+            case "lab_monitor"->box(1,4,8,15,15,15);
+            case "lab_sample_rack"->box(2,1,4,14,9,12);
+            case "lab_pipe"->box(0,8,4,16,16,12);
+            case "lab_light_panel"->box(0,13.5,0,16,16,16);
+            case "lab_chair"->box(3,0,3,13,16,13);
+            case "lab_sink"->box(0,0,1,16,16,15);
+            case "lab_floor_grate"->box(0,13,0,16,16,16);
+            default->box(1,0,1,15,16,15);
+        };return LabFixtureBlock.rotate(shape,s.getValue(FACING));
+    }
+}

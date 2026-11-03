@@ -1,0 +1,649 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "实验室管线 | lab_pipe",
+  "model_identifier": "lab_pipe",
+  "resolution": {
+    "width": 64,
+    "height": 64
+  },
+  "elements": [
+    {
+      "name": "pipe_1",
+      "uuid": "e1219ded-2565-5b00-bfb9-a7bf1e40b888",
+      "type": "cube",
+      "from": [
+        -8.0,
+        11.0,
+        -2.0
+      ],
+      "to": [
+        8.0,
+        15.0,
+        2.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            17,
+            2,
+            33,
+            6
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            17,
+            2,
+            33,
+            6
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            37,
+            2,
+            41,
+            6
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            37,
+            2,
+            41,
+            6
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            17,
+            2,
+            33,
+            6
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            17,
+            2,
+            33,
+            6
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "seam_2",
+      "uuid": "251cd6c1-d617-5731-9bb3-46de6b747577",
+      "type": "cube",
+      "from": [
+        -8.0,
+        14.8,
+        -0.5
+      ],
+      "to": [
+        8.0,
+        15.3,
+        0.5
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            2,
+            12,
+            18,
+            13
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            2,
+            12,
+            18,
+            13
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            22,
+            12,
+            23,
+            13
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            22,
+            12,
+            23,
+            13
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            2,
+            12,
+            18,
+            13
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            2,
+            12,
+            18,
+            13
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "clamp_3",
+      "uuid": "899baa04-2990-551c-8902-88b6fe1bd11e",
+      "type": "cube",
+      "from": [
+        -6.0,
+        10.0,
+        -3.0
+      ],
+      "to": [
+        -5.0,
+        16.0,
+        3.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            12,
+            2,
+            13,
+            8
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            12,
+            2,
+            13,
+            8
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            2,
+            2,
+            8,
+            8
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            2,
+            2,
+            8,
+            8
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            12,
+            2,
+            13,
+            8
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            12,
+            2,
+            13,
+            8
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "bolt_4",
+      "uuid": "0aba7aff-0c67-5920-90ad-14b21fd9312b",
+      "type": "cube",
+      "from": [
+        -6.0,
+        12.0,
+        -3.3
+      ],
+      "to": [
+        -5.0,
+        13.0,
+        -3.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            27,
+            12,
+            28,
+            13
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            27,
+            12,
+            28,
+            13
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            27,
+            12,
+            28,
+            13
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            27,
+            12,
+            28,
+            13
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            27,
+            12,
+            28,
+            13
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            27,
+            12,
+            28,
+            13
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "clamp_5",
+      "uuid": "dfc4a4ae-9172-58a7-a6d3-fb3bdedf1771",
+      "type": "cube",
+      "from": [
+        5.0,
+        10.0,
+        -3.0
+      ],
+      "to": [
+        6.0,
+        16.0,
+        3.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            12,
+            2,
+            13,
+            8
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            12,
+            2,
+            13,
+            8
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            2,
+            2,
+            8,
+            8
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            2,
+            2,
+            8,
+            8
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            12,
+            2,
+            13,
+            8
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            12,
+            2,
+            13,
+            8
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "bolt_6",
+      "uuid": "d9b6d634-dfa9-5687-84f2-69d3827a93ab",
+      "type": "cube",
+      "from": [
+        5.0,
+        12.0,
+        -3.3
+      ],
+      "to": [
+        6.0,
+        13.0,
+        -3.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            27,
+            12,
+            28,
+            13
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            27,
+            12,
+            28,
+            13
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            27,
+            12,
+            28,
+            13
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            27,
+            12,
+            28,
+            13
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            27,
+            12,
+            28,
+            13
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            27,
+            12,
+            28,
+            13
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "valve_7",
+      "uuid": "60bcab8f-fc16-537e-bb44-df90ec399caf",
+      "type": "cube",
+      "from": [
+        -1.0,
+        8.0,
+        -4.0
+      ],
+      "to": [
+        1.0,
+        12.0,
+        -2.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            45,
+            2,
+            47,
+            6
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            45,
+            2,
+            47,
+            6
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            45,
+            2,
+            47,
+            6
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            45,
+            2,
+            47,
+            6
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            51,
+            2,
+            53,
+            4
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            51,
+            2,
+            53,
+            4
+          ],
+          "texture": 0
+        }
+      }
+    }
+  ],
+  "outliner": [
+    {
+      "name": "root",
+      "uuid": "dbc11c5c-cded-54df-b776-8ae9333dc610",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "children": [
+        "e1219ded-2565-5b00-bfb9-a7bf1e40b888",
+        "251cd6c1-d617-5731-9bb3-46de6b747577",
+        "899baa04-2990-551c-8902-88b6fe1bd11e",
+        "0aba7aff-0c67-5920-90ad-14b21fd9312b",
+        "dfc4a4ae-9172-58a7-a6d3-fb3bdedf1771",
+        "d9b6d634-dfa9-5687-84f2-69d3827a93ab",
+        "60bcab8f-fc16-537e-bb44-df90ec399caf"
+      ],
+      "export": true,
+      "isOpen": false,
+      "visibility": true
+    }
+  ],
+  "textures": [
+    {
+      "name": "lab_pipe.png",
+      "uuid": "ba1e919d-cae8-5291-918b-b31f68f1f679",
+      "id": "0",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABXUlEQVR4nO3WLU/DQBjA8WuzTwAFknoMjswgJ8gSEgRiGDBTMxjUDGYGM4XBTM2AAYEjIQgkZsERXnwTYAj2BY50Sdmz7vqypqJ0/5/o3e4utz7t3dNTasFZQaW+29COszQz4LLf+xvjq27V9ODxYaqtdXSsg7rrusY/8jzP2P758aVuri9i5+uctKf6+939cX+zfZWqPY4dBB814KDZ0jJ4WYZvNqu9xmHsfJ3Trg4HmbaepCJ/vL68jctlx1GLwlYlIZf9PFugYmr8Hg4z34jc6zIfyLocs7q2knq+JPMEntsK6J2fWXnOYZpPtmV901Es/7K+sRmbNN6fn6xw8gt/Cf4rWwZoIvuCoMsSPKAmJ0G5v6POAVFfh9HoZ2YbmU6M93e3eru+YxUuB1RF8FnJRGo6MfrBy7JQD2CQQ1JLSpbBmy/aCgAAAAAAAAAAAAAAAAAAAAAAAIAqmV94IZErn7wibgAAAABJRU5ErkJggg==",
+      "mode": "bitmap",
+      "width": 64,
+      "height": 64,
+      "uv_width": 64,
+      "uv_height": 64,
+      "render_mode": "default"
+    }
+  ],
+  "animations": [],
+  "notes": "Original concept conversion. 16 units = 1 block. Editable cuboids, embedded native-density UV atlas. Design source 2026-11-02. Game integration is separate.",
+  "texture_width": 64,
+  "texture_height": 64
+}

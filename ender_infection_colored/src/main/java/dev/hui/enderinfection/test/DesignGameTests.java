@@ -28,7 +28,9 @@ public final class DesignGameTests {
         level.setBlock(p,s,3);block.fillParts(level,p,s);h.assertTrue(level.getBlockEntity(p) instanceof LabFixtureEntity,"Missing fixture BE");
         h.assertTrue(level.getBlockState(p.above()).getBlock() instanceof LabPartBlock,"Door upper part missing");
         h.assertTrue(!level.getBlockState(p).getCollisionShape(level,p).isEmpty(),"Closed door has no collision");
-        level.setBlock(p,s.setValue(LabFixtureBlock.OPEN,true),3);h.assertTrue(level.getBlockState(p.above()).getCollisionShape(level,p.above()).isEmpty(),"Opened door still blocks upper half");
+        level.setBlock(p,s.setValue(LabFixtureBlock.OPEN,true),3);var upperShape=level.getBlockState(p.above()).getCollisionShape(level,p.above());
+        h.assertTrue(!net.minecraft.world.phys.shapes.Shapes.joinIsNotEmpty(upperShape,net.minecraft.world.phys.shapes.Shapes.box(.3,.2,.3,.7,.8,.7),net.minecraft.world.phys.shapes.BooleanOp.AND),"Opened door still blocks the passage");
+        h.assertTrue(!upperShape.isEmpty(),"Opened door lost its frame collision");
         level.destroyBlock(p.above(),false);h.assertTrue(level.getBlockState(p).isAir()&&level.getBlockState(p.above()).isAir(),"Breaking upper part orphaned root");h.succeed();
     }
     @GameTest(template="empty64",timeoutTicks=60,batch="design_wide_fixture")
@@ -62,8 +64,15 @@ public final class DesignGameTests {
         var level=h.getLevel();var p=h.absolutePos(new BlockPos(2,1,2));h.assertTrue(dev.hui.enderinfection.worldgen.ResearchLabPlacement.place(level,p),"Native lab template placement failed");
         for(int y:new int[]{0,5,10,15}){
             h.assertTrue(level.getBlockState(p.offset(15,y,8)).is(InfectedContent.LAB_CHECKER.get()),"Missing floor at "+y);
-            h.assertTrue(level.getBlockEntity(p.offset(6,y+1,4)) instanceof LabFixtureEntity,"Missing equipment bench at "+y);
-            h.assertTrue(level.getBlockEntity(p.offset(9,y+1,2)) instanceof ChestBlockEntity,"Missing loot chest at "+y);
+            int chests=0,details=0,fixtures=0;
+            for(int x=1;x<=30;x++)for(int z=1;z<=26;z++)for(int h1=1;h1<=4;h1++){
+                var at=p.offset(x,y+h1,z);var state=level.getBlockState(at);
+                if(level.getBlockEntity(at) instanceof ChestBlockEntity)chests++;
+                if(state.getBlock() instanceof LabDetailBlock)details++;
+                if(level.getBlockEntity(at) instanceof LabFixtureEntity)fixtures++;
+            }
+            h.assertTrue(chests==6,"Missing themed loot chests at "+y+": "+chests);
+            h.assertTrue(details>=30&&fixtures>=3,"Floor missing detailed equipment at "+y);
         }
         h.assertTrue(level.getBlockState(p.offset(16,21,23)).getBlock() instanceof LabFixtureBlock,"Missing surface entrance");
         h.assertTrue(level.getBlockState(p.offset(16,19,25)).is(Blocks.LADDER),"Entrance not connected to lower levels");

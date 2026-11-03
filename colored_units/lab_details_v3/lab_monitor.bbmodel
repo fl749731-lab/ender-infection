@@ -1,0 +1,394 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "实验室监视器 | lab_monitor",
+  "model_identifier": "lab_monitor",
+  "resolution": {
+    "width": 64,
+    "height": 64
+  },
+  "elements": [
+    {
+      "name": "housing_1",
+      "uuid": "ee1952ee-2e40-5e8d-898c-59b6014de9e4",
+      "type": "cube",
+      "from": [
+        -7.0,
+        4.0,
+        1.0
+      ],
+      "to": [
+        7.0,
+        15.0,
+        4.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            2,
+            2,
+            16,
+            13
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            2,
+            2,
+            16,
+            13
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            20,
+            2,
+            23,
+            13
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            20,
+            2,
+            23,
+            13
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            2,
+            17,
+            16,
+            20
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            2,
+            17,
+            16,
+            20
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "screen_2",
+      "uuid": "96f81764-1128-5f19-b372-4da508bbd695",
+      "type": "cube",
+      "from": [
+        -5.8,
+        6.0,
+        0.7
+      ],
+      "to": [
+        5.8,
+        13.8,
+        1.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            27,
+            2,
+            39,
+            10
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            27,
+            2,
+            39,
+            10
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            43,
+            2,
+            44,
+            10
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            43,
+            2,
+            44,
+            10
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            28,
+            17,
+            40,
+            18
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            28,
+            17,
+            40,
+            18
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "status_3",
+      "uuid": "277fed79-86d9-569b-94a3-05a4e027a7c8",
+      "type": "cube",
+      "from": [
+        -5.0,
+        4.8,
+        0.6
+      ],
+      "to": [
+        -2.0,
+        5.5,
+        0.9
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            44,
+            17,
+            47,
+            18
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            44,
+            17,
+            47,
+            18
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            51,
+            17,
+            52,
+            18
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            51,
+            17,
+            52,
+            18
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            44,
+            17,
+            47,
+            18
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            44,
+            17,
+            47,
+            18
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "bracket_4",
+      "uuid": "660ca6d6-fd12-5322-b4d5-9c7cc4f7aa32",
+      "type": "cube",
+      "from": [
+        -2.0,
+        5.0,
+        4.0
+      ],
+      "to": [
+        2.0,
+        11.0,
+        7.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            48,
+            2,
+            52,
+            8
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            48,
+            2,
+            52,
+            8
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            56,
+            2,
+            59,
+            8
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            56,
+            2,
+            59,
+            8
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            20,
+            17,
+            24,
+            20
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            20,
+            17,
+            24,
+            20
+          ],
+          "texture": 0
+        }
+      }
+    }
+  ],
+  "outliner": [
+    {
+      "name": "root",
+      "uuid": "df2d925a-58e0-57a1-9e14-f00cb7543650",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "children": [
+        "ee1952ee-2e40-5e8d-898c-59b6014de9e4",
+        "96f81764-1128-5f19-b372-4da508bbd695",
+        "277fed79-86d9-569b-94a3-05a4e027a7c8",
+        "660ca6d6-fd12-5322-b4d5-9c7cc4f7aa32"
+      ],
+      "export": true,
+      "isOpen": false,
+      "visibility": true
+    }
+  ],
+  "textures": [
+    {
+      "name": "lab_monitor.png",
+      "uuid": "faf22272-3d3b-5e5b-b9f5-dd8673e9e2ea",
+      "id": "0",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAB2UlEQVR4nO3XLU/DQBgH8FtT3SWjauBwiJkZDAkGMEgMKNQEGBQGs4RgUBjMFAoMEgMzJBgMIUEsvAQwrGosYV9g5EauefpwXXtXshf2/4n1XnrXPe31rifEhMupxPLqWtf3C8YdnJ7Uwj6k8vxiV6Xvbq8jdYXpmbAujXbz41d7XlbZ3gn7LBaLorq3G1tfOz6K1EmOCl5Y2tisdHXB87xp8LyNStMyGpxSPTiMrded79LM0+Nz7zjl+9o/9Nlqif/G5QWdzlfsDaDneF7e+qJL6yuRfGlutnd8aLz2jvWzSzG0G+B5+ciTpjdDpeUxy2jgAZb2t7TlpoIgMG7jiAnnDuOi/BXg5UN9Bbik18EGD7Bu2Y9c1vjMTpc6Xq9bBl0x5nRBmdQ7uhk+yfvbz2xtgn/AmLZRaZt++nFpRg7rfjO8Ko9bApNei6x//q+DD2+AzRNNM1LGgSN/Xhr31neWtr26OI/0w/MAoyen27mZbIb4ljdpe5p1S7xA+r9hS5ys42Wp5oAy28aaoG2TtqdZt8Q0eJ5XaX7OSO0F2hm/BfjTpXmVNh0BrhiwrGt5vwBNgw9HAH+PTdC2us9OPgcAAAAAAAAAAAAAAAAAAAAAAAAAAACAGIRvLsTXS+UnXv8AAAAASUVORK5CYII=",
+      "mode": "bitmap",
+      "width": 64,
+      "height": 64,
+      "uv_width": 64,
+      "uv_height": 64,
+      "render_mode": "default"
+    }
+  ],
+  "animations": [],
+  "notes": "Original concept conversion. 16 units = 1 block. Editable cuboids, embedded native-density UV atlas. Design source 2026-11-02. Game integration is separate.",
+  "texture_width": 64,
+  "texture_height": 64
+}

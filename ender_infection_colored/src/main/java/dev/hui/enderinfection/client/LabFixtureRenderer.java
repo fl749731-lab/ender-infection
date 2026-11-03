@@ -14,7 +14,7 @@ public final class LabFixtureRenderer extends GeoBlockRenderer<LabFixtureEntity>
         public ResourceLocation getAnimationResource(LabFixtureEntity e){return new ResourceLocation("ender_infection","animations/"+e.key()+".animation.json");}
         @Override public RenderType getRenderType(LabFixtureEntity e,ResourceLocation texture){return RenderType.entityTranslucent(texture);}
         @Override public void setCustomAnimations(LabFixtureEntity e,long id,AnimationState<LabFixtureEntity> state){
-            super.setCustomAnimations(e,id,state);float p=e.previousOpen+(e.openProgress-e.previousOpen)*state.getPartialTick();float angle=p*(float)Math.toRadians(95);
+            super.setCustomAnimations(e,id,state);float p=e.previousOpen+(e.openProgress-e.previousOpen)*state.getPartialTick();float angle=p*(float)Math.toRadians(90);
             for(String name:new String[]{"hatch_hinge","door_hinge","door_-1","door_1"})getBone(name).ifPresent(b->b.setRotY(name.equals("door_-1")?-angle:angle));
             float time=(e.getLevel()==null?0:e.getLevel().getGameTime())+state.getPartialTick();
             getBone("specimen").ifPresent(b->{b.setRotY(time*.012F);b.setPosY((float)Math.sin(time*.05)*.35F);});

@@ -21,7 +21,7 @@ public final class DesignContent {
     public static final Map<String,RegistryObject<Item>> ITEMS_BY_KEY=new LinkedHashMap<>();
     public static final Map<String,RegistryObject<Block>> BLOCKS_BY_KEY=new LinkedHashMap<>();
     public static final RegistryObject<EntityType<DesignProjectile>> PROJECTILE=MOBS.register("design_crystal",()->EntityType.Builder.<DesignProjectile>of(DesignProjectile::new,MobCategory.MISC).sized(.25F,.25F).clientTrackingRange(8).updateInterval(1).build("ender_infection:design_crystal"));
-    public static final RegistryObject<Block> PART=BLOCKS.register("lab_fixture_part",()->new LabPartBlock(BlockBehaviour.Properties.of().strength(3).noOcclusion()));
+    public static final RegistryObject<Block> PART=BLOCKS.register("lab_fixture_part",()->new LabPartBlock(BlockBehaviour.Properties.of().strength(3).noOcclusion().dynamicShape()));
     static {
         for(String key:new String[]{"mycelium_bundle","spore_pod","chitin_plate","condensed_biomass","resonance_organ"})ITEMS_BY_KEY.put(key,ITEMS.register(key,()->new Item(new Item.Properties())));
         for(String key:new String[]{"prism_spear","earthsplitter_hammer","crystal_spike_crossbow","resonance_staff"})ITEMS_BY_KEY.put(key,ITEMS.register(key,()->new DesignWeapon(key)));
@@ -38,6 +38,12 @@ public final class DesignContent {
                 if(isFixture(key))return new LabFixtureBlock(key,p.lightLevel(s->base.equals("incubator")?7:eroded?2:0));
                 return new Block(p);
             });
+            BLOCKS_BY_KEY.put(key,block);ITEMS_BY_KEY.put(key,ITEMS.register(key,()->new BlockItem(block.get(),new Item.Properties())));
+        }
+    }
+    static {
+        for(String key:new String[]{"lab_monitor","lab_sample_rack","lab_shelf","lab_pipe","lab_light_panel","lab_chair","lab_sink","lab_storage_crate","lab_freezer","lab_floor_grate"}){
+            RegistryObject<Block> block=BLOCKS.register(key,()->new LabDetailBlock(key,BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.METAL).noOcclusion().lightLevel(s->key.equals("lab_light_panel")?14:0)));
             BLOCKS_BY_KEY.put(key,block);ITEMS_BY_KEY.put(key,ITEMS.register(key,()->new BlockItem(block.get(),new Item.Properties())));
         }
     }

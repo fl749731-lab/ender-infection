@@ -42,7 +42,7 @@ for armor in ARMOR.values():
    # Upgrade the matching light piece without duplicating armour.
    write(DATA/'recipes'/f'{armor}_{slot}.json',{'type':'minecraft:crafting_shapeless','category':'equipment','ingredients':[{'item':'ender_infection:crystal_carapace_'+slot},{'item':'ender_infection:mother_heart'},{'item':'ender_infection:condensed_biomass'},{'item':'ender_infection:chitin_plate'}],'result':{'item':f'ender_infection:{armor}_{slot}'}})
   else:recipe(armor+'_'+slot,pattern,mats)
-loot=DATA/'loot_tables/chests/infected_lab.json';d=json.loads(loot.read_text('utf-8'));d['pools'].append({'rolls':{'min':2,'max':4},'entries':[{'type':'minecraft:item','name':'ender_infection:'+key,'weight':2 if key=='resonance_organ' else 5,'functions':[{'function':'minecraft:set_count','count':{'min':1,'max':3}}]} for key in ['mycelium_bundle','chitin_plate','spore_pod','condensed_biomass','resonance_organ','resonant_shard']]});write(loot,d)
+loot=DATA/'loot_tables/chests/infected_lab.json';d=json.loads(loot.read_text('utf-8'));generated={'ender_infection:'+k for k in ['mycelium_bundle','chitin_plate','spore_pod','condensed_biomass','resonance_organ','resonant_shard']};d['pools']=[p for p in d['pools'] if {e.get('name') for e in p.get('entries',[])}!=generated];d['pools'].append({'rolls':{'min':2,'max':4},'entries':[{'type':'minecraft:item','name':'ender_infection:'+key,'weight':2 if key=='resonance_organ' else 5,'functions':[{'function':'minecraft:set_count','count':{'min':1,'max':3}}]} for key in ['mycelium_bundle','chitin_plate','spore_pod','condensed_biomass','resonance_organ','resonant_shard']]});write(loot,d)
 # Minimal NBT writer: explicit typed values, Java Edition structure format.
 def string(s):b=s.encode('utf-8');return struct.pack('>H',len(b))+b
 INT=lambda n:(3,n)
@@ -81,7 +81,7 @@ for floor in range(4):
    if x in (0,31) or z in (0,27) or x in (13,18) or z in (9,18) and (x<14 or x>17):
     for dy in range(1,5):put(x,y+dy,z,'lab_tile_light_eroded' if eroded else 'lab_tile_light')
  # Corridor access to the six rooms; one functional door plus window per room.
- for wall,face in [(13,'west'),(18,'east')]:
+ for wall,face in [(13,'east'),(18,'west')]:
   for zi in (3,12,21):
    fixture(wall,y+1,zi,'lab_door_eroded' if floor>=2 else 'lab_door',face)
    for yy in (y+3,y+4):put(wall,yy,zi,'lab_tile_dark')
@@ -89,27 +89,22 @@ for floor in range(4):
     for yy in (y+2,y+3):put(wall,yy,zz,'glass')
  for z in (4,13,22):
   put(15,y+4,z,'sea_lantern');put(16,y+4,z,'sea_lantern')
- for row,z in enumerate((4,13,22)):
-  for side,x in enumerate((6,25)):
-   infected=(floor+row+side)%3==0;suffix='_eroded' if infected else ''
-   fixture(x,y+1,z,'surgery_table'+suffix if row==1 else 'lab_workbench'+suffix)
-   fixture(x-3,y+1,z-2,'lab_cabinet'+suffix)
-   fixture(x+3,y+1,z+2,'incubator'+suffix)
-   fixture(x,y+3,z-3,'lab_vent'+suffix)
-   put(x+3,y+1,z-2,'chest',{'facing':'south','type':'single','waterlogged':'false'},{'id':STR('minecraft:chest'),'LootTable':STR('ender_infection:chests/infected_lab')})
- # Stairwell replaces a part of the southwest room; two wide, five risers per storey.
- for x in (2,3):
-  for z in range(20,26):
-   for yy in range(y+1,y+6):
-    if yy<26:put(x,yy,z)
-  for step in range(5):put(x,y+1+step,25-step,'lab_stair',{'facing':'north','half':'bottom','shape':'straight','waterlogged':'false'})
- # Landings connect to the last side room.
- for x in (4,5):
-  for z in (20,21):put(x,y,z,'lab_tile_dark')
 for x in range(32):
  for z in range(28):put(x,20,z,'lab_tile_dark')
-# Surface vestibule with ladder shaft connected to the main corridor at all floors.
-for y in range(1,25):
+# Rooms have individual purposes and non-identical furniture/partition arrangements.
+from lab_rooms import build_rooms
+rooms=build_rooms({'put':put,'fixture':fixture,'STR':STR,'COM':COM,'LST':LST})
+# Three connected stair flights; keep headroom through each upper floor.
+for x in (2,3):
+ for z in range(21,26):
+  for yy in range(1,19):put(x,yy,z)
+ for floor in range(3):
+  for step in range(5):put(x,floor*5+1+step,25-step,'lab_stair',{'facing':'north','half':'bottom','shape':'straight','waterlogged':'false'})
+for floor in range(4):
+ for z in range(21,25):
+  for x in (1,4):put(x,floor*5+1,z,'iron_bars',{'north':'true','south':'true','east':'false','west':'false','waterlogged':'false'})
+# Surface vestibule: a framed one-block door, sidelights and a solid lintel.
+for y in range(1,21):
  put(16,y,25,'ladder',{'facing':'north','waterlogged':'false'});put(16,y,26,'lab_tile_light')
  put(15,y,25);put(17,y,25)
 for x in range(14,19):
@@ -117,8 +112,17 @@ for x in range(14,19):
   for y in range(21,25):
    if x in (14,18) or z==27:put(x,y,z,'lab_tile_light')
   put(x,25,z,'lab_tile_dark')
-fixture(16,21,23,'lab_door','north');put(15,24,24,'sea_lantern');put(17,24,24,'sea_lantern')
-put(23,16,24,'infected_nest',{}, {'id':STR('ender_infection:expansion_node'),'Wild':(1,1)})
+for x in (15,16,17):
+ for y in range(21,25):
+  if x==16 and y<23:continue
+  put(x,y,23,'minecraft:light_gray_stained_glass' if x!=16 and y==22 else 'lab_tile_dark' if y==23 else 'lab_tile_light')
+fixture(16,21,23,'lab_door','north')
+# Flush ceiling lights, not hanging one-metre lantern cubes.
+for x in (15,17):put(x,24,24,'lab_light_panel',{'facing':'north'})
+put(16,24,26,'lab_monitor',{'facing':'north'})
+put(16,24,22,'minecraft:birch_wall_sign',{'facing':'north','waterlogged':'false'},{'id':STR('minecraft:sign'),'front_text':COM({'messages':LST(8,[json.dumps({'text':t},ensure_ascii=False) for t in ['末影研究设施','入口 / ENTRY','门禁与隔离区','B1—B4']]),'color':STR('black'),'has_glowing_text':(1,0)}),'is_waxed':(1,1)})
+# Safety rail around the ladder opening with an approach from the side.
+for x in (15,17):put(x,21,25,'iron_bars',{'north':'true','south':'true','east':'false','west':'false','waterlogged':'false'})
 # Limited native spawners: configurable vanilla mechanics, not unbounded tick spawning.
 for x,y,z,mob in [(10,11,6,'infected_forager'),(22,16,15,'infected_throat_spitter')]:
  put(x,y,z,'spawner',{}, {'id':STR('minecraft:mob_spawner'),'Delay':(2,300),'MinSpawnDelay':(2,400),'MaxSpawnDelay':(2,800),'SpawnCount':(2,1),'MaxNearbyEntities':(2,3),'RequiredPlayerRange':(2,16),'SpawnRange':(2,3),'SpawnData':COM({'entity':COM({'id':STR('ender_infection:'+mob)})})})
@@ -144,5 +148,8 @@ write(DATA/'worldgen/template_pool/research_lab.json',{'name':'ender_infection:r
 write(DATA/'worldgen/structure/research_lab.json',{'type':'minecraft:jigsaw','biomes':['minecraft:mushroom_fields','minecraft:dark_forest','minecraft:swamp'],'step':'surface_structures','spawn_overrides':{},'terrain_adaptation':'none','start_pool':'ender_infection:research_lab','size':1,'start_height':{'absolute':-20},'project_start_to_heightmap':'WORLD_SURFACE_WG','max_distance_from_center':80,'use_expansion_hack':False})
 write(DATA/'worldgen/structure_set/research_lab.json',{'structures':[{'structure':'ender_infection:research_lab','weight':1}],'placement':{'type':'minecraft:random_spread','spacing':32,'separation':10,'salt':83264179}})
 write(DATA/'forge/biome_modifier/lab_research.json',{'type':'forge:none'})
-write(PROJECT/'verification/research_lab_layout.json',{'size':[32,26,28],'floors':4,'rooms':24,'floor_y':[0,5,10,15],'surface_entrance_y':21,'palette':len(palette),'blocks':len(records),'spawners':2,'loot_chests':24,'native_structure':'ender_infection:research_lab'})
+write(PROJECT/'verification/research_lab_layout.json',{'size':[32,26,28],'floors':4,'rooms':24,'unique_room_layouts':24,'detail_models':10,'floor_y':[0,5,10,15],'surface_entrance_y':21,'palette':len(palette),'blocks':len(records),'spawners':2,'loot_chests':24,'native_structure':'ender_infection:research_lab'})
 print('Generated laboratory:',len(records),'blocks,',len(palette),'states;',len(allblocks),'lab blocks')
+
+from build_lab_details import export_details
+export_details()

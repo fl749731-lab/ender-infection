@@ -1,8 +1,22 @@
 # 末影感染 · Ender Infection
 
-Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当前开发版本：**0.11.0-alpha.4**。
+Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当前开发版本：**0.11.0-alpha.5**。
 
 感染从母体与扩张节点开始。每个母体拥有独立的生物质储备；召唤、进阶与节点扩张消费储备，土地收益随领土扩大而增加，重复收割同一片土地的收益逐渐下降。
+
+## alpha.5 实验室房间重做
+
+按用途重新布置 24 间房，分为后勤与控制、样本研究、医疗、动力与收容四层。病房使用成组床位与床头柜，培养室有玻璃隔间，控制室有操作席和监视器，档案室有书架与阅览台；机房、厨房、冷库、隔离室也分别布置。各室保留通行路线，并配置对应类别的战利品箱。
+
+新增 10 种原创装饰方块：监视器、样本架、货架、管线、灯板、座椅、清洗槽、货箱、冷柜和地板格栅，附可编辑 `.bbmodel`、贴图、合成与掉落。实验室方块合计 38 种。入口补齐侧边与门楣，采用嵌入式灯板；打开门时门框仍有碰撞，梯子止于入口平台，内部三段楼梯留足净空。
+
+对真菌 Mod 原始结构的逐格分析、观察与推断分开记录在 [房间参考与设计说明](docs/laboratory-room-reference.md)。本项目未复制它的结构或素材。下面是独立 Minecraft 测试世界中的实际截图：
+
+| 控制室 | 病房 |
+|---|---|
+| ![控制室](docs/images/lab_control.png) | ![病房](docs/images/lab_ward.png) |
+
+**已经放进旧存档的建筑不会自动重建。更新后请使用 `/enderlab research` 生成新实验室，或探索新生成的区块。** 原有实验室整栋/剖面 `.bbmodel` 是旧版设计示意；当前房间布局以原生 NBT 和 `tools/lab_rooms.py` 为准，新增 10 件摆件各有独立 Blockbench 原件。
 
 ## alpha.4 崩溃修复
 
@@ -17,7 +31,7 @@ Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当
 - 侦察者标记目标，搬运兽回收材料，晶盾卫士正面减伤，喷吐者发射带毒晶体，祭司治疗与减伤支援，孵化单位按母体储备付费并遵守人口上限。
 - 2 套四件式护甲、4 种武器和 8 类掉落材料；包含合成、修理、耐久、冷却和晶刺弩弹药消耗。
 - 14 类实验室构件，各有完整与侵蚀版本，共 28 个方块。门和储柜可以开合，培养舱有动态标本，手术台提供治疗，大型摆件占用对应空间。
-- 原生四层研究实验室：32×26×28 格，24 个房间、楼梯与梯井、地表入口、战利品箱及有限额刷怪点。完整和剖面 `.bbmodel` 表现同一座建筑。
+- 原生四层研究实验室：32×26×28 格，24 个房间、楼梯与梯井、地表入口、战利品箱及有限额刷怪点。完整和剖面 `.bbmodel` 保留旧版建筑示意；本轮原生结构已重做房间布局。
 
 ## 单位
 
@@ -75,7 +89,7 @@ Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当
 
 本机启动入口为 `E:\mc\启动MC.cmd`，Prism Launcher 与游戏实例位于 `E:\mc\Minecraft1201`。账号、存档和启动器数据属于本机文件，不进入 Git 仓库。
 
-编译后的 `ender-infection-0.11.0-alpha.4.jar` 与 `geckolib-forge-1.20.1-4.4.9.jar` 放入同一个 Forge 1.20.1 实例的 `mods` 目录。更新时只保留一个版本的 Ender Infection JAR。模型改变需要重新启动游戏。
+编译后的 `ender-infection-0.11.0-alpha.5.jar` 与 `geckolib-forge-1.20.1-4.4.9.jar` 放入同一个 Forge 1.20.1 实例的 `mods` 目录。更新时只保留一个版本的 Ender Infection JAR。模型改变需要重新启动游戏。
 
 ## 工程与可编辑资源
 
@@ -86,12 +100,13 @@ Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当
 | [游戏资源](ender_infection_colored/src/main/resources/assets/ender_infection) | Gecko 模型、动画、贴图、烘焙模型与语言 |
 | [结构与配方](ender_infection_colored/src/main/resources/data/ender_infection) | 实验室 NBT、世界生成、掉落和合成 |
 | [Blockbench 设计包](colored_units/design_pack_2026-11-02_v2) | 63 个可编辑模型、贴图与设计源脚本 |
+| [新增实验室摆件](colored_units/lab_details_v3) | 10 件原创房间细节模型与贴图 |
 | [转换工具](tools) | 导出游戏资源、生成结构与验证资源 |
 | [验证结果](ender_infection_colored/verification/RESULTS.txt) | 实际构建、GameTest 和客户端加载记录 |
 
 Blockbench 原件保留完整的逐面 UV。墙地使用 Forge 烘焙模型，大型实验设备使用 GeckoLib 方块实体；实验室整栋场景转换为原生方块结构。
 
-本轮本地验证：**73 项必需 GameTest 全部通过**，最终客户端成功烘焙 **52 个模型、52 个动画资源和 107 个 Mod 物品**。
+本轮静态验证覆盖 24 间不同布局、战利品箱可达性、入口和楼梯净空；独立客户端已检查入口开合及 4 间代表房间的实际画面。完整 GameTest 与资源加载结果见验证记录。
 
 ## 构建与验证
 
@@ -102,6 +117,7 @@ cd ender_infection_colored
 .\gradlew.bat build
 .\gradlew.bat runGameTestServer
 .\gradlew.bat runClient -PdesignSmoke
+.\gradlew.bat runClient -PlabVisualCheck
 ```
 
 首次构建需要联网；已有依赖缓存可添加 `--offline`。产物位于 `ender_infection_colored/build/libs`。GameTest 使用 `build` 下的新世界；客户端资源检查使用独立开发目录。
@@ -112,6 +128,7 @@ cd ender_infection_colored
 python tools/export_design_assets.py
 python tools/build_design_data.py
 python tools/validate_design_assets.py
+python tools/validate_laboratory.py
 ```
 
 项目使用 **qegg** 管理变更记录和发布验证：

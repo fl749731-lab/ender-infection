@@ -185,10 +185,10 @@ def export():
     else:write(ASSETS/'blockstates'/f'{runtime}.json',{'variants':{'':{'model':f'ender_infection:block/{runtime}'}}})
     obj(runtime,d,'item')
    else:
-    geo(runtime,d,fixture=True);texture(d,ASSETS/'textures/block/design'/f'{runtime}.png',True);write(ASSETS/'animations'/f'{runtime}.animation.json',{'format_version':'1.8.0','animations':{}})
+    geo(runtime,d,offset=(0,0,7.25) if source in ('vent_panel','service_hatch') else (0,0,0),fixture=True);texture(d,ASSETS/'textures/block/design'/f'{runtime}.png',True);write(ASSETS/'animations'/f'{runtime}.animation.json',{'format_version':'1.8.0','animations':{}})
     write(ASSETS/'models/block'/f'{runtime}.json',{'parent':'minecraft:block/block','textures':{'particle':f'ender_infection:block/design/{runtime}'}})
     write(ASSETS/'blockstates'/f'{runtime}.json',{'variants':{'':{'model':f'ender_infection:block/{runtime}'}}});obj(runtime,d,'item')
    REPORT.append({'source':source+'_'+state,'runtime':runtime,'kind':'block'})
- write(PROJECT/'verification/design_asset_manifest.json',{'source_pack':MAN['version'],'assets':REPORT,'scenes':'research_lab.nbt; complete and cutaway describe the same four-level structure'})
+ write(PROJECT/'verification/design_asset_manifest.json',{'source_pack':MAN['version'],'assets':REPORT,'scenes':'research_lab.nbt is current; complete/cutaway BB scenes retain the earlier schematic'})
  print('Exported',len(REPORT),'runtime asset mappings')
 if __name__=='__main__':export()

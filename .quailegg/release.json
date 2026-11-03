@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "version": "0.11.0-alpha.8",
-  "created_at": "2026-11-03T20:34:36.1319115+01:00",
+  "version": "0.11.0-alpha.9",
+  "created_at": "2026-11-03T20:46:29.0100395+01:00",
   "mode": "pr",
   "channel": "alpha",
-  "fingerprint": "sha256:1db97d54bb14f2da40a4d2327eaae1454f913b014ed060160d0a365f3d9222eb",
+  "fingerprint": "sha256:8c043c4cf42df0d4d98ba13bf4c3c7a2aa5b45cac2cc50684189a1e21076bce6",
   "repo": {
     "host": "github.com",
     "owner": "fl749731-lab",
@@ -13,28 +13,28 @@
   },
   "verified": {
     "commands": [
-      "cd ender_infection_colored && java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain build"
+      "cd ender_infection_colored \u0026\u0026 java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain build"
     ],
-    "skipped": false,
-    "at": "2026-11-03T19:36:13.853355+00:00"
+    "skipped": true,
+    "at": "2026-11-03T20:46:29.0100395+01:00"
   },
   "packages": [
     {
       "name": "java@ender_infection_colored",
       "path": "ender_infection_colored",
       "resolver": "java",
-      "current": "0.11.0-alpha.7",
-      "next": "0.11.0-alpha.8",
+      "current": "0.11.0-alpha.8",
+      "next": "0.11.0-alpha.9",
       "bump": "minor",
-      "tag": "v0.11.0-alpha.8",
+      "tag": "v0.11.0-alpha.9",
       "publish": false
     }
   ],
   "releases": [
     {
-      "version": "0.11.0-alpha.8",
-      "tag": "v0.11.0-alpha.8",
-      "previous_tag": "v0.11.0-alpha.7",
+      "version": "0.11.0-alpha.9",
+      "tag": "v0.11.0-alpha.9",
+      "previous_tag": "v0.11.0-alpha.8",
       "packages": [
         "java@ender_infection_colored"
       ],
@@ -69,6 +69,18 @@
       "author": "fl749731-lab"
     },
     {
+      "file": ".changes/crystal-equipment.md",
+      "type": "feat",
+      "scope": "equipment",
+      "bump": "minor",
+      "packages": [
+        "java@ender_infection_colored"
+      ],
+      "body": "为共鸣晶、余烬晶和虚空晶新增三套装备。每套包括四件护甲、四种工具和一把剑。共鸣装备强化抗感染和矿石开采，余烬装备强化下界采掘和防火，虚空装备强化空中作业和末影机动。\n\n新增九项末影感染进度。新世界开局以坠落陨石引出母体。早期侵蚀与畸变单位免疫弹射物，移动单位可闪现追击与闪避。",
+      "commit": "91d09c9ae682bb8b5f267ba9e8d4138b5b6770b9",
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/91d09c9ae682bb8b5f267ba9e8d4138b5b6770b9"
+    },
+    {
       "file": ".changes/crystal-ores.md",
       "type": "feat",
       "scope": "ores",
@@ -78,7 +90,8 @@
       ],
       "body": "新增主世界共鸣晶矿及深板岩变种、下界余烬晶矿和末地外岛虚空晶矿。矿石使用独立的像素贴图与自然矿脉，支持时运、精准采集和经验。共鸣碎片可供晶刺弩使用，余烬晶体用于实验室灯板，虚空晶体用于抑制粉。",
       "commit": "67e1a1af0a141d80ab092bce1ff6c9e44bcb6320",
-      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/67e1a1af0a141d80ab092bce1ff6c9e44bcb6320"
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/67e1a1af0a141d80ab092bce1ff6c9e44bcb6320",
+      "author": "fl749731-lab"
     },
     {
       "file": ".changes/give-all-24.md",
@@ -162,6 +175,7 @@
   "previous_changes": [
     ".changes/add-biome-specific.md",
     ".changes/connected-highland-expansion.md",
+    ".changes/crystal-ores.md",
     ".changes/give-all-24.md",
     ".changes/integrate-design-pack.md",
     ".changes/lab-detail.md",

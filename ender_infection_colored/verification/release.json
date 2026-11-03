@@ -1,13 +1,30 @@
 {
-  "version": "0.11.0-alpha.8",
-  "jar": "ender-infection-0.11.0-alpha.8.jar",
-  "bytes": 4473830,
-  "sha256": "9097d7c16340ea2c4d91d559ffa6507ecbc0edd9883bed8a616f335693e84fdd",
+  "version": "0.11.0-alpha.9",
+  "jar": "ender-infection-0.11.0-alpha.9.jar",
+  "bytes": 4539889,
+  "sha256": "c1978776a09a3ab7f25e1263e36e52e1db063e5cbc4f802ddc4a0f55a0bd772a",
   "required_dependency": "geckolib-forge-1.20.1-4.4.9.jar",
   "imported_structures": 4,
   "lua_lab_bundled": false,
   "forge_build": "PASS: qegg verify",
-  "ore_gametest": "1/1",
-  "ore_verification_scope": "Biome placement registration, native ore placement on four substrates, mining tiers, normal/Fortune/Silk Touch drops and recipe loading.",
-  "full_suite_rerun": false
+  "final_focused_gametests": "6/7",
+  "initial_full_gametests": "96/98",
+  "final_focused_failures": [
+    [
+      "archerfirelane",
+      "Skeleton did not sidestep its ally and land arrows: (278.13069599185025, -59.0, 4.5), target hp 100.0"
+    ]
+  ],
+  "initial_full_failures": [
+    [
+      "witnessedplayerattackschangecommandandbrood",
+      "Witnessed ranged: mother=BALANCED, profile=BALANCED, target=null"
+    ],
+    [
+      "treeconversionpreservesspeciesformsandlegacybirchtrunks",
+      "Live node lost birch bark or failed to infer a legacy trunk at height 3"
+    ]
+  ],
+  "projectile_tactics_fixed_and_rechecked": true,
+  "full_suite_after_final_tactics_fix": false
 }

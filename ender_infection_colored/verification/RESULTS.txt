@@ -1,3 +1,21 @@
+Ender Infection 0.11.0-alpha.9 / 2026-11-03
+FINAL FOCUSED: 6/7 native GameTests (build/crystal-final-focused.log).
+All new checks passed, including 27 recipes and crystal repair, armor/tool/sword abilities,
+four ore variants, meteor display and impact save/load, all infected projectile immunity,
+a real dodge, and the original witnessed-projectile tactics assertion. The existing skeleton
+fire-lane assertion passed in the first full run and failed in the isolated final run.
+PASS: qegg Forge build and reobfJar (build/crystal-qegg-final.log).
+INITIAL FULL: 96/98 (build/crystal-full-suite.log).
+  witnessedplayerattackschangecommandandbrood: Witnessed ranged: mother=BALANCED, profile=BALANCED, target=null
+  treeconversionpreservesspeciesformsandlegacybirchtrunks: Live node lost birch bark or failed to infer a legacy trunk at height 3
+Witnessed ranged attacks now enter the existing mother tactics even if projectile immunity
+prevents damage. The exact original tactics assertion passed in the final focused checks.
+The complete suite was not rerun after this change. Worn armor and meteor visuals were
+verified through their packaged textures and live display data, without a client screenshot pass.
+JAR: ender-infection-0.11.0-alpha.9.jar (4539889 bytes), SHA-256 c1978776a09a3ab7f25e1263e36e52e1db063e5cbc4f802ddc4a0f55a0bd772a.
+
+Previous version validation follows:
+
 Ender Infection 0.11.0-alpha.8 / 2026-11-03
 PASS: 1/1 ore GameTest (build/ore-gametest.log). Verified biome placement on the intended dimensions,
 actual configured ore placement in stone, deepslate, netherrack and end stone, pickaxe tiers,

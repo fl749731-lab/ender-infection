@@ -117,4 +117,3 @@ Draw a wide landscape THREE-column premium boss model sheet, title exactly “�
 3 “灾厄母巢” caption “高阶指挥 · 紧急孵化”: huge rooted immobile evolved mother, cathedral-like original BIOMECHANICAL FUNGAL organism built from voxel plates, no literal human building. FOUR angular root buttresses, a hollow raised central carapace cage, multiple dark lavender brood sacs protected underneath, one modest bright violet core set deep inside gray layered ribs, an asymmetrical crown of FIVE short antenna organs interspersed with a few crystal spines. Two lower hatch chambers are open to show defense units emerging. Layered fungal gills and dark connective fibers communicate living colony. Not a solid purple sphere, not a pile of faceless boxes, no missing central supports.
 Prioritize modelable cuboid shapes and visible support anatomy rather than ornamental detail. Strong visual hierarchy: structural gray, living dark-purple membrane, small functional crystal accents.
 ```
-

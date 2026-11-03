@@ -36,4 +36,3 @@ public final class DesignClientSmoke {
         if(mc.level==null&&!Boolean.getBoolean("ender_infection.keepSmokeClient"))mc.stop();
     }
 }
-

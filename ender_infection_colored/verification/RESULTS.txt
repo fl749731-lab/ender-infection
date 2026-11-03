@@ -1,5 +1,5 @@
 Ender Infection design integration / 2026-11-02
-Target: 0.11.0-alpha.3 / Minecraft 1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17
+Version: 0.11.0-alpha.3 / Minecraft 1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17
 
 PASS: All 73 required Forge GameTests passed; isolated new world.
 PASS: qegg check and qegg verify (Forge build + reobfJar).
@@ -7,6 +7,8 @@ PASS: final isolated client: CLIENT_ASSET_SMOKE_PASS geo=52 animations=52 design
 PASS: source mapping: 61 component models + 2 complete/cutaway scene sources.
 PASS: asset graph: 40 exported geometry files, 45090 per-face UVs, 66 OBJ models.
 PASS: E:/mc/Minecraft1201 migration: 4514 files copied, critical executable/JRE/GeckoLib hashes match.
+
+FINAL JAR: ender-infection-0.11.0-alpha.3.jar; 4086745 bytes; sha256 b64d304aca2fcf24b1c5e38d5a0673f3bf982b3cc1920c113d1959e5798ecfd8
 
 GameTest coverage added: entity registry/dimensions/faction, directional shield, paid recruitment,
 crystal projectile damage and poison, rotating multi-block props, linked breaking and door collision,

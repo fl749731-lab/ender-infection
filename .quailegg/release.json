@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "version": "0.11.0-alpha.4",
-  "created_at": "2026-11-03T09:37:14.794835+01:00",
+  "version": "0.11.0-alpha.5",
+  "created_at": "2026-11-03T10:29:19.4765465+01:00",
   "mode": "pr",
   "channel": "alpha",
-  "fingerprint": "sha256:b73af5cf5e9694505ecfffccffd3ad873ec44220f3a940f43cb226999778a7f4",
+  "fingerprint": "sha256:fd957390ea6ad8c96fb4c9afac1e75e3245a568d8259e13857e7bc34c346e9c2",
   "repo": {
     "host": "github.com",
     "owner": "fl749731-lab",
@@ -16,25 +16,25 @@
       "cd ender_infection_colored \u0026\u0026 java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain build"
     ],
     "skipped": false,
-    "at": "2026-11-03T09:37:14.794835+01:00"
+    "at": "2026-11-03T10:29:19.4765465+01:00"
   },
   "packages": [
     {
       "name": "java@ender_infection_colored",
       "path": "ender_infection_colored",
       "resolver": "java",
-      "current": "0.11.0-alpha.3",
-      "next": "0.11.0-alpha.4",
+      "current": "0.11.0-alpha.4",
+      "next": "0.11.0-alpha.5",
       "bump": "minor",
-      "tag": "v0.11.0-alpha.4",
+      "tag": "v0.11.0-alpha.5",
       "publish": false
     }
   ],
   "releases": [
     {
-      "version": "0.11.0-alpha.4",
-      "tag": "v0.11.0-alpha.4",
-      "previous_tag": "v0.11.0-alpha.3",
+      "version": "0.11.0-alpha.5",
+      "tag": "v0.11.0-alpha.5",
+      "previous_tag": "v0.11.0-alpha.4",
       "packages": [
         "java@ender_infection_colored"
       ],
@@ -42,6 +42,18 @@
     }
   ],
   "changes": [
+    {
+      "file": ".changes/give-all-24.md",
+      "type": "feat",
+      "scope": "laboratory",
+      "bump": "minor",
+      "packages": [
+        "java@ender_infection_colored"
+      ],
+      "body": "Add ten original editable room-detail models, themed loot, functional room partitions, a fitted entrance, dynamic part collision and native-world visual checks. Reference actual Spore structures without copying assets.",
+      "commit": "21d996c0582047b59bec07b50b76f25e2045e3ff",
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/21d996c0582047b59bec07b50b76f25e2045e3ff"
+    },
     {
       "file": ".changes/integrate-design-pack.md",
       "type": "feat",
@@ -104,14 +116,16 @@
       ],
       "body": "修复实验室通风口等完整设备的全透明发光蒙版导致 GeckoLib 注册纹理崩溃；为全部发光渲染层增加有效像素检查和重载缓存清理，导出器不再生成空蒙版，客户端验证实际注册发光纹理。",
       "commit": "0d316ac623e21d1cf8d847cc547c6b39f7060ad3",
-      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/0d316ac623e21d1cf8d847cc547c6b39f7060ad3"
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/0d316ac623e21d1cf8d847cc547c6b39f7060ad3",
+      "author": "fl749731-lab"
     }
   ],
   "previous_changes": [
     ".changes/integrate-design-pack.md",
     ".changes/lab-detail.md",
     ".changes/lab-rarity.md",
-    ".changes/lab-styles.md"
+    ".changes/lab-styles.md",
+    ".changes/skip-empty-optional.md"
   ],
   "qegg": {
     "version": "0.11.0"

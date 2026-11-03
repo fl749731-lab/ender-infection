@@ -1,151 +1,335 @@
 {
   "status": "PASS",
-  "unique_rooms": 24,
-  "rooms": [
+  "facilities": [
     {
-      "id": "power",
-      "reachable_columns": 88,
-      "signature": "42251c7b0125829f080e1904ee38cb9e90671975574f18e5f3e25fbd8d39d109",
-      "objects": 28
+      "key": "research_lab",
+      "biome": "mushroom_fields",
+      "rooms": [
+        {
+          "theme": "botany",
+          "floor": 0,
+          "reachable": true
+        },
+        {
+          "theme": "culture",
+          "floor": 0,
+          "reachable": true
+        },
+        {
+          "theme": "receiving",
+          "floor": 0,
+          "reachable": true
+        },
+        {
+          "theme": "wet_lab",
+          "floor": 0,
+          "reachable": true
+        },
+        {
+          "theme": "botany",
+          "floor": 1,
+          "reachable": true
+        },
+        {
+          "theme": "culture",
+          "floor": 1,
+          "reachable": true
+        },
+        {
+          "theme": "microscopy",
+          "floor": 1,
+          "reachable": true
+        },
+        {
+          "theme": "archive",
+          "floor": 1,
+          "reachable": true
+        }
+      ],
+      "damaged_rooms": 1,
+      "sha256": "b8ca7d0d8d8772fbd64e6229b2ead5934e19f5e0ac06a051f2298047e68cbabe"
     },
     {
-      "id": "pumps",
-      "reachable_columns": 81,
-      "signature": "60352a7307c5ff2bf0cc8799f87c42bf43a1116c28e1bfb7936239f50e47d5a7",
-      "objects": 32
+      "key": "wetland_lab",
+      "biome": "swamp",
+      "rooms": [
+        {
+          "theme": "filtration",
+          "floor": 0,
+          "reachable": true
+        },
+        {
+          "theme": "pumps",
+          "floor": 0,
+          "reachable": true
+        },
+        {
+          "theme": "decontamination",
+          "floor": 0,
+          "reachable": true
+        },
+        {
+          "theme": "microscopy",
+          "floor": 1,
+          "reachable": true
+        },
+        {
+          "theme": "wet_lab",
+          "floor": 1,
+          "reachable": true
+        },
+        {
+          "theme": "containment",
+          "floor": 1,
+          "reachable": true
+        }
+      ],
+      "damaged_rooms": 2,
+      "sha256": "72724bb6ebbf7f93ad13ed85ec071e64ae6d8c2a747da27db3d9348decb04de6"
     },
     {
-      "id": "filtration",
-      "reachable_columns": 86,
-      "signature": "9c39d1ad1bc05ef81b9a7db7951769209a9f259d723decc4fe23e415cf27283d",
-      "objects": 28
+      "key": "forest_lab",
+      "biome": "dark_forest",
+      "rooms": [
+        {
+          "theme": "server_room",
+          "floor": 0,
+          "reachable": true
+        },
+        {
+          "theme": "control",
+          "floor": 0,
+          "reachable": true
+        },
+        {
+          "theme": "loading",
+          "floor": 0,
+          "reachable": true
+        },
+        {
+          "theme": "nexus",
+          "floor": 0,
+          "reachable": true
+        },
+        {
+          "theme": "server_room",
+          "floor": 1,
+          "reachable": true
+        },
+        {
+          "theme": "control",
+          "floor": 1,
+          "reachable": true
+        },
+        {
+          "theme": "robotics",
+          "floor": 1,
+          "reachable": true
+        },
+        {
+          "theme": "security",
+          "floor": 1,
+          "reachable": true
+        },
+        {
+          "theme": "server_room",
+          "floor": 2,
+          "reachable": true
+        },
+        {
+          "theme": "control",
+          "floor": 2,
+          "reachable": true
+        },
+        {
+          "theme": "loading",
+          "floor": 2,
+          "reachable": true
+        },
+        {
+          "theme": "security",
+          "floor": 2,
+          "reachable": true
+        }
+      ],
+      "damaged_rooms": 2,
+      "sha256": "fef7fd201e326cd824a67d8e463583bad3c487087a56e464df72aa64caf0ab67"
     },
     {
-      "id": "containment",
-      "reachable_columns": 83,
-      "signature": "085250d5020b7212a263264105eeea48a945519ef79f465f0c791ad9a7607d20",
-      "objects": 50
+      "key": "medical_lab",
+      "biome": "plains",
+      "rooms": [
+        {
+          "theme": "triage",
+          "floor": 0,
+          "reachable": true
+        },
+        {
+          "theme": "ward",
+          "floor": 0,
+          "reachable": true
+        },
+        {
+          "theme": "mortuary",
+          "floor": 0,
+          "reachable": true
+        },
+        {
+          "theme": "surgery",
+          "floor": 0,
+          "reachable": true
+        },
+        {
+          "theme": "decontamination",
+          "floor": 0,
+          "reachable": true
+        },
+        {
+          "theme": "pharmacy",
+          "floor": 1,
+          "reachable": true
+        },
+        {
+          "theme": "ward",
+          "floor": 1,
+          "reachable": true
+        },
+        {
+          "theme": "isolation",
+          "floor": 1,
+          "reachable": true
+        },
+        {
+          "theme": "surgery",
+          "floor": 1,
+          "reachable": true
+        },
+        {
+          "theme": "lounge",
+          "floor": 1,
+          "reachable": true
+        }
+      ],
+      "damaged_rooms": 1,
+      "sha256": "8bb805b306a6bab9cfbc888f03bca04efb7023ad8ee11ebe916f48716d62f17e"
     },
     {
-      "id": "reactor",
-      "reachable_columns": 75,
-      "signature": "f0ae51aac374ad974ee31593f74e3db1acebaf1dbc089d50117b038d40f4b34e",
-      "objects": 39
+      "key": "cryo_lab",
+      "biome": "snowy_taiga",
+      "rooms": [
+        {
+          "theme": "airlock",
+          "floor": 0,
+          "reachable": true
+        },
+        {
+          "theme": "cryo_vault",
+          "floor": 0,
+          "reachable": true
+        },
+        {
+          "theme": "power",
+          "floor": 0,
+          "reachable": true
+        },
+        {
+          "theme": "cold_store",
+          "floor": 0,
+          "reachable": true
+        },
+        {
+          "theme": "airlock",
+          "floor": 1,
+          "reachable": true
+        },
+        {
+          "theme": "cryo_vault",
+          "floor": 1,
+          "reachable": true
+        },
+        {
+          "theme": "control",
+          "floor": 1,
+          "reachable": true
+        },
+        {
+          "theme": "cold_store",
+          "floor": 1,
+          "reachable": true
+        }
+      ],
+      "damaged_rooms": 1,
+      "sha256": "f9dbf24e00bded244cc9df0586678b25d6325621065363ecbff6766a07284a95"
     },
     {
-      "id": "nexus",
-      "reachable_columns": 78,
-      "signature": "fdc0b31b132cd26ea7936e015699658425dd2990f0b31465ab749030fef6ccbe",
-      "objects": 56
-    },
-    {
-      "id": "triage",
-      "reachable_columns": 85,
-      "signature": "fa35e8e87403789b4a65c5afe13226186279c0310550c77e7685960a484218bd",
-      "objects": 27
-    },
-    {
-      "id": "ward",
-      "reachable_columns": 82,
-      "signature": "1ab6b2f0ec64ac80f9c82ac77a371470512aab78f99f31d158933fd68ff62d04",
-      "objects": 27
-    },
-    {
-      "id": "surgery",
-      "reachable_columns": 87,
-      "signature": "ab96d138104f171a45abcdcae655b5eb4701d8517527b40ed6c7dbf2c164ca6e",
-      "objects": 29
-    },
-    {
-      "id": "pharmacy",
-      "reachable_columns": 88,
-      "signature": "84205664bd2a3ccf3384be0ff0770ba2c2b32865d2370ca148107302409364d0",
-      "objects": 28
-    },
-    {
-      "id": "isolation",
-      "reachable_columns": 66,
-      "signature": "b6edf4786ba13da179d2e042aded0145f7a7ec125f45ae86040eb998299a30bb",
-      "objects": 52
-    },
-    {
-      "id": "mortuary",
-      "reachable_columns": 84,
-      "signature": "5d6b4bbb035144bea09fc9e9ea9e5c6e0812877e15f9457a77a40d16bd4e4471",
-      "objects": 32
-    },
-    {
-      "id": "receiving",
-      "reachable_columns": 85,
-      "signature": "e0e12f1a4f5f333371223bf9c6c59d6dc62bf409231fbb9de77be0e11dd28bdb",
-      "objects": 30
-    },
-    {
-      "id": "microscopy",
-      "reachable_columns": 78,
-      "signature": "a686562cdd9b5d4d43f8661072631489bfeb716269ba0fecbe1b711c9f4eff1d",
-      "objects": 38
-    },
-    {
-      "id": "wet_lab",
-      "reachable_columns": 86,
-      "signature": "8064ef9d087afd8a8d0b481a96a36fbb2c8aaddbf37add2b36390690ac7bbf54",
-      "objects": 25
-    },
-    {
-      "id": "culture",
-      "reachable_columns": 82,
-      "signature": "2e089b829b8f4ebe40b3d4dfe7fd229d8f9ff659a0c05f1bedfb8811b9e4baae",
-      "objects": 51
-    },
-    {
-      "id": "cold_store",
-      "reachable_columns": 72,
-      "signature": "3141915174223dc806173deb5b75f4246179272e8ffa1b4672e3183d10430e1b",
-      "objects": 35
-    },
-    {
-      "id": "decontamination",
-      "reachable_columns": 77,
-      "signature": "aa505d052a55c2eba5c21011d427e82e6477189b13ad8c47c7bec45db359de55",
-      "objects": 65
-    },
-    {
-      "id": "reception",
-      "reachable_columns": 86,
-      "signature": "5b781e9794f8d5f7b2549ecb4fbb957d91783841ed4c33fc4a7b2f5dd2a0477b",
-      "objects": 25
-    },
-    {
-      "id": "security",
-      "reachable_columns": 81,
-      "signature": "a3d86aeae35db93e908aac020d50c2072c65a9d7609621320e2ce2b4c39cce4e",
-      "objects": 47
-    },
-    {
-      "id": "control",
-      "reachable_columns": 85,
-      "signature": "a672308dcabfade6475a3fd48266ed22bef20e169136f08350894d2730616fdc",
-      "objects": 27
-    },
-    {
-      "id": "archive",
-      "reachable_columns": 85,
-      "signature": "8f5be50c06878bb9fbb4d4f758c1cd43e588982183ec2834755690875d98c154",
-      "objects": 32
-    },
-    {
-      "id": "lounge",
-      "reachable_columns": 71,
-      "signature": "35d65e8dd8f4c103b84a650ec3040ac7ac62bbab4086f6689efc49a33099be11",
-      "objects": 22
-    },
-    {
-      "id": "kitchen",
-      "reachable_columns": 85,
-      "signature": "78cb09d355c24334989ae687e53735ea61bfd88609d1dea050537c4367ceb93c",
-      "objects": 24
+      "key": "badlands_lab",
+      "biome": "badlands",
+      "rooms": [
+        {
+          "theme": "loading",
+          "floor": 0,
+          "reachable": true
+        },
+        {
+          "theme": "robotics",
+          "floor": 0,
+          "reachable": true
+        },
+        {
+          "theme": "reactor",
+          "floor": 0,
+          "reachable": true
+        },
+        {
+          "theme": "nexus",
+          "floor": 0,
+          "reachable": true
+        },
+        {
+          "theme": "loading",
+          "floor": 1,
+          "reachable": true
+        },
+        {
+          "theme": "robotics",
+          "floor": 1,
+          "reachable": true
+        },
+        {
+          "theme": "containment",
+          "floor": 1,
+          "reachable": true
+        },
+        {
+          "theme": "server_room",
+          "floor": 1,
+          "reachable": true
+        },
+        {
+          "theme": "loading",
+          "floor": 2,
+          "reachable": true
+        },
+        {
+          "theme": "robotics",
+          "floor": 2,
+          "reachable": true
+        },
+        {
+          "theme": "containment",
+          "floor": 2,
+          "reachable": true
+        },
+        {
+          "theme": "server_room",
+          "floor": 2,
+          "reachable": true
+        }
+      ],
+      "damaged_rooms": 2,
+      "sha256": "91300c47d10f379f90cd62c1f96c3bd390d72767461ecabb199c42394473a7d1"
     }
   ],
+  "zones": 56,
   "errors": []
 }

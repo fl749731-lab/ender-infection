@@ -1,74 +1,51 @@
-"""Validate the actual exported structure, including room reachability and large prop parts."""
-import hashlib,json
-from collections import deque,Counter
+"""Validate final six facility NBTs, fixture integrity, biome routing and floor access."""
+import json,hashlib
+from collections import deque
 from design_catalog import DATA,PROJECT
 from nbt_codec import load
-from lab_rooms import THEMES,LABELS
-root=load(DATA/'structures/research_lab.nbt');palette=root['palette'];grid={tuple(b['pos']):(palette[b['state']],b.get('nbt')) for b in root['blocks']};errors=[]
-def state(p):return grid.get(p,({'Name':'minecraft:air'},None))[0]
-def name(p):return state(p)['Name'].split(':')[-1]
-def props(p):return state(p).get('Properties',{})
-fixture_sizes={'lab_vent':(1,0),'lab_hatch':(1,0),'lab_door':(2,0),'lab_cabinet':(2,0),'incubator':(3,0),'surgery_table':(2,1),'lab_workbench':(2,1),'lab_window':(2,1)}
-dirs={'north':(1,0),'south':(-1,0),'east':(0,1),'west':(0,-1)}
-def anchor(p):
- s=props(p);a=int(s['part_x'])-1;b=int(s['part_y']);dx,dz=dirs[s['facing']];return (p[0]-dx*a,p[1]-b,p[2]-dz*a)
-for p,(s,nbt) in grid.items():
- k=name(p).replace('_eroded','')
- if k=='lab_fixture_part':
-  a=anchor(p)
-  if name(a).replace('_eroded','') not in fixture_sizes:errors.append('Orphan fixture part '+str(p)+' -> '+str(a))
- if k in fixture_sizes:
-  h,w=fixture_sizes[k];dx,dz=dirs[props(p)['facing']]
-  for x in range(-w,w+1):
-   for y in range(h):
-    if x==0 and y==0:continue
-    q=(p[0]+dx*x,p[1]+y,p[2]+dz*x)
-    if name(q)!='lab_fixture_part' or anchor(q)!=p:errors.append('Missing fixture part '+str(p)+' -> '+str(q))
-rooms=[]
-def passable(p):
- k=name(p)
- if k=='lab_fixture_part':return name(anchor(p)).replace('_eroded','')=='lab_door'
- return k in ('air','lab_door','lab_door_eroded','ladder','birch_wall_sign','amethyst_cluster','infected_tendrils','brewing_stand')
-for floor,types in enumerate(THEMES):
- for index,theme in enumerate(types):
-  row,side=divmod(index,2);base=floor*5;z0=1+row*9
-  def pos(u,h,v):return (1+u if side==0 else 30-u,base+h,z0+v)
-  blocked={(u,v) for u in range(12) for v in range(8) if name(pos(u,0,v))=='air' or not passable(pos(u,1,v)) or not passable(pos(u,2,v))}
-  start=(11,2);seen=set();queue=deque([start])
+meta=json.loads((PROJECT/'verification/facilities.json').read_text('utf-8'));errors=[];reports=[]
+sizes={'lab_vent':(1,0),'lab_hatch':(1,0),'lab_door':(2,0),'lab_cabinet':(2,0),'incubator':(3,0),'surgery_table':(2,1),'lab_workbench':(2,1),'lab_window':(2,1)}
+directions={'north':(1,0),'south':(-1,0),'east':(0,1),'west':(0,-1)}
+for spec in meta['facilities']:
+ root=load(DATA/'structures'/f'{spec["key"]}.nbt');palette=root['palette'];grid={tuple(b['pos']):(palette[b['state']],b.get('nbt')) for b in root['blocks']}
+ def state(p):return grid.get(p,({'Name':'minecraft:air'},None))[0]
+ def name(p):return state(p)['Name'].split(':')[-1]
+ def anchor(p):
+  s=state(p)['Properties'];dx,dz=directions[s['facing']];u=int(s['part_x'])-1;v=int(s['part_y']);return p[0]-u*dx,p[1]-v,p[2]-u*dz
+ def passable(p):
+  n=name(p)
+  if n=='lab_fixture_part':return name(anchor(p)).replace('_eroded','')=='lab_door'
+  return n in {'air','cave_air','lab_door','lab_door_eroded','lab_access_ladder','birch_wall_sign','infected_tendrils','fern','red_mushroom','brown_mushroom','amethyst_cluster','brewing_stand'}
+ for pos,(s,nbt) in grid.items():
+  n=name(pos);base=n.replace('_eroded','')
+  if n=='ladder':errors.append(spec['key']+' contains a wood ladder')
+  if n=='lab_fixture_part' and name(anchor(pos)).replace('_eroded','') not in sizes:errors.append('Orphan part '+spec['key']+str(pos))
+  if base in sizes:
+   h,half=sizes[base];dx,dz=directions[s['Properties']['facing']]
+   for u in range(-half,half+1):
+    for v in range(h):
+     if not (u or v):continue
+     q=pos[0]+u*dx,pos[1]+v,pos[2]+u*dz
+     if name(q)!='lab_fixture_part' or anchor(q)!=pos:errors.append('Missing part '+spec['key']+str(pos)+' -> '+str(q))
+ w,height,d=spec['size'];room_access=[]
+ for floor in range(spec['levels']):
+  y=floor*5+1;start=(spec['lift'][0],spec['lift'][2]);seen=set();queue=deque([start])
+  def walkable(x,z):return passable((x,y,z)) and passable((x,y+1,z)) and name((x,y-1,z)) not in ('air','water','lab_access_ladder')
   while queue:
-   q=queue.popleft()
-   if q in seen or q in blocked:continue
-   seen.add(q)
-   for du,dv in ((1,0),(-1,0),(0,1),(0,-1)):
-    u,v=q[0]+du,q[1]+dv
-    if 0<=u<12 and 0<=v<8:queue.append((u,v))
-  if len(seen)<12:errors.append('Poor room access '+theme+' reachable='+str(len(seen)))
-  chests=[];objects=[]
-  for u in range(12):
-   for v in range(8):
-    for h in range(1,5):
-     p=pos(u,h,v);k=name(p)
-     if k=='chest':chests.append(p)
-     if k not in ('air','lab_tile','lab_tile_light','lab_tile_dark','lab_checker','lab_tile_light_eroded','lab_checker_eroded','lab_tile_dark_eroded','iron_bars'):
-      objects.append((u,h,v,k.replace('_eroded','')))
-  if len(chests)!=1:errors.append('Expected one themed loot chest in '+theme+', got '+str(len(chests)))
-  elif not any((u,v) in seen for u in range(12) for v in range(8) if abs(pos(u,1,v)[0]-chests[0][0])+abs(pos(u,1,v)[2]-chests[0][2])==1):errors.append('Loot chest unreachable in '+theme)
-  rooms.append({'id':theme,'reachable_columns':len(seen),'signature':hashlib.sha256(json.dumps(objects).encode()).hexdigest(),'objects':len(objects)})
-if len({r['signature'] for r in rooms})!=24:errors.append('Repeated actual room layout')
-for floor in range(3):
- for step in range(5):
-  for x in (2,3):
-   p=(x,floor*5+1+step,25-step)
-   if name(p)!='lab_stair':errors.append('Missing stair '+str(p))
-   for dy in (1,2):
-    if not passable((p[0],p[1]+dy,p[2])):errors.append('Blocked stair headroom '+str(p))
-if name((16,21,23))!='lab_door' or props((16,21,23)).get('open')!='false':errors.append('Entrance door is not closed by default')
-for x in (15,17):
- for y in (21,22):
-  if name((x,y,23))=='air':errors.append('Unfilled entrance side '+str((x,y,23)))
-for y in (23,24):
- if name((16,y,23))=='air':errors.append('Missing entrance lintel')
-for y in range(21,25):
- if name((16,y,25))=='ladder':errors.append('Useless ladder above landing')
-result={'status':'FAIL' if errors else 'PASS','unique_rooms':len({r['signature'] for r in rooms}),'rooms':rooms,'errors':errors}
-(PROJECT/'verification/laboratory_validation.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8');print(json.dumps({'status':result['status'],'unique_rooms':result['unique_rooms'],'reachable_columns':{r['id']:r['reachable_columns'] for r in rooms},'errors':errors},ensure_ascii=False));raise SystemExit(bool(errors))
+   x,z=queue.popleft()
+   if (x,z) in seen or not 0<=x<w or not 0<=z<d or not walkable(x,z):continue
+   seen.add((x,z))
+   for dx,dz in ((1,0),(-1,0),(0,1),(0,-1)):queue.append((x+dx,z+dz))
+  for room in [r for r in spec['rooms'] if r['floor']==floor]:
+   x,cy,z=room['chest'];reachable=any((x+dx,z+dz) in seen for dx,dz in ((1,0),(-1,0),(0,1),(0,-1)))
+   if name((x,cy,z))!='chest' or not reachable:errors.append(spec['key']+' inaccessible supply '+room['theme']+' floor '+str(floor)+' at '+str(room['chest']))
+   room_access.append({'theme':room['theme'],'floor':floor,'reachable':reachable})
+ for floor in range(spec['levels']+1):
+  p=spec['lift'][0],floor*5,spec['lift'][2]
+  if name(p)!='lab_lift' or not passable((p[0],p[1]+1,p[2])) or not passable((p[0],p[1]+2,p[2])):errors.append('Blocked lift '+spec['key']+str(p))
+ worldgen=json.loads((DATA/'worldgen/structure'/f'{spec["key"]}.json').read_text('utf-8'))
+ if worldgen['biomes']!='#ender_infection:legacy_debug_labs':errors.append('Incorrect biome route '+spec['key'])
+ reports.append({'key':spec['key'],'biome':spec['biome'],'rooms':room_access,'damaged_rooms':len(spec['damage']),'sha256':spec['sha256']})
+if len({r['sha256'] for r in reports})!=6 or len({r['biome'] for r in reports})!=6:errors.append('Repeated facility or biome assignment')
+result={'status':'FAIL' if errors else 'PASS','facilities':reports,'zones':sum(len(r['rooms']) for r in reports),'errors':errors}
+(PROJECT/'verification/laboratory_validation.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n','utf-8');print(json.dumps({'status':result['status'],'facilities':len(reports),'zones':result['zones'],'errors':errors},ensure_ascii=False));raise SystemExit(bool(errors))

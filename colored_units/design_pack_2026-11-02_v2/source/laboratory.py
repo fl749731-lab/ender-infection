@@ -61,7 +61,7 @@ def component(key,infected=False):
         m.animation('open',.8,False,{'hatch_hinge':{'rotation':[(0,(0,0,0)),(.8,(0,-95,0))]}})
         m.animation('close',.8,False,{'hatch_hinge':{'rotation':[(0,(0,-95,0)),(.8,(0,0,0))]}})
     elif key=='reinforced_door':
-        frame(m,'door_frame',(0,16,0),(16,32,4),1.7,'white');m.group('door_hinge',(-6.1,16,0))
+        frame(m,'door_frame',(0,16,0),(16,32,4),1,'white');m.group('door_hinge',(-6.1,16,0))
         m.centered('lower_door',(0,10,0),(12,17,2.4),'darkmetal','door_hinge')
         m.centered('upper_door',(0,28,0),(12,5,2.4),'darkmetal','door_hinge')
         frame(m,'view_frame',(0,22,0),(12,8,2.4),1.5,'steel','door_hinge');glass(m,'view_glass',(0,22,-.2),(8.8,5,.3),'door_hinge')

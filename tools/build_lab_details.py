@@ -9,8 +9,8 @@ PALETTES['coolant']=['#285359','#3d6b70','#54888a','#77aaaa']
 DETAILS={
  'lab_monitor':'实验室监视器','lab_sample_rack':'试管样本架','lab_shelf':'实验室货架',
  'lab_pipe':'实验室管线','lab_light_panel':'嵌入式灯板','lab_chair':'实验室座椅',
- 'lab_sink':'清洗槽','lab_storage_crate':'实验室器材箱','lab_freezer':'样本冷柜','lab_floor_grate':'通风地格'}
-COMPONENTS={'lab_monitor':'glass_pane','lab_sample_rack':'glass_bottle','lab_shelf':'chest','lab_pipe':'copper_ingot','lab_light_panel':'glowstone_dust','lab_chair':'leather','lab_sink':'water_bucket','lab_storage_crate':'barrel','lab_freezer':'snowball','lab_floor_grate':'iron_bars'}
+ 'lab_sink':'清洗槽','lab_storage_crate':'实验室器材箱','lab_freezer':'样本冷柜','lab_floor_grate':'通风地格','lab_access_ladder':'金属检修梯','lab_lift':'实验室升降平台'}
+COMPONENTS={'lab_monitor':'glass_pane','lab_sample_rack':'glass_bottle','lab_shelf':'chest','lab_pipe':'copper_ingot','lab_light_panel':'glowstone_dust','lab_chair':'leather','lab_sink':'water_bucket','lab_storage_crate':'barrel','lab_freezer':'snowball','lab_floor_grate':'iron_bars','lab_access_ladder':'ladder','lab_lift':'ender_pearl'}
 DEST=ROOT/'colored_units/lab_details_v3'
 def model(key):return Model(key,DETAILS[key],'laboratory','功能房间细节 / 原创可编辑摆件')
 def box(m,name,a,b,mat='steel'):m.box(name,a,b,mat)
@@ -55,6 +55,15 @@ def models():
  for a,b in [((-8,13,-8),(-6,16,8)),((6,13,-8),(8,16,8)),((-6,13,-8),(6,16,-6)),((-6,13,6),(6,16,8))]:box(m,'frame',a,b,'darkmetal')
  for x in range(-5,6,2):box(m,'bar',(x,14,-6),(x+.8,15.5,6),'steel')
  out.append(m)
+ m=model('lab_access_ladder')
+ for x in (-6,5):box(m,'steel_rail',(x,0,6),(x+1,16,8),'steel')
+ for y in (1,4,7,10,13):box(m,'rung',(-6,y,5.6),(6,y+1.2,7),'steel')
+ for x in (-6,5):box(m,'lamp',(x,14.5,5.3),(x+1,15.5,5.7),'coolant')
+ out.append(m)
+ m=model('lab_lift');box(m,'base',(-8,0,-8),(8,16,8),'darkmetal');box(m,'platform',(-6,15.8,-6),(6,16.1,6),'steel')
+ for x in (-6,5):box(m,'edge_light',(x,16,-5),(x+1,16.2,5),'coolant')
+ for z in (-6,5):box(m,'edge_light',(-5,16,z),(5,16.2,z+1),'coolant')
+ box(m,'direction_indicator',(-2,16.15,-2),(2,16.3,2),'warning');out.append(m)
  return out
 
 def export_details():
@@ -62,14 +71,17 @@ def export_details():
  for m in models():
   d,im,r=m.save(DEST);r['file']=str(Path(r['file']).relative_to(DEST));report.append(r)
   baked=obj(m.key,d,'block',normalize=False);baked['render_type']='minecraft:translucent' if m.key=='lab_sample_rack' else 'minecraft:cutout';write(ASSETS/'models/block'/f'{m.key}.json',baked)
-  write(ASSETS/'blockstates'/f'{m.key}.json',{'variants':{f'facing={f}':{'model':f'ender_infection:block/{m.key}','y':angle} for f,angle in [('north',0),('east',90),('south',180),('west',270)]}})
+  write(ASSETS/'blockstates'/f'{m.key}.json',{'variants':{f'facing={f}':{'model':f'ender_infection:block/{m.key}','y':angle} for f,angle in [('north',0),('east',90),('south',180),('west',270)]}} if m.key!='lab_lift' else {'variants':{'':{'model':f'ender_infection:block/{m.key}'}}})
   obj(m.key,d,'item')
   write(DATA/'loot_tables/blocks'/f'{m.key}.json',{'type':'minecraft:block','pools':[{'rolls':1,'entries':[{'type':'minecraft:item','name':'ender_infection:'+m.key}],'conditions':[{'condition':'minecraft:survives_explosion'}]}]})
   write(DATA/'recipes'/f'{m.key}.json',{'type':'minecraft:crafting_shaped','category':'building','pattern':['IRI','IQI'],'key':{'I':{'item':'minecraft:iron_nugget'},'R':{'item':'minecraft:redstone'},'Q':{'item':'minecraft:'+COMPONENTS[m.key]}},'result':{'item':'ender_infection:'+m.key}})
  for lang in ('zh_cn','en_us'):
   p=ASSETS/'lang'/f'{lang}.json';data=json.loads(p.read_text('utf-8'));data.update({'block.ender_infection.'+k:v if lang=='zh_cn' else k.replace('_',' ').title() for k,v in DETAILS.items()});write(p,data)
  tag=PROJECT/'src/main/resources/data/minecraft/tags/blocks/mineable/pickaxe.json';data=json.loads(tag.read_text('utf-8'));data['values']=sorted(set(data['values'])|{'ender_infection:'+k for k in DETAILS});write(tag,data)
+ write(PROJECT/'src/main/resources/data/minecraft/tags/blocks/climbable.json',{'replace':False,'values':['ender_infection:lab_access_ladder']})
+ for lang,texts in [('zh_cn',['已到最低层。','目标平台被堵住，无法升降。']),('en_us',['Lowest landing reached.','Destination landing is obstructed.'])]:
+  p=ASSETS/'lang'/f'{lang}.json';d=json.loads(p.read_text('utf-8'));d.update(dict(zip(['message.ender_infection.lift_end','message.ender_infection.lift_blocked'],texts)));write(p,d)
  write(DEST/'manifest.json',{'units_per_block':16,'models':report,'count':len(report),'source':'original room detail props'})
- (DEST/'README.md').write_text('# 实验室细节模型\n\n10 个原创可编辑 `.bbmodel`；每个方块 16 模型单位，沿用实验室材料与逐面 UV。由 `tools/build_lab_details.py` 生成并导出游戏烘焙模型。\n',encoding='utf-8')
+ (DEST/'README.md').write_text('# 实验室细节模型\n\n12 个原创可编辑 `.bbmodel`；每个方块 16 模型单位，沿用实验室材料与逐面 UV。由 `tools/build_lab_details.py` 生成并导出游戏烘焙模型。\n',encoding='utf-8')
  print('Exported',len(report),'original laboratory detail models')
 if __name__=='__main__':export_details()

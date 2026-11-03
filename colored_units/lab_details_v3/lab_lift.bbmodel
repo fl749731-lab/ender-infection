@@ -1,0 +1,649 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "实验室升降平台 | lab_lift",
+  "model_identifier": "lab_lift",
+  "resolution": {
+    "width": 64,
+    "height": 64
+  },
+  "elements": [
+    {
+      "name": "base_1",
+      "uuid": "31bb0d30-671d-5d94-83a9-912119432e4e",
+      "type": "cube",
+      "from": [
+        -8.0,
+        0.0,
+        -8.0
+      ],
+      "to": [
+        8.0,
+        16.0,
+        8.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            2,
+            2,
+            18,
+            18
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            2,
+            2,
+            18,
+            18
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            2,
+            2,
+            18,
+            18
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            2,
+            2,
+            18,
+            18
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            2,
+            2,
+            18,
+            18
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            2,
+            2,
+            18,
+            18
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "platform_2",
+      "uuid": "bc6b5b48-d1ea-521f-ac3a-a384614d32e2",
+      "type": "cube",
+      "from": [
+        -6.0,
+        15.8,
+        -6.0
+      ],
+      "to": [
+        6.0,
+        16.1,
+        6.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            2,
+            22,
+            14,
+            23
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            2,
+            22,
+            14,
+            23
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            2,
+            22,
+            14,
+            23
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            2,
+            22,
+            14,
+            23
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            22,
+            2,
+            34,
+            14
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            22,
+            2,
+            34,
+            14
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "edge_light_3",
+      "uuid": "737fc715-43ef-515f-8536-1b205570c8eb",
+      "type": "cube",
+      "from": [
+        -6.0,
+        16.0,
+        -5.0
+      ],
+      "to": [
+        -5.0,
+        16.2,
+        5.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            40,
+            22,
+            41,
+            23
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            40,
+            22,
+            41,
+            23
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            18,
+            22,
+            28,
+            23
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            18,
+            22,
+            28,
+            23
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            38,
+            2,
+            39,
+            12
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            38,
+            2,
+            39,
+            12
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "edge_light_4",
+      "uuid": "5dd40da8-622f-58a7-928e-0299a690980e",
+      "type": "cube",
+      "from": [
+        5.0,
+        16.0,
+        -5.0
+      ],
+      "to": [
+        6.0,
+        16.2,
+        5.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            40,
+            22,
+            41,
+            23
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            40,
+            22,
+            41,
+            23
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            18,
+            22,
+            28,
+            23
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            18,
+            22,
+            28,
+            23
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            38,
+            2,
+            39,
+            12
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            38,
+            2,
+            39,
+            12
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "edge_light_5",
+      "uuid": "6a099b62-3217-572b-b88c-30ed244625e7",
+      "type": "cube",
+      "from": [
+        -5.0,
+        16.0,
+        -6.0
+      ],
+      "to": [
+        5.0,
+        16.2,
+        -5.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            18,
+            22,
+            28,
+            23
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            18,
+            22,
+            28,
+            23
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            40,
+            22,
+            41,
+            23
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            40,
+            22,
+            41,
+            23
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            18,
+            22,
+            28,
+            23
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            18,
+            22,
+            28,
+            23
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "edge_light_6",
+      "uuid": "f7cdc636-4f16-5f9a-af6a-e079a729b83f",
+      "type": "cube",
+      "from": [
+        -5.0,
+        16.0,
+        5.0
+      ],
+      "to": [
+        5.0,
+        16.2,
+        6.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            18,
+            22,
+            28,
+            23
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            18,
+            22,
+            28,
+            23
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            40,
+            22,
+            41,
+            23
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            40,
+            22,
+            41,
+            23
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            18,
+            22,
+            28,
+            23
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            18,
+            22,
+            28,
+            23
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "direction_indicator_7",
+      "uuid": "f1ce5533-9cce-560e-9333-12ba44343a99",
+      "type": "cube",
+      "from": [
+        -2.0,
+        16.15,
+        -2.0
+      ],
+      "to": [
+        2.0,
+        16.3,
+        2.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            32,
+            22,
+            36,
+            23
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            32,
+            22,
+            36,
+            23
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            32,
+            22,
+            36,
+            23
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            32,
+            22,
+            36,
+            23
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            43,
+            2,
+            47,
+            6
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            43,
+            2,
+            47,
+            6
+          ],
+          "texture": 0
+        }
+      }
+    }
+  ],
+  "outliner": [
+    {
+      "name": "root",
+      "uuid": "67bcef96-c255-5fde-bb69-50bbea9ff206",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "children": [
+        "31bb0d30-671d-5d94-83a9-912119432e4e",
+        "bc6b5b48-d1ea-521f-ac3a-a384614d32e2",
+        "737fc715-43ef-515f-8536-1b205570c8eb",
+        "5dd40da8-622f-58a7-928e-0299a690980e",
+        "6a099b62-3217-572b-b88c-30ed244625e7",
+        "f7cdc636-4f16-5f9a-af6a-e079a729b83f",
+        "f1ce5533-9cce-560e-9333-12ba44343a99"
+      ],
+      "export": true,
+      "isOpen": false,
+      "visibility": true
+    }
+  ],
+  "textures": [
+    {
+      "name": "lab_lift.png",
+      "uuid": "92356bc1-6392-572e-a40e-ab8a0493ed8f",
+      "id": "0",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAB8klEQVR4nO3Yu0rDUBgH8JOSuUKtrQYE38D6AIKTk6Mu4lAQ2sHFqTi6uHRycWhB6KAuOvgIgrO2LuIFLyAEqq3QvEDkFI58iSftSdKktf3/IE1ybuRLvlx6GJtwmthYXVu30+lU4IHOatXfsbj9g7I9N5tR7l/czjv6L+/s2tdHh46yWnnDFtsLRoqtbFUc9UEkRPBhB9rMF2wavN/+leOaTYOna3fwwtVJMfRx63Tn8eGpu55Op6WN262WtNyyOtLym9tGd20YhrTeNE02bAnVYGRU2n42vwLVxUV3FySTU44rTbOBbvM2vK3o4yWTnXFcaZoNuaXFwAf+bn6zSDJgVOVL55pKWegMGGWDCNj3CWgr3g6qvG6HYUmwCZdgE06nOyKtvVJa5XageIo36nfdN4GMV1123hifDMj1eNV5nZiLvZJG11HSoxiUX9mw4gj+Twa8vb50F57SYvHCbwexuF1enPo++CB9hp4BltXx/AocVkCxPgOSPT6B/wud//C0p9z7/fj5AzWSGfB8Xw+droMYAyB+mtgokOknlRmcqmu+jk5feX3JNT9M5neeTzY3OPBnQIEcvCrahwbfj595PtncYCQnoBrgDNM+fq4QbSv7f08zQLSNMgMAAAAAAAAAAAAAAAAAAAAAAAAAgI2tH4KixVKuJ2iKAAAAAElFTkSuQmCC",
+      "mode": "bitmap",
+      "width": 64,
+      "height": 64,
+      "uv_width": 64,
+      "uv_height": 64,
+      "render_mode": "default"
+    }
+  ],
+  "animations": [],
+  "notes": "Original concept conversion. 16 units = 1 block. Editable cuboids, embedded native-density UV atlas. Design source 2026-11-02. Game integration is separate.",
+  "texture_width": 64,
+  "texture_height": 64
+}

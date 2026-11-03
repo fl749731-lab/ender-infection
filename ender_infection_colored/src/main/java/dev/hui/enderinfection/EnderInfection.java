@@ -38,6 +38,7 @@ public final class EnderInfection {
         dev.hui.enderinfection.item.InfectionItems.register(bus);
         dev.hui.enderinfection.design.DesignContent.register(bus);
         FactionParticles.register(bus);
+        dev.hui.enderinfection.worldgen.SurfaceBuildingStructure.TYPES.register(bus);
         bus.addListener(this::attributes);
         bus.addListener(this::creativeTab);
     }

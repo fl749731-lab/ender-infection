@@ -47,6 +47,12 @@ public final class DesignContent {
             BLOCKS_BY_KEY.put(key,block);ITEMS_BY_KEY.put(key,ITEMS.register(key,()->new BlockItem(block.get(),new Item.Properties())));
         }
     }
+    static {
+        for(String key:new String[]{"lab_access_ladder","lab_lift"}){
+            RegistryObject<Block> block=BLOCKS.register(key,()->key.equals("lab_lift")?new LabLiftBlock(BlockBehaviour.Properties.of().strength(4).sound(SoundType.METAL).lightLevel(s->5)):new LabAccessLadderBlock(BlockBehaviour.Properties.of().strength(3).sound(SoundType.METAL).noOcclusion()));
+            BLOCKS_BY_KEY.put(key,block);ITEMS_BY_KEY.put(key,ITEMS.register(key,()->new BlockItem(block.get(),new Item.Properties())));
+        }
+    }
     public static final RegistryObject<BlockEntityType<LabFixtureEntity>> FIXTURE_ENTITY=ENTITIES.register("lab_fixture",()->{
         var blocks=new ArrayList<Block>();BLOCKS_BY_KEY.forEach((k,v)->{if(isFixture(k))blocks.add(v.get());});
         blocks.add(InfectedContent.LAB_CABINET.get());blocks.add(InfectedContent.INCUBATOR.get());blocks.add(InfectedContent.SURGERY_TABLE.get());

@@ -189,7 +189,33 @@ def nexus(r):
  pos=r.pos(4,4);r.api['put'](*pos,'infected_nest',{}, {'id':r.api['STR']('ender_infection:expansion_node'),'Wild':(1,1)});r.records.append((4,1,4,'infected_nest',()))
  r.f(5,0,'incubator_eroded');r.monitor(9,0);r.crate(9,6);r.chest_at(10,7,'research')
 
-BUILDERS={name:globals()[name] for floor in THEMES for name in floor}
+def botany(r):
+ r.feature('开放种植槽、样本分区和培养记录')
+ for u in (2,6):
+  for v in (2,3,4,5):r.v(u,v,'moss_block');r.v(u,v,'fern',2)
+ r.table(9,2,True);r.table(9,4,True);r.monitor(9,0);r.shelf(1,7);r.chest_at(10,7,'research')
+def robotics(r):
+ r.feature('拆检工位、器械架和维修线')
+ r.f(3,0,'lab_workbench');r.v(5,4,'anvil');r.p(8,3,'lab_storage_crate');r.p(8,3,'lab_pipe',2);r.shelf(1,6);r.monitor(9,0);r.chest_at(10,7,'engineering')
+def server_room(r):
+ r.feature('双列服务器柜、后部线缆和监控席')
+ for u in (2,5):
+  for v in (1,3,5):r.p(u,v,'lab_freezer');r.p(u,v,'lab_freezer',2);r.p(u,v,'lab_monitor',3,'south')
+ r.monitor(9,0);r.p(9,4,'lab_chair');r.chest_at(10,7,'engineering')
+def cryo_vault(r):
+ r.feature('低温柜阵列、结霜观察窗和样本架')
+ for u in (1,4,7):r.p(u,6,'lab_freezer');r.p(u,6,'lab_freezer',2);r.v(u,7,'blue_ice',2)
+ r.table(2,1,True);r.table(6,1,True);r.monitor(9,0);r.chest_at(10,7,'research')
+def airlock(r):
+ r.feature('双重隔离门、清洗槽和更衣柜')
+ r.partition(4,2);r.partition(8,2,material='light_gray_stained_glass');r.p(1,5,'lab_sink');r.shelf(10,4);r.monitor(1,0);r.chest_at(10,7,'medical')
+def loading(r):
+ r.feature('货运通道、堆垛器材和收发终端')
+ for u,v,n in [(1,1,2),(2,1,1),(5,6,2),(6,6,2),(9,1,1)]:r.crate(u,v,n)
+ r.shelf(1,5);r.shelf(2,5);r.monitor(9,0);r.p(8,4,'lab_chair');r.chest_at(10,7,'supplies')
+LABELS.update({'botany':'菌体与植物温室','robotics':'器械拆检工场','server_room':'服务器与监控机房','cryo_vault':'低温封存库','airlock':'双重消毒气闸','loading':'物资收发与装卸'})
+BUILDERS={name:globals()[name] for name in list(LABELS)}
+
 
 def build_rooms(api):
  reports=[]

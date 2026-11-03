@@ -1150,7 +1150,16 @@ public final class InfectionGameTests {
         var tag=new net.minecraft.nbt.CompoundTag();core.addAdditionalSaveData(tag);tag.putInt("MotherStage",stage);tag.putInt("ColonyBiomass",stock);tag.putInt("ExpansionAllowance",10000);tag.putInt("EmergenceTicks",0);tag.putBoolean("ExpansionNodeCreated",true);core.readAdditionalSaveData(tag);
         var pos=helper.absolutePos(relative);core.moveTo(pos.getX()+.5,pos.getY(),pos.getZ()+.5,0,0);helper.getLevel().addFreshEntity(core);return core;
     }
-    private static void clearWideBattlefield(GameTestHelper helper){helper.getLevel().getEntitiesOfClass(net.minecraft.world.entity.Mob.class,new net.minecraft.world.phys.AABB(helper.absolutePos(new BlockPos(0,0,0)),helper.absolutePos(new BlockPos(9,7,9))).inflate(64)).forEach(net.minecraft.world.entity.Entity::discard);}
+    private static void clearWideBattlefield(GameTestHelper helper){
+        var level=helper.getLevel();var bounds=new net.minecraft.world.phys.AABB(helper.absolutePos(new BlockPos(0,0,0)),helper.absolutePos(new BlockPos(9,7,9))).inflate(64);
+        level.getEntitiesOfClass(net.minecraft.world.entity.Mob.class,bounds).forEach(net.minecraft.world.entity.Entity::discard);
+        // Nodes tick independently of mobs. Residual ownerless nodes from an earlier
+        // batch can bind to a new test mother and debit its otherwise frozen stock.
+        for(int cx=((int)Math.floor(bounds.minX))>>4;cx<=((int)Math.floor(bounds.maxX))>>4;cx++)for(int cz=((int)Math.floor(bounds.minZ))>>4;cz<=((int)Math.floor(bounds.maxZ))>>4;cz++){
+            if(!level.hasChunk(cx,cz))continue;
+            for(var be:new java.util.ArrayList<>(level.getChunk(cx,cz).getBlockEntities().values()))if(be instanceof ExpansionNodeEntity&&bounds.contains(net.minecraft.world.phys.Vec3.atCenterOf(be.getBlockPos())))level.removeBlock(be.getBlockPos(),false);
+        }
+    }
     private static void flatBattlefield(GameTestHelper helper,int minX,int maxX,int minZ,int maxZ){for(int x=minX;x<=maxX;x++)for(int z=minZ;z<=maxZ;z++){helper.setBlock(new BlockPos(x,0,z),Blocks.STONE);for(int y=1;y<=5;y++)helper.setBlock(new BlockPos(x,y,z),Blocks.AIR);}}
     private static void placeMob(GameTestHelper helper,net.minecraft.world.entity.Mob mob,BlockPos pos){var point=helper.absolutePos(pos);mob.moveTo(point.getX()+.5,point.getY(),point.getZ()+.5,0,0);}
     private static void placeMobPlayer(GameTestHelper helper,net.minecraft.world.entity.player.Player player,BlockPos pos){var point=helper.absolutePos(pos);player.moveTo(point.getX()+.5,point.getY(),point.getZ()+.5,0,0);}

@@ -1,51 +1,97 @@
 package dev.hui.enderinfection.test;
 import dev.hui.enderinfection.design.*;
+import dev.hui.enderinfection.worldgen.ResearchLabPlacement;
 import net.minecraft.gametest.framework.*;
 import net.minecraftforge.gametest.*;
 import net.minecraft.core.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
-import net.minecraft.world.entity.EntityType;
-import net.minecraftforge.registries.ForgeRegistries;
 
 @GameTestHolder("ender_lab_checks")
 @PrefixGameTestTemplate(false)
 public final class LabLayoutGameTests {
-    @GameTest(template="empty64",templateNamespace="ender_lab_checks",timeoutTicks=100,batch="lab_rooms")
-    public static void allRoomsHaveDifferentActualLayoutsAndThemedLoot(GameTestHelper h){
-        var level=h.getLevel();var p=h.absolutePos(new BlockPos(2,1,2));h.assertTrue(dev.hui.enderinfection.worldgen.ResearchLabPlacement.place(level,p),"Lab placement failed");
-        var signatures=new java.util.HashSet<String>();int totalChests=0;
-        for(int floor=0;floor<4;floor++)for(int row=0;row<3;row++)for(int side=0;side<2;side++){
-            StringBuilder signature=new StringBuilder();int chests=0,details=0;
-            for(int u=0;u<12;u++)for(int v=0;v<8;v++)for(int dy=1;dy<=4;dy++){
-                var at=p.offset(side==0?1+u:30-u,floor*5+dy,1+row*9+v);var state=level.getBlockState(at);var id=ForgeRegistries.BLOCKS.getKey(state.getBlock()).toString().replace("_eroded","");
-                if(!state.isAir())signature.append(u).append(',').append(dy).append(',').append(v).append(':').append(id).append(';');
-                if(state.getBlock() instanceof LabDetailBlock)details++;
-                if(level.getBlockEntity(at) instanceof ChestBlockEntity chest){chests++;var saved=chest.saveWithFullMetadata();h.assertTrue(saved.getString("LootTable").startsWith("ender_infection:chests/lab_"),"Unthemed loot chest");}
+    private static void clearFixtures(GameTestHelper h,BlockPos p){
+        for(var at:BlockPos.betweenClosed(p,p.offset(43,20,39)))if(h.getLevel().getBlockState(at).getBlock() instanceof LabFixtureBlock)h.getLevel().removeBlock(at,false);
+    }
+    @GameTest(template="empty64",templateNamespace="ender_lab_checks",timeoutTicks=300,batch="lab_rooms")
+    public static void sixBiomeFacilitiesHaveDistinctSizesAndThemedSupplies(GameTestHelper h){
+        var level=h.getLevel();var p=h.absolutePos(new BlockPos(2,1,2));var plans=new java.util.HashSet<String>();var biomes=new java.util.HashSet<String>();int total=0;
+        for(var spec:ResearchLabPlacement.SPECS){
+            clearFixtures(h,p);h.assertTrue(ResearchLabPlacement.place(level,p,spec),"Failed to place "+spec.key());
+            var template=level.getStructureManager().get(new net.minecraft.resources.ResourceLocation("ender_infection",spec.key())).orElseThrow();
+            h.assertTrue(template.getSize().equals(new Vec3i(spec.width(),spec.height(),spec.length())),"Wrong template dimensions");
+            plans.add(template.save(new net.minecraft.nbt.CompoundTag()).toString());biomes.add(spec.biome());int chests=0,lifts=0,openBays=0;
+            for(var at:BlockPos.betweenClosed(p,p.offset(spec.width()-1,spec.height()-1,spec.length()-1))){
+                var state=level.getBlockState(at);h.assertTrue(!state.is(Blocks.LADDER),"Wood ladder survived in "+spec.key());
+                if(state.getBlock() instanceof LabLiftBlock)lifts++;
+                if(level.getBlockEntity(at) instanceof ChestBlockEntity chest){chests++;h.assertTrue(chest.saveWithFullMetadata().getString("LootTable").startsWith("ender_infection:chests/lab_"),"Missing themed loot");}
             }
-            h.assertTrue(chests==1,"Each room should have one supply chest: "+floor+"/"+row+"/"+side+" -> "+chests);h.assertTrue(details>=10,"Missing vertical/functional room dressing");signatures.add(signature.toString());totalChests+=chests;
+            h.assertTrue(chests==spec.rooms(),"Wrong room/supply count for "+spec.key()+": "+chests);h.assertTrue(lifts==spec.floors()+1,"Missing connected lift landing");total+=chests;
+            h.assertTrue(level.registryAccess().registryOrThrow(net.minecraft.core.registries.Registries.STRUCTURE).containsKey(new net.minecraft.resources.ResourceLocation("ender_infection",spec.key())),"Missing natural structure");
         }
-        h.assertTrue(signatures.size()==24&&totalChests==24,"Room layouts still repeat");h.succeed();
+        h.assertTrue(plans.size()==6&&biomes.size()==6&&total==56,"Biome facilities still reuse a single plan");h.succeed();
     }
     @GameTest(template="empty64",templateNamespace="ender_lab_checks",timeoutTicks=100,batch="lab_entrance")
-    public static void entranceDoorHasSidelightsLintelAndNoLadderAboveLanding(GameTestHelper h){
-        var level=h.getLevel();var p=h.absolutePos(new BlockPos(2,1,2));h.assertTrue(dev.hui.enderinfection.worldgen.ResearchLabPlacement.place(level,p),"Lab placement failed");
-        var door=level.getBlockState(p.offset(16,21,23));h.assertTrue(door.getBlock() instanceof LabFixtureBlock&&door.getValue(LabFixtureBlock.FACING)==Direction.NORTH&&!door.getValue(LabFixtureBlock.OPEN),"Bad closed entrance door pose");
-        for(int x:new int[]{15,17})for(int y=21;y<=24;y++)h.assertTrue(!level.getBlockState(p.offset(x,y,23)).isAir(),"Door sides left as open holes");
-        for(int y=23;y<=24;y++)h.assertTrue(!level.getBlockState(p.offset(16,y,23)).isAir(),"Missing lintel");
-        for(int y=21;y<=24;y++)h.assertTrue(!level.getBlockState(p.offset(16,y,25)).is(Blocks.LADDER),"Ladder extends pointlessly above landing");
-        for(int x:new int[]{15,17})h.assertTrue(level.getBlockState(p.offset(x,24,24)).getBlock() instanceof LabDetailBlock,"Ceiling lights should be flush panels");h.succeed();
+    public static void surfaceEntranceHasMetalServiceAccessAndLift(GameTestHelper h){
+        var level=h.getLevel();var p=h.absolutePos(new BlockPos(2,1,2));var spec=ResearchLabPlacement.SPECS.get(0);h.assertTrue(ResearchLabPlacement.place(level,p,spec),"Lab placement failed");
+        var door=level.getBlockState(p.offset(spec.entrance()));h.assertTrue(door.getBlock() instanceof LabFixtureBlock&&!door.getValue(LabFixtureBlock.OPEN),"Missing closed entrance door");
+        var ladder=p.offset(spec.width()/2+2,2,5);h.assertTrue(level.getBlockState(ladder).getBlock() instanceof LabAccessLadderBlock&&level.getBlockState(ladder).is(net.minecraft.tags.BlockTags.CLIMBABLE),"Metal service ladder is not climbable");
+        for(int floor=0;floor<=spec.floors();floor++)h.assertTrue(level.getBlockState(p.offset(spec.lift(floor))).getBlock() instanceof LabLiftBlock,"No working landing");h.succeed();
     }
-    @GameTest(template="empty64",templateNamespace="ender_lab_checks",timeoutTicks=100,batch="lab_stairs")
-    public static void allThreeFlightsHaveRealHeadroomAndReachableLandings(GameTestHelper h){
-        var level=h.getLevel();var p=h.absolutePos(new BlockPos(2,1,2));h.assertTrue(dev.hui.enderinfection.worldgen.ResearchLabPlacement.place(level,p),"Lab placement failed");
-        for(int floor=0;floor<3;floor++){
-            for(int step=0;step<5;step++)for(int x:new int[]{2,3}){
-                var at=p.offset(x,floor*5+1+step,25-step);h.assertTrue(level.getBlockState(at).getBlock() instanceof StairBlock,"Missing stair");
-                h.assertTrue(level.getBlockState(at.above()).getCollisionShape(level,at.above()).isEmpty()&&level.getBlockState(at.above(2)).getCollisionShape(level,at.above(2)).isEmpty(),"Upper floor blocks stair headroom");
-            }
-            var mob=EntityType.ZOMBIE.create(level);mob.setNoAi(true);mob.moveTo(p.getX()+2.5,p.getY()+floor*5+1,p.getZ()+26.5,0,0);level.addFreshEntity(mob);mob.setOnGround(true);
-            var path=mob.getNavigation().createPath(p.offset(2,floor*5+6,20),0);h.assertTrue(path!=null&&path.canReach(),"Stair landing has no walkable route for a normal mob on floor "+floor+"; path="+(path==null?"null":path.getNodeCount()+" nodes, reaches="+path.canReach()));mob.discard();
+    @GameTest(template="empty64",templateNamespace="ender_lab_checks",timeoutTicks=100,batch="lab_lift")
+    public static void liftMovesPlayersBothWaysAndRejectsObstructedLandings(GameTestHelper h){
+        var level=h.getLevel();var p=h.absolutePos(new BlockPos(2,1,2));var spec=ResearchLabPlacement.SPECS.get(0);h.assertTrue(ResearchLabPlacement.place(level,p,spec),"Lab placement failed");
+        var lower=p.offset(spec.lift(0));var upper=p.offset(spec.lift(1));var player=h.makeMockSurvivalPlayer();player.setPos(lower.getX()+.5,lower.getY()+1,lower.getZ()+.5);
+        var block=(LabLiftBlock)level.getBlockState(lower).getBlock();var hit=new net.minecraft.world.phys.BlockHitResult(net.minecraft.world.phys.Vec3.atCenterOf(lower),Direction.UP,lower,false);
+        level.setBlock(upper.above(),Blocks.STONE.defaultBlockState(),3);block.use(level.getBlockState(lower),level,lower,player,net.minecraft.world.InteractionHand.MAIN_HAND,hit);h.assertTrue(Math.abs(player.getY()-lower.getY()-1)<.01,"Lift teleported into obstruction");
+        level.setBlock(upper.above(),Blocks.AIR.defaultBlockState(),3);block.use(level.getBlockState(lower),level,lower,player,net.minecraft.world.InteractionHand.MAIN_HAND,hit);h.assertTrue(Math.abs(player.getY()-upper.getY()-1)<.01,"Lift failed to ascend");
+        player.setShiftKeyDown(true);block.use(level.getBlockState(upper),level,upper,player,net.minecraft.world.InteractionHand.MAIN_HAND,hit);h.assertTrue(Math.abs(player.getY()-lower.getY()-1)<.01,"Lift failed to descend");player.discard();h.succeed();
+    }
+    private static double walkStandingPlayer(GameTestHelper h,net.minecraft.world.entity.player.Player player,net.minecraft.world.phys.Vec3 start,net.minecraft.world.phys.Vec3 direction,int steps){
+        player.getAbilities().flying=false;player.setPos(start.x,start.y,start.z);player.setOnGround(true);
+        for(int i=0;i<steps;i++){
+            player.move(net.minecraft.world.entity.MoverType.SELF,direction.scale(.1).add(0,-.08,0));
+            player.setOnGround(true);
+        }
+        return player.position().subtract(start).dot(direction);
+    }
+    @GameTest(template="empty64",templateNamespace="ender_lab_checks",timeoutTicks=100,batch="lab_player_doors")
+    public static void standingPlayerCanWalkThroughOpenDoorsInEveryFacing(GameTestHelper h){
+        var level=h.getLevel();for(int x=1;x<38;x++)for(int z=1;z<24;z++)h.setBlock(new BlockPos(x,0,z),Blocks.STONE);
+        var player=h.makeMockSurvivalPlayer();int i=0;
+        for(String key:new String[]{"lab_door","lab_door_eroded"})for(Direction face:Direction.Plane.HORIZONTAL){
+            var block=(LabFixtureBlock)DesignContent.BLOCKS_BY_KEY.get(key).get();var p=h.absolutePos(new BlockPos(5+(i%4)*8,1,5+(i/4)*10));i++;
+            var closed=block.defaultBlockState().setValue(LabFixtureBlock.FACING,face);level.setBlock(p,closed,3);block.fillParts(level,p,closed);
+            var forward=new net.minecraft.world.phys.Vec3(-face.getStepX(),0,-face.getStepZ());var start=net.minecraft.world.phys.Vec3.atBottomCenterOf(p).subtract(forward.scale(1.2));
+            double stopped=walkStandingPlayer(h,player,start,forward,30);h.assertTrue(stopped<1,"Closed door failed to stop player: "+key+"/"+face);
+            level.setBlock(p,closed.setValue(LabFixtureBlock.OPEN,true),3);
+            double crossed=walkStandingPlayer(h,player,start,forward,30);h.assertTrue(crossed>2.5,"Open door blocks standing player: "+key+"/"+face+", travelled="+crossed+", height="+player.getBbHeight());
+        }
+        player.discard();h.succeed();
+    }
+    @GameTest(template="empty64",templateNamespace="ender_lab_checks",timeoutTicks=300,batch="lab_player_entrance")
+    public static void standingPlayerCanEnterEveryBiomeFacility(GameTestHelper h){
+        var level=h.getLevel();var p=h.absolutePos(new BlockPos(2,1,2));var player=h.makeMockSurvivalPlayer();
+        for(var spec:dev.hui.enderinfection.worldgen.ResearchLabPlacement.SPECS){
+            clearFixtures(h,p);h.assertTrue(dev.hui.enderinfection.worldgen.ResearchLabPlacement.place(level,p,spec),"Lab placement failed");
+            var door=p.offset(spec.entrance());level.setBlock(door,level.getBlockState(door).setValue(LabFixtureBlock.OPEN,true),3);
+            var start=new net.minecraft.world.phys.Vec3(door.getX()+.5,door.getY(),door.getZ()-1.5);
+            double crossed=walkStandingPlayer(h,player,start,new net.minecraft.world.phys.Vec3(0,0,1),30);
+            h.assertTrue(crossed>2.8,"Standing player cannot enter "+spec.key()+": travelled="+crossed);
+        }player.discard();h.succeed();
+    }
+    @GameTest(template="empty64",templateNamespace="ender_lab_checks",timeoutTicks=40,batch="lab_lighting")
+    public static void footprintLightingNeverReadsAnAdjacentChunk(GameTestHelper h){
+        net.minecraft.world.level.BlockGetter strict=new net.minecraft.world.level.BlockGetter(){
+            public net.minecraft.world.level.block.entity.BlockEntity getBlockEntity(BlockPos p){throw new AssertionError("Lighting read adjacent block entity");}
+            public net.minecraft.world.level.block.state.BlockState getBlockState(BlockPos p){throw new AssertionError("Lighting requested adjacent block/chunk");}
+            public net.minecraft.world.level.material.FluidState getFluidState(BlockPos p){throw new AssertionError("Lighting requested adjacent fluid/chunk");}
+            public int getHeight(){return 384;}public int getMinBuildHeight(){return -64;}
+        };
+        var pos=new BlockPos(16,65,16);
+        for(Direction face:Direction.Plane.HORIZONTAL)for(int x=0;x<3;x++)for(int y=0;y<3;y++){
+            var state=DesignContent.PART.get().defaultBlockState().setValue(LabPartBlock.FACING,face).setValue(LabPartBlock.X,x).setValue(LabPartBlock.Y,y);
+            h.assertTrue(state.getLightBlock(strict,pos)==0&&state.propagatesSkylightDown(strict,pos)&&state.getOcclusionShape(strict,pos).isEmpty(),"Invisible footprint should not obstruct lighting");
         }h.succeed();
     }
 }

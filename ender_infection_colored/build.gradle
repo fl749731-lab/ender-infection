@@ -32,10 +32,16 @@ minecraft {
         if (project.hasProperty('labVisualCheck')) {
             client { workingDirectory project.file('build/lab-visual-check'); property 'ender_infection.labVisualCheck','true' }
         }
+        if (project.hasProperty('architectureCheck')) {
+            client { workingDirectory project.file('build/architecture-check'); property 'ender_infection.architectureCheck','true' }
+        }
+        if (project.hasProperty('naturalLabCheck')) {
+            client { workingDirectory project.file('build/natural-lab-check'); property 'ender_infection.naturalLabCheck','true'; property 'ender_infection.naturalBiome',project.findProperty('naturalBiome') ?: 'mushroom_fields'; property 'ender_infection.naturalBuilding',project.findProperty('naturalBuilding') ?: ''; property 'ender_infection.naturalRerender',project.hasProperty('naturalRerender').toString() }
+        }
         server { args '--nogui' }
         gameTestServer {
             workingDirectory project.file("build/gametest-${System.currentTimeMillis()}")
-            property 'forge.enabledGameTestNamespaces',project.hasProperty('labChecks')?'ender_lab_checks':'ender_infection,ender_lab_checks'
+            property 'forge.enabledGameTestNamespaces',project.hasProperty('aiChecks')?'ender_ai_checks':project.hasProperty('labChecks')?'ender_lab_checks':'ender_infection,ender_lab_checks'
         }
     }
 }

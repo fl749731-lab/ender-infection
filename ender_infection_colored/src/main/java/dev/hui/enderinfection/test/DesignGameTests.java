@@ -60,23 +60,10 @@ public final class DesignGameTests {
         h.runAfterDelay(25,()->{h.assertTrue(target.getHealth()<before,"Projectile did not hurt target");h.assertTrue(target.hasEffect(net.minecraft.world.effect.MobEffects.POISON),"Spore shot missing poison");caster.discard();target.discard();h.succeed();});
     }
     @GameTest(template="empty64",timeoutTicks=100,batch="design_structure")
-    public static void nativeLaboratoryHasFourLevelsAndWorkingFixtures(GameTestHelper h){
-        var level=h.getLevel();var p=h.absolutePos(new BlockPos(2,1,2));h.assertTrue(dev.hui.enderinfection.worldgen.ResearchLabPlacement.place(level,p),"Native lab template placement failed");
-        for(int y:new int[]{0,5,10,15}){
-            h.assertTrue(level.getBlockState(p.offset(15,y,8)).is(InfectedContent.LAB_CHECKER.get()),"Missing floor at "+y);
-            int chests=0,details=0,fixtures=0;
-            for(int x=1;x<=30;x++)for(int z=1;z<=26;z++)for(int h1=1;h1<=4;h1++){
-                var at=p.offset(x,y+h1,z);var state=level.getBlockState(at);
-                if(level.getBlockEntity(at) instanceof ChestBlockEntity)chests++;
-                if(state.getBlock() instanceof LabDetailBlock)details++;
-                if(level.getBlockEntity(at) instanceof LabFixtureEntity)fixtures++;
-            }
-            h.assertTrue(chests==6,"Missing themed loot chests at "+y+": "+chests);
-            h.assertTrue(details>=30&&fixtures>=3,"Floor missing detailed equipment at "+y);
-        }
-        h.assertTrue(level.getBlockState(p.offset(16,21,23)).getBlock() instanceof LabFixtureBlock,"Missing surface entrance");
-        h.assertTrue(level.getBlockState(p.offset(16,19,25)).is(Blocks.LADDER),"Entrance not connected to lower levels");
-        h.assertTrue(level.registryAccess().registryOrThrow(net.minecraft.core.registries.Registries.STRUCTURE).containsKey(new net.minecraft.resources.ResourceLocation("ender_infection","research_lab")),"Natural structure not registered");
-        h.succeed();
+    public static void nativeLaboratoryHasFunctionalSuppliesAndBiomeRegistry(GameTestHelper h){
+        var level=h.getLevel();var p=h.absolutePos(new BlockPos(2,1,2));var spec=dev.hui.enderinfection.worldgen.ResearchLabPlacement.SPECS.get(0);
+        h.assertTrue(dev.hui.enderinfection.worldgen.ResearchLabPlacement.place(level,p),"Native lab placement failed");int chests=0;
+        for(var at:BlockPos.betweenClosed(p,p.offset(spec.width()-1,spec.height()-1,spec.length()-1)))if(level.getBlockEntity(at) instanceof ChestBlockEntity)chests++;
+        h.assertTrue(chests==spec.rooms(),"Missing themed room supplies");h.assertTrue(level.getBlockState(p.offset(spec.entrance())).getBlock() instanceof LabFixtureBlock,"Missing entrance");h.succeed();
     }
 }

@@ -42,7 +42,7 @@ public final class LabFixtureBlock extends BaseEntityBlock {
     @Override public void onRemove(BlockState state,Level level,BlockPos pos,BlockState next,boolean moving){
         if(!state.is(next.getBlock())&&!level.isClientSide){
             if(level.getBlockEntity(pos) instanceof LabFixtureEntity be)be.removing=true;
-            for(int x=-halfWidth();x<=halfWidth();x++)for(int y=0;y<height();y++)if(x!=0||y!=0){BlockPos p=cell(pos,state.getValue(FACING),x,y);var s=level.getBlockState(p);if(s.getBlock() instanceof LabPartBlock&&LabPartBlock.anchor(p,s).equals(pos))level.removeBlock(p,false);}
+            for(int x=-halfWidth();x<=halfWidth();x++)for(int y=0;y<height();y++)if(x!=0||y!=0){BlockPos p=cell(pos,state.getValue(FACING),x,y);if(!level.hasChunkAt(p))continue;var s=level.getBlockState(p);if(s.getBlock() instanceof LabPartBlock&&LabPartBlock.anchor(p,s).equals(pos))level.removeBlock(p,false);}
         }
         super.onRemove(state,level,pos,next,moving);
     }
@@ -54,7 +54,8 @@ public final class LabFixtureBlock extends BaseEntityBlock {
     public VoxelShape localShape(BlockState state,int x,int y){
         String b=base();
         if(b.equals("lab_hatch")&&state.getValue(OPEN))return Shapes.empty();
-        if(b.equals("lab_door")&&state.getValue(OPEN))return Shapes.or(Block.box(0,0,6,1.7,16,10),Block.box(14.3,0,6,16,16,10),y==0?Block.box(0,0,6,16,1.7,10):Block.box(0,14.3,6,16,16,10));
+        // One-pixel frame leaves 1.875 blocks of clear height for a standing 1.8-block player.
+        if(b.equals("lab_door")&&state.getValue(OPEN))return Shapes.or(Block.box(0,0,6,1,16,10),Block.box(15,0,6,16,16,10),y==0?Block.box(0,0,6,16,1,10):Block.box(0,15,6,16,16,10));
         if(b.equals("lab_vent")||b.equals("lab_hatch"))return Block.box(0,0,13.5,16,16,16);
         if(b.equals("surgery_table")&&y==0)return x==0?Block.box(0,0,3,16,14,13):Block.box(x<0?8:0,10,3,x<0?16:8,14,13);
         if(b.equals("surgery_table")&&y==1)return x==0?Block.box(2,0,8,10,15,13):Shapes.empty();

@@ -13,6 +13,141 @@ import net.minecraftforge.gametest.PrefixGameTestTemplate;
 @GameTestHolder("ender_infection")
 @PrefixGameTestTemplate(false)
 public final class InfectionGameTests {
+    @GameTest(template="empty64",timeoutTicks=80,batch="expansion_clock")
+    public static void expansionWaitsForItsBiomassIntervalAndKeepsProgressOnReload(GameTestHelper h){
+        clearWideBattlefield(h);preparePlantPatch(h);var level=h.getLevel();
+        var core=fundedCore(h,new BlockPos(7,1,7),100,1);var node=plantNode(h,core);
+        h.setBlock(new BlockPos(5,0,4),Blocks.DIRT);
+        for(int t=0;t<5;t++)node.serverTick(level);
+        h.assertTrue(node.purchasedChanges()==0&&core.colonyBiomass()==100,"Node spread before its biomass-dependent interval");
+        var saved=node.saveWithFullMetadata();h.assertTrue(saved.getInt("SpreadClock")==5,"Expansion clock did not retain elapsed work");node.load(saved);
+        for(int t=0;t<20&&node.purchasedChanges()==0;t++)node.serverTick(level);
+        h.assertTrue(node.purchasedChanges()==1&&core.colonyBiomass()==99,"Saved clock did not resume a single paid frontier transaction");clearWideBattlefield(h);h.succeed();
+    }
+    @GameTest(template="empty64",timeoutTicks=80,batch="expansion_highland")
+    public static void expansionClimbsSixStepsAndHighlandCountsForIncome(GameTestHelper h){
+        clearWideBattlefield(h);preparePlantPatch(h);var level=h.getLevel();
+        var core=fundedCore(h,new BlockPos(2,1,7),2000,2);var node=plantNode(h,core);
+        for(int x=5;x<=10;x++)for(int y=0;y<=x-4;y++)h.setBlock(new BlockPos(x,y,4),Blocks.DIRT);
+        for(int t=0;t<1200;t++)node.serverTick(level);
+        h.assertTrue(InfectedContent.terrainKey(h.getBlockState(new BlockPos(10,6,4)))!=null,"Frontier stopped above the old three-block height ceiling");
+        var yield=dev.hui.enderinfection.biomass.TerritoryYield.measure(level,core);
+        h.assertTrue(yield.columns()>=6,"Connected highland was infected but excluded from land income: "+yield.columns());
+        h.assertTrue(core.colonyBiomass()==2000-node.spentBiomass(),"Uphill expansion did not charge exactly its owner");clearWideBattlefield(h);h.succeed();
+    }
+    @GameTest(template="empty64",timeoutTicks=80,batch="expansion_gap")
+    public static void expansionCannotSeedADisconnectedDiagonalIsland(GameTestHelper h){
+        clearWideBattlefield(h);preparePlantPatch(h);var level=h.getLevel();
+        var core=fundedCore(h,new BlockPos(7,1,7),100,1);var node=plantNode(h,core);
+        h.setBlock(new BlockPos(5,0,5),Blocks.DIRT);
+        for(int t=0;t<120;t++)node.serverTick(level);
+        h.assertTrue(h.getBlockState(new BlockPos(5,0,5)).is(Blocks.DIRT)&&node.purchasedChanges()==0,"Infection jumped from its node across an unconnected diagonal gap");clearWideBattlefield(h);h.succeed();
+    }
+    @GameTest(template="empty64",timeoutTicks=80,batch="expansion_radius")
+    public static void rootedNodesDoNotBuyRadiusOverBlockedTerrain(GameTestHelper h){
+        clearWideBattlefield(h);preparePlantPatch(h);var level=h.getLevel();
+        var core=fundedCore(h,new BlockPos(7,1,7),100,1);
+        h.setBlock(new BlockPos(4,0,4),InfectedContent.NEST.get().defaultBlockState().setValue(dev.hui.enderinfection.block.InfectedNestBlock.ROOTED,true));
+        var node=(ExpansionNodeEntity)level.getBlockEntity(h.absolutePos(new BlockPos(4,0,4)));node.setOwner(core.getUUID());
+        var data=node.saveWithFullMetadata();data.putInt("GrowthClock",300);data.putInt("SpreadClock",0);node.load(data);node.serverTick(level);
+        h.assertTrue(node.radius()==2&&node.spentBiomass()==0&&core.colonyBiomass()==100,"Rooted node paid for empty/blocked coverage");clearWideBattlefield(h);h.succeed();
+    }
+    @GameTest(template="empty64",timeoutTicks=80,batch="expansion_overlap")
+    public static void frontierScoresExcludeTheParentsCoveredLand(GameTestHelper h){
+        clearWideBattlefield(h);prepareOutpostArea(h,true);var level=h.getLevel();
+        var core=fundedCore(h,new BlockPos(4,1,4),200,3);var node=plantNode(h,core);core.observeExpansion(node);
+        var data=node.saveWithFullMetadata();data.putInt("Radius",16);node.load(data);
+        double covered=node.frontierScore(level,node.getBlockPos(),core);
+        double outward=node.frontierScore(level,node.getBlockPos().east(12),core);
+        h.assertTrue(covered<=0&&outward>covered,"Outpost scoring rewarded land already supplied by its parent: "+covered+" / "+outward);clearWideBattlefield(h);h.succeed();
+    }
+    @GameTest(template="empty64",timeoutTicks=80,batch="expansion_rebuild")
+    public static void aDestroyedOwnedOutpostCanBeRebuiltAfterReload(GameTestHelper h){
+        clearWideBattlefield(h);prepareOutpostArea(h,true);var level=h.getLevel();
+        var core=fundedCore(h,new BlockPos(4,1,4),200,3);var node=plantNode(h,core);
+        var data=node.saveWithFullMetadata();data.putInt("Radius",10);data.putInt("OutpostClock",600);node.load(data);node.serverTick(level);
+        var child=core.activeColonyNodes().stream().filter(n->n!=node).findFirst().orElse(null);
+        h.assertTrue(child!=null,"Rebuild test did not create its first owned outpost");
+        var saved=node.saveWithFullMetadata();level.removeBlock(child.getBlockPos(),false);int before=core.colonyBiomass();
+        saved.putInt("OutpostClock",600);node.load(saved);node.serverTick(level);
+        var replacement=core.activeColonyNodes().stream().filter(n->n!=node).findFirst().orElse(null);
+        h.assertTrue(replacement!=null&&core.getUUID().equals(replacement.ownerId())&&core.colonyNodeCount()==2,"Destroyed outpost permanently stopped this branch after reload");
+        h.assertTrue(core.colonyBiomass()==before-8,"Outpost replacement was not charged once to its owner");clearWideBattlefield(h);h.succeed();
+    }
+    @GameTest(template="empty64",timeoutTicks=80,batch="expansion_cliff")
+    public static void infectionClimbsAnExposedCliffWithoutJumpingToAFloatingBlock(GameTestHelper h){
+        clearWideBattlefield(h);preparePlantPatch(h);var level=h.getLevel();
+        var core=fundedCore(h,new BlockPos(7,1,7),1000,2);var node=plantNode(h,core);
+        for(int y=0;y<=7;y++)h.setBlock(new BlockPos(5,y,4),Blocks.STONE);
+        h.setBlock(new BlockPos(7,7,4),Blocks.DIRT);
+        for(int t=0;t<360;t++)node.serverTick(level);
+        h.assertTrue(InfectedContent.terrainKey(h.getBlockState(new BlockPos(5,7,4)))!=null,"Infection could not climb a connected exposed cliff");
+        h.assertTrue(h.getBlockState(new BlockPos(7,7,4)).is(Blocks.DIRT),"Cliff infection jumped across air to a floating block");clearWideBattlefield(h);h.succeed();
+    }
+    @GameTest(template="empty64",timeoutTicks=80,batch="expansion_speed")
+    public static void richNodeActuallySpreadsSoonerThanPoorNode(GameTestHelper h){
+        clearWideBattlefield(h);preparePlantPatch(h);var level=h.getLevel();
+        for(int x=16;x<=24;x++)for(int z=0;z<9;z++){h.setBlock(new BlockPos(x,0,z),Blocks.BARRIER);for(int y=1;y<7;y++)h.setBlock(new BlockPos(x,y,z),Blocks.AIR);}
+        var poor=fundedCore(h,new BlockPos(7,1,7),30,1);var rich=fundedCore(h,new BlockPos(23,1,7),1000,1);
+        var first=plantNode(h,poor);h.setBlock(new BlockPos(20,1,4),InfectedContent.NEST.get());
+        var second=(ExpansionNodeEntity)level.getBlockEntity(h.absolutePos(new BlockPos(20,1,4)));second.setOwner(rich.getUUID());
+        h.setBlock(new BlockPos(5,0,4),Blocks.DIRT);h.setBlock(new BlockPos(21,0,4),Blocks.DIRT);
+        for(int t=0;t<6;t++){first.serverTick(level);second.serverTick(level);}
+        h.assertTrue(first.purchasedChanges()==0&&second.purchasedChanges()==1,"Actual terrain rate did not follow the biomass speed curve");
+        h.assertTrue(poor.colonyBiomass()==30&&rich.colonyBiomass()==999,"Fast node borrowed from the poor mother or paid the wrong price");clearWideBattlefield(h);h.succeed();
+    }
+    @GameTest(template="empty64",timeoutTicks=80,batch="expansion_remote")
+    public static void expansionPlanningNeverLoadsARemoteNodeChunk(GameTestHelper h){
+        clearWideBattlefield(h);var level=h.getLevel();var core=fundedCore(h,new BlockPos(7,1,7),1000,3);
+        BlockPos remote=h.absolutePos(new BlockPos(30000,1,30000));h.assertTrue(!level.hasChunkAt(remote),"Remote fixture was unexpectedly loaded");
+        var node=new ExpansionNodeEntity(remote,InfectedContent.NEST.get().defaultBlockState());node.setOwner(core.getUUID());
+        var saved=node.saveWithFullMetadata();saved.putInt("Radius",12);saved.putInt("GrowthClock",300);saved.putInt("OutpostClock",600);saved.putInt("SpreadClock",40);node.load(saved);
+        for(int t=0;t<3;t++)node.serverTick(level);
+        h.assertTrue(!level.hasChunkAt(remote)&&core.colonyBiomass()==1000&&node.purchasedChanges()==0,"Remote expansion planning loaded terrain or spent biomass");clearWideBattlefield(h);h.succeed();
+    }
+    @GameTest(template="empty64",timeoutTicks=80,batch="expansion_capital")
+    public static void biggerNodeNetworksKeepConstructionCapitalBeforePeaceTimeHatching(GameTestHelper h){
+        clearWideBattlefield(h);var core=fundedCore(h,new BlockPos(7,1,7),36,2);
+        for(int i=0;i<6;i++)incomeNode(h,new BlockPos(4+i*8,1,4),core,2);
+        h.assertTrue(core.expansionWorkingReserve()==30,"Six-node network did not keep a scaled construction wallet");
+        h.assertTrue(!core.spendForHatching(8)&&core.colonyBiomass()==36,"Peace-time hatching consumed the node construction wallet");
+        core.receiveColonyBiomass(8);h.assertTrue(core.spendForHatching(8)&&core.colonyBiomass()==36,"Funded hatching failed after preserving construction capital");clearWideBattlefield(h);h.succeed();
+    }
+    @GameTest(template="empty64",timeoutTicks=80,batch="expansion_belt")
+    public static void youngOutpostCanCrossItsParentsBeltToReachFreshGround(GameTestHelper h){
+        clearWideBattlefield(h);var level=h.getLevel();
+        for(int x=0;x<=48;x++)for(int z=0;z<=40;z++){
+            h.setBlock(new BlockPos(x,0,z),(x-20)*(x-20)+(z-20)*(z-20)<=256?InfectedContent.TERRAIN.get("mycelial_mat").get():Blocks.DIRT);
+            for(int y=1;y<4;y++)h.setBlock(new BlockPos(x,y,z),Blocks.AIR);
+        }
+        var core=fundedCore(h,new BlockPos(20,1,20),3000,3);
+        incomeNode(h,new BlockPos(20,0,20),core,16);var child=incomeNode(h,new BlockPos(28,0,20),core,2);
+        for(int t=0;t<1800;t++)child.serverTick(level);
+        h.assertTrue(child.radius()>=10&&child.purchasedChanges()>0,"Parent's already infected belt trapped its young outpost: radius "+child.radius()+", changes "+child.purchasedChanges());
+        h.assertTrue(core.colonyBiomass()==3000-child.spentBiomass(),"Crossing an overlap belt did not preserve the owner's construction ledger");clearWideBattlefield(h);h.succeed();
+    }
+    @GameTest(template="empty64",timeoutTicks=80,batch="expansion_legacy")
+    public static void oldOutpostLatchAdoptsSavedChildBeforeRebuilding(GameTestHelper h){
+        clearWideBattlefield(h);prepareOutpostArea(h,true);var level=h.getLevel();
+        var core=fundedCore(h,new BlockPos(4,1,4),200,3);var node=plantNode(h,core);
+        var saved=node.saveWithFullMetadata();saved.putInt("Radius",10);saved.putInt("OutpostClock",600);node.load(saved);node.serverTick(level);
+        var child=core.activeColonyNodes().stream().filter(n->n!=node).findFirst().orElse(null);h.assertTrue(child!=null,"Legacy test had no child");
+        saved=node.saveWithFullMetadata();saved.remove("ChildOutpost");saved.putInt("OutpostClock",600);node.load(saved);int stock=core.colonyBiomass();node.serverTick(level);
+        h.assertTrue(core.colonyNodeCount()==2&&core.colonyBiomass()==stock&&node.saveWithFullMetadata().getLong("ChildOutpost")==child.getBlockPos().asLong(),"Legacy latch duplicated its surviving known child");
+        saved=node.saveWithFullMetadata();level.removeBlock(child.getBlockPos(),false);saved.putInt("OutpostClock",600);node.load(saved);node.serverTick(level);
+        h.assertTrue(core.colonyNodeCount()==2&&core.colonyBiomass()==stock-8,"Migrated legacy branch could not rebuild its child");clearWideBattlefield(h);h.succeed();
+    }
+    @GameTest(template="empty64",timeoutTicks=80,batch="expansion_vertical_outpost")
+    public static void aHighLedgeCanHostAnOutpostInsideTheHorizontalRing(GameTestHelper h){
+        clearWideBattlefield(h);preparePlantPatch(h);var level=h.getLevel();
+        var core=fundedCore(h,new BlockPos(4,1,4),200,3);var node=plantNode(h,core);
+        for(int y=1;y<=8;y++)h.setBlock(new BlockPos(6,y,4),InfectedContent.TERRAIN.get("crystal_crust").get());
+        for(int x=7;x<=10;x++)for(int z=1;z<=7;z++)for(int y=9;y<=20;y++)h.setBlock(new BlockPos(x,y,z),Blocks.DIRT);
+        var saved=node.saveWithFullMetadata();saved.putInt("Radius",10);saved.putInt("OutpostClock",600);node.load(saved);node.serverTick(level);
+        var child=core.activeColonyNodes().stream().filter(n->n!=node).findFirst().orElse(null);
+        h.assertTrue(child!=null&&child.getBlockPos().getY()>=h.absolutePos(new BlockPos(6,8,4)).getY(),"Outpost selection ignored a useful high ledge inside its horizontal ring");
+        h.assertTrue(core.colonyBiomass()==192,"Vertical outpost did not cost exactly eight biomass");clearWideBattlefield(h);h.succeed();
+    }
     @GameTest(template="empty64",timeoutTicks=190,batch="ai_node_alarm")
     public static void brokenNodeRecallsHuntersToTheObjectiveWithoutUnseenTargetTracking(GameTestHelper helper){
         clearWideBattlefield(helper);flatBattlefield(helper,0,40,0,10);var level=helper.getLevel();

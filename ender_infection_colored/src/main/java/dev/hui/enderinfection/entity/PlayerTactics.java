@@ -101,7 +101,7 @@ public final class PlayerTactics {
                 if(!(level.getBlockEntity(p) instanceof dev.hui.enderinfection.block.ExpansionNodeEntity node))continue;
                 shown++;
                 final BlockPos at=p.immutable();
-                context.getSource().sendSuccess(()->Component.literal("节点 "+at.toShortString()+"：半径 "+node.radius()+"，活跃 "+node.activeTicks()+" tick，改格 "+node.purchasedChanges()+"，下沉 "+node.deepenedBlocks()+"，成熟 "+node.maturedBlocks()+"，单位 "+node.soilBorn()),false);
+                context.getSource().sendSuccess(()->Component.literal("节点 "+at.toShortString()+"：半径 "+node.radius()+"，纵向 "+node.surfaceBottom()+"~"+node.surfaceTop()+"，扩张轮次 "+node.spreadRounds()+"，下轮等待 "+node.spreadWait(level)+" tick，活跃 "+node.activeTicks()+" tick，改格 "+node.purchasedChanges()+"，下沉 "+node.deepenedBlocks()+"，成熟 "+node.maturedBlocks()+"，单位 "+node.soilBorn()),false);
             }
             level.getEntitiesOfClass(net.minecraft.world.entity.Mob.class,player.getBoundingBox().inflate(48),e->FactionAI.infected(e)).stream().sorted(Comparator.comparingDouble(player::distanceToSqr)).limit(8).forEach(unit->context.getSource().sendSuccess(()->Component.literal(unit.getName().getString()+"："+unit.getPersistentData().getString("ColonyTask")+" / "+unit.getPersistentData().getString("TaskReason")),false));
             return 1;

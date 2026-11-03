@@ -128,7 +128,8 @@ public final class InfectedMob extends Monster implements GeoEntity {
     }
     public float morphSpeed(){return entityData.get(MORPH_SPEED);}
     public int expansionAllowance(){return expansionAllowance;}
-    private int upgradeReserve(){return motherStage()<5&&expansionReady()&&colonyBiomass>=ColonyEconomy.upgradePrice(motherStage())+16?ColonyEconomy.upgradePrice(motherStage())+16:0;}
+    public int expansionWorkingReserve(){int count=colonyNodeCount();return count==0?0:Math.min(64,Math.max(ColonyEconomy.EXPANSION_FLOOR,count*ColonyEconomy.SPREAD_PER_ROUND+ColonyEconomy.NODE+ColonyEconomy.RADIUS));}
+    private int upgradeReserve(){int reserve=Math.max(16,expansionWorkingReserve());return motherStage()<5&&expansionReady()&&colonyBiomass>=ColonyEconomy.upgradePrice(motherStage())+reserve?ColonyEconomy.upgradePrice(motherStage())+reserve:0;}
     public void observeExpansion(ExpansionNodeEntity node){
         if(!getUUID().equals(node.ownerId()))return;
         colonyNodes.add(node.getBlockPos().immutable());
@@ -138,6 +139,12 @@ public final class InfectedMob extends Monster implements GeoEntity {
     public int colonyNodeCount(){
         colonyNodes.removeIf(pos->level().hasChunkAt(pos)&&(!(level().getBlockEntity(pos) instanceof ExpansionNodeEntity node)||!getUUID().equals(node.ownerId())));
         return colonyNodes.size();
+    }
+    /** Legacy node-child migration uses the saved registry, including unloaded node positions. */
+    public BlockPos knownFrontierChild(BlockPos parent,int radius){
+        colonyNodeCount();double parentDistance=parent.distSqr(blockPosition());
+        return colonyNodes.stream().filter(pos->!pos.equals(parent)&&pos.distSqr(parent)>=49&&pos.distSqr(parent)<=(radius+2)*(radius+2)*2&&pos.distSqr(blockPosition())>parentDistance)
+            .min(java.util.Comparator.<BlockPos>comparingDouble(pos->pos.distSqr(parent)).thenComparingLong(BlockPos::asLong)).orElse(null);
     }
     public boolean nodeSiteAvailable(BlockPos pos){colonyNodeCount();return colonyNodes.stream().noneMatch(existing->existing.distSqr(pos)<49);}
     public java.util.List<ExpansionNodeEntity> activeColonyNodes(){
@@ -170,7 +177,7 @@ public final class InfectedMob extends Monster implements GeoEntity {
     private int expansionFloor(){
         if(colonyNodes.isEmpty())return 0;
         if(getTarget()!=null||getLastHurtByMob()!=null&&tickCount-getLastHurtByMobTimestamp()<200)return 0;
-        return ColonyEconomy.EXPANSION_FLOOR;
+        return expansionWorkingReserve();
     }
     public boolean spendForHatching(int price){boolean paid=colonyBiomass-price>=Math.max(upgradeReserve(),expansionFloor())&&spendBiomass(price);if(paid&&motherBrain!=null)motherBrain.policy().noteHatchSpend(price);return paid;}
     public boolean spendForRecovery(int price){return colonyBiomass-price>=Math.max(8,upgradeReserve())&&spendBiomass(price);}
@@ -192,7 +199,7 @@ public final class InfectedMob extends Monster implements GeoEntity {
         setHealth(getMaxHealth()*fraction);refreshDimensions();
     }
     boolean tryAdvanceMother(ServerLevel level){
-        int next=motherStage()+1;if(next>5||!expansionReady()||colonyBiomass<ColonyEconomy.upgradePrice(motherStage())+16)return false;
+        int next=motherStage()+1;if(next>5||!expansionReady()||colonyBiomass<ColonyEconomy.upgradePrice(motherStage())+Math.max(16,expansionWorkingReserve()))return false;
         double half=MotherBrain.width(next)*.5;
         var box=new net.minecraft.world.phys.AABB(getX()-half,getY(),getZ()-half,getX()+half,getY()+MotherBrain.height(next),getZ()+half);
         if(!level.noCollision(this,box)||level.containsAnyLiquid(box))return false;

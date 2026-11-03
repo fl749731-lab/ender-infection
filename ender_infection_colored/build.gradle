@@ -41,7 +41,7 @@ minecraft {
         server { args '--nogui' }
         gameTestServer {
             workingDirectory project.file("build/gametest-${System.currentTimeMillis()}")
-            property 'forge.enabledGameTestNamespaces',project.hasProperty('aiChecks')?'ender_ai_checks':project.hasProperty('labChecks')?'ender_lab_checks':'ender_infection,ender_lab_checks'
+            property 'forge.enabledGameTestNamespaces',project.hasProperty('expansionChecks')?'ender_expansion_checks':project.hasProperty('aiChecks')?'ender_ai_checks':project.hasProperty('labChecks')?'ender_lab_checks':'ender_infection,ender_lab_checks'
         }
     }
 }

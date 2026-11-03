@@ -1,11 +1,9 @@
-> 当前文件位置：工程 `E:\mc\ender_infection_colored`；可编辑模型 `E:\mc\colored_units`。
+# 末影感染 · Ender Infection
 
-# 末影感染 0.2.1
+Minecraft 1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17。项目在 `E:\mc\ender_infection_colored`，可编辑 Blockbench 模型在 `E:\mc\colored_units`，可玩实例在 `E:\mc\Minecraft1201`。
 
-新增植物的初期保色侵蚀、进一步侵蚀及完全感染，修复菌丝体上方植物阻断地表扩散；自动扩张节点替换地表方块。完全畸变单位获得不同晶刺技能，骷髅改用魔法阵与水晶施法模型，初期骷髅仍使用弓箭。
+完整玩法、下载、建筑来源与前置说明见[仓库首页](../README.md)。本轮扩张修复涵盖连通坡面和崖面、高台前哨、未覆盖地形与肥力评分、旧感染带接力、付费补建、网络周转金与高处土地收益。规则和费用见[扩张说明](../docs/expansion.md)。管理员使用 `/enderstrategy` 查看附近节点的高度范围和计时。
 
-详细范围、规则和调试指令见《植物侵蚀与晶刺技能_0.2.1.md》。五阶段母体、生态收入、AI、Boss、掉落和配方见《生态与高阶母体_0.2.0.md》。50 项隔离 Forge GameTest 全部通过，资源检查结果见 verification/RESULTS.txt。贴图、模型离线预览不代表客户端实机验收。
+使用 JDK 17 运行 `gradlew.bat build` 编译。`gradlew.bat runGameTestServer -PexpansionChecks --offline` 运行扩张专项；不带该参数运行全量。测试世界位于 `build`，不会打开玩家存档。实际测试与编译记录见 [RESULTS.txt](verification/RESULTS.txt)。
 
-Minecraft 1.20.1 / Forge 47.3.12 / Java 17 / GeckoLib 4.4.9。运行 `.\gradlew.bat build` 编译；`.\gradlew.bat runGameTestServer` 会在 build 下创建全新隔离测试世界。玩家存档没有用于自动测试。
-
-安装状态见工作区 outputs/安装状态.txt；重启 Minecraft 后才会加载新 JAR。
+游戏实例使用 `Minecraft1201\instances\EnderInfection1201\.minecraft\mods`，必须同时保留 GeckoLib 前置。新 JAR 需要重启 Minecraft 才会加载。

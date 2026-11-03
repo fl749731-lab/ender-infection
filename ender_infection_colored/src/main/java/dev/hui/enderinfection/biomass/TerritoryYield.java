@@ -29,7 +29,7 @@ public final class TerritoryYield {
             for(int dx=-node.radius();dx<=node.radius();dx++)for(int dz=-node.radius();dz<=node.radius();dz++){
                 if(dx*dx+dz*dz>node.radius()*node.radius())continue;
                 BlockPos column=node.pos().offset(dx,0,dz);if(!level.hasChunkAt(column))continue;
-                for(int dy=3;dy>=-4;dy--){
+                for(int dy=node.radius()+1;dy>=-node.radius()-4;dy--){
                     BlockPos pos=column.offset(0,dy,0);String key=InfectedContent.terrainKey(level.getBlockState(pos));
                     if(!ground(key))continue;
                     var above=level.getBlockState(pos.above());
@@ -43,7 +43,7 @@ public final class TerritoryYield {
         for(BlockPos pos:columns.values()){
             Node closest=null;long best=Long.MAX_VALUE;
             for(Node candidate:nodes){
-                int dy=pos.getY()-candidate.pos().getY();if(dy< -4||dy>3)continue;
+                int dy=pos.getY()-candidate.pos().getY();if(dy< -candidate.radius()-4||dy>candidate.radius()+1)continue;
                 long dx=pos.getX()-candidate.pos().getX(),dz=pos.getZ()-candidate.pos().getZ(),distance=dx*dx+dz*dz;
                 if(distance>candidate.radius()*candidate.radius())continue;
                 if(distance<best||distance==best&&(closest==null||candidate.owner().compareTo(closest.owner())<0)){closest=candidate;best=distance;}

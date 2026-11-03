@@ -14,6 +14,14 @@ Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当
 
 将 `geckolib-forge-1.20.1-4.4.9.jar` 和本 Mod 的 JAR 放入同一个实例的 `mods` 文件夹；专用服务器也放入其 `mods` 文件夹。GeckoLib 需单独下载，未打包进本 Mod。缺少前置或版本不满足要求时，Forge 会阻止加载并提示依赖错误。
 
+## 扩张逻辑修复
+
+节点按生物质储备计时扩张，修复之前每个 tick 都扫描和扣费的问题。连续坡面与裸露崖面都能向上感染；搜索高度随节点范围增长，高台也能成为子节点的落脚点。新前哨按**尚未被节点覆盖的可感染地形和剩余肥力**评分，扣除母节点本身的覆盖，优先向新领土推进。年轻节点可沿相连的旧感染带向外增长，避免被母节点的覆盖困住。
+
+地表优先于树冠维护；前方无可感染地形时不购买空半径。前哨被毁后可付费补建，未加载的子节点保留记录。母体随节点数量保留 16～64 生物质作为扩张周转金；升级也要留下这笔钱。高处感染领土计入收益，土地衰竭与各母体独立储备规则继续保留。
+
+机制、费用、限制和测试方法见 [扩张说明](docs/expansion.md)。使用 `/enderstrategy` 查看附近节点的搜索高度、扩张轮次与下一轮等待时间。
+
 ## alpha.6：区块加载修复与导入建筑
 
 修复靠近自然实验室时远处地形空白的问题：大型设备的占位方块在灯光线程读取邻区块，导致区块生成与灯光互相等待。现在光照路径使用固定透明形状，碰撞仍跟随已加载的设备根方块。修复前已在独立噪声世界复现，修复后重新检查原生自然生成。
@@ -137,6 +145,7 @@ Blockbench 原件保留完整的逐面 UV。墙地使用 Forge 烘焙模型，�
 cd ender_infection_colored
 .\gradlew.bat build
 .\gradlew.bat runGameTestServer
+.\gradlew.bat runGameTestServer -PexpansionChecks
 .\gradlew.bat runClient -PdesignSmoke
 .\gradlew.bat runClient -ParchitectureCheck
 .\gradlew.bat runClient -PnaturalLabCheck -PnaturalBiome=birch_forest -PnaturalBuilding=imported/church

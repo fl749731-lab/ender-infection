@@ -3,7 +3,7 @@ plugins {
     id 'idea'
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
 }
-version = '0.11.0-alpha.11'
+version = '0.11.0'
 group = 'dev.hui.enderinfection'
 base { archivesName = 'ender-infection' }
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -33,6 +33,20 @@ minecraft {
             client {
                 workingDirectory project.file('build/crystal-check')
                 property 'ender_infection.crystalCheck','true'
+            }
+        }
+        if (project.hasProperty('crystalGlowCheck')) {
+            client {
+                workingDirectory project.file('build/crystal-glow-check')
+                property 'ender_infection.crystalGlowCheck','true'
+                property 'ender_infection.crystalGlowSubjects',project.findProperty('crystalGlowSubjects') ?: ''
+            }
+        }
+        if (project.hasProperty('conceptCheck')) {
+            client {
+                workingDirectory project.file('build/concept-check')
+                property 'ender_infection.conceptCheck','true'
+                property 'ender_infection.conceptSubjects',project.findProperty('conceptSubjects') ?: ''
             }
         }
         if (project.hasProperty('labVisualCheck')) {

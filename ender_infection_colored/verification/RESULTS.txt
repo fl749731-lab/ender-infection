@@ -1,3 +1,41 @@
+Local designed-unit combat repair over alpha.11 / 2026-11-04
+REPRODUCED: Spider mother stalls outside attack range; carrier abandons retaliation after knockback.
+FIX: Shared collision-surface melee reach; carrier urgent-threat response radius 12 blocks.
+PASS: All 21 required native Forge AI tests; 14 specialist checks plus 7 existing regressions.
+PASS: 13 combat kinds autonomously target and damage vanilla cows, then retarget and damage husks.
+PASS: Hatch sac autonomously responds to prey with a paid forager birth.
+PASS: Build/reobfJar; three changed AI classes present; 5011 packaged assets identical to the prior MCP model patch.
+PASS: Build/dist/installed hashes match: e3dea9743d36d6b0ffb8f0fc511b114bf28beaaca2097a8c2194e0155c30d80b.
+JAR: ender-infection-0.11.0-alpha.11.jar (4,836,091 bytes); restart Minecraft to load the replacement.
+Backup: Minecraft1201/mod-backups/before-designed-ai-20261104-002912.
+Evidence: verification/designed_unit_ai.json; build/design-combat-fixed-20261104.log.
+LIMITS: Targeted AI checks in isolated worlds; no full gameplay suite rerun; existing saves not edited.
+
+Local Blockbench MCP model patch over alpha.11 / 2026-11-03
+PASS: 14 canonical BB5 models edited and saved through Blockbench MCP, with native Undo.
+PASS: 84 final MCP views: front, side, back, walk, attack preparation and attack.
+PASS: 14 source rigs/UVs/animations; zero positive-area coplanar overlap candidates.
+PASS: 34 creature glow textures, 19,329 crystal pixels; zero missing or non-crystal glow pixels.
+PASS: Forge build/reobfJar; 56 pose views plus 12 focused rechecks.
+PASS: 28 final dark views of all 14 edited units at block=0, sky=0, 10 probes/view.
+PASS: 57 packaged creature resources match exported files exactly.
+PASS: Build/dist/installed JAR hashes match: 3781cb0181d161397bd60fa2b581b76bf5f65cf377f366ae8e723a18b63cbbea.
+JAR: ender-infection-0.11.0-alpha.11.jar (4,830,180 bytes); local patch, no release bump.
+Backup: Minecraft1201/mod-backups/before-mcp-models-20261103-232844.
+Evidence: verification/creature_silhouettes.json; previews/blockbench-mcp-2026-11-03/mcp-delivery.
+LIMITS: Cuboid interpretation of the concepts, not pixel-identical reproduction; no full gameplay suite rerun.
+
+Local creature crystal glow patch over alpha.11 / 2026-11-03
+PASS: 34 creature/stage masks, 12,234 crystal atlas pixels, zero missing crystal pixels.
+PASS: Exact UV masks for 12 legacy creatures; base texture colors preserved.
+PASS: Forge build + reobfJar and qegg check.
+PASS: 68 native front/back views at block=0, sky=0 (10 probes/view).
+Visual run exited after 52 views; focused hidden-window run completed remaining 16.
+PASS: Packaged, dist and installed JAR hashes match: 3d08db02ab760957de5d1a58f90a976bc2bd52c1cbfdb1f8d81ce8b316d63cff.
+Original installed/dist JARs backed up under Minecraft1201/mod-backups/before-crystal-glow-20261103-215936.
+Evidence: verification/creature_glow.json and previews/crystal-glow-2026-11-03.
+LIMITS: Static visual verification only; no full server suite rerun or player saves opened.
+
 Ender Infection 0.11.0-alpha.11 / 2026-11-03
 PASS: 20 native client screenshots (build/crystal-concept-check.log).
 Three equipped armor sets were captured from both sides and 14 creature rigs were rendered.

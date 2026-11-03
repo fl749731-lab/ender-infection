@@ -1,0 +1,103 @@
+{
+  "server": {
+    "name": "Blockbench MCP",
+    "version": "1.10.1"
+  },
+  "project": {
+    "project": {
+      "name": "crystalback_carrier",
+      "uuid": "e241777d-1a51-d72a-1179-60d6144603de",
+      "save_path": "E:/mc/ender_infection_colored/build/blockbench-review/mcp-delivery/crystalback_carrier.bbmodel"
+    },
+    "format": {
+      "id": "free",
+      "name": "通用模型"
+    },
+    "resolution": {
+      "texture_width": 512,
+      "texture_height": 512
+    },
+    "counts": {
+      "cubes": 543,
+      "meshes": 0,
+      "groups": 15,
+      "textures": 1,
+      "outliner_elements": 543
+    },
+    "root_groups": [
+      {
+        "name": "root",
+        "uuid": "e40a6417-131c-5fbf-bf3b-422f86f33ea4",
+        "children": 1
+      }
+    ]
+  },
+  "bounds": {
+    "min": [
+      -11.635000133514405,
+      0,
+      -21.81999969482422
+    ],
+    "max": [
+      13.600000369548798,
+      29.588000059127808,
+      17.71999979019165
+    ]
+  },
+  "views": [
+    {
+      "name": "front",
+      "position": [
+        42.56162593580868,
+        33.27361150413789,
+        -66.72864011332524
+      ],
+      "target": [
+        0.9825001180171968,
+        14.794000029563904,
+        -2.049999952316284
+      ]
+    },
+    {
+      "name": "side",
+      "position": [
+        79.11449072943326,
+        27.00212356259766,
+        -2.049999952316284
+      ],
+      "target": [
+        0.9825001180171968,
+        14.794000029563904,
+        -2.049999952316284
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -40.59662569977428,
+        33.27361150413789,
+        62.62864020869267
+      ],
+      "target": [
+        0.9825001180171968,
+        14.794000029563904,
+        -2.049999952316284
+      ]
+    },
+    {
+      "name": "walk",
+      "animation": "animation.crystalback_carrier.walk",
+      "time": 0.125
+    },
+    {
+      "name": "attack_prepare",
+      "animation": "animation.crystalback_carrier.attack",
+      "time": 0.5
+    },
+    {
+      "name": "attack",
+      "animation": "animation.crystalback_carrier.attack",
+      "time": 0.8
+    }
+  ]
+}

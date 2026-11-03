@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "date": "2026-11-04",
+  "patch": "Local AI repair over 0.11.0-alpha.11",
+  "reported_behavior": "New specialists move but do not attack vanilla animals or monsters",
+  "reproduced": [
+    "Spider mother stops at the final path waypoint outside centre-based attack range and eventually rejects reachable prey",
+    "Carrier knockback increases attacker distance beyond the four-block defensive filter before its next target scan"
+  ],
+  "fixes": [
+    "Designed melee units use the same distance to the target collision surface for attack windup and impact",
+    "Carrier responds to urgent threats within twelve blocks, retaining its worker role"
+  ],
+  "validation": {
+    "native_forge_gametests": 21,
+    "passed": 21,
+    "new_unit_tests": 14,
+    "combat_units": 13,
+    "combat_targets": [
+      "minecraft:cow",
+      "minecraft:husk"
+    ],
+    "combat_assertions": [
+      "autonomous target acquisition",
+      "attack state",
+      "actual health loss",
+      "autonomous retargeting after first target is removed"
+    ],
+    "hatch_assertions": [
+      "autonomous attack response",
+      "paid forager birth from an assigned living mother"
+    ],
+    "forced_specialist_targets": false,
+    "target_dummy_ai_disabled": true,
+    "baseline_failures": [
+      "spidermotherstrikes",
+      "carrierdefendsitself"
+    ],
+    "final_log": "E:\\mc\\ender_infection_colored\\build\\design-combat-fixed-20261104.log",
+    "build_log": "E:\\mc\\ender_infection_colored\\build\\design-ai-package-20261104.log",
+    "unchanged_packaged_assets": 5011,
+    "packaged_changed_ai_classes": [
+      "dev/hui/enderinfection/entity/InfectedMob$CombatGoal.class",
+      "dev/hui/enderinfection/entity/BroodTactics.class",
+      "dev/hui/enderinfection/design/DesignBehavior.class"
+    ]
+  },
+  "delivery": {
+    "jar": "ender-infection-0.11.0-alpha.11.jar",
+    "bytes": 4836091,
+    "sha256": "e3dea9743d36d6b0ffb8f0fc511b114bf28beaaca2097a8c2194e0155c30d80b",
+    "locations": [
+      "E:\\mc\\ender_infection_colored\\build\\libs\\ender-infection-0.11.0-alpha.11.jar",
+      "E:\\mc\\dist\\ender-infection-0.11.0-alpha.11.jar",
+      "E:\\mc\\Minecraft1201\\instances\\EnderInfection1201\\.minecraft\\mods\\ender-infection-0.11.0-alpha.11.jar"
+    ],
+    "previous_sha256": "3781cb0181d161397bd60fa2b581b76bf5f65cf377f366ae8e723a18b63cbbea",
+    "backup": "E:\\mc\\Minecraft1201\\mod-backups\\before-designed-ai-20261104-002912",
+    "restart_required": true
+  },
+  "limits": [
+    "Targeted AI suite; not a rerun of the entire gameplay suite",
+    "Reproduced in isolated Forge worlds; existing user saves were read only",
+    "Hatch sac requires its mother, biomass and population space; carrier is a defensive worker"
+  ],
+  "source_hashes": {
+    "ender_infection_colored\\src\\main\\java\\dev\\hui\\enderinfection\\entity\\InfectedMob.java": "dff7ff0df887555a0702ef01b689fc69e408974badeeb71ccab3e2bf88739b20",
+    "ender_infection_colored\\src\\main\\java\\dev\\hui\\enderinfection\\entity\\BroodTactics.java": "1578cc38a31a40f0174d46604a62935e5d373050f23be138d40c162104446826",
+    "ender_infection_colored\\src\\main\\java\\dev\\hui\\enderinfection\\design\\DesignBehavior.java": "405684fccc1c91e15c909eb8fabff48fb2667086fa12715a494cadc80567ade4",
+    "ender_infection_colored\\src\\main\\java\\dev\\hui\\enderinfection\\test\\DesignCombatGameTests.java": "4fccc8d53fdc74f49992d8ddd88d7b75f2b5e02173913c5cc53020c02ab6c094"
+  }
+}

@@ -1,5 +1,39 @@
 # Changelog
 
+<!-- qegg:release 0.11.0 -->
+## v0.11.0 - 2026-11-04
+
+### Features
+
+- [`8eec4e0`](https://github.com/fl749731-lab/ender-infection/commit/8eec4e05af7e6ccf28bd83e07996b2a026ead594): Fix the natural laboratory chunk-lighting deadlock and open-door clearance. Import attributed HBM laboratory, ruined factory and arctic station structures, plus the MIT Church of Sin; preserve upstream architecture, licenses and source NBTs. Add chunk-bounded, resumable /enderbuild placement and optional local Lua Lab import. Stop naturally generating the old box-shaped laboratories while retaining six debug layouts, lift platforms and metal service ladders. GeckoLib 4.4.9 for Forge 1.20.1 remains required: https://modrinth.com/mod/geckolib/version/RBA7lJaW
+- [`4d1dd4a`](https://github.com/fl749731-lab/ender-infection/commit/4d1dd4ad34ec0db5c477467f1fa69292c52f3a7d): 为共鸣、余烬和虚空三套晶甲加入立体肩甲与背晶。按原始设计图加深 14 个怪物的轮廓，补上孵化舱、环形骨颚和破边翼膜，并细化侦察、搬运、回防、远程牵制与突袭等行动。
+- [`91d09c9`](https://github.com/fl749731-lab/ender-infection/commit/91d09c9ae682bb8b5f267ba9e8d4138b5b6770b9): 为共鸣晶、余烬晶和虚空晶新增三套装备。每套包括四件护甲、四种工具和一把剑。共鸣装备强化抗感染和矿石开采，余烬装备强化下界采掘和防火，虚空装备强化空中作业和末影机动。
+
+新增九项末影感染进度。新世界开局以坠落陨石引出母体。早期侵蚀与畸变单位免疫弹射物，移动单位可闪现追击与闪避。
+- [`67e1a1a`](https://github.com/fl749731-lab/ender-infection/commit/67e1a1af0a141d80ab092bce1ff6c9e44bcb6320): 新增主世界共鸣晶矿及深板岩变种、下界余烬晶矿和末地外岛虚空晶矿。矿石使用独立的像素贴图与自然矿脉，支持时运、精准采集和经验。共鸣碎片可供晶刺弩使用，余烬晶体用于实验室灯板，虚空晶体用于抑制粉。
+- [`21d996c`](https://github.com/fl749731-lab/ender-infection/commit/21d996c0582047b59bec07b50b76f25e2045e3ff): Add ten original editable room-detail models, themed loot, functional room partitions, a fitted entrance, dynamic part collision and native-world visual checks. Reference actual Spore structures without copying assets.
+- [`8019a83`](https://github.com/fl749731-lab/ender-infection/commit/8019a83a7a52861157d28192a2a8c78dec6c29ad): 接入 63 个 Blockbench 设计源：14 个新专职单位、母体及攻城单位重做、两套护甲、四种武器、掉落材料与 28 个实验室方块；新增四层原生研究实验室、资源导出、73 项 GameTest 和客户端资源验证，更新仓库说明与 E 盘启动位置。
+- [`275b564`](https://github.com/fl749731-lab/ender-infection/commit/275b564425159c1c08c0c90ce40d33463b393a7c): 实验室重做为有细节的封闭建筑：加厚地基、四角活体组织立柱、两层染色玻璃窗、晶体檐口与带肋屋顶、门廊与天线，内部三间房各有操作台、培养罐、灵魂灯与两个战利品箱；同时把出现概率降到 1/600 区块。
+- [`f736b96`](https://github.com/fl749731-lab/ender-infection/commit/f736b96e9f2730960f0fe151229934612a88b706): 按真菌的做法把实验室拆成三款并按群系投放：蘑菇岛=白瓷砖研究站、平原=病房、丛林=牢房；新增 grid 放置修饰符（32/10），彻底解决实验室扎堆。
+
+### Bug Fixes
+
+- [`f44e1a4`](https://github.com/fl749731-lab/ender-infection/commit/f44e1a434e9ac8c97f36032a0f35bc8e05c12cce): 修复节点忽略扩张计时、只搜索上方三格和偏向旧覆盖的问题。新增连通坡面与崖面攀升、高台前哨、旧感染带接力、按未覆盖地形与肥力选址、付费补建和旧节点记录兼容；半径只为可用前沿付费，母体升级/和平孵化保留网络周转金，高地收入与扩张搜索高度一致。增加原生 Forge 扩张回归与 /enderstrategy 诊断。
+- [`2eecf5a`](https://github.com/fl749731-lab/ender-infection/commit/2eecf5a186491bc774fc39da5e7b8462534eb0ea): 按生态、战斗和巨兽设计图重建 14 种怪物的主体轮廓、骨甲与功能器官，保留紫晶自发光、原有体型高度和攻击时序，并加入正反面与攻击姿态的实机检查。
+
+通过 Blockbench MCP 原生编辑与保存进一步细化分层骨甲、圆润囊体、低伏头部和眼窝；调整喷吐者前倾姿态与背晶、搬运兽背囊、蛛母腹部以及卫士盾牌。导出器兼容 Blockbench 5 的独立 groups 数据，默认直接导出已保存原件，避免覆盖 MCP 编辑结果。
+- [`2eecf5a`](https://github.com/fl749731-lab/ender-infection/commit/2eecf5a186491bc774fc39da5e7b8462534eb0ea): 补齐新增怪物、重做怪物、旧感染生物及母体各阶段的紫晶自发光蒙版，保留晶体暗面与尖端的完整覆盖；飞行晶刺保持自发光，并增加零环境光的正反面实机检查。
+- [`c8da949`](https://github.com/fl749731-lab/ender-infection/commit/c8da94973198327c276ec7cd646705aca6eb7846): 重绘三套晶体护甲的穿戴贴图和物品图标。细化头盔、背甲、肩臂、关节和靴子，分别采用共鸣紫晶纹、余烬橙色熔纹和虚空青色晶脊。
+- [`2eecf5a`](https://github.com/fl749731-lab/ender-infection/commit/2eecf5a186491bc774fc39da5e7b8462534eb0ea): 修复寄生蛛母等新近战单位寻路到达目标附近后仍不出手的问题：攻击起手与命中统一按目标碰撞箱表面判断距离。晶背搬运兽的防御响应范围从 4 格扩大至 12 格，避免受击后被击退出范围而立刻放弃反击。
+
+新增 14 种新单位的原生 Forge AI 回归：战斗单位自行锁定原版动物并造成伤害，再自动转向原版敌对怪物；孵化囊自行响应附近目标并付费产兵。
+- [`3d4ee59`](https://github.com/fl749731-lab/ender-infection/commit/3d4ee59d66f420bd441de4e5c37621dd8aa92e23): 感染的实验室出现概率从 1/42 区块提高到 1/30，便于在正常探索中遇到。
+- [`c8da949`](https://github.com/fl749731-lab/ender-infection/commit/c8da94973198327c276ec7cd646705aca6eb7846): 开局陨石以真实爆炸撞击地表。冲击击退并伤害附近生物，在自然地面炸出陨石坑，随后在坑内生成母体。地形破坏遵守 mobGriefing，容器与设备保留，读档继续时不会重复爆炸。
+- [`0d316ac`](https://github.com/fl749731-lab/ender-infection/commit/0d316ac623e21d1cf8d847cc547c6b39f7060ad3): 修复实验室通风口等完整设备的全透明发光蒙版导致 GeckoLib 注册纹理崩溃；为全部发光渲染层增加有效像素检查和重载缓存清理，导出器不再生成空蒙版，客户端验证实际注册发光纹理。
+
+**Full Changelog**: https://github.com/fl749731-lab/ender-infection/compare/v0.10.0...v0.11.0
+<!-- qegg:release:end -->
+
 <!-- qegg:release 0.10.0 -->
 ## v0.10.0 - 2026-11-02
 

@@ -87,8 +87,16 @@ public final class DesignBehavior {
         }
     }
     private static void melee(InfectedMob mob,LivingEntity target){melee(mob,target,mob.kind.radius);}
+    /** Use the target's surface for both windup and impact; navigation can stop short of its centre. */
+    public static boolean withinMeleeReach(InfectedMob mob,LivingEntity target,double reach){
+        var box=target.getBoundingBox();
+        double x=net.minecraft.util.Mth.clamp(mob.getX(),box.minX,box.maxX);
+        double y=net.minecraft.util.Mth.clamp(mob.getY(),box.minY,box.maxY);
+        double z=net.minecraft.util.Mth.clamp(mob.getZ(),box.minZ,box.maxZ);
+        return mob.distanceToSqr(x,y,z)<=reach*reach;
+    }
     private static void melee(InfectedMob mob,LivingEntity target,double reach){
-        if(mob.distanceTo(target)>reach+target.getBbWidth()*.5||!mob.hasLineOfSight(target))return;
+        if(!withinMeleeReach(mob,target,reach)||!mob.hasLineOfSight(target))return;
         if(target.hurt(mob.damageSources().mobAttack(mob),mob.kind.damage)){Vec3 d=target.position().subtract(mob.position());target.knockback(.5,-d.x,-d.z);if(mob.level() instanceof ServerLevel s)FactionEffects.shatter(s,target.position().add(0,.8,0),8);}
     }
 }

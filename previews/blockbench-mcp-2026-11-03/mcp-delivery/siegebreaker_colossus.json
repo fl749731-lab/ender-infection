@@ -1,0 +1,103 @@
+{
+  "server": {
+    "name": "Blockbench MCP",
+    "version": "1.10.1"
+  },
+  "project": {
+    "project": {
+      "name": "siegebreaker_colossus",
+      "uuid": "0eb9dafe-78ff-d953-cd29-9d7ace5fe4b8",
+      "save_path": "E:/mc/ender_infection_colored/build/blockbench-review/mcp-delivery/siegebreaker_colossus.bbmodel"
+    },
+    "format": {
+      "id": "free",
+      "name": "通用模型"
+    },
+    "resolution": {
+      "texture_width": 512,
+      "texture_height": 512
+    },
+    "counts": {
+      "cubes": 357,
+      "meshes": 0,
+      "groups": 13,
+      "textures": 1,
+      "outliner_elements": 357
+    },
+    "root_groups": [
+      {
+        "name": "root",
+        "uuid": "02bc6f95-c247-593b-a6fa-2754f0fcaebd",
+        "children": 1
+      }
+    ]
+  },
+  "bounds": {
+    "min": [
+      -25.175000190734863,
+      0.1339528053717718,
+      -18.31120928821671
+    ],
+    "max": [
+      25.175000190734863,
+      45.05093471649387,
+      14.803750038146973
+    ]
+  },
+  "views": [
+    {
+      "name": "front",
+      "position": [
+        52.94661173630864,
+        46.12427119929221,
+        -84.11512565929274
+      ],
+      "target": [
+        0.0,
+        22.59244376093282,
+        -1.7537296250348682
+      ]
+    },
+    {
+      "name": "side",
+      "position": [
+        99.49281255252927,
+        38.13819572226552,
+        -1.7537296250348682
+      ],
+      "target": [
+        0.0,
+        22.59244376093282,
+        -1.7537296250348682
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -52.94661173630864,
+        46.12427119929221,
+        80.60766640922301
+      ],
+      "target": [
+        0.0,
+        22.59244376093282,
+        -1.7537296250348682
+      ]
+    },
+    {
+      "name": "walk",
+      "animation": "animation.siegebreaker_colossus.walk",
+      "time": 0.125
+    },
+    {
+      "name": "attack_prepare",
+      "animation": "animation.siegebreaker_colossus.attack",
+      "time": 0.5
+    },
+    {
+      "name": "attack",
+      "animation": "animation.siegebreaker_colossus.attack",
+      "time": 0.8
+    }
+  ]
+}

@@ -1,9 +1,87 @@
 {
   "status": "PASS",
   "geometry_files": 40,
-  "validated_faces": 45090,
+  "validated_faces": 62250,
   "obj_files": 90,
-  "glow_masks": 33,
+  "glow_masks": 45,
+  "creature_glow_textures": 34,
+  "crystal_pixels": 19329,
+  "missing_crystal_pixels": 0,
+  "non_crystal_glow_pixels": 0,
+  "legacy_creature_glow": [
+    {
+      "runtime": "infected_cow",
+      "source": "colored_units/infected_cow_colored.bbmodel",
+      "crystal_elements": 2,
+      "crystal_pixels": 50
+    },
+    {
+      "runtime": "infected_pig",
+      "source": "colored_units/infected_pig_colored.bbmodel",
+      "crystal_elements": 2,
+      "crystal_pixels": 38
+    },
+    {
+      "runtime": "infected_sheep",
+      "source": "colored_units/infected_sheep_colored.bbmodel",
+      "crystal_elements": 2,
+      "crystal_pixels": 38
+    },
+    {
+      "runtime": "infected_spider",
+      "source": "colored_units/infected_spider_colored.bbmodel",
+      "crystal_elements": 2,
+      "crystal_pixels": 38
+    },
+    {
+      "runtime": "infected_enderman",
+      "source": "colored_units/infected_enderman_colored.bbmodel",
+      "crystal_elements": 3,
+      "crystal_pixels": 72
+    },
+    {
+      "runtime": "infected_cow_early",
+      "source": "colored_units/infected_cow_early_colored.bbmodel",
+      "crystal_elements": 4,
+      "crystal_pixels": 72
+    },
+    {
+      "runtime": "infected_pig_early",
+      "source": "colored_units/infected_pig_early_colored.bbmodel",
+      "crystal_elements": 4,
+      "crystal_pixels": 72
+    },
+    {
+      "runtime": "infected_sheep_early",
+      "source": "colored_units/infected_sheep_early_colored.bbmodel",
+      "crystal_elements": 4,
+      "crystal_pixels": 72
+    },
+    {
+      "runtime": "infected_skeleton_early",
+      "source": "colored_units/infected_skeleton_early_colored.bbmodel",
+      "crystal_elements": 4,
+      "crystal_pixels": 72
+    },
+    {
+      "runtime": "infected_spider_early",
+      "source": "colored_units/infected_spider_early_colored.bbmodel",
+      "crystal_elements": 4,
+      "crystal_pixels": 72
+    },
+    {
+      "runtime": "infected_enderman_early",
+      "source": "colored_units/infected_enderman_early_colored.bbmodel",
+      "crystal_elements": 4,
+      "crystal_pixels": 72
+    },
+    {
+      "runtime": "infected_zombie_early",
+      "source": "colored_units/infected_zombie_early_colored.bbmodel",
+      "crystal_elements": 4,
+      "crystal_pixels": 72
+    }
+  ],
   "mapped_source_models": 61,
   "scene_source_models": 2,
   "errors": []

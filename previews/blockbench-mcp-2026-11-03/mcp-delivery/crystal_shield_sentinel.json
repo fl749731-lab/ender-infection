@@ -1,0 +1,103 @@
+{
+  "server": {
+    "name": "Blockbench MCP",
+    "version": "1.10.1"
+  },
+  "project": {
+    "project": {
+      "name": "crystal_shield_sentinel",
+      "uuid": "a0f72dbd-d22f-0e45-2954-3ee31f2043f8",
+      "save_path": "E:/mc/ender_infection_colored/build/blockbench-review/mcp-delivery/crystal_shield_sentinel.bbmodel"
+    },
+    "format": {
+      "id": "free",
+      "name": "通用模型"
+    },
+    "resolution": {
+      "texture_width": 256,
+      "texture_height": 256
+    },
+    "counts": {
+      "cubes": 357,
+      "meshes": 0,
+      "groups": 12,
+      "textures": 1,
+      "outliner_elements": 357
+    },
+    "root_groups": [
+      {
+        "name": "root",
+        "uuid": "ff92fa64-ef1f-547a-919e-57b1cc4de6cd",
+        "children": 1
+      }
+    ]
+  },
+  "bounds": {
+    "min": [
+      -17.33592834417833,
+      0.15000000000000036,
+      -10.119040472452307
+    ],
+    "max": [
+      12.971615073051641,
+      40.72919601743894,
+      4.320000238418579
+    ]
+  },
+  "views": [
+    {
+      "name": "front",
+      "position": [
+        40.48975835607236,
+        39.404893560557554,
+        -69.27805454845016
+      ],
+      "target": [
+        -2.182156635563345,
+        20.439598008719468,
+        -2.8995201170168636
+      ]
+    },
+    {
+      "name": "side",
+      "position": [
+        78.00331133478552,
+        32.96857737908648,
+        -2.8995201170168636
+      ],
+      "target": [
+        -2.182156635563345,
+        20.439598008719468,
+        -2.8995201170168636
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -44.85407162719905,
+        39.404893560557554,
+        63.47901431441643
+      ],
+      "target": [
+        -2.182156635563345,
+        20.439598008719468,
+        -2.8995201170168636
+      ]
+    },
+    {
+      "name": "walk",
+      "animation": "animation.crystal_shield_sentinel.walk",
+      "time": 0.125
+    },
+    {
+      "name": "attack_prepare",
+      "animation": "animation.crystal_shield_sentinel.attack",
+      "time": 0.5
+    },
+    {
+      "name": "attack",
+      "animation": "animation.crystal_shield_sentinel.attack",
+      "time": 0.8
+    }
+  ]
+}

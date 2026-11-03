@@ -1,0 +1,103 @@
+{
+  "server": {
+    "name": "Blockbench MCP",
+    "version": "1.10.1"
+  },
+  "project": {
+    "project": {
+      "name": "lurking_forager",
+      "uuid": "9ed751c3-e3e5-4b26-fa61-ccdf58e7ba3d",
+      "save_path": "E:/mc/ender_infection_colored/build/blockbench-review/mcp-delivery/lurking_forager.bbmodel"
+    },
+    "format": {
+      "id": "free",
+      "name": "通用模型"
+    },
+    "resolution": {
+      "texture_width": 256,
+      "texture_height": 256
+    },
+    "counts": {
+      "cubes": 256,
+      "meshes": 0,
+      "groups": 18,
+      "textures": 1,
+      "outliner_elements": 256
+    },
+    "root_groups": [
+      {
+        "name": "root",
+        "uuid": "22eef1d7-aa59-5cbe-b016-be4ec4699f1e",
+        "children": 1
+      }
+    ]
+  },
+  "bounds": {
+    "min": [
+      -13.819473418921916,
+      -0.04840027624139809,
+      -15.900000095367432
+    ],
+    "max": [
+      13.819473418921916,
+      12.600000381469727,
+      11.546465449376019
+    ]
+  },
+  "views": [
+    {
+      "name": "front",
+      "position": [
+        29.064321269843774,
+        19.19327617254473,
+        -47.387933742752686
+      ],
+      "target": [
+        0.0,
+        6.275800052614164,
+        -2.1767673229957065
+      ]
+    },
+    {
+      "name": "side",
+      "position": [
+        54.61522415199332,
+        14.809428826363119,
+        -2.1767673229957065
+      ],
+      "target": [
+        0.0,
+        6.275800052614164,
+        -2.1767673229957065
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -29.064321269843774,
+        19.19327617254473,
+        43.03439909676127
+      ],
+      "target": [
+        0.0,
+        6.275800052614164,
+        -2.1767673229957065
+      ]
+    },
+    {
+      "name": "walk",
+      "animation": "animation.lurking_forager.walk",
+      "time": 0.125
+    },
+    {
+      "name": "attack_prepare",
+      "animation": "animation.lurking_forager.attack",
+      "time": 0.5
+    },
+    {
+      "name": "attack",
+      "animation": "animation.lurking_forager.attack",
+      "time": 0.8
+    }
+  ]
+}

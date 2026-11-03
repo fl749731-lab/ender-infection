@@ -1,0 +1,357 @@
+{
+  "status": "PASS",
+  "models": [
+    {
+      "source": "lurking_forager",
+      "runtime": "forager",
+      "cubes": 256,
+      "bones": 18,
+      "clips": [
+        "idle",
+        "walk",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "runtime_bounds": {
+        "width": 1.7481386606151885,
+        "height": 0.7999999999999999,
+        "depth": 1.7359644429178271,
+        "center_x": 0.0,
+        "center_z": -0.13767858357667012
+      },
+      "source_sha256": "e89f71d8af97e1bb53ff08b0e2e58a2efc2183d9fc46971ca9661b30e5c203d2",
+      "format": "5.0"
+    },
+    {
+      "source": "sporewing_scout",
+      "runtime": "sporewing_scout",
+      "cubes": 280,
+      "bones": 9,
+      "clips": [
+        "idle",
+        "fly",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "runtime_bounds": {
+        "width": 3.1035386377724774,
+        "height": 1.4,
+        "depth": 1.8252138672255707,
+        "center_x": 0.0,
+        "center_z": 0.33816005034825064
+      },
+      "source_sha256": "117434be52daa5a310a6e14c37fcbcc210b3dfa9934aed71eba507f317202e80",
+      "format": "5.0"
+    },
+    {
+      "source": "mycelial_burrower",
+      "runtime": "burrower",
+      "cubes": 135,
+      "bones": 10,
+      "clips": [
+        "idle",
+        "walk",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "runtime_bounds": {
+        "width": 1.1263023498518356,
+        "height": 2.5,
+        "depth": 2.2900864615469083,
+        "center_x": 0.0971100578127023,
+        "center_z": 0.17870158526234622
+      },
+      "source_sha256": "37681e38f0af2ff5a8b0a4834a39e498c4009461ec797204b1a7834065d7c109",
+      "format": "5.0"
+    },
+    {
+      "source": "crystalback_carrier",
+      "runtime": "carrier",
+      "cubes": 543,
+      "bones": 15,
+      "clips": [
+        "idle",
+        "walk",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "runtime_bounds": {
+        "width": 1.5351831823712316,
+        "height": 1.8,
+        "depth": 2.4054346356631067,
+        "center_x": 0.05977085304853319,
+        "center_z": -0.12471272137352986
+      },
+      "source_sha256": "d3393dad5b7b468e09e17baad1da57132235fcee5209568162b244fbfc38f3c8",
+      "format": "5.0"
+    },
+    {
+      "source": "parasitic_spider_mother",
+      "runtime": "spider_mother",
+      "cubes": 640,
+      "bones": 21,
+      "clips": [
+        "idle",
+        "walk",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "runtime_bounds": {
+        "width": 3.343808209644056,
+        "height": 1.7999999999999998,
+        "depth": 3.3764794701120118,
+        "center_x": 0.0,
+        "center_z": 0.02690283734199975
+      },
+      "source_sha256": "5c34322b7982b7b9608081ad8929f8f1c6a8957281655ba91ef8bccaccc82d88",
+      "format": "5.0"
+    },
+    {
+      "source": "pulsing_hatch_sac",
+      "runtime": "hatch_sac",
+      "cubes": 362,
+      "bones": 9,
+      "clips": [
+        "idle",
+        "attack",
+        "emerge",
+        "death",
+        "walk"
+      ],
+      "runtime_bounds": {
+        "width": 2.901759754824277,
+        "height": 1.9999999999999998,
+        "depth": 1.9616016538597458,
+        "center_x": 0.0,
+        "center_z": 0.0
+      },
+      "source_sha256": "b7b83bc4e14a4f5e800e231b7e00d557740176c23f88f076df0ef06339789c53",
+      "format": "5.0"
+    },
+    {
+      "source": "crystal_shield_sentinel",
+      "runtime": "shield_sentinel",
+      "cubes": 357,
+      "bones": 12,
+      "clips": [
+        "idle",
+        "walk",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "runtime_bounds": {
+        "width": 1.643122699577364,
+        "height": 2.2,
+        "depth": 0.7828122108777396,
+        "center_x": -0.1183055690853874,
+        "center_z": -0.15719741419684696
+      },
+      "source_sha256": "116b7062db559eeb255a67dc8ef63d7a422564226d95786d68f9d108d2c5f347",
+      "format": "5.0"
+    },
+    {
+      "source": "rift_throat_spitter",
+      "runtime": "throat_spitter",
+      "cubes": 440,
+      "bones": 13,
+      "clips": [
+        "idle",
+        "walk",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "runtime_bounds": {
+        "width": 1.3583268812008427,
+        "height": 2.3,
+        "depth": 2.167795449676696,
+        "center_x": 0.0,
+        "center_z": -0.2231686752910478
+      },
+      "source_sha256": "0c97c3b8a2411f40aa0c6f1e56c988f945f3f6c6f9136070a5bca9d455178841",
+      "format": "5.0"
+    },
+    {
+      "source": "leapblade_ambusher",
+      "runtime": "leap_ambusher",
+      "cubes": 221,
+      "bones": 17,
+      "clips": [
+        "idle",
+        "walk",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "runtime_bounds": {
+        "width": 2.7774398883121085,
+        "height": 2.4,
+        "depth": 3.80130313578966,
+        "center_x": 0.0,
+        "center_z": 0.830919903110328
+      },
+      "source_sha256": "832013b79b670abe0216ddcf733789f26fc608988dae730679db8e3c2b4bbb7f",
+      "format": "5.0"
+    },
+    {
+      "source": "rootspike_turret",
+      "runtime": "root_turret",
+      "cubes": 304,
+      "bones": 12,
+      "clips": [
+        "idle",
+        "walk",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "runtime_bounds": {
+        "width": 1.6057535278138337,
+        "height": 1.8,
+        "depth": 1.508437586187832,
+        "center_x": 0.0,
+        "center_z": -0.1768684437709248
+      },
+      "source_sha256": "25f1f7bc99904fbe2f39a882ffdda6cd7064f315bb7649695190a1cee840e851",
+      "format": "5.0"
+    },
+    {
+      "source": "resonance_priest",
+      "runtime": "resonance_priest",
+      "cubes": 234,
+      "bones": 20,
+      "clips": [
+        "idle",
+        "walk",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "runtime_bounds": {
+        "width": 1.7166076081391926,
+        "height": 2.8,
+        "depth": 0.704672159475802,
+        "center_x": 0.0,
+        "center_z": -0.015705160603045998
+      },
+      "source_sha256": "96b002b52708b1d6ddb2d6aebc99bb49db70d21dcd331d56c24d4c33a23e12dd",
+      "format": "5.0"
+    },
+    {
+      "source": "siegebreaker_colossus",
+      "runtime": "siegebreaker",
+      "cubes": 357,
+      "bones": 13,
+      "clips": [
+        "idle",
+        "walk",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "runtime_bounds": {
+        "width": 3.8112535369379916,
+        "height": 3.3999999999999995,
+        "depth": 2.5066435498957684,
+        "center_x": 0.0,
+        "center_z": -0.13274889416445215
+      },
+      "source_sha256": "ef2f930b6b0b977f0d8bb92be7cb8cf0390086a38585441b1ce465101d41fe1e",
+      "format": "5.0"
+    },
+    {
+      "source": "walking_brood_crab",
+      "runtime": "walking_nest",
+      "cubes": 1270,
+      "bones": 24,
+      "clips": [
+        "idle",
+        "attack",
+        "emerge",
+        "death",
+        "walk"
+      ],
+      "runtime_bounds": {
+        "width": 8.752584281655095,
+        "height": 6.2,
+        "depth": 7.667284043571718,
+        "center_x": 0.0,
+        "center_z": -0.9072277376583143
+      },
+      "source_sha256": "1e4c847536c2c0322422ec0a13e5622e367b2910a8df059497945ccc2c410906",
+      "format": "5.0"
+    },
+    {
+      "source": "abyssal_burrow_king",
+      "runtime": "burrow_king",
+      "cubes": 743,
+      "bones": 12,
+      "clips": [
+        "idle",
+        "walk",
+        "attack",
+        "emerge",
+        "death"
+      ],
+      "runtime_bounds": {
+        "width": 2.80885067346026,
+        "height": 6.999999999999999,
+        "depth": 6.8933983620565,
+        "center_x": 0.0,
+        "center_z": -0.7488183985114304
+      },
+      "source_sha256": "3c5b119aa3ae27ba5fdc31e805c44e6faca4237eeb60b1dc5330e3be9720fa26",
+      "format": "5.0"
+    }
+  ],
+  "native_visual": {
+    "status": "PASS",
+    "pose_views": 56,
+    "focal_pose_recheck_views": 12,
+    "dark_views": 28,
+    "block_light": 0,
+    "sky_light": 0,
+    "probes_per_dark_view": 10,
+    "logs": [
+      "build/concept-mcp-final.log",
+      "build/concept-mcp-focal-final.log",
+      "build/crystal-glow-mcp-final.log"
+    ],
+    "note": "Pose checks were followed by subpixel joint insets to remove coplanar faces. Final geometry was then rebuilt and rendered in all 28 dark front/back views."
+  },
+  "revision": "Blockbench MCP native authoring, 2026-11-03",
+  "mcp": {
+    "models": 14,
+    "views": 84,
+    "directory": "previews/blockbench-mcp-2026-11-03/mcp-delivery",
+    "saved_state": "verification/blockbench_saved_projects.json",
+    "native_authoring": "Cube/Group/Texture operations in scoped Undo transactions via risky_eval; native save_project",
+    "format": "Blockbench 5.0",
+    "coplanar_overlap_candidates": 0
+  },
+  "glow": {
+    "creature_glow_textures": 34,
+    "crystal_pixels": 19329,
+    "missing_crystal_pixels": 0,
+    "non_crystal_glow_pixels": 0
+  },
+  "artifact": {
+    "file": "ender_infection_colored\\build\\libs\\ender-infection-0.11.0-alpha.11.jar",
+    "bytes": 4830180,
+    "sha256": "3781cb0181d161397bd60fa2b581b76bf5f65cf377f366ae8e723a18b63cbbea",
+    "installed": "Minecraft1201/instances/EnderInfection1201/.minecraft/mods/ender-infection-0.11.0-alpha.11.jar",
+    "dist": "dist/ender-infection-0.11.0-alpha.11.jar",
+    "backup": "Minecraft1201/mod-backups/before-mcp-models-20261103-232844",
+    "kind": "local patch over alpha.11; no version bump"
+  },
+  "limits": [
+    "Concept sheets include painted lighting and finer organic details; the editable cuboid models are an interpretation, not an exact visual duplicate.",
+    "No full gameplay/server regression suite was rerun; changes target model resources, export compatibility and opt-in visual fixtures."
+  ]
+}

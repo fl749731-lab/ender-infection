@@ -1,0 +1,103 @@
+{
+  "server": {
+    "name": "Blockbench MCP",
+    "version": "1.10.1"
+  },
+  "project": {
+    "project": {
+      "name": "pulsing_hatch_sac",
+      "uuid": "ac9e861b-2bc0-c209-280c-5db176180c51",
+      "save_path": "E:/mc/ender_infection_colored/build/blockbench-review/mcp-delivery/pulsing_hatch_sac.bbmodel"
+    },
+    "format": {
+      "id": "free",
+      "name": "通用模型"
+    },
+    "resolution": {
+      "texture_width": 256,
+      "texture_height": 256
+    },
+    "counts": {
+      "cubes": 362,
+      "meshes": 0,
+      "groups": 9,
+      "textures": 1,
+      "outliner_elements": 362
+    },
+    "root_groups": [
+      {
+        "name": "root",
+        "uuid": "af48b2e6-43ce-58d4-a45c-6dfce8811900",
+        "children": 1
+      }
+    ]
+  },
+  "bounds": {
+    "min": [
+      -20.818798458947533,
+      -0.2800719741602036,
+      -14.07359426030595
+    ],
+    "max": [
+      20.818798458947533,
+      28.418097553320713,
+      14.07359426030595
+    ]
+  },
+  "views": [
+    {
+      "name": "front",
+      "position": [
+        43.78489892635745,
+        33.52896786796135,
+        -68.10984277433381
+      ],
+      "target": [
+        0.0,
+        14.069012789580254,
+        0.0
+      ]
+    },
+    {
+      "name": "side",
+      "position": [
+        82.2768936227162,
+        26.924777418129658,
+        0.0
+      ],
+      "target": [
+        0.0,
+        14.069012789580254,
+        0.0
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -43.78489892635745,
+        33.52896786796135,
+        68.10984277433381
+      ],
+      "target": [
+        0.0,
+        14.069012789580254,
+        0.0
+      ]
+    },
+    {
+      "name": "walk",
+      "animation": "animation.pulsing_hatch_sac.walk",
+      "time": 0.125
+    },
+    {
+      "name": "attack_prepare",
+      "animation": "animation.pulsing_hatch_sac.attack",
+      "time": 0.5
+    },
+    {
+      "name": "attack",
+      "animation": "animation.pulsing_hatch_sac.attack",
+      "time": 0.8
+    }
+  ]
+}

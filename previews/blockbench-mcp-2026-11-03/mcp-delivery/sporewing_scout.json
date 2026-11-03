@@ -1,0 +1,103 @@
+{
+  "server": {
+    "name": "Blockbench MCP",
+    "version": "1.10.1"
+  },
+  "project": {
+    "project": {
+      "name": "sporewing_scout",
+      "uuid": "4dec69af-4f2b-873f-cfa6-3013e464a0f1",
+      "save_path": "E:/mc/ender_infection_colored/build/blockbench-review/mcp-delivery/sporewing_scout.bbmodel"
+    },
+    "format": {
+      "id": "free",
+      "name": "通用模型"
+    },
+    "resolution": {
+      "texture_width": 256,
+      "texture_height": 256
+    },
+    "counts": {
+      "cubes": 280,
+      "meshes": 0,
+      "groups": 9,
+      "textures": 1,
+      "outliner_elements": 280
+    },
+    "root_groups": [
+      {
+        "name": "root",
+        "uuid": "10cc7d57-8c3d-53dc-a7b1-9a7e77cfd158",
+        "children": 1
+      }
+    ]
+  },
+  "bounds": {
+    "min": [
+      -26.549999618530272,
+      6.599999904632568,
+      -9.828500032424927
+    ],
+    "max": [
+      26.549999618530272,
+      30.553302730428122,
+      21.399999618530273
+    ]
+  },
+  "views": [
+    {
+      "name": "front",
+      "position": [
+        55.838431410173946,
+        43.39373194427432,
+        -81.07403240055123
+      ],
+      "target": [
+        0.0,
+        18.576651317530345,
+        5.785749793052673
+      ]
+    },
+    {
+      "name": "side",
+      "position": [
+        104.92687647678025,
+        34.97147576702726,
+        5.785749793052673
+      ],
+      "target": [
+        0.0,
+        18.576651317530345,
+        5.785749793052673
+      ]
+    },
+    {
+      "name": "back",
+      "position": [
+        -55.838431410173946,
+        43.39373194427432,
+        92.64553198665658
+      ],
+      "target": [
+        0.0,
+        18.576651317530345,
+        5.785749793052673
+      ]
+    },
+    {
+      "name": "walk",
+      "animation": "animation.sporewing_scout.fly",
+      "time": 0.25
+    },
+    {
+      "name": "attack_prepare",
+      "animation": "animation.sporewing_scout.attack",
+      "time": 0.5
+    },
+    {
+      "name": "attack",
+      "animation": "animation.sporewing_scout.attack",
+      "time": 0.8
+    }
+  ]
+}

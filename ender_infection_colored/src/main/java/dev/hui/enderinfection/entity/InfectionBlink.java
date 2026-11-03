@@ -22,7 +22,7 @@ final class InfectionBlink {
 
     private InfectionBlink() {}
 
-    static boolean avoidsProjectile(Mob mob, DamageSource source) {
+    static boolean avoidsProjectile(Mob mob, DamageSource source, float amount) {
         var projectile = source.getDirectEntity();
         if (!source.is(DamageTypeTags.IS_PROJECTILE) && !(projectile instanceof Projectile)) {
             return false;
@@ -31,8 +31,14 @@ final class InfectionBlink {
             && PotionUtils.getMobEffects(potion.getItem()).isEmpty()) {
             return false;
         }
-        if (mob.level() instanceof ServerLevel level && ready(mob, level)) {
-            search(mob, level, mob.position(), 3, 7, null, 120);
+        if (mob.level() instanceof ServerLevel level) {
+            if (amount > 0 && mob.isAlive()) {
+                PlayerTactics.projectileDodged(mob, source);
+                if (source.getEntity() instanceof LivingEntity attacker && mob.hasLineOfSight(attacker)) {
+                    FactionAI.alert(mob, attacker);
+                }
+            }
+            if (ready(mob, level)) search(mob, level, mob.position(), 3, 7, null, 120);
         }
         return true;
     }

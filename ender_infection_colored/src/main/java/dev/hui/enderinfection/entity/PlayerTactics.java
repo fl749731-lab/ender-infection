@@ -12,6 +12,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.saveddata.SavedData;
@@ -68,16 +70,46 @@ public final class PlayerTactics {
         }
     }
     public static Data get(ServerLevel level){return level.getServer().overworld().getDataStorage().computeIfAbsent(Data::load,Data::new,"ender_infection_player_tactics");}
-    @SubscribeEvent public static void hurt(LivingHurtEvent event){
-        if(event.getAmount()<=0||!FactionAI.infected(event.getEntity())||!(event.getEntity().level() instanceof ServerLevel level)||!(event.getSource().getEntity() instanceof Player player)||player.isSpectator())return;
-        boolean witnessed=false;
-        for(InfectedMob core:level.getEntitiesOfClass(InfectedMob.class,event.getEntity().getBoundingBox().inflate(32,12,32),e->e.kind==InfectedKind.CORE&&e.isAlive())){
-            if(core.hasLineOfSight(player)){witnessed=true;core.motherBrain().rememberPlayer(player.getUUID(),level.getGameTime());if(FactionAI.enemy(core,player))core.setTarget(player);}
+    @SubscribeEvent
+    public static void hurt(LivingHurtEvent event) {
+        if (event.getAmount() <= 0 || !FactionAI.infected(event.getEntity())) return;
+        Observation kind = event.getSource().getDirectEntity() instanceof Projectile ? Observation.RANGED : Observation.MELEE;
+        observeAttack(event.getEntity(), event.getSource(), kind);
+    }
+
+    static void projectileDodged(LivingEntity victim, DamageSource source) {
+        if (source.getDirectEntity() instanceof Projectile shot) {
+            // An arrow may bounce or pierce several creatures. Credit its shot once when witnessed.
+            var memory = shot.getPersistentData();
+            if (!memory.getBoolean("EnderInfectionWitnessedShot") && observeAttack(victim, source, Observation.RANGED)) {
+                memory.putBoolean("EnderInfectionWitnessedShot", true);
+            }
+        } else {
+            observeAttack(victim, source, Observation.RANGED);
         }
-        if(!witnessed)return;
-        Data data=get(level);long now=level.getGameTime();data.observe(player.getUUID(),event.getSource().getDirectEntity() instanceof Projectile?Observation.RANGED:Observation.MELEE,now);
-        if(player.getY()-event.getEntity().getY()>3)data.observe(player.getUUID(),Observation.HIGH_GROUND,now);
-        if(event.getEntity() instanceof InfectedMob core&&core.kind==InfectedKind.CORE)data.observe(player.getUUID(),Observation.RAID,now);
+    }
+
+    private static boolean observeAttack(LivingEntity victim, DamageSource source, Observation observation) {
+        if (!(victim.level() instanceof ServerLevel level) || !(source.getEntity() instanceof Player player)
+            || player.isSpectator()) return false;
+        boolean witnessed = false;
+        long now = level.getGameTime();
+        for (InfectedMob core : level.getEntitiesOfClass(InfectedMob.class, victim.getBoundingBox().inflate(32, 12, 32),
+            mob -> mob.kind == InfectedKind.CORE && mob.isAlive())) {
+            if (!core.hasLineOfSight(player)) continue;
+            witnessed = true;
+            core.motherBrain().rememberPlayer(player.getUUID(), now);
+            if (FactionAI.enemy(core, player)) core.setTarget(player);
+        }
+        if (!witnessed) return false;
+
+        Data data = get(level);
+        data.observe(player.getUUID(), observation, now);
+        if (player.getY() - victim.getY() > 3) data.observe(player.getUUID(), Observation.HIGH_GROUND, now);
+        if (victim instanceof InfectedMob core && core.kind == InfectedKind.CORE) {
+            data.observe(player.getUUID(), Observation.RAID, now);
+        }
+        return true;
     }
     @SubscribeEvent public static void nodeBroken(BlockEvent.BreakEvent event){
         if(!(event.getLevel() instanceof ServerLevel level)||!event.getState().is(InfectedContent.NEST.get()))return;

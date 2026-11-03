@@ -9,4 +9,6 @@ public final class FocusedAiGameTests {
  public static void bossWave(GameTestHelper h){InfectionGameTests.bossCrystalWaveHitsDistantEnemyOnceAndSparesFaction(h);}
  @GameTest(template="empty64",templateNamespace="ender_ai_checks",timeoutTicks=250,batch="isolated_archer")
  public static void archerFireLane(GameTestHelper h){InfectionGameTests.skeletonClearsAllyFireLaneAndBacksAwayFromCloseEnemies(h);}
+ @GameTest(template="empty64",templateNamespace="ender_ai_checks",timeoutTicks=120,batch="isolated_projectile_tactics")
+ public static void projectileTactics(GameTestHelper h){InfectionGameTests.witnessedPlayerAttacksChangeCommandAndBrood(h);}
 }

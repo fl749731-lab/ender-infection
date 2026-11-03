@@ -1,30 +1,24 @@
 {
-  "version": "0.11.0-alpha.9",
-  "jar": "ender-infection-0.11.0-alpha.9.jar",
-  "bytes": 4539889,
-  "sha256": "c1978776a09a3ab7f25e1263e36e52e1db063e5cbc4f802ddc4a0f55a0bd772a",
+  "version": "0.11.0-alpha.10",
+  "jar": "ender-infection-0.11.0-alpha.10.jar",
+  "bytes": 4553022,
+  "sha256": "f1be2de8be50912645bd1360dbd645566f1c2836385e3d362b8620de59b2e708",
   "required_dependency": "geckolib-forge-1.20.1-4.4.9.jar",
   "imported_structures": 4,
   "lua_lab_bundled": false,
   "forge_build": "PASS: qegg verify",
-  "final_focused_gametests": "6/7",
-  "initial_full_gametests": "96/98",
-  "final_focused_failures": [
-    [
-      "archerfirelane",
-      "Skeleton did not sidestep its ally and land arrows: (278.13069599185025, -59.0, 4.5), target hp 100.0"
-    ]
+  "focused_gametests": "4/4",
+  "meteor_checks": [
+    "actual native explosion",
+    "visible crater in stone",
+    "damage and knockback",
+    "intact chest",
+    "one mother below the surface",
+    "midflight and completed save/load"
   ],
-  "initial_full_failures": [
-    [
-      "witnessedplayerattackschangecommandandbrood",
-      "Witnessed ranged: mother=BALANCED, profile=BALANCED, target=null"
-    ],
-    [
-      "treeconversionpreservesspeciesformsandlegacybirchtrunks",
-      "Live node lost birch bark or failed to infer a legacy trunk at height 3"
-    ]
+  "armor_checks": [
+    "six worn atlas textures and twelve inventory icons packaged",
+    "front and rear texture projection reviewed"
   ],
-  "projectile_tactics_fixed_and_rechecked": true,
-  "full_suite_after_final_tactics_fix": false
+  "full_suite_rerun": false
 }

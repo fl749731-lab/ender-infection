@@ -1,3 +1,14 @@
+Ender Infection 0.11.0-alpha.10 / 2026-11-03
+PASS: 4/4 focused native GameTests (build/meteor-crater-verified.log).
+Verified a crater cut in stone, damage and knockback, protected chest, a single mother below the
+original surface, and no replay after completion. A local floor search handles distant overhangs.
+PASS: qegg Forge build and reobfJar (build/meteor-alpha10-verify.log).
+All six redrawn worn armor atlases and twelve inventory icons match packaged assets.
+Front and rear views were checked with a texture projection preview.
+JAR: ender-infection-0.11.0-alpha.10.jar (4553022 bytes), SHA-256 f1be2de8be50912645bd1360dbd645566f1c2836385e3d362b8620de59b2e708.
+
+Previous version validation follows:
+
 Ender Infection 0.11.0-alpha.9 / 2026-11-03
 FINAL FOCUSED: 6/7 native GameTests (build/crystal-final-focused.log).
 All new checks passed, including 27 recipes and crystal repair, armor/tool/sword abilities,

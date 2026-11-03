@@ -178,27 +178,34 @@ public final class WorldIntroduction {
     }
 
     private static InfectedMob findCraterSpawn(ServerLevel world, BlockPos site) {
-        BlockPos center = world.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, site);
-        InfectedMob mother = Math.abs(center.getY() - site.getY()) <= 5 ? prepareMother(world, center) : null;
-        if (mother != null && center.getY() < site.getY()) return mother;
-        InfectedMob rim = mother;
-
-        // Prefer a lower landing inside the bowl over an open ledge at the original surface.
-        for (int radius = 1; radius <= 4; radius++) {
+        InfectedMob rim = null;
+        for (int radius = 0; radius <= 4; radius++) {
             for (int x = -radius; x <= radius; x++) {
                 for (int z = -radius; z <= radius; z++) {
                     if (Math.max(Math.abs(x), Math.abs(z)) != radius) continue;
                     BlockPos column = site.offset(x, 0, z);
                     if (!world.hasChunkAt(column)) continue;
-                    BlockPos floor = world.getHeightmapPos(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, column);
-                    if (Math.abs(floor.getY() - site.getY()) > 5) continue;
-                    mother = prepareMother(world, floor);
-                    if (mother != null && floor.getY() < site.getY()) return mother;
+                    InfectedMob mother = craterColumnSpawn(world, column);
+                    if (mother == null) continue;
+                    if (mother.getY() < site.getY()) return mother;
                     if (rim == null) rim = mother;
                 }
             }
         }
         return rim;
+    }
+
+    private static InfectedMob craterColumnSpawn(ServerLevel world, BlockPos column) {
+        // Scan the impact depth locally. A distant roof or overhang must not become the spawn surface.
+        for (int height = 1; height >= -4; height--) {
+            BlockPos floor = column.above(height);
+            var state = world.getBlockState(floor);
+            if (!state.getFluidState().isEmpty()) return null;
+            if (!state.getCollisionShape(world, floor).isEmpty()) {
+                return prepareMother(world, floor.above());
+            }
+        }
+        return null;
     }
 
     private static BlockPos findLanding(ServerLevel world, ServerPlayer player) {

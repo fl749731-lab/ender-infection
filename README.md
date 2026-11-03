@@ -1,6 +1,6 @@
 # 末影感染 · Ender Infection
 
-Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当前开发版本：**0.11.0-alpha.9**。
+Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当前开发版本：**0.11.0-alpha.10**。
 
 感染从母体与扩张节点开始。每个母体拥有独立的生物质储备；召唤、进阶与节点扩张消费储备，土地收益随领土扩大而增加，重复收割同一片土地的收益逐渐下降。
 
@@ -14,7 +14,7 @@ Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当
 
 将 `geckolib-forge-1.20.1-4.4.9.jar` 和本 Mod 的 JAR 放入同一个实例的 `mods` 文件夹；专用服务器也放入其 `mods` 文件夹。GeckoLib 需单独下载，未打包进本 Mod。缺少前置或版本不满足要求时，Forge 会阻止加载并提示依赖错误。
 
-## alpha.9 晶体装备与开局进度
+## 晶体装备与开局陨石
 
 共鸣晶、余烬晶和虚空晶各有四件护甲、镐、斧、铲、锄和剑，共 27 件。用对应晶体按原版装备形状合成，工具和剑另用木棍。铁砧可用对应晶体修理。创造栏和物品提示中能看到三套装备及其能力。三套穿戴贴图重绘了头盔、背甲、肩臂、关节和靴子。虚空甲有青色晶脊，共鸣甲有紫色晶纹，余烬甲有橙色熔纹。
 
@@ -146,7 +146,7 @@ Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当
 
 本机启动入口为 `E:\mc\启动MC.cmd`，Prism Launcher 与游戏实例位于 `E:\mc\Minecraft1201`。账号、存档和启动器数据属于本机文件，不进入 Git 仓库。
 
-编译后的 `ender-infection-0.11.0-alpha.9.jar` 与 `geckolib-forge-1.20.1-4.4.9.jar` 放入同一个 Forge 1.20.1 实例的 `mods` 目录。更新时只保留一个版本的 Ender Infection JAR。模型改变需要重新启动游戏。
+编译后的 `ender-infection-0.11.0-alpha.10.jar` 与 `geckolib-forge-1.20.1-4.4.9.jar` 放入同一个 Forge 1.20.1 实例的 `mods` 目录。更新时只保留一个版本的 Ender Infection JAR。模型改变需要重新启动游戏。
 
 ## 工程与可编辑资源
 
@@ -163,7 +163,7 @@ Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当
 
 Blockbench 原件保留完整的逐面 UV。墙地使用 Forge 烘焙模型，大型实验设备使用 GeckoLib 方块实体；实验室整栋场景转换为原生方块结构。
 
-alpha.9 的装备、进度、陨石和弹射物免疫专项通过，qegg Forge 构建通过。首次全量 **96/98**，最终组合专项 **6/7**。远程目击记录已修复，并通过原战术断言复验。首次全量的白桦转换检查和最终专项的旧骷髅射击检查各失败一次。各项结果见 [RESULTS.txt](ender_infection_colored/verification/RESULTS.txt)。
+alpha.10 的矿石、装备、闪现和陨石专项 **4/4** 通过，qegg Forge 构建通过。陨石测试实际炸开岩石，验证了坑内生成、伤害、击退和读档。护甲使用正反面贴图预览检查。历次记录见 [RESULTS.txt](ender_infection_colored/verification/RESULTS.txt)。
 
 ## 构建与验证
 

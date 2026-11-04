@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "version": "0.12.0-alpha.1",
-  "created_at": "2026-11-04T13:24:59.3809417+01:00",
+  "version": "0.12.0-alpha.2",
+  "created_at": "2026-11-04T19:55:00.2349955+01:00",
   "mode": "pr",
   "channel": "alpha",
-  "fingerprint": "sha256:dd0acb196534b83071ef1db8f263a3701310edbd0a44aa4774a312375967b0eb",
+  "fingerprint": "sha256:fb7dbb8e861d9cf563d5dde9c5229244d64b46f347a8d7bb1a295816dbf595d1",
   "repo": {
     "host": "github.com",
     "owner": "fl749731-lab",
@@ -13,28 +13,28 @@
   },
   "verified": {
     "commands": [
-      "cd ender_infection_colored \u0026\u0026 java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain --offline build"
+      "python tools/build_dual_version.py --clean --gametests"
     ],
-    "skipped": false,
-    "at": "2026-11-04T13:24:59.3809417+01:00"
+    "skipped": true,
+    "at": "2026-11-04T19:55:00.2349955+01:00"
   },
   "packages": [
     {
       "name": "java@ender_infection_colored",
       "path": "ender_infection_colored",
       "resolver": "java",
-      "current": "0.11.0",
-      "next": "0.12.0-alpha.1",
+      "current": "0.12.0-alpha.1",
+      "next": "0.12.0-alpha.2",
       "bump": "minor",
-      "tag": "v0.12.0-alpha.1",
+      "tag": "v0.12.0-alpha.2",
       "publish": false
     }
   ],
   "releases": [
     {
-      "version": "0.12.0-alpha.1",
-      "tag": "v0.12.0-alpha.1",
-      "previous_tag": "v0.11.0",
+      "version": "0.12.0-alpha.2",
+      "tag": "v0.12.0-alpha.2",
+      "previous_tag": "v0.12.0-alpha.1",
       "packages": [
         "java@ender_infection_colored"
       ],
@@ -42,6 +42,18 @@
     }
   ],
   "changes": [
+    {
+      "file": ".changes/institute-dual-loader.md",
+      "type": "feat",
+      "scope": "institute",
+      "bump": "minor",
+      "packages": [
+        "java@ender_infection_colored"
+      ],
+      "body": "新增两版共用的研究所扩展 API、房间连接口及安全模板预览与显式放置，提供设备交互适配和独立附属 Mod 示例。\n\n保留 Forge Minecraft 1.20.1，增加 NeoForge Minecraft 1.21.1 工程。两版共用版本号、美术资源与 API 源码，分别构建并运行原生测试，发行资产同时准备两版 JAR。\n\n两版同步修复运送单位在母体交付范围外停住、宽体近战单位到达寻路终点后未收近，以及射手避让盟友与箭矢瞄准的问题。Forge 原生测试使用固定种子的超平坦隔离世界，避免地下砂砾落入测试场。\n\n完成大型中央研究所六层、48 间详细内饰设计、方块材料图例和逐格坐标。建筑仍待组装和自然生成接入；缺少独立模型的概念摆件已在对照页标明。",
+      "commit": "d27a3c9226a7094566cee4e74aac806845e1f298",
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/d27a3c9226a7094566cee4e74aac806845e1f298"
+    },
     {
       "file": ".changes/rift-outpost.md",
       "type": "feat",
@@ -52,8 +64,12 @@
       ],
       "body": "接入由 Blockbench MCP 制作的初期感染末影人、畸变末影人和晶壳锚卫模型、紫晶发光与动画。末影单位的相位移动提供落点预警，可被抑制器打断；锚卫围绕锚点防守，供能时减伤、受抑制时开甲。\n\n新增裂隙锚点、相位抑制器及合成配方，并提供 `/enderrift outpost` 手动生成前哨战斗原型。此预发布暂不包含裂隙前哨自然生成及规划中的后续首领。",
       "commit": "588fdd61d09a9e9ad19c0f526a01a4ab82325cd5",
-      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/588fdd61d09a9e9ad19c0f526a01a4ab82325cd5"
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/588fdd61d09a9e9ad19c0f526a01a4ab82325cd5",
+      "author": "fl749731-lab"
     }
+  ],
+  "previous_changes": [
+    ".changes/rift-outpost.md"
   ],
   "qegg": {
     "version": "0.11.0"

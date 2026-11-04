@@ -1,25 +1,28 @@
 # 末影感染 · Ender Infection
 
-末影感染是 Minecraft 阵营 Mod。当前稳定版本为 **0.11.0（Forge 1.20.1）**；本次将发布 **0.12.0-alpha.3（Forge 1.20.1 / NeoForge 1.21.1，待发布）**。
+末影感染是 Minecraft 阵营 Mod。当前稳定版本为 **0.11.0（Forge 1.20.1）**；预发布版本为 **0.12.0-alpha.3（Forge 1.20.1 / NeoForge 1.21.1）**。
 
-**v0.12.0-alpha.3** 将继续同时提供 **Forge 1.20.1 / Java 17** 与 **NeoForge 1.21.1 / Java 21**。发布前将重新执行完整双版本构建和原生测试；本页会在发布完成后更新下载链接。上一预发布版及历史附件仍见 [alpha.2 发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.2)，维护流程见 [双版本维护](docs/dual-version-maintenance.md)。
+**v0.12.0-alpha.3** 同时提供 **Forge 1.20.1 / Java 17** 与 **NeoForge 1.21.1 / Java 21**。安装包与验证记录见 [alpha.3 发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.3)，维护流程见 [双版本维护](docs/dual-version-maintenance.md)。[alpha.2 发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.2)保留上一预发布版及历史设计附件。
 
 两版继续共用模型、贴图和研究所 API。alpha.2 引入的房间注册、连接器、模板预览、显式放置和设备交互 API，以及 [独立附属 Mod 示例](examples/institute-addon/README.md) 均保留；旧版 `0.12.0-alpha.1` 不含该 API。
 
-alpha.3 将把中央研究所作为实际游戏建筑交付：地上三层、地下三层，共 48 间内饰房间，支持自然生成和管理员分区块施工。使用方法见 [中央研究所](docs/central-institute.md)，双版截图见 [运行实景](previews/central-institute-runtime/README.md)。研究所电网系统、收容事件和研究所 Boss 战尚未实现。
+alpha.3 提供中央研究所实际游戏建筑：地上三层、地下三层，共 48 间内饰房间，支持自然生成和管理员分区块施工。使用方法见 [中央研究所](docs/central-institute.md)，双版截图见 [运行实景](previews/central-institute-runtime/README.md)，可下载 [alpha.3 实景图包](https://github.com/fl749731-lab/ender-infection/releases/download/v0.12.0-alpha.3/central-institute-runtime-0.12.0-alpha.3.zip)。研究所电网系统、收容事件和研究所 Boss 战尚未实现。
 
 alpha.2 的设计资料继续保留：[完整图包](https://github.com/fl749731-lab/ender-infection/releases/download/v0.12.0-alpha.2/central-research-institute-interiors-v01.zip)、[73 页 PDF](https://github.com/fl749731-lab/ender-infection/releases/download/v0.12.0-alpha.2/central-institute-interior-atlas-v01.pdf)。解压后打开 `index.html` 浏览逐格坐标与材料清单；这些历史附件不等同于 alpha.2 JAR 已包含整栋建筑。
 
 感染从母体与扩张节点开始。每个母体拥有独立的生物质储备；召唤、进阶与节点扩张消费储备，土地收益随领土扩大而增加，重复收割同一片土地的收益逐渐下降。
 
-## v0.12.0-alpha.3（待发布）
+## v0.12.0-alpha.3
 
 - 中央研究所占地 120×104，建筑包围盒高 55 格；48 间房各有内饰与分类补给，双楼梯、货梯和中庭连桥连接六层。
+- 13 类储物家具提供真实 27 格箱子界面，包括柜子、工作台抽屉、冷柜、货箱、货架、洗手盆下柜及新增展示柜、低温柜、机架、控制台和推车。中央模板含 1417 个分类战利品储柜，六种旧小站模板合计 368 个；玩家自行放置为空，生成物资领取后不再刷新。
+- 补充可开合隔帘、显微镜、离心机、冷却泵和工作灯，按房间用途调整设备与内饰；五色细墙带、房间标识及可见柜门/抽屉纠正与设计图的差异。
+- E5 培养舱阵列恢复六座大型培养舱；A3 医疗观察室配置四张观察床，设备与床边保留通路。
 - 在合适的主世界新区块自然生成；可用 `/enderinstitute previewcentral` 检查场地，再用 `/enderinstitute build` 分区块施工。旧小型实验室、导入建筑与已有存档中的建筑保留。
 - 两条入口道路适配不超过 8 格的地形高差；修正门口与补给桶通路，保留室外原地形及既有容器保护。
 - 59 处紫晶表面加入实际补光，保留相邻空气与长芽空间；原生光照验收要求暴露面方块光照至少为 12。
 
-上一轮已归档 42 项中央研究所专用原生测试和双版共 122 张实景，供本次发布参考；本次发布前的全量复验结果将在完成后单独记录，不以历史数量代替本轮验证。
+本次发行执行完整双版本干净构建，实际 115 项必需原生测试全部通过；四个原生客户端完成 150 张截图验收：122 张中央研究所实景，加 28 张真实库存界面及开柜模型。最终 JAR 校验和、布局与图像 SHA256 见发布验证清单。
 
 ## v0.11.0 稳定版
 
@@ -177,7 +180,7 @@ alpha.2 的设计资料继续保留：[完整图包](https://github.com/fl749731
 
 本机保留的 Forge 1.20.1 启动入口为 `E:\mc\启动MC.cmd`，Prism Launcher 与原游戏实例位于 `E:\mc\Minecraft1201`。NeoForge 1.21.1 使用另建的对应版本实例。账号、存档和启动器数据属于本机文件，不进入 Git 仓库。
 
-alpha.3 发布后，Forge 1.20.1 使用 `ender-infection-0.12.0-alpha.3.jar` 和对应的 GeckoLib；NeoForge 1.21.1 使用 `ender-infection-neoforge-1.21.1-0.12.0-alpha.3.jar` 和对应的 GeckoLib。更新时只保留当前实例需要的一份 Ender Infection JAR，并重新启动游戏。两版安装包分别使用，不转换现有 1.20.1 存档；中央研究所自然生成只出现在尚未探索的新区块。
+Forge 1.20.1 使用 `ender-infection-0.12.0-alpha.3.jar` 和对应的 GeckoLib；NeoForge 1.21.1 使用 `ender-infection-neoforge-1.21.1-0.12.0-alpha.3.jar` 和对应的 GeckoLib。更新时只保留当前实例需要的一份 Ender Infection JAR，并重新启动游戏。两版安装包分别使用，不转换现有 1.20.1 存档；中央研究所自然生成只出现在尚未探索的新区块。
 
 ## 工程与可编辑资源
 

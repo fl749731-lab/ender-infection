@@ -1,12 +1,22 @@
 {
+  "format_version": 2,
   "status": "PASS",
-  "release_status": "local_unreleased_development_build",
-  "version": "0.12.0-alpha.2",
-  "layout_version": "central-institute-v1",
-  "manifest_sha256": "a408e7bc5f69ef7de4908ceb4b25a433a04598fe27a0091cb72944e49133a16f",
+  "stage": "ready_for_release",
+  "release_status": "ready_for_release",
+  "version": "0.12.0-alpha.3",
+  "layout_version": "central-institute-v2",
+  "collected_at_utc": "2026-11-04T23:34:27.225382+00:00",
+  "publication_performed": false,
+  "manifest": {
+    "file": "ender_infection_colored/src/main/resources/data/ender_infection/central_institute.json",
+    "bytes": 757396,
+    "sha256": "45cb308daee5c0eb9810acf7e80cbda1206ad8e81c354e95651b2ba5b98c2f1a"
+  },
+  "manifest_sha256": "45cb308daee5c0eb9810acf7e80cbda1206ad8e81c354e95651b2ba5b98c2f1a",
   "static": {
     "status": "PASS",
     "rooms": 48,
+    "room_signs": 48,
     "floors": {
       "G1": 8,
       "G2": 8,
@@ -17,95 +27,365 @@
     },
     "tiles": 56,
     "explicit_voxels": 686400,
-    "multipart": 1094,
-    "parts_crossing_tiles": 14,
-    "bed_halves": 24,
+    "multipart": 1363,
+    "parts_crossing_tiles": 34,
+    "bed_halves": 28,
     "loot_containers": 48,
-    "reachable_standing_cells": 37303,
+    "storage_containers": 1417,
+    "storage_by_block": {
+      "ender_infection:lab_freezer": 360,
+      "ender_infection:lab_control_console": 58,
+      "ender_infection:lab_server_rack": 98,
+      "ender_infection:lab_rolling_cart": 86,
+      "ender_infection:lab_glass_cabinet": 45,
+      "ender_infection:lab_cabinet": 92,
+      "ender_infection:lab_storage_crate": 130,
+      "ender_infection:lab_cryo_cabinet": 76,
+      "ender_infection:lab_shelf": 401,
+      "ender_infection:lab_workbench": 28,
+      "ender_infection:lab_sink": 43
+    },
+    "reachable_standing_cells": 39218,
     "preserved_terrain_cells": 224668,
-    "light_sources": 952,
+    "light_sources": 1001,
     "lit_crystals": 59
   },
-  "native_required_tests_passed": 42,
+  "storage_furniture_variants": 13,
+  "native_gametests_requested": true,
+  "native_required_tests_passed": 115,
   "native_tests": [
     {
+      "loader": "forge",
+      "suite": "rift_ai",
       "status": "PASS",
-      "log": "build/central-institute/forge-gametest.log",
-      "total": 1,
-      "required_passed": 1,
-      "sha256": "b75640251b2fca80ed286cde2163d559a085d35dc833e12dfec32ebe20339891"
+      "total": 32,
+      "required_passed": 32,
+      "evidence_log_name": "ender_infection_colored-rift-ai.log",
+      "evidence_log_sha256": "4f93c7d57d359cd9d7d783f14b24bd2464736422cb8c0b3057caa2d98d34f6ab",
+      "log": "build/dual-version-validation/ender_infection_colored-rift-ai.log"
     },
     {
+      "loader": "forge",
+      "suite": "institute_api",
       "status": "PASS",
-      "log": "build/central-institute/forge-api.log",
       "total": 12,
       "required_passed": 12,
-      "sha256": "42749986ac4b1d086d31de4a88a543935da8dd7108a03858c05b6d42c9916740"
+      "evidence_log_name": "ender_infection_colored-institute.log",
+      "evidence_log_sha256": "94a00d50ee3ff1e90cdbddef945c0b91ef4bd6ad312921e36364019e09d99217",
+      "log": "build/dual-version-validation/ender_infection_colored-institute.log"
     },
     {
+      "loader": "forge",
+      "suite": "central_institute",
       "status": "PASS",
-      "log": "build/central-institute/forge-legacy-labs.log",
-      "total": 8,
-      "required_passed": 8,
-      "sha256": "833e3fa588de5904de3b3811858c81fdf657804cb05ea4b7e1d7cbc6ba5aff3c"
-    },
-    {
-      "status": "PASS",
-      "log": "build/central-institute/neo-gametest.log",
       "total": 1,
       "required_passed": 1,
-      "sha256": "c72e8f09cf268f633ac9bdf6a01a262102205c470c39c9d7788de1eefe7924a9"
+      "evidence_log_name": "ender_infection_colored-central-institute.log",
+      "evidence_log_sha256": "31d42058d486be43d6b21f01fe170db212adcf9e3343c254bd3b6c8163ad143d",
+      "physical_lights": 1001,
+      "exposed_crystals": 59,
+      "enclosed_crystals": 0,
+      "loot_categories": 8,
+      "log": "build/dual-version-validation/ender_infection_colored-central-institute.log"
     },
     {
+      "loader": "forge",
+      "suite": "storage",
       "status": "PASS",
-      "log": "build/central-institute/neo-api-legacy-labs.log",
-      "total": 20,
-      "required_passed": 20,
-      "sha256": "8684ddd1868f3c1dfc7ebb8f8f82dbdff5cf69c32453f3b558ddeb8e4dc27c38"
+      "total": 6,
+      "required_passed": 6,
+      "evidence_log_name": "ender_infection_colored-storage.log",
+      "evidence_log_sha256": "9140db5de30ce9b7623d37b6c860ff6e4065ba4d14b6be70e4e478542ee62609",
+      "log": "build/dual-version-validation/ender_infection_colored-storage.log"
+    },
+    {
+      "loader": "forge",
+      "suite": "ore",
+      "status": "PASS",
+      "total": 4,
+      "required_passed": 4,
+      "evidence_log_name": "ender_infection_colored-ore.log",
+      "evidence_log_sha256": "431fdb177ba1ab40ae90746462ffd4ede872bd461be766ee9a8e80e000d189a5",
+      "log": "build/dual-version-validation/ender_infection_colored-ore.log"
+    },
+    {
+      "loader": "forge",
+      "suite": "addon",
+      "status": "PASS",
+      "total": 2,
+      "required_passed": 2,
+      "evidence_log_name": "forge-addon-tests.log",
+      "evidence_log_sha256": "122c1c6ff6878b8fcb84320cb593efe82dfcdca20795692bb746ada9483bd17e",
+      "log": "build/dual-version-validation/forge-addon-tests.log"
+    },
+    {
+      "loader": "neoforge",
+      "suite": "rift_ai",
+      "status": "PASS",
+      "total": 32,
+      "required_passed": 32,
+      "evidence_log_name": "ender_infection_neoforge-rift-ai.log",
+      "evidence_log_sha256": "0fd1fc9e4b284630cfb272c0be546331be02f41d566dff3379fa7d9b03ca0bac",
+      "log": "build/dual-version-validation/ender_infection_neoforge-rift-ai.log"
+    },
+    {
+      "loader": "neoforge",
+      "suite": "institute_api",
+      "status": "PASS",
+      "total": 12,
+      "required_passed": 12,
+      "evidence_log_name": "ender_infection_neoforge-institute.log",
+      "evidence_log_sha256": "d318a0be490a97bc04511d88a747fe986abc51e389e32de5de2f51d19022b7e2",
+      "log": "build/dual-version-validation/ender_infection_neoforge-institute.log"
+    },
+    {
+      "loader": "neoforge",
+      "suite": "central_institute",
+      "status": "PASS",
+      "total": 1,
+      "required_passed": 1,
+      "evidence_log_name": "ender_infection_neoforge-central-institute.log",
+      "evidence_log_sha256": "e55444aaefb580e2a4bc8d1346a4a9e1bc3059387e6d13f0203fbeea732c5ac9",
+      "physical_lights": 1001,
+      "exposed_crystals": 59,
+      "enclosed_crystals": 0,
+      "loot_categories": 8,
+      "log": "build/dual-version-validation/ender_infection_neoforge-central-institute.log"
+    },
+    {
+      "loader": "neoforge",
+      "suite": "storage",
+      "status": "PASS",
+      "total": 6,
+      "required_passed": 6,
+      "evidence_log_name": "ender_infection_neoforge-storage.log",
+      "evidence_log_sha256": "59c4267cdae067a46381727932596eb73882248532627a96791cb7da9dc47ccf",
+      "log": "build/dual-version-validation/ender_infection_neoforge-storage.log"
+    },
+    {
+      "loader": "neoforge",
+      "suite": "ore",
+      "status": "PASS",
+      "total": 5,
+      "required_passed": 5,
+      "evidence_log_name": "ender_infection_neoforge-ore.log",
+      "evidence_log_sha256": "d03de37880eb3a11bbeda1bc6bcfcd859e96e7967c60471001001e343f501ee7",
+      "log": "build/dual-version-validation/ender_infection_neoforge-ore.log"
+    },
+    {
+      "loader": "neoforge",
+      "suite": "addon",
+      "status": "PASS",
+      "total": 2,
+      "required_passed": 2,
+      "evidence_log_name": "neoforge-addon-tests.log",
+      "evidence_log_sha256": "68bbfee2e18f62bd39dc0d26466bcf6b95349cfbd988e976185523d6f1ee975b",
+      "log": "build/dual-version-validation/neoforge-addon-tests.log"
     }
   ],
+  "screenshots": 150,
+  "institute_screenshots": 122,
+  "storage_screenshots": 28,
+  "visual_inputs_sha256": "8905b33f80c810c3572fb1d45aac18fbd4097e90ad0e02c83e5730d69668bd8d",
   "visual": [
     {
-      "status": "PASS",
-      "natural": true,
-      "rooms": 48,
-      "pieces": 56,
-      "full_chunks": 99,
-      "screenshots": 61,
-      "log": "build/central-institute/forge-visual.log",
-      "directory": "ender_infection_colored/build/central-institute-visual-check/screenshots",
-      "log_sha256": "d911b863e773602690f436b446adf1d59c65fbb9448b0ba16cb68a0019bb60e6"
+      "loader": "forge",
+      "minecraft": "1.20.1",
+      "capture_core_version": "0.12.0-alpha.3",
+      "native_visual": {
+        "status": "PASS",
+        "natural": true,
+        "rooms": 48,
+        "pieces": 56,
+        "full_chunks": 99,
+        "screenshots": 61
+      },
+      "storage_visual": {
+        "status": "PASS",
+        "menus": 13,
+        "screenshots": 14,
+        "storage_slots": 27,
+        "player_slots": 36,
+        "real_open_model": true
+      },
+      "visual_log": {
+        "file": "build/central-institute/forge-visual.log",
+        "bytes": 29243,
+        "sha256": "868ed1f092614c0dbc922a20a6cd59da5484bbab8d29b4eb07071b875a8b1541"
+      },
+      "storage_log": {
+        "file": "build/central-institute/storage-forge-visual.log",
+        "bytes": 24711,
+        "sha256": "20fc540fe8e2137fdc229fd6867bd925be94d815fe48cdb8a003ac50c31cf162"
+      },
+      "gallery": {
+        "receipt": {
+          "file": "previews/central-institute-runtime/forge/receipt.json",
+          "bytes": 19535,
+          "sha256": "860d7768f9c1520937d9684657cc9f18414ac0c54216e19456644e9b6fc54be5"
+        },
+        "layout_version": "central-institute-v2",
+        "source_images": 61,
+        "preview_images": 10,
+        "image_operations": "Proportional resize and letterbox only; copied originals are byte-identical."
+      }
     },
     {
-      "status": "PASS",
-      "natural": true,
-      "rooms": 48,
-      "pieces": 56,
-      "full_chunks": 99,
-      "screenshots": 61,
-      "log": "build/central-institute/neo-visual.log",
-      "directory": "ender_infection_neoforge/build/central-institute-visual-check/screenshots",
-      "log_sha256": "ef82e5a0fc4e261c11324536d9d49108c76e5fe89ca0b1eb288190161a5e12b4"
+      "loader": "neoforge",
+      "minecraft": "1.21.1",
+      "capture_core_version": "0.12.0-alpha.3",
+      "native_visual": {
+        "status": "PASS",
+        "natural": true,
+        "rooms": 48,
+        "pieces": 56,
+        "full_chunks": 99,
+        "screenshots": 61
+      },
+      "storage_visual": {
+        "status": "PASS",
+        "menus": 13,
+        "screenshots": 14,
+        "storage_slots": 27,
+        "player_slots": 36,
+        "real_open_model": true
+      },
+      "visual_log": {
+        "file": "build/central-institute/neo-visual.log",
+        "bytes": 22658,
+        "sha256": "efcca933ad6316a0d2acb093819fabea5b8ca5f53281c872723c0a44ba1f1b70"
+      },
+      "storage_log": {
+        "file": "build/central-institute/storage-neo-visual.log",
+        "bytes": 22490,
+        "sha256": "c3eeb897fc0a168ec3b8e86aa07c7285381496859a53e253d2024e23fc1eb084"
+      },
+      "gallery": {
+        "receipt": {
+          "file": "previews/central-institute-runtime/neoforge/receipt.json",
+          "bytes": 19606,
+          "sha256": "7f8d3a418ca99fae7205d391fe0a9730b3b706d8ef84be1577fefc7dc5f0457b"
+        },
+        "layout_version": "central-institute-v2",
+        "source_images": 61,
+        "preview_images": 10,
+        "image_operations": "Proportional resize and letterbox only; copied originals are byte-identical."
+      }
+    }
+  ],
+  "visual_layout_matches_final_jars": true,
+  "artifacts": [
+    {
+      "file": "build/release-0.12.0-alpha.3/ender-infection-0.12.0-alpha.3.jar",
+      "bytes": 5594776,
+      "sha256": "56aa8f51c0bcc7579b9f983ffec73714c376843cb8e7bc6e00448ffd42168834",
+      "kind": "core",
+      "loader": "forge",
+      "minecraft": "1.20.1",
+      "java_class_major": 61
+    },
+    {
+      "file": "build/release-0.12.0-alpha.3/ender-infection-api-dev-forge-1.20.1-0.12.0-alpha.3.jar",
+      "bytes": 5505055,
+      "sha256": "30b389c9c0b9a5102709d767dbf1c8f57c0536b302e83cc91c3230f9bd581452",
+      "kind": "api_development",
+      "loader": "forge",
+      "minecraft": "1.20.1",
+      "java_class_major": 61
+    },
+    {
+      "file": "build/release-0.12.0-alpha.3/institute-addon-forge-1.20.1-0.1.0.jar",
+      "bytes": 18169,
+      "sha256": "9466a9ab0b58046fcb756be950662184d7b71bdbb4c0039ef5678c2a1be7eaeb",
+      "kind": "addon_example",
+      "loader": "forge",
+      "minecraft": "1.20.1",
+      "java_class_major": 61,
+      "minimum_core_version": "0.12.0-alpha.2"
+    },
+    {
+      "file": "build/release-0.12.0-alpha.3/ender-infection-neoforge-1.21.1-0.12.0-alpha.3.jar",
+      "bytes": 5447023,
+      "sha256": "957ce08285752638b86de6adcfd05729536e6fea1a0daf01ce5f5c53a88d1aba",
+      "kind": "core",
+      "loader": "neoforge",
+      "minecraft": "1.21.1",
+      "java_class_major": 65
+    },
+    {
+      "file": "build/release-0.12.0-alpha.3/ender-infection-api-dev-neoforge-1.21.1-0.12.0-alpha.3.jar",
+      "bytes": 5446973,
+      "sha256": "6109a07692183b5b5fcdf4aef8e1a34337d3c8d5e1fa2d96d0bbda119475a685",
+      "kind": "api_development",
+      "loader": "neoforge",
+      "minecraft": "1.21.1",
+      "java_class_major": 65
+    },
+    {
+      "file": "build/release-0.12.0-alpha.3/institute-addon-neoforge-1.21.1-0.1.0.jar",
+      "bytes": 17169,
+      "sha256": "5ce4174b8b017d3058e88fea1a755e011ad6f413a00ff785bcc2a1394a478853",
+      "kind": "addon_example",
+      "loader": "neoforge",
+      "minecraft": "1.21.1",
+      "java_class_major": 65,
+      "minimum_core_version": "0.12.0-alpha.2"
+    },
+    {
+      "file": "build/release-0.12.0-alpha.3/institute-addon-source-v1-0.12.0-alpha.3.zip",
+      "bytes": 157990,
+      "sha256": "1a87b6029de23f5f66a3c45aaf2c4ab1366c4e6ed98d3e40a0872faedfc1ee26",
+      "kind": "addon_sources"
+    },
+    {
+      "file": "build/release-0.12.0-alpha.3/central-institute-runtime-0.12.0-alpha.3.zip",
+      "bytes": 41667050,
+      "sha256": "ca8f397ac2d94dd7617adafbe7b0b5fc86a8819bb9c58d51450466082d30bc30",
+      "kind": "runtime_screenshots"
     }
   ],
   "jars": [
     {
-      "file": "ender_infection_colored/build/libs/ender-infection-0.12.0-alpha.2.jar",
-      "bytes": 5310800,
-      "sha256": "8a5dab4c534b9eba067e028f84bea8a82e468787bf3c48ca83d0fa15b9d5d914",
-      "central_templates_verified": 56
+      "file": "build/release-0.12.0-alpha.3/ender-infection-0.12.0-alpha.3.jar",
+      "bytes": 5594776,
+      "sha256": "56aa8f51c0bcc7579b9f983ffec73714c376843cb8e7bc6e00448ffd42168834",
+      "kind": "core",
+      "loader": "forge",
+      "minecraft": "1.20.1",
+      "java_class_major": 61
     },
     {
-      "file": "ender_infection_neoforge/build/libs/ender-infection-neoforge-1.21.1-0.12.0-alpha.2.jar",
-      "bytes": 5167255,
-      "sha256": "a4fc047edd014dc4c23d4b0bb6c7aedbb0f5bc9cb2943a0193bc403fd2420cb9",
-      "central_templates_verified": 56
+      "file": "build/release-0.12.0-alpha.3/ender-infection-neoforge-1.21.1-0.12.0-alpha.3.jar",
+      "bytes": 5447023,
+      "sha256": "957ce08285752638b86de6adcfd05729536e6fea1a0daf01ce5f5c53a88d1aba",
+      "kind": "core",
+      "loader": "neoforge",
+      "minecraft": "1.21.1",
+      "java_class_major": 65
     }
   ],
-  "coverage": "Full institute, existing institute API and legacy laboratories on both loaders; full natural structures and all room cameras. AI/rift/ore gameplay was unchanged in this task.",
-  "limitations": [
-    "Fixed orientation",
-    "Only newly generated chunks receive the natural structure",
-    "Electrical networks, containment events and boss encounters remain future content"
-  ]
+  "provenance": {
+    "release_verification": {
+      "file": "build/release-0.12.0-alpha.3/verification.json",
+      "bytes": 8315,
+      "sha256": "90a883cab1f6e7f9ebb150dd5abe53270866ad2c6d3384dda12c46377a79bc09"
+    },
+    "package_receipt": {
+      "file": "build/release-0.12.0-alpha.3/package-receipt.json",
+      "bytes": 3368,
+      "sha256": "fc634a14ace5cba9b99ba8ba76caeccec3342eb825b86f807f7352baffb12a5f"
+    },
+    "full_build_report": {
+      "file": "build/dual-version-validation/verified-builds.json",
+      "bytes": 2739,
+      "sha256": "c8287887e751407afd954ebe966529ce488ef0cd54ed518f28ea7894b592ee63"
+    },
+    "visual_snapshot": {
+      "file": "build/release-0.12.0-alpha.3/visual-inputs/snapshot.json",
+      "bytes": 1364507,
+      "sha256": "8f04b5351395333baa5662bcfa77fae86fd0f02598eb4c203662efad3e02df7b"
+    }
+  },
+  "path_base": "workspace root",
+  "privacy": "Relative evidence paths and hashes only; no player worlds, raw logs or credentials."
 }

@@ -1,0 +1,42 @@
+{
+  "verified_at_utc": "2026-11-04T17:05:47.297645+00:00",
+  "published_core_alpha_1_has_api": false,
+  "requires_workspace_api_v1_build": true,
+  "client_visual_validation": "not_run",
+  "platforms": [
+    {
+      "loader": "forge",
+      "minecraft": "1.20.1",
+      "java_class_major": 61,
+      "artifact": "forge/build/libs/institute-addon-forge-1.20.1-0.1.0.jar",
+      "artifact_bytes": 18168,
+      "artifact_sha256": "2d7c319b0af238c764c853c644b5651f8733625161125817c66e66dcf46773b5",
+      "core_dev_dependency_sha256": "0620e5c61db4fe1361eed6a9e3aeb3c8c0f367202e3a5642847dc488216f524c",
+      "core_classes_bundled": false,
+      "native_gametests_passed": 2,
+      "native_checks": [
+        "registered_template_preview_and_placement",
+        "console_toggle_offhand_pass_and_light"
+      ],
+      "log": "forge/gametest-validation.log",
+      "room_template": "data/institute_addon/structures/analysis_room.nbt"
+    },
+    {
+      "loader": "neoforge",
+      "minecraft": "1.21.1",
+      "java_class_major": 65,
+      "artifact": "neoforge/build/libs/institute-addon-neoforge-1.21.1-0.1.0.jar",
+      "artifact_bytes": 17168,
+      "artifact_sha256": "d7e16ceceda6cd5d2b6676422549004bccae8303d932c644594d3e0886c0a21c",
+      "core_dev_dependency_sha256": "c0ae3771ae8e66580ffbe0e8fda19a526715f0174fc1c99d7c40c0e7ce04d930",
+      "core_classes_bundled": false,
+      "native_gametests_passed": 2,
+      "native_checks": [
+        "registered_template_preview_and_placement",
+        "console_toggle_offhand_pass_and_light"
+      ],
+      "log": "neoforge/gametest-validation.log",
+      "room_template": "data/institute_addon/structure/analysis_room.nbt"
+    }
+  ]
+}

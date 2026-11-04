@@ -1,6 +1,12 @@
 # 末影感染 · Ender Infection
 
-Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当前稳定版本：**0.11.0**。
+末影感染是 Minecraft 阵营 Mod。当前稳定版本为 **0.11.0（Forge 1.20.1）**；本轮预发布版本为 **0.12.0-alpha.2（Forge 1.20.1 / NeoForge 1.21.1）**。
+
+**v0.12.0-alpha.2 预发布**同时提供 **Forge 1.20.1 / Java 17** 与 **NeoForge 1.21.1 / Java 21**。保留两版工程，模型、贴图和研究所 API 共用源文件。下载与附件见 [alpha.2 发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.2)，维护流程见 [双版本维护](docs/dual-version-maintenance.md)。
+
+alpha.2 新增研究所房间注册、连接器、模板预览与显式放置、设备交互 API，并提供两版 [独立附属 Mod 示例](examples/institute-addon/README.md)。同步修复载体交付、宽体近战收近、射手瞄准与友军避让。旧版 `0.12.0-alpha.1` 不含该 API。
+
+中央研究所六层、48 间逐室内饰与方块坐标以发布附件交付：[完整图包](https://github.com/fl749731-lab/ender-infection/releases/download/v0.12.0-alpha.2/central-research-institute-interiors-v01.zip)、[73 页 PDF](https://github.com/fl749731-lab/ender-infection/releases/download/v0.12.0-alpha.2/central-institute-interior-atlas-v01.pdf)。解压图包后打开 `index.html` 浏览。概念细节、现有方块与待补模型分别标明；大型研究所本体仍待组装及自然生成接入。
 
 感染从母体与扩张节点开始。每个母体拥有独立的生物质储备；召唤、进阶与节点扩张消费储备，土地收益随领土扩大而增加，重复收割同一片土地的收益逐渐下降。
 
@@ -15,13 +21,14 @@ Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当
 
 ## 必装前置：GeckoLib
 
-**安装末影感染前，必须同时安装 GeckoLib 的 Forge 1.20.1 版本。客户端和服务端都需要安装。**
+**客户端和服务端都需要安装与 Minecraft、加载器匹配的 GeckoLib。**
 
-| 前置模组 | 版本要求 | 已测试版本 | 下载 |
-|---|---|---|---|
-| GeckoLib | `4.4.9 ≤ 版本 < 5`，对应 Minecraft 1.20.1 / Forge | **4.4.9** | [GeckoLib 4.4.9（Forge 1.20.1）](https://modrinth.com/mod/geckolib/version/RBA7lJaW) |
+| Minecraft / 加载器 | Java | GeckoLib 要求 | 已测试 GeckoLib | 下载或说明 |
+|---|---|---|---|---|
+| **1.20.1 / Forge 47.3.12** | **17** | `4.4.9 ≤ 版本 < 5` | **4.4.9** | [GeckoLib 4.4.9（Forge 1.20.1）](https://modrinth.com/mod/geckolib/version/RBA7lJaW) |
+| **1.21.1 / NeoForge 21.1.265** | **21** | `4.9.3 ≤ 版本 < 5` | **4.9.3** | [NeoForge 构建说明](ender_infection_neoforge/README.md) |
 
-将 `geckolib-forge-1.20.1-4.4.9.jar` 和本 Mod 的 JAR 放入同一个实例的 `mods` 文件夹；专用服务器也放入其 `mods` 文件夹。GeckoLib 需单独下载，未打包进本 Mod。缺少前置或版本不满足要求时，Forge 会阻止加载并提示依赖错误。
+将对应平台的 GeckoLib 与本 Mod JAR 放入同一个实例的 `mods` 文件夹；专用服务器也放入其 `mods` 文件夹。GeckoLib 需单独下载，未打包进本 Mod。缺少前置或版本不满足要求时，加载器会提示依赖错误。Forge 与 NeoForge 的 JAR 分别安装到各自版本的实例。
 
 ## 晶体装备与开局陨石
 
@@ -157,15 +164,18 @@ Minecraft **1.20.1 / Forge 47.3.12 / GeckoLib 4.4.9 / Java 17** 阵营 Mod。当
 
 ## 安装与 E 盘位置
 
-本机启动入口为 `E:\mc\启动MC.cmd`，Prism Launcher 与游戏实例位于 `E:\mc\Minecraft1201`。账号、存档和启动器数据属于本机文件，不进入 Git 仓库。
+本机保留的 Forge 1.20.1 启动入口为 `E:\mc\启动MC.cmd`，Prism Launcher 与原游戏实例位于 `E:\mc\Minecraft1201`。NeoForge 1.21.1 使用另建的对应版本实例。账号、存档和启动器数据属于本机文件，不进入 Git 仓库。
 
-编译后的 `ender-infection-0.11.0-alpha.11.jar` 与 `geckolib-forge-1.20.1-4.4.9.jar` 放入同一个 Forge 1.20.1 实例的 `mods` 目录。更新时只保留一个版本的 Ender Infection JAR。模型改变需要重新启动游戏。
+Forge 1.20.1 使用 `ender-infection-0.12.0-alpha.2.jar` 和对应的 GeckoLib；NeoForge 1.21.1 使用 `ender-infection-neoforge-1.21.1-0.12.0-alpha.2.jar` 和对应的 GeckoLib。更新时只保留当前实例需要的一份 Ender Infection JAR，并重新启动游戏。本次双版本发布不转换现有 1.20.1 存档。
 
 ## 工程与可编辑资源
 
 | 位置 | 内容 |
 |---|---|
 | [ender_infection_colored](ender_infection_colored) | Forge / Java 工程 |
+| [ender_infection_neoforge](ender_infection_neoforge) | NeoForge 1.21.1 / Java 21 工程 |
+| [公共 API](common/src/main/java/dev/hui/enderinfection/api/institute) | 两版共用的房间、连接器与设备接口 |
+| [附属 Mod 示例](examples/institute-addon) | 两版独立工程、交互控制台和房间模板 |
 | [Java 源码](ender_infection_colored/src/main/java/dev/hui/enderinfection) | 实体、AI、生物质、战斗、实验室与测试 |
 | [游戏资源](ender_infection_colored/src/main/resources/assets/ender_infection) | Gecko 模型、动画、贴图、烘焙模型与语言 |
 | [结构与配方](ender_infection_colored/src/main/resources/data/ender_infection) | 实验室 NBT、世界生成、掉落和合成 |

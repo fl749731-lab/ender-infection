@@ -1,0 +1,27 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="All Rights Reserved (code); third-party structures GPL-3.0 / MIT, see META-INF/licenses"
+[[mods]]
+modId="ender_infection"
+version="${file.jarVersion}"
+displayName="Ender Infection"
+displayURL="https://github.com/fl749731-lab/ender-infection"
+description="Ender colonies, crystal creatures, research facilities and rift encounters. NeoForge 1.21.1 edition."
+[[dependencies.ender_infection]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.265,21.2)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.ender_infection]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1,1.21.2)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.ender_infection]]
+modId="geckolib"
+type="required"
+versionRange="[4.9.3,5)"
+ordering="AFTER"
+side="BOTH"

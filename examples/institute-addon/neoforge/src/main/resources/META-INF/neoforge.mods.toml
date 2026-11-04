@@ -1,0 +1,26 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+[[mods]]
+modId="institute_addon"
+version="${file.jarVersion}"
+displayName="Institute Addon Example"
+description="API v1 example: an interactive research console and a furnished analysis room."
+[[dependencies.institute_addon]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.265,21.2)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.institute_addon]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1,1.21.2)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.institute_addon]]
+modId="ender_infection"
+type="required"
+versionRange="[0.12.0-alpha.2,)"
+ordering="AFTER"
+side="BOTH"

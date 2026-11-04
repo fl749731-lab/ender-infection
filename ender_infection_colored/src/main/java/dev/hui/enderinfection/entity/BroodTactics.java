@@ -227,13 +227,18 @@ final class BroodTactics {
         private void routeToMother() {
             var delta = carrier.position().subtract(mother.position());
             double start = Math.atan2(delta.z, delta.x);
-            double radius = mother.getBbWidth() * .5 + 1.9;
+            // The navigation waypoint tolerance and block rounding must still leave
+            // the carrier inside the transfer radius, especially for a small stage-one mother.
+            double radius = mother.getBbWidth() * .5 + carrier.getBbWidth() * .5 + .35;
             for (int turn : new int[]{0, 1, -1, 2, -2, 3, -3, 4}) {
                 double angle = start + turn * Math.PI / 4;
                 Vec3 position = mother.position().add(Math.cos(angle) * radius, 0, Math.sin(angle) * radius);
                 var feet = BlockPos.containing(position);
-                var path = carrier.getNavigation().createPath(feet, 1);
-                if (path != null && path.canReach() && carrier.getNavigation().moveTo(path, 1.15)) {
+                var path = carrier.getNavigation().createPath(feet, 0);
+                double transfer = mother.getBbWidth() * .5 + 2.8;
+                if (path != null && path.canReach() && path.getNodeCount() > 0
+                    && path.getEntityPosAtNode(carrier, path.getNodeCount() - 1).distanceTo(mother.position()) < transfer - .8
+                    && carrier.getNavigation().moveTo(path, 1.15)) {
                     FactionAI.task(carrier, "运回生物质", "向自己的母体交付载荷");
                     return;
                 }

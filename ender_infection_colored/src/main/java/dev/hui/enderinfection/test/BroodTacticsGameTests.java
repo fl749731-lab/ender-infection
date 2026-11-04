@@ -55,7 +55,8 @@ public final class BroodTacticsGameTests {
                          "Carrier did not deliver the small load, balance=" + mother.colonyBiomass()
                          + " cargo=" + carrier.getPersistentData().getInt("CarriedBiomass") + " at " + carrier.position()
                          + " mother=" + mother.position() + " task=" + carrier.getPersistentData().getString("ColonyTask")
-                         + " path=" + carrier.getNavigation().getPath());
+                         + " path=" + carrier.getNavigation().getPath() + " entityTick=" + carrier.tickCount
+                         + " motherWidth=" + mother.getBbWidth() + " emerging=" + carrier.emerging());
             mother.discard();
             carrier.discard();
         });

@@ -1,0 +1,999 @@
+{
+  "status": "design",
+  "coordinate_system": "X east, Z south, Y relative to G1 floor",
+  "site": [
+    120,
+    104
+  ],
+  "main_envelope": [
+    104,
+    80
+  ],
+  "building_origin_xz": [
+    8,
+    8
+  ],
+  "ground_y": 0,
+  "roof_y": 21,
+  "atrium_top_y": 26,
+  "foundation_y": -28,
+  "atrium_xz": [
+    40,
+    36,
+    80,
+    60
+  ],
+  "circulation_cores": [
+    {
+      "name": "西楼梯",
+      "bounds_xz": [
+        41,
+        39,
+        47,
+        47
+      ]
+    },
+    {
+      "name": "东楼梯",
+      "bounds_xz": [
+        73,
+        49,
+        79,
+        57
+      ]
+    },
+    {
+      "name": "货运井",
+      "bounds_xz": [
+        73,
+        37,
+        79,
+        43
+      ]
+    }
+  ],
+  "floor_to_floor": {
+    "G1": 7,
+    "G2": 7,
+    "G3": 7,
+    "B1": 7,
+    "B2": 7,
+    "B3": 11
+  },
+  "floors": [
+    {
+      "level": "G1",
+      "relative_floor_y": 0,
+      "theme": "接收与公共服务",
+      "rooms": [
+        {
+          "id": "A1",
+          "name": "门卫与监控",
+          "category": "安保",
+          "bay": "NW",
+          "bounds_xz": [
+            12,
+            12,
+            36,
+            32
+          ],
+          "door_xz": [
+            35,
+            20,
+            37,
+            23
+          ]
+        },
+        {
+          "id": "A2",
+          "name": "门禁与登记",
+          "category": "安保",
+          "bay": "N",
+          "bounds_xz": [
+            44,
+            12,
+            76,
+            32
+          ],
+          "door_xz": [
+            58,
+            31,
+            62,
+            33
+          ]
+        },
+        {
+          "id": "A3",
+          "name": "医疗观察",
+          "category": "医疗",
+          "bay": "NE",
+          "bounds_xz": [
+            84,
+            12,
+            108,
+            32
+          ],
+          "door_xz": [
+            83,
+            20,
+            85,
+            23
+          ]
+        },
+        {
+          "id": "A4",
+          "name": "消毒与更衣",
+          "category": "医疗",
+          "bay": "W",
+          "bounds_xz": [
+            12,
+            36,
+            36,
+            60
+          ],
+          "door_xz": [
+            35,
+            46,
+            37,
+            50
+          ]
+        },
+        {
+          "id": "A5",
+          "name": "装卸与收发",
+          "category": "机务",
+          "bay": "E",
+          "bounds_xz": [
+            84,
+            36,
+            108,
+            60
+          ],
+          "door_xz": [
+            83,
+            46,
+            85,
+            50
+          ],
+          "additional_doors_xz": [
+            [
+              107,
+              46,
+              110,
+              50
+            ]
+          ]
+        },
+        {
+          "id": "A6",
+          "name": "访客接待",
+          "category": "公共",
+          "bay": "SW",
+          "bounds_xz": [
+            12,
+            64,
+            36,
+            84
+          ],
+          "door_xz": [
+            35,
+            72,
+            37,
+            76
+          ]
+        },
+        {
+          "id": "A7",
+          "name": "入口大厅",
+          "category": "公共",
+          "bay": "S",
+          "bounds_xz": [
+            44,
+            64,
+            76,
+            84
+          ],
+          "door_xz": [
+            58,
+            63,
+            62,
+            65
+          ],
+          "additional_doors_xz": [
+            [
+              58,
+              83,
+              62,
+              85
+            ]
+          ]
+        },
+        {
+          "id": "A8",
+          "name": "器材储藏",
+          "category": "机务",
+          "bay": "SE",
+          "bounds_xz": [
+            84,
+            64,
+            108,
+            84
+          ],
+          "door_xz": [
+            83,
+            72,
+            85,
+            76
+          ]
+        }
+      ]
+    },
+    {
+      "level": "G2",
+      "relative_floor_y": 7,
+      "theme": "分析与研究",
+      "rooms": [
+        {
+          "id": "B1",
+          "name": "植物菌体分析",
+          "category": "科研",
+          "bay": "NW",
+          "bounds_xz": [
+            12,
+            12,
+            36,
+            32
+          ],
+          "door_xz": [
+            35,
+            20,
+            37,
+            23
+          ]
+        },
+        {
+          "id": "B2",
+          "name": "显微分析",
+          "category": "科研",
+          "bay": "N",
+          "bounds_xz": [
+            44,
+            12,
+            76,
+            32
+          ],
+          "door_xz": [
+            58,
+            31,
+            62,
+            33
+          ]
+        },
+        {
+          "id": "B3",
+          "name": "晶体分析",
+          "category": "科研",
+          "bay": "NE",
+          "bounds_xz": [
+            84,
+            12,
+            108,
+            32
+          ],
+          "door_xz": [
+            83,
+            20,
+            85,
+            23
+          ]
+        },
+        {
+          "id": "B4",
+          "name": "组织培养",
+          "category": "科研",
+          "bay": "W",
+          "bounds_xz": [
+            12,
+            36,
+            36,
+            60
+          ],
+          "door_xz": [
+            35,
+            46,
+            37,
+            50
+          ]
+        },
+        {
+          "id": "B5",
+          "name": "试剂准备",
+          "category": "科研",
+          "bay": "E",
+          "bounds_xz": [
+            84,
+            36,
+            108,
+            60
+          ],
+          "door_xz": [
+            83,
+            46,
+            85,
+            50
+          ]
+        },
+        {
+          "id": "B6",
+          "name": "研究员办公室",
+          "category": "公共",
+          "bay": "SW",
+          "bounds_xz": [
+            12,
+            64,
+            36,
+            84
+          ],
+          "door_xz": [
+            35,
+            72,
+            37,
+            76
+          ]
+        },
+        {
+          "id": "B7",
+          "name": "档案与阅览",
+          "category": "档案",
+          "bay": "S",
+          "bounds_xz": [
+            44,
+            64,
+            76,
+            84
+          ],
+          "door_xz": [
+            58,
+            63,
+            62,
+            65
+          ]
+        },
+        {
+          "id": "B8",
+          "name": "湿法分析",
+          "category": "科研",
+          "bay": "SE",
+          "bounds_xz": [
+            84,
+            64,
+            108,
+            84
+          ],
+          "door_xz": [
+            83,
+            72,
+            85,
+            76
+          ]
+        }
+      ]
+    },
+    {
+      "level": "G3",
+      "relative_floor_y": 14,
+      "theme": "总控与温室",
+      "rooms": [
+        {
+          "id": "C1",
+          "name": "通讯与值班",
+          "category": "安保",
+          "bay": "NW",
+          "bounds_xz": [
+            12,
+            12,
+            36,
+            32
+          ],
+          "door_xz": [
+            35,
+            20,
+            37,
+            23
+          ]
+        },
+        {
+          "id": "C2",
+          "name": "主控制室",
+          "category": "安保",
+          "bay": "N",
+          "bounds_xz": [
+            44,
+            12,
+            76,
+            32
+          ],
+          "door_xz": [
+            58,
+            31,
+            62,
+            33
+          ]
+        },
+        {
+          "id": "C3",
+          "name": "安全调度",
+          "category": "安保",
+          "bay": "NE",
+          "bounds_xz": [
+            84,
+            12,
+            108,
+            32
+          ],
+          "door_xz": [
+            83,
+            20,
+            85,
+            23
+          ]
+        },
+        {
+          "id": "C4",
+          "name": "员工宿舍",
+          "category": "公共",
+          "bay": "W",
+          "bounds_xz": [
+            12,
+            36,
+            36,
+            60
+          ],
+          "door_xz": [
+            35,
+            46,
+            37,
+            50
+          ]
+        },
+        {
+          "id": "C5",
+          "name": "休息与餐厅",
+          "category": "公共",
+          "bay": "E",
+          "bounds_xz": [
+            84,
+            36,
+            108,
+            60
+          ],
+          "door_xz": [
+            83,
+            46,
+            85,
+            50
+          ]
+        },
+        {
+          "id": "C6",
+          "name": "植物温室",
+          "category": "温室",
+          "bay": "SW",
+          "bounds_xz": [
+            12,
+            64,
+            36,
+            84
+          ],
+          "door_xz": [
+            35,
+            72,
+            37,
+            76
+          ]
+        },
+        {
+          "id": "C7",
+          "name": "研究记录室",
+          "category": "档案",
+          "bay": "S",
+          "bounds_xz": [
+            44,
+            64,
+            76,
+            84
+          ],
+          "door_xz": [
+            58,
+            63,
+            62,
+            65
+          ]
+        },
+        {
+          "id": "C8",
+          "name": "菌体温室",
+          "category": "温室",
+          "bay": "SE",
+          "bounds_xz": [
+            84,
+            64,
+            108,
+            84
+          ],
+          "door_xz": [
+            83,
+            72,
+            85,
+            76
+          ]
+        }
+      ]
+    },
+    {
+      "level": "B1",
+      "relative_floor_y": -7,
+      "theme": "设施运维",
+      "rooms": [
+        {
+          "id": "D1",
+          "name": "主配电室",
+          "category": "机务",
+          "bay": "NW",
+          "bounds_xz": [
+            12,
+            12,
+            36,
+            32
+          ],
+          "door_xz": [
+            35,
+            20,
+            37,
+            23
+          ]
+        },
+        {
+          "id": "D2",
+          "name": "应急电源",
+          "category": "机务",
+          "bay": "N",
+          "bounds_xz": [
+            44,
+            12,
+            76,
+            32
+          ],
+          "door_xz": [
+            58,
+            31,
+            62,
+            33
+          ]
+        },
+        {
+          "id": "D3",
+          "name": "服务器机房",
+          "category": "机务",
+          "bay": "NE",
+          "bounds_xz": [
+            84,
+            12,
+            108,
+            32
+          ],
+          "door_xz": [
+            83,
+            20,
+            85,
+            23
+          ]
+        },
+        {
+          "id": "D4",
+          "name": "冷却泵房",
+          "category": "机务",
+          "bay": "W",
+          "bounds_xz": [
+            12,
+            36,
+            36,
+            60
+          ],
+          "door_xz": [
+            35,
+            46,
+            37,
+            50
+          ]
+        },
+        {
+          "id": "D5",
+          "name": "过滤与通风",
+          "category": "机务",
+          "bay": "E",
+          "bounds_xz": [
+            84,
+            36,
+            108,
+            60
+          ],
+          "door_xz": [
+            83,
+            46,
+            85,
+            50
+          ]
+        },
+        {
+          "id": "D6",
+          "name": "工具与备件",
+          "category": "机务",
+          "bay": "SW",
+          "bounds_xz": [
+            12,
+            64,
+            36,
+            84
+          ],
+          "door_xz": [
+            35,
+            72,
+            37,
+            76
+          ]
+        },
+        {
+          "id": "D7",
+          "name": "货物仓库",
+          "category": "机务",
+          "bay": "S",
+          "bounds_xz": [
+            44,
+            64,
+            76,
+            84
+          ],
+          "door_xz": [
+            58,
+            63,
+            62,
+            65
+          ]
+        },
+        {
+          "id": "D8",
+          "name": "维修工场",
+          "category": "机务",
+          "bay": "SE",
+          "bounds_xz": [
+            84,
+            64,
+            108,
+            84
+          ],
+          "door_xz": [
+            83,
+            72,
+            85,
+            76
+          ]
+        }
+      ]
+    },
+    {
+      "level": "B2",
+      "relative_floor_y": -14,
+      "theme": "收容与隔离",
+      "rooms": [
+        {
+          "id": "E1",
+          "name": "低温封存",
+          "category": "隔离",
+          "bay": "NW",
+          "bounds_xz": [
+            12,
+            12,
+            36,
+            32
+          ],
+          "door_xz": [
+            35,
+            20,
+            37,
+            23
+          ]
+        },
+        {
+          "id": "E2",
+          "name": "隔离监控",
+          "category": "安保",
+          "bay": "N",
+          "bounds_xz": [
+            44,
+            12,
+            76,
+            32
+          ],
+          "door_xz": [
+            58,
+            31,
+            62,
+            33
+          ]
+        },
+        {
+          "id": "E3",
+          "name": "实验体收容",
+          "category": "隔离",
+          "bay": "NE",
+          "bounds_xz": [
+            84,
+            12,
+            108,
+            32
+          ],
+          "door_xz": [
+            83,
+            20,
+            85,
+            23
+          ]
+        },
+        {
+          "id": "E4",
+          "name": "解剖与检验",
+          "category": "医疗",
+          "bay": "W",
+          "bounds_xz": [
+            12,
+            36,
+            36,
+            60
+          ],
+          "door_xz": [
+            35,
+            46,
+            37,
+            50
+          ]
+        },
+        {
+          "id": "E5",
+          "name": "培养舱阵列",
+          "category": "隔离",
+          "bay": "E",
+          "bounds_xz": [
+            84,
+            36,
+            108,
+            60
+          ],
+          "door_xz": [
+            83,
+            46,
+            85,
+            50
+          ]
+        },
+        {
+          "id": "E6",
+          "name": "样本隔离",
+          "category": "隔离",
+          "bay": "SW",
+          "bounds_xz": [
+            12,
+            64,
+            36,
+            84
+          ],
+          "door_xz": [
+            35,
+            72,
+            37,
+            76
+          ]
+        },
+        {
+          "id": "E7",
+          "name": "消毒气闸",
+          "category": "医疗",
+          "bay": "S",
+          "bounds_xz": [
+            44,
+            64,
+            76,
+            84
+          ],
+          "door_xz": [
+            58,
+            63,
+            62,
+            65
+          ]
+        },
+        {
+          "id": "E8",
+          "name": "事故实验室",
+          "category": "隔离",
+          "bay": "SE",
+          "bounds_xz": [
+            84,
+            64,
+            108,
+            84
+          ],
+          "door_xz": [
+            83,
+            72,
+            85,
+            76
+          ]
+        }
+      ]
+    },
+    {
+      "level": "B3",
+      "relative_floor_y": -25,
+      "theme": "裂隙核心实验",
+      "rooms": [
+        {
+          "id": "F1",
+          "name": "核心控制",
+          "category": "安保",
+          "bay": "N",
+          "bounds_xz": [
+            44,
+            12,
+            76,
+            32
+          ],
+          "door_xz": [
+            58,
+            31,
+            62,
+            33
+          ]
+        },
+        {
+          "id": "F2",
+          "name": "裂隙样本库",
+          "category": "隔离",
+          "bay": "NE",
+          "bounds_xz": [
+            84,
+            12,
+            108,
+            32
+          ],
+          "door_xz": [
+            83,
+            20,
+            85,
+            23
+          ]
+        },
+        {
+          "id": "F3",
+          "name": "晶体供能",
+          "category": "机务",
+          "bay": "W",
+          "bounds_xz": [
+            12,
+            36,
+            36,
+            60
+          ],
+          "door_xz": [
+            35,
+            46,
+            37,
+            50
+          ]
+        },
+        {
+          "id": "F4",
+          "name": "冷却与应急",
+          "category": "机务",
+          "bay": "E",
+          "bounds_xz": [
+            84,
+            36,
+            108,
+            60
+          ],
+          "door_xz": [
+            83,
+            46,
+            85,
+            50
+          ]
+        },
+        {
+          "id": "F5",
+          "name": "核心档案库",
+          "category": "档案",
+          "bay": "SW",
+          "bounds_xz": [
+            12,
+            64,
+            36,
+            84
+          ],
+          "door_xz": [
+            35,
+            72,
+            37,
+            76
+          ]
+        },
+        {
+          "id": "F6",
+          "name": "最终气闸",
+          "category": "隔离",
+          "bay": "S",
+          "bounds_xz": [
+            44,
+            64,
+            76,
+            84
+          ],
+          "door_xz": [
+            58,
+            63,
+            62,
+            65
+          ]
+        },
+        {
+          "id": "F7",
+          "name": "污染隔离",
+          "category": "隔离",
+          "bay": "SE",
+          "bounds_xz": [
+            84,
+            64,
+            108,
+            84
+          ],
+          "door_xz": [
+            83,
+            72,
+            85,
+            76
+          ]
+        },
+        {
+          "id": "F8",
+          "name": "裂隙实验大厅",
+          "category": "隔离",
+          "bay": "CORE",
+          "bounds_xz": [
+            40,
+            36,
+            80,
+            60
+          ],
+          "door_xz": [
+            39,
+            47,
+            41,
+            51
+          ],
+          "clear_encounter_floor": [
+            48,
+            38,
+            72,
+            58
+          ],
+          "floor_to_floor": 11
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "Concept art is illustrative; these coordinates govern the build plan.",
+    "2D connectivity does not validate Minecraft navigation, stair geometry or terrain generation.",
+    "Furniture, wall thickness details, structural modules and gameplay are not yet implemented."
+  ]
+}

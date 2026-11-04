@@ -1,0 +1,479 @@
+package dev.hui.enderinfection.block;
+
+import net.minecraft.core.registries.BuiltInRegistries;
+import dev.hui.enderinfection.InfectedContent;
+import dev.hui.enderinfection.entity.InfectedMob;
+import dev.hui.enderinfection.entity.InfectedKind;
+import dev.hui.enderinfection.biomass.ColonyEconomy;
+import java.util.UUID;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+
+/** The sole source of terrain spread. Ordinary infected terrain and trees have no spreading ticker. */
+public final class ExpansionNodeEntity extends BlockEntity {
+    public static final int MAX_RADIUS=16;
+    /** Deepest infected blocks below a column surface. */
+    private static final int MAX_DEPTH=3;
+    /** Blocks a converted column sinks below its surface. Free of charge, so one biomass still buys one column. */
+    private static final int SINK_DEPTH=4;
+    public static final int OUTPOST_RADIUS=10;
+    private static final TagKey<Block> GROUND=TagKey.create(Registries.BLOCK,ResourceLocation.fromNamespaceAndPath("ender_infection","infectable_ground"));
+    private int activeTicks,spreadClock,growthClock,purchasedChanges,spentBiomass,radius=2;
+    private UUID owner;
+    /** World generated nests have no mother yet; they raise one on their first ticks. */
+    private boolean wild;
+    public void markWild(){wild=true;setChanged();}
+    private int outpostClock=600;
+    private boolean outpostCreated;
+    private BlockPos childOutpost;
+    private int spreadRounds;
+    private int frontierCursor;
+    /** One paid block per deep pass, always straight down from an already infected column. */
+    private int deepClock,deepened;
+    /** Mature ground births units and grows its own flora on separate clocks. */
+    private int spawnClock,floraClock,soilBorn,matureClock,matureCursor,matured;
+    private int legacyCanopyCursor;
+    private long inhibitedUntil;
+    public void inhibit(ServerLevel level,int ticks){inhibitedUntil=Math.max(inhibitedUntil,level.getGameTime()+Math.max(0,Math.min(1200,ticks)));setChanged();}
+    public boolean inhibited(ServerLevel level){return level.getGameTime()<inhibitedUntil;}
+    private static final java.util.List<BlockPos> OFFSETS=createOffsets();
+    private static java.util.List<BlockPos> createOffsets(){
+        var result=new java.util.ArrayList<BlockPos>();
+        for(int x=-MAX_RADIUS;x<=MAX_RADIUS;x++)for(int z=-MAX_RADIUS;z<=MAX_RADIUS;z++)if(x*x+z*z<=MAX_RADIUS*MAX_RADIUS)result.add(new BlockPos(x,0,z));
+        result.sort(java.util.Comparator.comparingDouble(p->p.distSqr(BlockPos.ZERO)));return java.util.List.copyOf(result);
+    }
+    public UUID ownerId(){return owner;}
+    public void setOwner(UUID id){if(owner==null||owner.equals(id)){owner=id;setChanged();}}
+    public int purchasedChanges(){return purchasedChanges;}
+    public int spentBiomass(){return spentBiomass;}
+    public int deepenedBlocks(){return deepened;}
+    /** Units this node has birthed from mature ground. Debug and test hook. */
+    public int soilBorn(){return soilBorn;}
+    public int maturedBlocks(){return matured;}
+    public int activeTicks(){return activeTicks;}
+    public String spawnNote="";
+    public String spawnNote(){return spawnNote;}
+    /** Territory blocks produced per biomass this node has spent. Read by the mother's ledger. */
+    public double territoryPerBiomass(){return spentBiomass<=0?0:(double)purchasedChanges/spentBiomass;}
+    public int radius(){return radius;}
+    /** Vertical search follows the node's reach; child nodes continue the climb from their own height. */
+    public int surfaceTop(){return worldPosition.getY()+radius+1;}
+    public int surfaceBottom(){return worldPosition.getY()-radius-4;}
+    public int spreadRounds(){return spreadRounds;}
+    public int spreadWait(ServerLevel level){var core=mother(level);return core==null?0:Math.max(0,ColonyEconomy.interval(ColonyEconomy.SPREAD_BASE_TICKS,core.colonyBiomass())-spreadClock);}
+    private boolean openAbove(ServerLevel level,BlockPos pos){
+        BlockState above=level.getBlockState(pos.above());
+        return above.getFluidState().isEmpty()&&(above.isAir()||above.canBeReplaced()||above.is(BlockTags.LOGS)||above.getBlock() instanceof InfectedTimberBlock||Vegetation.supported(above)||above.is(net.minecraft.world.level.block.Blocks.SNOW));
+    }
+    /** A cliff face can creep vertically too, but a completely buried block is never a new frontier. */
+    private boolean exposed(ServerLevel level,BlockPos pos){
+        if(!level.getFluidState(pos.above()).isEmpty())return false;
+        if(openAbove(level,pos))return true;
+        for(var direction:net.minecraft.core.Direction.Plane.HORIZONTAL){
+            BlockPos side=pos.relative(direction);
+            if(level.hasChunkAt(side)&&level.getBlockState(side).isAir())return true;
+        }
+        return false;
+    }
+    private boolean infectedSupport(ServerLevel level,BlockPos pos){
+        if(!level.hasChunkAt(pos))return false;
+        BlockState state=level.getBlockState(pos);
+        if(isGround(InfectedContent.terrainKey(state)))return true;
+        return state.is(InfectedContent.NEST.get())&&level.getBlockEntity(pos) instanceof ExpansionNodeEntity node&&owner!=null&&owner.equals(node.ownerId());
+    }
+    private boolean connectedSurface(ServerLevel level,BlockPos pos){
+        // Old/hand-placed nodes can sit on a thin snow layer or two-block plant. Seed only their
+        // own column through that cover, never across an air gap or onto a diagonal island.
+        int cover=worldPosition.getY()-pos.getY();
+        if(pos.getX()==worldPosition.getX()&&pos.getZ()==worldPosition.getZ()&&cover>=2&&cover<=3){
+            boolean rooted=true;
+            for(int step=1;step<cover;step++){
+                BlockState between=level.getBlockState(pos.above(step));
+                if(!between.getFluidState().isEmpty()||!between.is(net.minecraft.world.level.block.Blocks.SNOW)&&!Vegetation.supported(between)){rooted=false;break;}
+            }
+            if(rooted)return true;
+        }
+        if(infectedSupport(level,pos.below())||infectedSupport(level,pos.above()))return true;
+        for(var direction:net.minecraft.core.Direction.Plane.HORIZONTAL)for(int step=-1;step<=1;step++)
+            if(infectedSupport(level,pos.relative(direction).offset(0,step,0)))return true;
+        return false;
+    }
+    /** Radius is purchased only when infection has reached a useful next ring, leaving money for soil. */
+    private void growRadius(ServerLevel level,InfectedMob core){
+        if(radius>=MAX_RADIUS||!core.canExpand(ColonyEconomy.RADIUS+ColonyEconomy.SPREAD_PER_ROUND))return;
+        Boolean newCatchment=null;
+        for(BlockPos offset:OFFSETS){
+            double distance=offset.distSqr(BlockPos.ZERO);if(distance>(radius+1)*(radius+1))break;
+            BlockPos column=worldPosition.offset(offset);if(!level.hasChunkAt(column))continue;
+            for(int y=surfaceTop()+1;y>=surfaceBottom()-1;y--){
+                // A narrow cliff can reach the vertical boundary before reaching a horizontal ring.
+                if(distance<=radius*radius&&y<=surfaceTop()&&y>=surfaceBottom())continue;
+                BlockPos pos=new BlockPos(column.getX(),y,column.getZ());BlockState state=level.getBlockState(pos);
+                String key=InfectedContent.terrainKey(state);
+                if((!state.is(GROUND)&&!isGround(key))||state.hasBlockEntity()||!exposed(level,pos)||!connectedSurface(level,pos))continue;
+                // Young outposts start inside their parent's catchment. They may cross that connected
+                // infected belt to reach new ground; otherwise the parent would permanently trap them.
+                if(key!=null){if(newCatchment==null)newCatchment=frontierScore(level,worldPosition,core)>0;if(!newCatchment)continue;}
+                if(core.spendForExpansion(ColonyEconomy.RADIUS)){radius++;spentBiomass+=ColonyEconomy.RADIUS;setChanged();}return;
+            }
+        }
+    }
+    private void checkOutpost(ServerLevel level,InfectedMob core){
+        // Older saves had only a boolean latch. Adopt a known outward node without loading it;
+        // if no such node survives, clear the latch so the lost branch can be rebuilt.
+        if(outpostCreated&&childOutpost==null){childOutpost=core.knownFrontierChild(worldPosition,radius);if(childOutpost==null)outpostCreated=false;}
+        // Unloaded children remain registered; checking them must never request a remote chunk.
+        if(childOutpost!=null&&level.hasChunkAt(childOutpost)&&(!(level.getBlockEntity(childOutpost) instanceof ExpansionNodeEntity child)||!core.getUUID().equals(child.ownerId()))){childOutpost=null;outpostCreated=false;}
+        if(!outpostCreated)establishOutpost(level,core);
+    }
+    public net.minecraft.world.phys.Vec3 effectPosition(){return net.minecraft.world.phys.Vec3.atCenterOf(worldPosition).add(0,getBlockState().getValue(InfectedNestBlock.ROOTED)?.5:0,0);}
+    public static boolean replaceSurface(ServerLevel level,BlockPos pos,InfectedMob core,boolean allowNatural){
+        if(!level.hasChunkAt(pos)||!level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING))return false;
+        BlockState original=level.getBlockState(pos),above=level.getBlockState(pos.above());String key=InfectedContent.terrainKey(original);
+        if(original.hasBlockEntity()||!(isGround(key)||allowNatural&&original.is(GROUND))||!(original.isFaceSturdy(level,pos,net.minecraft.core.Direction.UP)||original.getBlock() instanceof net.minecraft.world.level.block.FarmBlock||ErodedGroundBlock.farmland(original))||!above.getFluidState().isEmpty()||!above.isAir()&&!above.canBeReplaced()&&!Vegetation.supported(above)&&!above.is(net.minecraft.world.level.block.Blocks.SNOW))return false;
+        boolean tall=Vegetation.tallBottom(above);BlockState upper=level.getBlockState(pos.above(2));
+        int allowance=Math.min(core.expansionAllowance(),ColonyEconomy.NODE);if(!core.spendForExpansion(ColonyEconomy.NODE))return false;
+        if(!above.isAir())level.setBlock(pos.above(),net.minecraft.world.level.block.Blocks.AIR.defaultBlockState(),2);
+        if(tall)level.setBlock(pos.above(2),net.minecraft.world.level.block.Blocks.AIR.defaultBlockState(),2);
+        if(level.setBlock(pos,InfectedContent.NEST.get().defaultBlockState().setValue(InfectedNestBlock.ROOTED,true),3)&&level.getBlockEntity(pos) instanceof ExpansionNodeEntity node){
+            node.setOwner(core.getUUID());core.observeExpansion(node);node.substrate=net.minecraft.core.registries.BuiltInRegistries.BLOCK.getKey(original.getBlock()).toString();node.setChanged();
+            dev.hui.enderinfection.particle.FactionEffects.rune(level,node.effectPosition(),1.5);dev.hui.enderinfection.particle.FactionEffects.shatter(level,node.effectPosition(),10);return true;
+        }
+        level.setBlock(pos,original,3);if(!above.isAir())level.setBlock(pos.above(),above,2);if(tall)level.setBlock(pos.above(2),upper,3);core.refundExpansion(ColonyEconomy.NODE,allowance);return false;
+    }
+    private String substrate="";
+    private InfectedMob mother(ServerLevel level){
+        if(owner!=null){var entity=level.getEntity(owner);return entity instanceof InfectedMob core&&core.kind==InfectedKind.CORE&&core.isAlive()?core:null;}
+        var nearest=level.getEntitiesOfClass(InfectedMob.class,new net.minecraft.world.phys.AABB(worldPosition).inflate(32,12,32),core->core.kind==InfectedKind.CORE&&core.isAlive()).stream().min(java.util.Comparator.comparingDouble(core->core.distanceToSqr(net.minecraft.world.phys.Vec3.atCenterOf(worldPosition)))).orElse(null);
+        if(nearest!=null)setOwner(nearest.getUUID());return nearest;
+    }
+    private boolean change(ServerLevel level,BlockPos pos,BlockState replacement){
+        var changes=new java.util.LinkedHashMap<BlockPos,BlockState>();changes.put(pos,replacement);
+        BlockState plant=level.getBlockState(pos.above());
+        if(isGround(InfectedContent.terrainKey(replacement))&&!(plant.getBlock() instanceof ErodedVegetationBlock)&&!(plant.getBlock() instanceof ErodedTallVegetationBlock)){
+            BlockState initial=Vegetation.initial(plant);
+            if(initial!=null){changes.put(pos.above(),initial);if(Vegetation.tallBottom(plant))changes.put(pos.above(2),initial.setValue(net.minecraft.world.level.block.DoublePlantBlock.HALF,net.minecraft.world.level.block.state.properties.DoubleBlockHalf.UPPER));}
+        }
+        boolean done=changeAll(level,changes);
+        if(done&&isGround(InfectedContent.terrainKey(replacement)))sinkColumn(level,pos);
+        return done;
+    }
+    /** The blocks under a converted surface belong to the same column, so they sink with it. Free:
+     *  one biomass buys a whole column, not one visible block. Buried ground is included on purpose. */
+    private void sinkColumn(ServerLevel level,BlockPos pos){
+        BlockPos cursor=pos.below();int depth=0;boolean changed=false;
+        while(depth<SINK_DEPTH&&level.hasChunkAt(cursor)){
+            BlockState below=level.getBlockState(cursor);
+            if(InfectedContent.terrainKey(below)!=null){cursor=cursor.below();depth++;continue;}
+            if(!below.is(GROUND)||below.hasBlockEntity())break;
+            if(!level.setBlock(cursor,ErodedGroundBlock.fromNatural(below).setValue(ErodedGroundBlock.EROSION,2),2))break;
+            deepened++;depth++;changed=true;cursor=cursor.below();
+        }
+        if(changed)setChanged();
+    }
+    private int groundChangeCost(ServerLevel level,BlockPos pos){BlockState plant=level.getBlockState(pos.above());return 1+(Vegetation.initial(plant)==null?0:Vegetation.tallBottom(plant)?2:1);}
+    private int changeCount(ServerLevel level,BlockPos pos,BlockState replacement){int before=purchasedChanges;return change(level,pos,replacement)?purchasedChanges-before:0;}
+    private boolean changeAll(ServerLevel level,java.util.LinkedHashMap<BlockPos,BlockState> changes){
+        if(changes.keySet().stream().anyMatch(pos->!level.hasChunkAt(pos)))return false;
+        changes.entrySet().removeIf(e->level.getBlockState(e.getKey()).equals(e.getValue()));if(changes.isEmpty())return false;
+        InfectedMob core=mother(level);if(core==null)return false;
+        var originals=new java.util.LinkedHashMap<BlockPos,BlockState>();for(var entry:changes.entrySet()){BlockState state=level.getBlockState(entry.getKey());if(state.hasBlockEntity())return false;originals.put(entry.getKey(),state);}
+        int price=changes.size()*ColonyEconomy.EXPANSION,allowance=Math.min(core.expansionAllowance(),price);if(!core.spendForExpansion(price))return false;
+        // Suppress shape propagation until both soil and plant halves have been replaced.
+        for(var entry:changes.entrySet())if(!level.setBlock(entry.getKey(),entry.getValue(),18)){
+            originals.forEach((p,s)->level.setBlock(p,s,18));originals.forEach((p,s)->s.updateNeighbourShapes(level,p,3));core.refundExpansion(price,allowance);return false;
+        }
+        changes.forEach((p,s)->{s.updateNeighbourShapes(level,p,3);level.updateNeighborsAt(p,s.getBlock());});purchasedChanges=Math.min(1000000,purchasedChanges+changes.size());spentBiomass+=price;setChanged();return true;
+    }
+    private int erodeVegetation(ServerLevel level,BlockPos pos,int budget){
+        if(budget<=0)return 0;BlockState state=level.getBlockState(pos),below=level.getBlockState(pos.below());
+        boolean tall=state.getBlock() instanceof ErodedTallVegetationBlock;
+        if(!(state.getBlock() instanceof ErodedVegetationBlock)&&!tall){
+            BlockState initial=Vegetation.initial(state);if(initial==null)return 0;
+            var first=new java.util.LinkedHashMap<BlockPos,BlockState>();first.put(pos,initial);if(Vegetation.tallBottom(state))first.put(pos.above(),initial.setValue(net.minecraft.world.level.block.DoublePlantBlock.HALF,net.minecraft.world.level.block.state.properties.DoubleBlockHalf.UPPER));
+            return first.size()<=budget&&changeAll(level,first)?first.size():0;
+        }
+        if(tall&&!Vegetation.tallBottom(state))return 0;
+        int groundStage=below.hasProperty(ErodedGroundBlock.EROSION)?below.getValue(ErodedGroundBlock.EROSION):2;
+        int stage=tall?state.getValue(ErodedTallVegetationBlock.EROSION):state.getValue(ErodedVegetationBlock.EROSION);
+        if(groundStage<1||stage==1&&groundStage<2)return 0;
+        BlockState next=stage==0?state.setValue(tall?ErodedTallVegetationBlock.EROSION:ErodedVegetationBlock.EROSION,1):InfectedContent.PLANTS.get(Vegetation.mature(state)).get().defaultBlockState();
+        var changes=new java.util.LinkedHashMap<BlockPos,BlockState>();changes.put(pos,next);
+        if(tall)changes.put(pos.above(),stage==0?next.setValue(net.minecraft.world.level.block.DoublePlantBlock.HALF,net.minecraft.world.level.block.state.properties.DoubleBlockHalf.UPPER):net.minecraft.world.level.block.Blocks.AIR.defaultBlockState());
+        return changes.size()<=budget&&changeAll(level,changes)?changes.size():0;
+    }
+    public ExpansionNodeEntity(BlockPos pos,BlockState state){super(InfectedContent.NODE_ENTITY.get(),pos,state);}
+    public void serverTick(ServerLevel level){
+        activeTicks++;
+        if(wild&&owner==null&&activeTicks%20==0)sproutMother(level);
+        InfectedMob core=mother(level);if(core==null)return;core.observeExpansion(this);
+        if(inhibited(level)){if(activeTicks%40==0)dev.hui.enderinfection.particle.FactionEffects.suppress(level,effectPosition());return;}
+        if(!level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING))return;
+        if(radius<MAX_RADIUS&&++growthClock>=ColonyEconomy.interval(ColonyEconomy.RADIUS_BASE_TICKS,core.colonyBiomass())){growthClock=0;growRadius(level,core);}
+        if(radius>=OUTPOST_RADIUS&&++outpostClock>=ColonyEconomy.interval(ColonyEconomy.OUTPOST_BASE_TICKS,core.colonyBiomass())){outpostClock=0;checkOutpost(level,core);setChanged();}
+        if(++floraClock>=ColonyEconomy.interval(ColonyEconomy.FLORA_BASE_TICKS,core.colonyBiomass())){floraClock=0;growFlora(level);}
+        if(++spawnClock>=ColonyEconomy.interval(ColonyEconomy.SPAWN_BASE_TICKS,core.colonyBiomass())){spawnClock=0;spawnFromGround(level,core);}
+        if(activeTicks>=120&&purchasedChanges>0&&++matureClock>=ColonyEconomy.interval(ColonyEconomy.MATURE_BASE_TICKS,core.colonyBiomass())){matureClock=0;maturePass(level,2);}
+        setChanged();
+        if(!level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING))return;
+        // Consume one bounded round at the shared biomass speed, never one full scan per server tick.
+        if(++spreadClock<ColonyEconomy.interval(ColonyEconomy.SPREAD_BASE_TICKS,core.colonyBiomass()))return;
+        spreadClock=0;if(!core.canExpand())return;spreadRounds++;
+        int changes=spreadFrontier(level,ColonyEconomy.SPREAD_PER_ROUND);
+        for(int attempt=0;attempt<16&&changes<ColonyEconomy.SPREAD_PER_ROUND;attempt++){
+            int dx=level.random.nextInt(radius*2+1)-radius,dz=level.random.nextInt(radius*2+1)-radius;
+            if(dx*dx+dz*dz>radius*radius)continue;
+            BlockPos column=worldPosition.offset(dx,0,dz);
+            if(!level.hasChunkAt(column))continue;
+            for(int dy=radius+1;dy>=-radius-4;dy--){
+                BlockPos pos=column.offset(0,dy,0);BlockState state=level.getBlockState(pos);
+                if(isGround(InfectedContent.terrainKey(state))&&(level.getBlockState(pos.above()).is(BlockTags.LOGS)||level.getBlockState(pos.above()).getBlock() instanceof InfectedTimberBlock)){
+                    changes+=erodeTree(level,pos.above(),Math.min(1,ColonyEconomy.SPREAD_PER_ROUND-changes));break;
+                }
+                String previous=InfectedContent.terrainKey(state);
+                if(!(state.is(GROUND)||isGround(previous))||state.hasBlockEntity())continue;
+                BlockState above=level.getBlockState(pos.above());
+                if(!above.getFluidState().isEmpty())continue;
+                if(!above.isAir()&&!above.canBeReplaced()&&!above.is(BlockTags.LOGS)&&!Vegetation.supported(above)&&!above.is(net.minecraft.world.level.block.Blocks.SNOW))continue;
+                String next=null;
+                if(previous==null){
+                    // Grow out from the node or an existing patch rather than scattering isolated stamps.
+                    if(!connectedSurface(level,pos))continue;
+                    if(groundChangeCost(level,pos)<=ColonyEconomy.SPREAD_PER_ROUND-changes)changes+=changeCount(level,pos,ErodedGroundBlock.fromNatural(state));break;
+                }
+                else if(previous.startsWith("eroded_")&&level.random.nextInt(3)==0){
+                    if(state.hasProperty(ErodedGroundBlock.EROSION)&&state.getValue(ErodedGroundBlock.EROSION)<2){
+                        if(groundChangeCost(level,pos)<=ColonyEconomy.SPREAD_PER_ROUND-changes)changes+=changeCount(level,pos,state.cycle(ErodedGroundBlock.EROSION));break;
+                    }
+                    double distance=Math.sqrt(dx*dx+dz*dz)/Math.max(1,radius);
+                    next=previous.equals("eroded_stone")?"crystal_crust":distance<.4?"living_tissue":distance<.7?(level.random.nextBoolean()?"mycelial_mat":"necrotic_soil"):"tainted_grass";
+                }
+                if(next!=null&&groundChangeCost(level,pos)<=ColonyEconomy.SPREAD_PER_ROUND-changes)changes+=changeCount(level,pos,InfectedContent.TERRAIN.get(next).get().defaultBlockState());
+                changes+=erodeVegetation(level,pos.above(),ColonyEconomy.SPREAD_PER_ROUND-changes);
+                changes+=erodeTree(level,pos.above(),ColonyEconomy.SPREAD_PER_ROUND-changes);
+                if(changes<ColonyEconomy.SPREAD_PER_ROUND&&previous!=null&&!previous.startsWith("eroded_")&&level.random.nextInt(48)==0&&level.getBlockState(pos.above()).isAir()&&hasPlantRoom(level,pos.above())){
+                    String plantKey=level.random.nextBoolean()?"infected_grass":"infected_tendrils";
+                    if(dx*dx+dz*dz<=16&&level.random.nextInt(8)==0)plantKey=level.random.nextBoolean()?"infected_fungus":"infected_flower";
+                    BlockState plant=InfectedContent.PLANTS.get(plantKey).get().defaultBlockState();
+                    if(plant.canSurvive(level,pos.above())&&change(level,pos.above(),plant))changes++;
+                }
+                break;
+            }
+        }
+    }
+    /** Older ground only matures if something revisits it. The frontier pass never does, so this walks
+     *  the same ring in order and pushes eroded columns one stage at a time until they reach a mature key. */
+    private int maturePass(ServerLevel level,int budget){
+        int extent=0;while(extent<OFFSETS.size()&&OFFSETS.get(extent).distSqr(BlockPos.ZERO)<=radius*radius)extent++;
+        if(extent<=0)return 0;
+        int changes=0;
+        for(int scan=0;scan<Math.min(96,extent)&&changes<budget;scan++){
+            BlockPos offset=OFFSETS.get(Math.floorMod(matureCursor++,extent));
+            BlockPos column=worldPosition.offset(offset);if(!level.hasChunkAt(column))continue;
+            for(int dy=radius+1;dy>=-radius-4;dy--){
+                BlockPos pos=column.offset(0,dy,0);BlockState state=level.getBlockState(pos);String key=InfectedContent.terrainKey(state);
+                if(key==null)continue;
+                if(!isGround(key)||!key.startsWith("eroded_"))break;
+                if(state.hasProperty(ErodedGroundBlock.EROSION)&&state.getValue(ErodedGroundBlock.EROSION)<2){
+                    if(level.setBlock(pos,state.cycle(ErodedGroundBlock.EROSION),3)){changes++;matured++;setChanged();}
+                }else{
+                    double distance=Math.sqrt(offset.distSqr(BlockPos.ZERO))/Math.max(1,radius);
+                    String next=key.equals("eroded_stone")?"crystal_crust":distance<.4?"living_tissue":distance<.7?(level.random.nextBoolean()?"mycelial_mat":"necrotic_soil"):"tainted_grass";
+                    if(level.setBlock(pos,InfectedContent.TERRAIN.get(next).get().defaultBlockState(),3)){changes++;matured++;setChanged();}
+                }
+                break;
+            }
+        }
+        return changes;
+    }
+    private int spreadFrontier(ServerLevel level,int budget){
+        int extent=0;while(extent<OFFSETS.size()&&OFFSETS.get(extent).distSqr(BlockPos.ZERO)<=radius*radius)extent++;
+        int changes=0;
+        for(int scan=0;scan<Math.min(64,extent)&&changes<budget;scan++){
+            BlockPos offset=OFFSETS.get(Math.floorMod(frontierCursor++,extent));
+            BlockPos column=worldPosition.offset(offset);if(!level.hasChunkAt(column))continue;
+            for(int y=surfaceTop();y>=surfaceBottom();y--){
+                BlockPos pos=new BlockPos(column.getX(),y,column.getZ());BlockState state=level.getBlockState(pos);
+                if(!state.is(GROUND)||state.hasBlockEntity()||InfectedContent.terrainKey(state)!=null||!exposed(level,pos)||!connectedSurface(level,pos))continue;
+                int price=groundChangeCost(level,pos);
+                if(price<=budget-changes)changes+=changeCount(level,pos,ErodedGroundBlock.fromNatural(state));
+                break;
+            }
+        }
+        return changes;
+    }
+    private boolean hasPlantRoom(ServerLevel level,BlockPos center){
+        int count=0;
+        for(BlockPos p:BlockPos.betweenClosed(center.offset(-3,-1,-3),center.offset(3,1,3))){
+            if(!level.hasChunkAt(p))continue;
+            BlockState s=level.getBlockState(p);
+            for(var plant:InfectedContent.PLANTS.values())if(s.is(plant.get())&&++count>=2)return false;
+        }
+        return true;
+    }
+    private static boolean isGround(String key){return key!=null&&!key.contains("log")&&!key.contains("leaves");}
+    /** Fully eroded ground: mature terrain keys, or an eroded block that reached its last coverage level. */
+    private static boolean fullyEroded(BlockState state){
+        String key=InfectedContent.terrainKey(state);
+        if(key==null)return false;
+        if(key.equals("living_tissue")||key.equals("crystal_crust")||key.equals("mycelial_mat")||key.equals("necrotic_soil")||key.equals("tainted_grass"))return true;
+        return state.hasProperty(ErodedGroundBlock.EROSION)&&state.getValue(ErodedGroundBlock.EROSION)>=2;
+    }
+    /** Random fully eroded column inside the node that has two blocks of open air above it. */
+    private BlockPos matureSpot(ServerLevel level,int attempts){
+        for(int attempt=0;attempt<attempts;attempt++){
+            int dx=level.random.nextInt(radius*2+1)-radius,dz=level.random.nextInt(radius*2+1)-radius;
+            if(dx*dx+dz*dz>radius*radius)continue;
+            BlockPos column=worldPosition.offset(dx,0,dz);if(!level.hasChunkAt(column))continue;
+            for(int dy=radius+1;dy>=-radius-4;dy--){
+                BlockPos pos=column.offset(0,dy,0);
+                if(!fullyEroded(level.getBlockState(pos)))continue;
+                BlockPos above=pos.above();
+                if(!level.getBlockState(above).isAir()||!level.getBlockState(above.above()).isAir()||!level.getFluidState(above).isEmpty())break;
+                return above;
+            }
+        }
+        return null;
+    }
+    /** Mature ground grows its own plants. Free, but rate limited and density capped by hasPlantRoom. */
+    private void growFlora(ServerLevel level){
+        BlockPos spot=matureSpot(level,10);if(spot==null||!hasPlantRoom(level,spot))return;
+        String[] pool={"infected_flower","infected_flower","infected_fungus","infected_grass","infected_tendrils"};
+        BlockState plant=InfectedContent.PLANTS.get(pool[level.random.nextInt(pool.length)]).get().defaultBlockState();
+        if(plant.canSurvive(level,spot))level.setBlock(spot,plant,3);
+    }
+    /** Mature ground births a brood unit. The mother still pays and still obeys her population cap. */
+    private void spawnFromGround(ServerLevel level,InfectedMob core){
+        BlockPos spot=matureSpot(level,10);
+        if(spot==null){spawnNote="no mature column";return;}
+        if(core.spawnFromSoil(level,spot))soilBorn++;else spawnNote=core.lastSpawnNote+" @"+spot;
+    }
+    private void establishOutpost(ServerLevel level,InfectedMob core){
+        if(!core.canExpand(ColonyEconomy.NODE+ColonyEconomy.SPREAD_PER_ROUND)||core.colonyNodeCount()>=core.maxAutoNodes())return;
+        // Deterministic sweep: the same node and world state must always pick the same frontier site.
+        double start=Math.floorMod(worldPosition.hashCode(),16)*Math.PI/8;
+        BlockPos best=null;double bestScore=-Double.MAX_VALUE;
+        var nodes=core.activeColonyNodes();var soil=dev.hui.enderinfection.biomass.LandNutrients.get(level);
+        var samples=new java.util.HashMap<BlockPos,Double>();
+        for(int attempt=0;attempt<57;attempt++){
+            // Inner sites matter on steep hills: large height separation can provide real new reach
+            // even when horizontal separation is small. The existing 3D spacing check still applies.
+            double angle=attempt<48?start+(attempt%16)*Math.PI/8:(attempt-48)*Math.PI/4;
+            double distance=attempt<48?radius-1-(attempt/16):attempt<56?Math.max(2,radius/4):0;
+            BlockPos column=worldPosition.offset((int)Math.round(Math.cos(angle)*distance),0,(int)Math.round(Math.sin(angle)*distance));
+            if(!level.hasChunkAt(column)||core.position().distanceToSqr(net.minecraft.world.phys.Vec3.atCenterOf(column))>core.expansionReach()*core.expansionReach())continue;
+            for(int dy=radius+1;dy>=-radius-4;dy--){
+                BlockPos pos=column.offset(0,dy,0);BlockState ground=level.getBlockState(pos.below());
+                if((!level.getBlockState(pos).isAir()&&!Vegetation.supported(level.getBlockState(pos)))||!isGround(InfectedContent.terrainKey(ground))||!(ground.isFaceSturdy(level,pos.below(),net.minecraft.core.Direction.UP)||ErodedGroundBlock.farmland(ground))||!core.nodeSiteAvailable(pos))continue;
+                BlockPos surface=pos.below();if(!core.nodeSiteAvailable(surface))continue;
+                double score=frontierScore(level,pos,nodes,soil,samples);if(score>0&&score>bestScore){bestScore=score;best=surface.immutable();}break;
+            }
+        }
+        if(best==null)return;
+        if(replaceSurface(level,best,core,false)){outpostCreated=true;childOutpost=best.immutable();spentBiomass+=ColonyEconomy.NODE;}
+    }
+    public double frontierScore(ServerLevel level,BlockPos pos,InfectedMob core){
+        return frontierScore(level,pos,core.activeColonyNodes(),dev.hui.enderinfection.biomass.LandNutrients.get(level),new java.util.HashMap<>());
+    }
+    private double frontierScore(ServerLevel level,BlockPos pos,java.util.List<ExpansionNodeEntity> nodes,dev.hui.enderinfection.biomass.LandNutrients soil,java.util.Map<BlockPos,Double> samples){
+        double score=0;
+        // Score only useful new catchment, including overlap with the parent. Repeated candidate
+        // samples share a survey cache for this one decision; the next decision observes fresh land.
+        for(int x=-12;x<=12;x+=3)for(int z=-12;z<=12;z+=3){
+            if(x*x+z*z>144)continue;
+            BlockPos sample=pos.offset(x,0,z);if(!level.hasChunkAt(sample))continue;
+            score+=samples.computeIfAbsent(sample,p->frontierSample(level,p,nodes,soil));
+        }
+        return score;
+    }
+    private double frontierSample(ServerLevel level,BlockPos sample,java.util.List<ExpansionNodeEntity> nodes,dev.hui.enderinfection.biomass.LandNutrients soil){
+        for(int y=radius+1;y>=-radius-4;y--){
+            BlockPos ground=sample.offset(0,y-1,0);BlockState state=level.getBlockState(ground);String key=InfectedContent.terrainKey(state);
+            if((!state.is(GROUND)&&!isGround(key))||!exposed(level,ground))continue;
+            for(var node:nodes){
+                long dx=ground.getX()-node.getBlockPos().getX(),dz=ground.getZ()-node.getBlockPos().getZ();
+                if(ground.getY()>=node.surfaceBottom()&&ground.getY()<=node.surfaceTop()&&dx*dx+dz*dz<=node.radius()*node.radius())return 0;
+            }
+            return (key==null?4:1)*soil.remaining(ground)/(double)dev.hui.enderinfection.biomass.LandNutrients.CYCLES;
+        }
+        return 0;
+    }
+    private int erodeTree(ServerLevel level,BlockPos base,int budget){
+        int changed=0;if(budget<=0)return 0;
+        // Old unknown leaf variants are repaired in bounded batches before further trunk maturation.
+        for(int scan=0;scan<36&&changed<budget;scan++){
+            int index=Math.floorMod(legacyCanopyCursor++,500);
+            BlockPos leaf=base.offset(index%5-2,index/25,(index/5)%5-2);
+            int dx=leaf.getX()-worldPosition.getX(),dz=leaf.getZ()-worldPosition.getZ();
+            if(dx*dx+dz*dz>MAX_RADIUS*MAX_RADIUS||!level.hasChunkAt(leaf))continue;
+            BlockState old=level.getBlockState(leaf);
+            if(old.getBlock() instanceof InfectedCanopyBlock&&!InfectedCanopyBlock.known(old)){
+                BlockState repaired=InfectedCanopyBlock.recoverLegacy(level,leaf);
+                if(repaired!=null&&change(level,leaf,repaired))changed++;
+            }
+        }
+        if(changed>=budget)return changed;
+        // Tree conversion follows trunks upward. Hand-placed persistent leaves are excluded.
+        boolean foundTree=false;BlockState nativeTrunk=null;
+        for(int y=0;y<20;y++){
+            BlockPos p=base.above(y);BlockState s=level.getBlockState(p);
+            if(nativeTrunk==null&&s.is(BlockTags.LOGS)&&!(s.getBlock() instanceof InfectedTimberBlock))nativeTrunk=s;
+            if(s.is(BlockTags.LEAVES)&&(!s.hasProperty(LeavesBlock.PERSISTENT)||!s.getValue(LeavesBlock.PERSISTENT))){foundTree=true;break;}
+            for(int side=-1;side<=1;side+=2){
+                BlockPos sidePos=p.offset(side,0,0);if(!level.hasChunkAt(sidePos))continue;
+                BlockState leaf=level.getBlockState(sidePos);
+                if(leaf.is(BlockTags.LEAVES)&&(!leaf.hasProperty(LeavesBlock.PERSISTENT)||!leaf.getValue(LeavesBlock.PERSISTENT)))foundTree=true;
+            }
+        }
+        if(!foundTree&&!isInfectedLog(level.getBlockState(base)))return 0;
+        for(int y=0;y<20&&changed<budget;y++){
+            BlockPos p=base.above(y);if(!level.hasChunkAt(p))continue;
+            BlockState s=level.getBlockState(p);String key=InfectedContent.terrainKey(s);
+            if(nativeTrunk!=null&&s.getBlock() instanceof InfectedTimberBlock&&!s.getValue(InfectedTimberBlock.KNOWN)){
+                BlockState repaired=InfectedTimberBlock.from(nativeTrunk,"infected_log".equals(key)).setValue(RotatedPillarBlock.AXIS,s.getValue(RotatedPillarBlock.AXIS));
+                if(change(level,p,repaired)){changed++;s=repaired;}
+                if(changed>=budget)break;
+            }
+            String next=s.is(BlockTags.LOGS)&&key==null?"eroded_log":"eroded_log".equals(key)&&level.random.nextInt(3)==0?"infected_log":null;
+            if(next!=null){BlockState replacement=InfectedTimberBlock.from(s,"infected_log".equals(next));if(change(level,p,replacement))changed++;}
+            if(changed>=budget)break;
+            BlockPos leaf=p.offset(level.random.nextInt(5)-2,level.random.nextInt(3)-1,level.random.nextInt(5)-2);
+            int lx=leaf.getX()-worldPosition.getX(),lz=leaf.getZ()-worldPosition.getZ();
+            if(lx*lx+lz*lz>MAX_RADIUS*MAX_RADIUS||!level.hasChunkAt(leaf))continue;
+            BlockState ls=level.getBlockState(leaf);String lk=InfectedContent.terrainKey(ls);
+            if(ls.getBlock() instanceof InfectedCanopyBlock&&!InfectedCanopyBlock.known(ls)){
+                BlockState recovered=InfectedCanopyBlock.recoverLegacy(level,leaf);
+                if(recovered!=null&&change(level,leaf,recovered)){changed++;ls=recovered;if(changed>=budget)break;}
+            }
+            if(ls.is(BlockTags.LEAVES)&&lk==null&&(!ls.hasProperty(LeavesBlock.PERSISTENT)||!ls.getValue(LeavesBlock.PERSISTENT))){if(change(level,leaf,InfectedCanopyBlock.from(ls,false)))changed++;}
+            else if("eroded_leaves".equals(lk)&&level.random.nextInt(3)==0){if(change(level,leaf,InfectedCanopyBlock.from(ls,true)))changed++;}
+        }
+        return changed;
+    }
+    private boolean isInfectedLog(BlockState state){String k=InfectedContent.terrainKey(state);return "eroded_log".equals(k)||"infected_log".equals(k);}
+    /** Entities cannot be added while a chunk is generating, so the mother is raised after the chunk loads. */
+    private void sproutMother(ServerLevel level){
+        InfectedMob core=InfectedContent.TYPES.get(InfectedKind.CORE).get().create(level);
+        if(core==null)return;
+        core.moveTo(worldPosition.getX()+.5,worldPosition.getY()+1,worldPosition.getZ()+.5,level.random.nextFloat()*360,0);
+        if(!level.noCollision(core,core.getBoundingBox())||!level.addFreshEntity(core))return;
+        setOwner(core.getUUID());wild=false;setChanged();
+    }
+    @Override protected void saveAdditional(CompoundTag tag, net.minecraft.core.HolderLookup.Provider registries){super.saveAdditional(tag,registries);tag.putString("SubstrateBlock",substrate);tag.putBoolean("Wild",wild);tag.putInt("LegacyCanopyCursor",legacyCanopyCursor);tag.putLong("InhibitedUntil",inhibitedUntil);tag.putInt("FrontierCursor",frontierCursor);tag.putInt("ActiveTicks",activeTicks);tag.putInt("SpreadClock",spreadClock);tag.putInt("PurchasedChanges",purchasedChanges);tag.putInt("SpentBiomass",spentBiomass);tag.putInt("Radius",radius);tag.putInt("GrowthClock",growthClock);tag.putInt("OutpostClock",outpostClock);tag.putInt("DeepClock",deepClock);tag.putInt("Deepened",deepened);tag.putInt("MatureClock",matureClock);tag.putInt("MatureCursor",matureCursor);tag.putInt("SpawnClock",spawnClock);tag.putInt("FloraClock",floraClock);tag.putInt("SoilBorn",soilBorn);tag.putInt("Matured",matured);tag.putBoolean("OutpostCreated",outpostCreated);tag.putInt("SpreadRounds",spreadRounds);if(childOutpost!=null)tag.putLong("ChildOutpost",childOutpost.asLong());if(owner!=null)tag.putUUID("Owner",owner);}
+    @Override public void loadAdditional(CompoundTag tag, net.minecraft.core.HolderLookup.Provider registries){super.loadAdditional(tag,registries);substrate=tag.getString("SubstrateBlock");wild=tag.getBoolean("Wild");legacyCanopyCursor=Math.max(0,tag.getInt("LegacyCanopyCursor"));inhibitedUntil=Math.max(0,tag.getLong("InhibitedUntil"));frontierCursor=Math.max(0,tag.getInt("FrontierCursor"));activeTicks=Math.max(0,tag.getInt("ActiveTicks"));spreadClock=Math.max(0,Math.min(40,tag.getInt("SpreadClock")));purchasedChanges=tag.contains("PurchasedChanges")?Math.max(0,Math.min(1000000,tag.getInt("PurchasedChanges"))):Math.min(224,activeTicks/300*16);radius=tag.contains("Radius")?Math.max(2,Math.min(MAX_RADIUS,tag.getInt("Radius"))):Math.min(MAX_RADIUS,2+activeTicks/300);spentBiomass=Math.max(0,tag.getInt("SpentBiomass"));growthClock=Math.max(0,Math.min(300,tag.getInt("GrowthClock")));outpostClock=tag.contains("OutpostClock")?Math.max(0,Math.min(600,tag.getInt("OutpostClock"))):600;deepClock=Math.max(0,tag.getInt("DeepClock"));deepened=Math.max(0,tag.getInt("Deepened"));matureClock=Math.max(0,tag.getInt("MatureClock"));matureCursor=Math.max(0,tag.getInt("MatureCursor"));spawnClock=Math.max(0,tag.getInt("SpawnClock"));floraClock=Math.max(0,tag.getInt("FloraClock"));soilBorn=Math.max(0,tag.getInt("SoilBorn"));matured=Math.max(0,tag.getInt("Matured"));outpostCreated=tag.getBoolean("OutpostCreated");spreadRounds=Math.max(0,tag.getInt("SpreadRounds"));childOutpost=tag.contains("ChildOutpost")?BlockPos.of(tag.getLong("ChildOutpost")):null;owner=tag.hasUUID("Owner")?tag.getUUID("Owner"):null;}
+
+    /** Convenience for internal diagnostics; normal world I/O uses the registry-aware hooks. */
+    public CompoundTag saveWithFullMetadata(){return super.saveWithFullMetadata(level.registryAccess());}
+    public void load(CompoundTag tag){loadAdditional(tag,level == null ? net.minecraft.core.RegistryAccess.EMPTY : level.registryAccess());}
+}

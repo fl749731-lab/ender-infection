@@ -144,7 +144,8 @@ public final class FactionAI {
     }
     public static boolean clearShot(Mob shooter,LivingEntity target){
         if(!shooter.hasLineOfSight(target))return false;Vec3 start=shooter.getEyePosition(),end=target.getBoundingBox().getCenter();
-        for(Mob ally:shooter.level().getEntitiesOfClass(Mob.class,shooter.getBoundingBox().expandTowards(end.subtract(start)).inflate(1),e->e!=shooter&&infected(e)))if(ally.getBoundingBox().inflate(.15).clip(start,end).isPresent())return false;
+        // ProjectileUtil tests entities with a .3-block expansion; reserve another .1 for the volley's spread.
+        for(Mob ally:shooter.level().getEntitiesOfClass(Mob.class,shooter.getBoundingBox().expandTowards(end.subtract(start)).inflate(1),e->e!=shooter&&infected(e)))if(ally.getBoundingBox().inflate(.4).clip(start,end).isPresent())return false;
         return true;
     }
     public static final class HuntGoal extends Goal {
@@ -241,6 +242,7 @@ public final class FactionAI {
         public Motion(Mob mob,HuntGoal hunt){this.mob=mob;this.hunt=hunt;}
         public void chase(LivingEntity enemy,boolean ranged) {
             if(!enemy.getUUID().equals(target)){target=enemy.getUUID();checkpoint=mob.position();targetCheckpoint=enemy.position();stalled=0;noProgress=0;verticalStall=0;bestDistance=Double.MAX_VALUE;nextPath=0;}
+            if(closeMeleeGap(enemy,ranged))return;
             if(mob.tickCount<nextPath)return;nextPath=mob.tickCount+10;
             if(checkpoint!=null && mob.position().distanceToSqr(checkpoint)<.04)stalled+=10;else stalled=0;
             checkpoint=mob.position();
@@ -258,6 +260,29 @@ public final class FactionAI {
                 if(walkTo(mob,flank,1.1))return;
             }
             mob.getNavigation().moveTo(enemy,1.05);
+        }
+        /** Wide bodies can finish a block waypoint just outside their real melee reach. */
+        private boolean closeMeleeGap(LivingEntity enemy,boolean ranged){
+            if(ranged||!(mob instanceof InfectedMob unit)||!(mob.level() instanceof ServerLevel level)||!unit.kind.designed()||mob.getBbWidth()<2
+                ||!mob.onGround()||!mob.getNavigation().isDone()||!mob.hasLineOfSight(enemy)
+                ||Math.abs(enemy.getY()-mob.getY())>1.25
+                ||dev.hui.enderinfection.design.DesignBehavior.withinMeleeReach(unit,enemy,unit.kind.radius))return false;
+            Vec3 delta=enemy.position().subtract(mob.position()).multiply(1,0,1);
+            if(delta.lengthSqr()<.001||delta.lengthSqr()>Math.pow(unit.kind.radius+1.5,2))return false;
+            Vec3 step=delta.normalize().scale(.35);
+            Vec3 next=mob.position().add(step);
+            var nextBox=mob.getBoundingBox().move(step);
+            for(int x=((int)Math.floor(nextBox.minX))>>4;x<=((int)Math.floor(nextBox.maxX))>>4;x++)
+                for(int z=((int)Math.floor(nextBox.minZ))>>4;z<=((int)Math.floor(nextBox.maxZ))>>4;z++)
+                    if(level.getChunkSource().getChunkNow(x,z)==null)return false;
+            BlockPos feet=BlockPos.containing(next);
+            if(!level.getBlockState(feet.below()).isFaceSturdy(level,feet.below(),Direction.UP)
+                ||!level.getFluidState(feet).isEmpty()||!level.noCollision(mob,nextBox))return false;
+            // This checks the next physical step, rather than extending attack range or accepting a blocked target.
+            mob.getMoveControl().setWantedPosition(next.x,next.y,next.z,1.05);
+            stalled=0;noProgress=0;
+            task(mob,"逼近","收近寻路终点与实际近战距离之间的空隙");
+            return true;
         }
         public boolean rangedPosition(LivingEntity enemy){
             if(mob.tickCount<nextRangedMove)return !mob.getNavigation().isDone();nextRangedMove=mob.tickCount+10;

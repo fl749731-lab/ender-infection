@@ -517,7 +517,8 @@ public final class InfectedMob extends Monster implements GeoEntity {
     }
     private void fireArrows(ServerLevel server){
         LivingEntity target=getTarget();if(target==null||!target.isAlive()||!FactionAI.clearShot(this,target))return;
-        Vec3 aim=target.getEyePosition().subtract(getEyePosition());
+        // Aim through the same body centre used by clearShot; eye aim plus lift can pass over short-range targets.
+        Vec3 aim=target.getBoundingBox().getCenter().subtract(getEyePosition());
         for(int i=-1;i<=1;i++){
             Arrow arrow=new Arrow(level(),this);arrow.setPos(getX(),getEyeY()-.1,getZ());
             double angle=Math.toRadians(i*9);double dx=aim.x*Math.cos(angle)-aim.z*Math.sin(angle),dz=aim.x*Math.sin(angle)+aim.z*Math.cos(angle);

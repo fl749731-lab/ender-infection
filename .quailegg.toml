@@ -16,11 +16,11 @@ commit_message = "chore(release): v{{version}}"
 
 [changes]
 dir = ".changes"
-scope = ["ender_infection_colored"]
+scope = ["ender_infection_colored", "ender_infection_neoforge", "common", "examples/institute-addon", "tools"]
 
 [verify]
-commands = ["cd ender_infection_colored && java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain build"]
-timeout = "15m"
+commands = ["python tools/build_dual_version.py --clean --gametests"]
+timeout = "45m"
 fail_fast = true
 
 [publish]
@@ -28,8 +28,8 @@ registries = []
 
 [release.assets]
 # Rebuild after the version bump; clean keeps only the current jar, which is attached to the GitHub Release.
-commands = ["cd ender_infection_colored && java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain clean build"]
-files = ["ender_infection_colored/build/libs/*.jar"]
+commands = ["python tools/build_dual_version.py --clean"]
+files = ["ender_infection_colored/build/libs/*.jar", "ender_infection_neoforge/build/libs/*.jar"]
 
 [packages."java@ender_infection_colored"]
 name = "ender_infection_colored"

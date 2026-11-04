@@ -1,0 +1,98 @@
+name: Forge and NeoForge
+on:
+  pull_request:
+  push:
+    branches: [main, 'codex/**']
+    paths:
+      - 'common/**'
+      - 'ender_infection_colored/**'
+      - 'ender_infection_neoforge/**'
+      - 'examples/institute-addon/**'
+      - 'tools/*dual_version.py'
+      - 'tools/verify_gametest_log.py'
+      - 'tools/sync_neoforge_resources.py'
+      - '.github/workflows/dual-version.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  NFRT_ASSET_ROOT: ${{ github.workspace }}/build/minecraft-assets-1.21.1
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: dual-version-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - loader: forge-1.20.1
+            project: ender_infection_colored
+            java: '17'
+            addon: forge
+          - loader: neoforge-1.21.1
+            project: ender_infection_neoforge
+            java: '21'
+            addon: neoforge
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check shared inputs and feature inventory
+        run: |
+          python tools/sync_neoforge_resources.py
+          python tools/check_dual_version.py
+      - name: Build main mod and development API
+        working-directory: ${{ matrix.project }}
+        run: java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain --no-daemon --console=plain build apiDevJar
+      - name: Test AI and rift behavior
+        working-directory: ${{ matrix.project }}
+        run: |
+          java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain --no-daemon --console=plain runGameTestServer -PriftChecks | tee rift-ai-tests.log
+          python ../tools/verify_gametest_log.py rift-ai-tests.log --minimum 32
+      - name: Test institute API
+        working-directory: ${{ matrix.project }}
+        run: |
+          java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain --no-daemon --console=plain runGameTestServer -PinstituteChecks | tee institute-tests.log
+          python ../tools/verify_gametest_log.py institute-tests.log --minimum 12
+      - name: Compile addon example
+        working-directory: examples/institute-addon/${{ matrix.addon }}
+        run: java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain --no-daemon --console=plain build
+      - name: Test ore drops and converted data
+        working-directory: ${{ matrix.project }}
+        run: |
+          java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain --no-daemon --console=plain runGameTestServer -PoreChecks | tee ore-tests.log
+          python ../tools/verify_gametest_log.py ore-tests.log --minimum 1
+      - name: Test addon room and device
+        working-directory: examples/institute-addon/${{ matrix.addon }}
+        run: |
+          java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain --no-daemon --console=plain runGameTestServer | tee addon-tests.log
+          python ../../../tools/verify_gametest_log.py addon-tests.log --minimum 2
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ender-infection-${{ matrix.loader }}
+          path: |
+            ${{ matrix.project }}/build/libs/*.jar
+            examples/institute-addon/${{ matrix.addon }}/build/libs/*.jar
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: logs-${{ matrix.loader }}
+          path: |
+            ${{ matrix.project }}/build/**/logs/*.log
+            ${{ matrix.project }}/build/**/crash-reports/*.txt

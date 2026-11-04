@@ -1,0 +1,199 @@
+{
+  "status": "passed",
+  "reviewed_images": 11,
+  "screenshots": [
+    {
+      "name": "outpost_active",
+      "path": "previews/neoforge-1.21.1-migration/daylight/outpost_active.png",
+      "sha256": "d762ab783f05ff98d5eec55b2b1ae34c7e3a913f6bcd3a2874eb02f041279daa",
+      "bytes": 763400,
+      "current_file_matches_recorded_sha256": true,
+      "visually_reviewed": true
+    },
+    {
+      "name": "enderman_early_front",
+      "path": "previews/neoforge-1.21.1-migration/daylight/enderman_early_front.png",
+      "sha256": "e207f5c83aa2ed7994aedde158bed3b44f96d22647c48151bc614106137c9e1d",
+      "bytes": 220651,
+      "current_file_matches_recorded_sha256": true,
+      "visually_reviewed": true
+    },
+    {
+      "name": "enderman_early_back",
+      "path": "previews/neoforge-1.21.1-migration/daylight/enderman_early_back.png",
+      "sha256": "1bf29dcdcc3d8c9c390f084398c87117c4939602542a1a5c711b6d4ab7fb658e",
+      "bytes": 218985,
+      "current_file_matches_recorded_sha256": true,
+      "visually_reviewed": true
+    },
+    {
+      "name": "enderman_early_attack",
+      "path": "previews/neoforge-1.21.1-migration/daylight/enderman_early_attack.png",
+      "sha256": "1e797d93e94d7d1f235c1c1a4faf62741114eea07a261f6969d7e15b7254c213",
+      "bytes": 207746,
+      "current_file_matches_recorded_sha256": true,
+      "visually_reviewed": true
+    },
+    {
+      "name": "enderman_front",
+      "path": "previews/neoforge-1.21.1-migration/daylight/enderman_front.png",
+      "sha256": "3e541aa305bd871c4d677bab76a8b9aeda2f34d8c483feb3b44b21e117bb8a89",
+      "bytes": 235034,
+      "current_file_matches_recorded_sha256": true,
+      "visually_reviewed": true
+    },
+    {
+      "name": "enderman_back",
+      "path": "previews/neoforge-1.21.1-migration/daylight/enderman_back.png",
+      "sha256": "38ac10c8330c5192f8a8929dce515a0c280f8404abf0483b68f83505e6272625",
+      "bytes": 232842,
+      "current_file_matches_recorded_sha256": true,
+      "visually_reviewed": true
+    },
+    {
+      "name": "enderman_attack",
+      "path": "previews/neoforge-1.21.1-migration/daylight/enderman_attack.png",
+      "sha256": "a34bddf40d34b0a4fb49590ff2e19dac02f489fceeda075aeb3400703d9cc711",
+      "bytes": 228017,
+      "current_file_matches_recorded_sha256": true,
+      "visually_reviewed": true
+    },
+    {
+      "name": "anchor_guard_front",
+      "path": "previews/neoforge-1.21.1-migration/daylight/anchor_guard_front.png",
+      "sha256": "5267f3c67aa10d6a247233950a37a51000f7e12bbbb23d216e58dbac5f035722",
+      "bytes": 227171,
+      "current_file_matches_recorded_sha256": true,
+      "visually_reviewed": true
+    },
+    {
+      "name": "anchor_guard_back",
+      "path": "previews/neoforge-1.21.1-migration/daylight/anchor_guard_back.png",
+      "sha256": "67fb8a3c6cb2c895216a47f8ca8459634c3c45d0f437a33cf3d3db3308bfb510",
+      "bytes": 222474,
+      "current_file_matches_recorded_sha256": true,
+      "visually_reviewed": true
+    },
+    {
+      "name": "anchor_guard_attack",
+      "path": "previews/neoforge-1.21.1-migration/daylight/anchor_guard_attack.png",
+      "sha256": "86294ad2d37c3d984ee18b19a16ba7dc51b56fbf6a6832e82e633eefbd37c0be",
+      "bytes": 225352,
+      "current_file_matches_recorded_sha256": true,
+      "visually_reviewed": true
+    },
+    {
+      "name": "anchor_guard_exposed",
+      "path": "previews/neoforge-1.21.1-migration/daylight/anchor_guard_exposed.png",
+      "sha256": "1a3b3160c906cc553dff10273d72b8c2fde0334434b2a96f76d33f4d7621829f",
+      "bytes": 225101,
+      "current_file_matches_recorded_sha256": true,
+      "visually_reviewed": true
+    }
+  ],
+  "comparison_baseline": "ender_infection_colored/build/rift-visual-check/screenshots",
+  "findings": [
+    "No visible missing texture checkerboard, unexpected transparent faces, changed proportions or displaced body parts.",
+    "Early/mature enderman attack arm poses match Forge references.",
+    "Anchor guard plates open to reveal crystal core as in Forge.",
+    "Guard attack single-frame pose resembles idle in both loaders; no new port regression observed.",
+    "Purple crystal and eye appearance retained in daylight captures."
+  ],
+  "limits": [
+    "Single attack captures compare sampled poses; they do not exhaustively verify every animation frame."
+  ],
+  "client_asset_smoke": {
+    "geo": 53,
+    "animations": 53,
+    "items": 155,
+    "registered_glows": 46,
+    "non_glowing_fixtures": 7,
+    "log": "ender_infection_neoforge/build-client-smoke-final.log"
+  },
+  "capture_log": "ender_infection_neoforge/build-client-daylight-archived.log",
+  "zero_light": {
+    "status": "passed",
+    "gamma": 0.0,
+    "images": [
+      {
+        "name": "enderman_front",
+        "file": "previews/neoforge-1.21.1-migration/zero-light/enderman_front.png",
+        "sha256": "268d5e0b4943a4948d500851e62a374ba84c9534152b73cb3d37e273b5732ccc",
+        "block_light": 0,
+        "sky_light": 0,
+        "probes": 10,
+        "server_block_light": 0,
+        "server_sky_light": 0,
+        "visually_reviewed": true
+      },
+      {
+        "name": "enderman_back",
+        "file": "previews/neoforge-1.21.1-migration/zero-light/enderman_back.png",
+        "sha256": "d0194abed21bfa2c6ffe1a6cace5ccad04dbbf832e8bbada226769cb8f7eb9c9",
+        "block_light": 0,
+        "sky_light": 0,
+        "probes": 10,
+        "server_block_light": 0,
+        "server_sky_light": 0,
+        "visually_reviewed": true
+      },
+      {
+        "name": "enderman_early_front",
+        "file": "previews/neoforge-1.21.1-migration/zero-light/enderman_early_front.png",
+        "sha256": "1e3d644b4b7d6c971f0325ec124ed717e612110b048e3989f4d97565212369c9",
+        "block_light": 0,
+        "sky_light": 0,
+        "probes": 10,
+        "server_block_light": 0,
+        "server_sky_light": 0,
+        "visually_reviewed": true
+      },
+      {
+        "name": "enderman_early_back",
+        "file": "previews/neoforge-1.21.1-migration/zero-light/enderman_early_back.png",
+        "sha256": "d3e3f17f1b5d2d0e1fd3745038ebe655f9abe6aa2caf0229424d61cda5e4ce4f",
+        "block_light": 0,
+        "sky_light": 0,
+        "probes": 10,
+        "server_block_light": 0,
+        "server_sky_light": 0,
+        "visually_reviewed": true
+      },
+      {
+        "name": "anchor_guard_front",
+        "file": "previews/neoforge-1.21.1-migration/zero-light/anchor_guard_front.png",
+        "sha256": "212d8d526c9721f83bb0e342f9b35e775e66e6ce6b04a7c642cd5961c5a65071",
+        "block_light": 0,
+        "sky_light": 0,
+        "probes": 10,
+        "server_block_light": 0,
+        "server_sky_light": 0,
+        "visually_reviewed": true
+      },
+      {
+        "name": "anchor_guard_back",
+        "file": "previews/neoforge-1.21.1-migration/zero-light/anchor_guard_back.png",
+        "sha256": "18080552df836358a4a7b9976a8869437a3038654607d75b7bc64b052aaad4b1",
+        "block_light": 0,
+        "sky_light": 0,
+        "probes": 10,
+        "server_block_light": 0,
+        "server_sky_light": 0,
+        "visually_reviewed": true
+      }
+    ],
+    "log": "ender_infection_neoforge/build-client-glow-final.log",
+    "reviewed_images": 6,
+    "source_verification": "previews/neoforge-1.21.1-migration/zero-light/verification.json",
+    "findings": [
+      "All six front/back captures visually reviewed without brightening the screenshots.",
+      "Early enderman eyes, torso/forearm crystals and shoulder/back crystals remain visibly purple in zero light.",
+      "Mature enderman shoulder cluster, chest crystal, eyes and rear crystal remain visibly purple in zero light.",
+      "Anchor guard antenna crystals, eye/front slit and back gem remain visibly purple; ordinary armour remains dark.",
+      "Both server and client record block light 0 and sky light 0; ten client probes per view and gamma 0.0."
+    ]
+  },
+  "daylight_record_status": "passed",
+  "overwritten_daylight_images": [],
+  "total_reviewed_images": 17
+}

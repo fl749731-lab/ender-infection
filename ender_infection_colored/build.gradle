@@ -7,6 +7,8 @@ version = '0.12.0-alpha.1'
 group = 'dev.hui.enderinfection'
 base { archivesName = 'ender-infection' }
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+sourceSets.main.java.srcDir('../common/src/main/java')
+def gameTestRunDirectory = project.file("build/gametest-${System.currentTimeMillis()}")
 jar {
     manifest {
         attributes([
@@ -63,8 +65,10 @@ minecraft {
         }
         server { args '--nogui' }
         gameTestServer {
-            workingDirectory project.file("build/gametest-${System.currentTimeMillis()}")
-            property 'forge.enabledGameTestNamespaces',project.hasProperty('riftChecks')?'ender_rift_checks,ender_ai_checks':project.hasProperty('oreChecks')?'ender_ore_checks':project.hasProperty('expansionChecks')?'ender_expansion_checks':project.hasProperty('aiChecks')?'ender_ai_checks':project.hasProperty('labChecks')?'ender_lab_checks':'ender_infection,ender_lab_checks,ender_ore_checks'
+            workingDirectory gameTestRunDirectory
+            jvmArgs '-Xms128m', '-Xmx1536m', '-XX:ActiveProcessorCount=2'
+            if (project.hasProperty('instituteChecks')) property 'ender_infection.instituteChecks','true'
+            property 'forge.enabledGameTestNamespaces',project.hasProperty('regressionChecks')?'ender_regression_checks':project.hasProperty('instituteChecks')?'ender_institute_checks':project.hasProperty('riftChecks')?'ender_rift_checks,ender_ai_checks':project.hasProperty('oreChecks')?'ender_ore_checks':project.hasProperty('expansionChecks')?'ender_expansion_checks':project.hasProperty('aiChecks')?'ender_ai_checks':project.hasProperty('labChecks')?'ender_lab_checks':'ender_infection,ender_lab_checks,ender_ore_checks'
         }
     }
 }
@@ -82,3 +86,26 @@ dependencies {
 }
 tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
 jar.finalizedBy('reobfJar')
+
+// Forge's GameTest launcher uses ordinary server world settings but starts arenas at Y=-60.
+// A default noise world therefore puts them underground and drops cave gravel into live tests.
+// Match the controlled flat world used by the vanilla/NeoForge GameTest launcher.
+tasks.matching { it.name == 'runGameTestServer' }.configureEach {
+    doFirst {
+        gameTestRunDirectory.mkdirs()
+        new File(gameTestRunDirectory, 'server.properties').setText('''level-type=minecraft:flat
+level-seed=0
+generate-structures=false
+generator-settings={"biome":"minecraft:plains","layers":[{"block":"minecraft:bedrock","height":1},{"block":"minecraft:dirt","height":2},{"block":"minecraft:grass_block","height":1}],"structure_overrides":[],"lakes":false,"features":false}
+''', 'UTF-8')
+    }
+}
+
+// Unmapped development classes for standalone addon compilation. Never ship/shade this in an addon.
+tasks.register('apiDevJar', Jar) {
+    dependsOn classes
+    archiveFileName = 'ender-infection-api-dev.jar'
+    destinationDirectory = layout.buildDirectory.dir('api')
+    from sourceSets.main.output
+    manifest.attributes('Implementation-Version': project.version)
+}

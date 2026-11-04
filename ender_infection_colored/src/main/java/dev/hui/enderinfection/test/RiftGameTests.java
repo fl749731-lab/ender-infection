@@ -85,7 +85,15 @@ public final class RiftGameTests {
     }
     @GameTest(template="empty64",templateNamespace="ender_ai_checks",timeoutTicks=360,batch="rift_leash")
     public static void guardHitsNearbyPreyThenReturnsInsteadOfChasingOutOfRange(GameTestHelper h){
-        floor(h);var a=anchor(h,12,16,20);var guard=unit(h,InfectedKind.ANCHOR_GUARD,12,20);RiftCombat.bind(guard,a.getBlockPos());var prey=prey(h,20,20);
+        floor(h);
+        // Keep natural cave gravel from burying the guard or obstructing its return route during this fixture.
+        for(int x=0;x<48;x++)for(int z=0;z<48;z++){
+            h.setBlock(new BlockPos(x,8,z),Blocks.GLASS);
+            for(int y=1;y<8;y++)h.setBlock(new BlockPos(x,y,z),Blocks.AIR);
+        }
+        var arena=new net.minecraft.world.phys.AABB(Vec3.atLowerCornerOf(h.absolutePos(new BlockPos(0,1,0))),Vec3.atLowerCornerOf(h.absolutePos(new BlockPos(48,9,48))));
+        h.getLevel().getEntitiesOfClass(net.minecraft.world.entity.item.FallingBlockEntity.class,arena).forEach(net.minecraft.world.entity.Entity::discard);
+        var a=anchor(h,12,16,20);var guard=unit(h,InfectedKind.ANCHOR_GUARD,12,20);RiftCombat.bind(guard,a.getBlockPos());var prey=prey(h,20,20);
         boolean[] returning={false};Mob[] far={null};
         h.succeedWhen(()->{
             if(!returning[0]){
@@ -93,7 +101,7 @@ public final class RiftGameTests {
                 prey.discard();guard.setTarget(null);var p=h.absolutePos(new BlockPos(30,1,16));guard.teleportTo(p.getX()+.5,p.getY(),p.getZ()+.5);far[0]=prey(h,36,16);returning[0]=true;
             }
             h.assertTrue(guard.getTarget()!=far[0],"Guard abandoned its anchor to chase distant prey");
-            h.assertTrue(guard.position().distanceToSqr(Vec3.atCenterOf(a.getBlockPos()))<26,"Guard did not return to anchor: "+guard.position());
+            h.assertTrue(guard.position().distanceToSqr(Vec3.atCenterOf(a.getBlockPos()))<26,"Guard did not return to anchor: "+guard.position()+" home="+a.getBlockPos()+" path="+guard.getNavigation().getPath()+" task="+guard.getPersistentData().getString("ColonyTask")+" target="+guard.getTarget()+" entityTick="+guard.tickCount+" ground="+h.getLevel().getBlockState(guard.blockPosition().below()));
             guard.discard();far[0].discard();
         });
     }

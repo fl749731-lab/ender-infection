@@ -204,7 +204,7 @@ public final class InfectionGameTests {
         for(int x=0;x<=14;x++)for(int z=0;z<=14;z++)helper.setBlock(new BlockPos(x,4,z),Blocks.STONE);
         var archer=battleUnit(helper,dev.hui.enderinfection.entity.InfectedKind.EARLY_SKELETON,new BlockPos(4,1,4),null,"hunter");
         var ally=battleUnit(helper,dev.hui.enderinfection.entity.InfectedKind.EARLY_COW,new BlockPos(4,1,7),null,"hunter");ally.setNoAi(true);
-        var target=net.minecraft.world.entity.EntityType.ZOMBIE.create(helper.getLevel());placeMob(helper,target,new BlockPos(4,1,10));target.setNoAi(true);target.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.MAX_HEALTH).setBaseValue(100);target.setHealth(100);helper.getLevel().addFreshEntity(target);archer.setTarget(target);
+        var target=net.minecraft.world.entity.EntityType.ZOMBIE.create(helper.getLevel());placeMob(helper,target,new BlockPos(4,1,10));target.setNoAi(true);target.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.MAX_HEALTH).setBaseValue(100);target.setHealth(100);target.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.FIRE_RESISTANCE,1000));helper.getLevel().addFreshEntity(target);archer.setTarget(target);
         helper.assertTrue(!dev.hui.enderinfection.entity.FactionAI.clearShot(archer,target),"Friendly blocker was not detected in the firing lane");
         helper.runAfterDelay(120,()->{
             helper.assertTrue(Math.abs(archer.getX()-helper.absolutePos(new BlockPos(4,1,4)).getX()-.5)>1&&target.getHealth()<100,"Skeleton did not sidestep its ally and land arrows: "+archer.position()+", target hp "+target.getHealth());
@@ -1103,9 +1103,17 @@ public final class InfectionGameTests {
     @GameTest(template="empty64",timeoutTicks=170,batch="ecology_boss_wave")
     public static void bossCrystalWaveHitsDistantEnemyOnceAndSparesFaction(GameTestHelper helper){
         clearWideBattlefield(helper);flatBattlefield(helper,0,30,0,16);var level=helper.getLevel();
+        // Naturally generated gravel above a prepared arena can otherwise fall across the wave's sight line.
+        for(int x=0;x<=30;x++)for(int z=0;z<=16;z++){
+            helper.setBlock(new BlockPos(x,7,z),Blocks.GLASS);
+            helper.setBlock(new BlockPos(x,6,z),Blocks.AIR);
+        }
+        var arena=new net.minecraft.world.phys.AABB(helper.absolutePos(new BlockPos(0,1,0)),helper.absolutePos(new BlockPos(31,8,17)));
+        level.getEntitiesOfClass(net.minecraft.world.entity.item.FallingBlockEntity.class,arena).forEach(net.minecraft.world.entity.Entity::discard);
         var beast=battleUnit(helper,dev.hui.enderinfection.entity.InfectedKind.SIEGE_BEAST,new BlockPos(3,1,8),null,"hunter");
         var ally=battleUnit(helper,dev.hui.enderinfection.entity.InfectedKind.EARLY_COW,new BlockPos(12,1,11),null,"guard");ally.setNoAi(true);
-        var enemy=net.minecraft.world.entity.EntityType.ZOMBIE.create(level);placeMob(helper,enemy,new BlockPos(17,1,8));enemy.setNoAi(true);enemy.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.MAX_HEALTH).setBaseValue(100);enemy.setHealth(100);level.addFreshEntity(enemy);beast.setTarget(enemy);
+        var enemy=net.minecraft.world.entity.EntityType.ZOMBIE.create(level);placeMob(helper,enemy,new BlockPos(17,1,8));enemy.setNoAi(true);enemy.getAttribute(net.minecraft.world.entity.ai.attributes.Attributes.MAX_HEALTH).setBaseValue(100);enemy.setHealth(100);enemy.addEffect(new net.minecraft.world.effect.MobEffectInstance(net.minecraft.world.effect.MobEffects.FIRE_RESISTANCE,1000));level.addFreshEntity(enemy);beast.setTarget(enemy);
+        helper.runAfterDelay(55,()->helper.assertTrue(beast.hasLineOfSight(enemy),"Wave test arena became obstructed before damage sampling"));
         helper.runAfterDelay(115,()->{helper.assertTrue(enemy.getHealth()>=87&&enemy.getHealth()<=89,"Crystal wave failed to reach its target or damaged it more than once: "+enemy.getHealth()+" beast="+beast.position()+" attacking="+beast.attacking()+" enemy="+enemy.position()+" onFire="+enemy.isOnFire()+" ally="+ally.getHealth());helper.assertTrue(ally.getHealth()==ally.getMaxHealth(),"Boss crystal wave hurt its own faction");clearWideBattlefield(helper);helper.succeed();});
     }
     @GameTest(template="empty64",timeoutTicks=80,batch="ecology_high_evolution")

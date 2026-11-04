@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "version": "0.12.0-alpha.2",
-  "created_at": "2026-11-04T19:55:00.2349955+01:00",
+  "version": "0.12.0-alpha.3",
+  "created_at": "2026-11-04T22:51:13.4338875+01:00",
   "mode": "pr",
   "channel": "alpha",
-  "fingerprint": "sha256:fb7dbb8e861d9cf563d5dde9c5229244d64b46f347a8d7bb1a295816dbf595d1",
+  "fingerprint": "sha256:d93d8cffbc24124ceef1a926b06a8546cda9cd8c2c9d93b84fd88e9fc0615cf1",
   "repo": {
     "host": "github.com",
     "owner": "fl749731-lab",
@@ -15,26 +15,26 @@
     "commands": [
       "python tools/build_dual_version.py --clean --gametests"
     ],
-    "skipped": false,
-    "at": "2026-11-04T19:10:58.859521+00:00"
+    "skipped": true,
+    "at": "2026-11-04T22:51:13.4338875+01:00"
   },
   "packages": [
     {
       "name": "java@ender_infection_colored",
       "path": "ender_infection_colored",
       "resolver": "java",
-      "current": "0.12.0-alpha.1",
-      "next": "0.12.0-alpha.2",
+      "current": "0.12.0-alpha.2",
+      "next": "0.12.0-alpha.3",
       "bump": "minor",
-      "tag": "v0.12.0-alpha.2",
+      "tag": "v0.12.0-alpha.3",
       "publish": false
     }
   ],
   "releases": [
     {
-      "version": "0.12.0-alpha.2",
-      "tag": "v0.12.0-alpha.2",
-      "previous_tag": "v0.12.0-alpha.1",
+      "version": "0.12.0-alpha.3",
+      "tag": "v0.12.0-alpha.3",
+      "previous_tag": "v0.12.0-alpha.2",
       "packages": [
         "java@ender_infection_colored"
       ],
@@ -42,6 +42,18 @@
     }
   ],
   "changes": [
+    {
+      "file": ".changes/central-institute-runtime.md",
+      "type": "feat",
+      "scope": "institute",
+      "bump": "minor",
+      "packages": [
+        "java@ender_infection_colored"
+      ],
+      "body": "将中央研究所图纸组装为 120×104 场地、地上三层和地下三层共 48 间有内饰的游戏建筑。加入双楼梯、货梯、中庭连桥、48 个分类补给桶，以及适配平坦干地的原生自然生成；保留原有小型实验室。\n\n新增 `/enderinstitute previewcentral \u003corigin\u003e`、`build \u003corigin\u003e`、`status` 和 `cancel`。先检查完整区域，再按已加载区块施工；保护已有容器、设备和活动方块，支持保存进度与保守恢复，取消保留已经完成的部分。\n\n修正房门、竖井和补给桶通路；入口阶梯及地下支撑适配 8 格地形高差。紫晶组合采用不挤占长芽空间的补光，检查真实暴露面亮度，而非只检查光源自身。\n\nForge Minecraft 1.20.1 与 NeoForge Minecraft 1.21.1 同步更新，提供两版原生功能测试、真实主世界自然生成和全房间实景验收。公共 API 维持 v1，附属 Mod 示例保留兼容。\n\n本轮完成建筑、内饰、通行、补给和生成；整楼电网联动、收容事件与 Boss 机制尚未接入。",
+      "commit": "44698dbf3db5d5f5347c24905d209eea4115624b",
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/44698dbf3db5d5f5347c24905d209eea4115624b"
+    },
     {
       "file": ".changes/institute-dual-loader.md",
       "type": "feat",
@@ -64,11 +76,11 @@
       ],
       "body": "接入由 Blockbench MCP 制作的初期感染末影人、畸变末影人和晶壳锚卫模型、紫晶发光与动画。末影单位的相位移动提供落点预警，可被抑制器打断；锚卫围绕锚点防守，供能时减伤、受抑制时开甲。\n\n新增裂隙锚点、相位抑制器及合成配方，并提供 `/enderrift outpost` 手动生成前哨战斗原型。此预发布暂不包含裂隙前哨自然生成及规划中的后续首领。",
       "commit": "588fdd61d09a9e9ad19c0f526a01a4ab82325cd5",
-      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/588fdd61d09a9e9ad19c0f526a01a4ab82325cd5",
-      "author": "fl749731-lab"
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/588fdd61d09a9e9ad19c0f526a01a4ab82325cd5"
     }
   ],
   "previous_changes": [
+    ".changes/institute-dual-loader.md",
     ".changes/rift-outpost.md"
   ],
   "qegg": {

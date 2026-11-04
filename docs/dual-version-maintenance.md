@@ -27,16 +27,20 @@ python tools/build_dual_version.py --clean --gametests
 
 Forge 原生测试的每个新目录都会写入固定种子 0、关闭结构生成的超平坦配置，与 NeoForge 测试场地对齐。统一脚本串行构建与测试，Forge 测试进程设置内存上限，避免普通地形的落砂和并发开发进程影响验证。
 
-该命令先检查公共源、现有类与注册 ID 是否保留、转换资源是否一致，再分别构建两个主工程及 API 开发 JAR、两个附属示例，并运行两版 AI、裂隙、研究所接口与附属集成测试。验证会核对实际执行的测试数量，零项测试不能视为通过。日志与 JAR 校验和写入 `build/dual-version-validation`。静态清单检查只能发现遗漏；行为是否一致需要原生测试和涉及画面时的客户端对照。
+该命令先检查中央研究所最终 NBT、公共源、现有类与注册 ID 是否保留、转换资源是否一致，再分别构建两个主工程及 API 开发 JAR、两个附属示例，并运行两版 AI、裂隙、研究所接口、完整中央研究所与附属集成测试。验证会核对实际执行的测试数量，零项测试不能视为通过。日志与 JAR 校验和写入 `build/dual-version-validation`。静态清单检查只能发现遗漏；行为是否一致需要原生测试和涉及画面时的客户端对照。
 
 附属示例的构建方式见 `examples/institute-addon` 的说明。`build/api` 中的开发 JAR 供示例编译，发行物是主工程 `build/libs` 内的 JAR。
 
 ## 发版
 
+本次目标为 **0.12.0-alpha.3（待发布）**，同时交付 Forge 1.20.1 / Java 17 与 NeoForge 1.21.1 / Java 21。alpha.3 将六层、48 间中央研究所的实际建筑、自然生成与手动施工命令加入两版；安装包按对应 Minecraft 和加载器分别使用。
+
 在 Forge 工程更改一次版本号，两版构建将使用相同版本。CI 对两个 loader 及附属示例分别检查，发行资产附带两版主 JAR。`0.12.0-alpha.2` 首次提供双版本发行与研究所 API v1；附属示例的最低核心依赖为 `0.12.0-alpha.2`，不能使用缺少 API 的 `0.12.0-alpha.1`。
 
 Forge 与 NeoForge 的 Mod JAR、GeckoLib 前置必须匹配对应 Minecraft 和 loader。两套实例独立测试；不把现有 1.20.1 世界直接转换为 1.21.1 测试世界。
 
+上一轮中央研究所证据为双版合计 42 项专用原生测试、122 张原生客户端实景，并验证 59 处紫晶的实际表面补光。本次 alpha.3 发布前仍需重新运行 `python tools/build_dual_version.py --clean --gametests`；不得把历史测试数量填为本次复验结果。发布状态、实际测试数量和两份 JAR 校验和在检查完成后更新。研究所电网系统、收容事件和研究所 Boss 战不属于本次已实现内容。
+
 ## 研究所设计交付
 
-从 [alpha.2 发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.2) 下载 `central-research-institute-interiors-v01.zip`，解压后打开 `index.html`，可浏览六层与 48 间内饰、逐格坐标、方块清单和待补模型对照。`central-institute-interior-atlas-v01.pdf` 是独立的 73 页图册附件，完整图包包含原始 PNG、SVG、CSV。这套建筑仍需要组装和自然生成接入，公共 API 与示例房间不等同于完成大型研究所。
+从 [alpha.2 发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.2) 下载 `central-research-institute-interiors-v01.zip`，解压后打开 `index.html`，可浏览六层与 48 间内饰、逐格坐标、方块清单和待补模型对照。`central-institute-interior-atlas-v01.pdf` 是独立的 73 页图册附件，完整图包包含原始 PNG、SVG、CSV。alpha.2 附件继续作为设计阶段的历史图纸保留；alpha.3 实际建筑、放置命令及验证方法见 [中央研究所](central-institute.md)，双版实景见 [运行实景](../previews/central-institute-runtime/README.md)。

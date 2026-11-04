@@ -65,6 +65,7 @@ public final class InstitutePlatform {
         }
     }
     @SubscribeEvent public static void commands(RegisterCommandsEvent event) {
+        dev.hui.enderinfection.worldgen.CentralInstituteCommands.register(event.getDispatcher());
         event.getDispatcher().register(Commands.literal("enderinstitute").requires(s -> s.hasPermission(2))
             .then(Commands.literal("rooms").executes(c -> {
                 c.getSource().sendSuccess(() -> Component.literal(String.join(", ", InstituteApi.rooms().keySet())), false);

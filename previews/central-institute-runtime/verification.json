@@ -1,0 +1,111 @@
+{
+  "status": "PASS",
+  "release_status": "local_unreleased_development_build",
+  "version": "0.12.0-alpha.2",
+  "layout_version": "central-institute-v1",
+  "manifest_sha256": "a408e7bc5f69ef7de4908ceb4b25a433a04598fe27a0091cb72944e49133a16f",
+  "static": {
+    "status": "PASS",
+    "rooms": 48,
+    "floors": {
+      "G1": 8,
+      "G2": 8,
+      "G3": 8,
+      "B1": 8,
+      "B2": 8,
+      "B3": 8
+    },
+    "tiles": 56,
+    "explicit_voxels": 686400,
+    "multipart": 1094,
+    "parts_crossing_tiles": 14,
+    "bed_halves": 24,
+    "loot_containers": 48,
+    "reachable_standing_cells": 37303,
+    "preserved_terrain_cells": 224668,
+    "light_sources": 952,
+    "lit_crystals": 59
+  },
+  "native_required_tests_passed": 42,
+  "native_tests": [
+    {
+      "status": "PASS",
+      "log": "build/central-institute/forge-gametest.log",
+      "total": 1,
+      "required_passed": 1,
+      "sha256": "b75640251b2fca80ed286cde2163d559a085d35dc833e12dfec32ebe20339891"
+    },
+    {
+      "status": "PASS",
+      "log": "build/central-institute/forge-api.log",
+      "total": 12,
+      "required_passed": 12,
+      "sha256": "42749986ac4b1d086d31de4a88a543935da8dd7108a03858c05b6d42c9916740"
+    },
+    {
+      "status": "PASS",
+      "log": "build/central-institute/forge-legacy-labs.log",
+      "total": 8,
+      "required_passed": 8,
+      "sha256": "833e3fa588de5904de3b3811858c81fdf657804cb05ea4b7e1d7cbc6ba5aff3c"
+    },
+    {
+      "status": "PASS",
+      "log": "build/central-institute/neo-gametest.log",
+      "total": 1,
+      "required_passed": 1,
+      "sha256": "c72e8f09cf268f633ac9bdf6a01a262102205c470c39c9d7788de1eefe7924a9"
+    },
+    {
+      "status": "PASS",
+      "log": "build/central-institute/neo-api-legacy-labs.log",
+      "total": 20,
+      "required_passed": 20,
+      "sha256": "8684ddd1868f3c1dfc7ebb8f8f82dbdff5cf69c32453f3b558ddeb8e4dc27c38"
+    }
+  ],
+  "visual": [
+    {
+      "status": "PASS",
+      "natural": true,
+      "rooms": 48,
+      "pieces": 56,
+      "full_chunks": 99,
+      "screenshots": 61,
+      "log": "build/central-institute/forge-visual.log",
+      "directory": "ender_infection_colored/build/central-institute-visual-check/screenshots",
+      "log_sha256": "d911b863e773602690f436b446adf1d59c65fbb9448b0ba16cb68a0019bb60e6"
+    },
+    {
+      "status": "PASS",
+      "natural": true,
+      "rooms": 48,
+      "pieces": 56,
+      "full_chunks": 99,
+      "screenshots": 61,
+      "log": "build/central-institute/neo-visual.log",
+      "directory": "ender_infection_neoforge/build/central-institute-visual-check/screenshots",
+      "log_sha256": "ef82e5a0fc4e261c11324536d9d49108c76e5fe89ca0b1eb288190161a5e12b4"
+    }
+  ],
+  "jars": [
+    {
+      "file": "ender_infection_colored/build/libs/ender-infection-0.12.0-alpha.2.jar",
+      "bytes": 5310800,
+      "sha256": "8a5dab4c534b9eba067e028f84bea8a82e468787bf3c48ca83d0fa15b9d5d914",
+      "central_templates_verified": 56
+    },
+    {
+      "file": "ender_infection_neoforge/build/libs/ender-infection-neoforge-1.21.1-0.12.0-alpha.2.jar",
+      "bytes": 5167255,
+      "sha256": "a4fc047edd014dc4c23d4b0bb6c7aedbb0f5bc9cb2943a0193bc403fd2420cb9",
+      "central_templates_verified": 56
+    }
+  ],
+  "coverage": "Full institute, existing institute API and legacy laboratories on both loaders; full natural structures and all room cameras. AI/rift/ore gameplay was unchanged in this task.",
+  "limitations": [
+    "Fixed orientation",
+    "Only newly generated chunks receive the natural structure",
+    "Electrical networks, containment events and boss encounters remain future content"
+  ]
+}

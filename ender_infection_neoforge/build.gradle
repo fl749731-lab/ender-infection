@@ -37,6 +37,14 @@ neoForge {
             gameDirectory = project.file(project.hasProperty('crystalGlowCheck') ? 'build/crystal-glow-check' : project.hasProperty('riftVisualCheck') ? 'build/rift-visual-check' : 'build/client-review')
             if (project.hasProperty('designSmoke')) systemProperty 'ender_infection.designSmoke', 'true'
             if (project.hasProperty('riftVisualCheck')) systemProperty 'ender_infection.riftVisualCheck', 'true'
+            if (project.hasProperty('centralInstituteVisualCheck')) {
+                gameDirectory = project.file('build/central-institute-visual-check')
+                systemProperty 'ender_infection.centralInstituteVisualCheck', 'true'
+                systemProperty 'ender_infection.centralInstituteSeed', project.findProperty('centralInstituteSeed') ?: '7312026'
+                jvmArgument '-Xms128m'
+                jvmArgument '-Xmx1536m'
+                jvmArgument '-XX:ActiveProcessorCount=2'
+            }
             if (project.hasProperty('crystalGlowCheck')) {
                 systemProperty 'ender_infection.crystalGlowCheck', 'true'
                 systemProperty 'ender_infection.crystalGlowSubjects', project.findProperty('crystalGlowSubjects') ?: ''
@@ -48,6 +56,7 @@ neoForge {
             gameDirectory = project.file("build/gametest-${System.currentTimeMillis()}")
             if (project.hasProperty('instituteChecks')) systemProperty 'ender_infection.instituteChecks', 'true'
             def namespaces = []
+            if (project.hasProperty('centralInstituteChecks')) namespaces += 'ender_central_institute_checks'
             if (project.hasProperty('instituteChecks')) namespaces += 'ender_institute_checks'
             if (project.hasProperty('oreChecks')) namespaces += 'ender_ore_checks'
             if (project.hasProperty('labChecks')) namespaces += 'ender_lab_checks'

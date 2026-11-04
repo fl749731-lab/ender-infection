@@ -67,6 +67,7 @@ def main() -> None:
     parser.add_argument("--gametests", action="store_true", help="Run focused AI/rift and institute suites on each loader")
     args = parser.parse_args()
     OUTPUT.mkdir(parents=True, exist_ok=True)
+    subprocess.run([sys.executable, str(ROOT / "tools/verify_central_institute.py")], cwd=ROOT, check=True)
     subprocess.run([sys.executable, str(ROOT / "tools/sync_neoforge_resources.py")], cwd=ROOT, check=True)
     subprocess.run([sys.executable, str(ROOT / "tools/check_dual_version.py"), "--output", str(OUTPUT / "parity.json")], cwd=ROOT, check=True)
     version = json.loads((OUTPUT / "parity.json").read_text("utf-8"))["version"]
@@ -80,6 +81,8 @@ def main() -> None:
             tests.append(verify(log, 32))
             log = run_project(name, folder, major, ["runGameTestServer", "-PinstituteChecks"], f"{folder}-institute.log")
             tests.append(verify(log, 12))
+            log = run_project(name, folder, major, ["runGameTestServer", "-PcentralInstituteChecks"], f"{folder}-central-institute.log")
+            tests.append(verify(log, 1))
             log = run_project(name, folder, major, ["runGameTestServer", "-PoreChecks"], f"{folder}-ore.log")
             tests.append(verify(log, 1))
         addon = "neoforge" if "neoforge" in folder else "forge"

@@ -75,7 +75,7 @@ def module(kind):
             for h in (1,2,3):m.p(7,4,'minecraft:iron_block',h)
             m.p(7,4,'lab_monitor',4,'south');m.p(0,5,'lab_cabinet')
         elif kind=='alarm':
-            m.p(7,0,'minecraft:redstone_lamp',2);m.p(7,1,'minecraft:redstone_block',2);m.p(0,5,'lab_storage_crate')
+            m.p(7,0,'minecraft:redstone_lamp',2,lit='true');m.p(7,1,'minecraft:redstone_block',2);m.p(0,5,'lab_storage_crate')
         else:m.p(7,5,'lab_cabinet');m.p(0,5,'lab_shelf')
     elif kind=='access':
         for u in (1,6):
@@ -283,6 +283,7 @@ def make_room(floor,source):
     for u in range(4,w-2,6):
         for v in range(4,d-2,6):put(u,v,high,'lab_light_panel',layer='lighting')
     # Double doors at the centre of every specified opening; trim the spare cells.
+    door_approaches=set()
     for n,box in enumerate([source['door_xz'],*source.get('additional_doors_xz',[])]):
         a,b,A,B=box;a-=x;A-=x;b-=z;B-=z
         side='west' if a<=0 else 'east' if A>=w else 'north' if b<=0 else 'south'
@@ -290,7 +291,10 @@ def make_room(floor,source):
             vals=list(range(max(1,b),min(d-1,B)));chosen=vals[(len(vals)-2)//2:(len(vals)-2)//2+2];anchors=[(0 if side=='west' else w-1,t) for t in chosen]
         else:
             vals=list(range(max(1,a),min(w-1,A)));chosen=vals[(len(vals)-2)//2:(len(vals)-2)//2+2];anchors=[(t,0 if side=='north' else d-1) for t in chosen]
-        for U,V in anchors:put(U,V,1,'lab_door',{'west':'east','east':'west','north':'south','south':'north'}[side],'door',replace=True)
+        for U,V in anchors:
+            put(U,V,1,'lab_door',{'west':'east','east':'west','north':'south','south':'north'}[side],'door',replace=True)
+            du,dv={'west':(1,0),'east':(-1,0),'north':(0,1),'south':(0,-1)}[side]
+            door_approaches.update((U+du*k,V+dv*k) for k in (1,2))
     if r['id']!='F8':
         for index,kind in enumerate(RECIPES[r['id']]):
             m=module(kind);turn=2 if index>=2 else 0;ou=2 if index%2==0 else w-10;ov=2 if index<2 else d-8
@@ -318,7 +322,7 @@ def make_room(floor,source):
     # Enrich the broad room envelopes with coherent side benches and storage.
     # Every added row has two clear approach cells; the cross aisle stays free.
     if r['id']!='F8':
-        occupied={(U,V) for U,V,H in cells if H in (1,2)};approaches=set();added=0
+        occupied={(U,V) for U,V,H in cells if H in (1,2)};approaches=set(door_approaches);added=0
         zones=[(1,1,w//2-1,d//2-1),(w//2+1,1,w-1,d//2-1),
                (1,d//2+1,w//2-1,d-1),(w//2+1,d//2+1,w-1,d-1)]
         for index,(a,b,A,B) in enumerate(zones):
@@ -359,6 +363,14 @@ def validate_room(r):
         for u,v,h in p['reserved']:
             if 1<=h<=2:blocked.add((u,v))
     free={(u,v) for u in range(1,w-1) for v in range(1,d-1) if (u,v) not in blocked}
+    # A clear centre spine is insufficient when a side bench blocks one leaf.
+    # Both leaves must have two empty approach cells inside the room.
+    for p in r['placements']:
+        if p['layer']!='door':continue
+        u,v=p['u'],p['v']
+        du,dv=(1,0) if u==0 else (-1,0) if u==w-1 else (0,1) if v==0 else (0,-1)
+        for step in (1,2):
+            assert (u+du*step,v+dv*step) in free,(r['id'],'blocked door approach',u,v,step)
     start=(w//2,d//2)
     if start not in free:start=min(free,key=lambda q:abs(q[0]-w//2)+abs(q[1]-d//2))
     seen={start};todo=deque([start])

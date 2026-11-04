@@ -11,6 +11,8 @@ on:
       - 'tools/*dual_version.py'
       - 'tools/verify_gametest_log.py'
       - 'tools/sync_neoforge_resources.py'
+      - 'tools/*central_institute*.py'
+      - 'tools/institute_room_spec.py'
       - '.github/workflows/dual-version.yml'
   workflow_dispatch:
 
@@ -55,6 +57,7 @@ jobs:
           python-version: '3.12'
       - name: Check shared inputs and feature inventory
         run: |
+          python tools/verify_central_institute.py
           python tools/sync_neoforge_resources.py
           python tools/check_dual_version.py
       - name: Build main mod and development API
@@ -70,6 +73,11 @@ jobs:
         run: |
           java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain --no-daemon --console=plain runGameTestServer -PinstituteChecks | tee institute-tests.log
           python ../tools/verify_gametest_log.py institute-tests.log --minimum 12
+      - name: Test full central institute
+        working-directory: ${{ matrix.project }}
+        run: |
+          java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain --no-daemon --console=plain runGameTestServer -PcentralInstituteChecks | tee central-institute-tests.log
+          python ../tools/verify_gametest_log.py central-institute-tests.log --minimum 1
       - name: Compile addon example
         working-directory: examples/institute-addon/${{ matrix.addon }}
         run: java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain --no-daemon --console=plain build

@@ -208,6 +208,9 @@ def export():
     write(ASSETS/'blockstates'/f'{runtime}.json',{'variants':{'':{'model':f'ender_infection:block/{runtime}'}}});obj(runtime,d,'item')
    REPORT.append({'source':source+'_'+state,'runtime':runtime,'kind':'block'})
  export_legacy_glow()
+ # Rift replacements have their own canonical MCP-authored BB5 sources.
+ from export_rift_assets import export as export_rift
+ export_rift()
  write(PROJECT/'verification/design_asset_manifest.json',{'source_pack':MAN['version'],'assets':REPORT,'scenes':'research_lab.nbt is current; complete/cutaway BB scenes retain the earlier schematic'})
  print('Exported',len(REPORT),'runtime asset mappings')
 if __name__=='__main__':export()

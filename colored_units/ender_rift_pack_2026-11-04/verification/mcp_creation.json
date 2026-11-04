@@ -1,0 +1,230 @@
+[
+  {
+    "server": {
+      "name": "Blockbench MCP",
+      "version": "1.10.1"
+    },
+    "spec": {
+      "name": "early_infected_enderman_rift",
+      "label": "初期感染末影人",
+      "kind": "early",
+      "target_height": 48,
+      "path": "E:/mc/colored_units/ender_rift_pack_2026-11-04/models/early_infected_enderman_rift.bbmodel"
+    },
+    "geometry": {
+      "name": "early_infected_enderman_rift",
+      "cubes": 59,
+      "bones": 16,
+      "textures": [
+        {
+          "name": "early_infected_enderman_rift.png",
+          "render_mode": "default"
+        },
+        {
+          "name": "early_infected_enderman_rift_glowmask.png",
+          "render_mode": "emissive"
+        }
+      ],
+      "bounds": {
+        "min": [
+          -9.5330184250331,
+          1.1920928910669204e-08,
+          -4.1900000587105755
+        ],
+        "max": [
+          9.5330184250331,
+          48,
+          4
+        ]
+      },
+      "undo": [
+        "Build 初期感染末影人 from orthographic concept through MCP: bones, cuboids, UV and emissive crystals"
+      ],
+      "path": "E:/mc/colored_units/ender_rift_pack_2026-11-04/models/early_infected_enderman_rift.bbmodel"
+    },
+    "saved": {
+      "name": "early_infected_enderman_rift",
+      "saved": true,
+      "path": "E:/mc/colored_units/ender_rift_pack_2026-11-04/models/early_infected_enderman_rift.bbmodel",
+      "cubes": 59,
+      "bones": 16,
+      "animations": [
+        {
+          "name": "animation.early_infected_enderman_rift.idle",
+          "length": 2
+        },
+        {
+          "name": "animation.early_infected_enderman_rift.walk",
+          "length": 1
+        },
+        {
+          "name": "animation.early_infected_enderman_rift.attack",
+          "length": 1.4
+        },
+        {
+          "name": "animation.early_infected_enderman_rift.phase",
+          "length": 0.5
+        }
+      ],
+      "history": [
+        "Build 初期感染末影人 from orthographic concept through MCP: bones, cuboids, UV and emissive crystals",
+        "Create animation",
+        "Create animation",
+        "Create animation",
+        "Create animation"
+      ]
+    }
+  },
+  {
+    "server": {
+      "name": "Blockbench MCP",
+      "version": "1.10.1"
+    },
+    "spec": {
+      "name": "mutated_enderman_rift",
+      "label": "畸变末影人",
+      "kind": "mutated",
+      "target_height": 60,
+      "path": "E:/mc/colored_units/ender_rift_pack_2026-11-04/models/mutated_enderman_rift.bbmodel"
+    },
+    "geometry": {
+      "name": "mutated_enderman_rift",
+      "cubes": 153,
+      "bones": 22,
+      "textures": [
+        {
+          "name": "mutated_enderman_rift.png",
+          "render_mode": "default"
+        },
+        {
+          "name": "mutated_enderman_rift_glowmask.png",
+          "render_mode": "emissive"
+        }
+      ],
+      "bounds": {
+        "min": [
+          -13.466616409449287,
+          2.384185793236071e-08,
+          -5.531265404615692
+        ],
+        "max": [
+          13.466616409449287,
+          60.07406393504701,
+          5.599999976158142
+        ]
+      },
+      "undo": [
+        "Build 畸变末影人 from orthographic concept through MCP: bones, cuboids, UV and emissive crystals"
+      ],
+      "path": "E:/mc/colored_units/ender_rift_pack_2026-11-04/models/mutated_enderman_rift.bbmodel"
+    },
+    "saved": {
+      "name": "mutated_enderman_rift",
+      "saved": true,
+      "path": "E:/mc/colored_units/ender_rift_pack_2026-11-04/models/mutated_enderman_rift.bbmodel",
+      "cubes": 153,
+      "bones": 22,
+      "animations": [
+        {
+          "name": "animation.mutated_enderman_rift.idle",
+          "length": 2
+        },
+        {
+          "name": "animation.mutated_enderman_rift.walk",
+          "length": 1
+        },
+        {
+          "name": "animation.mutated_enderman_rift.attack",
+          "length": 1.4
+        },
+        {
+          "name": "animation.mutated_enderman_rift.phase",
+          "length": 0.5
+        }
+      ],
+      "history": [
+        "Build 畸变末影人 from orthographic concept through MCP: bones, cuboids, UV and emissive crystals",
+        "Create animation",
+        "Create animation",
+        "Create animation",
+        "Create animation"
+      ]
+    }
+  },
+  {
+    "server": {
+      "name": "Blockbench MCP",
+      "version": "1.10.1"
+    },
+    "spec": {
+      "name": "crystal_anchor_guard",
+      "label": "晶壳锚卫",
+      "kind": "anchor",
+      "target_height": 44,
+      "path": "E:/mc/colored_units/ender_rift_pack_2026-11-04/models/crystal_anchor_guard.bbmodel"
+    },
+    "geometry": {
+      "name": "crystal_anchor_guard",
+      "cubes": 139,
+      "bones": 23,
+      "textures": [
+        {
+          "name": "crystal_anchor_guard.png",
+          "render_mode": "default"
+        },
+        {
+          "name": "crystal_anchor_guard_glowmask.png",
+          "render_mode": "emissive"
+        }
+      ],
+      "bounds": {
+        "min": [
+          -20.000000047683717,
+          -2.3841857821338408e-08,
+          -13.499999952316283
+        ],
+        "max": [
+          20.000000047683717,
+          44,
+          23.000000047683717
+        ]
+      },
+      "undo": [
+        "Build 晶壳锚卫 from orthographic concept through MCP: bones, cuboids, UV and emissive crystals"
+      ],
+      "path": "E:/mc/colored_units/ender_rift_pack_2026-11-04/models/crystal_anchor_guard.bbmodel"
+    },
+    "saved": {
+      "name": "crystal_anchor_guard",
+      "saved": true,
+      "path": "E:/mc/colored_units/ender_rift_pack_2026-11-04/models/crystal_anchor_guard.bbmodel",
+      "cubes": 139,
+      "bones": 23,
+      "animations": [
+        {
+          "name": "animation.crystal_anchor_guard.idle",
+          "length": 2
+        },
+        {
+          "name": "animation.crystal_anchor_guard.walk",
+          "length": 1
+        },
+        {
+          "name": "animation.crystal_anchor_guard.attack",
+          "length": 1.5
+        },
+        {
+          "name": "animation.crystal_anchor_guard.deploy",
+          "length": 1.4
+        }
+      ],
+      "history": [
+        "Build 晶壳锚卫 from orthographic concept through MCP: bones, cuboids, UV and emissive crystals",
+        "Create animation",
+        "Create animation",
+        "Create animation",
+        "Create animation"
+      ]
+    }
+  }
+]

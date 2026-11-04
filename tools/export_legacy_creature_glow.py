@@ -12,9 +12,9 @@ from design_catalog import ASSETS, ROOT
 LEGACY_CREATURE_SOURCES = {
     'infected_' + species: ROOT / 'colored_units' / f'infected_{species}_colored.bbmodel'
     for species in (
-        'cow', 'pig', 'sheep', 'spider', 'enderman',
+        'cow', 'pig', 'sheep', 'spider',
         'cow_early', 'pig_early', 'sheep_early', 'skeleton_early',
-        'spider_early', 'enderman_early', 'zombie_early',
+        'spider_early', 'zombie_early',
     )
 }
 

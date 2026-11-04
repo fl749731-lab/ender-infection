@@ -5,6 +5,7 @@ import numpy as np
 from PIL import Image
 from design_catalog import *
 from export_legacy_creature_glow import LEGACY_CREATURE_SOURCES,legacy_crystal_pixels
+from validate_rift_runtime import validate as validate_rift
 sys.path.insert(0,str(PACK/'source'))
 from modelkit import PALETTES,rgb
 from concept_materials import CONCEPT_PALETTES
@@ -103,5 +104,8 @@ for runtime,source in LEGACY_CREATURE_SOURCES.items():
  if unwanted:errors.append(f'Non-crystal legacy geometry glows {runtime}: {unwanted} pixels')
 manifest=json.loads((PACK/'manifest.json').read_text());sources={r['source'] for r in report['assets']};missing={r['id'] for r in manifest['models'] if r['category']!='scenes'}-sources
 if missing:errors.append('Unmapped source '+str(missing))
-result={'status':'FAIL' if errors else 'PASS','geometry_files':checked_geo,'validated_faces':checked_uv,'obj_files':checked_obj,'glow_masks':checked_glow,'creature_glow_textures':creature_glow_textures,'crystal_pixels':crystal_pixels,'missing_crystal_pixels':missing_crystal_pixels,'non_crystal_glow_pixels':non_crystal_glow_pixels,'legacy_creature_glow':legacy_glow,'mapped_source_models':len(sources),'scene_source_models':2,'errors':errors}
+rift=[]
+try:rift=validate_rift()
+except (AssertionError,ValueError,OSError,KeyError) as error:errors.append('Rift runtime assets: '+str(error))
+result={'status':'FAIL' if errors else 'PASS','geometry_files':checked_geo,'validated_faces':checked_uv,'obj_files':checked_obj,'glow_masks':checked_glow,'creature_glow_textures':creature_glow_textures+len(rift),'crystal_pixels':crystal_pixels+sum(r['emissive_pixels'] for r in rift),'missing_crystal_pixels':missing_crystal_pixels,'non_crystal_glow_pixels':non_crystal_glow_pixels,'legacy_creature_glow':legacy_glow,'rift_models':rift,'mapped_source_models':len(sources),'scene_source_models':2,'errors':errors}
 (PROJECT/'verification/design_assets_validation.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8');print(json.dumps(result,ensure_ascii=False));raise SystemExit(bool(errors))

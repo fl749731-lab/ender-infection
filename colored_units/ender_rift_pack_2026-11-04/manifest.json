@@ -1,0 +1,76 @@
+{
+  "status": "PASS",
+  "date": "2026-11-04",
+  "authored_with": "Blockbench MCP 1.10.1 / Blockbench 5.2.2",
+  "models": [
+    {
+      "name": "early_infected_enderman_rift",
+      "label": "初期感染末影人",
+      "file": "models\\early_infected_enderman_rift.bbmodel",
+      "cubes": 59,
+      "bones": 16,
+      "texture_size": [
+        512,
+        512
+      ],
+      "emissive_faces": 138,
+      "animations": [
+        "animation.early_infected_enderman_rift.idle",
+        "animation.early_infected_enderman_rift.walk",
+        "animation.early_infected_enderman_rift.attack",
+        "animation.early_infected_enderman_rift.phase"
+      ],
+      "coplanar_overlap_faces": 0,
+      "sha256": "04ac681de17b94e130a3d53293e7ab087bea6f923936b6dd0c5f1394aad6ab59"
+    },
+    {
+      "name": "mutated_enderman_rift",
+      "label": "畸变末影人",
+      "file": "models\\mutated_enderman_rift.bbmodel",
+      "cubes": 153,
+      "bones": 22,
+      "texture_size": [
+        512,
+        512
+      ],
+      "emissive_faces": 108,
+      "animations": [
+        "animation.mutated_enderman_rift.idle",
+        "animation.mutated_enderman_rift.walk",
+        "animation.mutated_enderman_rift.attack",
+        "animation.mutated_enderman_rift.phase"
+      ],
+      "coplanar_overlap_faces": 0,
+      "sha256": "705f04b2b6d47c226b4c604cc75bc7aeed3c50d1eb1f3202ac1f3487c3bac5d9"
+    },
+    {
+      "name": "crystal_anchor_guard",
+      "label": "晶壳锚卫",
+      "file": "models\\crystal_anchor_guard.bbmodel",
+      "cubes": 185,
+      "bones": 23,
+      "texture_size": [
+        512,
+        512
+      ],
+      "emissive_faces": 84,
+      "animations": [
+        "animation.crystal_anchor_guard.idle",
+        "animation.crystal_anchor_guard.walk",
+        "animation.crystal_anchor_guard.attack",
+        "animation.crystal_anchor_guard.deploy"
+      ],
+      "coplanar_overlap_faces": 0,
+      "sha256": "2aeb914498ea04a722a12c7f891e2f0fa3836ca34b74b64264d64588d44d2696"
+    }
+  ],
+  "native_view_samples": 21,
+  "native_saved_projects": 3,
+  "scope": "Editable MCP models, UV, emissive textures and source animations; integrated into v0.12.0-alpha.1",
+  "runtime_export": "tools/export_rift_assets.py",
+  "runtime_validation": "ender_infection_colored/verification/rift_runtime_validation.json",
+  "limits": [
+    "Cuboid adaptation of generated orthographic references",
+    "Animation samples are visual checks, not exhaustive collision proof"
+  ]
+}

@@ -57,6 +57,7 @@ public final class InfectedMob extends Monster implements GeoEntity {
     private static final EntityDataAccessor<Integer> MOTHER_STAGE=SynchedEntityData.defineId(InfectedMob.class,EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> MOTHER_STATE=SynchedEntityData.defineId(InfectedMob.class,EntityDataSerializers.INT);
     private static final EntityDataAccessor<Boolean> CLIMBING=SynchedEntityData.defineId(InfectedMob.class,EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> RIFT_EXPOSED=SynchedEntityData.defineId(InfectedMob.class,EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Float> MORPH_SPEED=SynchedEntityData.defineId(InfectedMob.class,EntityDataSerializers.FLOAT);
     private int expansionAllowance=4,expansionRemainder;
     private MotherBrain motherBrain;
@@ -113,9 +114,11 @@ public final class InfectedMob extends Monster implements GeoEntity {
         if (kind == InfectedKind.SPOREWING_SCOUT) builder.add(Attributes.FLYING_SPEED, .42);
         return builder;
     }
-    @Override protected void defineSynchedData() { super.defineSynchedData(); entityData.define(ATTACKING,false);entityData.define(EMERGING,true);entityData.define(MOTHER_STAGE,1);entityData.define(MOTHER_STATE,0);entityData.define(CLIMBING,false);entityData.define(MORPH_SPEED,1F); }
+    @Override protected void defineSynchedData() { super.defineSynchedData(); entityData.define(ATTACKING,false);entityData.define(EMERGING,true);entityData.define(MOTHER_STAGE,1);entityData.define(MOTHER_STATE,0);entityData.define(CLIMBING,false);entityData.define(MORPH_SPEED,1F);entityData.define(RIFT_EXPOSED,false); }
     public boolean attacking() { return entityData.get(ATTACKING); }
     public void interruptForOrders(){getPersistentData().putInt("CrystalCastSequence",getPersistentData().getInt("CrystalCastSequence")+1);entityData.set(ATTACKING,false);attackTick=0;cooldown=Math.max(cooldown,10);getNavigation().stop();}
+    public boolean riftExposed(){return entityData.get(RIFT_EXPOSED);}
+    public void setRiftExposed(boolean value){entityData.set(RIFT_EXPOSED,value);}
     public boolean emerging(){return entityData.get(EMERGING);}
     public int motherStage(){return entityData.get(MOTHER_STAGE);}
     @Override public net.minecraft.network.chat.Component getName(){return kind==InfectedKind.CORE&&!hasCustomName()?net.minecraft.network.chat.Component.translatable("entity.ender_infection.mother_stage"+motherStage()):super.getName();}
@@ -224,12 +227,13 @@ public final class InfectedMob extends Monster implements GeoEntity {
     private FactionAI.Motion factionMotion;
     private BroodTactics broodTactics;
     @Override public boolean isAlliedTo(net.minecraft.world.entity.Entity other){return FactionAI.infected(other)||super.isAlliedTo(other);}
-    @Override public boolean hurt(DamageSource source,float amount){if(FactionAI.infected(source.getEntity())||InfectionBlink.avoidsProjectile(this,source,amount))return false;if(!source.is(net.minecraft.tags.DamageTypeTags.BYPASSES_INVULNERABILITY)){if(kind==InfectedKind.CORE)amount=Math.min(amount,getMaxHealth()*.08F);else if(kind==InfectedKind.SIEGE_BEAST)amount=Math.min(amount,getMaxHealth()*.10F);}amount=dev.hui.enderinfection.design.DesignBehavior.filterDamage(this,source,amount);boolean hit=super.hurt(source,amount);if(hit&&kind==InfectedKind.SIEGE_BEAST&&level() instanceof ServerLevel server&&tickCount-lastSiegeHurtFx>=8){lastSiegeHurtFx=tickCount;dev.hui.enderinfection.particle.SiegeEffects.wound(server,this);}if(hit&&isAlive()&&source.getEntity() instanceof LivingEntity attacker)FactionAI.alert(this,attacker);return hit;}
+    @Override public boolean hurt(DamageSource source,float amount){if(FactionAI.infected(source.getEntity())||InfectionBlink.avoidsProjectile(this,source,amount))return false;if(!source.is(net.minecraft.tags.DamageTypeTags.BYPASSES_INVULNERABILITY)){if(kind==InfectedKind.CORE)amount=Math.min(amount,getMaxHealth()*.08F);else if(kind==InfectedKind.SIEGE_BEAST)amount=Math.min(amount,getMaxHealth()*.10F);}amount=dev.hui.enderinfection.design.DesignBehavior.filterDamage(this,source,amount);if(kind==InfectedKind.ANCHOR_GUARD&&dev.hui.enderinfection.rift.RiftCombat.guardProtected(this)&&!source.is(net.minecraft.tags.DamageTypeTags.BYPASSES_ARMOR))amount*=.4F;boolean hit=super.hurt(source,amount);if(hit&&kind==InfectedKind.SIEGE_BEAST&&level() instanceof ServerLevel server&&tickCount-lastSiegeHurtFx>=8){lastSiegeHurtFx=tickCount;dev.hui.enderinfection.particle.SiegeEffects.wound(server,this);}if(hit&&isAlive()&&source.getEntity() instanceof LivingEntity attacker)FactionAI.alert(this,attacker);return hit;}
     @Override protected void registerGoals() {
         goalSelector.addGoal(0,new FloatGoal(this)); goalSelector.addGoal(1,new CombatGoal());
         goalSelector.addGoal(5,new WaterAvoidingRandomStrollGoal(this,.7){@Override public boolean canUse(){return !kind.stationary()&&kind!=InfectedKind.SPOREWING_SCOUT&&super.canUse();}});
         goalSelector.addGoal(3,new FactionAI.GuardMotherGoal(this));
         goalSelector.addGoal(2,new BroodTactics.CargoGoal(this));
+        goalSelector.addGoal(2,new dev.hui.enderinfection.rift.RiftCombat.GuardAnchorGoal(this));
         goalSelector.addGoal(2,new FactionAI.InvestigateGoal(this));
         factionHunt=new FactionAI.HuntGoal(this);
         factionMotion=new FactionAI.Motion(this,factionHunt);
@@ -255,7 +259,7 @@ public final class InfectedMob extends Monster implements GeoEntity {
         attackMode=pickMode();attackTick=0;waveVictims.clear();entityData.set(ATTACKING,true);getNavigation().stop();
         setDeltaMovement(0,getDeltaMovement().y,0);
         triggerAnim("action","special");
-        if(attackMode==AttackMode.SLAM&&!kind.designed()&&level() instanceof ServerLevel)dev.hui.enderinfection.combat.CrystalAttacks.cast(this,kind,target,kind.hitTick);
+        if(attackMode==AttackMode.SLAM&&!kind.designed()&&!dev.hui.enderinfection.rift.RiftCombat.unit(this)&&level() instanceof ServerLevel)dev.hui.enderinfection.combat.CrystalAttacks.cast(this,kind,target,kind.hitTick);
         if(kind==InfectedKind.SIEGE_BEAST&&level() instanceof ServerLevel server)dev.hui.enderinfection.particle.SiegeEffects.begin(server,this,forward);
         else level().playSound(null,blockPosition(),SoundEvents.AMETHYST_BLOCK_CHIME,SoundSource.HOSTILE,1,.65F);
     }
@@ -273,7 +277,7 @@ public final class InfectedMob extends Monster implements GeoEntity {
         }
         if(kind.early()&&personalBiomass>=40&&!attacking()&&evolve(server))return;
         FactionAI.support(this);
-        if(!isNoAi())dev.hui.enderinfection.design.DesignBehavior.tick(this,server);
+        if(!isNoAi()){dev.hui.enderinfection.design.DesignBehavior.tick(this,server);dev.hui.enderinfection.rift.RiftCombat.tick(this,server);}
         if (cooldown>0)cooldown--;
         if (!attacking()){if(kind==InfectedKind.SIEGE_BEAST)dev.hui.enderinfection.particle.SiegeEffects.idle(server,this);return;}
         attackTick++;getNavigation().stop();
@@ -329,6 +333,7 @@ public final class InfectedMob extends Monster implements GeoEntity {
         return FactionAI.enemy(this,target);
     }
     private void impact(ServerLevel server){
+        if(dev.hui.enderinfection.rift.RiftCombat.unit(this)){dev.hui.enderinfection.rift.RiftCombat.impact(this,server);return;}
         if(kind.designed()){dev.hui.enderinfection.design.DesignBehavior.impact(this,server);return;}
         switch(attackMode){
             case ROAR->roar(server);
@@ -546,7 +551,9 @@ public final class InfectedMob extends Monster implements GeoEntity {
         }));
         var action=new AnimationController<InfectedMob>(this,"action",0,state->PlayState.STOP).setAnimationSpeedHandler(entity->entity.emerging()?(double)entity.morphSpeed():1.0).triggerableAnim("special",RawAnimation.begin().thenPlay(prefix+"special")).triggerableAnim("infection",RawAnimation.begin().thenPlay(prefix+"infection"));
         if(kind==InfectedKind.SIEGE_BEAST||kind.designed()||kind==InfectedKind.SKELETON||kind==InfectedKind.CORE)action.triggerableAnim("death",RawAnimation.begin().thenPlay(prefix+"death"));
+        if(dev.hui.enderinfection.rift.RiftCombat.unit(this))action.triggerableAnim("phase",RawAnimation.begin().thenPlay(prefix+"phase"));
         controllers.add(action);
+        if(kind==InfectedKind.ANCHOR_GUARD)controllers.add(new AnimationController<>(this,"rift_shell",2,state->{if(attacking()||emerging())return PlayState.STOP;return state.setAndContinue(RawAnimation.begin().thenLoop(prefix+(riftExposed()?"exposed":"closed")));}));
     }
     private final class CombatGoal extends Goal{
         CombatGoal(){setFlags(EnumSet.of(Flag.MOVE,Flag.LOOK));}
@@ -558,8 +565,9 @@ public final class InfectedMob extends Monster implements GeoEntity {
             if(attacking())return;LivingEntity target=getTarget();if(target==null)return;
             getLookControl().setLookAt(target,25,25);double distance=distanceTo(target);
             boolean ranged=kind.ranged();
+            if(dev.hui.enderinfection.rift.RiftCombat.combatStep(InfectedMob.this,target))return;
             if (broodTactics != null && broodTactics.position(target, cooldown == 0, factionHunt.pursuitPoint(target))) return;
-            if ((!kind.designed() || kind == InfectedKind.SHIELD_SENTINEL || kind == InfectedKind.WALKING_NEST
+            if (!dev.hui.enderinfection.rift.RiftCombat.unit(InfectedMob.this)&&(!kind.designed() || kind == InfectedKind.SHIELD_SENTINEL || kind == InfectedKind.WALKING_NEST
                 || kind == InfectedKind.SPIDER_MOTHER) && InfectionBlink.pursue(InfectedMob.this,target,ranged))return;
             if(ranged){
                 if(!hasLineOfSight(target)){if(!kind.stationary())factionMotion.chase(target,true);return;}
@@ -572,9 +580,9 @@ public final class InfectedMob extends Monster implements GeoEntity {
                 else if(clear&&!kind.stationary())factionMotion.chase(target,true);
                 return;
             }
-            double specialReach=switch(kind){case COW->10;case PIG->7;case SHEEP->5;case SPIDER,ENDERMAN->8;case BURROWER->4.8;case SIEGEBREAKER->6;default->kind.radius;};
+            double specialReach=switch(kind){case COW->10;case PIG->7;case SHEEP->5;case SPIDER->8;case BURROWER->4.8;case SIEGEBREAKER->6;default->kind.radius;};
             double reach=kind==InfectedKind.CORE?(motherStage()==1?8:motherStage()==2?16:motherStage()==5?22:motherStage()==4?16:20):kind==InfectedKind.SIEGE_BEAST?18:specialReach;
-            boolean inReach=kind.designed()?dev.hui.enderinfection.design.DesignBehavior.withinMeleeReach(InfectedMob.this,target,reach):distance<=reach;
+            boolean inReach=(kind.designed()||dev.hui.enderinfection.rift.RiftCombat.unit(InfectedMob.this))?dev.hui.enderinfection.design.DesignBehavior.withinMeleeReach(InfectedMob.this,target,reach):distance<=reach;
             if(cooldown==0&&Math.abs(target.getY()-getY())<3&&inReach&&hasLineOfSight(target))startAttack(target);
             else if(kind.stationary())getNavigation().stop();
             else factionMotion.chase(target,false);

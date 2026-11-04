@@ -3,9 +3,9 @@
   "geometry_files": 40,
   "validated_faces": 62250,
   "obj_files": 90,
-  "glow_masks": 45,
-  "creature_glow_textures": 34,
-  "crystal_pixels": 19329,
+  "glow_masks": 46,
+  "creature_glow_textures": 35,
+  "crystal_pixels": 23145,
   "missing_crystal_pixels": 0,
   "non_crystal_glow_pixels": 0,
   "legacy_creature_glow": [
@@ -32,12 +32,6 @@
       "source": "colored_units/infected_spider_colored.bbmodel",
       "crystal_elements": 2,
       "crystal_pixels": 38
-    },
-    {
-      "runtime": "infected_enderman",
-      "source": "colored_units/infected_enderman_colored.bbmodel",
-      "crystal_elements": 3,
-      "crystal_pixels": 72
     },
     {
       "runtime": "infected_cow_early",
@@ -70,16 +64,36 @@
       "crystal_pixels": 72
     },
     {
-      "runtime": "infected_enderman_early",
-      "source": "colored_units/infected_enderman_early_colored.bbmodel",
-      "crystal_elements": 4,
-      "crystal_pixels": 72
-    },
-    {
       "runtime": "infected_zombie_early",
       "source": "colored_units/infected_zombie_early_colored.bbmodel",
       "crystal_elements": 4,
       "crystal_pixels": 72
+    }
+  ],
+  "rift_models": [
+    {
+      "runtime": "infected_enderman_early",
+      "cubes": 59,
+      "bones": 16,
+      "emissive_pixels": 270,
+      "unused_emissive_texels": 0,
+      "height": 3.2
+    },
+    {
+      "runtime": "infected_enderman",
+      "cubes": 153,
+      "bones": 22,
+      "emissive_pixels": 852,
+      "unused_emissive_texels": 0,
+      "height": 3.6
+    },
+    {
+      "runtime": "infected_anchor_guard",
+      "cubes": 185,
+      "bones": 23,
+      "emissive_pixels": 2838,
+      "unused_emissive_texels": 694,
+      "height": 2.75
     }
   ],
   "mapped_source_models": 61,

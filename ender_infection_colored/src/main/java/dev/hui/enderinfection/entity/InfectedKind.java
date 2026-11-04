@@ -29,7 +29,8 @@ public enum InfectedKind {
     EARLY_SKELETON("skeleton_early",36,.23,5,16,32,12,.65F,2F),
     EARLY_SPIDER("spider_early",36,.27,6,12,26,2.2,1.4F,.9F),
     EARLY_ENDERMAN("enderman_early",60,.25,9,12,26,2.6,.65F,3.2F),
-    EARLY_ZOMBIE("zombie_early",36,.23,6,12,26,2,.65F,1.95F);
+    EARLY_ZOMBIE("zombie_early",36,.23,6,12,26,2,.65F,1.95F),
+    ANCHOR_GUARD("anchor_guard",180,.19,12,16,40,3.3,2.5F,2.75F);
     public boolean designed(){return ordinal()>=FORAGER.ordinal()&&ordinal()<=BURROW_KING.ordinal();}
     public boolean stationary(){return this==CORE||this==HATCH_SAC||this==ROOT_TURRET;}
     public boolean ranged(){return this==SKELETON||this==EARLY_SKELETON||this==SPOREWING_SCOUT||this==THROAT_SPITTER||this==ROOT_TURRET||this==RESONANCE_PRIEST||this==BURROW_KING;}

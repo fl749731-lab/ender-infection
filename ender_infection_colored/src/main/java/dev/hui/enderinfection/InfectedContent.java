@@ -136,6 +136,8 @@ public final class InfectedContent {
             STAGE_EGGS.values().forEach(egg->output.accept(egg.get()));
             EGGS.values().forEach(egg->output.accept(egg.get()));
             output.accept(NEST_ITEM.get());
+            output.accept(dev.hui.enderinfection.rift.RiftContent.ANCHOR_ITEM.get());
+            output.accept(dev.hui.enderinfection.rift.RiftContent.SUPPRESSOR.get());
             output.accept(RESONANT_ORE.get());
             output.accept(DEEPSLATE_RESONANT_ORE.get());
             output.accept(EMBER_CRYSTAL_ORE.get());

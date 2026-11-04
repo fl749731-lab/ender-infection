@@ -38,7 +38,7 @@ final class InfectionBlink {
                     FactionAI.alert(mob, attacker);
                 }
             }
-            if (ready(mob, level)) search(mob, level, mob.position(), 3, 7, null, 120);
+            if (!(mob instanceof InfectedMob unit&&dev.hui.enderinfection.rift.RiftCombat.unit(unit))&&ready(mob, level)) search(mob, level, mob.position(), 3, 7, null, 120);
         }
         return true;
     }

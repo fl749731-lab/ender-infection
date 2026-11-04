@@ -55,7 +55,7 @@ public final class FactionAI {
         return units.size()>=5&&units.size()%4==1?"patrol":"hunter";
     }
     public static void inheritOrders(Mob from,Mob to){
-        for(String key:new String[]{"ColonyMother","ColonyDuty","DefendingMother","DefendUntil","DefendPoint","CommandTarget","CommandUntil","SearchPos","SearchUntil","BroodHost","BroodTactic","PendingColonyBiomass"})if(from.getPersistentData().contains(key))to.getPersistentData().put(key,from.getPersistentData().get(key).copy());
+        for(String key:new String[]{"ColonyMother","ColonyDuty","DefendingMother","DefendUntil","DefendPoint","CommandTarget","CommandUntil","SearchPos","SearchUntil","BroodHost","BroodTactic","PendingColonyBiomass","RiftAnchor","RiftSuppressedUntil"})if(from.getPersistentData().contains(key))to.getPersistentData().put(key,from.getPersistentData().get(key).copy());
     }
     private static boolean emerging(Mob mob){return mob instanceof InfectedMob unit&&unit.emerging()||mob instanceof MutantZombie mutant&&mutant.emerging();}
     private static Vec3 defenseCenter(Mob mob){
@@ -93,6 +93,7 @@ public final class FactionAI {
     }
     static boolean recalled(Mob mob) { return defendedMother(mob) != null; }
     private static boolean inDutyRange(Mob mob,LivingEntity target){
+        if(mob instanceof InfectedMob rift&&!dev.hui.enderinfection.rift.RiftCombat.accepts(rift,target))return false;
         if (mob instanceof InfectedMob unit && unit.kind.designed()
             && !BroodTactics.accepts(unit, target, urgent(mob, target))) return false;
         if(defendedMother(mob)!=null){

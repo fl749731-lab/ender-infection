@@ -10,10 +10,9 @@ import net.minecraft.world.phys.*;
 import net.minecraft.world.phys.shapes.*;
 
 public final class LabPartBlock extends Block {
-    @Override protected net.minecraft.world.ItemInteractionResult useItemOn(net.minecraft.world.item.ItemStack stack,BlockState s,Level level,BlockPos pos,Player player,InteractionHand hand,BlockHitResult hit){
-        return netResult(use(s,level,pos,player,hand,hit));
-    }
-    @Override protected InteractionResult useWithoutItem(BlockState s,Level level,BlockPos pos,Player player,BlockHitResult hit){return use(s,level,pos,player,InteractionHand.MAIN_HAND,hit);}
+    @Override protected net.minecraft.world.ItemInteractionResult useItemOn(net.minecraft.world.item.ItemStack stack,BlockState state,Level level,BlockPos pos,Player player,InteractionHand hand,BlockHitResult hit){return netResult(use(state,level,pos,player,hand,hit));}
+    @Override protected InteractionResult useWithoutItem(BlockState state,Level level,BlockPos pos,Player player,BlockHitResult hit){return use(state,level,pos,player,InteractionHand.MAIN_HAND,hit);}
+    private static net.minecraft.world.ItemInteractionResult netResult(InteractionResult result){return switch(result){case SUCCESS -> net.minecraft.world.ItemInteractionResult.SUCCESS;case CONSUME,CONSUME_PARTIAL -> net.minecraft.world.ItemInteractionResult.CONSUME;case FAIL -> net.minecraft.world.ItemInteractionResult.FAIL;default -> net.minecraft.world.ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;};}
 
     public static final DirectionProperty FACING=BlockStateProperties.HORIZONTAL_FACING;
     public static final IntegerProperty X=IntegerProperty.create("part_x",0,2),Y=IntegerProperty.create("part_y",0,2);
@@ -27,12 +26,11 @@ public final class LabPartBlock extends Block {
     @Override public VoxelShape getOcclusionShape(BlockState s,BlockGetter level,BlockPos pos){return Shapes.empty();}
     @Override public RenderShape getRenderShape(BlockState s){return RenderShape.INVISIBLE;}
     @Override public VoxelShape getShape(BlockState s,BlockGetter level,BlockPos pos,CollisionContext c){var root=anchor(pos,s);if(level instanceof Level world&&!world.hasChunkAt(root))return Shapes.empty();var a=level.getBlockState(root);return a.getBlock() instanceof LabFixtureBlock b?LabFixtureBlock.rotate(b.localShape(a,s.getValue(X)-1,s.getValue(Y)),s.getValue(FACING)):Shapes.empty();}
-    public InteractionResult use(BlockState s,Level level,BlockPos pos,Player player,InteractionHand hand,BlockHitResult hit){BlockPos a=anchor(pos,s);var state=level.getBlockState(a);return state.getBlock() instanceof LabFixtureBlock fixture ? fixture.use(state,level,a,player,hand,new BlockHitResult(hit.getLocation(),hit.getDirection(),a,hit.isInside())) : InteractionResult.PASS;}
+    public InteractionResult use(BlockState s,Level level,BlockPos pos,Player player,InteractionHand hand,BlockHitResult hit){BlockPos a=anchor(pos,s);if(!level.hasChunkAt(a))return InteractionResult.PASS;var root=level.getBlockState(a);return root.getBlock() instanceof LabFixtureBlock fixture?fixture.use(root,level,a,player,hand,new BlockHitResult(hit.getLocation(),hit.getDirection(),a,hit.isInside())):InteractionResult.PASS;}
     @Override public void onRemove(BlockState s,Level level,BlockPos pos,BlockState next,boolean moving){
         if(!s.is(next.getBlock())&&!level.isClientSide){BlockPos a=anchor(pos,s);if(level.hasChunkAt(a)&&level.getBlockEntity(a) instanceof LabFixtureEntity be&&!be.removing)level.destroyBlock(a,true);}
         super.onRemove(s,level,pos,next,moving);
     }
     @Override public BlockState rotate(BlockState s,Rotation r){return s.setValue(FACING,r.rotate(s.getValue(FACING)));}
     @Override public BlockState mirror(BlockState s,Mirror m){return m==Mirror.NONE?s:rotate(s,m.getRotation(s.getValue(FACING))).setValue(X,2-s.getValue(X));}
-    private static net.minecraft.world.ItemInteractionResult netResult(InteractionResult result){return switch(result){case SUCCESS -> net.minecraft.world.ItemInteractionResult.SUCCESS;case CONSUME,CONSUME_PARTIAL -> net.minecraft.world.ItemInteractionResult.CONSUME;case FAIL -> net.minecraft.world.ItemInteractionResult.FAIL;default -> net.minecraft.world.ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;};}
 }

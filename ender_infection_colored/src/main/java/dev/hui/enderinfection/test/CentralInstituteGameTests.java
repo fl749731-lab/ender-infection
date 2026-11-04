@@ -75,7 +75,7 @@ public final class CentralInstituteGameTests {
         h.assertTrue(jobs.halted()&&level.getBlockEntity(protectedPos)==protectedBarrel&&protectedBarrel.getItem(0).getCount()==3,"Building overwrote an existing container");
         h.assertTrue(level.getBlockState(base).isAir(),"Preflight modified the site before finding a protected container");jobs.cancel();level.removeBlock(protectedPos,false);
         var preservedTerrain=base.offset(2,2,2);level.setBlock(preservedTerrain,Blocks.STONE.defaultBlockState(),2);
-        h.assertTrue(CentralInstitute.queue(level,base,Rotation.NONE,UUID.randomUUID()),"Main queue failed");
+        long placementStarted=System.nanoTime();h.assertTrue(CentralInstitute.queue(level,base,Rotation.NONE,UUID.randomUUID()),"Main queue failed");
         guard=0;while(jobs.active()&&!jobs.halted()&&jobs.cursor()<12&&guard++<4096)jobs.process(level);
         h.assertTrue(jobs.active()&&!jobs.halted()&&jobs.cursor()>=12,"Queue did not expose an in-progress placement cursor after "+guard+" steps: "+jobs.status());
         var saved=jobs.save(new CompoundTag());int cursor=jobs.cursor();jobs.cancel();
@@ -84,6 +84,7 @@ public final class CentralInstituteGameTests {
         var completedFoundation=base.offset(8,0,8);level.setBlock(completedFoundation,Blocks.GOLD_BLOCK.defaultBlockState(),2);finish(h,restored);
         h.assertTrue(level.getBlockState(completedFoundation).is(Blocks.GOLD_BLOCK),"Resume replayed a completed chunk and destroyed a later edit");
         h.assertTrue(level.getBlockState(preservedTerrain).is(Blocks.STONE),"Outdoor underground terrain was excavated by a preserve cell");
+        System.out.println("CENTRAL_INSTITUTE_PLACEMENT_PERFORMANCE elapsed_ms="+((System.nanoTime()-placementStarted)/1_000_000)+" furniture_containers="+data.getAsJsonArray("storage_containers").size());
         verifyFinalTiles(h,data,base,completedFoundation);verifyRoomsAndDoors(h,data,base);verifyLift(h,data,base);verifyStairLandings(h,data,base);
         h.runAtTickTime(100,()->h.succeedWhen(()->{
             int lights=0;for(var item:data.getAsJsonArray("light_sources")){var light=item.getAsJsonObject();var at=base.offset(pos(light));int emission=level.getBlockState(at).getLightEmission();h.assertTrue(emission==light.get("light_level").getAsInt(),"Registered lamp emission differs at "+at);int actual=level.getBrightness(net.minecraft.world.level.LightLayer.BLOCK,at);h.assertTrue(actual>=emission,"Block lighting still pending at "+at+": actual="+actual+", expected="+emission);lights++;}
@@ -91,7 +92,7 @@ public final class CentralInstituteGameTests {
                 for(Direction face:Direction.values()){var neighbour=at.relative(face);var state=level.getBlockState(neighbour);if(state.isAir()||state.is(Blocks.LIGHT)){faces++;brightest=Math.max(brightest,level.getBrightness(net.minecraft.world.level.LightLayer.BLOCK,neighbour));}}
                 if(faces==0){enclosed++;continue;}exposed++;h.assertTrue(brightest>=12,"Visible crystal surface remains dark at "+at+": exposed_faces="+faces+", brightest_air_face="+brightest);
             }
-            h.assertTrue(exposed+enclosed==59,"Crystal exposure coverage omitted a voxel");
+            h.assertTrue(exposed+enclosed==data.getAsJsonArray("crystal_lighting").size(),"Crystal exposure coverage omitted a voxel");
             System.out.println("CENTRAL_INSTITUTE_NATIVE_PASS rooms=48 tiles=56 cursor_resume="+cursor+" physical_lights="+lights+" exposed_crystals="+exposed+" enclosed_crystals="+enclosed);
         }));
     }
@@ -119,6 +120,22 @@ public final class CentralInstituteGameTests {
         }
         h.assertTrue(checked>400000&&parts>100,"Incomplete final central institute: "+checked+" cells, "+parts+" parts");
         System.out.println("CENTRAL_INSTITUTE_TILES checked="+checked+" multipart="+parts+" world_chunk_boundary_parts="+boundary);
+        var furnitureCategories=new HashMap<String,LabStorageInventory>();int furniture=0,staticContainers=0;
+        for(var item:data.getAsJsonArray("storage_containers")){var container=item.getAsJsonObject();var at=base.offset(pos(container));var be=level.getBlockEntity(at);
+            h.assertTrue(be instanceof LabStorageInventory&&((LabStorageInventory)be).isStorage()&&((LabStorageInventory)be).getContainerSize()==27,"Generated furniture has no 27-slot native inventory at "+at);
+            var inventory=(LabStorageInventory)be;var tag=inventory.saveInventoryTag();String table=container.get("loot_table").getAsString();
+            h.assertTrue(tag.getString("LootTable").equals(table)&&tag.getList("Items",10).isEmpty(),"Generated furniture loot was lost or eagerly unpacked at "+at);
+            h.assertTrue(BuiltInRegistries.BLOCK_ENTITY_TYPE.getKey(be.getType()).equals(id(container.get("block_entity_id").getAsString())),"Wrong generated furniture BE type at "+at);
+            if(level.getBlockState(at).getBlock() instanceof LabStorageBlock storage){staticContainers++;h.assertTrue(storage.getTicker(level,level.getBlockState(at),DesignContent.STORAGE_ENTITY.get())==null,"Single-block storage acquired a per-tick BE cost at "+at);}
+            furnitureCategories.putIfAbsent(table,inventory);furniture++;
+        }
+        h.assertTrue(furniture>0&&furnitureCategories.size()==8,"Generated furniture loot/category coverage incomplete");
+        for(var inventory:furnitureCategories.values()){inventory.unpackLootTable(null);h.assertTrue(!inventory.saveInventoryTag().getList("Items",10).isEmpty(),"Native low-value furniture loot produced no items at "+inventory.getBlockPos());}
+        System.out.println("CENTRAL_INSTITUTE_STORAGE_LAYOUT_PASS deferred_containers="+furniture+" static_no_ticker="+staticContainers+" native_loot_categories="+furnitureCategories.size());
+        int signs=0;for(var value:data.getAsJsonArray("room_signs")){var entry=value.getAsJsonObject();var at=base.offset(pos(entry));var be=level.getBlockEntity(at);
+            h.assertTrue(be instanceof net.minecraft.world.level.block.entity.SignBlockEntity,"Room label has no native sign BE at "+at);var sign=(net.minecraft.world.level.block.entity.SignBlockEntity)be;
+            for(int line=0;line<4;line++)h.assertTrue(sign.getFrontText().getMessage(line,false).getString().equals(entry.getAsJsonArray("text").get(line).getAsString()),"Native room sign text was lost/converted incorrectly at "+at+" line="+line);signs++;
+        }h.assertTrue(signs==48,"Native room sign coverage incomplete");
         var categories=new HashSet<String>();var samples=new ArrayList<BarrelBlockEntity>();
         for(var item:data.getAsJsonArray("loot_containers")){var container=item.getAsJsonObject();var at=base.offset(pos(container));var be=level.getBlockEntity(at);String table=container.get("loot_table").getAsString();
             h.assertTrue(be instanceof BarrelBlockEntity&&be.saveWithFullMetadata().getString("LootTable").equals(table),"Missing themed room supply at "+at);

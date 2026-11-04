@@ -1,0 +1,1244 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "台式离心机 | lab_centrifuge",
+  "model_identifier": "lab_centrifuge",
+  "resolution": {
+    "width": 64,
+    "height": 64
+  },
+  "elements": [
+    {
+      "name": "feet_1",
+      "uuid": "48d4cd97-b2cc-5e73-8ebe-d09ebbd94ea3",
+      "type": "cube",
+      "from": [
+        -6.0,
+        0.0,
+        -5.0
+      ],
+      "to": [
+        6.0,
+        1.0,
+        5.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            13,
+            29,
+            25,
+            30
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            13,
+            29,
+            25,
+            30
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            2,
+            35,
+            12,
+            36
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            2,
+            35,
+            12,
+            36
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            20,
+            2,
+            32,
+            12
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            20,
+            2,
+            32,
+            12
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "housing_2",
+      "uuid": "d7b0bffa-8d76-5d4e-9851-b133e0b12b50",
+      "type": "cube",
+      "from": [
+        -7.0,
+        1.0,
+        -6.0
+      ],
+      "to": [
+        7.0,
+        8.0,
+        6.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            2,
+            18,
+            16,
+            25
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            2,
+            18,
+            16,
+            25
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            20,
+            18,
+            32,
+            25
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            20,
+            18,
+            32,
+            25
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            2,
+            2,
+            16,
+            14
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            2,
+            2,
+            16,
+            14
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "control_strip_3",
+      "uuid": "0a86b7a8-f5a2-51e9-8098-35bd6f5e0dc3",
+      "type": "cube",
+      "from": [
+        -6.0,
+        3.0,
+        -6.3
+      ],
+      "to": [
+        6.0,
+        6.0,
+        -6.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            36,
+            18,
+            48,
+            21
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            36,
+            18,
+            48,
+            21
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            52,
+            18,
+            53,
+            21
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            52,
+            18,
+            53,
+            21
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            45,
+            29,
+            57,
+            30
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            45,
+            29,
+            57,
+            30
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "display_4",
+      "uuid": "90721805-4194-5d36-af1d-85d245e1c772",
+      "type": "cube",
+      "from": [
+        -5.0,
+        4.0,
+        -6.5
+      ],
+      "to": [
+        -1.0,
+        5.5,
+        -6.3
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            57,
+            18,
+            61,
+            20
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            57,
+            18,
+            61,
+            20
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            8,
+            29,
+            9,
+            31
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            8,
+            29,
+            9,
+            31
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            55,
+            35,
+            59,
+            36
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            55,
+            35,
+            59,
+            36
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "button_5",
+      "uuid": "6cf581e9-8ab4-52d4-8c96-cf0c82d680e3",
+      "type": "cube",
+      "from": [
+        2.0,
+        4.0,
+        -6.5
+      ],
+      "to": [
+        3.0,
+        5.0,
+        -6.3
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            2,
+            40,
+            3,
+            41
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            2,
+            40,
+            3,
+            41
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            2,
+            40,
+            3,
+            41
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            2,
+            40,
+            3,
+            41
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            2,
+            40,
+            3,
+            41
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            2,
+            40,
+            3,
+            41
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "button_6",
+      "uuid": "61da74ad-8436-5b62-874c-5e6054a40ead",
+      "type": "cube",
+      "from": [
+        4.0,
+        4.0,
+        -6.5
+      ],
+      "to": [
+        5.0,
+        5.0,
+        -6.3
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            2,
+            40,
+            3,
+            41
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            2,
+            40,
+            3,
+            41
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            2,
+            40,
+            3,
+            41
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            2,
+            40,
+            3,
+            41
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            2,
+            40,
+            3,
+            41
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            2,
+            40,
+            3,
+            41
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "lid_rim_7",
+      "uuid": "64142bb0-4c60-5855-8f41-a054464cba78",
+      "type": "cube",
+      "from": [
+        -5.8,
+        8.0,
+        -5.0
+      ],
+      "to": [
+        5.8,
+        9.0,
+        5.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            29,
+            29,
+            41,
+            30
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            29,
+            29,
+            41,
+            30
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            16,
+            35,
+            26,
+            36
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            16,
+            35,
+            26,
+            36
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            36,
+            2,
+            48,
+            12
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            36,
+            2,
+            48,
+            12
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "lid_window_8",
+      "uuid": "e9499e24-1135-50be-a3be-90ec725c56e8",
+      "type": "cube",
+      "from": [
+        -4.5,
+        9.0,
+        -3.7
+      ],
+      "to": [
+        4.5,
+        9.4,
+        3.7
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            30,
+            35,
+            39,
+            36
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            30,
+            35,
+            39,
+            36
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            43,
+            35,
+            51,
+            36
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            43,
+            35,
+            51,
+            36
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            52,
+            2,
+            61,
+            10
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            52,
+            2,
+            61,
+            10
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "rotor_tube_9",
+      "uuid": "ce06fa72-23b1-5265-9451-d3ceda23240e",
+      "type": "cube",
+      "from": [
+        -3.6,
+        7.0,
+        -2.6
+      ],
+      "to": [
+        -2.4,
+        8.6,
+        -1.4
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "rotor_tube_10",
+      "uuid": "55bd59f7-ee6d-5c18-a57b-a0b7ea006934",
+      "type": "cube",
+      "from": [
+        -0.6,
+        7.0,
+        -2.6
+      ],
+      "to": [
+        0.6,
+        8.6,
+        -1.4
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "rotor_tube_11",
+      "uuid": "7972bf67-8098-5761-a0a2-b0d91385a23a",
+      "type": "cube",
+      "from": [
+        2.4,
+        7.0,
+        -2.6
+      ],
+      "to": [
+        3.6,
+        8.6,
+        -1.4
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "rotor_tube_12",
+      "uuid": "b1d4e78e-0c66-52a5-ae26-5dec939ce80a",
+      "type": "cube",
+      "from": [
+        -3.6,
+        7.0,
+        1.4
+      ],
+      "to": [
+        -2.4,
+        8.6,
+        2.6
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "rotor_tube_13",
+      "uuid": "ffc5e587-e79d-5b88-a25c-678d24353f37",
+      "type": "cube",
+      "from": [
+        -0.6,
+        7.0,
+        1.4
+      ],
+      "to": [
+        0.6,
+        8.6,
+        2.6
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "rotor_tube_14",
+      "uuid": "9837efc3-2389-5dac-84bb-92872f01e3ba",
+      "type": "cube",
+      "from": [
+        2.4,
+        7.0,
+        1.4
+      ],
+      "to": [
+        3.6,
+        8.6,
+        2.6
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            2,
+            29,
+            4,
+            31
+          ],
+          "texture": 0
+        }
+      }
+    }
+  ],
+  "outliner": [
+    {
+      "name": "root",
+      "uuid": "c641c4e8-a168-5329-bbd8-f7f039f02304",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "children": [
+        "48d4cd97-b2cc-5e73-8ebe-d09ebbd94ea3",
+        "d7b0bffa-8d76-5d4e-9851-b133e0b12b50",
+        "0a86b7a8-f5a2-51e9-8098-35bd6f5e0dc3",
+        "90721805-4194-5d36-af1d-85d245e1c772",
+        "6cf581e9-8ab4-52d4-8c96-cf0c82d680e3",
+        "61da74ad-8436-5b62-874c-5e6054a40ead",
+        "64142bb0-4c60-5855-8f41-a054464cba78",
+        "e9499e24-1135-50be-a3be-90ec725c56e8",
+        "ce06fa72-23b1-5265-9451-d3ceda23240e",
+        "55bd59f7-ee6d-5c18-a57b-a0b7ea006934",
+        "7972bf67-8098-5761-a0a2-b0d91385a23a",
+        "b1d4e78e-0c66-52a5-ae26-5dec939ce80a",
+        "ffc5e587-e79d-5b88-a25c-678d24353f37",
+        "9837efc3-2389-5dac-84bb-92872f01e3ba"
+      ],
+      "export": true,
+      "isOpen": false,
+      "visibility": true
+    }
+  ],
+  "textures": [
+    {
+      "name": "lab_centrifuge.png",
+      "uuid": "35601d16-e6af-59f7-bcc1-97514ffa2b07",
+      "id": "0",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACqElEQVR4nO2aMUwbMRSGfacDUdGBInGU0KFITCwlA2JmT5YuLAwIqlYqS3eWLlmYWBiKBGIAJCSEkMjCQtdWqA0wMCHB0AZxSLQDUREMQRdx13eOffd8l5AQv29Inhz/Vp79/PziC2OaY3iG8/dP2bM7O9qEnUs3d1VtdtcLfwyX9FjGH8fuSwnHcc6Lvl34mg/oP+fmyn0vbbQDH6YnA/qzf7cZ933v6ESqmRodynu2yTuvCtRC57FAjeu8qv7L0kqZdz6K5e/Hfj+LNSE/fh5U3lMpcQQVi/8jSETY6vNYrElxLi6lE+B+Zvf2JHI8dAJKYK/DfABtUT4I2+swH8hyA8R1EK40nIzh9BtWK0ymOSbTHCuqA2Y7YJBtByyy7dCyEeBcXEo/Oygctv4E2IIsH5UEYYETBuxnicJZluFl20EW2jDsMe3YlQ2LDuwk1CUCdtcXA2UpBlgKb2+uKevjaCCG+1K6uQ6UoJgzPpgQnyf6Eo3ETOrAU3aeIFjt7wNUx+H1mdUtXz8yOCDU75+c+nZ+4m2Vnm/r7n8VyHFXv38ZdbkPcGKMAzXQeSxQ49mwjXeebzOZ5pisxYHhLmozokJXZR/HGYc/SuuRA8Iwmm0CHhuTaY71WPcBUT+kGhoBNncWqwDDN844VEoTjcXwjGxuo5LBd2bHq8pI/ixN+vjr/cwnX495+LG4MF/TcrkqB2QfnOdtr2SEpWPSx1/QeSxQk7RcTnwMFrjVVNXwq4kBalSKHCVNNrdRhqsf9mOCIFoHQzWzx83o/N5X/SMDRsP3D7sICSTBtEJmj5vRYd84f2TAaGD/qIuQwAQUFDJ73IwO+75+1q78BAejgf2j7gEIguPdt49anvcmdF7XSaigtfMEQRAEQRAEQRAEQRAEQRAE04N7q4Z8IduauasAAAAASUVORK5CYII=",
+      "mode": "bitmap",
+      "width": 64,
+      "height": 64,
+      "uv_width": 64,
+      "uv_height": 64,
+      "render_mode": "default"
+    }
+  ],
+  "animations": [],
+  "notes": "Original concept conversion. 16 units = 1 block. Editable cuboids, embedded native-density UV atlas. Design source 2026-11-02. Game integration is separate.",
+  "texture_width": 64,
+  "texture_height": 64
+}

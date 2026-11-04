@@ -1,0 +1,1877 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "医疗隔帘 | lab_privacy_curtain",
+  "model_identifier": "lab_privacy_curtain",
+  "resolution": {
+    "width": 64,
+    "height": 64
+  },
+  "elements": [
+    {
+      "name": "curtain_track_1",
+      "uuid": "a82cdcdf-99e7-5022-b2c9-30311270cb96",
+      "type": "cube",
+      "from": [
+        -8.0,
+        30.0,
+        -1.0
+      ],
+      "to": [
+        8.0,
+        31.5,
+        1.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            2,
+            35,
+            18,
+            37
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            2,
+            35,
+            18,
+            37
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            34,
+            35,
+            36,
+            37
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            34,
+            35,
+            36,
+            37
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            2,
+            35,
+            18,
+            37
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            2,
+            35,
+            18,
+            37
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "cloth_2",
+      "uuid": "709f3343-6f41-5efd-a298-a9a725d8f3d0",
+      "type": "cube",
+      "from": [
+        -7.4,
+        1.0,
+        -0.35
+      ],
+      "to": [
+        -0.1,
+        29.5,
+        0.35
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            2,
+            2,
+            10,
+            31
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            2,
+            2,
+            10,
+            31
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            14,
+            2,
+            15,
+            31
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            14,
+            2,
+            15,
+            31
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            45,
+            35,
+            53,
+            36
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            45,
+            35,
+            53,
+            36
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "fabric_fold_3",
+      "uuid": "1f41c374-943d-5a59-93e2-f0924d2ebab6",
+      "type": "cube",
+      "from": [
+        -6.800000000000001,
+        1.0,
+        -0.55
+      ],
+      "to": [
+        -6.620000000000001,
+        29.0,
+        0.55
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "fabric_fold_4",
+      "uuid": "eb83ecee-1b94-5870-911c-5376b1227cfa",
+      "type": "cube",
+      "from": [
+        -5.8500000000000005,
+        1.0,
+        -0.55
+      ],
+      "to": [
+        -5.670000000000001,
+        29.0,
+        0.55
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "fabric_fold_5",
+      "uuid": "900306ff-822d-589e-b4c6-512ecc637846",
+      "type": "cube",
+      "from": [
+        -4.9,
+        1.0,
+        -0.55
+      ],
+      "to": [
+        -4.720000000000001,
+        29.0,
+        0.55
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "fabric_fold_6",
+      "uuid": "1c2c3b4c-f75b-56fa-8948-99171ea03535",
+      "type": "cube",
+      "from": [
+        -3.95,
+        1.0,
+        -0.55
+      ],
+      "to": [
+        -3.77,
+        29.0,
+        0.55
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "fabric_fold_7",
+      "uuid": "943fcb39-8167-52db-b748-6c921e4e1005",
+      "type": "cube",
+      "from": [
+        -3.0,
+        1.0,
+        -0.55
+      ],
+      "to": [
+        -2.82,
+        29.0,
+        0.55
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "fabric_fold_8",
+      "uuid": "04435a3b-3471-5368-9a30-92f0eea1a660",
+      "type": "cube",
+      "from": [
+        -2.05,
+        1.0,
+        -0.55
+      ],
+      "to": [
+        -1.8699999999999999,
+        29.0,
+        0.55
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "fabric_fold_9",
+      "uuid": "1d9ee66b-9f5b-5ddf-9ea7-20f60605caeb",
+      "type": "cube",
+      "from": [
+        -1.0999999999999996,
+        1.0,
+        -0.55
+      ],
+      "to": [
+        -0.9199999999999997,
+        29.0,
+        0.55
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "fabric_fold_10",
+      "uuid": "2df476c6-091c-54e0-941e-5e2a51a490ed",
+      "type": "cube",
+      "from": [
+        -0.14999999999999947,
+        1.0,
+        -0.55
+      ],
+      "to": [
+        -0.1,
+        29.0,
+        0.55
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "cloth_header_11",
+      "uuid": "b38f38df-2282-5bf0-acdd-20ae00ebe54e",
+      "type": "cube",
+      "from": [
+        -7.4,
+        27.0,
+        -0.6
+      ],
+      "to": [
+        -0.1,
+        29.5,
+        0.6
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            30,
+            2,
+            38,
+            5
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            30,
+            2,
+            38,
+            5
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            42,
+            2,
+            44,
+            5
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            42,
+            2,
+            44,
+            5
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            22,
+            35,
+            30,
+            37
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            22,
+            35,
+            30,
+            37
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "cloth_12",
+      "uuid": "a0e1dedb-1064-58e6-a0e2-60662a3fd563",
+      "type": "cube",
+      "from": [
+        0.1,
+        1.0,
+        -0.35
+      ],
+      "to": [
+        7.4,
+        29.5,
+        0.35
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            2,
+            2,
+            10,
+            31
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            2,
+            2,
+            10,
+            31
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            14,
+            2,
+            15,
+            31
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            14,
+            2,
+            15,
+            31
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            45,
+            35,
+            53,
+            36
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            45,
+            35,
+            53,
+            36
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "fabric_fold_13",
+      "uuid": "fc3099dd-6a1f-5123-b9ca-b02b7a6855b5",
+      "type": "cube",
+      "from": [
+        0.7,
+        1.0,
+        -0.55
+      ],
+      "to": [
+        0.8799999999999999,
+        29.0,
+        0.55
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "fabric_fold_14",
+      "uuid": "176172e8-bb8f-547f-b011-c1efd91e80d0",
+      "type": "cube",
+      "from": [
+        1.65,
+        1.0,
+        -0.55
+      ],
+      "to": [
+        1.8299999999999998,
+        29.0,
+        0.55
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "fabric_fold_15",
+      "uuid": "4407a593-2e85-55ac-a4c3-373b7809ef91",
+      "type": "cube",
+      "from": [
+        2.5999999999999996,
+        1.0,
+        -0.55
+      ],
+      "to": [
+        2.78,
+        29.0,
+        0.55
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "fabric_fold_16",
+      "uuid": "28b811c2-62ac-58f8-a129-63c384806ded",
+      "type": "cube",
+      "from": [
+        3.55,
+        1.0,
+        -0.55
+      ],
+      "to": [
+        3.73,
+        29.0,
+        0.55
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "fabric_fold_17",
+      "uuid": "b8974536-d9fe-5c30-a5e1-575b02b769e4",
+      "type": "cube",
+      "from": [
+        4.5,
+        1.0,
+        -0.55
+      ],
+      "to": [
+        4.68,
+        29.0,
+        0.55
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "fabric_fold_18",
+      "uuid": "47e4a41d-0003-5068-80d1-2773ad483537",
+      "type": "cube",
+      "from": [
+        5.45,
+        1.0,
+        -0.55
+      ],
+      "to": [
+        5.63,
+        29.0,
+        0.55
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "fabric_fold_19",
+      "uuid": "27e4de34-f300-5ff0-a98a-eace84a8438f",
+      "type": "cube",
+      "from": [
+        6.3999999999999995,
+        1.0,
+        -0.55
+      ],
+      "to": [
+        6.579999999999999,
+        29.0,
+        0.55
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "fabric_fold_20",
+      "uuid": "bc33394e-d1b0-50a2-b690-63d54bfa32f3",
+      "type": "cube",
+      "from": [
+        7.35,
+        1.0,
+        -0.55
+      ],
+      "to": [
+        7.4,
+        29.0,
+        0.55
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            25,
+            2,
+            26,
+            30
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            19,
+            2,
+            21,
+            30
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            40,
+            35,
+            41,
+            37
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "cloth_header_21",
+      "uuid": "838ca4f8-544f-563c-893a-533e0df6beec",
+      "type": "cube",
+      "from": [
+        0.1,
+        27.0,
+        -0.6
+      ],
+      "to": [
+        7.4,
+        29.5,
+        0.6
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            30,
+            2,
+            38,
+            5
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            30,
+            2,
+            38,
+            5
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            42,
+            2,
+            44,
+            5
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            42,
+            2,
+            44,
+            5
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            22,
+            35,
+            30,
+            37
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            22,
+            35,
+            30,
+            37
+          ],
+          "texture": 0
+        }
+      }
+    }
+  ],
+  "outliner": [
+    {
+      "name": "root",
+      "uuid": "20448cef-32cc-592a-ac93-241968162081",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "children": [
+        "a82cdcdf-99e7-5022-b2c9-30311270cb96",
+        {
+          "name": "curtain_left",
+          "uuid": "c858dbf6-e44c-5db1-a25c-2043df0ec4db",
+          "origin": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "children": [
+            "709f3343-6f41-5efd-a298-a9a725d8f3d0",
+            "1f41c374-943d-5a59-93e2-f0924d2ebab6",
+            "eb83ecee-1b94-5870-911c-5376b1227cfa",
+            "900306ff-822d-589e-b4c6-512ecc637846",
+            "1c2c3b4c-f75b-56fa-8948-99171ea03535",
+            "943fcb39-8167-52db-b748-6c921e4e1005",
+            "04435a3b-3471-5368-9a30-92f0eea1a660",
+            "1d9ee66b-9f5b-5ddf-9ea7-20f60605caeb",
+            "2df476c6-091c-54e0-941e-5e2a51a490ed",
+            "b38f38df-2282-5bf0-acdd-20ae00ebe54e"
+          ],
+          "export": true,
+          "isOpen": false,
+          "visibility": true
+        },
+        {
+          "name": "curtain_right",
+          "uuid": "6e667242-7fc5-5e1e-bac6-309520f25210",
+          "origin": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ],
+          "children": [
+            "a0e1dedb-1064-58e6-a0e2-60662a3fd563",
+            "fc3099dd-6a1f-5123-b9ca-b02b7a6855b5",
+            "176172e8-bb8f-547f-b011-c1efd91e80d0",
+            "4407a593-2e85-55ac-a4c3-373b7809ef91",
+            "28b811c2-62ac-58f8-a129-63c384806ded",
+            "b8974536-d9fe-5c30-a5e1-575b02b769e4",
+            "47e4a41d-0003-5068-80d1-2773ad483537",
+            "27e4de34-f300-5ff0-a98a-eace84a8438f",
+            "bc33394e-d1b0-50a2-b690-63d54bfa32f3",
+            "838ca4f8-544f-563c-893a-533e0df6beec"
+          ],
+          "export": true,
+          "isOpen": false,
+          "visibility": true
+        }
+      ],
+      "export": true,
+      "isOpen": false,
+      "visibility": true
+    }
+  ],
+  "textures": [
+    {
+      "name": "lab_privacy_curtain.png",
+      "uuid": "730b5224-fc38-524b-8ac5-6d9e114c3b20",
+      "id": "0",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABtUlEQVR4nO3asUoDQRAG4MmwQiAW2iiGCL6DVSrfQCxEEPsU2tj6BGlttLCXgFiIb2CVynewkIPEQgsFOyXFHpPL3N1ecuJd5v8gyTLMZXNhZ++WWyLjGr5xfH3349s7nc2ZxP7+Xpzr8wenRzOxyacWT8bGH+9xf63mykx/reaqmr+xtj4VXxTLH57l4vEpzvH58ri8tozJk0/z9f2p5occW/gPsIzJONaCL6+j+PUXQupYzgEyv+w5wNE/KXoiZZ+4x2Scy0sILQPt0pkVrwom45iMc9owzRv2VR/WRTAZx2Scm7wNh89TwW53N7MckvlpeVnxqmAyjsk4N3nb2u6kDnFZDl4yv86YjGMyzmlBOcS1GX+ZMBnHZJzLWwtoM762FsByuKaYjHNaUA7n0Hv5tKtF1a8iTMYxGee0YS5LQJvdtbJIWx9Ufd3AZX2RfPiptZMPR5fy6TBA/TR8o3d2HpdAu91Wk6MoUuPj0Rs93N8utAHC939zdRm8ESO0XHMnwZ44+XkdHJ7MvQFC9i/beRsxQjZzLN19wCBg4i0yAhp1LAEAAAAAAAAAAAAAAAAAKuwXlvvOExluiMcAAAAASUVORK5CYII=",
+      "mode": "bitmap",
+      "width": 64,
+      "height": 64,
+      "uv_width": 64,
+      "uv_height": 64,
+      "render_mode": "default"
+    }
+  ],
+  "animations": [],
+  "notes": "Original concept conversion. 16 units = 1 block. Editable cuboids, embedded native-density UV atlas. Design source 2026-11-02. Game integration is separate.",
+  "texture_width": 64,
+  "texture_height": 64
+}

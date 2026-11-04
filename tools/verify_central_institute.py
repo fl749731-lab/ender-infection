@@ -20,6 +20,8 @@ RESOURCES = ROOT / "ender_infection_colored/src/main/resources"
 FACINGS = {"north": (0, -1), "south": (0, 1), "west": (-1, 0), "east": (1, 0)}
 FACES_3D = {"north": (0, 0, -1), "south": (0, 0, 1), "west": (-1, 0, 0), "east": (1, 0, 0), "up": (0, 1, 0), "down": (0, -1, 0)}
 AIR = {"minecraft:air", "minecraft:cave_air", "minecraft:void_air"}
+STORAGE_FIXTURES = {"lab_cabinet", "lab_workbench", "lab_glass_cabinet", "lab_cryo_cabinet", "lab_server_rack", "lab_control_console"}
+STORAGE_DETAILS = {"lab_freezer", "lab_storage_crate", "lab_shelf", "lab_rolling_cart", "lab_sink"}
 
 
 class InvalidInstitute(AssertionError):
@@ -110,8 +112,9 @@ class Model:
         if name in AIR or name == "minecraft:light":
             return True
         if name.endswith("lab_fixture_part"):
-            return "lab_door" in self.state(self.part_anchor(pos, properties))[0]
-        if "lab_door" in name or name.endswith("_door"):
+            root_name = self.state(self.part_anchor(pos, properties))[0]
+            return "lab_door" in root_name or "lab_privacy_curtain" in root_name
+        if "lab_door" in name or name.endswith("_door") or "lab_privacy_curtain" in name:
             return True  # All controlled doors are evaluated in their open state.
         if name.endswith("_trapdoor"):
             return properties.get("open") == "true"
@@ -170,6 +173,7 @@ def verify(manifest, resources):
             for x in range(8, 112):
                 require(model.state((x, y, z))[0] != "minecraft:structure_void", f"Underground main-building interior was left as terrain: {(x, y, z)}")
     multipart, boundary_parts, beds = 0, 0, 0
+    actual_storage = {}
     for y in range(model.height):
         for z in range(model.length):
             for x in range(model.width):
@@ -185,8 +189,10 @@ def verify(manifest, resources):
                         boundary_parts += 1
                 elif name.startswith("ender_infection:"):
                     key = name.split(":", 1)[1].removesuffix("_eroded")
-                    height = 3 if key == "incubator" else 2 if key in {"lab_door", "lab_cabinet", "surgery_table", "lab_workbench", "lab_window"} else 1
-                    half_width = 1 if key in {"surgery_table", "lab_workbench", "lab_window"} else 0
+                    height = 3 if key == "incubator" else 2 if key in {"lab_door", "lab_cabinet", "surgery_table", "lab_workbench", "lab_window", "lab_glass_cabinet", "lab_cryo_cabinet", "lab_server_rack", "lab_control_console", "lab_privacy_curtain"} else 1
+                    half_width = 1 if key in {"surgery_table", "lab_workbench", "lab_window", "lab_control_console"} else 0
+                    if key in STORAGE_FIXTURES | STORAGE_DETAILS:
+                        actual_storage[pos] = name
                     if height > 1 or half_width:
                         dx, dz = FACINGS[props["facing"]]
                         for horizontal in range(-half_width, half_width + 1):
@@ -214,6 +220,31 @@ def verify(manifest, resources):
         require(model.entities.get(pos, {}).get("LootTable") == container["loot_table"], f"Missing/wrong room loot table at {pos}")
         namespace, key = container["loot_table"].split(":", 1)
         require((resources / "data" / namespace / "loot_tables" / (key + ".json")).is_file() or (resources / "data" / namespace / "loot_table" / (key + ".json")).is_file(), f"Unshipped loot table: {container['loot_table']}")
+    storage = manifest["storage_containers"]
+    require(storage and len({coord(item) for item in storage}) == len(storage), "Generated furniture containers are missing or duplicate")
+    require({coord(item) for item in storage} == set(actual_storage), "A real storage furniture block was omitted from the deferred-loot manifest")
+    for item in storage:
+        at = coord(item)
+        require(model.state(at)[0] == item["block"], f"Storage furniture identity differs: {item}")
+        key = item["block"].split(":", 1)[1].removesuffix("_eroded")
+        expected_id = "ender_infection:lab_fixture" if key in STORAGE_FIXTURES else "ender_infection:lab_storage"
+        entity = model.entities.get(at, {})
+        require(entity.get("id") == expected_id == item["block_entity_id"], f"Storage furniture has wrong block entity type: {item}")
+        require(entity.get("LootTable") == item["loot_table"] and not entity.get("Items"), f"Storage loot must remain deferred in the shipped NBT: {item}")
+        require(item["loot_table"].startswith("ender_infection:chests/central_institute/furniture/"), f"Furniture must use the room's low-value loot table: {item}")
+        namespace, key = item["loot_table"].split(":", 1)
+        table_file = resources / "data" / namespace / "loot_tables" / (key + ".json")
+        if not table_file.is_file():
+            table_file = resources / "data" / namespace / "loot_table" / (key + ".json")
+        require(table_file.is_file(), f"Furniture loot table was not shipped: {item['loot_table']}")
+    signs = manifest["room_signs"]
+    require(len(signs) == 48 and {item["room"] for item in signs} == {room["id"] for room in rooms}, "Expected one real labelled sign for each room")
+    for sign in signs:
+        at = coord(sign)
+        require(model.state(at)[0] == sign["block"] and model.entities.get(at, {}).get("id") == "minecraft:sign", f"Room label is not an actual sign block entity: {sign}")
+        encoded = model.entities[at].get("front_text", {}).get("messages", [])
+        text = [json.loads(line).get("text", "") for line in encoded]
+        require(text == sign["text"] and text[0].startswith(sign["room"] + " "), f"Room sign NBT/text differs from its declared room: {sign}")
     start = coord(manifest["entrance"])
     visited = model.reachable(start)
     # Inspect actual final road geometry independently of the generator source.
@@ -260,7 +291,7 @@ def verify(manifest, resources):
         at = coord(landing)
         require("lift" in model.state(at)[0], f"Missing actual cargo lift: {at}")
         require(model.standing((at[0], at[1] + 1, at[2])), f"Obstructed lift landing: {at}")
-    emissions = {"minecraft:sea_lantern": 15, "ender_infection:lab_light_panel": 14, "minecraft:redstone_lamp": 15, "minecraft:light": 15}
+    emissions = {"minecraft:sea_lantern": 15, "ender_infection:lab_light_panel": 14, "ender_infection:lab_task_lamp": 14, "minecraft:redstone_lamp": 15, "minecraft:light": 15}
     actual_sources = set()
     actual_crystals = set()
     for y in range(model.height):
@@ -292,7 +323,7 @@ def verify(manifest, resources):
         require(name == "minecraft:light" and distance == 2, f"Exposed crystals need an external physical fill-light at distance two: {crystal}")
         for dx, dy, dz in FACES_3D.values():
             require(model.state((at[0] + dx, at[1] + dy, at[2] + dz))[0] != "minecraft:light", f"Fill-light occupies a crystal's adjacent AIR/bud growth cell: {crystal}")
-    return {"status": "PASS", "rooms": len(rooms), "floors": dict(floors), "tiles": len(model.tiles), "explicit_voxels": model.volume, "multipart": multipart, "parts_crossing_tiles": boundary_parts, "bed_halves": beds, "loot_containers": len(containers), "reachable_standing_cells": sum(visited), "preserved_terrain_cells": counts["minecraft:structure_void"], "light_sources": len(actual_sources), "lit_crystals": len(actual_crystals)}
+    return {"status": "PASS", "rooms": len(rooms), "room_signs": len(signs), "floors": dict(floors), "tiles": len(model.tiles), "explicit_voxels": model.volume, "multipart": multipart, "parts_crossing_tiles": boundary_parts, "bed_halves": beds, "loot_containers": len(containers), "storage_containers": len(storage), "storage_by_block": dict(Counter(actual_storage.values())), "reachable_standing_cells": sum(visited), "preserved_terrain_cells": counts["minecraft:structure_void"], "light_sources": len(actual_sources), "lit_crystals": len(actual_crystals)}
 
 
 def main():

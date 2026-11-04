@@ -20,7 +20,7 @@ DEST = DATA / 'structures/central_institute'
 REPORT = ROOT / 'build/central-institute/static-validation.json'
 WIDTH, LENGTH, HEIGHT, GROUND_OFFSET = 120, 104, 55, 28
 MAX_TERRAIN_RELIEF = 8
-LAYOUT_VERSION = 'central-institute-v1'
+LAYOUT_VERSION = 'central-institute-v2'
 FLOORS = [('B3', -25), ('B2', -14), ('B1', -7), ('G1', 0), ('G2', 7), ('G3', 14)]
 AIR = ('minecraft:air', (), None)
 VOID = ('minecraft:structure_void', (), None)
@@ -44,6 +44,8 @@ class Institute:
         self.rooms = []
         self.stairs = []
         self.loot = []
+        self.storage = []
+        self.signs = []
         self.crystal_faces = []
         self.lift = {'x': 75, 'z': 39, 'landings': []}
         self.entrance = {'x': 59, 'y': 29, 'z': 87, 'facing': 'south'}
@@ -109,10 +111,10 @@ class Institute:
                     self.put(x, ceiling - 1, z, 'lab_light_panel', {'facing': 'north'})
             for x in (36, 83):
                 for z in range(9, 87):
-                    self.put(x, y, z, palette['stripe'])
+                    self.put(x, y, z, palette['accent'])
             for z in (32, 63):
                 for x in range(9, 111):
-                    self.put(x, y, z, palette['stripe'])
+                    self.put(x, y, z, palette['accent'])
         self.box(8, 21, 8, 112, 22, 88, 'lab_tile_dark')
         # Foundation plinth and roof parapet make the envelope visibly solid.
         for x in range(8, 112):
@@ -142,7 +144,8 @@ class Institute:
                 self.rooms.append({'id': r['id'], 'name': r['name'], 'floor': r['level'],
                                    'category': CATEGORIES[r['category']], 'x': ox, 'y': fy + 28,
                                    'z': oz, 'width': r['size'][0], 'height': r['ceiling_h'] + 1,
-                                   'length': r['size'][1], 'doors': doors})
+                                   'length': r['size'][1], 'doors': doors,
+                                   'layout_type': r['layout_type'], 'furniture_zones': r['modules']})
 
     def atrium(self):
         self.clear(40, 1, 36, 80, 26, 60)
@@ -390,13 +393,63 @@ class Institute:
                                   ('ender_infection:lab_light_panel', 'minecraft:potted_fern')).lower()
             self.put(x, y, z, 'minecraft:iron_bars', props)
 
+    def add_room_signs(self):
+        """One real, readable wall sign per room, mounted beside its entry."""
+        for r in self.rooms:
+            y = r['y'] - 28 + 3
+            candidates = []
+            for door in r['doors']:
+                x, z = door['x'], door['z']
+                if x in (r['x'], r['x'] + r['width'] - 1):
+                    dx = 1 if x == r['x'] else -1
+                    for offset in (-3, 3, -4, 4, -5, 5):
+                        candidates.append(((x + dx, y, z + offset), (x, y, z + offset), 'east' if dx == 1 else 'west'))
+                else:
+                    dz = 1 if z == r['z'] else -1
+                    for offset in (-3, 3, -4, 4, -5, 5):
+                        candidates.append(((x + offset, y, z + dz), (x + offset, y, z), 'south' if dz == 1 else 'north'))
+            chosen = next(((p, face) for p, support, face in candidates
+                           if r['x'] < p[0] < r['x'] + r['width'] - 1 and r['z'] < p[2] < r['z'] + r['length'] - 1
+                           and self.grid.get(p, VOID)[0] == 'minecraft:air'
+                           and self.grid.get(support, AIR)[0] not in ('minecraft:air', 'ender_infection:lab_fixture_part')
+                           and self.grid.get(support, AIR)[0].split(':')[1] not in spec.FIXTURES), None)
+            assert chosen, ('room has no clear wall sign location', r['id'])
+            p, face = chosen
+            lines = [r['id'] + ' ' + r['name'], r['floor'] + ' / 中央研究所', '设备样本请归位', '保持通道畅通']
+            nbt = {'id': (8, 'minecraft:sign'), 'front_text': (10, {
+                    'messages': (9, (8, [json.dumps({'text': text}, ensure_ascii=False) for text in lines])),
+                    'color': (8, 'black'), 'has_glowing_text': (1, 0)}), 'is_waxed': (1, 1)}
+            self.put(*p, 'minecraft:birch_wall_sign', {'facing': face, 'waterlogged': 'false'}, nbt)
+            self.signs.append(dict(zip(('x','y','z'), xyz(*p)), room=r['id'], block='minecraft:birch_wall_sign', text=lines))
+
+    def assign_storage_loot(self):
+        """All placed storage roots own data, including the shared reception."""
+        for p, value in list(self.grid.items()):
+            block = value[0]
+            if not block.startswith(spec.NS):
+                continue
+            base = block.split(':')[1].replace('_eroded', '')
+            if base not in spec.STORAGE_FIXTURES | spec.STORAGE_DETAILS:
+                continue
+            x, y, z = p
+            room = next((r for r in self.rooms if r['x'] <= x < r['x'] + r['width']
+                         and r['z'] <= z < r['z'] + r['length'] and r['y'] - 28 < y < r['y'] - 28 + r['height']), None)
+            floor = room['floor'] if room else max((f for f in FLOORS if f[1] < y), key=lambda f: f[1])[0]
+            category = room['category'] if room else 'public'
+            table = 'ender_infection:chests/central_institute/furniture/' + category
+            entity_id = 'ender_infection:lab_fixture' if base in spec.STORAGE_FIXTURES else 'ender_infection:lab_storage'
+            self.grid[p] = state(block, dict(value[1]), table)
+            self.storage.append(dict(zip(('x','y','z'), xyz(*p)), room=room['id'] if room else 'COMMON_' + floor,
+                    floor=floor, category=category, block=block, block_entity_id=entity_id, loot_table=table))
+
     def lighting(self):
         sources = []
         for (x, y, z), value in self.grid.items():
-            strength = int(dict(value[1]).get('level', 0)) if value[0] == 'minecraft:light' else 15 if value[0] == 'minecraft:sea_lantern' or (value[0] == 'minecraft:redstone_lamp' and dict(value[1]).get('lit') == 'true') else 14 if value[0] == 'ender_infection:lab_light_panel' else 0
+            strength = int(dict(value[1]).get('level', 0)) if value[0] == 'minecraft:light' else 15 if value[0] == 'minecraft:sea_lantern' or (value[0] == 'minecraft:redstone_lamp' and dict(value[1]).get('lit') == 'true') else 14 if value[0] in ('ender_infection:lab_light_panel','ender_infection:lab_task_lamp') else 0
             if strength:
                 sources.append({'x': x, 'y': y + 28, 'z': z, 'block': value[0], 'light_level': strength})
-        assert len(self.crystal_faces) == 59, ('missing crystal face lighting', len(self.crystal_faces))
+        actual_crystals = sum('amethyst' in value[0] or 'crystal' in value[0] for value in self.grid.values())
+        assert len(self.crystal_faces) == actual_crystals, ('missing crystal face lighting', len(self.crystal_faces), actual_crystals)
         for c in self.crystal_faces:
             probe = c['probe'][0], c['probe'][1] - 28, c['probe'][2]
             source = c['source'][0], c['source'][1] - 28, c['source'][2]
@@ -479,6 +532,10 @@ class Institute:
     def validate(self):
         assert len(self.rooms) == len({r['id'] for r in self.rooms}) == 48
         assert len(self.loot) == 48
+        assert len(self.signs) == 48
+        for storage in self.storage:
+            at = storage['x'], storage['y'] - 28, storage['z']
+            assert self.grid[at][0] == storage['block'] and self.grid[at][2] == storage['loot_table'], ('storage data lost', storage)
         active_fixtures = 0
         for f in self.fixtures:
             if self.grid.get(f['anchor'], AIR)[0] != f['block']:
@@ -538,6 +595,7 @@ class Institute:
                 'door_leaves_with_two_deep_clear_approaches': door_checks,
                 'active_fixture_roots': active_fixtures, 'fixture_parts': counts['ender_infection:lab_fixture_part'],
                 'bed_blocks': sum(beds.values()), 'loot_containers': len(self.loot),
+                'functional_storage_roots': len(self.storage), 'room_signs': len(self.signs),
                 'stair_flights': len(self.stairs), 'lift_landings': len(self.lift['landings']),
                 'explicit_air_blocks': counts['minecraft:air'], 'voxel_count': len(self.grid),
                 'facade_window_blocks': facade_windows,
@@ -551,6 +609,8 @@ def utf(value):
 
 
 def payload(kind, value):
+    if kind == 1:
+        return struct.pack('>b', value)
     if kind == 3:
         return struct.pack('>i', value)
     if kind == 8:
@@ -579,8 +639,12 @@ def write_tile(model, cx, cz):
                         entry['Properties'] = (10, {k: (8, v) for k, v in props})
                     palette.append(entry)
                 block = {'pos': (9, (3, [x - ox, y + 28, z - oz])), 'state': (3, indices[key])}
-                if loot:
-                    block['nbt'] = (10, {'id': (8, 'minecraft:barrel'), 'LootTable': (8, loot)})
+                if isinstance(loot, dict):
+                    block['nbt'] = (10, loot)
+                elif loot:
+                    base = name.split(':')[1].replace('_eroded', '')
+                    entity_id = 'ender_infection:lab_fixture' if base in spec.STORAGE_FIXTURES else 'ender_infection:lab_storage' if base in spec.STORAGE_DETAILS else 'minecraft:barrel'
+                    block['nbt'] = (10, {'id': (8, entity_id), 'LootTable': (8, loot)})
                 blocks.append(block)
     root = {'DataVersion': (3, 3465), 'size': (9, (3, [width, HEIGHT, length])),
             'palette': (9, (10, palette)), 'blocks': (9, (10, blocks)), 'entities': (9, (10, []))}
@@ -613,6 +677,26 @@ def loot_tables():
         table = {'type': 'minecraft:chest', 'pools': [{'rolls': {'type': 'minecraft:uniform', 'min': 3, 'max': 5},
                                                    'entries': entries}]}
         (dest / (category + '.json')).write_text(json.dumps(table, indent=2) + '\n', encoding='utf-8')
+    # Functional drawers/cabinets are modest supply locations. Rich per-room
+    # expedition barrels retain the separate tables above.
+    furniture = {
+        'public': ['minecraft:paper','minecraft:string','minecraft:stick'],
+        'security': ['minecraft:iron_nugget','minecraft:flint','minecraft:string'],
+        'medical': ['minecraft:glass_bottle','minecraft:sugar','minecraft:paper'],
+        'research': ['minecraft:amethyst_shard','minecraft:glass_bottle','minecraft:redstone'],
+        'engineering': ['minecraft:iron_nugget','minecraft:copper_ingot','minecraft:redstone'],
+        'containment': ['minecraft:amethyst_shard','minecraft:glass_bottle','minecraft:string'],
+        'archives': ['minecraft:paper','minecraft:book','minecraft:ink_sac'],
+        'greenhouse': ['minecraft:wheat_seeds','minecraft:bone_meal','minecraft:oak_sapling'],
+    }
+    small = dest / 'furniture'
+    small.mkdir(parents=True, exist_ok=True)
+    for category, items in furniture.items():
+        table = {'type':'minecraft:chest','pools':[{'rolls':{'type':'minecraft:uniform','min':1,'max':2},
+                 'entries':[{'type':'minecraft:item','name':name,'weight':1,
+                             'functions':[{'function':'minecraft:set_count','count':{'type':'minecraft:uniform','min':1,'max':2}}]}
+                            for name in items]}]}
+        (small / (category + '.json')).write_text(json.dumps(table, indent=2) + '\n', encoding='utf-8')
 
 
 def generate():
@@ -623,6 +707,8 @@ def generate():
     model.traffic()
     model.exterior()
     model.add_loot()
+    model.add_room_signs()
+    model.assign_storage_loot()
     model.connect_bars()
     model.bake_powered_lamps()
     model.add_crystal_face_lights()
@@ -638,6 +724,7 @@ def generate():
                                   'count': WIDTH * HEIGHT * LENGTH - len(model.grid)},
                 'tiles': tiles, 'rooms': model.rooms, 'stairs': model.stairs, 'lift': model.lift,
                 'entrance': model.entrance, 'loot_containers': model.loot,
+                'storage_containers': model.storage, 'room_signs': model.signs,
                 'light_sources': sources, 'crystal_lighting': crystals}
     (DATA / 'central_institute.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     loot_tables()

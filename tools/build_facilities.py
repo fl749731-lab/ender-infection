@@ -3,7 +3,7 @@ import json,gzip,struct,hashlib
 from collections import Counter
 from design_catalog import DATA,PROJECT
 from export_design_assets import write
-from lab_rooms import Room,BUILDERS,LABELS
+from lab_rooms import Room,BUILDERS,LABELS,furniture_loot_nbt
 STR=lambda s:(8,s)
 COM=lambda d:(10,d)
 LST=lambda t,l:(9,(t,l))
@@ -30,10 +30,12 @@ SPECS=[
 class Facility:
  def __init__(self,spec):
   self.spec=spec;self.w,self.h,self.d=spec['size'];self.depth=spec['levels']*5;self.grid={};self.rooms=[];self.damage=[]
+  self.furniture_category={'research':'research','swamp':'engineering','forest':'engineering','medical':'medical','snow':'research','badlands':'engineering'}[spec['command']]
   self.entry=(self.w//2,self.depth+1,3);self.lift=(self.w//2,5)
  def put(self,x,y,z,key='air',props=None,nbt=None):
   assert 0<=x<self.w and 0<=y<self.h and 0<=z<self.d,(self.spec['key'],x,y,z,key)
   if ':' not in key:key='minecraft:'+key if key in {'air','glass','sea_lantern','iron_bars','chest','ladder','spawner'} else 'ender_infection:'+key
+  if nbt is None:nbt=furniture_loot_nbt(key,self.furniture_category)
   self.grid[x,y,z]=(key,props or {},nbt)
  def fixture(self,x,y,z,key,face='north'):
   base=key.replace('_eroded','');height=3 if base=='incubator' else 2 if base in {'lab_door','lab_cabinet','surgery_table','lab_workbench','lab_window'} else 1;half=1 if base in {'surgery_table','lab_workbench','lab_window'} else 0

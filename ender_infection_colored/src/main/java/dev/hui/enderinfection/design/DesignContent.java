@@ -28,8 +28,9 @@ public final class DesignContent {
         for(String set:new String[]{"crystal_carapace","brood_heavy"})for(ArmorItem.Type slot:ArmorItem.Type.values()){
             String key=set+"_"+slot.getName();ITEMS_BY_KEY.put(key,ITEMS.register(key,()->new DesignArmor(set,new Material(set),slot)));
         }
-        for(String base:new String[]{"lab_tile_light","lab_tile_dark","lab_tile","lab_checker","lab_slab","lab_stair","lab_vent","lab_hatch","lab_door","lab_cabinet","incubator","surgery_table","lab_workbench","lab_window"})for(boolean eroded:new boolean[]{false,true}){
+        for(String base:new String[]{"lab_tile_light","lab_tile_dark","lab_tile","lab_checker","lab_slab","lab_stair","lab_vent","lab_hatch","lab_door","lab_cabinet","incubator","surgery_table","lab_workbench","lab_window","lab_glass_cabinet","lab_cryo_cabinet","lab_server_rack","lab_control_console","lab_privacy_curtain"})for(boolean eroded:new boolean[]{false,true}){
             String key=base+(eroded?"_eroded":"");
+            if(eroded&&Set.of("lab_glass_cabinet","lab_cryo_cabinet","lab_server_rack","lab_control_console","lab_privacy_curtain").contains(base))continue;
             if(!eroded&&Set.of("lab_tile_light","lab_tile_dark","lab_tile","lab_checker","lab_cabinet","incubator","surgery_table").contains(base))continue;
             var block=BLOCKS.register(key,()->{
                 var p=BlockBehaviour.Properties.of().strength(3).sound(SoundType.METAL).noOcclusion();
@@ -42,8 +43,8 @@ public final class DesignContent {
         }
     }
     static {
-        for(String key:new String[]{"lab_monitor","lab_sample_rack","lab_shelf","lab_pipe","lab_light_panel","lab_chair","lab_sink","lab_storage_crate","lab_freezer","lab_floor_grate"}){
-            RegistryObject<Block> block=BLOCKS.register(key,()->new LabDetailBlock(key,BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.METAL).noOcclusion().lightLevel(s->key.equals("lab_light_panel")?14:0)));
+        for(String key:new String[]{"lab_monitor","lab_sample_rack","lab_shelf","lab_pipe","lab_light_panel","lab_chair","lab_sink","lab_storage_crate","lab_freezer","lab_floor_grate","lab_rolling_cart","lab_microscope","lab_centrifuge","lab_cooling_pump","lab_task_lamp"}){
+            RegistryObject<Block> block=BLOCKS.register(key,()->{var p=BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.METAL).noOcclusion().lightLevel(s->Set.of("lab_light_panel","lab_task_lamp").contains(key)?14:0);return isDetailStorage(key)?new LabStorageBlock(key,p):new LabDetailBlock(key,p);});
             BLOCKS_BY_KEY.put(key,block);ITEMS_BY_KEY.put(key,ITEMS.register(key,()->new BlockItem(block.get(),new Item.Properties())));
         }
     }
@@ -53,12 +54,21 @@ public final class DesignContent {
             BLOCKS_BY_KEY.put(key,block);ITEMS_BY_KEY.put(key,ITEMS.register(key,()->new BlockItem(block.get(),new Item.Properties())));
         }
     }
+    static {
+        for(String color:new String[]{"cyan","light_blue","green","yellow","purple"}){
+            String key="lab_wall_band_"+color;
+            RegistryObject<Block> block=BLOCKS.register(key,()->new Block(BlockBehaviour.Properties.of().strength(3F).sound(SoundType.METAL)));
+            BLOCKS_BY_KEY.put(key,block);ITEMS_BY_KEY.put(key,ITEMS.register(key,()->new BlockItem(block.get(),new Item.Properties())));
+        }
+    }
     public static final RegistryObject<BlockEntityType<LabFixtureEntity>> FIXTURE_ENTITY=ENTITIES.register("lab_fixture",()->{
         var blocks=new ArrayList<Block>();BLOCKS_BY_KEY.forEach((k,v)->{if(isFixture(k))blocks.add(v.get());});
         blocks.add(InfectedContent.LAB_CABINET.get());blocks.add(InfectedContent.INCUBATOR.get());blocks.add(InfectedContent.SURGERY_TABLE.get());
         return BlockEntityType.Builder.of(LabFixtureEntity::new,blocks.toArray(Block[]::new)).build(null);
     });
-    public static boolean isFixture(String key){return switch(key.replace("_eroded","")){case "lab_vent","lab_hatch","lab_door","lab_cabinet","incubator","surgery_table","lab_workbench","lab_window"->true;default->false;};}
+    public static final RegistryObject<BlockEntityType<LabStorageEntity>> STORAGE_ENTITY=ENTITIES.register("lab_storage",()->BlockEntityType.Builder.of(LabStorageEntity::new,BLOCKS_BY_KEY.get("lab_freezer").get(),BLOCKS_BY_KEY.get("lab_storage_crate").get(),BLOCKS_BY_KEY.get("lab_shelf").get(),BLOCKS_BY_KEY.get("lab_rolling_cart").get(),BLOCKS_BY_KEY.get("lab_sink").get()).build(null));
+    public static boolean isDetailStorage(String key){return Set.of("lab_freezer","lab_storage_crate","lab_shelf","lab_rolling_cart","lab_sink").contains(key);}
+    public static boolean isFixture(String key){return switch(key.replace("_eroded","")){case "lab_vent","lab_hatch","lab_door","lab_cabinet","incubator","surgery_table","lab_workbench","lab_window","lab_glass_cabinet","lab_cryo_cabinet","lab_server_rack","lab_control_console","lab_privacy_curtain"->true;default->false;};}
     public static void register(IEventBus bus){BLOCKS.register(bus);ITEMS.register(bus);ENTITIES.register(bus);MOBS.register(bus);}
     public record Material(String set) implements ArmorMaterial {
         public int getDurabilityForType(ArmorItem.Type t){return switch(t){case HELMET->13;case CHESTPLATE->16;case LEGGINGS->15;case BOOTS->11;}*(set.equals("brood_heavy")?35:22);}

@@ -78,6 +78,11 @@ jobs:
         run: |
           java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain --no-daemon --console=plain runGameTestServer -PcentralInstituteChecks | tee central-institute-tests.log
           python ../tools/verify_gametest_log.py central-institute-tests.log --minimum 1
+      - name: Test laboratory storage and loot
+        working-directory: ${{ matrix.project }}
+        run: |
+          java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain --no-daemon --console=plain runGameTestServer -PstorageChecks | tee storage-tests.log
+          python ../tools/verify_gametest_log.py storage-tests.log --minimum 6
       - name: Compile addon example
         working-directory: examples/institute-addon/${{ matrix.addon }}
         run: java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain --no-daemon --console=plain build

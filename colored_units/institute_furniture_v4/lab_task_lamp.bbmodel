@@ -1,0 +1,479 @@
+{
+  "meta": {
+    "format_version": "4.10",
+    "model_format": "free",
+    "box_uv": false
+  },
+  "name": "实验工作灯 | lab_task_lamp",
+  "model_identifier": "lab_task_lamp",
+  "resolution": {
+    "width": 64,
+    "height": 64
+  },
+  "elements": [
+    {
+      "name": "base_1",
+      "uuid": "307ba958-7658-5845-a4f3-00b1170dd83f",
+      "type": "cube",
+      "from": [
+        -6.0,
+        0.0,
+        2.0
+      ],
+      "to": [
+        -1.0,
+        1.0,
+        7.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            38,
+            16,
+            43,
+            17
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            38,
+            16,
+            43,
+            17
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            38,
+            16,
+            43,
+            17
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            38,
+            16,
+            43,
+            17
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            36,
+            2,
+            41,
+            7
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            36,
+            2,
+            41,
+            7
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "upright_2",
+      "uuid": "d1cba35d-1618-5c0e-86ac-dba2e3d21f8f",
+      "type": "cube",
+      "from": [
+        -4.2,
+        1.0,
+        4.2
+      ],
+      "to": [
+        -3.1,
+        10.5,
+        5.3
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            2,
+            2,
+            4,
+            12
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            2,
+            2,
+            4,
+            12
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            2,
+            2,
+            4,
+            12
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            2,
+            2,
+            4,
+            12
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            12,
+            16,
+            14,
+            18
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            12,
+            16,
+            14,
+            18
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "arm_3",
+      "uuid": "354db6ae-fb99-5995-8ad1-e4f40295a5dc",
+      "type": "cube",
+      "from": [
+        -4.2,
+        10.0,
+        4.2
+      ],
+      "to": [
+        -3.2,
+        17.973706791699833,
+        5.2
+      ],
+      "origin": [
+        -3.7,
+        10,
+        4.7
+      ],
+      "rotation": [
+        -45.630863281014854,
+        0,
+        -57.44999650780661
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            8,
+            2,
+            9,
+            10
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            8,
+            2,
+            9,
+            10
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            8,
+            2,
+            9,
+            10
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            8,
+            2,
+            9,
+            10
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            47,
+            16,
+            48,
+            17
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            47,
+            16,
+            48,
+            17
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "lamp_case_4",
+      "uuid": "23e7e7d5-2ed1-5a06-9585-1e85204a6660",
+      "type": "cube",
+      "from": [
+        -3.0,
+        12.0,
+        -6.0
+      ],
+      "to": [
+        5.0,
+        14.0,
+        0.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            45,
+            2,
+            53,
+            4
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            45,
+            2,
+            53,
+            4
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            2,
+            16,
+            8,
+            18
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            2,
+            16,
+            8,
+            18
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            13,
+            2,
+            21,
+            8
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            13,
+            2,
+            21,
+            8
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "lamp_face_5",
+      "uuid": "5f8a0210-10f1-5001-a5d8-7ac9c00cc244",
+      "type": "cube",
+      "from": [
+        -2.3,
+        11.7,
+        -5.3
+      ],
+      "to": [
+        4.3,
+        12.0,
+        -0.7
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            18,
+            16,
+            25,
+            17
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            18,
+            16,
+            25,
+            17
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            29,
+            16,
+            34,
+            17
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            29,
+            16,
+            34,
+            17
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            25,
+            2,
+            32,
+            7
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            25,
+            2,
+            32,
+            7
+          ],
+          "texture": 0
+        }
+      }
+    }
+  ],
+  "outliner": [
+    {
+      "name": "root",
+      "uuid": "f8f9abe0-a4eb-5e64-9def-d0f07d466983",
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "children": [
+        "307ba958-7658-5845-a4f3-00b1170dd83f",
+        "d1cba35d-1618-5c0e-86ac-dba2e3d21f8f",
+        "354db6ae-fb99-5995-8ad1-e4f40295a5dc",
+        "23e7e7d5-2ed1-5a06-9585-1e85204a6660",
+        "5f8a0210-10f1-5001-a5d8-7ac9c00cc244"
+      ],
+      "export": true,
+      "isOpen": false,
+      "visibility": true
+    }
+  ],
+  "textures": [
+    {
+      "name": "lab_task_lamp.png",
+      "uuid": "0bf90d8d-9be5-59fe-9d8e-b49260f31af8",
+      "id": "0",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABjElEQVR4nO3XMUvDQBTA8UuIDk5OxfZbOPgBnHTwEzgJQh1cnFykUBAXJxcHC4KLTg4OHXTqBxBN/RIRnJwcVIhESH253iWcjU1b/78lIXnk8pK8yz2l/jkv3Vle3YiTbdjrDo4lmrt7cef0JHMsjU3U6o2hi95ddTLxh68fg/iVhSATuz7vZWLbR8dxfamWidnZ3hpp/Dy+fkG5nyQvt/p5m7XNZmxK3uT2PY5l8qaYs/OLX49fJFAT6OGx/71tNIbfbtl8NWX0EjVxKYFg1Bt6eY5UXj3q7t8+lW0+0EXRz7VdH8JUlkA/fBr7mP5fD9BanMt9W/IvcHN9aYy1Ha/kCwh7Xa9oJtZrsOghjCvZ0kogLLEGq+bnnUwXQPpCaJYERbP3LCc/tHpyWUEBM9oN6nOC/kuzdY0uHZ8pVo+RDVjaE7QP9gs7VVe+TMpEzgu2rtGl47PFyhiZvCS7RVOnWtlKsOWw2rPFyhjbW5VfQFm/aK+sEgAAAAAAAAAAAAAAAAAAAAAAqMnxBf+tqQ6/uYhhAAAAAElFTkSuQmCC",
+      "mode": "bitmap",
+      "width": 64,
+      "height": 64,
+      "uv_width": 64,
+      "uv_height": 64,
+      "render_mode": "default"
+    }
+  ],
+  "animations": [],
+  "notes": "Original concept conversion. 16 units = 1 block. Editable cuboids, embedded native-density UV atlas. Design source 2026-11-02. Game integration is separate.",
+  "texture_width": 64,
+  "texture_height": 64
+}

@@ -63,6 +63,9 @@ minecraft {
         if (project.hasProperty('centralInstituteVisualCheck')) {
             client { workingDirectory project.file('build/central-institute-visual-check'); property 'ender_infection.centralInstituteVisualCheck','true'; property 'ender_infection.centralInstituteSeed',project.findProperty('centralInstituteSeed') ?: '7312026'; jvmArgs '-Xms128m', '-Xmx1536m', '-XX:ActiveProcessorCount=2' }
         }
+        if (project.hasProperty('storageVisualCheck')) {
+            client { workingDirectory project.file('build/storage-visual-check'); property 'ender_infection.storageVisualCheck','true'; jvmArgs '-Xms128m', '-Xmx1536m', '-XX:ActiveProcessorCount=2' }
+        }
         if (project.hasProperty('naturalLabCheck')) {
             client { workingDirectory project.file('build/natural-lab-check'); property 'ender_infection.naturalLabCheck','true'; property 'ender_infection.naturalBiome',project.findProperty('naturalBiome') ?: 'mushroom_fields'; property 'ender_infection.naturalBuilding',project.findProperty('naturalBuilding') ?: ''; property 'ender_infection.naturalRerender',project.hasProperty('naturalRerender').toString() }
         }
@@ -71,7 +74,7 @@ minecraft {
             workingDirectory gameTestRunDirectory
             jvmArgs '-Xms128m', '-Xmx1536m', '-XX:ActiveProcessorCount=2'
             if (project.hasProperty('instituteChecks')) property 'ender_infection.instituteChecks','true'
-            property 'forge.enabledGameTestNamespaces',project.hasProperty('centralInstituteChecks')?'ender_central_institute_checks':project.hasProperty('regressionChecks')?'ender_regression_checks':project.hasProperty('instituteChecks')?'ender_institute_checks':project.hasProperty('riftChecks')?'ender_rift_checks,ender_ai_checks':project.hasProperty('oreChecks')?'ender_ore_checks':project.hasProperty('expansionChecks')?'ender_expansion_checks':project.hasProperty('aiChecks')?'ender_ai_checks':project.hasProperty('labChecks')?'ender_lab_checks':'ender_infection,ender_lab_checks,ender_ore_checks'
+            property 'forge.enabledGameTestNamespaces',project.hasProperty('storageChecks')?'ender_storage_checks':project.hasProperty('centralInstituteChecks')?'ender_central_institute_checks':project.hasProperty('regressionChecks')?'ender_regression_checks':project.hasProperty('instituteChecks')?'ender_institute_checks':project.hasProperty('riftChecks')?'ender_rift_checks,ender_ai_checks':project.hasProperty('oreChecks')?'ender_ore_checks':project.hasProperty('expansionChecks')?'ender_expansion_checks':project.hasProperty('aiChecks')?'ender_ai_checks':project.hasProperty('labChecks')?'ender_lab_checks':'ender_infection,ender_lab_checks,ender_ore_checks'
         }
     }
 }

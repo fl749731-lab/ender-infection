@@ -14,6 +14,25 @@ LABELS={'power':'配电与应急电源','pumps':'冷却泵与水处理','filtrat
  'receiving':'样本接收与登记','microscopy':'显微分析实验室','wet_lab':'湿法分析实验室','culture':'组织培养实验室','cold_store':'低温样本库','decontamination':'清洗与消毒间',
  'reception':'接待与入所登记','security':'门禁与安检','control':'中控与通讯','archive':'档案与阅览','lounge':'工作人员休息室','kitchen':'后勤餐厨'}
 DETAILS={'lab_monitor','lab_sample_rack','lab_shelf','lab_pipe','lab_light_panel','lab_chair','lab_sink','lab_storage_crate','lab_freezer','lab_floor_grate'}
+STORAGE_FIXTURES={'lab_cabinet','lab_workbench'}
+STORAGE_DETAILS={'lab_freezer','lab_storage_crate','lab_shelf','lab_sink'}
+FURNITURE_CATEGORIES={
+ 'power':'engineering','pumps':'engineering','filtration':'engineering','robotics':'engineering','loading':'engineering','server_room':'engineering',
+ 'containment':'containment','reactor':'containment','nexus':'containment','airlock':'containment',
+ 'triage':'medical','ward':'medical','surgery':'medical','pharmacy':'medical','isolation':'medical','mortuary':'medical','decontamination':'medical',
+ 'receiving':'research','microscopy':'research','wet_lab':'research','culture':'research','cold_store':'research','cryo_vault':'research',
+ 'security':'security','control':'security','archive':'archives','botany':'greenhouse',
+ 'reception':'public','lounge':'public','kitchen':'public'}
+
+
+def furniture_loot_nbt(key,theme='public'):
+ """Only generator-owned furniture receives loot; runtime defaults stay empty."""
+ if ':' in key and not key.startswith('ender_infection:'):return None
+ base=key.split(':')[-1].replace('_eroded','')
+ if base not in STORAGE_FIXTURES|STORAGE_DETAILS:return None
+ category=FURNITURE_CATEGORIES.get(theme,theme if theme in {'public','engineering','containment','medical','research','security','archives','greenhouse'} else 'public')
+ entity='ender_infection:lab_fixture' if base in STORAGE_FIXTURES else 'ender_infection:lab_storage'
+ return {'id':(8,entity),'LootTable':(8,'ender_infection:chests/central_institute/furniture/'+category)}
 
 class Room:
  def __init__(self,api,floor,row,side,theme):
@@ -23,10 +42,13 @@ class Room:
  def p(self,u,v,key,h=1,face='north',props=None):
   state=dict(props or {})
   if key in DETAILS:state['facing']=self.facing(face)
-  pos=self.pos(u,v,h);self.api['put'](*pos,key,state);self.records.append((u,h,v,key,tuple(sorted(state.items()))))
+  pos=self.pos(u,v,h);self.api['put'](*pos,key,state,furniture_loot_nbt(key,self.theme));self.records.append((u,h,v,key,tuple(sorted(state.items()))))
  def v(self,u,v,key,h=1,props=None):self.p(u,v,'minecraft:'+key,h,props=props)
  def f(self,u,v,key,h=1,face='north'):
-  world_face=self.facing(face);pos=self.pos(u,v,h);self.api['fixture'](*pos,key,world_face);self.records.append((u,h,v,key,('fixture',world_face)))
+  world_face=self.facing(face);pos=self.pos(u,v,h);self.api['fixture'](*pos,key,world_face)
+  nbt=furniture_loot_nbt(key,self.theme)
+  if nbt:self.api['put'](*pos,key,{'facing':world_face,'open':'false'},nbt)
+  self.records.append((u,h,v,key,('fixture',world_face)))
  def feature(self,name):self.features.append(name)
  def table(self,u,v,samples=False):
   self.p(u,v,'lab_freezer')

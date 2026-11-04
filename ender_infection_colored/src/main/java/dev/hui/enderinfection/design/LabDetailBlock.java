@@ -17,6 +17,10 @@ public final class LabDetailBlock extends HorizontalDirectionalBlock {
     @Override public BlockState mirror(BlockState s,Mirror m){return rotate(s,m.getRotation(s.getValue(FACING)));}
     @Override public VoxelShape getShape(BlockState s,BlockGetter level,BlockPos p,CollisionContext c){
         VoxelShape shape=switch(key){
+            case "lab_microscope"->Shapes.or(box(2,0,2,14,2,14),box(8,2,6,12,12,11),box(3,8,3,10,13,9));
+            case "lab_centrifuge"->box(1,0,2,15,10,14);
+            case "lab_cooling_pump"->box(1,0,1,15,14,15);
+            case "lab_task_lamp"->Shapes.or(box(5,0,5,11,2,11),box(7,2,7,9,13,9),box(3,12,3,13,16,13));
             case "lab_monitor"->box(1,4,8,15,15,15);
             case "lab_sample_rack"->box(2,1,4,14,9,12);
             case "lab_pipe"->box(0,8,4,16,16,12);

@@ -36,9 +36,10 @@ def main() -> None:
         output = f'{item["loader"]}-{item["minecraft"]}/{path.name}'
         entries[output] = content
         metadata.append({"file": output, "bytes": len(content), "sha256": sha(content), "kind": "addon_example"})
-    entries["README.txt"] = """末影感染 双加载器开发构建
+    entries["README.txt"] = f"""末影感染 双加载器开发构建 {builds['version']}
 
-这是包含研究所API v1的本地开发构建，暂沿用0.12.0-alpha.1版本号。GitHub原有同版本发布包早于本API，请按开发包来源区分。
+本包由版本 {builds['version']} 的本地已验证构建生成。研究所API v1从0.12.0-alpha.2开始提供，旧版公开发布的0.12.0-alpha.1不包含此API。
+对应版本发布页：https://github.com/fl749731-lab/ender-infection/releases/tag/v{builds['version']}
 
 forge-1.20.1：Minecraft 1.20.1，Forge47.3.12，Java17，GeckoLib Forge1.20.1 4.4.9。
 neoforge-1.21.1：Minecraft1.21.1，NeoForge21.1.265，Java21，GeckoLib NeoForge1.21.1 4.9.3。
@@ -50,7 +51,7 @@ neoforge-1.21.1：Minecraft1.21.1，NeoForge21.1.265，Java21，GeckoLib NeoForg
 先在已加载的空旷区域preview；放置目标包含房间地板，不应设在已有地面内部。命令需要权限等级2。
 
 大型中央研究所的六层48间图册另附，整座建筑仍待组装与自然生成接入。API示例房间是独立的小模块。
-本地开发包的生成没有替换任何已有游戏实例，也没有创建新GitHub Release。
+本工具仅生成本地归档，不会安装JAR到已有游戏实例，也不会创建GitHub Release。对应版本的发布状态与正式附件以发布页为准。
 """.encode("utf-8")
     entries["manifest.json"] = (json.dumps({"kind": "local_development_build", "files": metadata}, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
     verification = ROOT / "build/dual-version-validation/final-verification.json"

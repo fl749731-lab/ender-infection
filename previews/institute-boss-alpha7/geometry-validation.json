@@ -1,0 +1,127 @@
+{
+  "revision": "22aa46353ce98230",
+  "format": "geckolib_model",
+  "summary": {
+    "errors": 0,
+    "warnings": 0,
+    "passed": true
+  },
+  "gates": [
+    {
+      "id": "outliner",
+      "label": "Outliner references resolve and UUIDs are unique",
+      "severity": "error",
+      "ran": true,
+      "violations": []
+    },
+    {
+      "id": "unlisted_nodes",
+      "label": "Every group and element is placed in the outliner",
+      "severity": "warning",
+      "ran": true,
+      "violations": []
+    },
+    {
+      "id": "degenerate",
+      "label": "No sliver or inverted cubes",
+      "severity": "warning",
+      "ran": true,
+      "violations": []
+    },
+    {
+      "id": "block_limits",
+      "label": "Geometry stays inside the block-model limits",
+      "severity": "error",
+      "ran": false,
+      "skipped_reason": "Pass block_limits: java_block or bedrock_block to enable.",
+      "violations": []
+    },
+    {
+      "id": "floating",
+      "label": "Every part touches the main body",
+      "severity": "warning",
+      "ran": true,
+      "violations": []
+    },
+    {
+      "id": "interpenetration",
+      "label": "Parts of different groups do not pass through each other",
+      "severity": "warning",
+      "ran": true,
+      "violations": []
+    },
+    {
+      "id": "mirror",
+      "label": "Left/right parts mirror each other",
+      "severity": "warning",
+      "ran": true,
+      "violations": []
+    }
+  ],
+  "self_test": [
+    {
+      "gate": "outliner",
+      "discriminates": true,
+      "clean_violations": 0,
+      "injected_violations": 1,
+      "injected": "(outliner): added a reference to a node that does not exist"
+    },
+    {
+      "gate": "unlisted_nodes",
+      "discriminates": true,
+      "clean_violations": 0,
+      "injected_violations": 1,
+      "injected": "pelvis_tissue: removed it from the outliner"
+    },
+    {
+      "gate": "degenerate",
+      "discriminates": true,
+      "clean_violations": 0,
+      "injected_violations": 1,
+      "injected": "pelvis_tissue: made it 0.0625 units thick"
+    },
+    {
+      "gate": "block_limits",
+      "discriminates": null,
+      "clean_violations": 0,
+      "injected_violations": 0,
+      "impossible": "block_limits is disabled."
+    },
+    {
+      "gate": "floating",
+      "discriminates": true,
+      "clean_violations": 0,
+      "injected_violations": 1,
+      "injected": "pelvis_tissue: moved it 1000 units away"
+    },
+    {
+      "gate": "interpenetration",
+      "discriminates": true,
+      "clean_violations": 0,
+      "injected_violations": 1,
+      "injected": "right_hand_palm: moved it inside pelvis_tissue"
+    },
+    {
+      "gate": "mirror",
+      "discriminates": true,
+      "clean_violations": 0,
+      "injected_violations": 1,
+      "injected": "left_abdomen_plate: shifted it 2 units on x (its mirror is right_abdomen_plate)"
+    }
+  ],
+  "geckolib": {
+    "diagnostics": [
+      {
+        "severity": "warning",
+        "check_id": "geckolib_modid",
+        "message": "The project has no geckolib_modid; the GeckoLib plugin's export dialog uses it for paths, but the exported files load without it."
+      }
+    ],
+    "summary": {
+      "valid": true,
+      "errors": 0,
+      "warnings": 1
+    }
+  },
+  "notes": []
+}

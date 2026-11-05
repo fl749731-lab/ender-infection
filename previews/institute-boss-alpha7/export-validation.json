@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "scope": "Editable source to staged numeric-linear MCP export; no Java runtime or gameplay validation.",
+  "cubes": 128,
+  "bones": 21,
+  "triangles_upper_bound": 1536,
+  "clips": 7,
+  "keyframes": 168,
+  "emissive_faces": 156,
+  "texture_size": [
+    256,
+    256
+  ],
+  "density_px_per_model_unit": 2,
+  "geometry": {
+    "errors": 0,
+    "warnings": 0,
+    "passed": true
+  },
+  "geckolib_metadata": {
+    "valid": true,
+    "errors": 0,
+    "warnings": 1
+  },
+  "animation": {
+    "errors": 0,
+    "warnings": 0,
+    "passed": true
+  },
+  "sha256": {
+    "colored_units/institute_boss_v1/containment_warden.bbmodel": "22aa46353ce982309ee29ef2ba62dd83365e00cc6b04980dacefa73d7538be5e",
+    "colored_units/institute_boss_v1/export/containment_warden.animation.json": "a4d8a47c7cfea19c3fdcd2d7f9fe93806fe2844a94253b3c4d33c600efa64087",
+    "colored_units/institute_boss_v1/export/containment_warden.geo.json": "c48d8a6b060423cb78ef5d9f3a045d91b3a208df008ce66b9be7f6695d92d41f",
+    "colored_units/institute_boss_v1/export/containment_warden.png": "6bc560468be70b650f4316daea0516de69256e572b157eab4ea8411092391bd1",
+    "colored_units/institute_boss_v1/export/containment_warden_glow.png": "7da237394c8dd70d6631cb559b64d4156e48b21d343f361fedcbe1e373d3eb4c"
+  }
+}

@@ -38,7 +38,7 @@ Minecraft 感染阵营与研究所探索模组。感染母体通过生物质和�
 
 [alpha.6 更新说明与附件](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.6) · [验收与效果图](previews/incident-alpha6/README.md) · [完整更新日志](CHANGELOG.md)
 
-研究所 Boss 是下一阶段内容，当前版本的 E8 为普通感染者事件。
+研究所 Boss 是[下一阶段内容](docs/institute-boss.md)，当前版本的 E8 为普通感染者事件。
 
 ## 文档入口
 

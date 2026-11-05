@@ -83,6 +83,8 @@ public final class InstituteOperations implements InstituteOperationsService {
                 if (kind.equals("managed_lights")) lights.add(new Target(pos, zone, ""));
                 if (kind.equals("controls")) controls.add(new Target(pos, zone, normalizeRole(object.get("role").getAsString())));
             }
+            if (root.has("incidents") && root.getAsJsonObject("incidents").has("E8"))
+                zones.put(position(root.getAsJsonObject("incidents").getAsJsonObject("E8").getAsJsonObject("control").get("pos")), "containment");
             cached = new Layout(Map.copyOf(zones), Map.copyOf(doors), Map.copyOf(machines), List.copyOf(lights), List.copyOf(controls));
             LAYOUTS.put(resources, cached); return cached;
         } catch (IOException error) { throw new UncheckedIOException(error); }
@@ -149,7 +151,8 @@ public final class InstituteOperations implements InstituteOperationsService {
         if (bound.layout.machines.containsKey(bound.relative)
                 || chunk != null && chunk.getBlockEntity(pos) instanceof LabProcessingEntity)
             if (!validBoundMachine(level, pos, bound)) return false;
-        String zone = bound.layout.zones.get(bound.relative); return zone != null && powered(bound.facility, zone);
+        String zone = bound.layout.zones.get(bound.relative); return zone != null && powered(bound.facility, zone)
+                && ContainmentIncident.localPower(level, bound.facility, bound.relative);
     }
     @Override public void completeProcess(ServerLevel level, BlockPos pos, String recipeId) {
         var found = binding(level, pos); if (found.isEmpty()) return; var bound = found.get();
@@ -166,6 +169,9 @@ public final class InstituteOperations implements InstituteOperationsService {
         try { InstituteApi.fireFacilityEvent(new FacilityEvent(level, previous, current, reason)); }
         catch (RuntimeException error) { LogUtils.getLogger().error("Institute change listener failed", error); }
     }
+    static void incidentChanged(ServerLevel level, OperationsData.Facility facility, String reason) {
+        var state = snapshot(facility); fire(level, state, state, reason);
+    }
     private static void changed(ServerLevel level, Binding bound, FacilityStatus previous, String reason) {
         var current = snapshot(bound.facility); if (current.equals(previous)) return;
         bound.data.setDirty(); bound.data.restartRefresh(bound.facility.origin); fire(level, previous, current, reason);
@@ -176,7 +182,7 @@ public final class InstituteOperations implements InstituteOperationsService {
             case "lab_research_terminal", "research_terminal" -> "terminal";
             case "lab_archive_terminal", "archive_terminal" -> "archive"; default -> role; };
     }
-    private static Item item(String key) {
+    static Item item(String key) {
         var result = BuiltInRegistries.ITEM.getOptional(id(key)).orElseThrow(() -> new IllegalStateException("Missing institute item " + key));
         if (result == Items.AIR) throw new IllegalStateException("Missing institute item " + key); return result;
     }
@@ -184,7 +190,7 @@ public final class InstituteOperations implements InstituteOperationsService {
         player.displayClientMessage(Component.literal(text), false); return success ? InteractionResult.CONSUME : InteractionResult.FAIL;
     }
     /** Simulate all inputs/outputs first; never drop a reward if the inventory is full. */
-    private static boolean transact(ServerPlayer player, Map<Item, Integer> costs, List<ItemStack> rewards) {
+    static boolean transact(ServerPlayer player, Map<Item, Integer> costs, List<ItemStack> rewards) {
         var inventory = player.getInventory(); var planned = new ArrayList<ItemStack>();
         for (int i = 0; i < inventory.getContainerSize(); i++) planned.add(inventory.getItem(i).copy());
         for (var cost : costs.entrySet()) {
@@ -212,7 +218,7 @@ public final class InstituteOperations implements InstituteOperationsService {
         for (int i = 0; i < planned.size(); i++) inventory.setItem(i, planned.get(i));
         inventory.setChanged(); return true;
     }
-    private static void synchronizeInventory(ServerPlayer player) {
+    static void synchronizeInventory(ServerPlayer player) {
         player.inventoryMenu.broadcastChanges(); if (player.containerMenu != player.inventoryMenu) player.containerMenu.broadcastChanges();
     }
     public static InteractionResult useControl(ServerLevel level, BlockPos pos, ServerPlayer player, String role) {
@@ -226,6 +232,7 @@ public final class InstituteOperations implements InstituteOperationsService {
         var found = binding(level, pos);
         if (found.isEmpty()) return message(player, "此控制器未绑定研究所，无法改变设施任务。", false);
         var bound = found.get(); var state = bound.facility; var previous = snapshot(state);
+        if (ContainmentIncident.isControl(level, pos)) return ContainmentIncident.useControl(level, pos, player);
         boolean validControl = false;
         for (var target : bound.layout.controls) if (target.offset.equals(bound.relative) && target.role.equals(role)) validControl = true;
         if (!validControl) return message(player, "控制器位置与研究所清单不符。", false);
@@ -296,7 +303,7 @@ public final class InstituteOperations implements InstituteOperationsService {
                 var pos = facility.origin.offset(target.offset);
                 var chunk = level.getChunkSource().getChunkNow(pos.getX() >> 4, pos.getZ() >> 4); if (chunk == null) continue;
                 var state = chunk.getBlockState(pos);
-                boolean enabled = powered(facility, target.zone);
+                boolean enabled = powered(facility, target.zone) && ContainmentIncident.localPower(level, facility, target.offset);
                 if (light && state.getBlock() instanceof LabDetailBlock block && block.isLamp() && state.hasProperty(LabDetailBlock.POWERED)) {
                     if (state.getValue(LabDetailBlock.POWERED) != enabled) level.setBlock(pos, state.setValue(LabDetailBlock.POWERED, enabled), 18);
                 } else if (!light && chunk.getBlockEntity(pos) instanceof OperationsControlEntity control
@@ -312,6 +319,7 @@ public final class InstituteOperations implements InstituteOperationsService {
     @SubscribeEvent public static void tick(TickEvent.LevelTickEvent event) {
         if (event.phase == TickEvent.Phase.END && event.level instanceof ServerLevel level) {
             var data = OperationsData.get(level); if (!data.pendingRefresh.isEmpty()) refresh(level, data, 32);
+            ContainmentIncident.tick(level, data);
         }
     }
     @SubscribeEvent public static void chunkLoaded(ChunkEvent.Load event) {

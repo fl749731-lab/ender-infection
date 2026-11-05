@@ -20,7 +20,7 @@ DEST = DATA / 'structures/central_institute'
 REPORT = ROOT / 'build/central-institute/static-validation.json'
 WIDTH, LENGTH, HEIGHT, GROUND_OFFSET = 120, 104, 55, 28
 MAX_TERRAIN_RELIEF = 8
-LAYOUT_VERSION = 'central-institute-v3'
+LAYOUT_VERSION = 'central-institute-v4'
 FLOORS = [('B3', -25), ('B2', -14), ('B1', -7), ('G1', 0), ('G2', 7), ('G3', 14)]
 AIR = ('minecraft:air', (), None)
 VOID = ('minecraft:structure_void', (), None)
@@ -48,6 +48,7 @@ class Institute:
         self.signs = []
         self.crystal_faces = []
         self.operations = {'controls': [], 'secured_doors': [], 'managed_lights': [], 'machines': []}
+        self.incidents = {}
         self.lift = {'x': 75, 'z': 39, 'landings': []}
         self.entrance = {'x': 59, 'y': 29, 'z': 87, 'facing': 'south'}
 
@@ -463,7 +464,9 @@ class Institute:
                         if fixture['block'].split(':')[1].replace('_eroded','') in ('lab_door','lab_privacy_curtain')
                         for p in fixture['cells']}
         targets=[('D2','generator','lab_power_generator'),('D1','distribution','lab_distribution_panel'),
-                 ('A7','terminal','lab_research_terminal'),('F5','archive','lab_archive_terminal')]
+                 ('A7','terminal','lab_research_terminal'),('F5','archive','lab_archive_terminal'),
+                 ('E8','incident','lab_research_terminal'),('E8','incident_cooling','lab_cooling_pump'),
+                 ('E8','incident_sensor','lab_monitor'),('E8','incident_valve','lab_pipe')]
         for room_id,role,key in targets:
             r=next(r for r in self.rooms if r['id']==room_id);y=r['y']-27
             protected=set()
@@ -508,9 +511,17 @@ class Institute:
                 chosen=(x,z,face,dx,dz);break
             assert chosen,('control would disconnect supply access',room_id)
             x,z,face,dx,dz=chosen;p=(x,y,z);approach=(x+dx,y,z+dz)
-            self.put(*p,key,{'facing':face,'powered':'false'},bound(p,'ender_infection:lab_operations_control'))
+            self.put(*p,key,{'facing':face,'powered':'false'},
+                     bound(p,'ender_infection:lab_operations_control') if not role.startswith('incident_') else None)
             control_approaches.add(approach)
-            self.operations['controls'].append({'role':role,'pos':xyz(*p),'approach_pos':xyz(*approach),'room':room_id,'zone':zone(y),'block':spec.full(key)})
+            row={'role':role,'pos':xyz(*p),'approach_pos':xyz(*approach),'room':room_id,'zone':zone(y),'block':spec.full(key)}
+            if role=='incident':
+                self.incidents['E8']={'room':'E8','bounds_min':[r['x'],r['y']+1,r['z']],
+                                     'bounds_max':[r['x']+r['width'],r['y']+r['height'],r['z']+r['length']],
+                                     'control':row,'faults':[],'spawn_points':[],'alarm_lights':[]}
+            elif role.startswith('incident_'):
+                row['role']=role.removeprefix('incident_');self.incidents['E8']['faults'].append(row)
+            else:self.operations['controls'].append(row)
 
         for p,value in list(self.grid.items()):
             block,props,_=value;props=dict(props);base=block.split(':')[1].replace('_eroded','')
@@ -527,6 +538,22 @@ class Institute:
             elif base in ('lab_microscope','lab_centrifuge'):
                 self.put(*p,block,props,bound(p,'ender_infection:lab_processing'))
                 self.operations['machines'].append({'pos':xyz(*p),'device':block,'zone':zone(p[1])})
+
+        r=next(r for r in self.rooms if r['id']=='E8'); y=r['y']-27; incident=self.incidents['E8']
+        candidates=[]
+        for z in range(r['z']+3,r['z']+r['length']-3):
+            for x in range(r['x']+3,r['x']+r['width']-3):
+                if all(self.grid.get((X,Y,Z),VOID)[0] in ('minecraft:air','minecraft:light')
+                       for X in range(x-1,x+2) for Z in range(z-1,z+2) for Y in range(y,y+3)):
+                    candidates.append((abs(x-r['x']-r['width']/2)+abs(z-r['z']-r['length']/2),x,z))
+        chosen=[]
+        for _,x,z in sorted(candidates):
+            if all((x-X)**2+(z-Z)**2>=16 for X,Z in chosen):chosen.append((x,z))
+            if len(chosen)==3:break
+        assert len(chosen)==3,('E8 needs three clear spawn pads',chosen)
+        incident['spawn_points']=[xyz(x,y,z) for x,z in chosen]
+        for x,z in [(r['x']+3,r['z']+3),(r['x']+r['width']-4,r['z']+r['length']-4)]:
+            p=x,y+4,z;self.put(*p,'minecraft:redstone_lamp',{'lit':'false'});incident['alarm_lights'].append(xyz(*p))
 
     def lighting(self):
         sources = []
@@ -818,7 +845,8 @@ def generate():
                 'tiles': tiles, 'rooms': model.rooms, 'stairs': model.stairs, 'lift': model.lift,
                 'entrance': model.entrance, 'loot_containers': model.loot,
                 'storage_containers': model.storage, 'room_signs': model.signs,
-                'light_sources': sources, 'crystal_lighting': crystals, 'operations':model.operations}
+                'light_sources': sources, 'crystal_lighting': crystals, 'operations':model.operations,
+                'incidents':model.incidents}
     (DATA / 'central_institute.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     loot_tables()
     report['tiles'] = len(tiles)

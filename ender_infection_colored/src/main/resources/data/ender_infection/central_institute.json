@@ -1,6 +1,6 @@
 {
   "format_version": 1,
-  "layout_version": "central-institute-v3",
+  "layout_version": "central-institute-v4",
   "width": 120,
   "height": 55,
   "length": 104,
@@ -429,7 +429,7 @@
       "height": 55,
       "length": 16,
       "blocks": 14080,
-      "sha256": "33d98ac531e7948fa79051cf522042cdac2d360fb676d023503e8b7b403d328e"
+      "sha256": "a7a570d1d3eff6700302004fd9eedda3de290e711c90ba4575abcd7a84f77c8d"
     },
     {
       "template": "ender_infection:central_institute/tile_6_4",
@@ -528,7 +528,7 @@
       "height": 55,
       "length": 16,
       "blocks": 14080,
-      "sha256": "06374f32de6c54376b98e7f73e13fe1879f868f3404956c879ca4226b04884d2"
+      "sha256": "39f0eb9d2309b65bf29ce2351b13b7bdccf83845763f1e3c510add62b2379091"
     },
     {
       "template": "ender_infection:central_institute/tile_7_5",
@@ -22326,17 +22326,17 @@
       "light_level": 15
     },
     {
-      "x": 91,
-      "y": 15,
-      "z": 66,
-      "block": "minecraft:light",
-      "light_level": 15
-    },
-    {
       "x": 16,
       "y": 15,
       "z": 67,
       "block": "minecraft:sea_lantern",
+      "light_level": 15
+    },
+    {
+      "x": 93,
+      "y": 15,
+      "z": 68,
+      "block": "minecraft:light",
       "light_level": 15
     },
     {
@@ -24069,26 +24069,26 @@
       "z": 68,
       "block": "minecraft:amethyst_block",
       "source": [
-        91,
+        93,
         15,
-        66
+        68
       ],
       "probe": [
-        91,
+        92,
         15,
-        67
+        68
       ],
-      "exposed_face": "north",
+      "exposed_face": "east",
       "path": [
         [
-          91,
+          92,
           15,
-          67
+          68
         ],
         [
-          91,
+          93,
           15,
-          66
+          68
         ]
       ],
       "path_type": "straight",
@@ -33114,5 +33114,115 @@
         "zone": "service"
       }
     ]
+  },
+  "incidents": {
+    "E8": {
+      "room": "E8",
+      "bounds_min": [
+        84,
+        15,
+        64
+      ],
+      "bounds_max": [
+        108,
+        21,
+        84
+      ],
+      "control": {
+        "role": "incident",
+        "pos": [
+          87,
+          15,
+          66
+        ],
+        "approach_pos": [
+          88,
+          15,
+          66
+        ],
+        "room": "E8",
+        "zone": "containment",
+        "block": "ender_infection:lab_research_terminal"
+      },
+      "faults": [
+        {
+          "role": "cooling",
+          "pos": [
+            89,
+            15,
+            66
+          ],
+          "approach_pos": [
+            90,
+            15,
+            66
+          ],
+          "room": "E8",
+          "zone": "containment",
+          "block": "ender_infection:lab_cooling_pump"
+        },
+        {
+          "role": "sensor",
+          "pos": [
+            91,
+            15,
+            66
+          ],
+          "approach_pos": [
+            92,
+            15,
+            66
+          ],
+          "room": "E8",
+          "zone": "containment",
+          "block": "ender_infection:lab_monitor"
+        },
+        {
+          "role": "valve",
+          "pos": [
+            93,
+            15,
+            66
+          ],
+          "approach_pos": [
+            94,
+            15,
+            66
+          ],
+          "room": "E8",
+          "zone": "containment",
+          "block": "ender_infection:lab_pipe"
+        }
+      ],
+      "spawn_points": [
+        [
+          96,
+          15,
+          74
+        ],
+        [
+          92,
+          15,
+          74
+        ],
+        [
+          96,
+          15,
+          70
+        ]
+      ],
+      "alarm_lights": [
+        [
+          87,
+          19,
+          67
+        ],
+        [
+          104,
+          19,
+          80
+        ]
+      ]
+    }
   }
 }

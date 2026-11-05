@@ -9,6 +9,11 @@ import net.minecraft.world.phys.shapes.*;
 
 /** Baked, directional single-block room dressing; no per-tick block entity cost. */
 public final class LabDetailBlock extends HorizontalDirectionalBlock {
+    @Override public net.minecraft.world.InteractionResult use(BlockState state,Level level,BlockPos pos,net.minecraft.world.entity.player.Player player,net.minecraft.world.InteractionHand hand,net.minecraft.world.phys.BlockHitResult hit){
+        if(hand==net.minecraft.world.InteractionHand.MAIN_HAND&&level instanceof net.minecraft.server.level.ServerLevel server&&player instanceof net.minecraft.server.level.ServerPlayer user)
+            return dev.hui.enderinfection.institute.ContainmentIncident.useFixture(server,pos,user);
+        return net.minecraft.world.InteractionResult.PASS;
+    }
     public static final BooleanProperty POWERED=BlockStateProperties.POWERED;
     private final String key;
     public boolean isLamp(){return key.equals("lab_light_panel")||key.equals("lab_task_lamp");}

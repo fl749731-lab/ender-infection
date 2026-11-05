@@ -1,0 +1,31 @@
+# 文档导航
+
+当前主模组：0.12.0-alpha.6。独立科技附属：共振工业 0.1.0-alpha.1。
+
+## 玩家指南
+
+- [下载与安装](../README.md#下载与安装)
+- [主线流程](main-progression.md)
+- [生存玩法、装备与怪物](gameplay-guide.md)
+- [中央研究所：寻找、房间与施工](central-institute.md)
+- [研究所供电、门禁与样本研究](institute-operations.md)
+- [E8 收容事故](containment-incident.md)
+- [感染节点扩张规则](expansion.md)
+- [共振工业多方块与生产线](../addons/resonant-industry/README.md)
+- [共振工业电量、液体与进度](../addons/resonant-industry/docs/machine-panels.md)
+
+## 开发与资源
+
+- [双版本构建与维护](dual-version-maintenance.md)
+- [研究所 API v1](institute-api.md)
+- [附属 Mod 示例](../examples/institute-addon/README.md)
+- [房间设计与方块对照](laboratory-room-reference.md)
+- [署名导入建筑及使用范围](imported-buildings.md)
+- [alpha.6 验收及模型效果](../previews/incident-alpha6/README.md)
+
+## 历史资料
+
+- [历史版本与设计图册](history.md)
+- [完整更新日志](../CHANGELOG.md)
+
+历史页中的旧测试数量只对应当时版本，不代表当前验收结果。

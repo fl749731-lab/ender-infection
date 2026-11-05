@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "version": "0.12.0-alpha.5",
-  "created_at": "2026-11-05T15:00:23.6500276+01:00",
+  "version": "0.12.0-alpha.6",
+  "created_at": "2026-11-05T20:48:10.316374+00:00",
   "mode": "commit",
   "channel": "alpha",
-  "fingerprint": "sha256:809f184645bd830c37f3971f1f9692a306fe39311ade5e8caedb551219eb6b56",
+  "fingerprint": "sha256:47bd72bdc62deb511d992ffe7d6667c6b71f54dc43ddf0856433500dca29872c",
   "repo": {
     "host": "github.com",
     "owner": "fl749731-lab",
@@ -15,25 +15,25 @@
     "commands": [
       "python tools/build_dual_version.py --clean --gametests"
     ],
-    "skipped": true,
-    "at": "2026-11-05T15:00:23.6500276+01:00"
+    "skipped": false,
+    "at": "2026-11-05T20:48:10.316374+00:00"
   },
   "packages": [
     {
       "name": "java@ender_infection_colored",
       "path": "ender_infection_colored",
       "resolver": "java",
-      "current": "0.12.0-alpha.5",
-      "next": "0.12.0-alpha.5",
+      "current": "0.12.0-alpha.6",
+      "next": "0.12.0-alpha.6",
       "bump": "minor",
-      "tag": "v0.12.0-alpha.5",
+      "tag": "v0.12.0-alpha.6",
       "publish": false
     }
   ],
   "releases": [
     {
-      "version": "0.12.0-alpha.5",
-      "tag": "v0.12.0-alpha.5",
+      "version": "0.12.0-alpha.6",
+      "tag": "v0.12.0-alpha.6",
       "packages": [
         "java@ender_infection_colored"
       ],
@@ -49,7 +49,7 @@
       "packages": [
         "java@ender_infection_colored"
       ],
-      "body": "将中央研究所图纸组装为 120×104 场地、地上三层和地下三层共 48 间有内饰的游戏建筑。双楼梯、货梯、中庭连桥及 48 个分类补给桶连接完整布局；在适合的主世界新区块原生生成，保留六种旧小型实验室与署名导入建筑。\n\n把 13 类有储物结构的家具接入真实 27 格原版箱子界面：普通及侵蚀储柜、普通及侵蚀工作台抽屉、冷柜、货箱、货架、洗手盆下柜、玻璃展示柜、低温柜、服务器机架、控制台和推车。中央研究所模板包含 1417 个按房型分配战利品的储物根，六种旧小站模板合计包含 368 个；另保留中央研究所的 48 个独立补给桶。使用原版延迟战利品机制，生成后保存实际物品，重复打开和读档不重新抽取；玩家自行摆放为空，不向旧世界未标记的家具补刷免费物资。\n\n柜门和抽屉随实际使用开合，多人同时使用时保持开启，关闭或离开后合上。根方块与占位部件共享一份库存，破坏时内容只掉落一次；菜单同步槽位，普通区块更新不广播库存和未开奖励。\n\n补充玻璃展示柜、低温柜、服务器机架、控制台、推车、可开合隐私隔帘、显微镜、离心机、冷却泵和工作灯，调整对应房间设备及布置。五色细墙带替代整格深色条，补齐房间标识，修正门口、竖井、柜门前与补给通路；保留楼梯、货梯及中庭通行。\n\n按原房间用途修正 E5 培养舱阵列与 A3 医疗观察室：E5 恢复六座大型培养舱，A3 配置四张观察床，并保留设备前方和床边通路。\n\n新增 `/enderinstitute previewcentral \u003corigin\u003e`、`build \u003corigin\u003e`、`status` 和 `cancel`。先检查完整区域，再按已加载区块施工；保护已有容器、设备和活动方块，支持保存进度与保守恢复，取消保留已经完成的部分。入口阶梯及地下支撑适配 8 格地形高差；59 处紫晶组合补充实际表面光照，保留相邻空气和长芽空间。\n\nForge Minecraft 1.20.1 与 NeoForge Minecraft 1.21.1 同步更新，公共 API 维持 v1，附属 Mod 示例保持兼容。本次发行执行完整双版本干净构建，实际 115 项必需原生测试全部通过；四个原生客户端完成 150 张截图验收：122 张中央研究所实景，加 28 张真实库存界面及开柜模型。最终 JAR 校验和、布局与图像 SHA256 见发布验证清单。整楼电网联动、收容事件与研究所 Boss 机制尚未接入。",
+      "body": "将中央研究所图纸组装为 120×104 场地、地上三层和地下三层共 48 间有内饰的游戏建筑。双楼梯、货梯、中庭连桥及 48 个分类补给桶连接完整布局；在适合的主世界新区块原生生成，保留六种旧小型实验室与署名导入建筑。\n\n把 13 类有储物结构的家具接入真实 27 格原版箱子界面：普通及侵蚀储柜、普通及侵蚀工作台抽屉、冷柜、货箱、货架、洗手盆下柜、玻璃展示柜、低温柜、服务器机架、控制台和推车。中央研究所模板包含 1417 个按房型分配战利品的储物根，六种旧小站模板合计包含 368 个；另保留中央研究所的 48 个独立补给桶。使用原版延迟战利品机制，生成后保存实际物品，重复打开和读档不重新抽取；玩家自行摆放为空，不向旧世界未标记的家具补刷免费物资。\n\n柜门和抽屉随实际使用开合，多人同时使用时保持开启，关闭或离开后合上。根方块与占位部件共享一份库存，破坏时内容只掉落一次；菜单同步槽位，普通区块更新不广播库存和未开奖励。\n\n补充玻璃展示柜、低温柜、服务器机架、控制台、推车、可开合隐私隔帘、显微镜、离心机、冷却泵和工作灯，调整对应房间设备及布置。五色细墙带替代整格深色条，补齐房间标识，修正门口、竖井、柜门前与补给通路；保留楼梯、货梯及中庭通行。\n\n按原房间用途修正 E5 培养舱阵列与 A3 医疗观察室：E5 恢复六座大型培养舱，A3 配置四张观察床，并保留设备前方和床边通路。\n\n新增 `/enderinstitute previewcentral <origin>`、`build <origin>`、`status` 和 `cancel`。先检查完整区域，再按已加载区块施工；保护已有容器、设备和活动方块，支持保存进度与保守恢复，取消保留已经完成的部分。入口阶梯及地下支撑适配 8 格地形高差；59 处紫晶组合补充实际表面光照，保留相邻空气和长芽空间。\n\nForge Minecraft 1.20.1 与 NeoForge Minecraft 1.21.1 同步更新，公共 API 维持 v1，附属 Mod 示例保持兼容。本次发行执行完整双版本干净构建，实际 115 项必需原生测试全部通过；四个原生客户端完成 150 张截图验收：122 张中央研究所实景，加 28 张真实库存界面及开柜模型。最终 JAR 校验和、布局与图像 SHA256 见发布验证清单。整楼电网联动、收容事件与研究所 Boss 机制尚未接入。",
       "commit": "44698dbf3db5d5f5347c24905d209eea4115624b",
       "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/44698dbf3db5d5f5347c24905d209eea4115624b",
       "author": "fl749731-lab"
@@ -114,12 +114,24 @@
       "body": "接入由 Blockbench MCP 制作的初期感染末影人、畸变末影人和晶壳锚卫模型、紫晶发光与动画。末影单位的相位移动提供落点预警，可被抑制器打断；锚卫围绕锚点防守，供能时减伤、受抑制时开甲。\n\n新增裂隙锚点、相位抑制器及合成配方，并提供 `/enderrift outpost` 手动生成前哨战斗原型。此预发布暂不包含裂隙前哨自然生成及规划中的后续首领。",
       "commit": "588fdd61d09a9e9ad19c0f526a01a4ab82325cd5",
       "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/588fdd61d09a9e9ad19c0f526a01a4ab82325cd5"
+    },
+    {
+      "file": ".changes/containment-incident-alpha6.md",
+      "type": "feat",
+      "scope": "institute",
+      "bump": "patch",
+      "packages": [
+        "java@ender_infection_colored"
+      ],
+      "body": "两版同步加入 B2 E8 收容事故：研究前置、两波最多六只普通感染者、局部冷却与监视故障、隔离阀复位，以及全体玩家共享的一次性研究奖励。阶段、实体 UUID 和领奖资格持久化；保留原有配电开关、门禁及应急出口。新事件只随 v4 结构生成，已有 v3 建筑不会被覆盖。\n\n通过 Blockbench MCP 为晶盾卫士补充盾面分层骨板、调整眉骨，为裂喉喷吐者缩短胸前双囊并保持贴图密度。导出动画按骨骼 UUID 绑定，避免改名后引用旧骨骼名。紫晶继续使用完整自发光遮罩。"
     }
   ],
   "previous_changes": [
     ".changes/central-institute-runtime.md",
     ".changes/institute-dual-loader.md",
     ".changes/institute-operations.md",
+    ".changes/model-polish-alpha5.md",
+    ".changes/release-tooling.md",
     ".changes/rift-outpost.md"
   ],
   "qegg": {

@@ -1,0 +1,79 @@
+{
+  "status": "PASS",
+  "version": "0.12.0-alpha.6",
+  "required_tests": 163,
+  "tests_by_loader": {
+    "forge": 81,
+    "neoforge": 82
+  },
+  "native_suites": 18,
+  "dedicated_server_processes": 6,
+  "actual_unload_reload_checks": 2,
+  "client_screenshots": 32,
+  "frozen_inputs": 5931,
+  "source_unchanged": true,
+  "mcp_model_sources": {
+    "crystal_shield_sentinel.bbmodel": "834d4f2a2750c4bfeb8b9c7b31a9d067dee282b71d794130233910ea8c10384d",
+    "rift_throat_spitter.bbmodel": "2e4dbbc64d2e788e118690005b51813671e335290c8a04d5c4026a643acc6055"
+  },
+  "jars": [
+    {
+      "file": "ender_infection_colored/build/libs/ender-infection-0.12.0-alpha.6.jar",
+      "bytes": 5998874,
+      "sha256": "9c4c9182f8400dfaa52e0d6ceb2b22aa07582314438e206fbca781e96e95b56a",
+      "crc": "PASS",
+      "e8_resources": "PASS",
+      "mcp_model_exports": "PASS (JSON structure and PNG bytes)"
+    },
+    {
+      "file": "ender_infection_neoforge/build/libs/ender-infection-neoforge-1.21.1-0.12.0-alpha.6.jar",
+      "bytes": 5852614,
+      "sha256": "112b4478c6ff83fe8b78d98d2079c9fd3de0157d905c8588d93949e5780d59a0",
+      "crc": "PASS",
+      "e8_resources": "PASS",
+      "mcp_model_exports": "PASS (JSON structure and PNG bytes)"
+    }
+  ],
+  "persistence_checks": [
+    {
+      "loader": "forge",
+      "world": "ender_infection_colored\\build\\incident-persistence-1793893491442238400",
+      "status": "PASS",
+      "processes": 3,
+      "identities": [
+        "e1016fd0-2938-3528-81f2-13293522ecaf",
+        "d90ca406-ec34-3854-a002-62eb7bfddd80",
+        "135ed1d0-47a4-3698-a134-3e0f77e4b6a8",
+        "f4237687-0fa6-318c-9417-3d1df553896d",
+        "61a4bf56-39ff-31c8-a9f1-a575d560b457",
+        "d0212e6f-844b-367b-8686-990e592f5179"
+      ],
+      "logs": [
+        "build\\dual-version-validation\\forge-incident-persistence-seed.log",
+        "build\\dual-version-validation\\forge-incident-persistence-resume.log",
+        "build\\dual-version-validation\\forge-incident-persistence-claimed.log"
+      ]
+    },
+    {
+      "loader": "neoforge",
+      "world": "ender_infection_neoforge\\build\\incident-persistence-1793893962647439600",
+      "status": "PASS",
+      "processes": 3,
+      "identities": [
+        "aa5af27f-574a-3030-9b12-5b1fc7cab3d8",
+        "3c660a26-2547-3a50-bf88-e1f1e831bfd1",
+        "3af4edba-bd1f-3864-a9e5-482de294dd78",
+        "de8d7be2-0d87-3067-b3b9-3349863e0c0f",
+        "916ae4be-ed5e-31ed-830d-b67819c90b63",
+        "a3e679d0-5cd5-3af2-969c-ba0cf4eb9548"
+      ],
+      "logs": [
+        "build\\dual-version-validation\\neoforge-incident-persistence-seed.log",
+        "build\\dual-version-validation\\neoforge-incident-persistence-resume.log",
+        "build\\dual-version-validation\\neoforge-incident-persistence-claimed.log"
+      ]
+    }
+  ],
+  "build_command": "python tools/build_dual_version.py --clean --gametests",
+  "scope": "Build and gameplay validation snapshot; current publication status is on the release page."
+}

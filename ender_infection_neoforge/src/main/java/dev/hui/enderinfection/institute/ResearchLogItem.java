@@ -20,6 +20,10 @@ public final class ResearchLogItem extends Item {
             if (found.isEmpty()) user.displayClientMessage(Component.translatable("message.ender_infection.operations.no_facility"), false);
             else {
                 var state = found.get();
+                ContainmentIncident.status(server, user.blockPosition()).ifPresent(incident -> user.displayClientMessage(
+                        Component.translatable("message.ender_infection.incident.status",
+                                Component.translatable("message.ender_infection.incident.phase." + incident.phase().name().toLowerCase(java.util.Locale.ROOT)),
+                                incident.resolved(), incident.spawned(), Integer.bitCount(incident.faults())), false));
                 String task = !state.repaired() ? "repair" : !state.servicePowered() ? "service"
                         : !state.containmentPowered() ? "containment" : !state.analyzed() ? "analyze"
                         : !state.separated() ? "separate" : !state.archiveClaimed() ? "archive" : "complete";

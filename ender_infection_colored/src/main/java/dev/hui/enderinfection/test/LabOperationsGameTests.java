@@ -43,7 +43,7 @@ public final class LabOperationsGameTests {
     private static boolean unchanged(ServerPlayer player,List<ItemStack> before) { for(int i=0;i<before.size();i++)if(!sameStack(before.get(i),player.getInventory().getItem(i)))return false;return true; }
     private static int count(ServerPlayer player,Item target) { int result=0;for(int i=0;i<player.getInventory().getContainerSize();i++)if(player.getInventory().getItem(i).is(target))result+=player.getInventory().getItem(i).getCount();return result; }
 
-    private static final class Fixture implements AutoCloseable {
+    static final class Fixture implements AutoCloseable {
         final GameTestHelper h; final ServerLevel level; final BlockPos origin; final JsonObject operations; final CompoundTag previousData; boolean closed;
         final List<io.netty.channel.embedded.EmbeddedChannel> transports=new ArrayList<>();final Set<ChunkPos> forced=new LinkedHashSet<>();final Set<BlockPos> placed=new LinkedHashSet<>();final List<ServerPlayer> players=new ArrayList<>();final Map<String,JsonObject> controls=new LinkedHashMap<>();
         Fixture(GameTestHelper h) {

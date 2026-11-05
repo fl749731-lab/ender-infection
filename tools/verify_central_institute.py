@@ -310,7 +310,7 @@ def verify(manifest, resources):
         require(name != "minecraft:redstone_lamp" or state.get("lit") == "true", f"Alarm lamp is not lit: {source}")
         require(name != "minecraft:light" or state.get("level") == "15", f"Invisible fill-light has the wrong emission: {source}")
     operations = manifest.get("operations")
-    if manifest.get("layout_version") == "central-institute-v3":
+    if manifest.get("layout_version") in ("central-institute-v3", "central-institute-v4"):
         require(isinstance(operations, dict), "Missing institute operations manifest")
         controls = operations["controls"]
         require({item["role"] for item in controls} == {"generator", "distribution", "terminal", "archive"} and len(controls) == 4, "Expected four distinct facility control roles")
@@ -344,6 +344,33 @@ def verify(manifest, resources):
                 require(model.state(at)[0] == item["device"], f"Processor identity mismatch: {item}")
             else:
                 require(model.state(at)[1].get("open") == "false", f"Secured door starts open: {item}")
+    if manifest.get("layout_version") == "central-institute-v4":
+        incident = manifest.get("incidents", {}).get("E8")
+        require(isinstance(incident, dict), "Missing E8 incident definition")
+        room = next(r for r in rooms if r["id"] == "E8")
+        minimum = (room["x"], room["y"] + 1, room["z"])
+        maximum = (room["x"] + room["width"], room["y"] + room["height"], room["z"] + room["length"])
+        require(coord(incident["bounds_min"]) == minimum and coord(incident["bounds_max"]) == maximum, "Incident bounds leave E8")
+        def in_room(at): return all(minimum[i] <= at[i] < maximum[i] for i in range(3))
+        control = incident["control"]; at = coord(control["pos"]); entity = model.entities.get(at, {})
+        require(in_room(at) and model.state(at)[0] == "ender_infection:lab_research_terminal", "E8 experiment terminal is missing")
+        require(entity.get("id") == "ender_infection:lab_operations_control" and entity.get("InstituteBound") == 1, "E8 terminal is not facility-bound")
+        require(tuple(entity.get("InstituteOffset" + axis) for axis in "XYZ") == at, "E8 binding uses tile-relative coordinates")
+        require({f["role"] for f in incident["faults"]} == {"cooling", "sensor", "valve"} and len(incident["faults"]) == 3, "Expected three distinct repair points")
+        for target in [control, *incident["faults"]]:
+            at, approach = coord(target["pos"]), coord(target["approach_pos"])
+            require(in_room(at) and model.state(at)[0] == target["block"], "Missing actual incident control/fault block")
+            require(model.standing(approach) and visited[model.index(approach)], "Incident repair point is unreachable")
+        spawns = [coord(p) for p in incident["spawn_points"]]
+        require(len(spawns) == 3 and len(set(spawns)) == 3, "Expected three spawn pads reused by the two finite waves")
+        for at in spawns:
+            require(in_room(at) and model.standing(at) and visited[model.index(at)], "Incident spawn pad is unsupported or disconnected")
+            require(all(model.state((at[0] + dx, at[1] + dy, at[2] + dz))[0] in AIR | {"minecraft:light"}
+                        for dx in (-1, 0, 1) for dz in (-1, 0, 1) for dy in (0, 1, 2)), "Incident spawn clearance is obstructed")
+        require(len(incident["alarm_lights"]) == 2, "Expected two E8 alarm lamps")
+        for point in incident["alarm_lights"]:
+            at = coord(point)
+            require(in_room(at) and model.state(at)[0] == "minecraft:redstone_lamp" and model.state(at)[1].get("lit") == "false", "Alarm lamp must start off")
     for crystal in manifest["crystal_lighting"]:
         at, source = coord(crystal), coord(crystal["source"])
         name = model.state(source)[0]

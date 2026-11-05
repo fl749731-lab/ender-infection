@@ -128,7 +128,8 @@ def animations(key,d,scale=1,mutant=False,hit=16,ticks=40):
    # Match AttackSpec impact and total duration independently.
    factor={'claw_sweep':12/16,'heavy_slam':18/16,'crystal_burst':28/16}[name]
   tracks={}
-  for anim in a.get('animators',{}).values():
+  bone_names={g['uuid']:g['name'] for g,parent in groups(d)}
+  for bone_uuid,anim in a.get('animators',{}).items():
    if anim.get('type')!='bone' or not anim.get('keyframes'):continue
    channels={}
    for k in anim['keyframes']:
@@ -136,7 +137,9 @@ def animations(key,d,scale=1,mutant=False,hit=16,ticks=40):
     if channel=='rotation':vals=[-vals[0],-vals[1],vals[2]]
     elif channel=='position':vals=[-vals[0]*scale,vals[1]*scale,vals[2]*scale]
     channels.setdefault(channel,{})[str(round(time_at(k['time']),5))]=vals
-   tracks[anim['name']]=channels
+   # BB5 animator display names can remain stale after an MCP group rename.
+   # The UUID is the actual rig binding; export its current group name.
+   tracks[bone_names.get(bone_uuid,anim['name'])]=channels
   out['animation.'+key+'.'+name]={'loop':a.get('loop')=='loop','animation_length':round(time_at(duration),5),'bones':tracks}
  write(ASSETS/'animations'/f'{key}.animation.json',{'format_version':'1.8.0','animations':out})
 

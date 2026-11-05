@@ -20,6 +20,7 @@ public final class OperationsData extends SavedData {
     public static final class Facility {
         public final BlockPos origin;
         boolean repaired, servicePowered, containmentPowered, analyzed, separated, archiveClaimed;
+        ContainmentIncident.Progress incident = new ContainmentIncident.Progress();
         final Set<UUID> keyRecipients = new LinkedHashSet<>();
         Facility(BlockPos origin) { this.origin = origin.immutable(); }
         public boolean repaired() { return repaired; }
@@ -50,6 +51,7 @@ public final class OperationsData extends SavedData {
             facility.containmentPowered = facility.repaired && tag.getBoolean("ContainmentPowered");
             facility.analyzed = tag.getBoolean("Analyzed"); facility.separated = tag.getBoolean("Separated");
             facility.archiveClaimed = tag.getBoolean("ArchiveClaimed");
+            facility.incident = ContainmentIncident.Progress.load(tag.getCompound("E8Incident"));
             for (var recipient : tag.getList("KeyRecipients", 10)) {
                 var player = (CompoundTag)recipient;
                 if (player.hasUUID("Player")) facility.keyRecipients.add(player.getUUID("Player"));
@@ -60,12 +62,12 @@ public final class OperationsData extends SavedData {
     }
     @Override public CompoundTag save(CompoundTag root, net.minecraft.core.HolderLookup.Provider registries) { return save(root); }
     public CompoundTag save(CompoundTag root) {
-        root.putInt("Version", 1); var list = new ListTag();
+        root.putInt("Version", 2); var list = new ListTag();
         for (var facility : facilities.values()) {
             var tag = new CompoundTag(); tag.putLong("Origin", facility.origin.asLong());
             tag.putBoolean("Repaired", facility.repaired); tag.putBoolean("ServicePowered", facility.servicePowered);
             tag.putBoolean("ContainmentPowered", facility.containmentPowered); tag.putBoolean("Analyzed", facility.analyzed);
-            tag.putBoolean("Separated", facility.separated); tag.putBoolean("ArchiveClaimed", facility.archiveClaimed);
+            tag.putBoolean("Separated", facility.separated); tag.putBoolean("ArchiveClaimed", facility.archiveClaimed); tag.put("E8Incident", facility.incident.save());
             var recipients = new ListTag();
             for (var uuid : facility.keyRecipients) { var player = new CompoundTag(); player.putUUID("Player", uuid); recipients.add(player); }
             tag.put("KeyRecipients", recipients); list.add(tag);

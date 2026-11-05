@@ -10,6 +10,7 @@ on:
       - 'examples/institute-addon/**'
       - 'tools/*dual_version.py'
       - 'tools/verify_gametest_log.py'
+      - 'tools/check_incident_persistence.py'
       - 'tools/sync_neoforge_resources.py'
       - 'tools/*central_institute*.py'
       - 'tools/institute_room_spec.py'
@@ -90,6 +91,13 @@ jobs:
           python ../tools/verify_gametest_log.py processing-tests.log --minimum 6
           java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain --no-daemon --console=plain runGameTestServer -PoperationsChecks | tee operations-tests.log
           python ../tools/verify_gametest_log.py operations-tests.log --minimum 6
+      - name: Test E8 containment incident
+        working-directory: ${{ matrix.project }}
+        run: |
+          java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain --no-daemon --console=plain runGameTestServer -PincidentChecks | tee incident-tests.log
+          python ../tools/verify_gametest_log.py incident-tests.log --minimum 8
+      - name: Check actual E8 restart and chunk unload
+        run: python tools/check_incident_persistence.py --loader ${{ matrix.addon }}
       - name: Compile addon example
         working-directory: examples/institute-addon/${{ matrix.addon }}
         run: java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain --no-daemon --console=plain build
@@ -116,3 +124,5 @@ jobs:
           path: |
             ${{ matrix.project }}/build/**/logs/*.log
             ${{ matrix.project }}/build/**/crash-reports/*.txt
+            build/dual-version-validation/*incident*
+            ${{ matrix.project }}/incident-tests.log

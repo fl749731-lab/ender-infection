@@ -84,6 +84,7 @@ def main() -> None:
     version = json.loads((OUTPUT / "parity.json").read_text("utf-8"))["version"]
     projects = (("Forge 1.20.1", "ender_infection_colored", 17), ("NeoForge 1.21.1", "ender_infection_neoforge", 21))
     tests = []
+    persistence_checks = []
     for name, folder, major in projects:
         tasks = (["clean"] if args.clean else []) + ["build", "apiDevJar"]
         run_project(name, folder, major, tasks, f"{folder}-build.log")
@@ -100,6 +101,10 @@ def main() -> None:
             tests.append(verify(log, 6))
             log = run_project(name, folder, major, ["runGameTestServer", "-PoperationsChecks"], f"{folder}-operations.log")
             tests.append(verify(log, 6))
+            log = run_project(name, folder, major, ["runGameTestServer", "-PincidentChecks"], f"{folder}-incidents.log")
+            tests.append(verify(log, 8))
+            from check_incident_persistence import check
+            persistence_checks.append(check("neoforge" if "neoforge" in folder else "forge"))
             log = run_project(name, folder, major, ["runGameTestServer", "-PoreChecks"], f"{folder}-ore.log")
             tests.append(verify(log, 1))
         addon = "neoforge" if "neoforge" in folder else "forge"
@@ -125,7 +130,7 @@ def main() -> None:
             if f"Implementation-Version: {version}\r\n" not in manifest and f"Implementation-Version: {version}\n" not in manifest:
                 raise RuntimeError(f"JAR implementation version is not {version}: {jar}")
         jars.append({"file": jar.relative_to(ROOT).as_posix(), "bytes": jar.stat().st_size, "sha256": hashlib.sha256(jar.read_bytes()).hexdigest()})
-    report = {"status": "PASS", "version": version, "native_gametests_requested": args.gametests, "tests": tests, "jars": jars}
+    report = {"status": "PASS", "version": version, "native_gametests_requested": args.gametests, "tests": tests, "persistence_checks": persistence_checks, "jars": jars}
     report_path.write_text(json.dumps(report, indent=2) + "\n", "utf-8")
     print(json.dumps(report, indent=2))
 

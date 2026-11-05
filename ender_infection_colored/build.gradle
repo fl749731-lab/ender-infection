@@ -3,7 +3,7 @@ plugins {
     id 'idea'
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
 }
-version = '0.12.0-alpha.5'
+version = '0.12.0-alpha.6'
 group = 'dev.hui.enderinfection'
 base { archivesName = 'ender-infection' }
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -70,15 +70,24 @@ minecraft {
         if (project.hasProperty('operationsVisualCheck')) {
             client { workingDirectory project.file('build/operations-visual-check'); property 'ender_infection.operationsVisualCheck','true'; jvmArgs '-Xms128m', '-Xmx1536m', '-XX:ActiveProcessorCount=2' }
         }
+        if (project.hasProperty('incidentVisualCheck')) {
+            client { workingDirectory project.file('build/incident-visual-check'); property 'ender_infection.incidentVisualCheck','true' }
+        }
         if (project.hasProperty('naturalLabCheck')) {
             client { workingDirectory project.file('build/natural-lab-check'); property 'ender_infection.naturalLabCheck','true'; property 'ender_infection.naturalBiome',project.findProperty('naturalBiome') ?: 'mushroom_fields'; property 'ender_infection.naturalBuilding',project.findProperty('naturalBuilding') ?: ''; property 'ender_infection.naturalRerender',project.hasProperty('naturalRerender').toString() }
         }
-        server { args '--nogui' }
+        server {
+            args '--nogui'
+            if (project.hasProperty('incidentPersistenceStage')) {
+                workingDirectory project.file(project.property('incidentPersistenceDirectory'))
+                property 'ender_infection.incidentPersistenceCheck', project.property('incidentPersistenceStage')
+            }
+        }
         gameTestServer {
             workingDirectory gameTestRunDirectory
             jvmArgs '-Xms128m', '-Xmx1536m', '-XX:ActiveProcessorCount=2'
             if (project.hasProperty('instituteChecks')) property 'ender_infection.instituteChecks','true'
-            property 'forge.enabledGameTestNamespaces',project.hasProperty('operationsChecks')?'ender_operations_checks':project.hasProperty('processingChecks')?'ender_processing_checks':project.hasProperty('storageChecks')?'ender_storage_checks':project.hasProperty('centralInstituteChecks')?'ender_central_institute_checks':project.hasProperty('regressionChecks')?'ender_regression_checks':project.hasProperty('instituteChecks')?'ender_institute_checks':project.hasProperty('riftChecks')?'ender_rift_checks,ender_ai_checks':project.hasProperty('oreChecks')?'ender_ore_checks':project.hasProperty('expansionChecks')?'ender_expansion_checks':project.hasProperty('aiChecks')?'ender_ai_checks':project.hasProperty('labChecks')?'ender_lab_checks':'ender_infection,ender_lab_checks,ender_ore_checks'
+            property 'forge.enabledGameTestNamespaces',project.hasProperty('incidentChecks')?'ender_incident_checks':project.hasProperty('operationsChecks')?'ender_operations_checks':project.hasProperty('processingChecks')?'ender_processing_checks':project.hasProperty('storageChecks')?'ender_storage_checks':project.hasProperty('centralInstituteChecks')?'ender_central_institute_checks':project.hasProperty('regressionChecks')?'ender_regression_checks':project.hasProperty('instituteChecks')?'ender_institute_checks':project.hasProperty('riftChecks')?'ender_rift_checks,ender_ai_checks':project.hasProperty('oreChecks')?'ender_ore_checks':project.hasProperty('expansionChecks')?'ender_expansion_checks':project.hasProperty('aiChecks')?'ender_ai_checks':project.hasProperty('labChecks')?'ender_lab_checks':'ender_infection,ender_lab_checks,ender_ore_checks'
         }
     }
 }

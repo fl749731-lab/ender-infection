@@ -1,12 +1,12 @@
-# 研究所供电与样本研究（alpha.4）
+# 研究所供电与样本研究
 
-本文对应 **0.12.0-alpha.4，发布于 2026-11-05**。最新公开预发布版见 [v0.12.0-alpha.4](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.4)，稳定版仍为 [v0.11.0](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.11.0)。Forge Minecraft 1.20.1 / Java 17 与 NeoForge Minecraft 1.21.1 / Java 21 同步实现本页玩法。
+适用于主模组 **0.12.0-alpha.6**。本页操作最初于 alpha.4 接入；当前下载见[alpha.6 发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.6)。Forge 1.20.1 / Java 17 与 NeoForge 1.21.1 / Java 21 同步提供。
 
-本轮把中央研究所的探索连成“取得物资 → 修复电源 → 分区送电 → 领取门禁卡 → 分析与分离 → 领取核心档案”。收容事故事件和研究所 Boss 战仍未实现。
+本轮把中央研究所的探索连成“取得物资 → 修复电源 → 分区送电 → 领取门禁卡 → 分析与分离 → 领取核心档案”。完成研究后可继续 [E8 收容事故](containment-incident.md)；研究所 Boss 尚未接入。
 
 ## 从哪里开始
 
-新玩法使用 **layout v3 的新生成或新施工中央研究所**。自然生成需要探索新的合适区块；管理员也可按[中央研究所施工说明](central-institute.md)检查空地并施工。已存在的 alpha.3 建筑不会自动拆除或重建，旧布局也不会悄悄补上控制器或任务绑定。更新 JAR 不会重抽已经领取的储物战利品。
+新玩法使用 **新生成或新施工中央研究所**。自然生成需要探索新的合适区块；管理员也可按[中央研究所施工说明](central-institute.md)检查空地并施工。已存在的 alpha.3 建筑不会自动拆除或重建，旧布局也不会悄悄补上控制器或任务绑定。更新 JAR 不会重抽已经领取的储物战利品。
 
 先在 G1 公共区寻找补给桶，取得保险丝、原始组织样本和研究日志；公共分类补给保证提供这些起步物品。修复还需要铜锭、红石。保险丝可用铁粒和红石合成。手持 `ender_infection:research_log` 右键可查看当前位置研究所的当前目标。
 

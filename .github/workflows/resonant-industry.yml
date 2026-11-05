@@ -1,0 +1,48 @@
+name: Resonant Industry addon
+on:
+  pull_request:
+    paths: ['addons/resonant-industry/**', 'common/**', 'ender_infection_colored/**', 'ender_infection_neoforge/**', 'tools/sync_neoforge_resources.py', '.github/workflows/resonant-industry.yml']
+  push:
+    branches: [main, 'codex/**']
+    paths: ['addons/resonant-industry/**', 'common/**', 'ender_infection_colored/**', 'ender_infection_neoforge/**', 'tools/sync_neoforge_resources.py', '.github/workflows/resonant-industry.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - loader: forge
+            java: '17'
+          - loader: neoforge
+            java: '21'
+    env:
+      NFRT_ASSET_ROOT: ${{ github.workspace }}/build/minecraft-assets-1.21.1
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: industry-${{ runner.os }}-${{ matrix.loader }}-${{ hashFiles('**/gradle-wrapper.properties', 'addons/resonant-industry/**/build.gradle') }}
+      - name: Build addon and test actual multiblocks and persistence
+        run: python addons/resonant-industry/tools/build_dual.py --loader ${{ matrix.loader }} --clean --gametests
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: resonant-industry-${{ matrix.loader }}
+          path: |
+            addons/resonant-industry/${{ matrix.loader }}/build/libs/*.jar
+            addons/resonant-industry/build/validation/**

@@ -1,0 +1,26 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+[[mods]]
+modId="resonant_industry"
+version="${file.jarVersion}"
+displayName="Ender Infection: Resonant Industry"
+description="Multiblock bio-industry, energy and fluid processing for Ender Infection."
+[[dependencies.resonant_industry]]
+modId="forge"
+mandatory=true
+versionRange="[47.3.12,48)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.resonant_industry]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.20.1,1.20.2)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.resonant_industry]]
+modId="ender_infection"
+mandatory=true
+versionRange="[0.12.0-alpha.4,)"
+ordering="AFTER"
+side="BOTH"

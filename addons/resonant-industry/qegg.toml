@@ -1,0 +1,30 @@
+# Run through tools/publish_prepared.py to isolate this package's qegg metadata.
+schema_version = 1
+[project]
+default_branch = "main"
+repo = "github.com/fl749731-lab/ender-infection"
+[git]
+tag_prefix = "resonant-industry-v"
+remote = "origin"
+[release]
+mode = "commit"
+github_release = true
+commit_message = "chore(release): resonant industry {{version}}"
+[release.workflow]
+mode = "external"
+[changes]
+dir = "addons/resonant-industry/.changes"
+scope = ["addons/resonant-industry"]
+[verify]
+commands = ["python tools/build_dual_version.py --clean --gametests", "python addons/resonant-industry/tools/build_dual.py --clean --gametests --clients"]
+timeout = "120m"
+fail_fast = true
+[publish]
+registries = []
+[release.assets]
+files = ["addons/resonant-industry/build/release/assets/*"]
+[packages."java@addons/resonant-industry/forge"]
+name = "forge"
+path = "addons/resonant-industry/forge"
+resolver = "java"
+publish = false

@@ -1,5 +1,7 @@
 # 末影感染 · Ender Infection
 
+科技内容作为独立附属 **[末影感染：共振工业](addons/resonant-industry/README.md)** 开发，单独提供 Forge 1.20.1 与 NeoForge 1.21.1 安装包。[附属 alpha.1](https://github.com/fl749731-lab/ender-infection/releases/tag/resonant-industry-v0.1.0-alpha.1) 包含三种多方块、能源与流体运输、逐层搭建手册和运行图集；与主模组分别管理版本。
+
 末影感染是 Minecraft 阵营 Mod。当前稳定版本为 **0.11.0（Forge 1.20.1）**；最新预发布版本为 **0.12.0-alpha.5（Forge 1.20.1 / NeoForge 1.21.1，2026-11-05）**。
 
 **v0.12.0-alpha.5** 同时提供 **Forge 1.20.1 / Java 17** 与 **NeoForge 1.21.1 / Java 21**。安装包与验证记录见 [alpha.5 发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.5)，维护流程见 [双版本维护](docs/dual-version-maintenance.md)。[alpha.3 发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.3)保留上一预发布版与运行实景，[alpha.2 发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.2)保留历史设计附件。

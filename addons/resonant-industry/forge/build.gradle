@@ -1,0 +1,95 @@
+plugins {
+    id 'java-library'
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+}
+version = '0.1.0-alpha.1'
+group = 'dev.hui.resonantindustry'
+base { archivesName = 'resonant-industry-forge-1.20.1' }
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+def coreDevJar = file(providers.gradleProperty('coreDevJar').getOrElse('../../../ender_infection_colored/build/api/ender-infection-api-dev.jar'))
+tasks.register('checkCoreApi') {
+    doLast {
+        if (!coreDevJar.isFile()) throw new GradleException("Build the core apiDevJar first, or pass -PcoreDevJar=<absolute development jar>: ${coreDevJar}")
+    }
+}
+def stagedCoreJar = layout.buildDirectory.file('coreDependency/ender-infection-api-dev.jar')
+def gameTestDirectory = project.file("build/addon-gametest-${System.currentTimeMillis()}")
+tasks.register('stageCoreApi', Copy) {
+    dependsOn 'checkCoreApi'
+    from coreDevJar
+    into layout.buildDirectory.dir('coreDependency')
+    rename { 'ender-infection-api-dev.jar' }
+}
+tasks.named('compileJava').configure { dependsOn 'stageCoreApi' }
+tasks.withType(JavaExec).configureEach {
+    dependsOn 'stageCoreApi'
+    if (name == 'runGameTestServer') {
+        doFirst {
+            // Forge's entry point uses the dedicated-server world loader. Without
+            // these settings, its test origin at Y=-60 lies inside random terrain.
+            def testRoot = gameTestDirectory.toPath().toAbsolutePath().normalize()
+            def buildRoot = layout.buildDirectory.get().asFile.toPath().toAbsolutePath().normalize()
+            if (!testRoot.startsWith(buildRoot) || new File(gameTestDirectory, 'world/level.dat').exists()) {
+                throw new GradleException('The addon GameTest harness requires a fresh world under build/.')
+            }
+            gameTestDirectory.mkdirs()
+            new File(gameTestDirectory, 'server.properties').setText('''level-type=minecraft:flat
+level-seed=0
+generate-structures=false
+generator-settings={"biome":"minecraft:plains","layers":[{"block":"minecraft:bedrock","height":1},{"block":"minecraft:dirt","height":2},{"block":"minecraft:grass_block","height":1}],"structure_overrides":[],"lakes":false,"features":false}
+''', 'UTF-8')
+        }
+    }
+}
+sourceSets.main.java.srcDir('../common/src/main/java')
+
+
+minecraft {
+    mappings channel: 'official', version: '1.20.1'
+    copyIdeResources = true
+    runs {
+        configureEach {
+            workingDirectory project.file('build/client-review')
+            property 'forge.logging.console.level', 'info'
+            mods { resonant_industry { source sourceSets.main } }
+        }
+        client {
+            property 'mixin.env.remapRefMap','true'
+            property 'mixin.env.refMapRemappingFile',project.file('build/createSrgToMcp/output.srg').absolutePath
+            if (project.hasProperty('industryVisualCheck')) property 'resonant_industry.visualCheck','true'
+        }
+        server {
+            args '--nogui'
+            if(project.hasProperty('industryPersistenceStage')) {
+                workingDirectory project.file(project.property('industryPersistenceDirectory'))
+                property 'resonant_industry.persistenceStage',project.property('industryPersistenceStage')
+            }
+        }
+        gameTestServer {
+            workingDirectory gameTestDirectory
+            jvmArgs '-Xms256M', '-Xmx1G'
+            property 'forge.enabledGameTestNamespaces', 'resonant_industry'
+            property 'resonant_industry.blueprintOutput',project.file('build/verified-blueprints.json').absolutePath
+        }
+    }
+}
+repositories {
+    mavenCentral()
+    maven {
+        url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content { includeGroupByRegex 'software\\.bernie.*'; includeGroup 'com.eliotlash.mclib' }
+    }
+}
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.20.1-47.3.12'
+    compileOnly files(stagedCoreJar)
+    runtimeOnly files(stagedCoreJar)
+    runtimeOnly fg.deobf('software.bernie.geckolib:geckolib-forge-1.20.1:4.4.9')
+    runtimeOnly 'com.eliotlash.mclib:mclib:20'
+}
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+jar {
+    manifest { attributes('Implementation-Version': project.version) }
+    finalizedBy 'reobfJar'
+}

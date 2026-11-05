@@ -1,0 +1,75 @@
+plugins {
+    id 'java-library'
+    id 'net.neoforged.moddev' version '2.0.148'
+}
+version = new File(rootDir, '../forge/build.gradle').getText('UTF-8').find(/version\s*=\s*['"]([^'"]+)['"]/) { full, value -> value }
+group = 'dev.hui.resonantindustry'
+base { archivesName = 'resonant-industry-neoforge-1.21.1' }
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+def coreDevJar = file(providers.gradleProperty('coreDevJar').getOrElse('../../../ender_infection_neoforge/build/api/ender-infection-api-dev.jar'))
+tasks.register('checkCoreApi') {
+    doLast {
+        if (!coreDevJar.isFile()) throw new GradleException("Build the core apiDevJar first, or pass -PcoreDevJar=<absolute development jar>: ${coreDevJar}")
+    }
+}
+def stagedCoreJar = layout.buildDirectory.file('coreDependency/ender-infection-api-dev.jar')
+tasks.register('stageCoreApi', Copy) {
+    dependsOn 'checkCoreApi'
+    from coreDevJar
+    into layout.buildDirectory.dir('coreDependency')
+    rename { 'ender-infection-api-dev.jar' }
+}
+tasks.named('compileJava').configure { dependsOn 'stageCoreApi' }
+tasks.withType(JavaExec).configureEach { dependsOn 'stageCoreApi' }
+sourceSets.main.java.srcDir('../common/src/main/java')
+sourceSets.main.java.srcDir(layout.buildDirectory.dir('generated/sharedJava'))
+sourceSets.main.resources.srcDir(layout.buildDirectory.dir('generated/sharedResources'))
+def sharedIndustry = tasks.register('syncIndustry', Exec) {
+    workingDir rootDir.parentFile.parentFile.parentFile
+    commandLine 'python', 'addons/resonant-industry/tools/sync_neoforge.py'
+    inputs.dir('../forge/src/main/java')
+    inputs.dir('../forge/src/main/resources')
+    inputs.file('../tools/sync_neoforge.py')
+    outputs.dir(layout.buildDirectory.dir('generated/sharedJava'))
+    outputs.dir(layout.buildDirectory.dir('generated/sharedResources'))
+}
+tasks.named('compileJava').configure { dependsOn sharedIndustry }
+tasks.named('processResources').configure { dependsOn sharedIndustry }
+
+
+
+repositories {
+    mavenCentral()
+    maven {
+        url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content { includeGroup 'software.bernie.geckolib' }
+    }
+}
+dependencies {
+    compileOnly files(stagedCoreJar)
+    runtimeOnly files(stagedCoreJar)
+    runtimeOnly 'software.bernie.geckolib:geckolib-neoforge-1.21.1:4.9.3'
+}
+neoForge {
+    version = '21.1.265'
+    runs {
+        client { client(); gameDirectory = project.file('build/client-review'); if (project.hasProperty('industryVisualCheck')) systemProperty 'resonant_industry.visualCheck','true' }
+        server {
+            server(); programArgument '--nogui'; gameDirectory = project.file('build/server-review')
+            if(project.hasProperty('industryPersistenceStage')) {
+                gameDirectory = project.file(project.property('industryPersistenceDirectory'))
+                systemProperty 'resonant_industry.persistenceStage',project.property('industryPersistenceStage')
+            }
+        }
+        gameTestServer {
+            type = 'gameTestServer'
+            gameDirectory = project.file("build/addon-gametest-${System.currentTimeMillis()}")
+            systemProperty 'neoforge.enabledGameTestNamespaces', 'resonant_industry'
+            systemProperty 'resonant_industry.blueprintOutput',project.file('build/verified-blueprints.json').absolutePath
+        }
+    }
+    mods { resonant_industry { sourceSet sourceSets.main } }
+}
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+jar { manifest { attributes('Implementation-Version': project.version) } }

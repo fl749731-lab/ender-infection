@@ -1,5 +1,5 @@
 """Reproducible BB4 -> Gecko4 / Forge baked asset conversion. No re-atlasing."""
-import base64,copy,io,json,math,sys,zipfile
+import argparse,base64,copy,io,json,math,sys,zipfile
 from pathlib import Path
 import numpy as np
 from PIL import Image
@@ -18,7 +18,18 @@ def load(key):return resolve_groups(json.loads((PACK/SOURCES[key]['file']).read_
 CRYSTAL_COLORS={rgb(c) for name in ('crystal','glow') for c in PALETTES[name]}|{
  (57,33,79),(100,59,133),(150,96,181),(206,149,226)}
 
-def texture(d,path,glow=False,full_crystals=False):
+def crystal_pixels(pixels):
+ mask=np.zeros(pixels.shape[:2],dtype=bool)
+ for color in CRYSTAL_COLORS:mask|=np.all(pixels[:,:,:3]==color,axis=2)
+ return mask&(pixels[:,:,3]>0)
+
+def validate_crystal_mask(pixels,glow):
+ expected=crystal_pixels(pixels)
+ if not expected.any():raise ValueError('Native concept texture has no crystal pixels')
+ if not np.array_equal(glow[:,:,3]>0,expected):raise ValueError('Incomplete crystal glow or non-crystal pixels glow')
+ if not np.array_equal(glow[expected],pixels[expected]):raise ValueError('Crystal glow changed color or alpha')
+
+def texture(d,path,glow=False,full_crystals=False,strict_crystals=False):
  im=Image.open(io.BytesIO(base64.b64decode(d['textures'][0]['source'].split(',')[1]))).convert('RGBA');path.parent.mkdir(parents=True,exist_ok=True);im.save(path)
  if glow:
   a=np.array(im);mask=(a[:,:,0]>100)&(a[:,:,2]>130)&(a[:,:,0]>a[:,:,1]*1.2)&(a[:,:,2]>a[:,:,1]*1.2)
@@ -27,7 +38,9 @@ def texture(d,path,glow=False,full_crystals=False):
    for colors in CONCEPT_PALETTES.values():
     for color in colors:mask&=~np.all(a[:,:,:3]==rgb(color),axis=2)
    for color in CRYSTAL_COLORS:mask|=np.all(a[:,:,:3]==color,axis=2)
+  if strict_crystals:mask=crystal_pixels(a)
   a[~mask]=0
+  if strict_crystals:validate_crystal_mask(np.array(im),a)
   target=path.with_name(path.stem+'_glowmask.png')
   if (a[:,:,3]>0).any():Image.fromarray(a).save(target)
   else:target.unlink(missing_ok=True)
@@ -78,7 +91,24 @@ def geo(key,d,scale=1,offset=(0,0,0),armor=False,fixture=False):
  write(ASSETS/'geo'/f'{key}.geo.json',{'format_version':'1.12.0','minecraft:geometry':[{'description':{'identifier':'geometry.'+key,'texture_width':d['resolution']['width'],'texture_height':d['resolution']['height'],'visible_bounds_width':32,'visible_bounds_height':32,'visible_bounds_offset':[0,4,0]},'bones':bones}]})
  return bones
 
+def validate_native_attack(key,d,hit,ticks):
+ source=NATIVE_ATTACK_SOURCES.get(key.removeprefix('infected_'))
+ if source is None:return False
+ if d.get('model_identifier')!=source or not d.get('meta',{}).get('format_version','').startswith('5.'):
+  raise ValueError(f'{key}: native attack requires its MCP-authored BB5 source {source}')
+ clips=[a for a in d.get('animations',[]) if a['name'].split('.')[-1]=='attack']
+ if len(clips)!=1:raise ValueError(f'{key}: expected one native attack clip')
+ clip=clips[0];end=ticks/20;impact=hit/20
+ if not math.isclose(clip['length'],end,abs_tol=1e-6):
+  raise ValueError(f'{key}: native attack length {clip["length"]} must equal {end} s; source is not ready')
+ times=[k['time'] for a in clip.get('animators',{}).values() if a.get('type')=='bone' for k in a.get('keyframes',[])]
+ if any(not math.isfinite(t) or t<0 or t>end+1e-6 for t in times):raise ValueError(f'{key}: native attack key outside clip')
+ if not any(math.isclose(t,impact,abs_tol=1e-6) for t in times):
+  raise ValueError(f'{key}: native attack needs an impact key at {impact} s')
+ return True
+
 def animations(key,d,scale=1,mutant=False,hit=16,ticks=40):
+ native_attack=validate_native_attack(key,d,hit,ticks)
  out={};src={a['name'].split('.')[-1]:a for a in d.get('animations',[])}
  aliases={'idle':'idle','walk':'walk' if 'walk' in src else 'fly' if 'fly' in src else 'idle','special':'attack','infection':'emerge','death':'death'}
  if mutant:aliases={'idle':'idle','drag_walk':'walk','claw_sweep':'attack','heavy_slam':'attack','crystal_burst':'attack','infection':'emerge'}
@@ -90,6 +120,7 @@ def animations(key,d,scale=1,mutant=False,hit=16,ticks=40):
     impact={'claw_sweep':12,'heavy_slam':18,'crystal_burst':28}[name]/20;end={'claw_sweep':26,'heavy_slam':40,'crystal_burst':50}[name]/20
     return t/.8*impact if t<=.8 else impact+(t-.8)/(duration-.8)*(end-impact)
    if name=='special':
+    if native_attack:return t
     impact=hit/20;end=ticks/20
     return t/.8*impact if t<=.8 else impact+(t-.8)/(duration-.8)*(end-impact)
    return t*factor
@@ -150,16 +181,48 @@ def obj(key,d,kind='item',filter_fn=lambda e:True,normalize=True,transform=None)
  write(ASSETS/'models'/kind/f'{key}.json',model)
  return model
 
-def export():
- for enum,key,source,label,hp,spd,dmg,hit,dur,reach,width,height,stage,price in UNITS:
-  d=load(source)
+def select_units(keys):
+ if keys is None:return UNITS
+ requested=[key.strip() for key in keys.split(',')]
+ known={row[1] for row in UNITS}
+ if not requested or any(not key or key not in known for key in requested):
+  raise ValueError('Expected comma-separated unit keys from: '+', '.join(sorted(known)))
+ return [row for row in UNITS if row[1] in requested]
+
+def merge_unit_report(report,rows):
+ merged=copy.deepcopy(report);pending={row['runtime']:row for row in rows}
+ for row in merged['assets']:
+  if row['runtime'] in pending:row.update(pending.pop(row['runtime']))
+ merged['assets'].extend(pending.values())
+ return merged
+
+def export(units=None):
+ rows=select_units(units);report_path=PROJECT/'verification/design_asset_manifest.json'
+ # Preflight every selected source and the existing report before writing assets.
+ # A partial export must never enter the legacy, furniture, or rift exporters.
+ prior=json.loads(report_path.read_text('utf-8')) if units is not None else None
+ if prior is not None and not isinstance(prior.get('assets'),list):raise ValueError('Invalid existing design export report')
+ prepared=[]
+ for row in rows:
+  d=load(row[2]);native=validate_native_attack('infected_'+row[1],d,row[7],row[8])
+  if native:
+   pixels=np.array(Image.open(io.BytesIO(base64.b64decode(d['textures'][0]['source'].split(',')[1]))).convert('RGBA'))
+   glow=pixels.copy();glow[~crystal_pixels(pixels)]=0;validate_crystal_mask(pixels,glow)
+  prepared.append((row,d,native))
+ REPORT.clear()
+ for row,d,native in prepared:
+  enum,key,source,label,hp,spd,dmg,hit,dur,reach,width,height,stage,price=row
   normalization=SOURCES[source].get('runtime_normalization')
   if normalization:
    s=normalization['scale'];offset=(0,normalization['offset_y'],0)
   else:
    lo,hi=bounds(d);s=height*16/(hi[1]-lo[1]);offset=(0,-lo[1],0)
-  geo('infected_'+key,d,s,offset);texture(d,ASSETS/'textures/entity'/f'infected_{key}.png',True,full_crystals=True);animations('infected_'+key,d,s)
+  geo('infected_'+key,d,s,offset);texture(d,ASSETS/'textures/entity'/f'infected_{key}.png',True,full_crystals=True,strict_crystals=native);animations('infected_'+key,d,s,hit=hit,ticks=dur)
   REPORT.append({'source':source,'runtime':'infected_'+key,'kind':'entity','scale':s})
+ if units is not None:
+  write(report_path,merge_unit_report(prior,REPORT))
+  print('Exported',len(REPORT),'selected units; preserved other runtime asset mappings')
+  return
  for source,key,height in [('crystal_hunter','ender_mutant_zombie',2.2),('rib_crystal_caster','infected_skeleton',2.3),('ravager_siege_concept','infected_siege_beast',3.2)]:
   d=load(source);lo,hi=bounds(d);s=height*16/(hi[1]-lo[1]);geo(key,d,s,(0,-lo[1],0));texture(d,ASSETS/'textures/entity'/f'{key}.png',True,full_crystals=True);animations(key,d,s,key=='ender_mutant_zombie',20 if 'siege' in key else 16,64 if 'siege' in key else 32);REPORT.append({'source':source,'runtime':key,'kind':'entity'})
  for stage,height in [(1,1.4),(2,2.4),(3,3.1),(4,4),(5,4.8)]:
@@ -213,4 +276,9 @@ def export():
  export_rift()
  write(PROJECT/'verification/design_asset_manifest.json',{'source_pack':MAN['version'],'assets':REPORT,'scenes':'research_lab.nbt is current; complete/cutaway BB scenes retain the earlier schematic'})
  print('Exported',len(REPORT),'runtime asset mappings')
-if __name__=='__main__':export()
+if __name__=='__main__':
+ parser=argparse.ArgumentParser(description=__doc__)
+ parser.add_argument('--units',help='Only export these comma-separated runtime unit keys and merge the existing report')
+ args=parser.parse_args()
+ try:export(args.units)
+ except ValueError as error:parser.error(str(error))

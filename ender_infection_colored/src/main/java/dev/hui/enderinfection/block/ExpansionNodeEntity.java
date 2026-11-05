@@ -304,6 +304,12 @@ public final class ExpansionNodeEntity extends BlockEntity {
             BlockPos column=worldPosition.offset(offset);if(!level.hasChunkAt(column))continue;
             for(int y=surfaceTop();y>=surfaceBottom();y--){
                 BlockPos pos=new BlockPos(column.getX(),y,column.getZ());BlockState state=level.getBlockState(pos);
+                // Revisit connected trees on this bounded cursor too. Fresh ground can spend
+                // the whole round before the random pass, otherwise starving a partly eroded trunk.
+                BlockState above=level.getBlockState(pos.above());
+                if(isGround(InfectedContent.terrainKey(state))&&(above.is(BlockTags.LOGS)||above.getBlock() instanceof InfectedTimberBlock)){
+                    changes+=erodeTree(level,pos.above(),Math.min(1,budget-changes));break;
+                }
                 if(!state.is(GROUND)||state.hasBlockEntity()||InfectedContent.terrainKey(state)!=null||!exposed(level,pos)||!connectedSurface(level,pos))continue;
                 int price=groundChangeCost(level,pos);
                 if(price<=budget-changes)changes+=changeCount(level,pos,ErodedGroundBlock.fromNatural(state));

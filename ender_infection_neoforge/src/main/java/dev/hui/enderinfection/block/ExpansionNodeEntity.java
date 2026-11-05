@@ -305,6 +305,12 @@ public final class ExpansionNodeEntity extends BlockEntity {
             BlockPos column=worldPosition.offset(offset);if(!level.hasChunkAt(column))continue;
             for(int y=surfaceTop();y>=surfaceBottom();y--){
                 BlockPos pos=new BlockPos(column.getX(),y,column.getZ());BlockState state=level.getBlockState(pos);
+                // Revisit connected trees on this bounded cursor too. Fresh ground can spend
+                // the whole round before the random pass, otherwise starving a partly eroded trunk.
+                BlockState above=level.getBlockState(pos.above());
+                if(isGround(InfectedContent.terrainKey(state))&&(above.is(BlockTags.LOGS)||above.getBlock() instanceof InfectedTimberBlock)){
+                    changes+=erodeTree(level,pos.above(),Math.min(1,budget-changes));break;
+                }
                 if(!state.is(GROUND)||state.hasBlockEntity()||InfectedContent.terrainKey(state)!=null||!exposed(level,pos)||!connectedSurface(level,pos))continue;
                 int price=groundChangeCost(level,pos);
                 if(price<=budget-changes)changes+=changeCount(level,pos,ErodedGroundBlock.fromNatural(state));
@@ -474,6 +480,6 @@ public final class ExpansionNodeEntity extends BlockEntity {
     @Override public void loadAdditional(CompoundTag tag, net.minecraft.core.HolderLookup.Provider registries){super.loadAdditional(tag,registries);substrate=tag.getString("SubstrateBlock");wild=tag.getBoolean("Wild");legacyCanopyCursor=Math.max(0,tag.getInt("LegacyCanopyCursor"));inhibitedUntil=Math.max(0,tag.getLong("InhibitedUntil"));frontierCursor=Math.max(0,tag.getInt("FrontierCursor"));activeTicks=Math.max(0,tag.getInt("ActiveTicks"));spreadClock=Math.max(0,Math.min(40,tag.getInt("SpreadClock")));purchasedChanges=tag.contains("PurchasedChanges")?Math.max(0,Math.min(1000000,tag.getInt("PurchasedChanges"))):Math.min(224,activeTicks/300*16);radius=tag.contains("Radius")?Math.max(2,Math.min(MAX_RADIUS,tag.getInt("Radius"))):Math.min(MAX_RADIUS,2+activeTicks/300);spentBiomass=Math.max(0,tag.getInt("SpentBiomass"));growthClock=Math.max(0,Math.min(300,tag.getInt("GrowthClock")));outpostClock=tag.contains("OutpostClock")?Math.max(0,Math.min(600,tag.getInt("OutpostClock"))):600;deepClock=Math.max(0,tag.getInt("DeepClock"));deepened=Math.max(0,tag.getInt("Deepened"));matureClock=Math.max(0,tag.getInt("MatureClock"));matureCursor=Math.max(0,tag.getInt("MatureCursor"));spawnClock=Math.max(0,tag.getInt("SpawnClock"));floraClock=Math.max(0,tag.getInt("FloraClock"));soilBorn=Math.max(0,tag.getInt("SoilBorn"));matured=Math.max(0,tag.getInt("Matured"));outpostCreated=tag.getBoolean("OutpostCreated");spreadRounds=Math.max(0,tag.getInt("SpreadRounds"));childOutpost=tag.contains("ChildOutpost")?BlockPos.of(tag.getLong("ChildOutpost")):null;owner=tag.hasUUID("Owner")?tag.getUUID("Owner"):null;}
 
     /** Convenience for internal diagnostics; normal world I/O uses the registry-aware hooks. */
-    public CompoundTag saveWithFullMetadata(){return super.saveWithFullMetadata(level.registryAccess());}
+    public CompoundTag saveWithFullMetadata(){return super.saveWithFullMetadata(level == null ? net.minecraft.core.RegistryAccess.EMPTY : level.registryAccess());}
     public void load(CompoundTag tag){loadAdditional(tag,level == null ? net.minecraft.core.RegistryAccess.EMPTY : level.registryAccess());}
 }

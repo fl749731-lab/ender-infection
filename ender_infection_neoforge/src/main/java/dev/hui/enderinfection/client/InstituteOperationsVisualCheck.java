@@ -46,10 +46,11 @@ public final class InstituteOperationsVisualCheck {
     private static final Set<ChunkPos> CHUNKS=new LinkedHashSet<>();
     private static final List<BlockPos> TARGETS=new ArrayList<>();
     private static final List<String> CAPTURED=new ArrayList<>();
+    private static final List<String> EQUIPMENT_CAPTURED=new ArrayList<>();
     private static final Set<String> MENUS=new HashSet<>();
     private static BlockPos door,microscope,centrifuge,serviceLamp,containmentLamp;
     private static BlockPos aimAt;private static boolean inside,frame;
-    private static double aimHeight=.6;private static int step,age,stable,ticks;
+    private static double aimHeight=.6,cameraXOffset;private static int step,age,stable,ticks;
     private static long started,actionEvents;private static volatile long receivedInteractions;
     private static boolean launched,finished;private static volatile boolean built,busy,initialLightSync;
     private static volatile String failure;private static volatile View view;
@@ -119,14 +120,15 @@ public final class InstituteOperationsVisualCheck {
         System.out.println("INSTITUTE_OPERATIONS_SCENE origin="+ORIGIN+" loaded_chunks="+CHUNKS.size()+" manifest_controls=4 managed_lights=2 machines=2");
     }
     private static boolean reserved(BlockPos cell){for(var target:TARGETS){var d=cell.subtract(target);if(Math.abs(d.getX())<=2&&Math.abs(d.getZ())<=2&&d.getY()>=0&&d.getY()<=3)return true;}return false;}
-    private static Vec3 camera(){return new Vec3(aimAt.getX()+.5,aimAt.getY(),aimAt.getZ()+(inside?3.5:-2.5));}
+    private static Vec3 camera(){return new Vec3(aimAt.getX()+.5+cameraXOffset,aimAt.getY(),aimAt.getZ()+(inside?3.5:-2.5));}
     private static Vec3 target(){return new Vec3(aimAt.getX()+(frame?.03:aimAt.equals(microscope)?.62:.5),aimAt.getY()+aimHeight,aimAt.getZ()+.5);}
     private static float yaw(){var d=target().subtract(camera());return (float)Math.toDegrees(Math.atan2(-d.x,d.z));}
     private static float pitch(){var d=target().subtract(camera().add(0,1.62,0));return (float)-Math.toDegrees(Math.atan2(d.y,Math.hypot(d.x,d.z)));}
-    private static void setAim(BlockPos at,boolean inner,boolean edge,double height){aimAt=at;inside=inner;frame=edge;aimHeight=height;age=stable=0;}
+    private static void setAim(BlockPos at,boolean inner,boolean edge,double height){aimAt=at;inside=inner;frame=edge;aimHeight=height;cameraXOffset=0;age=stable=0;}
     private static void teleport(ServerPlayer player){var p=camera();player.teleportTo(player.serverLevel(),p.x,p.y,p.z,yaw(),pitch());}
     private static void call(Minecraft mc,Consumer<ServerPlayer> action){if(busy)return;busy=true;var server=mc.getSingleplayerServer();var uuid=mc.player.getUUID();server.execute(()->{try{var player=server.getPlayerList().getPlayer(uuid);if(player!=null)action.accept(player);}catch(Exception e){failure=e.toString();}finally{busy=false;}});}
     private static void go(Minecraft mc,BlockPos at,boolean inner,boolean edge,double height,int next){setAim(at,inner,edge,height);step=next;call(mc,InstituteOperationsVisualCheck::teleport);}
+    private static void goEquipment(Minecraft mc,String role,boolean rear,int next){setAim(CONTROLS.get(role),rear,false,.65);cameraXOffset=rear?2.7:1.2;step=next;call(mc,InstituteOperationsVisualCheck::teleport);}
     private static void selected(Minecraft mc,int slot){mc.player.getInventory().selected=slot;mc.player.connection.send(new ServerboundSetCarriedItemPacket(slot));}
     private static void localCamera(Minecraft mc){var p=camera();mc.setCameraEntity(mc.player);mc.player.setPos(p.x,p.y,p.z);mc.player.setYRot(yaw());mc.player.setXRot(pitch());mc.player.yRotO=yaw();mc.player.xRotO=pitch();mc.player.setDeltaMovement(0,0,0);}
     private static void sendLight(ServerPlayer player,boolean full){for(var at:CHUNKS){var chunk=player.serverLevel().getChunkSource().getChunkNow(at.x,at.z);if(chunk!=null)player.connection.send(full?new ClientboundLevelChunkWithLightPacket(chunk,player.serverLevel().getLightEngine(),null,null):new ClientboundLightUpdatePacket(at,player.serverLevel().getLightEngine(),null,null));}}
@@ -156,6 +158,8 @@ public final class InstituteOperationsVisualCheck {
     }
     private static void move(Minecraft mc,LabProcessingMenu menu,int slot,int next){mc.gameMode.handleInventoryMouseClick(menu.containerId,slot,0,ClickType.QUICK_MOVE,mc.player);step=next;age=stable=0;}
     private static void capture(Minecraft mc,String name)throws Exception{if(CAPTURED.contains(name))throw new IllegalStateException("Repeated capture "+name);var folder=mc.gameDirectory.toPath().resolve("screenshots");Files.createDirectories(folder);try(var frame=Screenshot.takeScreenshot(mc.getMainRenderTarget())){frame.writeToFile(folder.resolve(name+".png"));}CAPTURED.add(name);System.out.println("INSTITUTE_OPERATIONS_CAPTURE "+name);}
+    private static boolean equipmentReady(Minecraft mc,String role){var state=mc.level.getBlockState(CONTROLS.get(role));return ready(mc)&&view.facility.repaired()&&view.facility.servicePowered()&&state.is(block(role.equals("generator")?"lab_power_generator":"lab_distribution_panel"))&&state.hasProperty(OperationsControlBlock.POWERED)&&state.getValue(OperationsControlBlock.POWERED);}
+    private static void captureEquipment(Minecraft mc,String name)throws Exception{if(EQUIPMENT_CAPTURED.contains(name))throw new IllegalStateException("Repeated equipment capture "+name);var folder=mc.gameDirectory.toPath().resolve("equipment-screenshots");Files.createDirectories(folder);try(var frame=Screenshot.takeScreenshot(mc.getMainRenderTarget())){frame.writeToFile(folder.resolve(name+".png"));}EQUIPMENT_CAPTURED.add(name);System.out.println("INSTITUTE_EQUIPMENT_CAPTURE "+name);}
     private static void finish(Minecraft mc,boolean pass){finished=true;String result=pass?"INSTITUTE_OPERATIONS_VISUAL_PASS screenshots="+CAPTURED.size()+" processing_menus="+MENUS.size()+" archive_once="+archiveOnce:"INSTITUTE_OPERATIONS_VISUAL_FAIL step="+step+" "+failure;System.out.println(result);try{Files.writeString(mc.gameDirectory.toPath().resolve("operations-visual-result.txt"),result+"\nshots="+String.join(",",CAPTURED)+"\n");}catch(Exception e){throw new RuntimeException(e);}mc.stop();}
     @SubscribeEvent public static void tick(ClientTickEvent.Post event){
         if(!enabled()||finished)return;var mc=Minecraft.getInstance();if(started==0)started=System.currentTimeMillis();
@@ -204,7 +208,11 @@ public final class InstituteOperationsVisualCheck {
             case 37->{if(receipt()&&view.facility.archiveClaimed()&&view.archives==1&&view.crystals==2&&view.records==0&&view.reagents==0&&ready(mc))use(mc,false,38);}
             case 38->{if(receipt()&&view.facility.archiveClaimed()&&view.archives==1&&view.crystals==2){archiveOnce=true;mc.setScreen(new InventoryScreen(mc.player));step=39;age=0;}}
             case 39->{if(mc.screen instanceof InventoryScreen&&age>=20&&clientCount(mc,"core_archive")==1&&clientCount(mc,"void_crystal")==2){capture(mc,"archive_reward");mc.player.closeContainer();mc.options.hideGui=true;go(mc,MEDICAL,false,false,.8,40);}}
-            case 40->{if(ready(mc)&&emergencyPassed&&archiveOnce&&MENUS.size()==2){if(!mc.level.getBlockState(MEDICAL.offset(-2,0,1)).is(block("lab_medical_bed"))||!mc.level.getBlockState(MEDICAL.offset(-2,0,0)).is(block("lab_medical_bed")))throw new IllegalStateException("Medical bed lost a native half");capture(mc,"medical_furniture");if(CAPTURED.size()!=10)throw new IllegalStateException("Wrong final screenshot count "+CAPTURED.size());finish(mc,true);}}
+            case 40->{if(ready(mc)&&emergencyPassed&&archiveOnce&&MENUS.size()==2){if(!mc.level.getBlockState(MEDICAL.offset(-2,0,1)).is(block("lab_medical_bed"))||!mc.level.getBlockState(MEDICAL.offset(-2,0,0)).is(block("lab_medical_bed")))throw new IllegalStateException("Medical bed lost a native half");capture(mc,"medical_furniture");if(CAPTURED.size()!=10)throw new IllegalStateException("Wrong final screenshot count "+CAPTURED.size());goEquipment(mc,"generator",false,41);}}
+            case 41->{if(equipmentReady(mc,"generator")){captureEquipment(mc,"generator_front");goEquipment(mc,"generator",true,42);}}
+            case 42->{if(equipmentReady(mc,"generator")){captureEquipment(mc,"generator_rear_side");goEquipment(mc,"distribution",false,43);}}
+            case 43->{if(equipmentReady(mc,"distribution")){captureEquipment(mc,"distribution_front");goEquipment(mc,"distribution",true,44);}}
+            case 44->{if(equipmentReady(mc,"distribution")){captureEquipment(mc,"distribution_rear_side");if(EQUIPMENT_CAPTURED.size()!=4)throw new IllegalStateException("Wrong equipment screenshot count "+EQUIPMENT_CAPTURED.size());System.out.println("INSTITUTE_EQUIPMENT_VISUAL_PASS screenshots=4");Files.writeString(mc.gameDirectory.toPath().resolve("equipment-visual-result.txt"),"INSTITUTE_EQUIPMENT_VISUAL_PASS screenshots=4\nshots="+String.join(",",EQUIPMENT_CAPTURED)+"\n");finish(mc,true);}}
         }}catch(Exception e){failure=e.toString();}
         if(ticks%100==0){System.out.println("INSTITUTE_OPERATIONS_VISUAL_WAIT step="+step+" age="+age+" light="+mc.level.getBrightness(LightLayer.BLOCK,aimAt.north().above())+" server_light="+view.minimumLight+" screen="+(mc.screen==null?"none":mc.screen.getClass().getSimpleName()));if(!busy)call(mc,p->sendLight(p,false));}
         if(System.currentTimeMillis()-started>600000){failure="timeout step="+step;finish(mc,false);}

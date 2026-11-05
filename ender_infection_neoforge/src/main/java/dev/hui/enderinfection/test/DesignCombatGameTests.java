@@ -1,20 +1,28 @@
 package dev.hui.enderinfection.test;
 
 import dev.hui.enderinfection.InfectedContent;
+import dev.hui.enderinfection.design.DesignProjectile;
+import dev.hui.enderinfection.entity.CrystalSpike;
 import dev.hui.enderinfection.entity.InfectedKind;
 import dev.hui.enderinfection.entity.InfectedMob;
 import net.minecraft.core.BlockPos;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.animal.Cow;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 
 import java.util.Objects;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
 
 /** Exercise target acquisition through impact, without assigning the specialist a target. */
 @GameTestHolder("ender_ai_checks")
@@ -46,6 +54,23 @@ public final class DesignCombatGameTests {
     public static void walkingNestStrikes(GameTestHelper h) { combat(h, InfectedKind.WALKING_NEST); }
     @GameTest(template="empty64", templateNamespace="ender_ai_checks", timeoutTicks=240, batch="design_combat")
     public static void burrowKingCasts(GameTestHelper h) { combat(h, InfectedKind.BURROW_KING); }
+
+    @GameTest(template="empty64", templateNamespace="ender_ai_checks", timeoutTicks=180, batch="design_timing")
+    public static void siegebreakerKeepsWindupImpactAndRecovery(GameTestHelper h) {
+        attackCycle(h, InfectedKind.SIEGEBREAKER, 22, 58, false);
+    }
+    @GameTest(template="empty64", templateNamespace="ender_ai_checks", timeoutTicks=180, batch="design_timing")
+    public static void sentinelHitsOnceAfterShieldWindup(GameTestHelper h) {
+        attackCycle(h, InfectedKind.SHIELD_SENTINEL, 18, 44, false);
+    }
+    @GameTest(template="empty64", templateNamespace="ender_ai_checks", timeoutTicks=180, batch="design_timing")
+    public static void spitterReleasesOneVolleyAfterThroatWindup(GameTestHelper h) {
+        attackCycle(h, InfectedKind.THROAT_SPITTER, 24, 52, true);
+    }
+    @GameTest(template="empty64", templateNamespace="ender_ai_checks", timeoutTicks=180, batch="design_timing")
+    public static void scoutReleasesOneVolleyOnItsShortBeat(GameTestHelper h) {
+        attackCycle(h, InfectedKind.SPOREWING_SCOUT, 14, 36, true);
+    }
 
     @GameTest(template="empty64", templateNamespace="ender_ai_checks", timeoutTicks=240, batch="design_combat")
     public static void hatchSacRespondsWithBrood(GameTestHelper h) {
@@ -102,6 +127,100 @@ public final class DesignCombatGameTests {
             }
             actor.discard(); prey.discard();
         });
+    }
+
+    /** Observe real AI-started attacks, entity damage and spawned volleys, not enum equality. */
+    private static void attackCycle(GameTestHelper h, InfectedKind kind, int hitTick, int endTick, boolean ranged) {
+        floor(h);
+        var actor = unit(h, kind, 12, 16);
+        var target = new TimingPrey(h, actor);
+        var targetPos = h.absolutePos(new BlockPos(ranged ? 22 : kind == InfectedKind.SIEGEBREAKER ? 16 : 15, 1, 16));
+        target.moveTo(targetPos.getX() + .5, targetPos.getY(), targetPos.getZ() + .5, 0, 0);
+        target.setNoAi(true);
+        Objects.requireNonNull(target.getAttribute(Attributes.MAX_HEALTH)).setBaseValue(1000);
+        Objects.requireNonNull(target.getAttribute(Attributes.KNOCKBACK_RESISTANCE)).setBaseValue(1);
+        target.setHealth(1000);
+        h.getLevel().addFreshEntity(target);
+        class CycleCheck implements Runnable {
+            final Set<UUID> shots = new HashSet<>();
+            int startedAt = -1, lastEntityTick = -1, initialCastSequence;
+            Vec3 windupPosition;
+            boolean done;
+
+            @Override public void run() {
+                if (done || lastEntityTick == actor.tickCount) return;
+                lastEntityTick = actor.tickCount;
+                if (startedAt < 0) {
+                    h.assertTrue(target.getHealth() == 1000, "Damage before attack began: " + kind);
+                    if (!actor.attacking()) return;
+                    h.assertTrue(actor.getTarget() == target, "Timing actor did not acquire the vanilla cow: " + kind);
+                    // startAttack runs inside super.tick(); this entity then advances its attack to tick one.
+                    startedAt = actor.tickCount;
+                    windupPosition = actor.position();
+                    initialCastSequence = actor.getPersistentData().getInt("CrystalCastSequence");
+                }
+                int elapsed = actor.tickCount - startedAt + 1;
+                String state = kind + " elapsed=" + elapsed + " attacking=" + actor.attacking()
+                    + " melee=" + target.meleeAttempts + " shots=" + shots.size() + " health=" + target.getHealth();
+                int newShots = 0;
+                for (var shot : h.getLevel().getEntitiesOfClass(DesignProjectile.class, actor.getBoundingBox().inflate(32),
+                        projectile -> projectile.getOwner() == actor)) {
+                    if (shots.add(shot.getUUID())) newShots++;
+                }
+                h.assertTrue(newShots == (ranged && elapsed == hitTick ? 3 : 0), "Volley released off its beat or duplicated: " + state);
+                if (elapsed < hitTick) {
+                    h.assertTrue(target.getHealth() == 1000 && target.meleeAttempts == 0 && shots.isEmpty(),
+                        "Windup caused damage or released a projectile: " + state);
+                } else if (!ranged) {
+                    h.assertTrue(target.meleeAttempts == 1 && target.firstMeleeTick - startedAt + 1 == hitTick,
+                        "Melee impact was early, late, missing or repeated: " + state);
+                }
+                if (kind == InfectedKind.SIEGEBREAKER) {
+                    if (elapsed < 12) h.assertTrue(actor.position().subtract(windupPosition).multiply(1, 0, 1).lengthSqr() < .01,
+                        "Siegebreaker rushed before its planted windup ended: " + state);
+                    int casts = actor.getPersistentData().getInt("CrystalCastSequence") - initialCastSequence;
+                    h.assertTrue(casts == (elapsed < hitTick ? 0 : 1), "Siegebreaker duplicated or lost its secondary cast: " + state);
+                    if (elapsed == hitTick) {
+                        h.assertTrue(actor.position().subtract(windupPosition).multiply(1, 0, 1).lengthSqr() > .25,
+                            "Siegebreaker never crossed its short rush: " + state);
+                        var warmups = h.getLevel().getEntitiesOfClass(CrystalSpike.class, actor.getBoundingBox().inflate(24))
+                            .stream().mapToInt(CrystalSpike::warmup).sorted().toArray();
+                        h.assertTrue(java.util.Arrays.equals(warmups, new int[]{12, 14, 16, 18, 20, 22}),
+                            "Secondary crystal wave lost its existing delayed beats: " + java.util.Arrays.toString(warmups));
+                    }
+                }
+                h.assertTrue(actor.attacking() == (elapsed < endTick), "Attack ended at the wrong tick or restarted during cooldown: " + state);
+                if (elapsed >= endTick + 26) {
+                    h.assertTrue(target.firstDamageTick >= startedAt + hitTick - 1 && target.getHealth() < 1000,
+                        "Native attack never landed, or damage preceded the release: " + state);
+                    h.assertTrue(!ranged || shots.size() == 3 && target.projectileHits > 0,
+                        "The single volley did not hit its vanilla target: " + state);
+                    done = true;
+                    actor.discard(); target.discard();
+                    h.succeed();
+                }
+            }
+        }
+        h.onEachTick(new CycleCheck());
+    }
+
+    /** Native cow damage records distinguish the primary melee from delayed crystal/poison damage. */
+    private static final class TimingPrey extends Cow {
+        private final InfectedMob actor;
+        int meleeAttempts, firstMeleeTick = -1, firstDamageTick = -1, projectileHits;
+        TimingPrey(GameTestHelper h, InfectedMob actor) { super(EntityType.COW, h.getLevel()); this.actor = actor; }
+        @Override public boolean hurt(DamageSource source, float amount) {
+            if (source.getDirectEntity() == actor) {
+                meleeAttempts++;
+                if (firstMeleeTick < 0) firstMeleeTick = actor.tickCount;
+            }
+            boolean hit = super.hurt(source, amount);
+            if (hit && source.getEntity() == actor) {
+                if (firstDamageTick < 0) firstDamageTick = actor.tickCount;
+                if (source.getDirectEntity() instanceof DesignProjectile) projectileHits++;
+            }
+            return hit;
+        }
     }
 
     private static String state(InfectedMob actor, Mob prey) {

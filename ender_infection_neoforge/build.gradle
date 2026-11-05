@@ -37,6 +37,14 @@ neoForge {
             gameDirectory = project.file(project.hasProperty('crystalGlowCheck') ? 'build/crystal-glow-check' : project.hasProperty('riftVisualCheck') ? 'build/rift-visual-check' : 'build/client-review')
             if (project.hasProperty('designSmoke')) systemProperty 'ender_infection.designSmoke', 'true'
             if (project.hasProperty('riftVisualCheck')) systemProperty 'ender_infection.riftVisualCheck', 'true'
+            if (project.hasProperty('conceptCheck')) {
+                gameDirectory = project.file('build/concept-check')
+                systemProperty 'ender_infection.conceptCheck', 'true'
+                systemProperty 'ender_infection.conceptSubjects', project.findProperty('conceptSubjects') ?: ''
+                jvmArgument '-Xms128m'
+                jvmArgument '-Xmx1536m'
+                jvmArgument '-XX:ActiveProcessorCount=2'
+            }
             if (project.hasProperty('storageVisualCheck')) {
                 gameDirectory = project.file('build/storage-visual-check')
                 systemProperty 'ender_infection.storageVisualCheck', 'true'
@@ -79,6 +87,7 @@ neoForge {
             if (project.hasProperty('labChecks')) namespaces += 'ender_lab_checks'
             if (project.hasProperty('regressionChecks')) namespaces += 'ender_regression_checks'
             if (project.hasProperty('riftChecks')) namespaces += ['ender_rift_checks', 'ender_ai_checks']
+            if (project.hasProperty('aiChecks') && !project.hasProperty('riftChecks')) namespaces += 'ender_ai_checks'
             if (namespaces.isEmpty()) namespaces += ['ender_infection','ender_lab_checks','ender_ore_checks']
             systemProperty 'neoforge.enabledGameTestNamespaces', namespaces.join(',')
         }

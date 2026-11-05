@@ -3,7 +3,7 @@ plugins {
     id 'idea'
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
 }
-version = '0.12.0-alpha.4'
+version = '0.12.0-alpha.5'
 group = 'dev.hui.enderinfection'
 base { archivesName = 'ender-infection' }
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -52,6 +52,7 @@ minecraft {
                 workingDirectory project.file('build/concept-check')
                 property 'ender_infection.conceptCheck','true'
                 property 'ender_infection.conceptSubjects',project.findProperty('conceptSubjects') ?: ''
+                jvmArgs '-Xms128m', '-Xmx1536m', '-XX:ActiveProcessorCount=2'
             }
         }
         if (project.hasProperty('labVisualCheck')) {

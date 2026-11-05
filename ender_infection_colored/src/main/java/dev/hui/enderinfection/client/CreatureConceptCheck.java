@@ -34,8 +34,10 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.UUID;
 
 /** Opt-in native front/back, attack windup, and impact captures of revised creatures. */
@@ -73,16 +75,18 @@ public final class CreatureConceptCheck {
              var reader = new InputStreamReader(stream, StandardCharsets.UTF_8)) {
             bounds = JsonParser.parseReader(reader).getAsJsonObject();
         } catch (Exception error) { throw new IllegalStateException("Missing concept geometry bounds", error); }
-        String selected = System.getProperty("ender_infection.conceptSubjects", "");
+        Set<String> selected = selectedSubjects();
         int index = 0;
         for (InfectedKind kind : InfectedKind.values()) {
-            if (!kind.designed() || (!selected.isBlank() && !List.of(selected.split(",")).contains(kind.key))) continue;
+            if (!kind.designed() || (!selected.isEmpty() && !selected.contains(kind.key))) continue;
             double x = 3 + (index % 5) * 24, z = 12 + (index++ / 5) * 24;
             double elevation = kind == InfectedKind.SPOREWING_SCOUT ? .8 : 0;
             var mob = Objects.requireNonNull(InfectedContent.TYPES.get(kind).get().create(level));
             var tag = new CompoundTag(); mob.addAdditionalSaveData(tag); tag.putInt("EmergenceTicks", 0); mob.readAdditionalSaveData(tag);
             mob.moveTo(x, FLOOR + elevation, z, 0, 0);
             mob.setNoAi(true); mob.setNoGravity(true); mob.setPersistenceRequired(); level.addFreshEntity(mob);
+            System.out.println("CONCEPT_VISUAL_SUBJECT " + kind.key + " hit_tick=" + kind.hitTick
+                + " duration_ticks=" + kind.duration + " no_ai=" + mob.isNoAi());
             var shape = bounds.getAsJsonObject(kind.key);
             double height = shape.get("height").getAsDouble();
             double distance = Math.max(2.8, Math.max(height * 1.8,
@@ -103,6 +107,20 @@ public final class CreatureConceptCheck {
         player.getAbilities().flying = true; player.onUpdateAbilities();
         activate(player, SHOTS.get(0)); ready = true;
         System.out.println("CONCEPT_VISUAL_SCENE subjects=" + index + " shots=" + SHOTS.size());
+    }
+
+    private static Set<String> selectedSubjects() {
+        String requested = System.getProperty("ender_infection.conceptSubjects", "");
+        Set<String> selected = new HashSet<>();
+        if (requested.isBlank()) return selected;
+        Set<String> valid = new HashSet<>();
+        for (InfectedKind kind : InfectedKind.values()) if (kind.designed()) valid.add(kind.key);
+        for (String value : requested.split(",", -1)) {
+            String key = value.trim();
+            if (!valid.contains(key)) throw new IllegalArgumentException("Unknown concept subject: " + key);
+            selected.add(key);
+        }
+        return selected;
     }
 
     private static void activate(ServerPlayer player, Shot shot) {

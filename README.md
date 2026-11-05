@@ -12,6 +12,31 @@ alpha.2 的设计资料继续保留：[完整图包](https://github.com/fl749731
 
 感染从母体与扩张节点开始。每个母体拥有独立的生物质储备；召唤、进阶与节点扩张消费储备，土地收益随领土扩大而增加，重复收割同一片土地的收益逐渐下降。
 
+## 0.12.0-alpha.5 · 本地开发，未发布
+
+当前本地 alpha.5 已通过本轮增量验收：269 项原生测试（Forge 98 + 裂隙／AI 36，NeoForge 99 + 裂隙／AI 36）及 76 张客户端截图（怪物姿态 32、暗室发光 16、研究所操作 20、设备细节 8），两版 `build` 与 `apiDevJar` 成功。审图和校验摘要见[本地验收记录](previews/model-polish-alpha5/README.md)。完整干净发版验收仍待执行，alpha.5 尚未发布；上方 alpha.4 下载、发布信息与历史验收记录继续有效。
+
+破城巨像恢复层叠骨甲并修正低伏裂骨面部；孢翼侦察者调整为扇形翼膜、短吻、单主尾，孢囊缩小后移至后腹。晶盾卫士和裂喉喷吐者恢复原有外观，保留本轮攻击骨骼与动作。四种原生动画与服务端时序同步，紫晶继续完整自发光：
+
+| 单位 | 命中／释放 tick | 攻击总长 tick |
+|---|---:|---:|
+| 破城巨像 | 22 | 58 |
+| 晶盾卫士 | 18 | 44 |
+| 裂喉喷吐者 | 24 | 52 |
+| 孢翼侦察者 | 14 | 36 |
+
+其他十种设计单位保持 16／40 tick。巨像冲刺从第 12 tick 开始；喷吐者与侦察者在表中时刻释放三弹齐射，实际伤害还取决于弹体飞行时间。
+
+现有发电机补充静态风扇护罩、保险丝检修窗和侧面接口；配电控制器区分两区操作标签，状态灯只对应服务区供电。两版还修复树干转换被新地表扩张长期挤占预算的问题，NeoForge 补齐独立节点 NBT 保存和 `-PaiChecks` 入口。
+
+本轮从仓库根目录只导出这四种已保存原件，保留其他怪物与家具资源；分别在两版工程目录运行截图检查，使用各自独立的 `build/concept-check`：
+
+```powershell
+python tools/export_design_assets.py --units siegebreaker,shield_sentinel,throat_spitter,sporewing_scout
+# 在 ender_infection_colored 或 ender_infection_neoforge 工程目录：
+.\gradlew.bat runClient -PconceptCheck -PconceptSubjects=siegebreaker,shield_sentinel,throat_spitter,sporewing_scout
+```
+
 ## v0.12.0-alpha.4 · 2026-11-05
 
 本版新增研究所修复、两区供电、门禁卡、显微分析、离心分离与一次性核心档案任务，并补充医疗床和等候沙发。修复消耗保险丝 ×1、铜锭 ×4、红石 ×4；修复后在配电控制器主手普通右键切换服务区，主手空手潜行右键切换收容区。新布局接入 881 盏分区灯、40 个受管门及 42 台加工设备。玩法适用于新生成或新施工的 v3 布局，已有 alpha.3 建筑保持原样；收容事故事件和 Boss 战继续待做。操作步骤、适用范围和验证命令见[研究所供电与样本研究](docs/institute-operations.md)，新增附属接口见[研究所 API](docs/institute-api.md)。当前附属源码示例使用新增接口，需要 alpha.4；已有 alpha.2 API v1 附属保持兼容。

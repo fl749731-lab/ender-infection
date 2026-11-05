@@ -1,0 +1,121 @@
+{
+  "version": "0.12.0-alpha.5",
+  "status": "PASS",
+  "published": false,
+  "scope": "本地增量验收；完整干净发版验收仍待执行",
+  "clean_release_validation": false,
+  "acceptance_source": "build/model-polish-alpha5/acceptance.json",
+  "acceptance_sha256": "a695653161cdb091576eb2c2514d1c7f1debb39e71fc87e4c49f2667cbaf4245",
+  "native_tests_total": 269,
+  "client_screenshots_total": 76,
+  "platforms": [
+    {
+      "platform": "forge",
+      "native_tests": {
+        "default": {
+          "passed": 98,
+          "log": "build/model-polish-alpha5/forge-regression-final.log"
+        },
+        "rift_ai": {
+          "passed": 36,
+          "log": "build/model-polish-alpha5/forge-rift-final.log"
+        },
+        "total": 134
+      },
+      "client_screenshots": {
+        "concept": {
+          "count": 16,
+          "log": "build/model-polish-alpha5/forge-concept-final.log"
+        },
+        "dark": {
+          "count": 8,
+          "log": "build/model-polish-alpha5/forge-glow-final.log"
+        },
+        "operations": {
+          "count": 10,
+          "log": "build/model-polish-alpha5/forge-operations-accepted.log"
+        },
+        "equipment": {
+          "count": 4,
+          "log": "build/model-polish-alpha5/forge-operations-accepted.log"
+        },
+        "total": 38
+      },
+      "build": {
+        "status": "PASS",
+        "tasks": [
+          "build",
+          "apiDevJar"
+        ],
+        "log": "build/model-polish-alpha5/forge-build-final.log",
+        "main_jar": {
+          "file": "ender_infection_colored/build/libs/ender-infection-0.12.0-alpha.5.jar",
+          "bytes": 5901414,
+          "sha256": "4deed81e80cb8c20ba514b986a3c5ae568c9a0fe5c3d82cddeeaa7ab04c089f9",
+          "model_payload_files_verified": 16,
+          "payload_comparison": "parsed JSON equality after Neo normalization; exact PNG bytes"
+        }
+      }
+    },
+    {
+      "platform": "neo",
+      "native_tests": {
+        "default": {
+          "passed": 99,
+          "log": "build/model-polish-alpha5/neo-regression-final.log"
+        },
+        "rift_ai": {
+          "passed": 36,
+          "log": "build/model-polish-alpha5/neo-rift-final.log"
+        },
+        "total": 135
+      },
+      "client_screenshots": {
+        "concept": {
+          "count": 16,
+          "log": "build/model-polish-alpha5/neo-concept-final.log"
+        },
+        "dark": {
+          "count": 8,
+          "log": "build/model-polish-alpha5/neo-glow-final.log"
+        },
+        "operations": {
+          "count": 10,
+          "log": "build/model-polish-alpha5/neo-operations-accepted.log"
+        },
+        "equipment": {
+          "count": 4,
+          "log": "build/model-polish-alpha5/neo-operations-accepted.log"
+        },
+        "total": 38
+      },
+      "build": {
+        "status": "PASS",
+        "tasks": [
+          "build",
+          "apiDevJar"
+        ],
+        "log": "build/model-polish-alpha5/neo-build-final.log",
+        "main_jar": {
+          "file": "ender_infection_neoforge/build/libs/ender-infection-neoforge-1.21.1-0.12.0-alpha.5.jar",
+          "bytes": 5754651,
+          "sha256": "91e90078e9b2b7586ee2568258e07df4d5965099499c42695487a7815eeae6ad",
+          "model_payload_files_verified": 16,
+          "payload_comparison": "parsed JSON equality after Neo normalization; exact PNG bytes"
+        }
+      }
+    }
+  ],
+  "included_neo_images": [
+    {
+      "file": "previews/model-polish-alpha5/neo/sporewing_scout_front.png",
+      "source": "ender_infection_neoforge/build/concept-check/screenshots/sporewing_scout_front.png",
+      "sha256": "3dbf149826d911e74d3d71ef7e46f76094ecbf6bc6792a9f610d068e6d206abb"
+    },
+    {
+      "file": "previews/model-polish-alpha5/neo/siegebreaker_windup.png",
+      "source": "ender_infection_neoforge/build/concept-check/screenshots/siegebreaker_windup.png",
+      "sha256": "b23f1f6e7b9ad51febe497d9d7eab1b8e89b58450044c99a9f377f753e81104d"
+    }
+  ]
+}

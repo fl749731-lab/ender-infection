@@ -6,6 +6,9 @@ or external artwork is needed; these are game models, not concept renders.
 from __future__ import annotations
 
 import copy
+import argparse
+import base64
+import io
 import json
 import sys
 from pathlib import Path
@@ -56,6 +59,7 @@ FIXTURES = {'lab_glass_cabinet', 'lab_cryo_cabinet', 'lab_server_rack', 'lab_con
             'lab_workbench', 'lab_workbench_eroded'}
 BAKED_STORAGE = {'lab_freezer', 'lab_storage_crate', 'lab_shelf', 'lab_rolling_cart', 'lab_sink'}
 CONTROLS = {'lab_power_generator','lab_distribution_panel','lab_research_terminal','lab_archive_terminal'}
+POWER_CONTROLS = {'lab_power_generator','lab_distribution_panel'}
 MODEL_PARTS = {'lab_medical_bed_head'}
 NEW_KEYS = set(LABELS) - {'lab_cabinet', 'lab_cabinet_eroded', 'lab_workbench',
                          'lab_workbench_eroded', 'lab_freezer', 'lab_storage_crate', 'lab_shelf', 'lab_sink'} - MODEL_PARTS
@@ -304,21 +308,63 @@ def operations_control(key):
     m=make(key)
     box(m,'steel_plinth',(-7,0,-6.5),(7,2,6.5),'graphite')
     if key=='lab_power_generator':
-        box(m,'engine_case',(-6.5,2,-5.8),(6.5,12,5.8),'blue_case')
-        for x in (-5,-3,-1,1,3):box(m,'engine_vent',(x,4,-6.2),(x+.7,9,-5.8),'graphite')
-        box(m,'fuse_access',(3.8,4,-6.4),(5.7,8,-6.15),'warning')
-        box(m,'top_cowl',(-7,12,-6),(7,14,6))
-        box(m,'meter',(-5,10,-6.4),(-1,12,-6.1),'monitor')
-        box(m,'start_button',(2,10,-6.5),(4,12,-6.1),'status')
-        box(m,'exhaust',(-5,14,3),(-3,16,5),'steel')
+        box(m,'engine_case',(-7,2,-6),(7,13.7,6),'blue_case')
+        box(m,'front_recess',(-6.6,2.7,-6.35),(6.6,13.2,-6),'graphite')
+        box(m,'top_cowl',(-7.4,13.7,-6.5),(7.4,15.1,6.5))
+        box(m,'identity_plate',(-6,12,-6.65),(.3,13.2,-6.4))
+        box(m,'status_plate',(1,11.7,-6.7),(6,13.2,-6.4))
+        # A recognisable static impeller with an open guard, not a solid grille.
+        cx,cy=-3.25,7.2
+        box(m,'fan_cavity',(-6.35,4.1,-6.55),(-.15,10.3,-6.35),'black')
+        for angle in (0,45,90,135):
+            box(m,'fan_blade',(cx-.36,cy-2.6,-6.85),(cx+.36,cy+2.6,-6.6),'steel',
+                rot=(0,0,angle),pivot=(cx,cy,-6.7))
+        box(m,'fan_hub',(cx-.65,cy-.65,-7),(cx+.65,cy+.65,-6.8),'steel')
+        for a,b in [((-6.55,3.9,-7.2),(-6.15,10.5,-6.8)),((-.35,3.9,-7.2),(.05,10.5,-6.8)),
+                    ((-6.15,3.9,-7.2),(-.35,4.3,-6.8)),((-6.15,10.1,-7.2),(-.35,10.5,-6.8))]:
+            box(m,'fan_guard_frame',a,b,'steel')
+        for x in (-5.6,-4.4,-3.2,-2,-.8):box(m,'fan_guard',(x,4.3,-7.3),(x+.16,10.1,-7.1),'graphite')
+        # Service hatch, exposed cartridge window, and captive cover fasteners.
+        box(m,'service_hatch',(.7,3.9,-6.7),(6.35,10.5,-6.35))
+        box(m,'fuse_window',(1.35,5.8,-6.9),(5.7,8.2,-6.7),'graphite')
+        for x in (1.7,4.7):box(m,'fuse_terminal',(x,6.3,-7.05),(x+.65,7.6,-6.9),'steel')
+        box(m,'fuse_cartridge',(2.3,6.6,-7.1),(4.7,7.3,-6.9),'ceramic')
+        box(m,'fuse_plate',(1.6,8.8,-6.85),(5.5,9.8,-6.7),'ceramic')
+        box(m,'fuse_state_plate',(2.4,6.65,-7.16),(4.6,7.25,-7.1),'ceramic')
+        for x in (1.1,5.7):
+            for y in (4.4,10):box(m,'cover_screw',(x,y,-6.85),(x+.3,y+.3,-6.7),'steel')
+        box(m,'hatch_latch',(5.2,5.1,-7.05),(5.7,5.7,-6.75),'graphite')
+        box(m,'bottom_safety_strip',(-6.3,2.5,-6.7),(6.3,3.2,-6.4),'warning')
+        # Side connectors are visibly different from the front repair hatch.
+        for z in (-3.4,.2,3.8):
+            box(m,'connection_flange',(7,4,z-.7),(7.55,6.4,z+.7),'steel')
+            box(m,'connection_socket',(7.55,4.5,z-.4),(7.8,5.9,z+.4),'graphite')
+        for z in (-4,-2,0,2,4):box(m,'side_cooling_fin',(-7.35,5,z),(-7,11,z+.5),'steel')
+        box(m,'exhaust_neck',(-5.4,15.1,3),(-3.7,15.7,4.7),'steel')
+        box(m,'exhaust_cap',(-5.7,15.7,2.7),(-3.4,16,5),'graphite')
     elif key=='lab_distribution_panel':
-        box(m,'switch_box',(-6.8,2,-5.5),(6.8,16,5.5))
-        box(m,'recess',(-5.8,5,-5.9),(5.8,14,-5.5),'graphite')
-        for x in (-4,-1,2):
-            box(m,'breaker',(x,7,-6.5),(x+1.8,11,-5.8),'steel')
-            box(m,'breaker_handle',(x+.3,9,-7),(x+1.5,10.3,-6.4),'warning')
-        box(m,'status_window',(-5,12,-6.2),(5,13.3,-5.9),'status')
-        box(m,'cable_port',(-4,2,-6),(4,4,-5.5),'graphite')
+        box(m,'switch_box',(-7,2,-5.8),(7,15.8,5.8))
+        box(m,'recess',(-6.3,3.4,-6.15),(6.3,14.8,-5.8),'graphite')
+        box(m,'panel_header',(-5.6,13.3,-6.5),(5.6,14.6,-6.2))
+        # Two functional rows, matching normal-click / empty-hand shift-click.
+        for y,accent in ((8.6,'teal'),(4.1,'blue_case')):
+            box(m,'circuit_row',(-5.8,y,-6.5),(5.8,y+3.6,-6.15))
+            box(m,'circuit_band',(-5.8,y,-6.7),(-5.15,y+3.6,-6.5),accent)
+            box(m,'breaker_body',(-4.4,y+.6,-6.9),(-2.3,y+2.7,-6.5),'graphite')
+            box(m,'breaker_handle',(-4,y+1.2,-7.5),(-2.7,y+2.2,-6.9),'steel')
+        box(m,'service_label',(-1.6,10.8,-6.75),(5,11.8,-6.5))
+        box(m,'service_action',(-1.6,9.2,-6.75),(5,10.3,-6.5))
+        box(m,'containment_label',(-1.6,6.3,-6.75),(5,7.3,-6.5))
+        box(m,'containment_action',(-1.6,4.7,-6.75),(5,5.8,-6.5))
+        # Only this service indicator reflects POWERED; containment is not encoded
+        # by that existing property, so no false independent status lamp is added.
+        box(m,'service_state_plate',(-4.6,12.2,-6.8),(-1.8,13,-6.5))
+        for x in (-6.5,6.1):
+            for y in (3,15):box(m,'panel_screw',(x,y,-6.45),(x+.35,y+.35,-6.15),'steel')
+        for x in (-4.5,0,4.5):
+            box(m,'cable_gland',(x-.8,2,-6.3),(x+.8,3,-5.8),'steel')
+            box(m,'cable_inlet',(x-.45,1.5,-6.15),(x+.45,2.6,-5.8),'graphite')
+        box(m,'maintenance_label',(-5.5,3.2,5.8),(5.5,5.2,6),'blue_case')
     else:
         box(m,'pedestal',(-5,2,-4),(5,10,5))
         box(m,'terminal_case',(-7,9,-5.8),(7,15.8,3),'graphite')
@@ -363,6 +409,57 @@ def waiting_sofa():
     box(m,'back_seam',(-.2,8,4.3),(.2,14.5,4.5),'teal')
     box(m,'seat_seam',(-.15,8,-5.5),(.15,8.15,4),'teal')
     return m
+
+
+def control_face_data(data, key, powered=False):
+    """Original high-readability face decals; existing POWERED is the only signal.
+
+    These are local model UVs, not a runtime screen or extra circuitry state.
+    Generator POWERED means repaired/ready. Panel POWERED means service power;
+    the containment row only describes the second interaction, not its live state.
+    """
+    out=copy.deepcopy(data)
+    im=Image.open(io.BytesIO(base64.b64decode(out['textures'][0]['source'].split(',')[1]))).convert('RGBA')
+    labels=({'identity_plate':'D2 GENERATOR','status_plate':'READY' if powered else 'CHECK',
+             'fuse_plate':'FUSE ACCESS','fuse_state_plate':'FUSE_OK' if powered else 'FUSE_CHECK'}
+            if key=='lab_power_generator' else
+            {'panel_header':'D1 CIRCUITS','service_label':'SVC G1-3/B1','service_action':'CLICK',
+             'containment_label':'ISO B2-B3','containment_action':'EMPTY SHIFT',
+             'service_state_plate':'SVC ON' if powered else 'SVC OFF'})
+    decals=out.get('ender_infection_control_decals')
+    if decals is None:
+        old=im.width;size=1
+        while size<max(im.width,im.height+16*len(labels)):size*=2
+        expanded=Image.new('RGBA',(size,size));expanded.paste(im,(0,0));im=expanded
+        decals={name:[0,old+16*i,80,old+16*i+14] for i,name in enumerate(labels)}
+        out['ender_infection_control_decals']=decals
+        for name,uv in decals.items():
+            element=next(e for e in out['elements'] if e['name'].startswith(name+'_'))
+            element['faces']['north']['uv']=uv
+    draw=ImageDraw.Draw(im)
+    for name,text in labels.items():
+        x,y,X,Y=decals[name]
+        state=name in ('status_plate','service_state_plate','fuse_state_plate')
+        color=('#8ff1b1' if powered else '#ffb477') if state else '#e8f1ec'
+        draw.rectangle((x,y,X-1,Y-1),fill='#20313c',outline='#7794a2')
+        if text.startswith('FUSE_'):
+            draw.rectangle((x+10,y+4,X-11,Y-5),outline='#d8e6e2',width=2)
+            if powered:draw.line((x+14,y+7,X-15,y+7),fill='#8ff1b1',width=2)
+            else:
+                draw.line((x+30,y+3,x+48,Y-4),fill='#ff9667',width=2)
+                draw.line((x+48,y+3,x+30,Y-4),fill='#ff9667',width=2)
+        else:
+            bounds=draw.textbbox((0,0),text);width=bounds[2]-bounds[0];height=bounds[3]-bounds[1]
+            draw.text((x+(X-x-width)//2,y+(Y-y-height)//2-bounds[1]),text,fill=color)
+        # Keep normal pixel order: native Forge views showed that preflipping
+        # these north-face decals mirrors the in-world lettering. The private
+        # CPU comparison uses a runtime-axis projection instead.
+    buffer=io.BytesIO();im.save(buffer,format='PNG');size=im.width
+    out['resolution']={'width':size,'height':size};out['texture_width']=size;out['texture_height']=size
+    out['textures'][0].update(source='data:image/png;base64,'+base64.b64encode(buffer.getvalue()).decode(),
+                              width=size,height=size,uv_width=size,uv_height=size)
+    out['notes']+=' Original power-control detailing: fixed impeller, service hatch, port and labelled circuits; no animated fan or independent fault/containment signal.'
+    return out,im
 
 
 def open_data(data):
@@ -489,17 +586,26 @@ def research_items():
         write(DATA/'recipes'/f'{key}.json',{'type':'minecraft:crafting_shaped','category':'misc','pattern':pattern,'key':{letter:{'item':item} for letter,item in ingredients.items()},'result':{'item':'ender_infection:'+key,'count':count}})
 
 
-def export():
-    models=[cabinet('lab_cabinet'),cabinet('lab_cabinet_eroded',eroded=True),
+def export(operations_only=False):
+    models=([operations_control(key) for key in sorted(POWER_CONTROLS)] if operations_only else
+           [cabinet('lab_cabinet'),cabinet('lab_cabinet_eroded',eroded=True),
             cabinet('lab_glass_cabinet',glass=True),cabinet('lab_cryo_cabinet',cold=True),
             workbench('lab_workbench'),workbench('lab_workbench_eroded',eroded=True),
             workbench('lab_control_console',console=True),server(),microscope(),centrifuge(),
             pump(),lamp(),cart(),curtain(),freezer(),crate(),shelf(),sink(),
-            *[operations_control(key) for key in sorted(CONTROLS)],medical_bed(),medical_bed(True),waiting_sofa()]
-    report=[]
+            *[operations_control(key) for key in sorted(CONTROLS)],medical_bed(),medical_bed(True),waiting_sofa()])
+    manifest=json.loads((DEST/'manifest.json').read_text('utf-8')) if operations_only else None
+    report=manifest['models'] if operations_only else []
     for model in models:
         data,_,metadata=model.save(DEST);key=model.key
-        metadata['file']=Path(metadata['file']).relative_to(DEST).as_posix();report.append(metadata)
+        if key in POWER_CONTROLS:
+            data,atlas=control_face_data(data,key)
+            write(DEST/(key+'.bbmodel'),data);atlas.save(DEST/(key+'.png'))
+            metadata['atlas']=list(atlas.size);metadata['uv_islands']+=len(data['ender_infection_control_decals'])
+        metadata['file']=Path(metadata['file']).relative_to(DEST).as_posix()
+        if operations_only:
+            index=next(i for i,entry in enumerate(report) if entry['id']==key);report[index]=metadata
+        else:report.append(metadata)
         if key in FIXTURES:
             geo(key,data,fixture=True)
             texture(data,ASSETS/'textures/block/design'/f'{key}.png')
@@ -522,15 +628,16 @@ def export():
                     for occupied in ('false','true'):variants[f'facing={face},part={part},occupied={occupied}']={'model':f'ender_infection:block/{key}'+('_head' if part=='head' else ''),'y':angle}
             else:variants[f'facing={face}']={'model':f'ender_infection:block/{key}','y':angle}
         if key in CONTROLS or key=='lab_task_lamp':
-            write(ASSETS/'models/block'/f'{key}_powered.json',obj(key+'_powered',data,'block',normalize=False))
-            dim_texture(ASSETS/'textures/block/design'/f'{key}.png')
+            powered_data=control_face_data(data,key,True)[0] if key in POWER_CONTROLS else data
+            write(ASSETS/'models/block'/f'{key}_powered.json',obj(key+'_powered',powered_data,'block',normalize=False))
+            if key not in POWER_CONTROLS:dim_texture(ASSETS/'textures/block/design'/f'{key}.png')
         if key in BAKED_STORAGE:
             baked=obj(key+'_open',open_data(data),'block',normalize=False)
             if key=='lab_rolling_cart':baked['render_type']='minecraft:translucent'
             write(ASSETS/'models/block'/f'{key}_open.json',baked)
         write(ASSETS/'blockstates'/f'{key}.json',{'variants':variants})
         obj(key,data,'item')
-        if key in NEW_KEYS:
+        if key in NEW_KEYS and not operations_only:
             conditions=[{'condition':'minecraft:survives_explosion'}]
             if key=='lab_medical_bed':conditions.append({'condition':'minecraft:block_state_property','block':'ender_infection:lab_medical_bed','properties':{'part':'head'}})
             write(DATA/'loot_tables/blocks'/f'{key}.json',{'type':'minecraft:block','pools':[{'rolls':1,'entries':[{'type':'minecraft:item','name':'ender_infection:'+key}],'conditions':conditions}]})
@@ -539,6 +646,10 @@ def export():
             if key=='lab_medical_bed':recipe.update(pattern=['WWW','III'],key={'W':{'item':'minecraft:cyan_wool'},'I':{'item':'minecraft:iron_ingot'}})
             if key=='lab_waiting_sofa':recipe.update(pattern=[' W ','WWW','III'],key={'W':{'item':'minecraft:cyan_wool'},'I':{'item':'minecraft:iron_nugget'}})
             write(DATA/'recipes'/f'{key}.json',recipe)
+    if operations_only:
+        manifest['models']=report;write(DEST/'manifest.json',manifest)
+        print(json.dumps({'models_refreshed':len(models),'ids':sorted(POWER_CONTROLS),'other_models_untouched':len(report)-len(models)}))
+        return
     wall_bands()
     managed_panel_variants()
     research_items()
@@ -558,4 +669,7 @@ def export():
     print(json.dumps({'models':len(report),'new_block_types':len(NEW_KEYS),'source':DEST.relative_to(ROOT).as_posix()}))
 
 
-if __name__=='__main__':export()
+if __name__=='__main__':
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--operations-only',action='store_true',help='Refresh only the existing generator/distribution models; do not touch other furniture, language, recipes or structure data.')
+    export(parser.parse_args().operations_only)

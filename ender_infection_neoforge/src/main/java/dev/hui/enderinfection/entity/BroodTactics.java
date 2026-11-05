@@ -140,10 +140,12 @@ final class BroodTactics {
                 }
             }
             case BURROWER, SIEGEBREAKER -> {
-                if (tick >= 6 && tick < mob.kind.hitTick && mob.onGround() && mob.distanceTo(target) > mob.kind.radius * .68) {
+                // Keep the heavy unit's ten-tick rush after its longer planted windup.
+                int rushStart = mob.kind == InfectedKind.SIEGEBREAKER ? mob.kind.hitTick - 10 : 6;
+                if (tick >= rushStart && tick < mob.kind.hitTick && mob.onGround() && mob.distanceTo(target) > mob.kind.radius * .68) {
                     double speed = mob.kind == InfectedKind.BURROWER ? .38 : .46;
                     mob.setDeltaMovement(forward.x * speed, mob.getDeltaMovement().y, forward.z * speed);
-                    if (tick == 6) FactionAI.task(mob, "冲撞", "沿蓄力方向突进");
+                    if (tick == rushStart) FactionAI.task(mob, "冲撞", "沿蓄力方向突进");
                     if (tick % 4 == 0) FactionEffects.shatter(level, mob.position(), 5);
                 }
             }

@@ -25,6 +25,8 @@ python tools/build_dual_version.py --clean --gametests
 
 统一构建脚本默认把 NeoForm 的 Minecraft 资源缓存放在工作区 `build/minecraft-assets-1.21.1`。单独运行 Neo 工程时，也可设置 `NFRT_ASSET_ROOT` 指向有空间的目录，避免系统盘缓存不足。
 
+本机内存紧张时，可用 `ENDER_GRADLE_JVM_ARGS` 调低 Gradle 守护进程上限；`ENDER_GRADLE_INIT_SCRIPT` 可指向本地 Gradle 初始化脚本，为测试进程设置内存上限。它们只改变进程参数，完整构建及测试任务保持不变。
+
 Forge 原生测试的每个新目录都会写入固定种子 0、关闭结构生成的超平坦配置，与 NeoForge 测试场地对齐。统一脚本串行构建与测试，Forge 测试进程设置内存上限，避免普通地形的落砂和并发开发进程影响验证。
 
 该命令先检查中央研究所最终 NBT、公共源、现有类与注册 ID 是否保留、转换资源是否一致，再分别构建两个主工程及 API 开发 JAR、两个附属示例，并运行两版 AI、裂隙、研究所接口、完整中央研究所与附属集成测试。验证会核对实际执行的测试数量，零项测试不能视为通过。日志与 JAR 校验和写入 `build/dual-version-validation`。静态清单检查只能发现遗漏；行为是否一致需要原生测试和涉及画面时的客户端对照。

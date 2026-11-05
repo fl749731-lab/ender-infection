@@ -49,7 +49,15 @@ def run_project(name: str, folder: str, major: int, tasks: list[str], log_name: 
     environment["PATH"] = str(Path(java).parent) + os.pathsep + environment.get("PATH", "")
     if major >= 21:
         environment.setdefault("NFRT_ASSET_ROOT", str(ROOT / "build/minecraft-assets-1.21.1"))
-    command = [java, "-cp", "gradle/wrapper/gradle-wrapper.jar", "org.gradle.wrapper.GradleWrapperMain", "--no-daemon", "--console=plain", "-Dorg.gradle.jvmargs=-Xmx1G", *tasks]
+    gradle_jvm_args = environment.get("ENDER_GRADLE_JVM_ARGS", "-Xmx1G")
+    command = [java, "-cp", "gradle/wrapper/gradle-wrapper.jar", "org.gradle.wrapper.GradleWrapperMain", "--no-daemon", "--console=plain", f"-Dorg.gradle.jvmargs={gradle_jvm_args}"]
+    init_script = environment.get("ENDER_GRADLE_INIT_SCRIPT")
+    if init_script:
+        script = Path(init_script).resolve()
+        if not script.is_file():
+            raise RuntimeError(f"ENDER_GRADLE_INIT_SCRIPT does not exist: {script}")
+        command.extend(["--init-script", str(script)])
+    command.extend(tasks)
     print(f"{name}: {' '.join(tasks)} (Java {major})", flush=True)
     log = OUTPUT / log_name
     with log.open("w", encoding="utf-8") as output:

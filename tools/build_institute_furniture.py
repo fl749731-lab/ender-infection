@@ -10,7 +10,7 @@ import json
 import sys
 from pathlib import Path
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageDraw
 
 from design_catalog import ROOT, PACK, ASSETS, DATA, PROJECT
 sys.path.insert(0, str(PACK / 'source'))
@@ -45,14 +45,20 @@ LABELS = {
     'lab_workbench': '实验抽屉工作台', 'lab_workbench_eroded': '侵蚀实验抽屉工作台',
     'lab_freezer': '样本抽屉柜', 'lab_storage_crate': '实验室器材箱', 'lab_shelf': '实验室货架',
     'lab_sink': '洗手台储柜',
+    'lab_power_generator': '研究所应急发电机', 'lab_distribution_panel': '研究所配电控制器',
+    'lab_research_terminal': '研究终端', 'lab_archive_terminal': '核心档案终端',
+    'lab_medical_bed': '医疗观察床', 'lab_medical_bed_head': '医疗观察床（床头模型）',
+    'lab_waiting_sofa': '研究所等候沙发',
 }
 LABELS.update({'lab_wall_band_'+color:label+'细色带瓷砖' for color,(_,_,label) in WALL_BANDS.items()})
 FIXTURES = {'lab_glass_cabinet', 'lab_cryo_cabinet', 'lab_server_rack', 'lab_control_console',
             'lab_privacy_curtain', 'lab_cabinet', 'lab_cabinet_eroded',
             'lab_workbench', 'lab_workbench_eroded'}
 BAKED_STORAGE = {'lab_freezer', 'lab_storage_crate', 'lab_shelf', 'lab_rolling_cart', 'lab_sink'}
+CONTROLS = {'lab_power_generator','lab_distribution_panel','lab_research_terminal','lab_archive_terminal'}
+MODEL_PARTS = {'lab_medical_bed_head'}
 NEW_KEYS = set(LABELS) - {'lab_cabinet', 'lab_cabinet_eroded', 'lab_workbench',
-                         'lab_workbench_eroded', 'lab_freezer', 'lab_storage_crate', 'lab_shelf', 'lab_sink'}
+                         'lab_workbench_eroded', 'lab_freezer', 'lab_storage_crate', 'lab_shelf', 'lab_sink'} - MODEL_PARTS
 
 
 def make(key):
@@ -293,6 +299,72 @@ def sink():
     return m
 
 
+def operations_control(key):
+    """One-cell operating face; no oversized geometry hidden in adjacent cells."""
+    m=make(key)
+    box(m,'steel_plinth',(-7,0,-6.5),(7,2,6.5),'graphite')
+    if key=='lab_power_generator':
+        box(m,'engine_case',(-6.5,2,-5.8),(6.5,12,5.8),'blue_case')
+        for x in (-5,-3,-1,1,3):box(m,'engine_vent',(x,4,-6.2),(x+.7,9,-5.8),'graphite')
+        box(m,'fuse_access',(3.8,4,-6.4),(5.7,8,-6.15),'warning')
+        box(m,'top_cowl',(-7,12,-6),(7,14,6))
+        box(m,'meter',(-5,10,-6.4),(-1,12,-6.1),'monitor')
+        box(m,'start_button',(2,10,-6.5),(4,12,-6.1),'status')
+        box(m,'exhaust',(-5,14,3),(-3,16,5),'steel')
+    elif key=='lab_distribution_panel':
+        box(m,'switch_box',(-6.8,2,-5.5),(6.8,16,5.5))
+        box(m,'recess',(-5.8,5,-5.9),(5.8,14,-5.5),'graphite')
+        for x in (-4,-1,2):
+            box(m,'breaker',(x,7,-6.5),(x+1.8,11,-5.8),'steel')
+            box(m,'breaker_handle',(x+.3,9,-7),(x+1.5,10.3,-6.4),'warning')
+        box(m,'status_window',(-5,12,-6.2),(5,13.3,-5.9),'status')
+        box(m,'cable_port',(-4,2,-6),(4,4,-5.5),'graphite')
+    else:
+        box(m,'pedestal',(-5,2,-4),(5,10,5))
+        box(m,'terminal_case',(-7,9,-5.8),(7,15.8,3),'graphite')
+        box(m,'terminal_screen',(-6.1,10,-6.1),(6.1,15,-5.8),'monitor')
+        for y in (11,12,13):box(m,'readout',(-5.2,y,-6.25),(2.5 if y==12 else 4.8,y+.3,-6.1),'led')
+        box(m,'control_shelf',(-7,7.5,-7),(7,9,-3),'ceramic')
+        for x in range(-5,6,2):box(m,'terminal_key',(x,9,-6),(x+1,9.3,-4.5),'steel')
+        box(m,'card_slot',(3,4,-4.3),(6,5,-4),'teal' if key=='lab_research_terminal' else 'warning')
+    return m
+
+
+def medical_bed(head=False):
+    m=make('lab_medical_bed_head' if head else 'lab_medical_bed')
+    # Both halves stay within their native BedBlock cell, joined along Z.
+    for x in (-6.8,5.5):
+        for z in (-5.8,4.5):
+            box(m,'caster',(x,0,z),(x+1.3,2,z+1.3),'graphite')
+            box(m,'leg',(x+.2,1,z),(x+1.1,5,z+1),'steel')
+    box(m,'bed_frame',(-7,4,-8),(7,5.5,8),'steel')
+    box(m,'mattress',(-6.6,5.5,-8),(6.6,8.5,8),'ceramic')
+    box(m,'teal_sheet',(-6.6,8.5,-8),(6.6,8.8,8),'fabric')
+    if head:
+        box(m,'pillow',(-5.4,8.8,-6.8),(5.4,10,-1.8),'ceramic')
+        box(m,'headboard',(-7.5,4,-8),(7.5,14,-7),'ceramic')
+        box(m,'headboard_insert',(-5.5,9,-8.1),(5.5,12,-8),'teal')
+    else:
+        box(m,'footboard',(-7.5,4,7),(7.5,11,8),'ceramic')
+        box(m,'patient_card',(-2.5,7,8),(2.5,9,8.1),'blue_case')
+    for x in (-7.5,6.9):
+        for z in (-5,4):box(m,'rail_post',(x,5,z),(x+.6,12,z+.6),'steel')
+        box(m,'safety_rail',(x,11,-5),(x+.6,12,4.6),'steel')
+    return m
+
+
+def waiting_sofa():
+    m=make('lab_waiting_sofa')
+    for x in (-6,5):
+        for z in (-4,4):box(m,'sofa_leg',(x,0,z),(x+1,3,z+1),'steel')
+    box(m,'sofa_base',(-8,3,-6),(8,5,7),'graphite')
+    box(m,'seat_cushion',(-8,5,-6),(8,8,4.5),'fabric')
+    box(m,'back_cushion',(-8,6,4.5),(8,15,7),'fabric')
+    box(m,'back_seam',(-.2,8,4.3),(.2,14.5,4.5),'teal')
+    box(m,'seat_seam',(-.15,8,-5.5),(.15,8.15,4),'teal')
+    return m
+
+
 def open_data(data):
     out=copy.deepcopy(data)
     def visit(group):
@@ -338,12 +410,92 @@ def wall_bands():
         write(DATA/'recipes'/f'{key}.json',{'type':'minecraft:crafting_shaped','category':'building','pattern':['WWW','WDW','WWW'],'key':{'W':{'item':'minecraft:white_concrete'},'D':{'item':'minecraft:'+dye}},'result':{'item':'ender_infection:'+key,'count':8}})
 
 
+def dim_texture(path):
+    im=Image.open(path).convert('RGBA');pixels=np.array(im)
+    rgb_pixels=pixels[:,:,:3].astype(int)
+    mask=(rgb_pixels[:,:,2]>rgb_pixels[:,:,0]*1.15)&(rgb_pixels[:,:,1]>rgb_pixels[:,:,0]*1.10)&(rgb_pixels.max(axis=2)>140)
+    for material in ('led','status','monitor'):
+        for color in PALETTES.get(material,[]):mask|=np.all(rgb_pixels==rgb(color),axis=2)
+    pixels[mask,:3]=[39,58,66]
+    Image.fromarray(pixels).save(path)
+
+
+def managed_panel_variants():
+    key='lab_light_panel';folder=ASSETS/'models/block/design';textures=ASSETS/'textures/block/design'
+    # Preserve the original lit atlas; repeated source builds remain deterministic.
+    powered=textures/f'{key}_powered.png'
+    if not powered.exists():Image.open(textures/f'{key}.png').save(powered)
+    Image.open(powered).save(textures/f'{key}.png');dim_texture(textures/f'{key}.png')
+    for suffix in ('obj','mtl'):
+        source=folder/f'{key}.{suffix}'
+        (folder/f'{key}_powered.{suffix}').write_text(source.read_text('utf-8').replace(key,key+'_powered'),encoding='utf-8')
+    model=json.loads((ASSETS/'models/block'/f'{key}.json').read_text('utf-8'))
+    model['model']=f'ender_infection:models/block/design/{key}_powered.obj'
+    model['textures']['particle']=f'ender_infection:block/design/{key}_powered'
+    write(ASSETS/'models/block'/f'{key}_powered.json',model)
+    write(ASSETS/'blockstates'/f'{key}.json',{'variants':{f'facing={face},powered={power}':{'model':f'ender_infection:block/{key}'+('_powered' if power=='true' else ''),'y':angle} for face,angle in [('north',0),('east',90),('south',180),('west',270)] for power in ('false','true')}})
+
+
+ITEMS={
+ 'lab_fuse':('实验室保险丝','Laboratory Fuse'),
+ 'raw_tissue_sample':('原始组织样本','Raw Tissue Sample'),
+ 'research_record':('研究记录片','Research Record'),
+ 'separated_reagent':('分离试剂','Separated Reagent'),
+ 'research_keycard':('研究所门禁卡','Research Keycard'),
+ 'core_archive':('核心档案','Core Archive'),
+ 'research_log':('研究日志','Research Log'),
+}
+PROCESSING_LABELS={
+ 'input':('样本','Input'), 'reagent':('试剂','Reagent'), 'no_reagent':('无试剂','None'),
+ 'output':('产物','Output'), 'needs_power':('等待分区供电','Waiting for zone power'),
+ 'output_full':('产物槽已满','Output slot full'), 'running':('处理中','Processing'),
+ 'insert_sample':('放入样本','Insert a sample'),
+}
+OPERATIONS_LABELS={
+ 'journal':('研究日志 · 设施起点 %s, %s, %s','Research log · Institute origin %s, %s, %s'),
+}
+
+
+def research_items():
+    folder=ASSETS/'textures/item';folder.mkdir(parents=True,exist_ok=True)
+    for key in ITEMS:
+        im=Image.new('RGBA',(16,16));d=ImageDraw.Draw(im)
+        if key=='lab_fuse':
+            d.rectangle((2,6,13,10),fill='#31414c');d.rectangle((3,7,12,9),fill='#a8e0e4')
+            d.rectangle((1,5,4,11),fill='#d6e2e4');d.rectangle((11,5,14,11),fill='#d6e2e4')
+            d.line((5,8,7,7,9,9,10,8),fill='#efbc53',width=1)
+        elif key in ('raw_tissue_sample','separated_reagent'):
+            d.rectangle((5,2,10,4),fill='#d9e1e4');d.rectangle((4,4,11,13),fill='#91becd')
+            d.rectangle((5,6,10,12),fill='#b564a4' if key=='raw_tissue_sample' else '#51ccba')
+            d.line((5,5,5,11),fill='#def8f7');d.rectangle((4,13,11,14),fill='#455a68')
+        elif key=='research_keycard':
+            d.rectangle((1,4,14,12),fill='#e9efec');d.rectangle((2,5,13,6),fill='#488e9b')
+            d.rectangle((3,8,6,10),fill='#ddbf69');d.line((8,8,12,8),fill='#465762');d.line((8,10,11,10),fill='#465762')
+        elif key=='core_archive':
+            d.rectangle((3,2,12,14),fill='#384652');d.rectangle((5,4,10,10),fill='#ab70cb')
+            d.rectangle((5,12,10,13),fill='#e4e8e0');d.rectangle((7,5,8,9),fill='#efd4ff')
+        else:
+            d.rectangle((3,1,12,14),fill='#304e60' if key=='research_log' else '#d6dedc')
+            d.rectangle((5,2,12,13),fill='#e5e9dc');d.line((4,2,4,13),fill='#4b8c9a')
+            for y in (4,6,8,10):d.line((6,y,10 if y==8 else 11,y),fill='#758b8d')
+        im.save(folder/f'{key}.png')
+        write(ASSETS/'models/item'/f'{key}.json',{'parent':'minecraft:item/generated','textures':{'layer0':f'ender_infection:item/{key}'}})
+    recipes={
+      'lab_fuse':([' I ','IRI',' I '],{'I':'minecraft:iron_nugget','R':'minecraft:redstone'},2),
+      'research_keycard':(['IPI',' R '],{'I':'minecraft:iron_nugget','P':'minecraft:paper','R':'ender_infection:research_record'},1),
+      'research_log':([' P ','RBR',' P '],{'P':'minecraft:paper','R':'ender_infection:research_record','B':'minecraft:book'},1),
+    }
+    for key,(pattern,ingredients,count) in recipes.items():
+        write(DATA/'recipes'/f'{key}.json',{'type':'minecraft:crafting_shaped','category':'misc','pattern':pattern,'key':{letter:{'item':item} for letter,item in ingredients.items()},'result':{'item':'ender_infection:'+key,'count':count}})
+
+
 def export():
     models=[cabinet('lab_cabinet'),cabinet('lab_cabinet_eroded',eroded=True),
             cabinet('lab_glass_cabinet',glass=True),cabinet('lab_cryo_cabinet',cold=True),
             workbench('lab_workbench'),workbench('lab_workbench_eroded',eroded=True),
             workbench('lab_control_console',console=True),server(),microscope(),centrifuge(),
-            pump(),lamp(),cart(),curtain(),freezer(),crate(),shelf(),sink()]
+            pump(),lamp(),cart(),curtain(),freezer(),crate(),shelf(),sink(),
+            *[operations_control(key) for key in sorted(CONTROLS)],medical_bed(),medical_bed(True),waiting_sofa()]
     report=[]
     for model in models:
         data,_,metadata=model.save(DEST);key=model.key
@@ -358,11 +510,20 @@ def export():
             baked=obj(key,data,'block',normalize=False)
             if key=='lab_rolling_cart':baked['render_type']='minecraft:translucent'
             write(ASSETS/'models/block'/f'{key}.json',baked)
+        if key in MODEL_PARTS:continue
         variants={}
         for face,angle in [('north',0),('east',90),('south',180),('west',270)]:
             if key in BAKED_STORAGE:
                 for value in ('false','true'):variants[f'facing={face},open={value}']={'model':f'ender_infection:block/{key}'+('_open' if value=='true' else ''),'y':angle}
+            elif key in CONTROLS or key=='lab_task_lamp':
+                for power in ('false','true'):variants[f'facing={face},powered={power}']={'model':f'ender_infection:block/{key}'+('_powered' if power=='true' else ''),'y':angle}
+            elif key=='lab_medical_bed':
+                for part in ('foot','head'):
+                    for occupied in ('false','true'):variants[f'facing={face},part={part},occupied={occupied}']={'model':f'ender_infection:block/{key}'+('_head' if part=='head' else ''),'y':angle}
             else:variants[f'facing={face}']={'model':f'ender_infection:block/{key}','y':angle}
+        if key in CONTROLS or key=='lab_task_lamp':
+            write(ASSETS/'models/block'/f'{key}_powered.json',obj(key+'_powered',data,'block',normalize=False))
+            dim_texture(ASSETS/'textures/block/design'/f'{key}.png')
         if key in BAKED_STORAGE:
             baked=obj(key+'_open',open_data(data),'block',normalize=False)
             if key=='lab_rolling_cart':baked['render_type']='minecraft:translucent'
@@ -370,16 +531,29 @@ def export():
         write(ASSETS/'blockstates'/f'{key}.json',{'variants':variants})
         obj(key,data,'item')
         if key in NEW_KEYS:
-            write(DATA/'loot_tables/blocks'/f'{key}.json',{'type':'minecraft:block','pools':[{'rolls':1,'entries':[{'type':'minecraft:item','name':'ender_infection:'+key}],'conditions':[{'condition':'minecraft:survives_explosion'}]}]})
-            ingredient='minecraft:glass' if 'cabinet' in key else 'minecraft:redstone' if key in ('lab_server_rack','lab_control_console') else 'minecraft:blue_wool' if key=='lab_privacy_curtain' else 'minecraft:glass_bottle'
-            write(DATA/'recipes'/f'{key}.json',{'type':'minecraft:crafting_shaped','category':'building','pattern':['IGI','IRI'],'key':{'I':{'item':'minecraft:iron_ingot'},'G':{'item':ingredient},'R':{'item':'minecraft:redstone'}},'result':{'item':'ender_infection:'+key}})
+            conditions=[{'condition':'minecraft:survives_explosion'}]
+            if key=='lab_medical_bed':conditions.append({'condition':'minecraft:block_state_property','block':'ender_infection:lab_medical_bed','properties':{'part':'head'}})
+            write(DATA/'loot_tables/blocks'/f'{key}.json',{'type':'minecraft:block','pools':[{'rolls':1,'entries':[{'type':'minecraft:item','name':'ender_infection:'+key}],'conditions':conditions}]})
+            ingredient='minecraft:glass' if 'cabinet' in key else 'minecraft:redstone' if key in CONTROLS|{'lab_server_rack','lab_control_console'} else 'minecraft:blue_wool' if key in ('lab_privacy_curtain','lab_medical_bed','lab_waiting_sofa') else 'minecraft:glass_bottle'
+            recipe={'type':'minecraft:crafting_shaped','category':'building','pattern':['IGI','IRI'],'key':{'I':{'item':'minecraft:iron_ingot'},'G':{'item':ingredient},'R':{'item':'minecraft:redstone'}},'result':{'item':'ender_infection:'+key}}
+            if key=='lab_medical_bed':recipe.update(pattern=['WWW','III'],key={'W':{'item':'minecraft:cyan_wool'},'I':{'item':'minecraft:iron_ingot'}})
+            if key=='lab_waiting_sofa':recipe.update(pattern=[' W ','WWW','III'],key={'W':{'item':'minecraft:cyan_wool'},'I':{'item':'minecraft:iron_nugget'}})
+            write(DATA/'recipes'/f'{key}.json',recipe)
     wall_bands()
+    managed_panel_variants()
+    research_items()
     for lang in ('zh_cn','en_us'):
         path=ASSETS/'lang'/f'{lang}.json';content=json.loads(path.read_text('utf-8'))
-        content.update({'block.ender_infection.'+key:label if lang=='zh_cn' else key.replace('_',' ').title() for key,label in LABELS.items()})
+        content.update({'block.ender_infection.'+key:label if lang=='zh_cn' else key.replace('_',' ').title() for key,label in LABELS.items() if key not in MODEL_PARTS})
+        content.update({'item.ender_infection.'+key:labels[0 if lang=='zh_cn' else 1] for key,labels in ITEMS.items()})
+        content.update({'gui.ender_infection.processing.'+key:labels[0 if lang=='zh_cn' else 1] for key,labels in PROCESSING_LABELS.items()})
+        content.update({'message.ender_infection.operations.'+key:labels[0 if lang=='zh_cn' else 1] for key,labels in OPERATIONS_LABELS.items()})
         write(path,content)
     tag=PROJECT/'src/main/resources/data/minecraft/tags/blocks/mineable/pickaxe.json'
     content=json.loads(tag.read_text('utf-8'));content['values']=sorted(set(content['values'])|{'ender_infection:'+k for k in NEW_KEYS});write(tag,content)
+    bed_tag=PROJECT/'src/main/resources/data/minecraft/tags/blocks/beds.json'
+    content=json.loads(bed_tag.read_text('utf-8')) if bed_tag.exists() else {'replace':False,'values':[]}
+    content['values']=sorted(set(content['values'])|{'ender_infection:lab_medical_bed'});write(bed_tag,content)
     write(DEST/'manifest.json',{'models':report,'count':len(report),'wall_bands':list(WALL_BANDS),'units_per_block':16,'source':'tools/build_institute_furniture.py','opening':'Named drawer/door bones for Gecko fixtures; OPEN baked variants for one-block storage.'})
     print(json.dumps({'models':len(report),'new_block_types':len(NEW_KEYS),'source':DEST.relative_to(ROOT).as_posix()}))
 

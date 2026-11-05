@@ -44,6 +44,13 @@ neoForge {
                 jvmArgument '-Xmx1536m'
                 jvmArgument '-XX:ActiveProcessorCount=2'
             }
+            if (project.hasProperty('operationsVisualCheck')) {
+                gameDirectory = project.file('build/operations-visual-check')
+                systemProperty 'ender_infection.operationsVisualCheck', 'true'
+                jvmArgument '-Xms128m'
+                jvmArgument '-Xmx1536m'
+                jvmArgument '-XX:ActiveProcessorCount=2'
+            }
             if (project.hasProperty('centralInstituteVisualCheck')) {
                 gameDirectory = project.file('build/central-institute-visual-check')
                 systemProperty 'ender_infection.centralInstituteVisualCheck', 'true'
@@ -63,6 +70,8 @@ neoForge {
             gameDirectory = project.file("build/gametest-${System.currentTimeMillis()}")
             if (project.hasProperty('instituteChecks')) systemProperty 'ender_infection.instituteChecks', 'true'
             def namespaces = []
+            if (project.hasProperty('operationsChecks')) namespaces += 'ender_operations_checks'
+            if (project.hasProperty('processingChecks')) namespaces += 'ender_processing_checks'
             if (project.hasProperty('storageChecks')) namespaces += 'ender_storage_checks'
             if (project.hasProperty('centralInstituteChecks')) namespaces += 'ender_central_institute_checks'
             if (project.hasProperty('instituteChecks')) namespaces += 'ender_institute_checks'

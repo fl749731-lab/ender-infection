@@ -62,7 +62,7 @@ def main() -> None:
     report = {
         "verified_at_utc": datetime.now(timezone.utc).isoformat(),
         "published_core_alpha_1_has_api": False,
-        "minimum_core_version": "0.12.0-alpha.2",
+        "minimum_core_version": "0.12.0-alpha.4",
         "required_api_version": 1,
         "client_visual_validation": "not_run",
         "platforms": [check("forge", "1.20.1", 61, "structures"),

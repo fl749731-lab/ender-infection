@@ -25,15 +25,16 @@ public final class LabFixtureBlock extends BaseEntityBlock {
 
     public static final DirectionProperty FACING=BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty OPEN=BlockStateProperties.OPEN;
+    public static final BooleanProperty SECURED=BooleanProperty.create("secured");
     public final String key;
-    public LabFixtureBlock(String key,Properties p){super(p);this.key=key;registerDefaultState(stateDefinition.any().setValue(FACING,Direction.NORTH).setValue(OPEN,false));}
+    public LabFixtureBlock(String key,Properties p){super(p);this.key=key;registerDefaultState(stateDefinition.any().setValue(FACING,Direction.NORTH).setValue(OPEN,false).setValue(SECURED,false));}
     public String base(){return key.replace("_eroded","");}
     public static boolean isStorageKey(String key){return Set.of("lab_cabinet","lab_workbench","lab_glass_cabinet","lab_cryo_cabinet","lab_server_rack","lab_control_console").contains(key.replace("_eroded",""));}
     public boolean isStorage(){return isStorageKey(key);}
     public int height(){return base().equals("incubator")?3:Set.of("lab_door","lab_cabinet","surgery_table","lab_workbench","lab_window","lab_glass_cabinet","lab_cryo_cabinet","lab_server_rack","lab_control_console","lab_privacy_curtain").contains(base())?2:1;}
     public int halfWidth(){return Set.of("surgery_table","lab_workbench","lab_window","lab_control_console").contains(base())?1:0;}
     public static BlockPos cell(BlockPos anchor,Direction facing,int x,int y){return anchor.relative(facing.getClockWise(),x).above(y);}
-    @Override protected void createBlockStateDefinition(StateDefinition.Builder<Block,BlockState> b){b.add(FACING,OPEN);}
+    @Override protected void createBlockStateDefinition(StateDefinition.Builder<Block,BlockState> b){b.add(FACING,OPEN,SECURED);}
     @Override public BlockState getStateForPlacement(BlockPlaceContext c){
         Direction f=c.getHorizontalDirection().getOpposite();
         for(int x=-halfWidth();x<=halfWidth();x++)for(int y=0;y<height();y++){
@@ -60,6 +61,7 @@ public final class LabFixtureBlock extends BaseEntityBlock {
             return InteractionResult.sidedSuccess(level.isClientSide);
         }
         if(!Set.of("lab_hatch","lab_door","lab_privacy_curtain").contains(base()))return InteractionResult.PASS;
+        if(base().equals("lab_door")&&level instanceof net.minecraft.server.level.ServerLevel server&&!dev.hui.enderinfection.institute.InstituteOperations.mayUseDoor(server,pos,s,player))return InteractionResult.FAIL;
         if(!level.isClientSide){boolean open=!s.getValue(OPEN);level.setBlock(pos,s.setValue(OPEN,open),3);level.playSound(null,pos,open?net.minecraft.sounds.SoundEvents.IRON_DOOR_OPEN:net.minecraft.sounds.SoundEvents.IRON_DOOR_CLOSE,net.minecraft.sounds.SoundSource.BLOCKS,.7F,1);}
         return InteractionResult.sidedSuccess(level.isClientSide);
     }

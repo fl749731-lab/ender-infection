@@ -1,0 +1,27 @@
+INSTITUTE_OPERATIONS_SCENE origin=BlockPos{x=0, y=-64, z=0} loaded_chunks=57 manifest_controls=4 managed_lights=2 machines=2
+INSTITUTE_OPERATIONS_CAPTURE power_off
+INSTITUTE_OPERATIONS_REPAIR_PASS paid_fuse=1 copper=4 redstone=4
+INSTITUTE_OPERATIONS_VISUAL_WAIT step=4 age=22 light=12 server_light=12 screen=none
+INSTITUTE_OPERATIONS_CAPTURE power_on
+INSTITUTE_OPERATIONS_VISUAL_WAIT step=9 age=7 light=12 server_light=12 screen=none
+INSTITUTE_OPERATIONS_CAPTURE door_denied
+INSTITUTE_OPERATIONS_DOOR_DENIED_PASS powered=true keycard=false
+INSTITUTE_OPERATIONS_CAPTURE door_unlocked
+INSTITUTE_OPERATIONS_VISUAL_WAIT step=14 age=9 light=12 server_light=12 screen=none
+INSTITUTE_OPERATIONS_VISUAL_WAIT step=18 age=24 light=12 server_light=12 screen=none
+INSTITUTE_OPERATIONS_EMERGENCY_PASS hand_empty=true containment=false
+INSTITUTE_OPERATIONS_VISUAL_WAIT step=23 age=9 light=12 server_light=12 screen=none
+INSTITUTE_OPERATIONS_CAPTURE microscope_running
+INSTITUTE_OPERATIONS_MENU_PASS lab_microscope machine_slots=3 player_slots=36 powered=true progress=28 duration=100 container_id=1
+INSTITUTE_OPERATIONS_VISUAL_WAIT step=28 age=17 light=12 server_light=12 screen=LabProcessingScreen
+INSTITUTE_OPERATIONS_CAPTURE microscope_done
+INSTITUTE_OPERATIONS_VISUAL_WAIT step=31 age=4 light=12 server_light=12 screen=LabProcessingScreen
+INSTITUTE_OPERATIONS_CAPTURE centrifuge_running
+INSTITUTE_OPERATIONS_MENU_PASS lab_centrifuge machine_slots=3 player_slots=36 powered=true progress=31 duration=160 container_id=2
+INSTITUTE_OPERATIONS_VISUAL_WAIT step=34 age=51 light=12 server_light=12 screen=LabProcessingScreen
+INSTITUTE_OPERATIONS_CAPTURE centrifuge_done
+INSTITUTE_OPERATIONS_VISUAL_WAIT step=36 age=9 light=12 server_light=12 screen=none
+INSTITUTE_OPERATIONS_CAPTURE archive_reward
+INSTITUTE_OPERATIONS_VISUAL_WAIT step=40 age=17 light=12 server_light=12 screen=none
+INSTITUTE_OPERATIONS_CAPTURE medical_furniture
+INSTITUTE_OPERATIONS_VISUAL_PASS screenshots=10 processing_menus=2 archive_once=true

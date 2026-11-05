@@ -2,6 +2,7 @@ package dev.hui.instituteaddon;
 
 import dev.hui.enderinfection.api.institute.DeviceContext;
 import dev.hui.enderinfection.api.institute.InstituteApi;
+import java.util.Set;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -19,6 +20,15 @@ public final class AddonGameTestChecks {
         helper.assertTrue(InstituteApi.isFrozen(), "Core lifecycle must close registration before tests");
         helper.assertTrue(InstituteApi.rooms().containsKey(AddonRegistration.ROOM_ID), "Addon room must be discoverable");
         helper.assertTrue(InstituteApi.devices().containsKey(AddonRegistration.CONSOLE_ID), "Addon device must be discoverable");
+        var recipe = InstituteApi.processingRecipes().get(AddonRegistration.RECIPE_ID);
+        helper.assertTrue(recipe != null, "Addon processing recipe must be discoverable");
+        helper.assertTrue(recipe.id().equals(AddonRegistration.RECIPE_ID)
+                        && recipe.devices().equals(Set.of("ender_infection:lab_microscope"))
+                        && recipe.inputId().equals("minecraft:paper") && recipe.inputCount() == 2
+                        && recipe.reagentId().equals("minecraft:redstone") && recipe.reagentCount() == 1
+                        && recipe.outputId().equals("minecraft:book") && recipe.outputCount() == 1
+                        && recipe.ticks() == 80,
+                "Archive-copy recipe fields must match the addon registration");
         var origin = helper.absolutePos(new BlockPos(2, 1, 2));
         var preview = InstituteApi.preview(helper.getLevel(), AddonRegistration.ROOM_ID, origin, Rotation.NONE);
         helper.assertTrue(preview.success(), "Room preview failed: " + preview.message());

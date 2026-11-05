@@ -24,6 +24,7 @@ public final class ClientEvents {
         event.registerReloadListener((net.minecraft.server.packs.resources.ResourceManagerReloadListener)manager->GuardedGlowLayer.clearCache());
     }
     @SubscribeEvent public static void setup(FMLClientSetupEvent event){event.enqueueWork(()->{
+        net.minecraft.client.gui.screens.MenuScreens.register(dev.hui.enderinfection.design.DesignContent.PROCESSING_MENU.get(),LabProcessingScreen::new);
         InfectedContent.TERRAIN.forEach((name,block)->{if(name.endsWith("leaves"))ItemBlockRenderTypes.setRenderLayer(block.get(),RenderType.cutout());});
         ItemBlockRenderTypes.setRenderLayer(InfectedContent.TERRAIN.get("eroded_grass").get(),RenderType.cutoutMipped());
         ItemBlockRenderTypes.setRenderLayer(InfectedContent.TERRAIN.get("eroded_soil").get(),RenderType.cutoutMipped());

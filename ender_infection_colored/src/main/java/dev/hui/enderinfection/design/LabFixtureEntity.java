@@ -19,6 +19,11 @@ public final class LabFixtureEntity extends LabStorageInventory implements GeoBl
     public boolean removing;public float openProgress,previousOpen;private int age;
     public LabFixtureEntity(BlockPos pos,BlockState state){super(DesignContent.FIXTURE_ENTITY.get(),pos,state);}
     @Override public boolean isStorage(){return ((LabFixtureBlock)getBlockState().getBlock()).isStorage();}
+    private boolean instituteBound;private BlockPos instituteOffset=BlockPos.ZERO;
+    public java.util.Optional<BlockPos> boundOrigin(){return instituteBound&&dev.hui.enderinfection.institute.InstituteOperations.validOffset(instituteOffset)?java.util.Optional.of(worldPosition.subtract(instituteOffset)):java.util.Optional.empty();}
+    @Override public void onLoad(){super.onLoad();if(getLevel() instanceof ServerLevel server&&boundOrigin().isPresent())server.getServer().execute(()->{if(!isRemoved()&&server.getChunkSource().getChunkNow(worldPosition.getX()>>4,worldPosition.getZ()>>4)!=null&&server.getBlockEntity(worldPosition)==this)dev.hui.enderinfection.institute.InstituteOperations.registerBound(server,worldPosition,instituteOffset);});}
+    @Override public void load(CompoundTag tag){super.load(tag);instituteBound=tag.getBoolean("InstituteBound");instituteOffset=new BlockPos(tag.getInt("InstituteOffsetX"),tag.getInt("InstituteOffsetY"),tag.getInt("InstituteOffsetZ"));if(!dev.hui.enderinfection.institute.InstituteOperations.validOffset(instituteOffset))instituteBound=false;}
+    @Override protected void saveAdditional(CompoundTag tag){super.saveAdditional(tag);if(instituteBound){tag.putBoolean("InstituteBound",true);tag.putInt("InstituteOffsetX",instituteOffset.getX());tag.putInt("InstituteOffsetY",instituteOffset.getY());tag.putInt("InstituteOffsetZ",instituteOffset.getZ());}}
     public String key(){return ((LabFixtureBlock)getBlockState().getBlock()).key;}
     public static void tick(Level level,BlockPos pos,BlockState state,LabFixtureEntity be){
         be.age++;be.previousOpen=be.openProgress;be.openProgress=Math.max(0,Math.min(1,be.openProgress+(state.getValue(LabFixtureBlock.OPEN)?.125F:-.125F)));

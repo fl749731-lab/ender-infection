@@ -67,6 +67,9 @@ def main() -> None:
     parser.add_argument("--gametests", action="store_true", help="Run focused AI/rift and institute suites on each loader")
     args = parser.parse_args()
     OUTPUT.mkdir(parents=True, exist_ok=True)
+    # A failed run must never leave an older successful receipt as its result.
+    report_path = OUTPUT / "verified-builds.json"
+    report_path.unlink(missing_ok=True)
     subprocess.run([sys.executable, str(ROOT / "tools/verify_central_institute.py")], cwd=ROOT, check=True)
     subprocess.run([sys.executable, str(ROOT / "tools/sync_neoforge_resources.py")], cwd=ROOT, check=True)
     subprocess.run([sys.executable, str(ROOT / "tools/check_dual_version.py"), "--output", str(OUTPUT / "parity.json")], cwd=ROOT, check=True)
@@ -84,6 +87,10 @@ def main() -> None:
             log = run_project(name, folder, major, ["runGameTestServer", "-PcentralInstituteChecks"], f"{folder}-central-institute.log")
             tests.append(verify(log, 1))
             log = run_project(name, folder, major, ["runGameTestServer", "-PstorageChecks"], f"{folder}-storage.log")
+            tests.append(verify(log, 6))
+            log = run_project(name, folder, major, ["runGameTestServer", "-PprocessingChecks"], f"{folder}-processing.log")
+            tests.append(verify(log, 6))
+            log = run_project(name, folder, major, ["runGameTestServer", "-PoperationsChecks"], f"{folder}-operations.log")
             tests.append(verify(log, 6))
             log = run_project(name, folder, major, ["runGameTestServer", "-PoreChecks"], f"{folder}-ore.log")
             tests.append(verify(log, 1))
@@ -111,7 +118,7 @@ def main() -> None:
                 raise RuntimeError(f"JAR implementation version is not {version}: {jar}")
         jars.append({"file": jar.relative_to(ROOT).as_posix(), "bytes": jar.stat().st_size, "sha256": hashlib.sha256(jar.read_bytes()).hexdigest()})
     report = {"status": "PASS", "version": version, "native_gametests_requested": args.gametests, "tests": tests, "jars": jars}
-    (OUTPUT / "verified-builds.json").write_text(json.dumps(report, indent=2) + "\n", "utf-8")
+    report_path.write_text(json.dumps(report, indent=2) + "\n", "utf-8")
     print(json.dumps(report, indent=2))
 
 

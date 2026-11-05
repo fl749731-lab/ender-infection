@@ -20,6 +20,9 @@ import net.neoforged.fml.common.EventBusSubscriber;
 
 @EventBusSubscriber(modid = EnderInfection.MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public final class ClientEvents {
+    @SubscribeEvent public static void menus(net.neoforged.neoforge.client.event.RegisterMenuScreensEvent event) {
+        event.register(dev.hui.enderinfection.design.DesignContent.PROCESSING_MENU.get(),LabProcessingScreen::new);
+    }
     private ClientEvents() {}
     @SubscribeEvent public static void reloadListeners(net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent event){
         event.registerReloadListener((net.minecraft.server.packs.resources.ResourceManagerReloadListener)manager->GuardedGlowLayer.clearCache());

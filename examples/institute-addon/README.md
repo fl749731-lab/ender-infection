@@ -2,11 +2,12 @@
 
 这是一套能独立构建的附属 Mod 源码，包含 Forge 1.20.1 与 NeoForge 1.21.1 两个工程。两版共用 `shared/` 中的玩法代码和外观资源，各自使用对应加载器的注册入口。
 
-**依赖含研究所 API v1 的核心版本 `v0.12.0-alpha.2` 或后续兼容版本。旧版 `v0.12.0-alpha.1` 没有此 API，不能运行本示例；两版元数据均将最低依赖设为 `0.12.0-alpha.2`。** 玩家安装对应平台的本体与附属发布 JAR；`ender-infection-api-dev.jar` 用于编译和开发运行。
+**当前示例依赖核心 `v0.12.0-alpha.4` 或后续兼容版本**，两版元数据均设为 `[0.12.0-alpha.4,)`。基础研究所 API v1 从 `alpha.2` 开始提供；`alpha.4` 为 v1 追加加工配方、研究所状态查询和事件订阅，旧 v1 附属无需改写。当前示例使用了这些新增接口，因此不能在 `alpha.2` / `alpha.3` 核心上运行。`alpha.1` 不含研究所 API。玩家安装对应平台的本体与附属 JAR；`ender-infection-api-dev.jar` 用于编译和开发运行。公共示例源码保持 Java 17 兼容。
 
 ## 示例内容
 
-- `institute_addon:research_console`：附属 Mod 自己注册的研究控制台。右键通过核心的设备 API 切换工作状态，开启时发出 12 级方块光，并显示状态提示。副手交互返回 `PASS`，避免一次点击切换两次。
+- `institute_addon:research_console`：附属 Mod 自己注册的研究控制台。右键通过核心的设备 API 切换工作状态，开启时发出 12 级方块光，并显示状态提示。若所在位置属于已登记研究所，还会只读显示服务区、收容区的供电状态；这不会把演示控制台接入电网，其本地开关与照明保持独立。研究所外仍显示原提示。副手交互返回 `PASS`，避免一次点击切换两次。
+- `institute_addon:archive_copy`：通过 `registrar.processing` 为本体 `ender_infection:lab_microscope` 追加配方，2 张纸 + 1 个红石 → 1 本书，耗时 80 tick（正常 20 TPS 下 4 秒）。该配方使用纸作为输入，不会匹配本体的原始组织样本配方；加工仍遵循本体设备的供电和产物槽规则。
 - `institute_addon:analysis_room`：9 × 6 × 9 的分析室 NBT 模板，有地面、窗户、照明、工作台、显示器、样本架、储物箱和控制台。两端各有 3 × 3 门洞，连接器位于局部 `(4,1,0)` 和 `(4,1,8)`。
 - 房间与设备在 Mod 构造时通过 `InstituteApi.registerAddon` 注册，核心完成 common setup 后关闭注册。
 - 模板由 `generate_room.py` 统一生成两版的数据包目录。生成结果已包含在源码中，日常编译不需要 Python。
@@ -80,7 +81,7 @@ neoforge/build/libs/institute-addon-neoforge-1.21.1-0.1.0.jar
 .\gradlew.bat runGameTestServer
 ```
 
-两项检查会实际预览/放置附属房间，并通过核心设备分发器检查主手切换、副手放行和 12 级照明。测试世界写入对应工程的 `build/addon-gametest-*`，不会使用玩家存档。Forge 的测试入口会在每次新目录中写入固定种子 `0` 的超平坦世界配置，关闭地形装饰与建筑生成，使测试场地上方保持空置；已有测试世界会被拒绝复用。NeoForge 使用其原生超平坦测试世界。
+两项检查会实际预览/放置附属房间、核对新增加工配方能被发现及其设备/物品/数量/耗时字段，并通过核心设备分发器检查主手切换、副手放行和 12 级照明。配方断言加入原有房间检查，测试数量仍是两项；它不替代本体的完整加工运行测试。测试世界写入对应工程的 `build/addon-gametest-*`，不会使用玩家存档。Forge 的测试入口会在每次新目录中写入固定种子 `0` 的超平坦世界配置，关闭地形装饰与建筑生成，使测试场地上方保持空置；已有测试世界会被拒绝复用。NeoForge 使用其原生超平坦测试世界。
 
 如需自动核对两版测试数量及附属 JAR 是否误打包核心代码，可在各工程内把 `build runGameTestServer` 的完整输出重定向到 `gametest-validation.log`，随后在本目录执行 `python verify_examples.py`。它要求两版都出现 `All 2 required tests passed`，会拒绝零测试或服务器启动失败的日志，并生成 `validation.json`。
 
@@ -108,5 +109,6 @@ neoforge/build/libs/institute-addon-neoforge-1.21.1-0.1.0.jar
 3. 为设备绑定明确的方块 ID。处理器只在服务端执行：返回 `PASS` 保留正常交互，`CONSUME` 表示已处理，`FAIL` 表示失败。
 4. 房间的标签使用完整资源 ID；连接器坐标必须位于模板内部。连接器是接口元数据，后续建筑拼装器可按 `socket` 匹配，核心当前不会据此自动扩建房间。
 5. 保持两版共享代码一致，修改房间后运行 `python generate_room.py`，随后分别构建并验证两版。
+6. 在同一注册回调内用 `registrar.processing(new ProcessingRecipe(...))` 追加加工配方。设备集合使用已注册方块的完整 ID，配方 ID 属于附属命名空间。供电状态查询和可关闭的事件订阅见[研究所 API 文档](../../docs/institute-api.md)。
 
 示例代码使用 MIT 许可证，见 `LICENSE`。核心 Mod 自身的许可证及第三方建筑素材许可保持各自声明。

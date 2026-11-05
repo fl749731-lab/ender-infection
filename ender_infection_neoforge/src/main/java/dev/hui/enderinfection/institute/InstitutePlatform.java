@@ -30,16 +30,22 @@ import net.neoforged.fml.common.EventBusSubscriber;
 public final class InstitutePlatform {
     private InstitutePlatform() {}
     public static void register(IEventBus bus) {
-        InstituteApi.registerAddon(EnderInfection.MOD_ID, r -> r.room(new RoomDefinition(
+        InstituteApi.registerAddon(EnderInfection.MOD_ID, r -> { r.room(new RoomDefinition(
                 "ender_infection:api_demo_room", "ender_infection:institute/api_demo_room", new RoomSize(9, 7, 9),
                 List.of(new RoomConnector("entrance", 4, 1, 0, Direction.NORTH, "corridor_3x3")),
-                Set.of("ender_infection:research", "ender_infection:api_example"))));
+                Set.of("ender_infection:research", "ender_infection:api_example")));
+            r.processing(new ProcessingRecipe("ender_infection:microscope_analysis", Set.of("ender_infection:lab_microscope"),
+                    "ender_infection:raw_tissue_sample", 1, "", 0, "ender_infection:research_record", 1, 100));
+            r.processing(new ProcessingRecipe("ender_infection:centrifuge_separation", Set.of("ender_infection:lab_centrifuge"),
+                    "ender_infection:raw_tissue_sample", 1, "minecraft:glass_bottle", 1, "ender_infection:separated_reagent", 1, 160));
+        });
         bus.addListener(InstitutePlatform::setup);
         if (Boolean.getBoolean("ender_infection.instituteChecks")) dev.hui.enderinfection.test.InstituteTestFixtures.register();
     }
     private static void setup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             InstituteApi.installPlacementService(new TemplateRoomPlacementService());
+            InstituteOperations.install();
             // All addon constructors have run before common setup work is executed.
             InstituteApi.freeze();
         });

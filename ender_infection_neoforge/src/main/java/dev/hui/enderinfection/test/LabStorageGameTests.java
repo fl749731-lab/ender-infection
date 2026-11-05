@@ -2,6 +2,7 @@ package dev.hui.enderinfection.test;
 
 import com.mojang.authlib.GameProfile;
 import dev.hui.enderinfection.design.*;
+import dev.hui.enderinfection.processing.LabProcessingEntity;
 import java.util.*;
 import net.minecraft.core.*;
 import net.minecraft.gametest.framework.*;
@@ -181,7 +182,13 @@ public final class LabStorageGameTests {
             use(h,player,root);h.assertTrue(!(player.containerMenu instanceof ChestMenu),"Nonstorage prop opened a chest menu: "+key);
             if(key.equals("lab_privacy_curtain")){h.assertTrue(level.getBlockState(root).getValue(BlockStateProperties.OPEN),"Curtain did not open");use(h,player,root.above());h.assertTrue(!level.getBlockState(root).getValue(BlockStateProperties.OPEN),"Curtain part did not close its root");}
         }
-        for(String key:new String[]{"lab_microscope","lab_centrifuge","lab_cooling_pump","lab_task_lamp"}){
+        for(String key:new String[]{"lab_microscope","lab_centrifuge"}){
+            clean(h,root);level.setBlock(root,block(key).defaultBlockState(),3);var be=level.getBlockEntity(root);
+            h.assertTrue(be instanceof LabProcessingEntity&&be instanceof Container&&((Container)be).getContainerSize()==3,"Processing instrument must expose its real three-slot processor inventory: "+key);
+            h.assertTrue(!(be instanceof LabFixtureEntity)&&!(be instanceof LabStorageInventory),"Processing instrument was registered as a generic 27-slot storage fixture: "+key);
+            h.assertTrue(level.getBlockState(root).getMenuProvider(level,root)==be,"Processing instrument lost its actual native menu provider: "+key);
+        }
+        for(String key:new String[]{"lab_cooling_pump","lab_task_lamp"}){
             clean(h,root);level.setBlock(root,block(key).defaultBlockState(),3);h.assertTrue(level.getBlockEntity(root)==null&&level.getBlockState(root).getMenuProvider(level,root)==null,"Instrument unexpectedly has a chest inventory: "+key);
         }
         h.assertTrue(level.getBlockState(root).getLightEmission()==14,"Task lamp lost its real block light");

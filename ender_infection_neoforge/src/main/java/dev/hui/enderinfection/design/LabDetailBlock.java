@@ -12,9 +12,11 @@ public final class LabDetailBlock extends HorizontalDirectionalBlock {
     public static final com.mojang.serialization.MapCodec<LabDetailBlock> CODEC = com.mojang.serialization.codecs.RecordCodecBuilder.mapCodec(i -> i.group(com.mojang.serialization.Codec.STRING.fieldOf("key").forGetter(b -> b.key), propertiesCodec()).apply(i, LabDetailBlock::new));
     @Override public com.mojang.serialization.MapCodec<LabDetailBlock> codec(){return CODEC;}
 
+    public static final BooleanProperty POWERED=BlockStateProperties.POWERED;
     private final String key;
-    public LabDetailBlock(String key,Properties p){super(p);this.key=key;registerDefaultState(stateDefinition.any().setValue(FACING,Direction.NORTH));}
-    @Override protected void createBlockStateDefinition(StateDefinition.Builder<Block,BlockState> b){b.add(FACING);}
+    public boolean isLamp(){return key.equals("lab_light_panel")||key.equals("lab_task_lamp");}
+    public LabDetailBlock(String key,Properties p){super(p.lightLevel(s->(key.equals("lab_light_panel")||key.equals("lab_task_lamp"))&&s.getValue(POWERED)?14:0));this.key=key;registerDefaultState(stateDefinition.any().setValue(FACING,Direction.NORTH).setValue(POWERED,true));}
+    @Override protected void createBlockStateDefinition(StateDefinition.Builder<Block,BlockState> b){b.add(FACING,POWERED);}
     @Override public BlockState getStateForPlacement(BlockPlaceContext c){return defaultBlockState().setValue(FACING,c.getHorizontalDirection().getOpposite());}
     @Override public BlockState rotate(BlockState s,Rotation r){return s.setValue(FACING,r.rotate(s.getValue(FACING)));}
     @Override public BlockState mirror(BlockState s,Mirror m){return rotate(s,m.getRotation(s.getValue(FACING)));}

@@ -20,7 +20,7 @@ DEST = DATA / 'structures/central_institute'
 REPORT = ROOT / 'build/central-institute/static-validation.json'
 WIDTH, LENGTH, HEIGHT, GROUND_OFFSET = 120, 104, 55, 28
 MAX_TERRAIN_RELIEF = 8
-LAYOUT_VERSION = 'central-institute-v2'
+LAYOUT_VERSION = 'central-institute-v3'
 FLOORS = [('B3', -25), ('B2', -14), ('B1', -7), ('G1', 0), ('G2', 7), ('G3', 14)]
 AIR = ('minecraft:air', (), None)
 VOID = ('minecraft:structure_void', (), None)
@@ -47,6 +47,7 @@ class Institute:
         self.storage = []
         self.signs = []
         self.crystal_faces = []
+        self.operations = {'controls': [], 'secured_doors': [], 'managed_lights': [], 'machines': []}
         self.lift = {'x': 75, 'z': 39, 'landings': []}
         self.entrance = {'x': 59, 'y': 29, 'z': 87, 'facing': 'south'}
 
@@ -442,10 +443,95 @@ class Institute:
             self.storage.append(dict(zip(('x','y','z'), xyz(*p)), room=room['id'] if room else 'COMMON_' + floor,
                     floor=floor, category=category, block=block, block_entity_id=entity_id, loot_table=table))
 
+    def configure_operations(self):
+        """Bind only generated equipment; player-placed items remain unbound."""
+        def zone(y):
+            return 'containment' if y < -7 else 'service'
+
+        def bound(p, entity_id):
+            pos=xyz(*p)
+            return {'id': (8,entity_id), 'InstituteBound': (1,1),
+                    **{'InstituteOffset'+axis:(3,value) for axis,value in zip(('X','Y','Z'),pos)}}
+
+        # Keep every existing supply neighbour: a visually open cell can still
+        # be a barrel's only usable side. Candidate placement is also evaluated
+        # after removal from the room's door-connected standing-space graph.
+        supply_neighbours={(b['x']+dx,b['y']-28,b['z']+dz) for b in self.loot
+                           for dx,dz in spec.FACES.values()}
+        control_approaches=set()
+        openable_cells={p for fixture in self.fixtures
+                        if fixture['block'].split(':')[1].replace('_eroded','') in ('lab_door','lab_privacy_curtain')
+                        for p in fixture['cells']}
+        targets=[('D2','generator','lab_power_generator'),('D1','distribution','lab_distribution_panel'),
+                 ('A7','terminal','lab_research_terminal'),('F5','archive','lab_archive_terminal')]
+        for room_id,role,key in targets:
+            r=next(r for r in self.rooms if r['id']==room_id);y=r['y']-27
+            protected=set()
+            for door in r['doors']:
+                dx,dz=spec.FACES[door['facing']]
+                for step in (-2,-1,0,1,2):protected.add((door['x']+dx*step,door['z']+dz*step))
+            protected.update((x,z) for x,Y,z in supply_neighbours|control_approaches if Y==y)
+            def free(x,z):
+                return self.grid.get((x,y,z),VOID)[0]=='minecraft:air' and self.grid.get((x,y+1,z),VOID)[0]=='minecraft:air'
+            walkable={(x,z) for z in range(r['z'],r['z']+r['length']) for x in range(r['x'],r['x']+r['width'])
+                      if all(self.grid.get((x,Y,z),VOID)[0] in ('minecraft:air','minecraft:light') or (x,Y,z) in openable_cells for Y in (y,y+1))}
+            starts={(d['x'],d['z']) for d in r['doors']} & walkable
+            def flood(excluded=None):
+                reached=starts-{excluded};todo=deque(reached)
+                while todo:
+                    x,z=todo.popleft()
+                    for dx,dz in spec.FACES.values():
+                        at=x+dx,z+dz
+                        if at!=excluded and at in walkable and at not in reached:reached.add(at);todo.append(at)
+                return reached
+            connected=flood()
+            candidates=[]
+            for z in range(r['z']+2,r['z']+r['length']-2):
+                for x in range(r['x']+2,r['x']+r['width']-2):
+                    if (x,z) in protected or (x,z) not in connected or not free(x,z):continue
+                    if x in (r['x']+r['width']//2-1,r['x']+r['width']//2) or z in (r['z']+r['length']//2-1,r['z']+r['length']//2):continue
+                    neighbours=[(face,dx,dz) for face,(dx,dz) in spec.FACES.items() if free(x+dx,z+dz)]
+                    if len(neighbours)<3:continue
+                    # Put operating side toward the room centre.
+                    face,dx,dz=min(neighbours,key=lambda v:abs(x+v[1]-(r['x']+r['width']/2))+abs(z+v[2]-(r['z']+r['length']/2)))
+                    wall_dist=min(x-r['x'],z-r['z'],r['x']+r['width']-1-x,r['z']+r['length']-1-z)
+                    candidates.append((wall_dist,z,x,face))
+            assert candidates,('no safe operations control location',room_id)
+            chosen=None
+            for _,z,x,_ in sorted(candidates):
+                reached=flood((x,z))
+                if any(not any((b['x']+dx,b['z']+dz) in reached for dx,dz in spec.FACES.values())
+                       for b in self.loot if b['room']==room_id):continue
+                neighbours=[(face,dx,dz) for face,(dx,dz) in spec.FACES.items() if (x+dx,z+dz) in reached and free(x+dx,z+dz)]
+                if not neighbours:continue
+                face,dx,dz=min(neighbours,key=lambda v:abs(x+v[1]-(r['x']+r['width']/2))+abs(z+v[2]-(r['z']+r['length']/2)))
+                chosen=(x,z,face,dx,dz);break
+            assert chosen,('control would disconnect supply access',room_id)
+            x,z,face,dx,dz=chosen;p=(x,y,z);approach=(x+dx,y,z+dz)
+            self.put(*p,key,{'facing':face,'powered':'false'},bound(p,'ender_infection:lab_operations_control'))
+            control_approaches.add(approach)
+            self.operations['controls'].append({'role':role,'pos':xyz(*p),'approach_pos':xyz(*approach),'room':room_id,'zone':zone(y),'block':spec.full(key)})
+
+        for p,value in list(self.grid.items()):
+            block,props,_=value;props=dict(props);base=block.split(':')[1].replace('_eroded','')
+            if base in ('lab_light_panel','lab_task_lamp'):
+                props['powered']='false';self.put(*p,block,props)
+                self.operations['managed_lights'].append({'pos':xyz(*p),'zone':zone(p[1]),'block':block})
+            elif base=='lab_door' and zone(p[1])=='containment':
+                props.update(secured='true',open='false')
+                self.put(*p,block,props,bound(p,'ender_infection:lab_fixture'))
+                self.operations['secured_doors'].append({'pos':xyz(*p),'zone':'containment','block':block})
+                for r in self.rooms:
+                    for d in r['doors']:
+                        if [d['x'],d['y'],d['z']]==xyz(*p):d['secured']=True
+            elif base in ('lab_microscope','lab_centrifuge'):
+                self.put(*p,block,props,bound(p,'ender_infection:lab_processing'))
+                self.operations['machines'].append({'pos':xyz(*p),'device':block,'zone':zone(p[1])})
+
     def lighting(self):
         sources = []
         for (x, y, z), value in self.grid.items():
-            strength = int(dict(value[1]).get('level', 0)) if value[0] == 'minecraft:light' else 15 if value[0] == 'minecraft:sea_lantern' or (value[0] == 'minecraft:redstone_lamp' and dict(value[1]).get('lit') == 'true') else 14 if value[0] in ('ender_infection:lab_light_panel','ender_infection:lab_task_lamp') else 0
+            strength = int(dict(value[1]).get('level', 0)) if value[0] == 'minecraft:light' else 15 if value[0] == 'minecraft:sea_lantern' or (value[0] == 'minecraft:redstone_lamp' and dict(value[1]).get('lit') == 'true') else 14 if value[0] in ('ender_infection:lab_light_panel','ender_infection:lab_task_lamp') and dict(value[1]).get('powered','true')=='true' else 0
             if strength:
                 sources.append({'x': x, 'y': y + 28, 'z': z, 'block': value[0], 'light_level': strength})
         actual_crystals = sum('amethyst' in value[0] or 'crystal' in value[0] for value in self.grid.values())
@@ -660,10 +746,10 @@ def loot_tables():
     categories = {
         'public': [('minecraft:bread', 8, 2, 5), ('minecraft:paper', 10, 3, 9), ('minecraft:torch', 8, 4, 12)],
         'security': [('minecraft:arrow', 10, 6, 18), ('minecraft:iron_ingot', 7, 1, 4), ('minecraft:shield', 2, 1, 1)],
-        'medical': [('minecraft:golden_carrot', 7, 1, 3), ('minecraft:honey_bottle', 9, 1, 3), ('minecraft:glass_bottle', 10, 2, 6)],
-        'research': [('minecraft:amethyst_shard', 9, 2, 7), ('minecraft:glass_bottle', 10, 2, 5), ('minecraft:redstone', 8, 3, 8)],
+        'medical': [('minecraft:golden_carrot', 7, 1, 3), ('minecraft:honey_bottle', 9, 1, 3), ('minecraft:glass_bottle', 10, 2, 6), ('ender_infection:raw_tissue_sample',10,1,3)],
+        'research': [('minecraft:amethyst_shard', 9, 2, 7), ('minecraft:glass_bottle', 10, 2, 5), ('minecraft:redstone', 8, 3, 8), ('ender_infection:raw_tissue_sample',10,1,3), ('ender_infection:research_record',6,1,2)],
         'engineering': [('minecraft:iron_ingot', 10, 2, 6), ('minecraft:copper_ingot', 10, 3, 8), ('minecraft:redstone', 10, 4, 12)],
-        'containment': [('minecraft:amethyst_shard', 10, 3, 8), ('minecraft:obsidian', 5, 1, 3), ('minecraft:ender_pearl', 2, 1, 2)],
+        'containment': [('minecraft:amethyst_shard', 10, 3, 8), ('minecraft:obsidian', 5, 1, 3), ('minecraft:ender_pearl', 2, 1, 2), ('ender_infection:raw_tissue_sample',10,1,3)],
         'archives': [('minecraft:paper', 10, 5, 16), ('minecraft:book', 9, 1, 4), ('minecraft:ink_sac', 6, 1, 4)],
         'greenhouse': [('minecraft:wheat_seeds', 10, 3, 10), ('minecraft:bone_meal', 10, 3, 8), ('minecraft:glow_berries', 6, 1, 5)],
     }
@@ -676,16 +762,22 @@ def loot_tables():
                    for name, weight, lo, hi in items]
         table = {'type': 'minecraft:chest', 'pools': [{'rolls': {'type': 'minecraft:uniform', 'min': 3, 'max': 5},
                                                    'entries': entries}]}
+        if category=='public':
+            # Reception supplies guarantee a first repair/research attempt;
+            # neither a lucky furniture roll nor a locked room is required.
+            for name,count in [('lab_fuse',2),('raw_tissue_sample',2),('research_log',1)]:
+                table['pools'].append({'rolls':1,'entries':[{'type':'minecraft:item','name':'ender_infection:'+name,
+                     'functions':[{'function':'minecraft:set_count','count':count}]}]})
         (dest / (category + '.json')).write_text(json.dumps(table, indent=2) + '\n', encoding='utf-8')
     # Functional drawers/cabinets are modest supply locations. Rich per-room
     # expedition barrels retain the separate tables above.
     furniture = {
         'public': ['minecraft:paper','minecraft:string','minecraft:stick'],
         'security': ['minecraft:iron_nugget','minecraft:flint','minecraft:string'],
-        'medical': ['minecraft:glass_bottle','minecraft:sugar','minecraft:paper'],
-        'research': ['minecraft:amethyst_shard','minecraft:glass_bottle','minecraft:redstone'],
+        'medical': ['minecraft:glass_bottle','minecraft:sugar','minecraft:paper','ender_infection:raw_tissue_sample'],
+        'research': ['minecraft:amethyst_shard','minecraft:glass_bottle','minecraft:redstone','ender_infection:raw_tissue_sample','ender_infection:research_record'],
         'engineering': ['minecraft:iron_nugget','minecraft:copper_ingot','minecraft:redstone'],
-        'containment': ['minecraft:amethyst_shard','minecraft:glass_bottle','minecraft:string'],
+        'containment': ['minecraft:amethyst_shard','minecraft:glass_bottle','minecraft:string','ender_infection:raw_tissue_sample'],
         'archives': ['minecraft:paper','minecraft:book','minecraft:ink_sac'],
         'greenhouse': ['minecraft:wheat_seeds','minecraft:bone_meal','minecraft:oak_sapling'],
     }
@@ -709,6 +801,7 @@ def generate():
     model.add_loot()
     model.add_room_signs()
     model.assign_storage_loot()
+    model.configure_operations()
     model.connect_bars()
     model.bake_powered_lamps()
     model.add_crystal_face_lights()
@@ -725,7 +818,7 @@ def generate():
                 'tiles': tiles, 'rooms': model.rooms, 'stairs': model.stairs, 'lift': model.lift,
                 'entrance': model.entrance, 'loot_containers': model.loot,
                 'storage_containers': model.storage, 'room_signs': model.signs,
-                'light_sources': sources, 'crystal_lighting': crystals}
+                'light_sources': sources, 'crystal_lighting': crystals, 'operations':model.operations}
     (DATA / 'central_institute.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     loot_tables()
     report['tiles'] = len(tiles)

@@ -187,6 +187,12 @@ def verify(manifest, resources):
                     require(root_props.get("facing") == props.get("facing"), f"Furniture facing mismatch at {pos}")
                     if (x // 16, z // 16) != (root[0] // 16, root[2] // 16):
                         boundary_parts += 1
+                elif name.endswith("_bed"):
+                    beds += 1
+                    dx, dz = FACINGS[props["facing"]]
+                    sign = 1 if props["part"] == "foot" else -1
+                    other, other_props = model.state((x + dx * sign, y, z + dz * sign))
+                    require(other == name and other_props.get("facing") == props["facing"] and other_props.get("part") != props["part"], f"Broken paired bed at {pos}")
                 elif name.startswith("ender_infection:"):
                     key = name.split(":", 1)[1].removesuffix("_eroded")
                     height = 3 if key == "incubator" else 2 if key in {"lab_door", "lab_cabinet", "surgery_table", "lab_workbench", "lab_window", "lab_glass_cabinet", "lab_cryo_cabinet", "lab_server_rack", "lab_control_console", "lab_privacy_curtain"} else 1
@@ -202,12 +208,6 @@ def verify(manifest, resources):
                                 part = x - dz * horizontal, y + vertical, z + dx * horizontal
                                 part_name, part_props = model.state(part)
                                 require(part_name == "ender_infection:lab_fixture_part" and model.part_anchor(part, part_props) == pos, f"Furniture footprint incomplete: {pos}/{name} -> {part}")
-                elif name.endswith("_bed"):
-                    beds += 1
-                    dx, dz = FACINGS[props["facing"]]
-                    sign = 1 if props["part"] == "foot" else -1
-                    other, other_props = model.state((x + dx * sign, y, z + dz * sign))
-                    require(other == name and other_props.get("facing") == props["facing"] and other_props.get("part") != props["part"], f"Broken paired bed at {pos}")
     require(multipart > 100, "Research furniture footprint parts are absent")
     # A content change may move every prop off a seam. Boundary behavior is also
     # explicitly exercised by the native tests, so report rather than require it.
@@ -298,7 +298,7 @@ def verify(manifest, resources):
         for z in range(model.length):
             for x in range(model.width):
                 name, state = model.state((x, y, z))
-                if name in emissions and (name != "minecraft:redstone_lamp" or state.get("lit") == "true"):
+                if name in emissions and (name != "minecraft:redstone_lamp" or state.get("lit") == "true") and state.get("powered", "true") != "false":
                     actual_sources.add((x, y, z))
                 if "amethyst" in name or "crystal" in name:
                     actual_crystals.add((x, y, z))
@@ -309,6 +309,41 @@ def verify(manifest, resources):
         require(name == source["block"] and emissions[name] == source["light_level"], f"Wrong physical light source: {source}")
         require(name != "minecraft:redstone_lamp" or state.get("lit") == "true", f"Alarm lamp is not lit: {source}")
         require(name != "minecraft:light" or state.get("level") == "15", f"Invisible fill-light has the wrong emission: {source}")
+    operations = manifest.get("operations")
+    if manifest.get("layout_version") == "central-institute-v3":
+        require(isinstance(operations, dict), "Missing institute operations manifest")
+        controls = operations["controls"]
+        require({item["role"] for item in controls} == {"generator", "distribution", "terminal", "archive"} and len(controls) == 4, "Expected four distinct facility control roles")
+        control_blocks = {"generator": "lab_power_generator", "distribution": "lab_distribution_panel", "terminal": "lab_research_terminal", "archive": "lab_archive_terminal"}
+        actual_machines, actual_doors, actual_dark = set(), set(), set()
+        for at in model.entities:
+            block, props = model.state(at)
+            if block in {"ender_infection:lab_microscope", "ender_infection:lab_centrifuge"}: actual_machines.add(at)
+            if "lab_door" in block and props.get("secured") == "true": actual_doors.add(at)
+        for y in range(model.height):
+            for z in range(model.length):
+                for x in range(model.width):
+                    at = x, y, z
+                    block, props = model.state(at)
+                    if block in {"ender_infection:lab_light_panel", "ender_infection:lab_task_lamp"} and props.get("powered") == "false": actual_dark.add(at)
+        for key, actual in (("machines", actual_machines), ("secured_doors", actual_doors), ("managed_lights", actual_dark)):
+            entries = operations[key]
+            require(entries and len({coord(item["pos"]) for item in entries}) == len(entries), f"Missing/duplicate operation targets: {key}")
+            require({coord(item["pos"]) for item in entries} == actual, f"Operation targets do not match actual tiles: {key}")
+            require(all(item["zone"] in {"service", "containment"} for item in entries), f"Unknown circuit in {key}")
+        for item in [*controls, *operations["machines"], *operations["secured_doors"]]:
+            at = coord(item["pos"]); entity = model.entities.get(at, {})
+            expected_id = "ender_infection:lab_operations_control" if "role" in item else "ender_infection:lab_processing" if "device" in item else "ender_infection:lab_fixture"
+            require(entity.get("id") == expected_id and entity.get("InstituteBound") == 1, f"Missing facility-bound block entity: {item}")
+            require(tuple(entity.get("InstituteOffset" + axis) for axis in "XYZ") == at, f"Binding uses tile-local rather than whole-site coordinates: {item}")
+            if "role" in item:
+                require(model.state(at)[0] == "ender_infection:" + control_blocks[item["role"]], f"Control role/block mismatch: {item}")
+                approach = coord(item["approach_pos"])
+                require(model.standing(approach) and visited[model.index(approach)], f"Control has no reachable operating position: {item}")
+            elif "device" in item:
+                require(model.state(at)[0] == item["device"], f"Processor identity mismatch: {item}")
+            else:
+                require(model.state(at)[1].get("open") == "false", f"Secured door starts open: {item}")
     for crystal in manifest["crystal_lighting"]:
         at, source = coord(crystal), coord(crystal["source"])
         name = model.state(source)[0]
@@ -323,7 +358,7 @@ def verify(manifest, resources):
         require(name == "minecraft:light" and distance == 2, f"Exposed crystals need an external physical fill-light at distance two: {crystal}")
         for dx, dy, dz in FACES_3D.values():
             require(model.state((at[0] + dx, at[1] + dy, at[2] + dz))[0] != "minecraft:light", f"Fill-light occupies a crystal's adjacent AIR/bud growth cell: {crystal}")
-    return {"status": "PASS", "rooms": len(rooms), "room_signs": len(signs), "floors": dict(floors), "tiles": len(model.tiles), "explicit_voxels": model.volume, "multipart": multipart, "parts_crossing_tiles": boundary_parts, "bed_halves": beds, "loot_containers": len(containers), "storage_containers": len(storage), "storage_by_block": dict(Counter(actual_storage.values())), "reachable_standing_cells": sum(visited), "preserved_terrain_cells": counts["minecraft:structure_void"], "light_sources": len(actual_sources), "lit_crystals": len(actual_crystals)}
+    return {"status": "PASS", "rooms": len(rooms), "room_signs": len(signs), "floors": dict(floors), "tiles": len(model.tiles), "explicit_voxels": model.volume, "multipart": multipart, "parts_crossing_tiles": boundary_parts, "bed_halves": beds, "loot_containers": len(containers), "storage_containers": len(storage), "storage_by_block": dict(Counter(actual_storage.values())), "reachable_standing_cells": sum(visited), "preserved_terrain_cells": counts["minecraft:structure_void"], "light_sources": len(actual_sources), "lit_crystals": len(actual_crystals), "operations": {key: len(value) for key, value in operations.items()} if operations else {}}
 
 
 def main():

@@ -6,11 +6,18 @@
 
 两版继续共用模型、贴图和研究所 API。alpha.2 引入的房间注册、连接器、模板预览、显式放置和设备交互 API，以及 [独立附属 Mod 示例](examples/institute-addon/README.md) 均保留；旧版 `0.12.0-alpha.1` 不含该 API。
 
-alpha.3 提供中央研究所实际游戏建筑：地上三层、地下三层，共 48 间内饰房间，支持自然生成和管理员分区块施工。使用方法见 [中央研究所](docs/central-institute.md)，双版截图见 [运行实景](previews/central-institute-runtime/README.md)，可下载 [alpha.3 实景图包](https://github.com/fl749731-lab/ender-infection/releases/download/v0.12.0-alpha.3/central-institute-runtime-0.12.0-alpha.3.zip)。研究所电网系统、收容事件和研究所 Boss 战尚未实现。
+alpha.3 提供中央研究所实际游戏建筑：地上三层、地下三层，共 48 间内饰房间，支持自然生成和管理员分区块施工。使用方法见 [中央研究所](docs/central-institute.md)，双版截图见 [运行实景](previews/central-institute-runtime/README.md)，可下载 [alpha.3 实景图包](https://github.com/fl749731-lab/ender-infection/releases/download/v0.12.0-alpha.3/central-institute-runtime-0.12.0-alpha.3.zip)。该公开版本尚未提供研究所电网、收容事件或研究所 Boss 战。
 
 alpha.2 的设计资料继续保留：[完整图包](https://github.com/fl749731-lab/ender-infection/releases/download/v0.12.0-alpha.2/central-research-institute-interiors-v01.zip)、[73 页 PDF](https://github.com/fl749731-lab/ender-infection/releases/download/v0.12.0-alpha.2/central-institute-interior-atlas-v01.pdf)。解压后打开 `index.html` 浏览逐格坐标与材料清单；这些历史附件不等同于 alpha.2 JAR 已包含整栋建筑。
 
 感染从母体与扩张节点开始。每个母体拥有独立的生物质储备；召唤、进阶与节点扩张消费储备，土地收益随领土扩大而增加，重复收割同一片土地的收益逐渐下降。
+
+## 0.12.0-alpha.4 开发中（未发布）
+
+开发分支新增研究所修复、两区供电、门禁卡、显微分析、离心分离与一次性核心档案任务，并补充医疗床和等候沙发。玩法适用于新生成的 v3 布局，已有 alpha.3 建筑保持原样；收容事件和 Boss 战继续待做。操作步骤、适用范围和验证命令见[研究所供电与样本研究](docs/institute-operations.md)，新增附属接口见[研究所 API](docs/institute-api.md)。当前附属源码示例使用新增接口，需要 alpha.4；已有 alpha.2 API v1 附属保持兼容。
+
+<!-- alpha4-validation -->
+alpha.4 开发分支已完成完整双版干净构建与 16 组原生测试，共 139 项必需测试通过（含两版附属各 2 项）；两版独立功能场景完成 20 张真实交互截图验收。截图与验证范围见[功能验收记录](previews/institute-operations-alpha4/README.md)。当前仍未发布，公开预发布版保持 alpha.3，稳定版保持 0.11.0。
 
 ## v0.12.0-alpha.3
 

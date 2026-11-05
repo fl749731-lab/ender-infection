@@ -12,7 +12,7 @@ BASE=ROOT/'previews/central_research_institute_2026-11-04'
 OUT=ROOT/'previews/central_research_institute_interiors_v01'
 LAYOUT=json.loads((BASE/'layout.json').read_text('utf-8'))
 NS='ender_infection:'
-DETAILS={'lab_monitor','lab_sample_rack','lab_shelf','lab_pipe','lab_light_panel','lab_chair','lab_sink','lab_storage_crate','lab_freezer','lab_floor_grate','lab_access_ladder','lab_rolling_cart','lab_microscope','lab_centrifuge','lab_cooling_pump','lab_task_lamp'}
+DETAILS={'lab_monitor','lab_sample_rack','lab_shelf','lab_pipe','lab_light_panel','lab_chair','lab_sink','lab_storage_crate','lab_freezer','lab_floor_grate','lab_access_ladder','lab_rolling_cart','lab_microscope','lab_centrifuge','lab_cooling_pump','lab_task_lamp','lab_waiting_sofa','lab_medical_bed','lab_power_generator','lab_distribution_panel','lab_research_terminal','lab_archive_terminal'}
 FIXTURES={'lab_cabinet':(1,2),'incubator':(1,3),'surgery_table':(3,2),'lab_workbench':(3,2),'lab_window':(3,2),'lab_door':(1,2),'lab_hatch':(1,1),'lab_vent':(1,1),'lab_glass_cabinet':(1,2),'lab_cryo_cabinet':(1,2),'lab_server_rack':(1,2),'lab_control_console':(3,2),'lab_privacy_curtain':(1,2)}
 STORAGE_FIXTURES={'lab_cabinet','lab_workbench','lab_glass_cabinet','lab_cryo_cabinet','lab_server_rack','lab_control_console'}
 STORAGE_DETAILS={'lab_freezer','lab_storage_crate','lab_shelf','lab_rolling_cart','lab_sink'}
@@ -48,10 +48,11 @@ class Module:
         self.p(u,v,'lab_freezer',face=face)
         if sample:self.p(u,v,'lab_sample_rack',2,face)
         if monitor:self.p(u,v,'lab_monitor',2,face)
-    def bed(self,u,v,color='white'):
-        self.p(u,v,'minecraft:'+color+'_bed',face='north',part='foot',occupied='false')
+    def bed(self,u,v,color='white',medical=False):
+        key='lab_medical_bed' if medical else 'minecraft:'+color+'_bed'
+        self.p(u,v,key,face='north',part='foot',occupied='false')
         self.blocks[-1]['state']['facing']='north'
-        self.p(u,v-1,'minecraft:'+color+'_bed',face='north',part='head',occupied='false')
+        self.p(u,v-1,key,face='north',part='head',occupied='false')
         self.blocks[-1]['state']['facing']='north';self.blocks[-1]['manual_item']=False
 
 
@@ -94,10 +95,13 @@ def module(kind):
         for u in (2,5):m.p(u,1,'lab_monitor',2,'south');m.p(u,3,'lab_chair',face='north')
         m.p(0,5,'lab_glass_cabinet');m.p(7,5,'lab_rolling_cart')
         m.p(3,1,'lab_task_lamp',2,'south');m.p(4,1,'minecraft:potted_fern',2)
+        m.p(1,1,'minecraft:white_carpet',2)
     elif kind=='medical':
-        for u in (1,5):m.bed(u,3);m.counter(u+1,3,monitor=True,face='north')
+        for u in (1,5):m.bed(u,3,medical=True);m.counter(u+1,3,monitor=True,face='north')
         m.p(0,0,'lab_cryo_cabinet',face='south');m.p(7,0,'lab_sink',face='south')
-        for u in (0,4):m.p(u,4,'lab_privacy_curtain',face='east')
+        # Paired rail panels line each bed bay instead of a lone screen.
+        for u in (0,4):
+            for v in (2,3):m.p(u,v,'lab_privacy_curtain',face='east')
         m.p(7,5,'lab_rolling_cart');m.counter(3,0);m.p(3,0,'lab_task_lamp',2)
     elif kind=='surgery':
         m.p(3,3,'surgery_table');m.p(0,0,'lab_glass_cabinet',face='south');m.p(7,0,'lab_sink',face='south')
@@ -142,7 +146,7 @@ def module(kind):
         else:m.stack(7,5,'lab_storage_crate',2);m.p(0,5,'lab_shelf')
     elif kind=='waiting':
         for v in (1,4):
-            for u in (1,2,4,5):m.p(u,v,'lab_chair',face='south' if v==1 else 'north')
+            for u in (1,2,3,4,5):m.p(u,v,'lab_waiting_sofa',face='south' if v==1 else 'north')
         for u in (2,3,4):m.p(u,2,'minecraft:spruce_slab',type='bottom',waterlogged='false')
         m.counter(7,2);m.p(7,2,'minecraft:potted_fern',2);m.p(0,0,'lab_glass_cabinet',face='south')
     elif kind in ('display','crystal','tank','containment','infected'):
@@ -182,6 +186,7 @@ def module(kind):
         for u in range(1,7):m.counter(u,1)
         for u in (2,5):m.p(u,1,'lab_microscope',2,'south');m.p(u,3,'lab_chair',face='north')
         m.p(3,1,'lab_task_lamp',2,'south');m.p(6,1,'lab_sample_rack',2,'south')
+        m.p(4,1,'minecraft:white_carpet',2)
         m.p(0,5,'lab_glass_cabinet');m.p(3,5,'lab_rolling_cart');m.p(3,5,'lab_centrifuge',2);m.counter(7,5,sample=True)
     elif kind in ('culture','culture_pods','damaged'):
         for u,v in ((0,0),(3,0),(6,0)):m.p(u,v,'incubator_eroded' if kind=='damaged' and u==0 else 'incubator' if kind=='culture_pods' else 'lab_glass_cabinet',face='south')
@@ -192,6 +197,7 @@ def module(kind):
     elif kind in ('reagents','wetbench','specimens'):
         for u in range(8):m.counter(u,0)
         for u in (1,3,5):m.p(u,0,'lab_sample_rack',2)
+        m.p(0,0,'minecraft:white_carpet',2)
         if kind=='reagents':m.p(7,0,'minecraft:brewing_stand',2,has_bottle_0='true',has_bottle_1='false',has_bottle_2='true')
         elif kind=='wetbench':m.p(7,3,'lab_sink');m.p(1,4,'lab_sink')
         else:
@@ -200,6 +206,7 @@ def module(kind):
         m.p(6,0,'lab_task_lamp',2);m.p(4,4,'lab_rolling_cart');m.p(4,4,'lab_centrifuge',2)
     elif kind=='office':
         for u in (1,5):m.counter(u,1,monitor=True);m.counter(u+1,1);m.p(u,3,'lab_chair',face='north')
+        for u in (2,6):m.p(u,1,'minecraft:white_carpet',2)
         for u in range(7):m.p(u,5,'minecraft:bookshelf')
     elif kind=='bunks':
         for u in (0,2,4,6):m.bed(u,3,'gray')

@@ -1,0 +1,435 @@
+{
+  "status": "PASS",
+  "version": "0.12.0-alpha.4",
+  "published": false,
+  "release_state": "unpublished development build; no push or release performed",
+  "verified_at_utc": "2026-11-05T10:45:34.143470+00:00",
+  "dual_driver": {
+    "file": "build/dual-version-validation/verified-builds.json",
+    "bytes": 3473,
+    "sha256": "fc653293c5b37f735fda7fb0a9d0229df22a7d574409922def078f1b703dde52"
+  },
+  "native_gametests_requested": true,
+  "native_suite_count": 16,
+  "native_required_passed": 139,
+  "native_suites": [
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_colored-rift-ai.log",
+      "total": 32,
+      "required_passed": 32,
+      "log_sha256": "09b64ece331ea474c2f8e15c2c675d2203c6f87c4a434490a855bd889f5f07eb",
+      "minimum_required": 32
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_colored-institute.log",
+      "total": 12,
+      "required_passed": 12,
+      "log_sha256": "c8de29b81ba5738bd9355d9bd5194fc29a3409502cb558a7a3f04a4c8b2c27b0",
+      "minimum_required": 12
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_colored-central-institute.log",
+      "total": 1,
+      "required_passed": 1,
+      "log_sha256": "93f057458fda476ffcb0aeb282d984a908fa4ce19439cfb2d1cefeba3bc4d074",
+      "minimum_required": 1
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_colored-storage.log",
+      "total": 6,
+      "required_passed": 6,
+      "log_sha256": "ea4318929123a170eb8bc36410d11019eb9f1fa8de1b5f96bc462cc894c8858c",
+      "minimum_required": 6
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_colored-processing.log",
+      "total": 6,
+      "required_passed": 6,
+      "log_sha256": "8e39cb01d346da3f9a1ebf0b4245ae4fb690386a6e272c12463ceba4ba06b7e3",
+      "minimum_required": 6
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_colored-operations.log",
+      "total": 6,
+      "required_passed": 6,
+      "log_sha256": "907642cedf36276c7c0f40a961ef4a756dd978d4a7bc89e607324336dbb8e1cb",
+      "minimum_required": 6
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_colored-ore.log",
+      "total": 4,
+      "required_passed": 4,
+      "log_sha256": "05a71f0e055c57a8bbfc1a68e655e8c560ac47af53b87b6af392f2edcf200d29",
+      "minimum_required": 1
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/forge-addon-tests.log",
+      "total": 2,
+      "required_passed": 2,
+      "log_sha256": "550acd025250e1ee4646252c7c5f92c94ae9cf2e9a34339060f213f6bbe89f52",
+      "minimum_required": 2
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_neoforge-rift-ai.log",
+      "total": 32,
+      "required_passed": 32,
+      "log_sha256": "3d034273d053dd6f068924643b0ac8b073e9ad47ef426441b9581fb499750610",
+      "minimum_required": 32
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_neoforge-institute.log",
+      "total": 12,
+      "required_passed": 12,
+      "log_sha256": "cf18a1ad522d09edd7c60690e6fa9720b81e5dcb8660964b8ffcdb75ea410cc1",
+      "minimum_required": 12
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_neoforge-central-institute.log",
+      "total": 1,
+      "required_passed": 1,
+      "log_sha256": "b5b437cb0566d177023fdfb3f59b4f9b41f41ca77bfad5bebf09c3c75bfba818",
+      "minimum_required": 1
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_neoforge-storage.log",
+      "total": 6,
+      "required_passed": 6,
+      "log_sha256": "561d0902e8da097cc44c3107a5da662d85ac530a26231f47904c7d041fbbee19",
+      "minimum_required": 6
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_neoforge-processing.log",
+      "total": 6,
+      "required_passed": 6,
+      "log_sha256": "59ecc0be165bc4259d8c2ac77eecf62e52311d378700899ad1a5cf9878baca1d",
+      "minimum_required": 6
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_neoforge-operations.log",
+      "total": 6,
+      "required_passed": 6,
+      "log_sha256": "9bd83bd6d667009b00ced53ec2c6fbde7ddec0c0799af74a2bce47f1412b338d",
+      "minimum_required": 6
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_neoforge-ore.log",
+      "total": 5,
+      "required_passed": 5,
+      "log_sha256": "6b43796017a1182e656f1cadb3e5733f395023657d0aea1fd4a3c152a0c83338",
+      "minimum_required": 1
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/neoforge-addon-tests.log",
+      "total": 2,
+      "required_passed": 2,
+      "log_sha256": "ba5b484791946df6afcfb3a4fdf2e784b375db6225e676867d701062b275d253",
+      "minimum_required": 2
+    }
+  ],
+  "build_logs": [
+    {
+      "file": "build/dual-version-validation/ender_infection_colored-build.log",
+      "bytes": 1969,
+      "sha256": "baf0f8ebb7d34e77bcf9a1d93af7befcd62d1548b09e9337f9193e2bd1964872"
+    },
+    {
+      "file": "build/dual-version-validation/forge-addon-build.log",
+      "bytes": 1669,
+      "sha256": "2ea78d7aed1e469284601184d7c437fbca8e2c273834506e39c0702df2aabfbc"
+    },
+    {
+      "file": "build/dual-version-validation/ender_infection_neoforge-build.log",
+      "bytes": 2969,
+      "sha256": "49a9c0e856225477096c93cb9449b5850c35ce0212791c8742d5b6f8efc90b76"
+    },
+    {
+      "file": "build/dual-version-validation/neoforge-addon-build.log",
+      "bytes": 1334,
+      "sha256": "54f208e8bc137e68a741df4824827e185442a9475143e1c8b137ec9feacec7a4"
+    }
+  ],
+  "jars": [
+    {
+      "file": "ender_infection_colored/build/libs/ender-infection-0.12.0-alpha.4.jar",
+      "bytes": 5828915,
+      "sha256": "3221a9f890fcd5265638e6f9513f765d30a1ea364abd3ba09f48bc01f5f7a64e",
+      "loader": "forge",
+      "distribution_file": "dist/institute-operations-alpha4/forge/ender-infection-0.12.0-alpha.4.jar"
+    },
+    {
+      "file": "ender_infection_neoforge/build/libs/ender-infection-neoforge-1.21.1-0.12.0-alpha.4.jar",
+      "bytes": 5682260,
+      "sha256": "a5545da969ea06bdc3d8a75832ad05617a3d06d8ea48c64f1877eb05ef269416",
+      "loader": "neoforge",
+      "distribution_file": "dist/institute-operations-alpha4/neoforge/ender-infection-neoforge-1.21.1-0.12.0-alpha.4.jar"
+    }
+  ],
+  "addon_validation": {
+    "receipt": {
+      "file": "examples/institute-addon/validation.json",
+      "bytes": 1754,
+      "sha256": "2982f5c9d53b2183cb22e6272721ece4ddb271531b77cf9e994d7b601cb31ef6"
+    },
+    "result": {
+      "verified_at_utc": "2026-11-05T10:45:33.924331+00:00",
+      "published_core_alpha_1_has_api": false,
+      "minimum_core_version": "0.12.0-alpha.4",
+      "required_api_version": 1,
+      "client_visual_validation": "not_run",
+      "platforms": [
+        {
+          "loader": "forge",
+          "minecraft": "1.20.1",
+          "java_class_major": 61,
+          "artifact": "forge/build/libs/institute-addon-forge-1.20.1-0.1.0.jar",
+          "artifact_bytes": 19354,
+          "artifact_sha256": "2914f9b3ac279159c7044d88f8a9940885a2a8e8f15761893a653769d60bc8a7",
+          "core_dev_dependency_sha256": "37dfada62fcee6c0a8e4bc6980a3738520584dbbda45c44e4d8bb4d1186d964c",
+          "core_classes_bundled": false,
+          "native_gametests_passed": 2,
+          "native_checks": [
+            "registered_template_preview_and_placement",
+            "console_toggle_offhand_pass_and_light"
+          ],
+          "log": "forge/gametest-validation.log",
+          "room_template": "data/institute_addon/structures/analysis_room.nbt"
+        },
+        {
+          "loader": "neoforge",
+          "minecraft": "1.21.1",
+          "java_class_major": 65,
+          "artifact": "neoforge/build/libs/institute-addon-neoforge-1.21.1-0.1.0.jar",
+          "artifact_bytes": 18389,
+          "artifact_sha256": "fef8475a0b71c9687209c2f01db248e4848a81fdd40b93e2081d68e93452b74b",
+          "core_dev_dependency_sha256": "576a3b0c3ff97af6a1ab40dbf0571938d8aab6c0298a79471e16914597758b01",
+          "core_classes_bundled": false,
+          "native_gametests_passed": 2,
+          "native_checks": [
+            "registered_template_preview_and_placement",
+            "console_toggle_offhand_pass_and_light"
+          ],
+          "log": "neoforge/gametest-validation.log",
+          "room_template": "data/institute_addon/structure/analysis_room.nbt"
+        }
+      ]
+    }
+  },
+  "client_screenshots": 20,
+  "client_visual_checks": {
+    "forge": {
+      "verification": {
+        "file": "previews/institute-operations-alpha4/forge/verification.json",
+        "bytes": 2266,
+        "sha256": "e54e0ff1e6e7c54a8a985295639134e5b1c604415600ca8961c1ce833b2e0ae9"
+      },
+      "log": {
+        "file": "build/institute-operations-forge-visual.log",
+        "bytes": 20751,
+        "sha256": "af694cc7c9fc9f117932a1f2b89d675541d5807db5e8e3fd46bae6f731103fd4"
+      },
+      "status": "PASS",
+      "screenshots": 10,
+      "processing_menus": 2,
+      "native_network_interactions": true,
+      "archive_once": true,
+      "log_sha256": "af694cc7c9fc9f117932a1f2b89d675541d5807db5e8e3fd46bae6f731103fd4",
+      "images": [
+        {
+          "file": "archive_reward.png",
+          "bytes": 91368,
+          "sha256": "3fb9be90519dcb9cd19569eca6f56b7d7bb3ea6e40efc57ea055b0e3154685fc",
+          "width": 854,
+          "height": 480
+        },
+        {
+          "file": "centrifuge_done.png",
+          "bytes": 71615,
+          "sha256": "de80054289c55a6cce45e157f2c91e1f508b1c7abd0f52ee54125ec10f520788",
+          "width": 854,
+          "height": 480
+        },
+        {
+          "file": "centrifuge_running.png",
+          "bytes": 72708,
+          "sha256": "6e8ff34baaf65233be049f95c992a8ab149b6d7f0232c0369a92edc82cebf76d",
+          "width": 854,
+          "height": 480
+        },
+        {
+          "file": "door_denied.png",
+          "bytes": 213856,
+          "sha256": "52f581060385c6e0ee44f27f99f8c9045367852e9d49c2ac1bcf482b6da2cdb1",
+          "width": 854,
+          "height": 480
+        },
+        {
+          "file": "door_unlocked.png",
+          "bytes": 188434,
+          "sha256": "8d10b6e3f7757f9055fe54777089493f80013d57ed2410049f0ece5c818fe509",
+          "width": 854,
+          "height": 480
+        },
+        {
+          "file": "medical_furniture.png",
+          "bytes": 91735,
+          "sha256": "78b4c75583f19a07eecac0ab5d248990440a309ba0ef90af5d2bea92885ccb0a",
+          "width": 854,
+          "height": 480
+        },
+        {
+          "file": "microscope_done.png",
+          "bytes": 63391,
+          "sha256": "07b19e7407cb9c957a358d075cb0f532f4c726cc1176f1c4f7af325d1121b8ca",
+          "width": 854,
+          "height": 480
+        },
+        {
+          "file": "microscope_running.png",
+          "bytes": 63959,
+          "sha256": "2cbf82a3062c31d55c23f71615f4e1ece63e3831d15a640d33581e537d63ab33",
+          "width": 854,
+          "height": 480
+        },
+        {
+          "file": "power_off.png",
+          "bytes": 261455,
+          "sha256": "3de74f26fb5f167a0a737a0d943b445096cb8741c604e689f7274ba7bdc8c7b4",
+          "width": 854,
+          "height": 480
+        },
+        {
+          "file": "power_on.png",
+          "bytes": 162950,
+          "sha256": "d07bcabfa6cf6283d96c161b8a0f1806ebccffd10a88c6396779ece9c27a9763",
+          "width": 854,
+          "height": 480
+        }
+      ]
+    },
+    "neoforge": {
+      "verification": {
+        "file": "previews/institute-operations-alpha4/neoforge/verification.json",
+        "bytes": 2266,
+        "sha256": "7c8ef7b076d986868d942b17173496accbcff088959c36e693bddf14fcdbe068"
+      },
+      "log": {
+        "file": "build/institute-operations-neo-visual.log",
+        "bytes": 16164,
+        "sha256": "c882a147d7f58e95ce7861610b58ce9a432ac0f3f0f753d9aaad1f79c6245f34"
+      },
+      "status": "PASS",
+      "screenshots": 10,
+      "processing_menus": 2,
+      "native_network_interactions": true,
+      "archive_once": true,
+      "log_sha256": "c882a147d7f58e95ce7861610b58ce9a432ac0f3f0f753d9aaad1f79c6245f34",
+      "images": [
+        {
+          "file": "archive_reward.png",
+          "bytes": 93064,
+          "sha256": "e33dfc2b205b4453e91f4df33a351468120facdd2d4ffa89964cf4a795e064cd",
+          "width": 854,
+          "height": 480
+        },
+        {
+          "file": "centrifuge_done.png",
+          "bytes": 74174,
+          "sha256": "e396a819469b82a009ae9cb8f1c6929d49e031458e6072e48de480306a0b12d9",
+          "width": 854,
+          "height": 480
+        },
+        {
+          "file": "centrifuge_running.png",
+          "bytes": 74276,
+          "sha256": "4777d2d8535b8fb2c67b2247ec025fe33ebeeb84d29b8c79af08d62c9072f88a",
+          "width": 854,
+          "height": 480
+        },
+        {
+          "file": "door_denied.png",
+          "bytes": 212205,
+          "sha256": "bee4db5ebc717f6435487670d9c6cfa1ecdb206b5a0ff8ce52bea2478818fb78",
+          "width": 854,
+          "height": 480
+        },
+        {
+          "file": "door_unlocked.png",
+          "bytes": 189326,
+          "sha256": "d05600f58226f13294718af7025d28ba66a3723eebcf29af8b5e0e265d66e140",
+          "width": 854,
+          "height": 480
+        },
+        {
+          "file": "medical_furniture.png",
+          "bytes": 91090,
+          "sha256": "640a4995456760fd444a1ac06e71d320c2791adfe1c98695bfb8d34e1f23cf32",
+          "width": 854,
+          "height": 480
+        },
+        {
+          "file": "microscope_done.png",
+          "bytes": 63475,
+          "sha256": "7b8610551de41e0ad8d5629fd548351576239c776a71cc96b5ec40303d103484",
+          "width": 854,
+          "height": 480
+        },
+        {
+          "file": "microscope_running.png",
+          "bytes": 63798,
+          "sha256": "0a398b89e23178723ad70b2b398c757f472e7795b31346bf6fcbd89752616b51",
+          "width": 854,
+          "height": 480
+        },
+        {
+          "file": "power_off.png",
+          "bytes": 238511,
+          "sha256": "78f9075b6df125094ac953dbf1ee0a7fa04b87bce9018039b5ae757bdceb7bae",
+          "width": 854,
+          "height": 480
+        },
+        {
+          "file": "power_on.png",
+          "bytes": 159731,
+          "sha256": "15c8027e738b8940d681b2c86aec10b32e04aa260b7aef6adeb3a5ec5eee3548",
+          "width": 854,
+          "height": 480
+        }
+      ]
+    }
+  },
+  "production_freeze": {
+    "version": "0.12.0-alpha.4",
+    "files": 5880,
+    "sha256": "d201c234acc4c23f20f4911fe664ed0502b9660d4b73256519887d5148766c8a",
+    "scheme": "sorted repository-relative POSIX path UTF-8 + NUL + raw SHA256 digest for common/main Java (excluding /test/), both main Java, canonical resources, both build.gradle",
+    "receipt": {
+      "file": "previews/institute-operations-alpha4/source-inputs.json",
+      "bytes": 318,
+      "sha256": "2b51e38ca906f14fec95f71f2377fcdcaaa7fabab64bcb9966e24d8d699dc1d6"
+    },
+    "recomputed": true
+  },
+  "scope": {
+    "persistence": "Facility state and processor inventory/progress NBT serialization/load round trips; no external multi-process world restart claim.",
+    "addon_processing": "Existing room GameTest verifies recipe registration/discovery and fields; addon-defined recipe machine execution is not claimed.",
+    "visuals": "Two isolated functional client scenes, ten PNGs each; not complete room or whole-building art acceptance.",
+    "power_images": "Daylight screenshots do not independently prove brightness; native state/light assertions provide that evidence.",
+    "compatibility": "New v3 generated institutes; old alpha.3 buildings are not rebuilt and old storage loot is not refreshed."
+  }
+}

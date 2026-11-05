@@ -12,6 +12,7 @@ public final class InstituteRegistry {
     private final Map<String, RoomDefinition> rooms = new LinkedHashMap<>();
     private final Map<String, DeviceDefinition> devices = new LinkedHashMap<>();
     private final Map<String, DeviceDefinition> blocks = new LinkedHashMap<>();
+    private final Map<String, ProcessingRecipe> recipes = new LinkedHashMap<>();
     private boolean frozen;
 
     public static void checkId(String id) {
@@ -26,6 +27,7 @@ public final class InstituteRegistry {
         var newRooms = new LinkedHashMap<String, RoomDefinition>();
         var newDevices = new LinkedHashMap<String, DeviceDefinition>();
         var newBlocks = new LinkedHashMap<String, DeviceDefinition>();
+        var newRecipes = new LinkedHashMap<String, ProcessingRecipe>();
         registration.accept(new InstituteRegistrar() {
             private void owns(String id) {
                 if (!id.startsWith(namespace + ":")) throw new IllegalArgumentException("Addon may only register its own IDs: " + id);
@@ -46,14 +48,21 @@ public final class InstituteRegistry {
                 newDevices.put(device.id(), device);
                 device.blockIds().forEach(block -> newBlocks.put(block, device));
             }
+            @Override public void processing(ProcessingRecipe recipe) {
+                Objects.requireNonNull(recipe); owns(recipe.id());
+                if (recipes.containsKey(recipe.id()) || newRecipes.putIfAbsent(recipe.id(), recipe) != null)
+                    throw new IllegalArgumentException("Duplicate processing recipe ID: " + recipe.id());
+            }
         });
         rooms.putAll(newRooms); devices.putAll(newDevices); blocks.putAll(newBlocks);
+        recipes.putAll(newRecipes);
     }
 
     public synchronized void freeze() { frozen = true; }
     public synchronized boolean isFrozen() { return frozen; }
     public synchronized Map<String, RoomDefinition> rooms() { return Collections.unmodifiableMap(new LinkedHashMap<>(rooms)); }
     public synchronized Map<String, DeviceDefinition> devices() { return Collections.unmodifiableMap(new LinkedHashMap<>(devices)); }
+    public synchronized Map<String, ProcessingRecipe> processingRecipes() { return Collections.unmodifiableMap(new LinkedHashMap<>(recipes)); }
     public InteractionResult dispatchDevice(String blockId, DeviceContext context) {
         DeviceDefinition device;
         synchronized (this) { device = blocks.get(blockId); }

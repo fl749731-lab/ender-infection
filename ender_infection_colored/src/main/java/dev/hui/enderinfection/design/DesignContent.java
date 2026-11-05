@@ -18,6 +18,7 @@ public final class DesignContent {
     private static final DeferredRegister<Block> BLOCKS=DeferredRegister.create(ForgeRegistries.BLOCKS,EnderInfection.MOD_ID);
     private static final DeferredRegister<BlockEntityType<?>> ENTITIES=DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES,EnderInfection.MOD_ID);
     private static final DeferredRegister<EntityType<?>> MOBS=DeferredRegister.create(ForgeRegistries.ENTITY_TYPES,EnderInfection.MOD_ID);
+    private static final DeferredRegister<net.minecraft.world.inventory.MenuType<?>> MENUS=DeferredRegister.create(ForgeRegistries.MENU_TYPES,EnderInfection.MOD_ID);
     public static final Map<String,RegistryObject<Item>> ITEMS_BY_KEY=new LinkedHashMap<>();
     public static final Map<String,RegistryObject<Block>> BLOCKS_BY_KEY=new LinkedHashMap<>();
     public static final RegistryObject<EntityType<DesignProjectile>> PROJECTILE=MOBS.register("design_crystal",()->EntityType.Builder.<DesignProjectile>of(DesignProjectile::new,MobCategory.MISC).sized(.25F,.25F).clientTrackingRange(8).updateInterval(1).build("ender_infection:design_crystal"));
@@ -44,9 +45,22 @@ public final class DesignContent {
     }
     static {
         for(String key:new String[]{"lab_monitor","lab_sample_rack","lab_shelf","lab_pipe","lab_light_panel","lab_chair","lab_sink","lab_storage_crate","lab_freezer","lab_floor_grate","lab_rolling_cart","lab_microscope","lab_centrifuge","lab_cooling_pump","lab_task_lamp"}){
-            RegistryObject<Block> block=BLOCKS.register(key,()->{var p=BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.METAL).noOcclusion().lightLevel(s->Set.of("lab_light_panel","lab_task_lamp").contains(key)?14:0);return isDetailStorage(key)?new LabStorageBlock(key,p):new LabDetailBlock(key,p);});
+            RegistryObject<Block> block=BLOCKS.register(key,()->{var p=BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.METAL).noOcclusion().lightLevel(s->Set.of("lab_light_panel","lab_task_lamp").contains(key)&&s.getValue(net.minecraft.world.level.block.state.properties.BlockStateProperties.POWERED)?14:0);return isDetailStorage(key)?new LabStorageBlock(key,p):isProcessing(key)?new dev.hui.enderinfection.processing.LabProcessingBlock(key,p):new LabDetailBlock(key,p);});
             BLOCKS_BY_KEY.put(key,block);ITEMS_BY_KEY.put(key,ITEMS.register(key,()->new BlockItem(block.get(),new Item.Properties())));
         }
+    }
+    static {
+        for(String key:new String[]{"lab_fuse","raw_tissue_sample","research_record","separated_reagent","research_keycard","core_archive","research_log"})
+            ITEMS_BY_KEY.put(key,ITEMS.register(key,()->key.equals("research_log")?new dev.hui.enderinfection.institute.ResearchLogItem(new Item.Properties().stacksTo(1)):new Item(new Item.Properties())));
+        for(String role:new String[]{"generator","distribution","terminal","archive"}){
+            String key=switch(role){case "generator"->"lab_power_generator";case "distribution"->"lab_distribution_panel";case "terminal"->"lab_research_terminal";default->"lab_archive_terminal";};
+            RegistryObject<Block> block=BLOCKS.register(key,()->new dev.hui.enderinfection.institute.OperationsControlBlock(role,BlockBehaviour.Properties.of().strength(4).sound(SoundType.METAL).noOcclusion().lightLevel(s->s.getValue(net.minecraft.world.level.block.state.properties.BlockStateProperties.POWERED)?5:0)));
+            BLOCKS_BY_KEY.put(key,block);ITEMS_BY_KEY.put(key,ITEMS.register(key,()->new BlockItem(block.get(),new Item.Properties())));
+        }
+        RegistryObject<Block> bed=BLOCKS.register("lab_medical_bed",()->new LabMedicalBedBlock(BlockBehaviour.Properties.of().strength(1.5F).sound(SoundType.METAL).noOcclusion()));
+        BLOCKS_BY_KEY.put("lab_medical_bed",bed);ITEMS_BY_KEY.put("lab_medical_bed",ITEMS.register("lab_medical_bed",()->new BlockItem(bed.get(),new Item.Properties())));
+        RegistryObject<Block> sofa=BLOCKS.register("lab_waiting_sofa",()->new LabDetailBlock("lab_waiting_sofa",BlockBehaviour.Properties.of().strength(2.5F).sound(SoundType.WOOL).noOcclusion()));
+        BLOCKS_BY_KEY.put("lab_waiting_sofa",sofa);ITEMS_BY_KEY.put("lab_waiting_sofa",ITEMS.register("lab_waiting_sofa",()->new BlockItem(sofa.get(),new Item.Properties())));
     }
     static {
         for(String key:new String[]{"lab_access_ladder","lab_lift"}){
@@ -67,9 +81,13 @@ public final class DesignContent {
         return BlockEntityType.Builder.of(LabFixtureEntity::new,blocks.toArray(Block[]::new)).build(null);
     });
     public static final RegistryObject<BlockEntityType<LabStorageEntity>> STORAGE_ENTITY=ENTITIES.register("lab_storage",()->BlockEntityType.Builder.of(LabStorageEntity::new,BLOCKS_BY_KEY.get("lab_freezer").get(),BLOCKS_BY_KEY.get("lab_storage_crate").get(),BLOCKS_BY_KEY.get("lab_shelf").get(),BLOCKS_BY_KEY.get("lab_rolling_cart").get(),BLOCKS_BY_KEY.get("lab_sink").get()).build(null));
+    public static final RegistryObject<BlockEntityType<dev.hui.enderinfection.processing.LabProcessingEntity>> PROCESSING_ENTITY=ENTITIES.register("lab_processing",()->BlockEntityType.Builder.of(dev.hui.enderinfection.processing.LabProcessingEntity::new,BLOCKS_BY_KEY.get("lab_microscope").get(),BLOCKS_BY_KEY.get("lab_centrifuge").get()).build(null));
+    public static final RegistryObject<BlockEntityType<dev.hui.enderinfection.institute.OperationsControlEntity>> OPERATIONS_ENTITY=ENTITIES.register("lab_operations_control",()->BlockEntityType.Builder.of(dev.hui.enderinfection.institute.OperationsControlEntity::new,BLOCKS_BY_KEY.get("lab_power_generator").get(),BLOCKS_BY_KEY.get("lab_distribution_panel").get(),BLOCKS_BY_KEY.get("lab_research_terminal").get(),BLOCKS_BY_KEY.get("lab_archive_terminal").get()).build(null));
+    public static final RegistryObject<net.minecraft.world.inventory.MenuType<dev.hui.enderinfection.processing.LabProcessingMenu>> PROCESSING_MENU=MENUS.register("lab_processing",()->new net.minecraft.world.inventory.MenuType<>(dev.hui.enderinfection.processing.LabProcessingMenu::new,net.minecraft.world.flag.FeatureFlags.DEFAULT_FLAGS));
+    public static boolean isProcessing(String key){return Set.of("lab_microscope","lab_centrifuge").contains(key);}
     public static boolean isDetailStorage(String key){return Set.of("lab_freezer","lab_storage_crate","lab_shelf","lab_rolling_cart","lab_sink").contains(key);}
     public static boolean isFixture(String key){return switch(key.replace("_eroded","")){case "lab_vent","lab_hatch","lab_door","lab_cabinet","incubator","surgery_table","lab_workbench","lab_window","lab_glass_cabinet","lab_cryo_cabinet","lab_server_rack","lab_control_console","lab_privacy_curtain"->true;default->false;};}
-    public static void register(IEventBus bus){BLOCKS.register(bus);ITEMS.register(bus);ENTITIES.register(bus);MOBS.register(bus);}
+    public static void register(IEventBus bus){BLOCKS.register(bus);ITEMS.register(bus);ENTITIES.register(bus);MOBS.register(bus);MENUS.register(bus);}
     public record Material(String set) implements ArmorMaterial {
         public int getDurabilityForType(ArmorItem.Type t){return switch(t){case HELMET->13;case CHESTPLATE->16;case LEGGINGS->15;case BOOTS->11;}*(set.equals("brood_heavy")?35:22);}
         public int getDefenseForType(ArmorItem.Type t){return set.equals("brood_heavy")?switch(t){case HELMET->3;case CHESTPLATE->8;case LEGGINGS->6;case BOOTS->3;}:switch(t){case HELMET->2;case CHESTPLATE->6;case LEGGINGS->5;case BOOTS->2;};}

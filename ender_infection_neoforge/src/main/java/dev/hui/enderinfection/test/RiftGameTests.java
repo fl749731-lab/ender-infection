@@ -126,9 +126,10 @@ public final class RiftGameTests {
     public static void outpostHasPaidAnchorThreeSpecialistsAndCountermeasureLoot(GameTestHelper h){
         floor(h);var center=h.absolutePos(new BlockPos(24,1,24));var pos=RiftOutpost.place(h.getLevel(),center);
         var a=(RiftAnchorEntity)h.getLevel().getBlockEntity(pos);h.assertTrue(a.active()&&a.energy()==24,"Outpost anchor not initialized");
-        var units=h.getLevel().getEntitiesOfClass(InfectedMob.class,new net.minecraft.world.phys.AABB(center).inflate(12));
-        h.assertTrue(units.size()==4&&units.stream().filter(RiftCombat::unit).count()==3,"Missing outpost defenders");
-        h.assertTrue(h.getLevel().getBlockEntity(center.offset(0,0,-8)) instanceof ChestBlockEntity chest&&chest.getItem(0).is(RiftContent.SUPPRESSOR.get()),"No countermeasure in entrance chest");units.forEach(InfectedMob::discard);h.succeed();
+        h.succeedWhen(()->{var units=h.getLevel().getEntitiesOfClass(InfectedMob.class,new net.minecraft.world.phys.AABB(center).inflate(12));
+            long specialists=units.stream().filter(RiftCombat::unit).count();
+            h.assertTrue(units.size()==4&&specialists==3,"Missing outpost defenders: total="+units.size()+" specialists="+specialists);
+            h.assertTrue(h.getLevel().getBlockEntity(center.offset(0,0,-8)) instanceof ChestBlockEntity chest&&chest.getItem(0).is(RiftContent.SUPPRESSOR.get()),"No countermeasure in entrance chest");units.forEach(InfectedMob::discard);});
     }
     @GameTest(template="empty64",templateNamespace="ender_ai_checks",timeoutTicks=60,batch="rift_site")
     public static void outpostRejectsOccupiedSiteWithoutChangingIt(GameTestHelper h){

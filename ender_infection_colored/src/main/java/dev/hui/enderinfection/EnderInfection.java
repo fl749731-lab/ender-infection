@@ -35,6 +35,7 @@ public final class EnderInfection {
         ENTITIES.register(bus);
         ITEMS.register(bus);
         InfectedContent.register(bus);
+        dev.hui.enderinfection.warden.WardenContent.register(bus);
         dev.hui.enderinfection.rift.RiftContent.register(bus);
         dev.hui.enderinfection.item.InfectionItems.register(bus);
         dev.hui.enderinfection.item.CrystalEquipment.register(bus);

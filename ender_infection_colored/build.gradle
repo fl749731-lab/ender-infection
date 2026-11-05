@@ -3,7 +3,7 @@ plugins {
     id 'idea'
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
 }
-version = '0.12.0-alpha.6'
+version = '0.12.0-alpha.7'
 group = 'dev.hui.enderinfection'
 base { archivesName = 'ender-infection' }
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -31,6 +31,9 @@ minecraft {
             mods { ender_infection { source sourceSets.main } }
         }
         client { property 'mixin.env.remapRefMap','true'; property 'mixin.env.refMapRemappingFile',project.file('build/createSrgToMcp/output.srg').absolutePath; if (project.hasProperty('designSmoke')) { workingDirectory project.file('build/design-smoke'); property 'ender_infection.designSmoke','true' } }
+        if (project.hasProperty('wardenVisualCheck')) {
+            client { workingDirectory project.file('build/warden-visual-check'); property 'ender_infection.wardenVisualCheck','true' }
+        }
         if (project.hasProperty('crystalCheck')) {
             client {
                 workingDirectory project.file('build/crystal-check')
@@ -78,6 +81,10 @@ minecraft {
         }
         server {
             args '--nogui'
+            if (project.hasProperty('wardenPersistenceStage')) {
+                workingDirectory project.file(project.property('wardenPersistenceDirectory'))
+                property 'ender_infection.wardenPersistenceCheck',project.property('wardenPersistenceStage')
+            }
             if (project.hasProperty('incidentPersistenceStage')) {
                 workingDirectory project.file(project.property('incidentPersistenceDirectory'))
                 property 'ender_infection.incidentPersistenceCheck', project.property('incidentPersistenceStage')
@@ -87,7 +94,7 @@ minecraft {
             workingDirectory gameTestRunDirectory
             jvmArgs '-Xms128m', '-Xmx1536m', '-XX:ActiveProcessorCount=2'
             if (project.hasProperty('instituteChecks')) property 'ender_infection.instituteChecks','true'
-            property 'forge.enabledGameTestNamespaces',project.hasProperty('incidentChecks')?'ender_incident_checks':project.hasProperty('operationsChecks')?'ender_operations_checks':project.hasProperty('processingChecks')?'ender_processing_checks':project.hasProperty('storageChecks')?'ender_storage_checks':project.hasProperty('centralInstituteChecks')?'ender_central_institute_checks':project.hasProperty('regressionChecks')?'ender_regression_checks':project.hasProperty('instituteChecks')?'ender_institute_checks':project.hasProperty('riftChecks')?'ender_rift_checks,ender_ai_checks':project.hasProperty('oreChecks')?'ender_ore_checks':project.hasProperty('expansionChecks')?'ender_expansion_checks':project.hasProperty('aiChecks')?'ender_ai_checks':project.hasProperty('labChecks')?'ender_lab_checks':'ender_infection,ender_lab_checks,ender_ore_checks'
+            property 'forge.enabledGameTestNamespaces',project.hasProperty('wardenChecks')?'ender_warden_checks':project.hasProperty('incidentChecks')?'ender_incident_checks':project.hasProperty('operationsChecks')?'ender_operations_checks':project.hasProperty('processingChecks')?'ender_processing_checks':project.hasProperty('storageChecks')?'ender_storage_checks':project.hasProperty('centralInstituteChecks')?'ender_central_institute_checks':project.hasProperty('regressionChecks')?'ender_regression_checks':project.hasProperty('instituteChecks')?'ender_institute_checks':project.hasProperty('riftChecks')?'ender_rift_checks,ender_ai_checks':project.hasProperty('oreChecks')?'ender_ore_checks':project.hasProperty('expansionChecks')?'ender_expansion_checks':project.hasProperty('aiChecks')?'ender_ai_checks':project.hasProperty('labChecks')?'ender_lab_checks':'ender_infection,ender_lab_checks,ender_ore_checks'
         }
     }
 }

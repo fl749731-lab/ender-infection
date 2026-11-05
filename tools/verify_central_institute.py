@@ -310,7 +310,7 @@ def verify(manifest, resources):
         require(name != "minecraft:redstone_lamp" or state.get("lit") == "true", f"Alarm lamp is not lit: {source}")
         require(name != "minecraft:light" or state.get("level") == "15", f"Invisible fill-light has the wrong emission: {source}")
     operations = manifest.get("operations")
-    if manifest.get("layout_version") in ("central-institute-v3", "central-institute-v4"):
+    if manifest.get("layout_version") in ("central-institute-v3", "central-institute-v4", "central-institute-v5"):
         require(isinstance(operations, dict), "Missing institute operations manifest")
         controls = operations["controls"]
         require({item["role"] for item in controls} == {"generator", "distribution", "terminal", "archive"} and len(controls) == 4, "Expected four distinct facility control roles")
@@ -344,7 +344,7 @@ def verify(manifest, resources):
                 require(model.state(at)[0] == item["device"], f"Processor identity mismatch: {item}")
             else:
                 require(model.state(at)[1].get("open") == "false", f"Secured door starts open: {item}")
-    if manifest.get("layout_version") == "central-institute-v4":
+    if manifest.get("layout_version") in ("central-institute-v4", "central-institute-v5"):
         incident = manifest.get("incidents", {}).get("E8")
         require(isinstance(incident, dict), "Missing E8 incident definition")
         room = next(r for r in rooms if r["id"] == "E8")
@@ -371,6 +371,30 @@ def verify(manifest, resources):
         for point in incident["alarm_lights"]:
             at = coord(point)
             require(in_room(at) and model.state(at)[0] == "minecraft:redstone_lamp" and model.state(at)[1].get("lit") == "false", "Alarm lamp must start off")
+    if manifest.get("layout_version") == "central-institute-v5":
+        boss = manifest.get("bosses", {}).get("F8")
+        require(isinstance(boss, dict), "Missing F8 boss encounter")
+        room = next(r for r in rooms if r["id"] == "F8")
+        minimum = (room["x"], room["y"]+1, room["z"])
+        maximum = (room["x"]+room["width"], room["y"]+room["height"], room["z"]+room["length"])
+        require(coord(boss["bounds_min"]) == minimum and coord(boss["bounds_max"]) == maximum, "Boss arena leaves F8")
+        require(len(boss["consoles"]) == 2, "Boss needs two independent consoles")
+        targets = [boss["control"], *boss["consoles"]]
+        require(len({coord(t["pos"]) for t in targets}) == 3, "Boss controls overlap")
+        for target in targets:
+            at, approach = coord(target["pos"]), coord(target["approach_pos"])
+            require(all(minimum[i] <= at[i] < maximum[i] for i in range(3)), "Boss control outside arena")
+            require(model.state(at)[0] == target["block"], "Boss control block missing")
+            entity = model.entities.get(at, {})
+            require(entity.get("id") == "ender_infection:lab_operations_control" and entity.get("InstituteBound") == 1, "Boss control not bound")
+            require(tuple(entity.get("InstituteOffset"+axis) for axis in "XYZ") == at, "Boss control binding is tile-local")
+            require(model.standing(approach) and visited[model.index(approach)], "Boss control approach unreachable")
+        a, b = (coord(t["pos"]) for t in boss["consoles"])
+        require(sum((a[i]-b[i])**2 for i in (0, 2)) >= 64, "Boss consoles must be separated")
+        at = coord(boss["spawn_pos"])
+        require(model.standing(at) and visited[model.index(at)], "Boss spawn unsupported or disconnected")
+        require(all(model.state((at[0]+dx,at[1]+dy,at[2]+dz))[0] in AIR | {"minecraft:light"}
+                    for dx in range(-2,3) for dz in range(-2,3) for dy in range(4)), "Boss pad needs 5x5x4 clear space")
     for crystal in manifest["crystal_lighting"]:
         at, source = coord(crystal), coord(crystal["source"])
         name = model.state(source)[0]

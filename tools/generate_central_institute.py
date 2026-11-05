@@ -20,7 +20,7 @@ DEST = DATA / 'structures/central_institute'
 REPORT = ROOT / 'build/central-institute/static-validation.json'
 WIDTH, LENGTH, HEIGHT, GROUND_OFFSET = 120, 104, 55, 28
 MAX_TERRAIN_RELIEF = 8
-LAYOUT_VERSION = 'central-institute-v4'
+LAYOUT_VERSION = 'central-institute-v5'
 FLOORS = [('B3', -25), ('B2', -14), ('B1', -7), ('G1', 0), ('G2', 7), ('G3', 14)]
 AIR = ('minecraft:air', (), None)
 VOID = ('minecraft:structure_void', (), None)
@@ -49,6 +49,7 @@ class Institute:
         self.crystal_faces = []
         self.operations = {'controls': [], 'secured_doors': [], 'managed_lights': [], 'machines': []}
         self.incidents = {}
+        self.bosses = {}
         self.lift = {'x': 75, 'z': 39, 'landings': []}
         self.entrance = {'x': 59, 'y': 29, 'z': 87, 'facing': 'south'}
 
@@ -466,7 +467,9 @@ class Institute:
         targets=[('D2','generator','lab_power_generator'),('D1','distribution','lab_distribution_panel'),
                  ('A7','terminal','lab_research_terminal'),('F5','archive','lab_archive_terminal'),
                  ('E8','incident','lab_research_terminal'),('E8','incident_cooling','lab_cooling_pump'),
-                 ('E8','incident_sensor','lab_monitor'),('E8','incident_valve','lab_pipe')]
+                 ('E8','incident_sensor','lab_monitor'),('E8','incident_valve','lab_pipe'),
+                 ('F8','boss_start','lab_research_terminal'),('F8','boss_console_a','lab_distribution_panel'),
+                 ('F8','boss_console_b','lab_distribution_panel')]
         for room_id,role,key in targets:
             r=next(r for r in self.rooms if r['id']==room_id);y=r['y']-27
             protected=set()
@@ -501,7 +504,11 @@ class Institute:
                     candidates.append((wall_dist,z,x,face))
             assert candidates,('no safe operations control location',room_id)
             chosen=None
-            for _,z,x,_ in sorted(candidates):
+            preferred={'boss_start':(r['x']+3,r['z']+r['length']//2),
+                       'boss_console_a':(r['x']+r['width']-4,r['z']+3),
+                       'boss_console_b':(r['x']+4,r['z']+r['length']-4)}.get(role)
+            ordered=sorted(candidates,key=lambda c:abs(c[2]-preferred[0])+abs(c[1]-preferred[1])) if preferred else sorted(candidates)
+            for _,z,x,_ in ordered:
                 reached=flood((x,z))
                 if any(not any((b['x']+dx,b['z']+dz) in reached for dx,dz in spec.FACES.values())
                        for b in self.loot if b['room']==room_id):continue
@@ -515,7 +522,14 @@ class Institute:
                      bound(p,'ender_infection:lab_operations_control') if not role.startswith('incident_') else None)
             control_approaches.add(approach)
             row={'role':role,'pos':xyz(*p),'approach_pos':xyz(*approach),'room':room_id,'zone':zone(y),'block':spec.full(key)}
-            if role=='incident':
+            if role=='boss_start':
+                row['role']='terminal'
+                self.bosses['F8']={'room':'F8','bounds_min':[r['x'],r['y']+1,r['z']],
+                                  'bounds_max':[r['x']+r['width'],r['y']+r['height'],r['z']+r['length']],
+                                  'control':row,'consoles':[]}
+            elif role.startswith('boss_console_'):
+                row['role']='distribution';self.bosses['F8']['consoles'].append(row)
+            elif role=='incident':
                 self.incidents['E8']={'room':'E8','bounds_min':[r['x'],r['y']+1,r['z']],
                                      'bounds_max':[r['x']+r['width'],r['y']+r['height'],r['z']+r['length']],
                                      'control':row,'faults':[],'spawn_points':[],'alarm_lights':[]}
@@ -554,6 +568,16 @@ class Institute:
         incident['spawn_points']=[xyz(x,y,z) for x,z in chosen]
         for x,z in [(r['x']+3,r['z']+3),(r['x']+r['width']-4,r['z']+r['length']-4)]:
             p=x,y+4,z;self.put(*p,'minecraft:redstone_lamp',{'lit':'false'});incident['alarm_lights'].append(xyz(*p))
+
+        # Keep the reactor and furniture; select a five-wide, four-high clear pad.
+        r=next(r for r in self.rooms if r['id']=='F8');y=r['y']-27;candidates=[]
+        for z in range(r['z']+3,r['z']+r['length']-3):
+            for x in range(r['x']+3,r['x']+r['width']-3):
+                if all(self.grid.get((X,Y,Z),VOID)[0] in ('minecraft:air','minecraft:light')
+                       for X in range(x-2,x+3) for Z in range(z-2,z+3) for Y in range(y,y+4)):
+                    candidates.append((abs(x-r['x']-r['width']*.65)+abs(z-r['z']-r['length']*.5),x,z))
+        assert candidates,'F8 needs a five-wide, four-high boss pad'
+        _,x,z=min(candidates);self.bosses['F8']['spawn_pos']=xyz(x,y,z)
 
     def lighting(self):
         sources = []
@@ -846,7 +870,7 @@ def generate():
                 'entrance': model.entrance, 'loot_containers': model.loot,
                 'storage_containers': model.storage, 'room_signs': model.signs,
                 'light_sources': sources, 'crystal_lighting': crystals, 'operations':model.operations,
-                'incidents':model.incidents}
+                'incidents':model.incidents,'bosses':model.bosses}
     (DATA / 'central_institute.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     loot_tables()
     report['tiles'] = len(tiles)

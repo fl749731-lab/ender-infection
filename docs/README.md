@@ -22,7 +22,7 @@
 - [房间设计与方块对照](laboratory-room-reference.md)
 - [署名导入建筑及使用范围](imported-buildings.md)
 - [alpha.6 验收及模型效果](../previews/incident-alpha6/README.md)
-- [下一阶段：研究所 Boss 设计与开发进度](institute-boss.md)
+- [F8 研究所 Boss（alpha.7 开发版）](institute-boss.md)
 
 ## 历史资料
 

@@ -21,7 +21,7 @@ import net.minecraft.world.phys.Vec3;
 /** Shared faction targeting, local assistance and throttled navigation. */
 public final class FactionAI {
     private FactionAI() {}
-    public static boolean infected(Entity e) { return e instanceof InfectedMob || e instanceof MutantZombie; }
+    public static boolean infected(Entity e) { return e instanceof InfectedMob || e instanceof MutantZombie || e instanceof ContainmentWarden; }
     public static boolean enemy(Mob self, LivingEntity e) {
         return e!=self && e.isAlive() && !infected(e) && !self.isAlliedTo(e)
             && (e instanceof Mob || e instanceof Player p && !p.isCreative() && !p.isSpectator());

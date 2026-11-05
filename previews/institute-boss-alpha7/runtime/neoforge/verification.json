@@ -1,0 +1,118 @@
+{
+  "loader": "neoforge",
+  "status": "PASS",
+  "native_frames": 18,
+  "actual_F8_tiles": 6,
+  "scope": "Real game renderer, synced AI animations, native terminal packets, reward inventory and item cooldown; research unlock, stationary combat capture and final kill are acceptance fixture actions.",
+  "frames": [
+    {
+      "name": "warning",
+      "file": "previews/institute-boss-alpha7/runtime/neoforge/warden_warning.png",
+      "bytes": 114460,
+      "sha256": "1aeee7765f313625ec04e07b1351a4d28bd007be8deb4c22994ef6225122d7a2"
+    },
+    {
+      "name": "front",
+      "file": "previews/institute-boss-alpha7/runtime/neoforge/warden_front.png",
+      "bytes": 196688,
+      "sha256": "ed7c94b6073780372ce71fc32fa1cfc3e0ec98064c2986a1a846f3344c84d139"
+    },
+    {
+      "name": "side",
+      "file": "previews/institute-boss-alpha7/runtime/neoforge/warden_side.png",
+      "bytes": 201814,
+      "sha256": "0df4baa759967917818809934b78c3cd39884a876fd04719b2a80043239eebcd"
+    },
+    {
+      "name": "back",
+      "file": "previews/institute-boss-alpha7/runtime/neoforge/warden_back.png",
+      "bytes": 120405,
+      "sha256": "78ee03381b192f64931d8e48ef1d8e5f24ecb6fdf3d6406bdc8e4c947fdf54bf"
+    },
+    {
+      "name": "night_glow",
+      "file": "previews/institute-boss-alpha7/runtime/neoforge/warden_night_glow.png",
+      "bytes": 175598,
+      "sha256": "9169aed4cec9dfc9194a309ed7e85ed77f371a8cc98fbf42fcb0ecb6f441ebd7"
+    },
+    {
+      "name": "walk",
+      "file": "previews/institute-boss-alpha7/runtime/neoforge/warden_walk.png",
+      "bytes": 175046,
+      "sha256": "a9d5a392260084291e2337ee0217072cb901ea7fcd76aef02a09ef9e81df1362"
+    },
+    {
+      "name": "claw_windup",
+      "file": "previews/institute-boss-alpha7/runtime/neoforge/warden_claw_windup.png",
+      "bytes": 123532,
+      "sha256": "1ca9b14ec53fa6540e0f00d79dd51eee79699627e0191ad1004782da497d801b"
+    },
+    {
+      "name": "claw_hit",
+      "file": "previews/institute-boss-alpha7/runtime/neoforge/warden_claw_hit.png",
+      "bytes": 111574,
+      "sha256": "e2384fcaca3183b4f1ccaa3042ea4c0543254d96a1a32b3c25040562ad29c703"
+    },
+    {
+      "name": "stomp_windup",
+      "file": "previews/institute-boss-alpha7/runtime/neoforge/warden_stomp_windup.png",
+      "bytes": 146948,
+      "sha256": "435907755671f6c93e41e088f3a1f73ed4c950e9fc4b4dd3e530012718fa9519"
+    },
+    {
+      "name": "stomp_hit",
+      "file": "previews/institute-boss-alpha7/runtime/neoforge/warden_stomp_hit.png",
+      "bytes": 146547,
+      "sha256": "336a32030f98859a97ffd22c808b84a0abd310cdf76928c2fab2d49b2ccc01d4"
+    },
+    {
+      "name": "burst",
+      "file": "previews/institute-boss-alpha7/runtime/neoforge/warden_burst.png",
+      "bytes": 196633,
+      "sha256": "1e6150d38d14a02380a98a966163b761165546539bdb7e82f522f47d13fbe531"
+    },
+    {
+      "name": "console_one",
+      "file": "previews/institute-boss-alpha7/runtime/neoforge/warden_console_one.png",
+      "bytes": 103218,
+      "sha256": "b125c9e164242c0c72293f20f9094f9a6034ba3a8bd8b0b9141649aa965cbe28"
+    },
+    {
+      "name": "core_exposed",
+      "file": "previews/institute-boss-alpha7/runtime/neoforge/warden_core_exposed.png",
+      "bytes": 182418,
+      "sha256": "855295df1e7f291ae7e8e4c3b01f03acad85d7cbe3bfd77b539e0247ec014a4a"
+    },
+    {
+      "name": "death_mid",
+      "file": "previews/institute-boss-alpha7/runtime/neoforge/warden_death_mid.png",
+      "bytes": 181362,
+      "sha256": "52fb4e7bd387242f5d33d4afca4d8a09019a7718d8da757d6ba70b86a515d30b"
+    },
+    {
+      "name": "death_kneel",
+      "file": "previews/institute-boss-alpha7/runtime/neoforge/warden_death_kneel.png",
+      "bytes": 181037,
+      "sha256": "8941ec11e1608b9dbcb591441bd31c973b970baac70af32998e54d77524e97d7"
+    },
+    {
+      "name": "reward_claimed",
+      "file": "previews/institute-boss-alpha7/runtime/neoforge/warden_reward_claimed.png",
+      "bytes": 73098,
+      "sha256": "c677ecb20a8211b802ac6adb55dd4b6376e3b33f84ea1c8e3618eb41747201a6"
+    },
+    {
+      "name": "inventory",
+      "file": "previews/institute-boss-alpha7/runtime/neoforge/warden_inventory.png",
+      "bytes": 46206,
+      "sha256": "5ebcbbcaf10eb3b3207777d74e14de43616b256016f119fd051d7ac7c80cca12"
+    },
+    {
+      "name": "core_cooldown",
+      "file": "previews/institute-boss-alpha7/runtime/neoforge/warden_core_cooldown.png",
+      "bytes": 74051,
+      "sha256": "aaf5d580cab6e661fa8241451d9112f56503454f376fa1f1c2f713a6a1c7b966"
+    }
+  ],
+  "log": "build/institute-boss-alpha7/checks/neo-runClient.log"
+}

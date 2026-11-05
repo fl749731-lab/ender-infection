@@ -59,6 +59,10 @@ neoForge {
                 jvmArgument '-Xmx1536m'
                 jvmArgument '-XX:ActiveProcessorCount=2'
             }
+            if (project.hasProperty('wardenVisualCheck')) {
+                gameDirectory = project.file('build/warden-visual-check')
+                systemProperty 'ender_infection.wardenVisualCheck', 'true'
+            }
             if (project.hasProperty('incidentVisualCheck')) {
                 gameDirectory = project.file('build/incident-visual-check')
                 systemProperty 'ender_infection.incidentVisualCheck', 'true'
@@ -78,6 +82,10 @@ neoForge {
         }
         server {
             server(); programArgument '--nogui'; gameDirectory = project.file('build/server-review')
+            if (project.hasProperty('wardenPersistenceStage')) {
+                gameDirectory = project.file(project.property('wardenPersistenceDirectory'))
+                systemProperty 'ender_infection.wardenPersistenceCheck', project.property('wardenPersistenceStage')
+            }
             if (project.hasProperty('incidentPersistenceStage')) {
                 gameDirectory = project.file(project.property('incidentPersistenceDirectory'))
                 systemProperty 'ender_infection.incidentPersistenceCheck', project.property('incidentPersistenceStage')
@@ -88,6 +96,7 @@ neoForge {
             gameDirectory = project.file("build/gametest-${System.currentTimeMillis()}")
             if (project.hasProperty('instituteChecks')) systemProperty 'ender_infection.instituteChecks', 'true'
             def namespaces = []
+            if (project.hasProperty('wardenChecks')) namespaces += 'ender_warden_checks'
             if (project.hasProperty('incidentChecks')) namespaces += 'ender_incident_checks'
             if (project.hasProperty('operationsChecks')) namespaces += 'ender_operations_checks'
             if (project.hasProperty('processingChecks')) namespaces += 'ender_processing_checks'

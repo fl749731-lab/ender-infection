@@ -67,4 +67,4 @@ python tools/build_dual_version.py --clean --gametests
 `InstituteOperationsVisualCheck` 使用各工程独立的 `build/operations-visual-check`，检查真实交互、门禁、加工菜单、档案奖励及医疗家具；截图在其 `screenshots` 子目录，结果标记写入 `operations-visual-result.txt`。开发检查不使用玩家已有实例或存档。两版附属示例还需在对应工程运行 `build runGameTestServer`，随后执行示例目录的 `verify_examples.py`。
 
 <!-- alpha4-validation -->
-alpha.4 已完成完整双版干净构建与 16 组原生测试，共 139 项必需测试通过（含两版附属各 2 项）；两版独立功能场景完成 20 张真实交互截图验收。截图与验证范围见[功能验收记录](../previews/institute-operations-alpha4/README.md)。最新公开预发布版为 [alpha.4](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.4)，稳定版保持 0.11.0。
+基础设施首次 alpha.4 验收的 139 项测试与 20 张截图属于[历史记录](../previews/institute-operations-alpha4/README.md)。公开 alpha.6 的 163 项测试和 32 张截图见[已发布验收](../previews/incident-alpha6/README.md)；本地 alpha.7 的 F8 Boss 操作与验收见[收容监管体](institute-boss.md)。

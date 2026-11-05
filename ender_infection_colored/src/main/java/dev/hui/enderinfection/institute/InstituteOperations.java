@@ -85,6 +85,11 @@ public final class InstituteOperations implements InstituteOperationsService {
             }
             if (root.has("incidents") && root.getAsJsonObject("incidents").has("E8"))
                 zones.put(position(root.getAsJsonObject("incidents").getAsJsonObject("E8").getAsJsonObject("control").get("pos")), "containment");
+            if (root.has("bosses") && root.getAsJsonObject("bosses").has("F8")) {
+                var boss = root.getAsJsonObject("bosses").getAsJsonObject("F8");
+                zones.put(position(boss.getAsJsonObject("control").get("pos")), "containment");
+                for (var console : boss.getAsJsonArray("consoles")) zones.put(position(console.getAsJsonObject().get("pos")), "containment");
+            }
             cached = new Layout(Map.copyOf(zones), Map.copyOf(doors), Map.copyOf(machines), List.copyOf(lights), List.copyOf(controls));
             LAYOUTS.put(resources, cached); return cached;
         } catch (IOException error) { throw new UncheckedIOException(error); }
@@ -232,6 +237,7 @@ public final class InstituteOperations implements InstituteOperationsService {
         var found = binding(level, pos);
         if (found.isEmpty()) return message(player, "此控制器未绑定研究所，无法改变设施任务。", false);
         var bound = found.get(); var state = bound.facility; var previous = snapshot(state);
+        if (WardenEncounter.isControl(level, pos)) return WardenEncounter.useControl(level, pos, player);
         if (ContainmentIncident.isControl(level, pos)) return ContainmentIncident.useControl(level, pos, player);
         boolean validControl = false;
         for (var target : bound.layout.controls) if (target.offset.equals(bound.relative) && target.role.equals(role)) validControl = true;
@@ -320,6 +326,7 @@ public final class InstituteOperations implements InstituteOperationsService {
         if (event.phase == TickEvent.Phase.END && event.level instanceof ServerLevel level) {
             var data = OperationsData.get(level); if (!data.pendingRefresh.isEmpty()) refresh(level, data, 32);
             ContainmentIncident.tick(level, data);
+            WardenEncounter.tick(level, data);
         }
     }
     @SubscribeEvent public static void chunkLoaded(ChunkEvent.Load event) {

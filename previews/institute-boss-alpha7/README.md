@@ -1,6 +1,6 @@
 # 收容监管体 · 设计与实模
 
-状态：**开发资产首版，尚未进入游戏或任何已发布 JAR。** 目录中的 alpha7 表示下一阶段工作，不代表已经发布 alpha.7。
+状态：**模型首版已接入本地 alpha.7；尚未公开发布。** 本页保留三视图和 MCP 模型检查，实际游戏效果见[运行验收](runtime/README.md)。
 
 ## 实际模型
 
@@ -28,6 +28,6 @@
 
 [几何报告](geometry-validation.json) · [动画报告](animation-validation.json) · [导出检查](export-validation.json) · [源模型和贴图](../../colored_units/institute_boss_v1/README.md)
 
-这些是模型与导出检查，不替代 Java 客户端、战斗、多人或双版本运行验收。自发光遮罩已交付；游戏中的实际发光层要随实体渲染一起接入。
+这些是模型与导出检查，不替代游戏运行验收。实体渲染器已接入自发光遮罩，Java 客户端、战斗、多人和存档检查集中在[运行验收](runtime/README.md)。
 
 三视图通过内置 imagegen 生成新图，背景不透明；没有输入参考图片。提示规格见 [concept-prompt.txt](concept-prompt.txt)。模型通过 Blockbench Headless MCP 制作，像素贴图扩展仓库已有图集生成器。未导入其他模组的模型或贴图。

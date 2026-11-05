@@ -1,0 +1,215 @@
+{
+  "status": "PASS",
+  "version": "0.12.0-alpha.7",
+  "native_gametests_requested": true,
+  "tests": [
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_colored-rift-ai.log",
+      "total": 36,
+      "required_passed": 36
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_colored-institute.log",
+      "total": 12,
+      "required_passed": 12
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_colored-central-institute.log",
+      "total": 1,
+      "required_passed": 1
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_colored-storage.log",
+      "total": 6,
+      "required_passed": 6
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_colored-processing.log",
+      "total": 6,
+      "required_passed": 6
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_colored-operations.log",
+      "total": 6,
+      "required_passed": 6
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_colored-incidents.log",
+      "total": 8,
+      "required_passed": 8
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_colored-warden.log",
+      "total": 16,
+      "required_passed": 16
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_colored-ore.log",
+      "total": 4,
+      "required_passed": 4
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/forge-addon-tests.log",
+      "total": 2,
+      "required_passed": 2
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_neoforge-rift-ai.log",
+      "total": 36,
+      "required_passed": 36
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_neoforge-institute.log",
+      "total": 12,
+      "required_passed": 12
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_neoforge-central-institute.log",
+      "total": 1,
+      "required_passed": 1
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_neoforge-storage.log",
+      "total": 6,
+      "required_passed": 6
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_neoforge-processing.log",
+      "total": 6,
+      "required_passed": 6
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_neoforge-operations.log",
+      "total": 6,
+      "required_passed": 6
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_neoforge-incidents.log",
+      "total": 8,
+      "required_passed": 8
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_neoforge-warden.log",
+      "total": 16,
+      "required_passed": 16
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/ender_infection_neoforge-ore.log",
+      "total": 5,
+      "required_passed": 5
+    },
+    {
+      "status": "PASS",
+      "log": "build/dual-version-validation/neoforge-addon-tests.log",
+      "total": 2,
+      "required_passed": 2
+    }
+  ],
+  "persistence_checks": [
+    {
+      "loader": "forge",
+      "world": "ender_infection_colored/build/incident-persistence-1793916238598239800",
+      "status": "PASS",
+      "processes": 3,
+      "identities": [
+        "622cd6e0-951f-3137-a496-5b8e9c144e06",
+        "af4fe6bf-4f72-37ef-a20e-239af6bc474f",
+        "fb24cb23-39b4-3af8-8df6-92a8fa512f51",
+        "da01aa15-ddb0-3a55-8090-01b7ac668e31",
+        "9a36839e-660d-38c5-8f90-34a0ac2d597e",
+        "81c97398-48bf-39d9-8e2f-210c88049bce"
+      ],
+      "logs": [
+        "build/dual-version-validation/forge-incident-persistence-seed.log",
+        "build/dual-version-validation/forge-incident-persistence-resume.log",
+        "build/dual-version-validation/forge-incident-persistence-claimed.log"
+      ]
+    },
+    {
+      "loader": "forge",
+      "encounter": "F8",
+      "world": "ender_infection_colored/build/warden-persistence-1793916321661855300",
+      "status": "PASS",
+      "processes": 3,
+      "identities": [
+        "d93fa707-fb13-4b68-97c2-a0de105fbb41",
+        "ced65c1e-555d-4aef-b251-94878a6e6b6d"
+      ],
+      "health_retained": 231,
+      "consoles_retained": 1,
+      "logs": [
+        "build/dual-version-validation/forge-warden-persistence-seed.log",
+        "build/dual-version-validation/forge-warden-persistence-resume.log",
+        "build/dual-version-validation/forge-warden-persistence-claimed.log"
+      ]
+    },
+    {
+      "loader": "neoforge",
+      "world": "ender_infection_neoforge/build/incident-persistence-1793916789541124900",
+      "status": "PASS",
+      "processes": 3,
+      "identities": [
+        "49b429ca-9ccd-3bd8-a6e8-68817ea0bf42",
+        "7d2987e1-6220-3a5d-b077-fe09767fac86",
+        "416e53b4-2bcc-380c-b3e8-3f355fef7753",
+        "694b28bf-6235-3d4a-88dc-4b0106d67154",
+        "2f97f86c-0e51-3d86-82d1-5e973e0e0108",
+        "f8aba317-a661-343b-b026-efb1cd5c4846"
+      ],
+      "logs": [
+        "build/dual-version-validation/neoforge-incident-persistence-seed.log",
+        "build/dual-version-validation/neoforge-incident-persistence-resume.log",
+        "build/dual-version-validation/neoforge-incident-persistence-claimed.log"
+      ]
+    },
+    {
+      "loader": "neoforge",
+      "encounter": "F8",
+      "world": "ender_infection_neoforge/build/warden-persistence-1793916898092692300",
+      "status": "PASS",
+      "processes": 3,
+      "identities": [
+        "b0c4c765-0410-4348-9a4d-60c4ef68deac",
+        "09f971ca-3996-4984-9ba1-531805d5c376"
+      ],
+      "health_retained": 231,
+      "consoles_retained": 1,
+      "logs": [
+        "build/dual-version-validation/neoforge-warden-persistence-seed.log",
+        "build/dual-version-validation/neoforge-warden-persistence-resume.log",
+        "build/dual-version-validation/neoforge-warden-persistence-claimed.log"
+      ]
+    }
+  ],
+  "jars": [
+    {
+      "file": "ender_infection_colored/build/libs/ender-infection-0.12.0-alpha.7.jar",
+      "bytes": 6099121,
+      "sha256": "45d6a4d512ede6691a958ac1562bb4b3b4cf1443c4e07ab550a67a93212a9efb"
+    },
+    {
+      "file": "ender_infection_neoforge/build/libs/ender-infection-neoforge-1.21.1-0.12.0-alpha.7.jar",
+      "bytes": 5950021,
+      "sha256": "c8881e187d5f1bef74c90e44e118eba160416a8de6507b022a02a8fa6d4252af"
+    }
+  ]
+}

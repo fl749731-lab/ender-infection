@@ -103,8 +103,12 @@ def main() -> None:
             tests.append(verify(log, 6))
             log = run_project(name, folder, major, ["runGameTestServer", "-PincidentChecks"], f"{folder}-incidents.log")
             tests.append(verify(log, 8))
+            log = run_project(name, folder, major, ["runGameTestServer", "-PwardenChecks"], f"{folder}-warden.log")
+            tests.append(verify(log, 17))
             from check_incident_persistence import check
             persistence_checks.append(check("neoforge" if "neoforge" in folder else "forge"))
+            from check_warden_persistence import check as check_warden
+            persistence_checks.append(check_warden("neoforge" if "neoforge" in folder else "forge"))
             log = run_project(name, folder, major, ["runGameTestServer", "-PoreChecks"], f"{folder}-ore.log")
             tests.append(verify(log, 1))
         addon = "neoforge" if "neoforge" in folder else "forge"

@@ -1,6 +1,6 @@
 {
   "format_version": 1,
-  "layout_version": "central-institute-v4",
+  "layout_version": "central-institute-v5",
   "width": 120,
   "height": 55,
   "length": 104,
@@ -242,7 +242,7 @@
       "height": 55,
       "length": 16,
       "blocks": 14080,
-      "sha256": "f6cb1f5cd4541a3dd6a42244b334b72337ecda403d55992084f56f9d3c6a6f92"
+      "sha256": "51268e7c558f07fe4d173a29f413331266fd977bf3830a825840956845c5487f"
     },
     {
       "template": "ender_infection:central_institute/tile_5_2",
@@ -308,7 +308,7 @@
       "height": 55,
       "length": 16,
       "blocks": 14080,
-      "sha256": "64649f752baf90096d21aee0a045719b2f34bda4923c8e0157df84aecdca36e3"
+      "sha256": "128ea9276413b6f21d5f474090dc13a7f5b134a3f678b8e5619d7a6762c428d2"
     },
     {
       "template": "ender_infection:central_institute/tile_3_3",
@@ -33222,6 +33222,76 @@
           19,
           80
         ]
+      ]
+    }
+  },
+  "bosses": {
+    "F8": {
+      "room": "F8",
+      "bounds_min": [
+        40,
+        4,
+        36
+      ],
+      "bounds_max": [
+        80,
+        14,
+        60
+      ],
+      "control": {
+        "role": "terminal",
+        "pos": [
+          43,
+          4,
+          49
+        ],
+        "approach_pos": [
+          43,
+          4,
+          48
+        ],
+        "room": "F8",
+        "zone": "containment",
+        "block": "ender_infection:lab_research_terminal"
+      },
+      "consoles": [
+        {
+          "role": "distribution",
+          "pos": [
+            71,
+            4,
+            39
+          ],
+          "approach_pos": [
+            71,
+            4,
+            40
+          ],
+          "room": "F8",
+          "zone": "containment",
+          "block": "ender_infection:lab_distribution_panel"
+        },
+        {
+          "role": "distribution",
+          "pos": [
+            44,
+            4,
+            56
+          ],
+          "approach_pos": [
+            45,
+            4,
+            56
+          ],
+          "room": "F8",
+          "zone": "containment",
+          "block": "ender_infection:lab_distribution_panel"
+        }
+      ],
+      "spawn_pos": [
+        67,
+        4,
+        48
       ]
     }
   }

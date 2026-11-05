@@ -1,0 +1,118 @@
+{
+  "loader": "forge",
+  "status": "PASS",
+  "native_frames": 18,
+  "actual_F8_tiles": 6,
+  "scope": "Real game renderer, synced AI animations, native terminal packets, reward inventory and item cooldown; research unlock, stationary combat capture and final kill are acceptance fixture actions.",
+  "frames": [
+    {
+      "name": "warning",
+      "file": "previews/institute-boss-alpha7/runtime/forge/warden_warning.png",
+      "bytes": 119564,
+      "sha256": "b65c8720b8035b253df3e888d76bb83445b98e1e41359fcf65f3f2c3cfb35996"
+    },
+    {
+      "name": "front",
+      "file": "previews/institute-boss-alpha7/runtime/forge/warden_front.png",
+      "bytes": 121861,
+      "sha256": "27979d1d2ade82616aa654bb0138a96d22d263718c347fb7443a4f40b44c6efc"
+    },
+    {
+      "name": "side",
+      "file": "previews/institute-boss-alpha7/runtime/forge/warden_side.png",
+      "bytes": 176362,
+      "sha256": "d1eace904dc0b6ec08b0b3af2b89c226fcf2132b34d2a6d1e61b7672c5d95382"
+    },
+    {
+      "name": "back",
+      "file": "previews/institute-boss-alpha7/runtime/forge/warden_back.png",
+      "bytes": 106081,
+      "sha256": "a9e684776afef9b7c8470944641232591aca31355f5e82e337aaf3bbc301a90f"
+    },
+    {
+      "name": "night_glow",
+      "file": "previews/institute-boss-alpha7/runtime/forge/warden_night_glow.png",
+      "bytes": 90506,
+      "sha256": "58e06d552dd1c2aae63b6ae4df7bb656bbb03b05191723cf9a08daf915fff424"
+    },
+    {
+      "name": "walk",
+      "file": "previews/institute-boss-alpha7/runtime/forge/warden_walk.png",
+      "bytes": 94076,
+      "sha256": "cfd5bb54774de0a65301e410fb9daf4a2585323df175d2ce33c50496f6ecafda"
+    },
+    {
+      "name": "claw_windup",
+      "file": "previews/institute-boss-alpha7/runtime/forge/warden_claw_windup.png",
+      "bytes": 77180,
+      "sha256": "b805f6848bdcf0758d8640620f584d00c54285b083b7ca9097b98b37a438c5cd"
+    },
+    {
+      "name": "claw_hit",
+      "file": "previews/institute-boss-alpha7/runtime/forge/warden_claw_hit.png",
+      "bytes": 69153,
+      "sha256": "1aa01542f589493504e9aceb630ae84690617db0580521933259349785b10465"
+    },
+    {
+      "name": "stomp_windup",
+      "file": "previews/institute-boss-alpha7/runtime/forge/warden_stomp_windup.png",
+      "bytes": 83455,
+      "sha256": "7a31b9e2b1932d051c2e9194d64ed90575abdb428193206cd4fc2c9e11ad33f9"
+    },
+    {
+      "name": "stomp_hit",
+      "file": "previews/institute-boss-alpha7/runtime/forge/warden_stomp_hit.png",
+      "bytes": 84050,
+      "sha256": "187f66d017dbe93ff14ecea540d2a40f7d3596e81031297adfbb27ed20c24171"
+    },
+    {
+      "name": "burst",
+      "file": "previews/institute-boss-alpha7/runtime/forge/warden_burst.png",
+      "bytes": 97685,
+      "sha256": "3cc374b2a112e363e46f3f192689506a60bed3842af5a2ef2328c06c873378e0"
+    },
+    {
+      "name": "console_one",
+      "file": "previews/institute-boss-alpha7/runtime/forge/warden_console_one.png",
+      "bytes": 54717,
+      "sha256": "8143bfdd914b695b38c7f64f9044769ead489dea1d378252fe368a12baeb5c07"
+    },
+    {
+      "name": "core_exposed",
+      "file": "previews/institute-boss-alpha7/runtime/forge/warden_core_exposed.png",
+      "bytes": 83374,
+      "sha256": "79d7f390d644339f5070e524b82837318f6d21d13d463c1ba05729789bc38c0a"
+    },
+    {
+      "name": "death_mid",
+      "file": "previews/institute-boss-alpha7/runtime/forge/warden_death_mid.png",
+      "bytes": 84686,
+      "sha256": "65d8b2fffba4949564b47f46c3902387fa68147c382b8511f1e8ddbd792bac20"
+    },
+    {
+      "name": "death_kneel",
+      "file": "previews/institute-boss-alpha7/runtime/forge/warden_death_kneel.png",
+      "bytes": 82273,
+      "sha256": "05ec38ca2c98ac0fe80d1faea9d1d763433d7284d4c61d5d7f587cfa925f96ce"
+    },
+    {
+      "name": "reward_claimed",
+      "file": "previews/institute-boss-alpha7/runtime/forge/warden_reward_claimed.png",
+      "bytes": 42995,
+      "sha256": "b1437197e1410c6c0be80a416b3fff22eae73ba101eb530eeee691ccb0cbc7ae"
+    },
+    {
+      "name": "inventory",
+      "file": "previews/institute-boss-alpha7/runtime/forge/warden_inventory.png",
+      "bytes": 40191,
+      "sha256": "abcc2f3eb5da5b659f361635db4edb021e2078c692edf749bd91b48bfddbe601"
+    },
+    {
+      "name": "core_cooldown",
+      "file": "previews/institute-boss-alpha7/runtime/forge/warden_core_cooldown.png",
+      "bytes": 43044,
+      "sha256": "7006b3ac87694ae2a07d270727ad4dd87a101d1ad267cca524c8af5deea44088"
+    }
+  ],
+  "log": "build/institute-boss-alpha7/checks/forge-runClient.log"
+}

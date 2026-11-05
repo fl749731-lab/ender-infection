@@ -1,12 +1,12 @@
-# 研究所供电与样本研究（alpha.4 开发中）
+# 研究所供电与样本研究（alpha.4）
 
-本文对应 **0.12.0-alpha.4 开发分支，尚未发布**。公开预发布版仍为 [v0.12.0-alpha.3](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.3)，稳定版仍为 [v0.11.0](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.11.0)。Forge Minecraft 1.20.1 / Java 17 与 NeoForge Minecraft 1.21.1 / Java 21 同步实现本页玩法。
+本文对应 **0.12.0-alpha.4，发布于 2026-11-05**。最新公开预发布版见 [v0.12.0-alpha.4](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.4)，稳定版仍为 [v0.11.0](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.11.0)。Forge Minecraft 1.20.1 / Java 17 与 NeoForge Minecraft 1.21.1 / Java 21 同步实现本页玩法。
 
 本轮把中央研究所的探索连成“取得物资 → 修复电源 → 分区送电 → 领取门禁卡 → 分析与分离 → 领取核心档案”。收容事故事件和研究所 Boss 战仍未实现。
 
 ## 从哪里开始
 
-新玩法使用 **layout v3 的新生成中央研究所**。自然生成需要探索新的合适区块；管理员也可按[中央研究所施工说明](central-institute.md)检查空地并施工。已存在的 alpha.3 建筑不会自动拆除或重建，旧布局也不会悄悄补上控制器或任务绑定。更新 JAR 不会重抽已经领取的储物战利品。
+新玩法使用 **layout v3 的新生成或新施工中央研究所**。自然生成需要探索新的合适区块；管理员也可按[中央研究所施工说明](central-institute.md)检查空地并施工。已存在的 alpha.3 建筑不会自动拆除或重建，旧布局也不会悄悄补上控制器或任务绑定。更新 JAR 不会重抽已经领取的储物战利品。
 
 先在 G1 公共区寻找补给桶，取得保险丝、原始组织样本和研究日志；公共分类补给保证提供这些起步物品。修复还需要铜锭、红石。保险丝可用铁粒和红石合成。手持 `ender_infection:research_log` 右键可查看当前位置研究所的当前目标。
 
@@ -15,7 +15,7 @@
 | 房间 | 设备 | 操作与作用 |
 | --- | --- | --- |
 | B1 / D2 应急动力间 | 应急发电机 `lab_power_generator` | 主手右键，修复消耗保险丝 ×1、铜锭 ×4、红石 ×4；材料不足不扣除。每座研究所只需修复一次。 |
-| B1 / D1 配电间 | 配电控制器 `lab_distribution_panel` | 修复后主手普通右键切换服务区；空手潜行右键切换收容区。可再次操作断电。 |
+| B1 / D1 配电间 | 配电控制器 `lab_distribution_panel` | 修复后主手普通右键切换服务区；主手空手潜行右键切换收容区。可再次操作断电。 |
 | G1 / A7 大厅 | 研究终端 `lab_research_terminal` | 服务区供电后右键领取门禁卡，并查询进度。每座设施中，每名玩家只能领取一次；背包放不下时不记作已领取。 |
 | B3 / F5 核心档案库 | 档案终端 `lab_archive_terminal` | 完成本设施的分析与分离、恢复收容区供电后，提交研究记录 ×1 和分离试剂 ×1，领取核心档案 ×1、虚空晶 ×2。每座设施共用一次奖励。 |
 
@@ -29,7 +29,7 @@ B2 / B3 共 40 个受管门根接入收容区门禁。从房间外侧开门，�
 
 ## 显微镜与离心机
 
-在已绑定且所在分区供电的设备上右键，打开 **3 个机器槽 + 36 个玩家背包槽**的界面。机器槽依次为样本、试剂和产物；产物槽用于取出结果。
+新布局登记 42 台加工设备。在已绑定且所在分区供电的设备上右键，打开 **3 个机器槽 + 36 个玩家背包槽**的界面。机器槽依次为样本、试剂和产物；产物槽用于取出结果。
 
 | 设备 | 样本槽 | 试剂槽 | 产物 | 耗时 |
 | --- | --- | --- | --- | --- |
@@ -67,4 +67,4 @@ python tools/build_dual_version.py --clean --gametests
 `InstituteOperationsVisualCheck` 使用各工程独立的 `build/operations-visual-check`，检查真实交互、门禁、加工菜单、档案奖励及医疗家具；截图在其 `screenshots` 子目录，结果标记写入 `operations-visual-result.txt`。开发检查不使用玩家已有实例或存档。两版附属示例还需在对应工程运行 `build runGameTestServer`，随后执行示例目录的 `verify_examples.py`。
 
 <!-- alpha4-validation -->
-alpha.4 开发分支已完成完整双版干净构建与 16 组原生测试，共 139 项必需测试通过（含两版附属各 2 项）；两版独立功能场景完成 20 张真实交互截图验收。截图与验证范围见[功能验收记录](../previews/institute-operations-alpha4/README.md)。当前仍未发布，公开预发布版保持 alpha.3，稳定版保持 0.11.0。
+alpha.4 已完成完整双版干净构建与 16 组原生测试，共 139 项必需测试通过（含两版附属各 2 项）；两版独立功能场景完成 20 张真实交互截图验收。截图与验证范围见[功能验收记录](../previews/institute-operations-alpha4/README.md)。最新公开预发布版为 [alpha.4](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.4)，稳定版保持 0.11.0。

@@ -35,7 +35,9 @@ Forge 原生测试的每个新目录都会写入固定种子 0、关闭结构生
 
 ## 发版
 
-最新预发布版 **0.12.0-alpha.4（2026-11-05）** 同时提供 Forge 1.20.1 / Java 17 与 NeoForge 1.21.1 / Java 21，安装包与发行验证记录见 [alpha.4 发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.4)，稳定版保持 0.11.0。alpha.4 在六层、48 间中央研究所中追加修复、两区供电、门禁、样本加工与一次性档案任务；安装包按对应 Minecraft 和加载器分别使用。[alpha.3 发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.3)保留建筑、自然生成与手动施工的首次发行和历史附件。
+alpha.5 纠正孢翼孢囊挂点和翼膜、巨像骨甲与面部，并同步四种攻击时序及两款设备细节。完整双版本干净构建和 16 组原生测试通过，共 147 项必需测试；两版附属示例同时通过。发布 CLI 与三个 qegg 工作流均使用 v0.12.0。
+
+最新预发布版 **0.12.0-alpha.5（2026-11-05）** 同时提供 Forge 1.20.1 / Java 17 与 NeoForge 1.21.1 / Java 21，安装包与发行验证记录见 [alpha.5 发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.5)，稳定版保持 0.11.0。alpha.4 在六层、48 间中央研究所中追加修复、两区供电、门禁、样本加工与一次性档案任务；安装包按对应 Minecraft 和加载器分别使用。[alpha.3 发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.3)保留建筑、自然生成与手动施工的首次发行和历史附件。
 
 新玩法使用新生成或新施工的 layout v3，接入 881 盏分区灯、40 个受管门与 42 台加工设备。已有 alpha.3 建筑不会自动重建或追加任务绑定，玩家自行摆放的机器不自动取得设施供电。多人共用设施进度，档案奖励每座设施共用一次；操作与边界见[研究所供电与样本研究](institute-operations.md)。收容事故事件和研究所 Boss 战仍未实现。
 

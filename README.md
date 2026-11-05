@@ -1,8 +1,8 @@
 # 末影感染 · Ender Infection
 
-末影感染是 Minecraft 阵营 Mod。当前稳定版本为 **0.11.0（Forge 1.20.1）**；最新预发布版本为 **0.12.0-alpha.4（Forge 1.20.1 / NeoForge 1.21.1，2026-11-05）**。
+末影感染是 Minecraft 阵营 Mod。当前稳定版本为 **0.11.0（Forge 1.20.1）**；最新预发布版本为 **0.12.0-alpha.5（Forge 1.20.1 / NeoForge 1.21.1，2026-11-05）**。
 
-**v0.12.0-alpha.4** 同时提供 **Forge 1.20.1 / Java 17** 与 **NeoForge 1.21.1 / Java 21**。安装包与验证记录见 [alpha.4 发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.4)，维护流程见 [双版本维护](docs/dual-version-maintenance.md)。[alpha.3 发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.3)保留上一预发布版与运行实景，[alpha.2 发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.2)保留历史设计附件。
+**v0.12.0-alpha.5** 同时提供 **Forge 1.20.1 / Java 17** 与 **NeoForge 1.21.1 / Java 21**。安装包与验证记录见 [alpha.5 发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.5)，维护流程见 [双版本维护](docs/dual-version-maintenance.md)。[alpha.3 发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.3)保留上一预发布版与运行实景，[alpha.2 发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.2)保留历史设计附件。
 
 两版继续共用模型、贴图和研究所 API。alpha.2 引入的房间注册、连接器、模板预览、显式放置和设备交互 API，以及 [独立附属 Mod 示例](examples/institute-addon/README.md) 均保留；旧版 `0.12.0-alpha.1` 不含该 API。
 
@@ -12,9 +12,9 @@ alpha.2 的设计资料继续保留：[完整图包](https://github.com/fl749731
 
 感染从母体与扩张节点开始。每个母体拥有独立的生物质储备；召唤、进阶与节点扩张消费储备，土地收益随领土扩大而增加，重复收割同一片土地的收益逐渐下降。
 
-## 0.12.0-alpha.5 · 本地开发，未发布
+## v0.12.0-alpha.5 · 2026-11-05
 
-当前本地 alpha.5 已通过本轮增量验收：269 项原生测试（Forge 98 + 裂隙／AI 36，NeoForge 99 + 裂隙／AI 36）及 76 张客户端截图（怪物姿态 32、暗室发光 16、研究所操作 20、设备细节 8），两版 `build` 与 `apiDevJar` 成功。审图和校验摘要见[本地验收记录](previews/model-polish-alpha5/README.md)。完整干净发版验收仍待执行，alpha.5 尚未发布；上方 alpha.4 下载、发布信息与历史验收记录继续有效。
+alpha.5 已完成两版干净构建、API 开发包与附属示例构建，16 组原生测试共 147 项必需测试通过。另保留开发阶段 269 项原生回归记录和 76 张客户端截图（怪物姿态 32、暗室发光 16、研究所操作 20、设备细节 8）；两套测试包含共同用例，分别记录。审图和校验摘要见[本轮验收记录](previews/model-polish-alpha5/README.md)，安装包、14 份怪物模型和 25 份家具模型见 [alpha.5 发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.5)。
 
 破城巨像恢复层叠骨甲并修正低伏裂骨面部；孢翼侦察者调整为扇形翼膜、短吻、单主尾，孢囊缩小后移至后腹。晶盾卫士和裂喉喷吐者恢复原有外观，保留本轮攻击骨骼与动作。四种原生动画与服务端时序同步，紫晶继续完整自发光：
 
@@ -44,7 +44,7 @@ python tools/export_design_assets.py --units siegebreaker,shield_sentinel,throat
 本轮[可编辑家具模型](colored_units/institute_furniture_v4)包含 25 份 `.bbmodel` 与配套贴图，其中新增发电机、配电控制器、研究终端、档案终端、医疗床床尾、医疗床床头和等候沙发 7 份模型；模型附件见 [alpha.4 发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.4)。
 
 <!-- alpha4-validation -->
-alpha.4 已完成完整双版干净构建与 16 组原生测试，共 139 项必需测试通过（含两版附属各 2 项）；两版独立功能场景完成 20 张真实交互截图验收。截图与验证范围见[功能验收记录](previews/institute-operations-alpha4/README.md)。最新公开预发布版为 [alpha.4](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.4)，稳定版保持 0.11.0。
+alpha.4 已完成完整双版干净构建与 16 组原生测试，共 139 项必需测试通过（含两版附属各 2 项）；两版独立功能场景完成 20 张真实交互截图验收。截图与验证范围见[功能验收记录](previews/institute-operations-alpha4/README.md)。该版发行附件见 [alpha.4](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.4)，稳定版保持 0.11.0。
 
 ## v0.12.0-alpha.3
 

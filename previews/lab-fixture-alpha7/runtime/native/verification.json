@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "groups": 4,
+  "required_passed": 28,
+  "tests": [
+    {
+      "file": "ender_infection_colored-storage.log",
+      "required_passed": 8,
+      "sha256": "bffcf7cfb18f83928b9b64a0d8072b78074678ca7d23c51670fc680fba2ffe32"
+    },
+    {
+      "file": "ender_infection_neoforge-storage.log",
+      "required_passed": 8,
+      "sha256": "02c00ea8c0ef89db3e3defba986c5c0e37526f9396503142b500a1bb6128c497"
+    },
+    {
+      "file": "ender_infection_colored-operations.log",
+      "required_passed": 6,
+      "sha256": "510cc69b29df2b29eb2c939c2791648b34a69bd2f414865b2b1f44cf7c57df82"
+    },
+    {
+      "file": "ender_infection_neoforge-operations.log",
+      "required_passed": 6,
+      "sha256": "a489d13a2c90f9ff472d444a615ee863fc0513d6e31bb90300adf5561932dd1d"
+    }
+  ],
+  "limits": "Focused native behavior check before final clean release gate; full gate report remains authoritative for published jars."
+}

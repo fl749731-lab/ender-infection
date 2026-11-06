@@ -34,6 +34,7 @@ Minecraft 感染阵营与研究所探索模组。感染母体通过生物质和�
 - B3 / F8 收容监管体、v5 研究所启动终端与两座抑制台；旧研究所保持原样。
 - 七套 Boss 动作，以及有预警的爪击、立体卷曲晶体扇浪、冲击环、符文和电弧。
 - 共鸣祭司与晶背搬运兽使用署名公开底模改造，适配五套动作、持杖握点、尾部、接地及循环；紫晶材质自发光。
+- 储柜门向外开启，显示器补齐落台支架；相邻同类、同朝向的研究所门组成左右同步的[双开门](docs/lab-fixtures.md)。
 - 事件、奖励和 Boss 状态持久化；两版完整干净构建、原生测试与重启／区块卸载验收，详细结果随发行附件提供。
 
 [alpha.7 更新说明与附件](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.7) · [监管体指南](docs/institute-boss.md) · [模型实景](previews/public-model-adaptations-v1/README.md) · [完整更新日志](CHANGELOG.md)

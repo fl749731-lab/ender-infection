@@ -61,6 +61,9 @@ minecraft {
                 jvmArgs '-Xms128m', '-Xmx1536m', '-XX:ActiveProcessorCount=2'
             }
         }
+        if (project.hasProperty('labDoorVisualCheck')) {
+            client { workingDirectory project.file('build/lab-door-visual-check'); property 'ender_infection.labDoorVisualCheck','true'; args '--width','1280','--height','800' }
+        }
         if (project.hasProperty('labVisualCheck')) {
             client { workingDirectory project.file('build/lab-visual-check'); property 'ender_infection.labVisualCheck','true' }
         }

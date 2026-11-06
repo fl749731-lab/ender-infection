@@ -1,5 +1,5 @@
 """Original editable small laboratory props, with native-density texture atlases."""
-import sys,json
+import argparse,sys,json
 from pathlib import Path
 from design_catalog import ROOT,PACK,ASSETS,DATA,PROJECT
 sys.path.insert(0,str(PACK/'source'))
@@ -16,7 +16,10 @@ def model(key):return Model(key,DETAILS[key],'laboratory','功能房间细节 / 
 def box(m,name,a,b,mat='steel'):m.box(name,a,b,mat)
 def models():
  out=[]
- m=model('lab_monitor');box(m,'housing',(-7,4,1),(7,15,4),'darkmetal');box(m,'screen',(-5.8,6,.7),(5.8,13.8,1),'monitor');box(m,'status',(-5,4.8,.6),(-2,5.5,.9),'coolant');box(m,'bracket',(-2,5,4),(2,11,7),'steel');out.append(m)
+ m=model('lab_monitor');box(m,'housing',(-7,4,1),(7,15,4),'darkmetal');box(m,'screen',(-5.8,6,.7),(5.8,13.8,1),'monitor');box(m,'status',(-5,4.8,.6),(-2,5.5,.9),'coolant');box(m,'bracket',(-2,5,4),(2,11,7),'steel')
+ # This monitor is also used on the reception desk and free-standing worktops.
+ # A continuous stem reaches the supporting block instead of floating above it.
+ box(m,'desk_base',(-4.5,0,0),(4.5,.8,6),'darkmetal');box(m,'desk_stem',(-1,.8,2),(1,5.5,4),'steel');out.append(m)
  m=model('lab_sample_rack')
  for y in (1,6):box(m,'rack_shelf',(-6,y,-4),(6,y+.8,4),'white')
  for x in (-5.5,5):box(m,'rack_post',(x,1,-3.5),(x+.5,7,3.5))
@@ -84,4 +87,15 @@ def export_details():
  write(DEST/'manifest.json',{'units_per_block':16,'models':report,'count':len(report),'source':'original room detail props'})
  (DEST/'README.md').write_text('# 实验室细节模型\n\n12 个原创可编辑 `.bbmodel`；每个方块 16 模型单位，沿用实验室材料与逐面 UV。由 `tools/build_lab_details.py` 生成并导出游戏烘焙模型。\n',encoding='utf-8')
  print('Exported',len(report),'original laboratory detail models')
-if __name__=='__main__':export_details()
+def export_monitor_only():
+ m=next(m for m in models() if m.key=='lab_monitor');data,_,metadata=m.save(DEST)
+ metadata['file']=str(Path(metadata['file']).relative_to(DEST))
+ obj(m.key,data,'block',normalize=False);obj(m.key,data,'item')
+ path=DEST/'manifest.json';manifest=json.loads(path.read_text('utf-8'))
+ manifest['models']=[metadata if row['id']=='lab_monitor' else row for row in manifest['models']]
+ write(path,manifest);print('Exported supported desk/wall monitor only; preserved other furniture')
+
+if __name__=='__main__':
+ parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--only',choices=['lab_monitor']);args=parser.parse_args()
+ if args.only:export_monitor_only()
+ else:export_details()

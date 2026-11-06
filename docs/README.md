@@ -9,6 +9,7 @@
 - [生存玩法、装备与怪物](gameplay-guide.md)
 - [中央研究所：寻找、房间与施工](central-institute.md)
 - [研究所供电、门禁与样本研究](institute-operations.md)
+- [双开门、柜门与显示器](lab-fixtures.md)
 - [E8 收容事故](containment-incident.md)
 - [感染节点扩张规则](expansion.md)
 - [共振工业多方块与生产线](../addons/resonant-industry/README.md)

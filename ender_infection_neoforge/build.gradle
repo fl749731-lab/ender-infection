@@ -49,6 +49,11 @@ neoForge {
                 jvmArgument '-Xmx1536m'
                 jvmArgument '-XX:ActiveProcessorCount=2'
             }
+            if (project.hasProperty('labDoorVisualCheck')) {
+                gameDirectory = project.file('build/lab-door-visual-check')
+                systemProperty 'ender_infection.labDoorVisualCheck', 'true'
+                programArgument '--width'; programArgument '1280'; programArgument '--height'; programArgument '800'
+            }
             if (project.hasProperty('storageVisualCheck')) {
                 gameDirectory = project.file('build/storage-visual-check')
                 systemProperty 'ender_infection.storageVisualCheck', 'true'

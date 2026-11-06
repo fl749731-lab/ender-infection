@@ -1,0 +1,204 @@
+{
+  "status": "PASS",
+  "loader": "forge",
+  "screenshots": 22,
+  "log_sha256": "bc92e04fbf80b6c5b46b83466426d67d236cd9d810b3a6a643390b81b3a4d253",
+  "sources": {
+    "ender_infection_colored/src/main/java/dev/hui/enderinfection/client/LabFixtureRenderer.java": "d173f3d9691c9b4908406408be65cb83973c09ae6cf88405b7c724c9d0aaf4ab",
+    "ender_infection_colored/src/main/java/dev/hui/enderinfection/design/LabFixtureBlock.java": "cb764decb45a80fa7554c4e1c0538fffca8850e2ed8a70c1bca9d119abaf250f",
+    "ender_infection_colored/src/main/java/dev/hui/enderinfection/design/LabPartBlock.java": "ad44180b0b1f0e0231528667bc386ae0da44d8a432197737e4c13b432f0f17ec",
+    "ender_infection_colored/src/main/java/dev/hui/enderinfection/client/LabDoorVisualCheck.java": "b2112515f7e5b3682199b5b6c8ff711dfb1228a48e4ed2e6028fde389b83ca4a",
+    "ender_infection_colored/src/main/resources/assets/ender_infection/geo/lab_door.geo.json": "3beb1144b3b394d539f8f116e87c679ad45e6302e4416451ed453bb4f3c08ddc",
+    "ender_infection_colored/src/main/resources/assets/ender_infection/geo/lab_door_eroded.geo.json": "0830c9ee2f44724b013f42b15196db1ab369329c0f3884e97ac13b1562d61070",
+    "ender_infection_colored/src/main/resources/assets/ender_infection/geo/lab_door_double_left.geo.json": "66890dad27b6338e5eb8d125ef9732936c191ea8bc8d910f08f5900b39e3f3ff",
+    "ender_infection_colored/src/main/resources/assets/ender_infection/geo/lab_door_double_right.geo.json": "9432b5f65b7e3585eb9713ba575c9f71d5cdee34410bdd3478955c16eab5defe",
+    "ender_infection_colored/src/main/resources/assets/ender_infection/geo/lab_door_eroded_double_left.geo.json": "a7af630eba73bd68ed1c4d20acee3b9166c10dc6bc8de129ae6f34765bcf163f",
+    "ender_infection_colored/src/main/resources/assets/ender_infection/geo/lab_door_eroded_double_right.geo.json": "d8c6f3a594d9c4f70acb2fe65e954e82162aece8a5e337a4877e2a8b8fcd1a2e",
+    "ender_infection_colored/src/main/resources/assets/ender_infection/geo/lab_cabinet.geo.json": "f82134a1320e1985afd6d34d81f3f49eeca244ebc67d485fb575c36e22700756",
+    "ender_infection_colored/src/main/resources/assets/ender_infection/geo/lab_cabinet_eroded.geo.json": "59723f0d61c0c50e5117a14a8acb1f32cf1fadc53f0b46c0c1ad508a9ef78e75",
+    "ender_infection_colored/src/main/resources/assets/ender_infection/geo/lab_cryo_cabinet.geo.json": "9c9c0e0d6ba84074d1f96b8612213c9f1cd59d5bd7c2fce6395dd901a08a55ff",
+    "ender_infection_colored/src/main/resources/assets/ender_infection/geo/lab_glass_cabinet.geo.json": "ae998b1aaaf5d21e6c318dba80b4326d70439e5439f410e87374918354f49874",
+    "ender_infection_colored/src/main/resources/assets/ender_infection/geo/lab_server_rack.geo.json": "1a2f566669110f9c308376ff7ec3e6c05dfaad8c664bdc6d51958192639e9d4c",
+    "ender_infection_colored/src/main/resources/assets/ender_infection/models/block/design/lab_monitor.obj": "446ef1ceffe7781d491b462bb918c00e865905b797223bb55347c6da81f42612",
+    "ender_infection_colored/src/main/resources/assets/ender_infection/textures/block/design/lab_monitor.png": "b77f395c4750bb91e3793d4a4c0cca129e7e392698488aa3b21edd3f333e9849"
+  },
+  "frames": [
+    {
+      "name": "lab_door_north_double_closed",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "8d74b7c5fede703cae657bb2049f0deaa3b498cfd9e7e8c0c48f44c25e94a6e1"
+    },
+    {
+      "name": "lab_door_north_double_open",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "2b8329f223a5b307ba0c510b577ff41024f7d2df3d69dd60f9d4e600fe58c7fd"
+    },
+    {
+      "name": "lab_door_east_double_closed",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "e7837f7cbdb09f3dd401751fcc0aa287ec2a20fcd89797bd6e064ed9729885c3"
+    },
+    {
+      "name": "lab_door_east_double_open",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "48c4f503527b66dae25f2013368c3e3826b6fb39f39b16a1ab31446988343d0c"
+    },
+    {
+      "name": "lab_door_south_double_closed",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "931ca622d16bdc94bf8a681b67b69c83611ee08310985cb0476120021bf0b55d"
+    },
+    {
+      "name": "lab_door_south_double_open",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "e3e254b87fe11918a87cd1d7bb5d30e89270c738b8069f05e349e738534ec7ed"
+    },
+    {
+      "name": "lab_door_west_double_closed",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "4f3f5b3c6bb2ffbedf667ecaabac2a3338fc1e91f4ab5b69b32186228c1641ca"
+    },
+    {
+      "name": "lab_door_west_double_open",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "54f592ca314ea9d749ec09cb929bcf0a3b970e0dd88e9a24132218d32f24dbba"
+    },
+    {
+      "name": "lab_door_eroded_north_double_closed",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "0945ea02ab1360f58aa2d6aa72706240b966278a9e2e2efeb7dc796e5176f8fb"
+    },
+    {
+      "name": "lab_door_eroded_north_double_open",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "f69e555d88d892a2184a852c3fff7ced27263866df0a48bcc44d0c20fa066910"
+    },
+    {
+      "name": "lab_door_north_single_closed",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "5ac5156ada721b10f952473bb9be9ea50bd871580f1bd5a913a4400660d43d99"
+    },
+    {
+      "name": "lab_door_north_single_open",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "f44acc211d8a8dda6a1c8fc1066cc261f5510d063066acb5380f6053f6bba181"
+    },
+    {
+      "name": "lab_cabinet_open",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "ee6548f71ac7f1f450ef959c47b6b69f7fe7a7616c449171626b7873a9f83917"
+    },
+    {
+      "name": "lab_cabinet_eroded_open",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "97258fa1ae1d1fcc605358ab356b60e4f21651e6575e9cfcada58c37447bb0a5"
+    },
+    {
+      "name": "lab_glass_cabinet_open",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "77f0197e534b4ad75a7c8dd0aa370ab063243082190f2a44be9f1864230d473a"
+    },
+    {
+      "name": "lab_cryo_cabinet_open",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "9d2d13aeccb090d5a2748cf986f86a0317a0f4701999df1f678db825226f1557"
+    },
+    {
+      "name": "lab_cryo_cabinet_closed",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "9b5f2c79102053fa46388595f6ebde5edba60ab4b6e1084a9e8877c2f71db615"
+    },
+    {
+      "name": "lab_server_rack_open",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "40dcefc3f1279f1f6ba8fbe366b39c786d129835e1dad10a15a02df17f430255"
+    },
+    {
+      "name": "lab_privacy_curtain_north_single_closed",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "f67e2e75aa9b20d97b4e779de84b3ce142144e068910dbd4accdcfbfcd454176"
+    },
+    {
+      "name": "lab_privacy_curtain_north_single_open",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "5a76eb5dee1978c9c5e7a39118588248ee79de82192393efed3651120211e2bb"
+    },
+    {
+      "name": "reception_front",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "0a3748c2837a68fb174fa671b8cd804556eddb1f2478958be1baa3921d7f64e5"
+    },
+    {
+      "name": "reception_back",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "8b2a89948c64f381ae94bb0c2e2f052305dcd779829d7c11f2aeb10674e053aa"
+    }
+  ],
+  "limits": "Fresh isolated test world; cabinet storage held open by a real server menu viewer; automated capture completeness and separate visual inspection. This does not substitute for the full clean release gate."
+}

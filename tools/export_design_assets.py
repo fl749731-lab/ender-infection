@@ -284,6 +284,8 @@ def export(units=None):
  # Rift replacements have their own canonical MCP-authored BB5 sources.
  from export_rift_assets import export as export_rift
  export_rift()
+ from export_lab_door_variants import export as export_doors
+ export_doors()
  write(PROJECT/'verification/design_asset_manifest.json',{'source_pack':MAN['version'],'assets':REPORT,'scenes':'research_lab.nbt is current; complete/cutaway BB scenes retain the earlier schematic'})
  print('Exported',len(REPORT),'runtime asset mappings')
 if __name__=='__main__':

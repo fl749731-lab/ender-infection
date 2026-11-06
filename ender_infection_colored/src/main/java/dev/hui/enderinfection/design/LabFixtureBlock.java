@@ -21,7 +21,7 @@ public final class LabFixtureBlock extends BaseEntityBlock {
     public static final BooleanProperty OPEN=BlockStateProperties.OPEN;
     public static final BooleanProperty SECURED=BooleanProperty.create("secured");
     public final String key;
-    public LabFixtureBlock(String key,Properties p){super(p);this.key=key;registerDefaultState(stateDefinition.any().setValue(FACING,Direction.NORTH).setValue(OPEN,false).setValue(SECURED,false));}
+    public LabFixtureBlock(String key,Properties p){super(p.dynamicShape());this.key=key;registerDefaultState(stateDefinition.any().setValue(FACING,Direction.NORTH).setValue(OPEN,false).setValue(SECURED,false));}
     public String base(){return key.replace("_eroded","");}
     public static boolean isStorageKey(String key){return Set.of("lab_cabinet","lab_workbench","lab_glass_cabinet","lab_cryo_cabinet","lab_server_rack","lab_control_console").contains(key.replace("_eroded",""));}
     public boolean isStorage(){return isStorageKey(key);}
@@ -35,6 +35,24 @@ public final class LabFixtureBlock extends BaseEntityBlock {
             BlockPos p=cell(c.getClickedPos(),f,x,y);if(!c.getLevel().isInWorldBounds(p)||!c.getLevel().hasChunkAt(p)||!c.getLevel().getBlockState(p).canBeReplaced(c)||!c.getLevel().getFluidState(p).isEmpty())return null;
         }
         return defaultBlockState().setValue(FACING,f);
+    }
+    public enum DoorPairSide { NONE, LEFT, RIGHT }
+    private static boolean matchesDoor(BlockGetter level,BlockPos at,BlockState state){
+        if(level instanceof Level world&&!world.hasChunkAt(at))return false;
+        var other=level.getBlockState(at);
+        return other.is(state.getBlock())&&other.getValue(FACING)==state.getValue(FACING)&&other.getValue(SECURED)==state.getValue(SECURED);
+    }
+    /** Only an isolated run of two matching doors forms one entrance; never join a row of three. */
+    public static Optional<BlockPos> pairedDoor(BlockGetter level,BlockPos pos,BlockState state){
+        if(!(state.getBlock() instanceof LabFixtureBlock fixture)||!fixture.base().equals("lab_door"))return Optional.empty();
+        var right=state.getValue(FACING).getClockWise();
+        boolean leftMatch=matchesDoor(level,pos.relative(right,-1),state),rightMatch=matchesDoor(level,pos.relative(right),state);
+        if(leftMatch==rightMatch)return Optional.empty();
+        int direction=rightMatch?1:-1;var mate=pos.relative(right,direction);
+        return matchesDoor(level,mate.relative(right,direction),state)?Optional.empty():Optional.of(mate);
+    }
+    public static DoorPairSide doorPairSide(BlockGetter level,BlockPos pos,BlockState state){
+        return pairedDoor(level,pos,state).map(mate->mate.equals(pos.relative(state.getValue(FACING).getClockWise()))?DoorPairSide.LEFT:DoorPairSide.RIGHT).orElse(DoorPairSide.NONE);
     }
     public void fillParts(Level level,BlockPos pos,BlockState state){
         for(int x=-halfWidth();x<=halfWidth();x++)for(int y=0;y<height();y++)if(x!=0||y!=0){BlockPos p=cell(pos,state.getValue(FACING),x,y);
@@ -55,19 +73,28 @@ public final class LabFixtureBlock extends BaseEntityBlock {
             return InteractionResult.sidedSuccess(level.isClientSide);
         }
         if(!Set.of("lab_hatch","lab_door","lab_privacy_curtain").contains(base()))return InteractionResult.PASS;
-        if(base().equals("lab_door")&&level instanceof net.minecraft.server.level.ServerLevel server&&!dev.hui.enderinfection.institute.InstituteOperations.mayUseDoor(server,pos,s,player))return InteractionResult.FAIL;
-        if(!level.isClientSide){boolean open=!s.getValue(OPEN);level.setBlock(pos,s.setValue(OPEN,open),3);level.playSound(null,pos,open?net.minecraft.sounds.SoundEvents.IRON_DOOR_OPEN:net.minecraft.sounds.SoundEvents.IRON_DOOR_CLOSE,net.minecraft.sounds.SoundSource.BLOCKS,.7F,1);}
+        var mate=pairedDoor(level,pos,s);boolean open=!s.getValue(OPEN);
+        if(base().equals("lab_door")&&open&&level instanceof net.minecraft.server.level.ServerLevel server){
+            if(!dev.hui.enderinfection.institute.InstituteOperations.mayUseDoor(server,pos,s,player))return InteractionResult.FAIL;
+            if(mate.isPresent()&&!dev.hui.enderinfection.institute.InstituteOperations.mayUseDoor(server,mate.get(),level.getBlockState(mate.get()),player))return InteractionResult.FAIL;
+        }
+        if(!level.isClientSide){
+            level.setBlock(pos,s.setValue(OPEN,open),3);
+            mate.ifPresent(at->level.setBlock(at,level.getBlockState(at).setValue(OPEN,open),3));
+            level.playSound(null,pos,open?net.minecraft.sounds.SoundEvents.IRON_DOOR_OPEN:net.minecraft.sounds.SoundEvents.IRON_DOOR_CLOSE,net.minecraft.sounds.SoundSource.BLOCKS,.7F,1);
+        }
         return InteractionResult.sidedSuccess(level.isClientSide);
     }
     @Override public void tick(BlockState state,net.minecraft.server.level.ServerLevel level,BlockPos pos,net.minecraft.util.RandomSource random){
         if(level.getBlockEntity(pos) instanceof LabFixtureEntity inventory)inventory.recheckOpeners();
     }
-    public VoxelShape localShape(BlockState state,int x,int y){
+    public VoxelShape localShape(BlockState state,int x,int y){return localShape(state,x,y,DoorPairSide.NONE);}
+    public VoxelShape localShape(BlockState state,int x,int y,DoorPairSide pair){
         String b=base();
         if(b.equals("lab_hatch")&&state.getValue(OPEN))return Shapes.empty();
         if(b.equals("lab_privacy_curtain"))return state.getValue(OPEN)?Shapes.or(Block.box(0,0,6,1,16,10),Block.box(15,0,6,16,16,10)):Block.box(0,0,7,16,16,9);
         // One-pixel frame leaves 1.875 blocks of clear height for a standing 1.8-block player.
-        if(b.equals("lab_door")&&state.getValue(OPEN))return Shapes.or(Block.box(0,0,6,1,16,10),Block.box(15,0,6,16,16,10),y==0?Block.box(0,0,6,16,1,10):Block.box(0,15,6,16,16,10));
+        if(b.equals("lab_door")&&state.getValue(OPEN))return Shapes.or(pair==DoorPairSide.RIGHT?Shapes.empty():Block.box(0,0,6,1,16,10),pair==DoorPairSide.LEFT?Shapes.empty():Block.box(15,0,6,16,16,10),y==0?Block.box(0,0,6,16,1,10):Block.box(0,15,6,16,16,10));
         if(b.equals("lab_vent")||b.equals("lab_hatch"))return Block.box(0,0,13.5,16,16,16);
         if(b.equals("surgery_table")&&y==0)return x==0?Block.box(0,0,3,16,14,13):Block.box(x<0?8:0,10,3,x<0?16:8,14,13);
         if(b.equals("surgery_table")&&y==1)return x==0?Block.box(2,0,8,10,15,13):Shapes.empty();
@@ -79,7 +106,7 @@ public final class LabFixtureBlock extends BaseEntityBlock {
         if(facing==Direction.NORTH)return shape;var result=new VoxelShape[]{Shapes.empty()};
         shape.forAllBoxes((x,y,z,X,Y,Z)->{var box=switch(facing){case SOUTH->Shapes.box(1-X,y,1-Z,1-x,Y,1-z);case EAST->Shapes.box(1-Z,y,x,1-z,Y,X);case WEST->Shapes.box(z,y,1-X,Z,Y,1-x);default->Shapes.box(x,y,z,X,Y,Z);};result[0]=Shapes.or(result[0],box);});return result[0];
     }
-    @Override public VoxelShape getShape(BlockState s,BlockGetter level,BlockPos pos,CollisionContext c){return rotate(localShape(s,0,0),s.getValue(FACING));}
+    @Override public VoxelShape getShape(BlockState s,BlockGetter level,BlockPos pos,CollisionContext c){return rotate(localShape(s,0,0,doorPairSide(level,pos,s)),s.getValue(FACING));}
     @Override public RenderShape getRenderShape(BlockState s){return RenderShape.ENTITYBLOCK_ANIMATED;}
     @Override public BlockEntity newBlockEntity(BlockPos pos,BlockState s){return new LabFixtureEntity(pos,s);}
     @Override public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level,BlockState s,BlockEntityType<T> type){return createTickerHelper(type,DesignContent.FIXTURE_ENTITY.get(),LabFixtureEntity::tick);}

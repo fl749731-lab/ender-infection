@@ -134,6 +134,13 @@ public final class LabOperationsGameTests {
             player.setPos(pos.getX()+.5,pos.getY(),pos.getZ()-1.5);doorUse(f,player,pos.above());h.assertTrue(f.level.getBlockState(pos).getValue(LabFixtureBlock.OPEN),"Inside emergency exit requires a card or power");doorUse(f,player,pos);
             f.repair(player);f.circuit(player,true,true);player.setPos(pos.getX()+.5,pos.getY(),pos.getZ()+2.5);h.assertTrue(doorUse(f,player,pos.above())==InteractionResult.FAIL,"Powered outside door accepted a player without a keycard");player.setItemInHand(InteractionHand.MAIN_HAND,new ItemStack(item("research_keycard")));doorUse(f,player,pos.above());h.assertTrue(f.level.getBlockState(pos).getValue(LabFixtureBlock.OPEN),"Held keycard did not unlock the actual upper-part interaction");doorUse(f,player,pos);
             f.circuit(player,true,false);player.setItemInHand(InteractionHand.MAIN_HAND,ItemStack.EMPTY);player.setPos(pos.getX()+.5,pos.getY(),pos.getZ()-1.5);doorUse(f,player,pos);h.assertTrue(f.level.getBlockState(pos).getValue(LabFixtureBlock.OPEN),"Switching power off trapped an inside player");
+            // Clicking an unmanaged neighbouring leaf must still check the secured facility leaf.
+            doorUse(f,player,pos);var mate=pos.east();f.put(mate,door.defaultBlockState().setValue(LabFixtureBlock.FACING,Direction.NORTH));door.fillParts(f.level,mate,f.level.getBlockState(mate));f.placed.add(mate.above());
+            player.setPos(mate.getX()+.5,mate.getY(),mate.getZ()+2.5);
+            h.assertTrue(doorUse(f,player,mate.above())==InteractionResult.FAIL&&!f.level.getBlockState(pos).getValue(LabFixtureBlock.OPEN)&&!f.level.getBlockState(mate).getValue(LabFixtureBlock.OPEN),"Unmanaged leaf bypassed the adjacent facility door's power/card guard");
+            player.setPos(mate.getX()+.5,mate.getY(),mate.getZ()-1.5);doorUse(f,player,mate.above());
+            h.assertTrue(f.level.getBlockState(pos).getValue(LabFixtureBlock.OPEN)&&f.level.getBlockState(mate).getValue(LabFixtureBlock.OPEN),"Emergency exit did not open both leaves");
+
         }h.succeed();
     }
     private static InteractionResult doorUse(Fixture f,ServerPlayer player,BlockPos at) {var state=f.level.getBlockState(at);var hit=new BlockHitResult(Vec3.atCenterOf(at),Direction.NORTH,at,false);return state.getBlock() instanceof LabPartBlock part?part.use(state,f.level,at,player,InteractionHand.MAIN_HAND,hit):((LabFixtureBlock)state.getBlock()).use(state,f.level,at,player,InteractionHand.MAIN_HAND,hit);}

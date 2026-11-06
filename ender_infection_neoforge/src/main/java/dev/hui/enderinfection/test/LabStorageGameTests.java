@@ -194,4 +194,37 @@ public final class LabStorageGameTests {
         h.assertTrue(level.getBlockState(root).getLightEmission()==14,"Task lamp lost its real block light");
         removePlayer(h,player);clean(h,root);System.out.println("LAB_STORAGE_NONCONTAINERS_PASS");h.succeed();
     }
+
+    @GameTest(template="empty64",templateNamespace="ender_storage_checks",timeoutTicks=120,batch="storage_double_doors")
+    public static void pairedDoorsOpenTogetherFromEitherUpperPartAndLeaveTheCentrePassable(GameTestHelper h){
+        var level=h.getLevel();var root=root(h);var player=player(h,root);
+        for(String key:new String[]{"lab_door","lab_door_eroded"})for(Direction facing:Direction.Plane.HORIZONTAL){
+            clean(h,root);var door=(LabFixtureBlock)block(key);var state=door.defaultBlockState().setValue(LabFixtureBlock.FACING,facing);
+            var right=facing.getClockWise();var mate=root.relative(right);level.setBlock(root,state,3);door.fillParts(level,root,state);level.setBlock(mate,state,3);door.fillParts(level,mate,state);
+            h.assertTrue(LabFixtureBlock.pairedDoor(level,root,state).orElseThrow().equals(mate)&&LabFixtureBlock.pairedDoor(level,mate,state).orElseThrow().equals(root),"Pair is not reciprocal: "+facing);
+            h.assertTrue(LabFixtureBlock.doorPairSide(level,root,state)==LabFixtureBlock.DoorPairSide.LEFT&&LabFixtureBlock.doorPairSide(level,mate,state)==LabFixtureBlock.DoorPairSide.RIGHT,"Wrong mirrored leaf roles: "+facing);
+            var centre=Vec3.atBottomCenterOf(root).add(right.getStepX()*.5,.07,right.getStepZ()*.5);
+            var body=new AABB(centre.x-.29,centre.y,centre.z-.29,centre.x+.29,centre.y+1.8,centre.z+.29);
+            h.assertTrue(!level.noCollision(player,body),"Closed entrance is passable: "+facing);
+            use(h,player,root.above());h.assertTrue(level.getBlockState(root).getValue(LabFixtureBlock.OPEN)&&level.getBlockState(mate).getValue(LabFixtureBlock.OPEN),"Upper-left interaction did not open both leaves");
+            h.assertTrue(level.noCollision(player,body),"Open double entrance retains an invisible centre post: "+facing);
+            use(h,player,mate.above());h.assertTrue(!level.getBlockState(root).getValue(LabFixtureBlock.OPEN)&&!level.getBlockState(mate).getValue(LabFixtureBlock.OPEN),"Upper-right interaction did not close both leaves");
+            level.destroyBlock(mate.above(),false);h.assertTrue(level.getBlockState(root).is(door)&&LabFixtureBlock.pairedDoor(level,root,level.getBlockState(root)).isEmpty(),"Breaking one leaf destroyed or paired the surviving single door");
+        }
+        removePlayer(h,player);clean(h,root);System.out.println("LAB_DOUBLE_DOOR_PASS facings=4 materials=2 centre_collision=false");h.succeed();
+    }
+
+    @GameTest(template="empty64",templateNamespace="ender_storage_checks",timeoutTicks=100,batch="storage_door_pair_boundaries")
+    public static void doorPairsExcludeLongRowsDifferentFacingsMaterialsAndSecurityFlags(GameTestHelper h){
+        var level=h.getLevel();var root=root(h);var door=(LabFixtureBlock)block("lab_door");var state=door.defaultBlockState();
+        clean(h,root);
+        for(int i=0;i<3;i++)level.setBlock(root.east(i),state,3);
+        for(int i=0;i<3;i++)h.assertTrue(LabFixtureBlock.pairedDoor(level,root.east(i),state).isEmpty(),"A three-door row paired ambiguously");
+        level.removeBlock(root.east(2),false);
+        for(var mismatch:new BlockState[]{state.setValue(LabFixtureBlock.FACING,Direction.SOUTH),state.setValue(LabFixtureBlock.SECURED,true),block("lab_door_eroded").defaultBlockState()}){
+            level.setBlock(root.east(),mismatch,3);h.assertTrue(LabFixtureBlock.pairedDoor(level,root,state).isEmpty(),"Joined mismatched entrance: "+mismatch);
+        }
+        level.setBlock(root.east(),state,3);h.assertTrue(LabFixtureBlock.pairedDoor(level,root,state).isPresent(),"Matching isolated doors do not pair");
+        clean(h,root);System.out.println("LAB_DOUBLE_DOOR_BOUNDARIES_PASS");h.succeed();
+    }
 }

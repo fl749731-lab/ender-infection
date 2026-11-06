@@ -77,18 +77,18 @@
         },
         "up": {
           "uv": [
-            2,
+            23,
             17,
-            16,
+            37,
             20
           ],
           "texture": 0
         },
         "down": {
           "uv": [
-            2,
+            23,
             17,
-            16,
+            37,
             20
           ],
           "texture": 0
@@ -161,19 +161,19 @@
         },
         "up": {
           "uv": [
-            28,
-            17,
-            40,
-            18
+            2,
+            27,
+            14,
+            28
           ],
           "texture": 0
         },
         "down": {
           "uv": [
-            28,
-            17,
-            40,
-            18
+            2,
+            27,
+            14,
+            28
           ],
           "texture": 0
         }
@@ -209,55 +209,55 @@
       "faces": {
         "north": {
           "uv": [
+            41,
+            27,
             44,
-            17,
-            47,
-            18
+            28
           ],
           "texture": 0
         },
         "south": {
           "uv": [
+            41,
+            27,
             44,
-            17,
-            47,
-            18
+            28
           ],
           "texture": 0
         },
         "east": {
           "uv": [
-            51,
-            17,
-            52,
-            18
+            48,
+            27,
+            49,
+            28
           ],
           "texture": 0
         },
         "west": {
           "uv": [
-            51,
-            17,
-            52,
-            18
+            48,
+            27,
+            49,
+            28
           ],
           "texture": 0
         },
         "up": {
           "uv": [
+            41,
+            27,
             44,
-            17,
-            47,
-            18
+            28
           ],
           "texture": 0
         },
         "down": {
           "uv": [
+            41,
+            27,
             44,
-            17,
-            47,
-            18
+            28
           ],
           "texture": 0
         }
@@ -293,55 +293,223 @@
       "faces": {
         "north": {
           "uv": [
-            48,
             2,
-            52,
-            8
+            17,
+            6,
+            23
           ],
           "texture": 0
         },
         "south": {
           "uv": [
-            48,
             2,
-            52,
-            8
+            17,
+            6,
+            23
           ],
           "texture": 0
         },
         "east": {
           "uv": [
-            56,
-            2,
-            59,
-            8
+            10,
+            17,
+            13,
+            23
           ],
           "texture": 0
         },
         "west": {
           "uv": [
-            56,
-            2,
-            59,
-            8
+            10,
+            17,
+            13,
+            23
           ],
           "texture": 0
         },
         "up": {
           "uv": [
-            20,
+            41,
             17,
-            24,
+            45,
             20
           ],
           "texture": 0
         },
         "down": {
           "uv": [
-            20,
+            41,
             17,
-            24,
+            45,
             20
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "desk_base_5",
+      "uuid": "1f866c85-3422-552d-b3f2-19cee5732055",
+      "type": "cube",
+      "from": [
+        -4.5,
+        0.0,
+        0.0
+      ],
+      "to": [
+        4.5,
+        0.8,
+        6.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            18,
+            27,
+            27,
+            28
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            18,
+            27,
+            27,
+            28
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            31,
+            27,
+            37,
+            28
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            31,
+            27,
+            37,
+            28
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            48,
+            2,
+            57,
+            8
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            48,
+            2,
+            57,
+            8
+          ],
+          "texture": 0
+        }
+      }
+    },
+    {
+      "name": "desk_stem_6",
+      "uuid": "0fe0c134-7c42-5e54-a12e-c2dc464bd76a",
+      "type": "cube",
+      "from": [
+        -1.0,
+        0.8,
+        2.0
+      ],
+      "to": [
+        1.0,
+        5.5,
+        4.0
+      ],
+      "origin": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "box_uv": false,
+      "visibility": true,
+      "export": true,
+      "faces": {
+        "north": {
+          "uv": [
+            17,
+            17,
+            19,
+            22
+          ],
+          "texture": 0
+        },
+        "south": {
+          "uv": [
+            17,
+            17,
+            19,
+            22
+          ],
+          "texture": 0
+        },
+        "east": {
+          "uv": [
+            17,
+            17,
+            19,
+            22
+          ],
+          "texture": 0
+        },
+        "west": {
+          "uv": [
+            17,
+            17,
+            19,
+            22
+          ],
+          "texture": 0
+        },
+        "up": {
+          "uv": [
+            49,
+            17,
+            51,
+            19
+          ],
+          "texture": 0
+        },
+        "down": {
+          "uv": [
+            49,
+            17,
+            51,
+            19
           ],
           "texture": 0
         }
@@ -366,7 +534,9 @@
         "ee1952ee-2e40-5e8d-898c-59b6014de9e4",
         "96f81764-1128-5f19-b372-4da508bbd695",
         "277fed79-86d9-569b-94a3-05a4e027a7c8",
-        "660ca6d6-fd12-5322-b4d5-9c7cc4f7aa32"
+        "660ca6d6-fd12-5322-b4d5-9c7cc4f7aa32",
+        "1f866c85-3422-552d-b3f2-19cee5732055",
+        "0fe0c134-7c42-5e54-a12e-c2dc464bd76a"
       ],
       "export": true,
       "isOpen": false,
@@ -378,7 +548,7 @@
       "name": "lab_monitor.png",
       "uuid": "faf22272-3d3b-5e5b-b9f5-dd8673e9e2ea",
       "id": "0",
-      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAB2UlEQVR4nO3XLU/DQBgH8FtT3SWjauBwiJkZDAkGMEgMKNQEGBQGs4RgUBjMFAoMEgMzJBgMIUEsvAQwrGosYV9g5EauefpwXXtXshf2/4n1XnrXPe31rifEhMupxPLqWtf3C8YdnJ7Uwj6k8vxiV6Xvbq8jdYXpmbAujXbz41d7XlbZ3gn7LBaLorq3G1tfOz6K1EmOCl5Y2tisdHXB87xp8LyNStMyGpxSPTiMrded79LM0+Nz7zjl+9o/9Nlqif/G5QWdzlfsDaDneF7e+qJL6yuRfGlutnd8aLz2jvWzSzG0G+B5+ciTpjdDpeUxy2jgAZb2t7TlpoIgMG7jiAnnDuOi/BXg5UN9Bbik18EGD7Bu2Y9c1vjMTpc6Xq9bBl0x5nRBmdQ7uhk+yfvbz2xtgn/AmLZRaZt++nFpRg7rfjO8Ko9bApNei6x//q+DD2+AzRNNM1LGgSN/Xhr31neWtr26OI/0w/MAoyen27mZbIb4ljdpe5p1S7xA+r9hS5ys42Wp5oAy28aaoG2TtqdZt8Q0eJ5XaX7OSO0F2hm/BfjTpXmVNh0BrhiwrGt5vwBNgw9HAH+PTdC2us9OPgcAAAAAAAAAAAAAAAAAAAAAAAAAAACAGIRvLsTXS+UnXv8AAAAASUVORK5CYII=",
+      "source": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACNElEQVR4nO2ZK08DQRDHt5fTJSlVBUcwFU0IBkOCAQwSAwpVAQaFwTQhGBQGU4UCg8RADQkGQ0gQDY8ABqraJvQLlFzJXqbD3d4+Chz0/0uam5193MzezO5tT4ghJyOFhaXlbj6fMx7g6LAajhEwPTPXlfL11UVfXW5sPKzTof32+qU/1+nYzW2keHIQYcnqWrkb5TwvmzrP+0iZ6nTtpjZyfFq4v3voXUfz+cjGrWZTpJEku1X4XNHpvCcOFLTJZkeELfMri33lUnGid72tP/WuteMz8VP4XBE4Rp80nQwpB1eXaOAOlnbWI/WmxNmtwhNDjv8bN+UpwPW6kfDy/JkycWk6kAloJaSDDdzBmuU4j/WbzGRxqqvTLlURMEhUzlmtAR2N0FGFXhz8Bca0j5RtxlHh00IQ1qoVXurjtsCktHA1ftDOhxNg80R1F5m047nmEe17fnrSNw4vA5A+MlIob2yG+2mhUBCV7a2+8KX11YP9yDqup6dBkwMWP0br2sbvr70GlMkNJJXdvVDH62k5TuZHYxNoXxPbotom4YkhxxN/HBr21inAaTQavZ8LPI9t+0Y5xdeAoI2N899+FnCZBIqtcz+SAlXHEEzlNqja6qLqAPi7ZAb10ULnrY8fjuL68HazJP0uWfoFdVxnvAjmHD9a6L710Q8Zqj60HXWel6XM2xhPQNvx3xrd7Y4+WVUf2o4/XVqWsksEAAAAAAAAAAAAAAAAAAAAAAAAAAAAIP43H1H8IF1M7vUbAAAAAElFTkSuQmCC",
       "mode": "bitmap",
       "width": 64,
       "height": 64,

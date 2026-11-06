@@ -1,0 +1,257 @@
+{
+  "status": "PASS",
+  "loader": "forge",
+  "screenshots": 15,
+  "native_required_passed": 36,
+  "attack_selection": "fixture invokes unchanged private startAttack; real server timing/damage; ordinary AI additionally covered by native AI suite",
+  "motion_states": {
+    "idle_front": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "idle_back": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "walk_a": {
+      "moved": 0.46412170817428183,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "walk_b": {
+      "moved": 1.095614951975776,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "attack_claw_sweep_windup": {
+      "moved": 0.0,
+      "attacking": true,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": 100.0
+    },
+    "attack_claw_sweep_impact": {
+      "moved": 0.0,
+      "attacking": true,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": 90.0
+    },
+    "attack_heavy_slam_windup": {
+      "moved": 0.0,
+      "attacking": true,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": 100.0
+    },
+    "attack_heavy_slam_impact": {
+      "moved": 0.0,
+      "attacking": true,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": 84.0
+    },
+    "attack_crystal_burst_windup": {
+      "moved": 0.0,
+      "attacking": true,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": 100.0
+    },
+    "attack_crystal_burst_impact": {
+      "moved": 0.0,
+      "attacking": true,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": 88.0
+    },
+    "infection": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": true,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "death_start": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 4,
+      "target_health": -1.0
+    },
+    "death_end": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 16,
+      "target_health": -1.0
+    }
+  },
+  "frames": [
+    {
+      "mode": "motion",
+      "name": "mutant_zombie_attack_claw_sweep_impact",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "f6f386695f630aa657e134f4f3a4f92d7b8b11bf488c3918e0add77b95b44e38",
+      "purple_pixels": 57200
+    },
+    {
+      "mode": "motion",
+      "name": "mutant_zombie_attack_claw_sweep_windup",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "e607cf0e530182c256cc8aff1d71d30bd377414a9cb2540b375b6e62424061d3",
+      "purple_pixels": 16276
+    },
+    {
+      "mode": "motion",
+      "name": "mutant_zombie_attack_crystal_burst_impact",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "9d403fc5ffba8583ecb5b0e808fa46fe3ccb7e2395d3e2284c7c93e105977608",
+      "purple_pixels": 59477
+    },
+    {
+      "mode": "motion",
+      "name": "mutant_zombie_attack_crystal_burst_windup",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "1e2589480c9b60656807c5068d0dec60f2320c7251036271dab4a985f70e4e00",
+      "purple_pixels": 41700
+    },
+    {
+      "mode": "motion",
+      "name": "mutant_zombie_attack_heavy_slam_impact",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "6aa20784a7c621bddf806dfe10acfbfbc777203b8b05e267e0cabbd4867cfab3",
+      "purple_pixels": 45114
+    },
+    {
+      "mode": "motion",
+      "name": "mutant_zombie_attack_heavy_slam_windup",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "5c28d124fb1df593c40bf9d0309e50bdf351e799dde8619edb802f51724ecd86",
+      "purple_pixels": 34229
+    },
+    {
+      "mode": "motion",
+      "name": "mutant_zombie_death_end",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "1c231d6471cab609f53180c98c7ff2affdde9138fb3d7185a5dfe6a36d4d8122",
+      "purple_pixels": 15605
+    },
+    {
+      "mode": "motion",
+      "name": "mutant_zombie_death_start",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "471caeedc727bfac41897ed9b85172999f698b49a373dba01ecf7a39db7b278d",
+      "purple_pixels": 17303
+    },
+    {
+      "mode": "motion",
+      "name": "mutant_zombie_idle_back",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "6fcded7359c395de7cbae8053aead7298bdb93ca750ee4485a873628b1f7af1d",
+      "purple_pixels": 19100
+    },
+    {
+      "mode": "motion",
+      "name": "mutant_zombie_idle_front",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "1238620eb5fbd483b42fe7ac7abc6865ef6da44045d2432b56509e4ea6f9791f",
+      "purple_pixels": 14657
+    },
+    {
+      "mode": "motion",
+      "name": "mutant_zombie_infection",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "2690f87a9dd6f2daff15062a49c22b92219adb77158dea4133aea8ad090f1b91",
+      "purple_pixels": 19144
+    },
+    {
+      "mode": "motion",
+      "name": "mutant_zombie_walk_a",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "dc0982eebb8675181676e2f41458f9438a3513a43ab34e2d54ebf994e7f07ed5",
+      "purple_pixels": 19729
+    },
+    {
+      "mode": "motion",
+      "name": "mutant_zombie_walk_b",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "0219c342e3118c126e8b7b29532e6340a06e7b5314694c53e515ef72632aff84",
+      "purple_pixels": 20997
+    },
+    {
+      "mode": "glow",
+      "name": "mutant_zombie_back",
+      "size": [
+        854,
+        480
+      ],
+      "sha256": "1a4ef33bd1453076ca650aee4a23e51fc1a7b48a34ec1758398f83ceb58e469b",
+      "purple_pixels": 653
+    },
+    {
+      "mode": "glow",
+      "name": "mutant_zombie_front",
+      "size": [
+        854,
+        480
+      ],
+      "sha256": "a645c9431ee162663a0f5f469b7361aa1a1e8235b2fe4acbd953823ecbe6b7a1",
+      "purple_pixels": 1076
+    }
+  ],
+  "logs_sha256": {
+    "ai": "cf26673ff3225cded324bf4ae1792a0cbcff7cc67ec6b2ae74f43836fdf36bc7",
+    "motion": "8d900a24666b984bae838b61c141ddbe7e6918e4bea7f92f85cd2334d43e78a5",
+    "glow": "e39e7e281eea8c0d73523b80b4fdfc57f54aa458e42dfee2c40a54dd67a56733"
+  }
+}

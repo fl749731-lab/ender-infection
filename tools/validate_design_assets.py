@@ -8,6 +8,7 @@ from export_legacy_creature_glow import LEGACY_CREATURE_SOURCES,legacy_crystal_p
 from validate_rift_runtime import validate as validate_rift
 from export_public_model_adaptations import SPECS as ADAPTATIONS, validate as validate_adaptations
 from export_creature_reworks import SPECS as REWORKS, validate as validate_reworks
+from export_mutant_rework import RUNTIME as MUTANT_REWORK, validate as validate_mutant
 sys.path.insert(0,str(PACK/'source'))
 from modelkit import PALETTES,rgb
 from concept_materials import CONCEPT_PALETTES
@@ -75,8 +76,10 @@ except (AssertionError,ValueError,OSError,KeyError) as error:errors.append('Publ
 reworks=[]
 try:reworks=validate_reworks()
 except (AssertionError,ValueError,OSError,KeyError) as error:errors.append('Creature reworks: '+str(error))
+try:reworks+=validate_mutant()
+except (AssertionError,ValueError,OSError,KeyError) as error:errors.append('Public mutant rework: '+str(error))
 adaptations+=reworks
-adapted_runtime={spec['runtime'] for spec in ADAPTATIONS.values()}|set(REWORKS)
+adapted_runtime={spec['runtime'] for spec in ADAPTATIONS.values()}|set(REWORKS)|{MUTANT_REWORK}
 for row in report['assets']:
  if row['kind'] not in ('entity','mother'):continue
  if row['runtime'] in adapted_runtime:

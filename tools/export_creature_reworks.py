@@ -42,12 +42,12 @@ def scale_position(value,scale):
   return {k:scale_position(v,scale) if k in ['pre','post','vector'] or k.replace('.','',1).isdigit() else v for k,v in value.items()}
  raise ValueError('Unsupported position channel')
 
-def build(runtime):
- spec=SPECS[runtime];paths=[PACK/'models'/(runtime+'.bbmodel'),PACK/'mcp_exports'/(runtime+'.geo.json'),PACK/'mcp_exports'/(runtime+'.animation.json')]
- lock=read(PACK/'export-lock.json')['models'][runtime]
+def build(runtime,*,pack=None,spec=None):
+ pack=pack or PACK;spec=spec or SPECS[runtime];paths=[pack/'models'/(runtime+'.bbmodel'),pack/'mcp_exports'/(runtime+'.geo.json'),pack/'mcp_exports'/(runtime+'.animation.json')]
+ lock=read(pack/'export-lock.json')['models'][runtime]
  for path in paths:
-  if sha(path)!=lock[path.relative_to(PACK).as_posix()]:raise ValueError('Stale MCP export: '+path.name)
- verification=read(PACK/'mcp-verification.json')['models'][runtime]
+  if sha(path)!=lock[path.relative_to(pack).as_posix()]:raise ValueError('Stale MCP export: '+path.name)
+ verification=read(pack/'mcp-verification.json')['models'][runtime]
  if verification['info']['revision']!=sha(paths[0])[:16] or verification['motion']['revision']!=sha(paths[0])[:16]:raise ValueError('Stale MCP verification')
  if verification['motion']['summary']['errors'] or verification['motion']['summary']['warnings']:raise ValueError('Unresolved animation gates')
  model=read(paths[0]);images=[Image.open(io.BytesIO(base64.b64decode(t['source'].split(',',1)[1]))).convert('RGBA') for t in model['textures']]
@@ -89,7 +89,7 @@ def build(runtime):
   out['animation.'+runtime+'.'+short]=clip
  animations['animations']=out
  files={f'geo/{runtime}.geo.json':encoded(geometry),f'animations/{runtime}.animation.json':encoded(animations),f'textures/entity/{runtime}.png':png(atlas),f'textures/entity/{runtime}_glowmask.png':png(glow)}
- info=read(PACK/'mcp-verification.json')['models'][runtime]['info'];bounds=info['bounds'];low,high=bounds['min'],bounds['max'];s=spec['scale']/16
+ info=read(pack/'mcp-verification.json')['models'][runtime]['info'];bounds=info['bounds'];low,high=bounds['min'],bounds['max'];s=spec['scale']/16
  visual_bounds={'width':(high[0]-low[0])*s,'height':(high[1]-low[1])*s+.2,'depth':(high[2]-low[2])*s,'center_x':-(low[0]+high[0])/2*s,'center_z':(low[2]+high[2])/2*s}
  row={'source':'mcp_rework_'+runtime,'editable_source':paths[0].relative_to(ROOT).as_posix(),'runtime':runtime,'kind':'entity','pipeline':'tools/export_creature_reworks.py','scale':spec['scale'],'cubes':sum(len(b.get('cubes',[])) for b in geo['bones']),'bones':len(geo['bones']),'atlas':spec['atlas'],'emissive_pixels':sum(glow.getchannel('A').histogram()[1:]),'crystal_faces':used_crystal_faces,'visual_bounds':visual_bounds}
  return files,row

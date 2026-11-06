@@ -234,6 +234,7 @@ def export(units=None):
   print('Exported',len(REPORT),'selected units; preserved other runtime asset mappings')
   return
  for source,key,height in [('crystal_hunter','ender_mutant_zombie',2.2),('rib_crystal_caster','infected_skeleton',2.3),('ravager_siege_concept','infected_siege_beast',3.2)]:
+  if key=='ender_mutant_zombie':continue  # Sealed public adaptation is exported below.
   d=load(source);lo,hi=bounds(d);s=height*16/(hi[1]-lo[1]);geo(key,d,s,(0,-lo[1],0));texture(d,ASSETS/'textures/entity'/f'{key}.png',True,full_crystals=True);animations(key,d,s,key=='ender_mutant_zombie',20 if 'siege' in key else 16,64 if 'siege' in key else 32);REPORT.append({'source':source,'runtime':key,'kind':'entity'})
  for stage,height in [(1,1.4),(2,2.4),(3,3.1),(4,4),(5,4.8)]:
   source='calamity_brood_mother' if stage==5 else 'brood_mother';d=load(source);lo,hi=bounds(d);s=height*16/(hi[1]-lo[1]);key='infected_core' if stage==2 else f'infected_core_stage{stage}'
@@ -283,6 +284,8 @@ def export(units=None):
  export_legacy_glow()
  from export_creature_reworks import export as export_reworks
  REPORT.extend(export_reworks(update_manifest=False))
+ from export_mutant_rework import export as export_mutant
+ REPORT.extend(export_mutant(update_manifest=False))
  # Rift replacements have their own canonical MCP-authored BB5 sources.
  from export_rift_assets import export as export_rift
  export_rift()

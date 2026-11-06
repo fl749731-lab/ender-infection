@@ -1,0 +1,328 @@
+{
+  "models": {
+    "ender_mutant_zombie": {
+      "info": {
+        "path": "E:\\mc\\build\\asset-overhaul\\worktree\\colored_units\\mutant_zombie_public_v1\\models\\ender_mutant_zombie.bbmodel",
+        "revision": "4eacd182216f9175",
+        "name": "Ender Infection | crystal-scarred mutant zombie",
+        "model_identifier": "ender_mutant_zombie",
+        "format": "free",
+        "format_version": "5.0",
+        "box_uv": false,
+        "resolution": {
+          "width": 64,
+          "height": 64
+        },
+        "counts": {
+          "groups": 18,
+          "cubes": 41,
+          "meshes": 0,
+          "other_elements": 0,
+          "textures": 2,
+          "animations": 7
+        },
+        "bounds": {
+          "min": [
+            -8.71,
+            0,
+            -7.546
+          ],
+          "max": [
+            10.031,
+            33.982,
+            2.906
+          ],
+          "size": [
+            18.741,
+            33.982,
+            10.452
+          ]
+        },
+        "ai_used": true,
+        "notes": []
+      },
+      "geometry": {
+        "revision": "4eacd182216f9175",
+        "format": "free",
+        "summary": {
+          "errors": 0,
+          "warnings": 22,
+          "passed": true
+        },
+        "gates": [
+          {
+            "id": "outliner",
+            "label": "Outliner references resolve and UUIDs are unique",
+            "severity": "error",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "unlisted_nodes",
+            "label": "Every group and element is placed in the outliner",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "degenerate",
+            "label": "No sliver or inverted cubes",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "block_limits",
+            "label": "Geometry stays inside the block-model limits",
+            "severity": "error",
+            "ran": false,
+            "skipped_reason": "Pass block_limits: java_block or bedrock_block to enable.",
+            "violations": []
+          },
+          {
+            "id": "floating",
+            "label": "Every part touches the main body",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "interpenetration",
+            "label": "Parts of different groups do not pass through each other",
+            "severity": "warning",
+            "ran": true,
+            "violations": [
+              {
+                "message": "Body_source_1 and Head_source_2 (different groups) interpenetrate by 0.9 units.",
+                "targets": [
+                  "Body_source_1",
+                  "Head_source_2"
+                ]
+              },
+              {
+                "message": "Body_source_1 and crystal_back_base (different groups) interpenetrate by 1.3 units.",
+                "targets": [
+                  "Body_source_1",
+                  "crystal_back_base"
+                ]
+              },
+              {
+                "message": "Head_source_2 and crystal_temple_base (different groups) interpenetrate by 0.85 units.",
+                "targets": [
+                  "Head_source_2",
+                  "crystal_temple_base"
+                ]
+              },
+              {
+                "message": "head_lesion_7 and crystal_temple_base (different groups) interpenetrate by 1.44 units.",
+                "targets": [
+                  "head_lesion_7",
+                  "crystal_temple_base"
+                ]
+              },
+              {
+                "message": "cube_source_11 and crystal_shoulder_base (different groups) interpenetrate by 0.55 units.",
+                "targets": [
+                  "cube_source_11",
+                  "crystal_shoulder_base"
+                ]
+              },
+              {
+                "message": "cube_source_13 and skin_forearm_right (different groups) interpenetrate by 1.37 units.",
+                "targets": [
+                  "cube_source_13",
+                  "skin_forearm_right"
+                ]
+              },
+              {
+                "message": "cube_source_14 and skin_forearm_right (different groups) interpenetrate by 1.84 units.",
+                "targets": [
+                  "cube_source_14",
+                  "skin_forearm_right"
+                ]
+              },
+              {
+                "message": "skin_upper_arm_right and skin_forearm_right (different groups) interpenetrate by 1.32 units.",
+                "targets": [
+                  "skin_upper_arm_right",
+                  "skin_forearm_right"
+                ]
+              },
+              {
+                "message": "skin_upper_arm_right and crystal_shoulder_base (different groups) interpenetrate by 1.12 units.",
+                "targets": [
+                  "skin_upper_arm_right",
+                  "crystal_shoulder_base"
+                ]
+              },
+              {
+                "message": "skin_forearm_right and crystal_right_forearm_claw_82 (different groups) interpenetrate by 0.94 units.",
+                "targets": [
+                  "skin_forearm_right",
+                  "crystal_right_forearm_claw_82"
+                ]
+              },
+              {
+                "message": "skin_forearm_right and crystal_right_forearm_claw_84 (different groups) interpenetrate by 0.94 units.",
+                "targets": [
+                  "skin_forearm_right",
+                  "crystal_right_forearm_claw_84"
+                ]
+              },
+              {
+                "message": "skin_forearm_right and crystal_right_forearm_claw_86 (different groups) interpenetrate by 0.94 units.",
+                "targets": [
+                  "skin_forearm_right",
+                  "crystal_right_forearm_claw_86"
+                ]
+              },
+              {
+                "message": "skin_upper_arm_left and skin_forearm_left (different groups) interpenetrate by 1.32 units.",
+                "targets": [
+                  "skin_upper_arm_left",
+                  "skin_forearm_left"
+                ]
+              },
+              {
+                "message": "skin_forearm_left and crystal_left_forearm_claw_59 (different groups) interpenetrate by 0.78 units.",
+                "targets": [
+                  "skin_forearm_left",
+                  "crystal_left_forearm_claw_59"
+                ]
+              },
+              {
+                "message": "skin_forearm_left and crystal_left_forearm_claw_61 (different groups) interpenetrate by 0.78 units.",
+                "targets": [
+                  "skin_forearm_left",
+                  "crystal_left_forearm_claw_61"
+                ]
+              },
+              {
+                "message": "skin_forearm_left and crystal_left_forearm_claw_63 (different groups) interpenetrate by 0.78 units.",
+                "targets": [
+                  "skin_forearm_left",
+                  "crystal_left_forearm_claw_63"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "mirror",
+            "label": "Left/right parts mirror each other",
+            "severity": "warning",
+            "ran": true,
+            "violations": [
+              {
+                "message": "rig_root/body/arm_left/forearm_left/claw_left/crystal_left_forearm_claw_59 has no mirror counterpart rig_root/body/arm_right/forearm_right/claw_right/crystal_right_forearm_claw_59.",
+                "targets": [
+                  "crystal_left_forearm_claw_59"
+                ]
+              },
+              {
+                "message": "rig_root/body/arm_left/forearm_left/claw_left/crystal_left_forearm_claw_tip_60 has no mirror counterpart rig_root/body/arm_right/forearm_right/claw_right/crystal_right_forearm_claw_tip_60.",
+                "targets": [
+                  "crystal_left_forearm_claw_tip_60"
+                ]
+              },
+              {
+                "message": "rig_root/body/arm_left/forearm_left/claw_left/crystal_left_forearm_claw_61 has no mirror counterpart rig_root/body/arm_right/forearm_right/claw_right/crystal_right_forearm_claw_61.",
+                "targets": [
+                  "crystal_left_forearm_claw_61"
+                ]
+              },
+              {
+                "message": "rig_root/body/arm_left/forearm_left/claw_left/crystal_left_forearm_claw_tip_62 has no mirror counterpart rig_root/body/arm_right/forearm_right/claw_right/crystal_right_forearm_claw_tip_62.",
+                "targets": [
+                  "crystal_left_forearm_claw_tip_62"
+                ]
+              },
+              {
+                "message": "rig_root/body/arm_left/forearm_left/claw_left/crystal_left_forearm_claw_63 has no mirror counterpart rig_root/body/arm_right/forearm_right/claw_right/crystal_right_forearm_claw_63.",
+                "targets": [
+                  "crystal_left_forearm_claw_63"
+                ]
+              },
+              {
+                "message": "rig_root/body/arm_left/forearm_left/claw_left/crystal_left_forearm_claw_tip_64 has no mirror counterpart rig_root/body/arm_right/forearm_right/claw_right/crystal_right_forearm_claw_tip_64.",
+                "targets": [
+                  "crystal_left_forearm_claw_tip_64"
+                ]
+              }
+            ]
+          }
+        ],
+        "geckolib": {
+          "diagnostics": [
+            {
+              "severity": "warning",
+              "check_id": "geckolib_modid",
+              "message": "The project has no geckolib_modid; the GeckoLib plugin's export dialog uses it for paths, but the exported files load without it."
+            },
+            {
+              "severity": "warning",
+              "check_id": "geckolib_texture_size_mismatch",
+              "message": "Texture \"project_crystal_details\" is 128x128 but the project UV base is 64x64; UVs will not line up in game.",
+              "target": "project_crystal_details"
+            }
+          ],
+          "summary": {
+            "valid": true,
+            "errors": 0,
+            "warnings": 2
+          }
+        },
+        "notes": []
+      },
+      "motion": {
+        "revision": "4eacd182216f9175",
+        "checked": [
+          "idle",
+          "drag_walk",
+          "claw_sweep",
+          "heavy_slam",
+          "crystal_burst",
+          "infection",
+          "death"
+        ],
+        "summary": {
+          "errors": 0,
+          "warnings": 0,
+          "passed": true
+        },
+        "gates": [
+          {
+            "id": "animated_bones_exist",
+            "label": "Animators target groups that exist",
+            "severity": "error",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "keyframe_timing",
+            "label": "Keyframes lie inside the clip and do not collide",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "ground_sink",
+            "label": "No part sinks below the ground during a clip",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "detachment",
+            "label": "Attached groups stay attached to their parent during a clip",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          }
+        ],
+        "skipped_channels": [],
+        "approximated_bezier": [],
+        "capped_clips": []
+      }
+    }
+  }
+}

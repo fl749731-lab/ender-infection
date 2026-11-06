@@ -1,0 +1,350 @@
+{
+  "status": "PASS",
+  "release_gate": false,
+  "subjects": [
+    "mutant_zombie"
+  ],
+  "screenshots": 30,
+  "native_required_passed": 72,
+  "source_hashes": {
+    "colored_units/mutant_zombie_public_v1/export-lock.json": {
+      "sha256": "20a88722e46ba5933b0dc20946805a979881cab102da84d817bd8f172be05804",
+      "scheme": "git-lf"
+    },
+    "colored_units/mutant_zombie_public_v1/mcp-verification.json": {
+      "sha256": "aa5adec43394d3168d938d901a0ef25c6c3df8413c539c9b9578977ebd4f0184",
+      "scheme": "git-lf"
+    },
+    "colored_units/mutant_zombie_public_v1/mcp_exports/ender_mutant_zombie.animation.json": {
+      "sha256": "025b96ce82e745e246563ee8381ac25aa4b47099f5cb363f3ec144504f886c84",
+      "scheme": "git-lf"
+    },
+    "colored_units/mutant_zombie_public_v1/mcp_exports/ender_mutant_zombie.geo.json": {
+      "sha256": "1e8b87bf2ee8fa8e6844a22aa5a5f2d1167d65ba92715672bb3e7b20f82c0e6e",
+      "scheme": "git-lf"
+    },
+    "colored_units/mutant_zombie_public_v1/models/ender_mutant_zombie.bbmodel": {
+      "sha256": "4eacd182216f9175c20654ad7209bdc131bd6a5ddc7b35f0a1d12b02bc629308",
+      "scheme": "git-lf"
+    },
+    "colored_units/mutant_zombie_public_v1/provenance.json": {
+      "sha256": "617f1555aacd3a95e804175a301a8851a24fbe3ca9296be6df2f398180ca1b48",
+      "scheme": "git-lf"
+    },
+    "colored_units/mutant_zombie_public_v1/README.md": {
+      "sha256": "53edbb91c17ae693957f0a506cde38aa5513a4a7ac14596fcfb97018f2a82e8a",
+      "scheme": "git-lf"
+    },
+    "colored_units/mutant_zombie_public_v1/source/crystal-hunter-before.bbmodel": {
+      "sha256": "86266a06c4eb9c80dcb2c6ddcbe717baa946a2827ab107a3935da61eceebe425",
+      "scheme": "git-lf"
+    },
+    "colored_units/mutant_zombie_public_v1/source/purple-zomie.viewer.json": {
+      "sha256": "b109dc8470edd521e8d7661c30932a9786baf29eaad37e9ce52f934f7603474b",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/build.gradle": {
+      "sha256": "c1593ba457f33267ef1be8c7f404f4dbea41cd1d566a70db54e7dc150837780e",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/java/dev/hui/enderinfection/client/MutantMotionCheck.java": {
+      "sha256": "516d95cce272f1fca4c5e4490ef0f363cded12a5bfb946c5e1ce1e56eb695fdd",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/java/dev/hui/enderinfection/client/MutantZombieRenderer.java": {
+      "sha256": "a85c62e3907f6e6ca8f133699100a7df7ec647165f0245b2242752a0b9a1a3da",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/java/dev/hui/enderinfection/combat/AttackSpec.java": {
+      "sha256": "3009fa8eb75edd805c1c6616d157d34dd55f41215e1d39b8468f6ae0e42be3f8",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/java/dev/hui/enderinfection/entity/MutantZombie.java": {
+      "sha256": "633d86f658bd11d430de1f12ea19a4c1984855c1f6bc5a2d1ed5ab208d552272",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/animations/ender_mutant_zombie.animation.json": {
+      "sha256": "4e583366467941d88330f8546999da80d4d33dc014c0c4d2a7b2dfcfb259f3c0",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/concept_visual_bounds.json": {
+      "sha256": "d3c25bbb288ff49824295b4d9dec440b933c8347b7ddc023f3fe123b7383d1e2",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/geo/ender_mutant_zombie.geo.json": {
+      "sha256": "dea7e3352d8b25c9b80792873d395861aa849438eda11506e987e96d5c26b83d",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/ender_mutant_zombie.png": {
+      "sha256": "aa480d1f45bb0c5b3090f4f382429f3dad3cb6e62888e6bd7e106fa36cb5a077",
+      "scheme": "raw"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/ender_mutant_zombie_glowmask.png": {
+      "sha256": "17ad7ea47dc496b2c26eda30351821a4f0a90980e1dff0d56c517ccc56d4cea9",
+      "scheme": "raw"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/third_party/model_credits.json": {
+      "sha256": "a907184d71873e2e89fef1808b6a2f6f2c234d4b4bef39a1a02ada14f93d6983",
+      "scheme": "git-lf"
+    },
+    "ender_infection_neoforge/build.gradle": {
+      "sha256": "649595f7386694afc46b925a7fc3d5297486e65a3aa0e8d806b539e8e67071de",
+      "scheme": "git-lf"
+    },
+    "ender_infection_neoforge/src/main/java/dev/hui/enderinfection/client/MutantMotionCheck.java": {
+      "sha256": "246a92fbaafb06fe85cdc7e9bfb85078517033422d25bc5e521aa009d906d53c",
+      "scheme": "git-lf"
+    },
+    "ender_infection_neoforge/src/main/java/dev/hui/enderinfection/client/MutantZombieRenderer.java": {
+      "sha256": "a85c62e3907f6e6ca8f133699100a7df7ec647165f0245b2242752a0b9a1a3da",
+      "scheme": "git-lf"
+    },
+    "ender_infection_neoforge/src/main/java/dev/hui/enderinfection/combat/AttackSpec.java": {
+      "sha256": "3009fa8eb75edd805c1c6616d157d34dd55f41215e1d39b8468f6ae0e42be3f8",
+      "scheme": "git-lf"
+    },
+    "ender_infection_neoforge/src/main/java/dev/hui/enderinfection/entity/MutantZombie.java": {
+      "sha256": "4208638a718292056e61bceb650803cd45c790aca478a093250c3a0a6582fb8d",
+      "scheme": "git-lf"
+    },
+    "tools/export_creature_reworks.py": {
+      "sha256": "77c004637d1601a6153997cac40f8808891738eb5df9da601c28b91a08a8aa0f",
+      "scheme": "git-lf"
+    },
+    "tools/export_design_assets.py": {
+      "sha256": "5e9b33b4a8506f09916c4324e852346167a904fb4d4eb369726431381c3c94ab",
+      "scheme": "git-lf"
+    },
+    "tools/export_mutant_rework.py": {
+      "sha256": "f6c8b1dc71316edecf5cfef7a87270709ee7bf4ab7a94e4bdb079db94015e2b2",
+      "scheme": "git-lf"
+    },
+    "tools/validate_design_assets.py": {
+      "sha256": "e9c721a5ef96da1c95047bb9e98f31873e24744b11daff3762f72dc8a16df371",
+      "scheme": "git-lf"
+    },
+    "tools/verify_mutant_runtime.py": {
+      "sha256": "3965c15d304ceb1bcb5de1322c68befd98f7d7aff8b89e315f7ebfc84ceb823e",
+      "scheme": "git-lf"
+    }
+  },
+  "build_sha256": "d8013b46efd9cb8879fa25431b11d3d18824c74ad989301bb1eb086f1997d419",
+  "build_logs_sha256": {
+    "ender_infection_colored-build.log": "f3ab2421306a61bd59b8443b823c3be0bba9cfaaab7e1323d59f7cd6b12e3e7b",
+    "ender_infection_neoforge-build.log": "e21d6741f56fc0c6654e707440568c5cb3d9143c242dd0ab1413d570fa444647",
+    "forge-addon-build.log": "992ad74c7f00ceb60c31343aaa0e37707082bf5def76320b69acecc4f09a4f95",
+    "neoforge-addon-build.log": "38055fdafd2a67894c9a40d4c2f43948bd01d8759b66ecaa68a33fb16d7163dc"
+  },
+  "loaders": [
+    {
+      "status": "PASS",
+      "loader": "forge",
+      "screenshots": 15,
+      "native_required_passed": 36,
+      "attack_selection": "fixture invokes unchanged private startAttack; real server timing/damage; ordinary AI additionally covered by native AI suite",
+      "motion_states": {
+        "idle_front": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "idle_back": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "walk_a": {
+          "moved": 0.46412170817428183,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "walk_b": {
+          "moved": 1.095614951975776,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "attack_claw_sweep_windup": {
+          "moved": 0.0,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 100.0
+        },
+        "attack_claw_sweep_impact": {
+          "moved": 0.0,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 90.0
+        },
+        "attack_heavy_slam_windup": {
+          "moved": 0.0,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 100.0
+        },
+        "attack_heavy_slam_impact": {
+          "moved": 0.0,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 84.0
+        },
+        "attack_crystal_burst_windup": {
+          "moved": 0.0,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 100.0
+        },
+        "attack_crystal_burst_impact": {
+          "moved": 0.0,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 88.0
+        },
+        "infection": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": true,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "death_start": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 4,
+          "target_health": -1.0
+        },
+        "death_end": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 16,
+          "target_health": -1.0
+        }
+      },
+      "logs_sha256": {
+        "ai": "cf26673ff3225cded324bf4ae1792a0cbcff7cc67ec6b2ae74f43836fdf36bc7",
+        "motion": "8d900a24666b984bae838b61c141ddbe7e6918e4bea7f92f85cd2334d43e78a5",
+        "glow": "e39e7e281eea8c0d73523b80b4fdfc57f54aa458e42dfee2c40a54dd67a56733"
+      }
+    },
+    {
+      "status": "PASS",
+      "loader": "neo",
+      "screenshots": 15,
+      "native_required_passed": 36,
+      "attack_selection": "fixture invokes unchanged private startAttack; real server timing/damage; ordinary AI additionally covered by native AI suite",
+      "motion_states": {
+        "idle_front": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "idle_back": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "walk_a": {
+          "moved": 0.7734383442508311,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "walk_b": {
+          "moved": 1.0947512070058516,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "attack_claw_sweep_windup": {
+          "moved": 0.0,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 100.0
+        },
+        "attack_claw_sweep_impact": {
+          "moved": 0.0,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 90.0
+        },
+        "attack_heavy_slam_windup": {
+          "moved": 0.0,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 100.0
+        },
+        "attack_heavy_slam_impact": {
+          "moved": 0.0,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 84.0
+        },
+        "attack_crystal_burst_windup": {
+          "moved": 0.0,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 100.0
+        },
+        "attack_crystal_burst_impact": {
+          "moved": 0.0,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 88.0
+        },
+        "infection": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": true,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "death_start": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 4,
+          "target_health": -1.0
+        },
+        "death_end": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 16,
+          "target_health": -1.0
+        }
+      },
+      "logs_sha256": {
+        "ai": "9756a119448494c662a6a42bf971389245ff0e4074b95da82af9c33d47487e71",
+        "motion": "db0fb8315598544060ce486c6fe4930910442bddbfbb35234e79d4019dc7757b",
+        "glow": "6dd8cd11e22afe51cc6c57df7b1d900b410ede751c0f88d9bc12b27c6de8e2d3"
+      }
+    }
+  ]
+}

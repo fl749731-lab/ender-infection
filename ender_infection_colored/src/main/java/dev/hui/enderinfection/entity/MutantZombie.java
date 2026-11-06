@@ -179,6 +179,11 @@ public final class MutantZombie extends Monster implements GeoEntity {
         return FactionAI.enemy(this,victim);
     }
 
+    @Override public void die(DamageSource source) {
+        triggerAnim("action", "death");
+        super.die(source);
+    }
+
     @Override protected SoundEvent getAmbientSound() { return SoundEvents.ZOMBIE_AMBIENT; }
     @Override protected SoundEvent getHurtSound(DamageSource source) { return SoundEvents.ZOMBIE_HURT; }
     @Override protected SoundEvent getDeathSound() { return SoundEvents.ZOMBIE_DEATH; }
@@ -187,7 +192,7 @@ public final class MutantZombie extends Monster implements GeoEntity {
 
     @Override public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "locomotion", 4, state -> {
-            if (isAttacking()||emerging()) return PlayState.STOP;
+            if (!isAlive()||isAttacking()||emerging()) return PlayState.STOP;
             return state.setAndContinue(state.isMoving()
                 ? RawAnimation.begin().thenLoop(PREFIX + "drag_walk")
                 : RawAnimation.begin().thenLoop(PREFIX + "idle"));
@@ -196,7 +201,8 @@ public final class MutantZombie extends Monster implements GeoEntity {
             .triggerableAnim("claw_sweep", RawAnimation.begin().thenPlay(PREFIX + "claw_sweep"))
             .triggerableAnim("heavy_slam", RawAnimation.begin().thenPlay(PREFIX + "heavy_slam"))
             .triggerableAnim("crystal_burst", RawAnimation.begin().thenPlay(PREFIX + "crystal_burst"))
-            .triggerableAnim("infection",RawAnimation.begin().thenPlay(PREFIX+"infection")));
+            .triggerableAnim("infection",RawAnimation.begin().thenPlay(PREFIX+"infection"))
+            .triggerableAnim("death",RawAnimation.begin().thenPlay(PREFIX+"death")));
     }
 
     private final class MutantCombatGoal extends Goal {

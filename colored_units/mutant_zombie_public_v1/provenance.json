@@ -1,0 +1,39 @@
+{
+  "author": "@elma_taburlas",
+  "original": "Purple zomie",
+  "page": "https://blockbenchworkshop.com/model/elma_taburlas/purple-zomie",
+  "license": "CC-BY-4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "source_ai_disclosure": "Human-created",
+  "adaptation_ai_assisted": true,
+  "source_file": "source/purple-zomie.viewer.json",
+  "source_json_sha256": "b109dc8470edd521e8d7661c30932a9786baf29eaad37e9ce52f934f7603474b",
+  "public_viewer_url": "https://blockbenchworkshop.com/cdn/previews/GGsCmdoG52ubN9KaRem2KzMXZkzYMUvm/6feae2a1-b8be-46da-8e9b-7db6f9f2625d.json?v=5",
+  "access": "Public viewer JSON exposed by the licensed work page. Not the login-only download endpoint. JSON saved with terminal newline.",
+  "checked_date": "2026-11-06",
+  "changes": [
+    "Original skin, torn cyan shirt, violet trousers and asymmetric infection artwork retained pixel-for-pixel",
+    "Removed pistol and its effects; reduced obstructing head lesion volumes",
+    "Articulated elbows, wrists, knees and ankles, separated legs, hunched upper-body rig",
+    "Retained useful segmented crystal talons from the previous project-original hunter; added three attached crystal growths",
+    "Authored seven distinct numeric clips, native 12/18/28 tick impacts and 18 tick death",
+    "Packed two source materials with exact crystal-only emissive faces; no purple-skin glow"
+  ],
+  "plan": {
+    "target": "Java GeckoLib Forge 1.20.1 / NeoForge 1.21.1",
+    "preference": "Appearance and animation first; useful 3D detail retained",
+    "working_budget": "Under 90 cubes, under 28 bones; final 41 cubes, 18 bones, 7 clips",
+    "shading": "Cutout albedo plus emissive overlay, no PBR",
+    "atlas": [
+      256,
+      128
+    ],
+    "uv": "Original body 1 px/unit retained. Joint surfaces cropped from original UVs; crystal swatches corrected from 128 px source to 64 logical UV base before packing. Head lesions deliberately use finer grain after uniform reduction.",
+    "runtime_scale": 1.06,
+    "collision_unchanged": [
+      1.3,
+      2.2
+    ],
+    "status": "Integrated and verified in both native clients; 72 native tests, 30 screenshots, dual main/API/example developer builds; no public release"
+  }
+}

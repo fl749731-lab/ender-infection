@@ -1,11 +1,11 @@
 {
   "status": "PASS",
   "geometry_files": 48,
-  "validated_faces": 63132,
+  "validated_faces": 62580,
   "obj_files": 129,
   "glow_masks": 52,
   "creature_glow_textures": 35,
-  "crystal_pixels": 39494,
+  "crystal_pixels": 39442,
   "missing_crystal_pixels": 0,
   "non_crystal_glow_pixels": 0,
   "legacy_creature_glow": [
@@ -265,6 +265,30 @@
         "center_x": -0.0,
         "center_z": 0.004900000000000004
       }
+    },
+    {
+      "source": "crystal_hunter",
+      "editable_source": "colored_units/mutant_zombie_public_v1/models/ender_mutant_zombie.bbmodel",
+      "runtime": "ender_mutant_zombie",
+      "kind": "entity",
+      "pipeline": "tools/export_mutant_rework.py",
+      "scale": 1.06,
+      "cubes": 41,
+      "bones": 18,
+      "atlas": [
+        256,
+        128
+      ],
+      "emissive_pixels": 17,
+      "crystal_faces": 108,
+      "visual_bounds": {
+        "width": 1.2415912500000001,
+        "height": 2.4513075000000004,
+        "depth": 0.692445,
+        "center_x": -0.043758124999999995,
+        "center_z": -0.15370000000000003
+      },
+      "public_base": "Purple zomie by @elma_taburlas"
     }
   ]
 }

@@ -5,6 +5,8 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 public final class MutantZombieRenderer extends GeoEntityRenderer<MutantZombie> {
+    @Override protected float getDeathMaxRotation(MutantZombie entity) { return 0; }
+
     public MutantZombieRenderer(EntityRendererProvider.Context context) {
         super(context, new MutantZombieModel());
         this.shadowRadius = 0.75F;

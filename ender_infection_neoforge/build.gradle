@@ -41,6 +41,7 @@ neoForge {
                 systemProperty 'ender_infection.crystalCheck', 'true'
             }
             if (project.hasProperty('riftVisualCheck')) systemProperty 'ender_infection.riftVisualCheck', 'true'
+            if (project.hasProperty('mutantMotionCheck')) { gameDirectory = project.file('build/mutant-motion-check'); systemProperty 'ender_infection.mutantMotionCheck','true'; programArgument '--width'; programArgument '1280'; programArgument '--height'; programArgument '800' }
             if (project.hasProperty('creatureMotionCheck')) {
                 gameDirectory = project.file('build/creature-motion-check')
                 systemProperty 'ender_infection.creatureMotionCheck', 'true'

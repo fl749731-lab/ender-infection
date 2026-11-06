@@ -53,6 +53,9 @@ minecraft {
         if (project.hasProperty('riftVisualCheck')) {
             client { workingDirectory project.file('build/rift-visual-check'); property 'ender_infection.riftVisualCheck','true' }
         }
+        if (project.hasProperty('mutantMotionCheck')) {
+            client { workingDirectory project.file('build/mutant-motion-check'); property 'ender_infection.mutantMotionCheck','true'; args '--width','1280','--height','800' }
+        }
         if (project.hasProperty('creatureMotionCheck')) {
             client { workingDirectory project.file('build/creature-motion-check'); property 'ender_infection.creatureMotionCheck','true'; property 'ender_infection.creatureMotionSubjects',project.findProperty('creatureMotionSubjects') ?: 'spider'; args '--width','1280','--height','800' }
         }

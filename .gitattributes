@@ -12,4 +12,4 @@
 *.jar binary
 
 # Sealed native review logs are hashed as raw bytes in their verification receipts.
-previews/public-model-adaptations-v1/runtime/**/*.log -text
+previews/public-model-adaptations-v1/runtime/**/*.log -text -whitespace

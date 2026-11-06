@@ -1,6 +1,6 @@
 # 研究所 Boss：收容监管体
 
-适用于 **0.12.0-alpha.7 本地开发版 / layout v5**。实体、战斗、研究所终端与奖励已接入；验收结果见下方记录。公开下载仍为 [alpha.6](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.6)，该发布包的主线到 E8，不包含本页 Boss。
+适用于 **0.12.0-alpha.7 / layout v5**。实体、战斗、研究所终端与奖励已接入；[两版安装包](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.7)。alpha.6 及更早版本的主线到 E8，不包含本页 Boss。
 
 ## 怎么启动
 
@@ -64,4 +64,4 @@
 - [可编辑源与动画契约](../colored_units/institute_boss_v1/README.md)：128 个方块、21 根骨骼、七段动画。
 - [增强特效 V1](../previews/containment-warden-vfx-v1/README.md)：设计分镜、运行时素材及本轮双版实景记录。
 
-建筑继续由图纸、方块坐标和原生 NBT 维护；两版美术资源由 Forge 源目录同步。当前 Boss 接入尚未公开发布。
+建筑继续由图纸、方块坐标和原生 NBT 维护；两版美术资源由 Forge 源目录同步。本 Boss 随 alpha.7 发布。

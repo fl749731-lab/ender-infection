@@ -6,7 +6,7 @@ Minecraft 感染阵营与研究所探索模组。感染母体通过生物质和�
 
 | 内容 | 版本 | 下载 |
 |---|---|---|
-| 主模组预发布 | **0.12.0-alpha.6** | [Forge 1.20.1](https://github.com/fl749731-lab/ender-infection/releases/download/v0.12.0-alpha.6/ender-infection-0.12.0-alpha.6.jar) · [NeoForge 1.21.1](https://github.com/fl749731-lab/ender-infection/releases/download/v0.12.0-alpha.6/ender-infection-neoforge-1.21.1-0.12.0-alpha.6.jar) |
+| 主模组预发布 | **0.12.0-alpha.7** | [Forge 1.20.1](https://github.com/fl749731-lab/ender-infection/releases/download/v0.12.0-alpha.7/ender-infection-0.12.0-alpha.7.jar) · [NeoForge 1.21.1](https://github.com/fl749731-lab/ender-infection/releases/download/v0.12.0-alpha.7/ender-infection-neoforge-1.21.1-0.12.0-alpha.7.jar) |
 | 可选科技附属：共振工业 | **0.1.0-alpha.1** | [双版本安装包与图纸](https://github.com/fl749731-lab/ender-infection/releases/tag/resonant-industry-v0.1.0-alpha.1) |
 | 历史稳定版 | 0.11.0，Forge 1.20.1 | [稳定版发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.11.0) |
 
@@ -23,22 +23,22 @@ Minecraft 感染阵营与研究所探索模组。感染母体通过生物质和�
 
 ## 主线怎么玩
 
-**获取物资 → 修复研究所电源 → 分区送电与门禁 → 样本分析和离心 → 核心档案 → E8 收容事故。**
+**获取物资 → 修复研究所电源 → 分区送电与门禁 → 样本分析和离心 → 核心档案 → E8 收容事故 → F8 收容监管体。**
 
-中央研究所已有六层、48 间内饰房间、可开启的战利品储柜、分区照明、门禁和研究设备。alpha.6 加入 E8 的警报、两波敌人、故障维修与共享奖励。完整步骤见[主线流程](docs/main-progression.md)。
+中央研究所已有六层、48 间内饰房间、可开启的战利品储柜、分区照明、门禁和研究设备。完成 E8 的警报与维修后，可在 v5 建筑的 F8 启动监管体，操作两座抑制台暴露核心并领取共享奖励。完整步骤见[主线流程](docs/main-progression.md)。
 
 感染阵营、晶体装备、矿石、怪物与管理员指令见[生存玩法手册](docs/gameplay-guide.md)。共振工业的多方块、FE 电网与流体加工使用[独立指南](addons/resonant-industry/README.md)。
 
 ## 这一版有什么
 
-- E8 收容事故及 v4 研究所布局；旧研究所保持原样。
-- 事件进度、敌人身份和共享奖励持久化，覆盖重启与区块卸载。
-- 晶盾卫士与裂喉喷吐者的 MCP 模型修整、动画绑定修复和紫晶自发光。
-- 双版干净构建、18 组共 163 项必需测试、6 次专用服务器启动与 32 张客户端截图验收。
+- B3 / F8 收容监管体、v5 研究所启动终端与两座抑制台；旧研究所保持原样。
+- 七套 Boss 动作，以及有预警的爪击、立体卷曲晶体扇浪、冲击环、符文和电弧。
+- 共鸣祭司与晶背搬运兽使用署名公开底模改造，适配五套动作、持杖握点、尾部、接地及循环；紫晶材质自发光。
+- 事件、奖励和 Boss 状态持久化；两版完整干净构建、原生测试与重启／区块卸载验收，详细结果随发行附件提供。
 
-[alpha.6 更新说明与附件](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.6) · [验收与效果图](previews/incident-alpha6/README.md) · [完整更新日志](CHANGELOG.md)
+[alpha.7 更新说明与附件](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.7) · [监管体指南](docs/institute-boss.md) · [模型实景](previews/public-model-adaptations-v1/README.md) · [完整更新日志](CHANGELOG.md)
 
-本地 alpha.7 已接入[研究所 Boss](docs/institute-boss.md)、七组动作和[增强特效](previews/containment-warden-vfx-v1/README.md)，并以署名公开底模改造共鸣祭司与晶背搬运兽，尚未公开发布。[全部怪物、感染阶段、装备与特效评审](docs/model-visual-review.md)集中记录已改内容和后续优先级。上方 alpha.6 下载包的 E8 为普通感染者事件。
+本版完成两只模型的首批替换。其他感染／畸变生物、基础武器、护甲、普通特效和设备仍按[全体评审](docs/model-visual-review.md)继续改造；评审清单不代表全部对象已替换。alpha.6 及更早安装包不包含 F8 Boss。
 
 ## 文档入口
 

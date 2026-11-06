@@ -1,6 +1,6 @@
 # 文档导航
 
-当前主模组：0.12.0-alpha.6。独立科技附属：共振工业 0.1.0-alpha.1。
+当前主模组：0.12.0-alpha.7。独立科技附属：共振工业 0.1.0-alpha.1。
 
 ## 玩家指南
 
@@ -21,8 +21,8 @@
 - [附属 Mod 示例](../examples/institute-addon/README.md)
 - [房间设计与方块对照](laboratory-room-reference.md)
 - [署名导入建筑及使用范围](imported-buildings.md)
-- [alpha.6 验收及模型效果](../previews/incident-alpha6/README.md)
-- [F8 研究所 Boss（alpha.7 开发版）](institute-boss.md)
+- [alpha.7 模型与客户端验收](../previews/public-model-adaptations-v1/README.md)
+- [F8 研究所 Boss](institute-boss.md)
 - [Boss 特效设计与本轮实景](../previews/containment-warden-vfx-v1/README.md)
 - [公开 Minecraft 模型网站与候选](public-minecraft-models.md)
 - [全部怪物、感染形态、装备与特效评审](model-visual-review.md)

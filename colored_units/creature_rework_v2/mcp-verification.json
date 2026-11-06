@@ -1,0 +1,963 @@
+{
+  "models": {
+    "infected_spider": {
+      "info": {
+        "path": "E:\\mc\\build\\asset-overhaul\\worktree\\colored_units\\creature_rework_v2\\models\\infected_spider.bbmodel",
+        "revision": "ea55fc2736fdc098",
+        "name": "Ender Infection - segmented infected spider",
+        "model_identifier": "infected_spider",
+        "format": "free",
+        "format_version": "5.0",
+        "box_uv": false,
+        "resolution": {
+          "width": 128,
+          "height": 128
+        },
+        "counts": {
+          "groups": 61,
+          "cubes": 69,
+          "meshes": 0,
+          "other_elements": 0,
+          "textures": 4,
+          "animations": 5
+        },
+        "bounds": {
+          "min": [
+            -22.995,
+            -0.566,
+            -16.015
+          ],
+          "max": [
+            22.995,
+            18.68,
+            16.335
+          ],
+          "size": [
+            45.99,
+            19.246,
+            32.35
+          ]
+        },
+        "ai_used": true,
+        "notes": []
+      },
+      "motion": {
+        "revision": "ea55fc2736fdc098",
+        "checked": [
+          "idle",
+          "walk",
+          "special",
+          "infection",
+          "death"
+        ],
+        "summary": {
+          "errors": 0,
+          "warnings": 0,
+          "passed": true
+        },
+        "gates": [
+          {
+            "id": "animated_bones_exist",
+            "label": "Animators target groups that exist",
+            "severity": "error",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "keyframe_timing",
+            "label": "Keyframes lie inside the clip and do not collide",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "ground_sink",
+            "label": "No part sinks below the ground during a clip",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "detachment",
+            "label": "Attached groups stay attached to their parent during a clip",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          }
+        ],
+        "skipped_channels": [],
+        "approximated_bezier": [],
+        "capped_clips": []
+      },
+      "geometry": {
+        "revision": "ea55fc2736fdc098",
+        "format": "free",
+        "summary": {
+          "errors": 0,
+          "warnings": 113,
+          "passed": true
+        },
+        "gates": [
+          {
+            "id": "outliner",
+            "label": "Outliner references resolve and UUIDs are unique",
+            "severity": "error",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "unlisted_nodes",
+            "label": "Every group and element is placed in the outliner",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "degenerate",
+            "label": "No sliver or inverted cubes",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "block_limits",
+            "label": "Geometry stays inside the block-model limits",
+            "severity": "error",
+            "ran": false,
+            "skipped_reason": "Pass block_limits: java_block or bedrock_block to enable.",
+            "violations": []
+          },
+          {
+            "id": "floating",
+            "label": "Every part touches the main body",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "interpenetration",
+            "label": "Parts of different groups do not pass through each other",
+            "severity": "warning",
+            "ran": true,
+            "violations": [
+              {
+                "message": "head and head (different groups) interpenetrate by 2.15 units.",
+                "targets": [
+                  "head",
+                  "head"
+                ]
+              },
+              {
+                "message": "head and head (different groups) interpenetrate by 1.67 units.",
+                "targets": [
+                  "head",
+                  "head"
+                ]
+              },
+              {
+                "message": "head and head (different groups) interpenetrate by 1.41 units.",
+                "targets": [
+                  "head",
+                  "head"
+                ]
+              },
+              {
+                "message": "head and head (different groups) interpenetrate by 1.41 units.",
+                "targets": [
+                  "head",
+                  "head"
+                ]
+              },
+              {
+                "message": "head and head (different groups) interpenetrate by 4.58 units.",
+                "targets": [
+                  "head",
+                  "head"
+                ]
+              },
+              {
+                "message": "head and head (different groups) interpenetrate by 1.8 units.",
+                "targets": [
+                  "head",
+                  "head"
+                ]
+              },
+              {
+                "message": "head and head (different groups) interpenetrate by 4.58 units.",
+                "targets": [
+                  "head",
+                  "head"
+                ]
+              },
+              {
+                "message": "head and head (different groups) interpenetrate by 1.8 units.",
+                "targets": [
+                  "head",
+                  "head"
+                ]
+              },
+              {
+                "message": "head and head (different groups) interpenetrate by 1.41 units.",
+                "targets": [
+                  "head",
+                  "head"
+                ]
+              },
+              {
+                "message": "head and head (different groups) interpenetrate by 1.41 units.",
+                "targets": [
+                  "head",
+                  "head"
+                ]
+              },
+              {
+                "message": "head and head (different groups) interpenetrate by 1.67 units.",
+                "targets": [
+                  "head",
+                  "head"
+                ]
+              },
+              {
+                "message": "head and head (different groups) interpenetrate by 2.15 units.",
+                "targets": [
+                  "head",
+                  "head"
+                ]
+              },
+              {
+                "message": "head and neck (different groups) interpenetrate by 6.39 units.",
+                "targets": [
+                  "head",
+                  "neck"
+                ]
+              },
+              {
+                "message": "head and leg8 (different groups) interpenetrate by 3.24 units.",
+                "targets": [
+                  "head",
+                  "leg8"
+                ]
+              },
+              {
+                "message": "head and leg9 (different groups) interpenetrate by 5.78 units.",
+                "targets": [
+                  "head",
+                  "leg9"
+                ]
+              },
+              {
+                "message": "head and leg8 (different groups) interpenetrate by 3.24 units.",
+                "targets": [
+                  "head",
+                  "leg8"
+                ]
+              },
+              {
+                "message": "head and leg9 (different groups) interpenetrate by 5.78 units.",
+                "targets": [
+                  "head",
+                  "leg9"
+                ]
+              },
+              {
+                "message": "head and crystal_cheek_left_prism (different groups) interpenetrate by 2.9 units.",
+                "targets": [
+                  "head",
+                  "crystal_cheek_left_prism"
+                ]
+              },
+              {
+                "message": "head and crystal_cheek_left_tip (different groups) interpenetrate by 1.22 units.",
+                "targets": [
+                  "head",
+                  "crystal_cheek_left_tip"
+                ]
+              },
+              {
+                "message": "head and crystal_cheek_right_prism (different groups) interpenetrate by 3.03 units.",
+                "targets": [
+                  "head",
+                  "crystal_cheek_right_prism"
+                ]
+              },
+              {
+                "message": "head and crystal_cheek_right_tip (different groups) interpenetrate by 1.34 units.",
+                "targets": [
+                  "head",
+                  "crystal_cheek_right_tip"
+                ]
+              },
+              {
+                "message": "head and head (different groups) interpenetrate by 0.71 units.",
+                "targets": [
+                  "head",
+                  "head"
+                ]
+              },
+              {
+                "message": "head and crystal_cheek_right_prism (different groups) interpenetrate by 1.05 units.",
+                "targets": [
+                  "head",
+                  "crystal_cheek_right_prism"
+                ]
+              },
+              {
+                "message": "head and crystal_cheek_right_prism (different groups) interpenetrate by 1.67 units.",
+                "targets": [
+                  "head",
+                  "crystal_cheek_right_prism"
+                ]
+              },
+              {
+                "message": "head and leg9 (different groups) interpenetrate by 1.12 units.",
+                "targets": [
+                  "head",
+                  "leg9"
+                ]
+              },
+              {
+                "message": "head and crystal_cheek_right_prism (different groups) interpenetrate by 1.02 units.",
+                "targets": [
+                  "head",
+                  "crystal_cheek_right_prism"
+                ]
+              },
+              {
+                "message": "head and leg9 (different groups) interpenetrate by 1.12 units.",
+                "targets": [
+                  "head",
+                  "leg9"
+                ]
+              },
+              {
+                "message": "head and head (different groups) interpenetrate by 0.71 units.",
+                "targets": [
+                  "head",
+                  "head"
+                ]
+              },
+              {
+                "message": "head and crystal_cheek_left_prism (different groups) interpenetrate by 0.78 units.",
+                "targets": [
+                  "head",
+                  "crystal_cheek_left_prism"
+                ]
+              },
+              {
+                "message": "neck and leg8 (different groups) interpenetrate by 2.57 units.",
+                "targets": [
+                  "neck",
+                  "leg8"
+                ]
+              },
+              {
+                "message": "neck and leg9 (different groups) interpenetrate by 2.7 units.",
+                "targets": [
+                  "neck",
+                  "leg9"
+                ]
+              },
+              {
+                "message": "neck and leg9 (different groups) interpenetrate by 2.6 units.",
+                "targets": [
+                  "neck",
+                  "leg9"
+                ]
+              },
+              {
+                "message": "neck and leg10 (different groups) interpenetrate by 2.72 units.",
+                "targets": [
+                  "neck",
+                  "leg10"
+                ]
+              },
+              {
+                "message": "neck and body (different groups) interpenetrate by 2.69 units.",
+                "targets": [
+                  "neck",
+                  "body"
+                ]
+              },
+              {
+                "message": "neck and body (different groups) interpenetrate by 2.8 units.",
+                "targets": [
+                  "neck",
+                  "body"
+                ]
+              },
+              {
+                "message": "neck and leg8 (different groups) interpenetrate by 2.57 units.",
+                "targets": [
+                  "neck",
+                  "leg8"
+                ]
+              },
+              {
+                "message": "neck and leg9 (different groups) interpenetrate by 2.7 units.",
+                "targets": [
+                  "neck",
+                  "leg9"
+                ]
+              },
+              {
+                "message": "neck and leg9 (different groups) interpenetrate by 2.6 units.",
+                "targets": [
+                  "neck",
+                  "leg9"
+                ]
+              },
+              {
+                "message": "neck and leg10 (different groups) interpenetrate by 2.72 units.",
+                "targets": [
+                  "neck",
+                  "leg10"
+                ]
+              },
+              {
+                "message": "neck and crystal_cheek_left_prism (different groups) interpenetrate by 0.7 units.",
+                "targets": [
+                  "neck",
+                  "crystal_cheek_left_prism"
+                ]
+              },
+              {
+                "message": "leg8 and leg9 (different groups) interpenetrate by 2.39 units.",
+                "targets": [
+                  "leg8",
+                  "leg9"
+                ]
+              },
+              {
+                "message": "leg8 and leg9 (different groups) interpenetrate by 2.89 units.",
+                "targets": [
+                  "leg8",
+                  "leg9"
+                ]
+              },
+              {
+                "message": "leg9 and leg10 (different groups) interpenetrate by 1.76 units.",
+                "targets": [
+                  "leg9",
+                  "leg10"
+                ]
+              },
+              {
+                "message": "leg9 and leg11 (different groups) interpenetrate by 0.56 units.",
+                "targets": [
+                  "leg9",
+                  "leg11"
+                ]
+              },
+              {
+                "message": "leg9 and leg9 (different groups) interpenetrate by 2.08 units.",
+                "targets": [
+                  "leg9",
+                  "leg9"
+                ]
+              },
+              {
+                "message": "leg9 and leg10 (different groups) interpenetrate by 0.67 units.",
+                "targets": [
+                  "leg9",
+                  "leg10"
+                ]
+              },
+              {
+                "message": "leg10 and leg11 (different groups) interpenetrate by 1.03 units.",
+                "targets": [
+                  "leg10",
+                  "leg11"
+                ]
+              },
+              {
+                "message": "leg9 and leg10 (different groups) interpenetrate by 3.11 units.",
+                "targets": [
+                  "leg9",
+                  "leg10"
+                ]
+              },
+              {
+                "message": "leg9 and crystal_cheek_left_prism (different groups) interpenetrate by 1.91 units.",
+                "targets": [
+                  "leg9",
+                  "crystal_cheek_left_prism"
+                ]
+              },
+              {
+                "message": "leg9 and crystal_cheek_left_tip (different groups) interpenetrate by 1.29 units.",
+                "targets": [
+                  "leg9",
+                  "crystal_cheek_left_tip"
+                ]
+              },
+              {
+                "message": "leg10 and leg11 (different groups) interpenetrate by 1.83 units.",
+                "targets": [
+                  "leg10",
+                  "leg11"
+                ]
+              },
+              {
+                "message": "leg11 and leg12 (different groups) interpenetrate by 1.65 units.",
+                "targets": [
+                  "leg11",
+                  "leg12"
+                ]
+              },
+              {
+                "message": "leg11 and leg13 (different groups) interpenetrate by 1.56 units.",
+                "targets": [
+                  "leg11",
+                  "leg13"
+                ]
+              },
+              {
+                "message": "leg12 and leg13 (different groups) interpenetrate by 1.05 units.",
+                "targets": [
+                  "leg12",
+                  "leg13"
+                ]
+              },
+              {
+                "message": "leg9 and leg10 (different groups) interpenetrate by 2.47 units.",
+                "targets": [
+                  "leg9",
+                  "leg10"
+                ]
+              },
+              {
+                "message": "leg9 and leg10 (different groups) interpenetrate by 2.13 units.",
+                "targets": [
+                  "leg9",
+                  "leg10"
+                ]
+              },
+              {
+                "message": "leg9 and body (different groups) interpenetrate by 1.22 units.",
+                "targets": [
+                  "leg9",
+                  "body"
+                ]
+              },
+              {
+                "message": "leg9 and body (different groups) interpenetrate by 1.33 units.",
+                "targets": [
+                  "leg9",
+                  "body"
+                ]
+              },
+              {
+                "message": "leg10 and leg11 (different groups) interpenetrate by 2.06 units.",
+                "targets": [
+                  "leg10",
+                  "leg11"
+                ]
+              },
+              {
+                "message": "leg10 and leg13 (different groups) interpenetrate by 1.06 units.",
+                "targets": [
+                  "leg10",
+                  "leg13"
+                ]
+              },
+              {
+                "message": "leg10 and leg10 (different groups) interpenetrate by 2.45 units.",
+                "targets": [
+                  "leg10",
+                  "leg10"
+                ]
+              },
+              {
+                "message": "leg10 and leg11 (different groups) interpenetrate by 1.77 units.",
+                "targets": [
+                  "leg10",
+                  "leg11"
+                ]
+              },
+              {
+                "message": "leg11 and leg13 (different groups) interpenetrate by 1.13 units.",
+                "targets": [
+                  "leg11",
+                  "leg13"
+                ]
+              },
+              {
+                "message": "leg10 and leg11 (different groups) interpenetrate by 3.09 units.",
+                "targets": [
+                  "leg10",
+                  "leg11"
+                ]
+              },
+              {
+                "message": "leg10 and body (different groups) interpenetrate by 2.92 units.",
+                "targets": [
+                  "leg10",
+                  "body"
+                ]
+              },
+              {
+                "message": "leg10 and body (different groups) interpenetrate by 3.22 units.",
+                "targets": [
+                  "leg10",
+                  "body"
+                ]
+              },
+              {
+                "message": "leg10 and crystal_flank_left_prism (different groups) interpenetrate by 3.11 units.",
+                "targets": [
+                  "leg10",
+                  "crystal_flank_left_prism"
+                ]
+              },
+              {
+                "message": "leg11 and leg12 (different groups) interpenetrate by 1.76 units.",
+                "targets": [
+                  "leg11",
+                  "leg12"
+                ]
+              },
+              {
+                "message": "leg11 and leg13 (different groups) interpenetrate by 0.72 units.",
+                "targets": [
+                  "leg11",
+                  "leg13"
+                ]
+              },
+              {
+                "message": "leg11 and leg14 (different groups) interpenetrate by 0.64 units.",
+                "targets": [
+                  "leg11",
+                  "leg14"
+                ]
+              },
+              {
+                "message": "leg12 and leg13 (different groups) interpenetrate by 1.56 units.",
+                "targets": [
+                  "leg12",
+                  "leg13"
+                ]
+              },
+              {
+                "message": "leg12 and leg14 (different groups) interpenetrate by 1.65 units.",
+                "targets": [
+                  "leg12",
+                  "leg14"
+                ]
+              },
+              {
+                "message": "leg13 and leg14 (different groups) interpenetrate by 1.05 units.",
+                "targets": [
+                  "leg13",
+                  "leg14"
+                ]
+              },
+              {
+                "message": "body and leg9 (different groups) interpenetrate by 1.22 units.",
+                "targets": [
+                  "body",
+                  "leg9"
+                ]
+              },
+              {
+                "message": "body and leg10 (different groups) interpenetrate by 2.92 units.",
+                "targets": [
+                  "body",
+                  "leg10"
+                ]
+              },
+              {
+                "message": "body and crystal_dorsal_prism (different groups) interpenetrate by 2.42 units.",
+                "targets": [
+                  "body",
+                  "crystal_dorsal_prism"
+                ]
+              },
+              {
+                "message": "body and crystal_flank_left_prism (different groups) interpenetrate by 1.21 units.",
+                "targets": [
+                  "body",
+                  "crystal_flank_left_prism"
+                ]
+              },
+              {
+                "message": "body and crystal_flank_right_prism (different groups) interpenetrate by 1.51 units.",
+                "targets": [
+                  "body",
+                  "crystal_flank_right_prism"
+                ]
+              },
+              {
+                "message": "body and crystal_rear_left_prism (different groups) interpenetrate by 2.72 units.",
+                "targets": [
+                  "body",
+                  "crystal_rear_left_prism"
+                ]
+              },
+              {
+                "message": "body and crystal_rear_left_tip (different groups) interpenetrate by 1.08 units.",
+                "targets": [
+                  "body",
+                  "crystal_rear_left_tip"
+                ]
+              },
+              {
+                "message": "body and leg9 (different groups) interpenetrate by 1.33 units.",
+                "targets": [
+                  "body",
+                  "leg9"
+                ]
+              },
+              {
+                "message": "body and leg10 (different groups) interpenetrate by 3.22 units.",
+                "targets": [
+                  "body",
+                  "leg10"
+                ]
+              },
+              {
+                "message": "body and crystal_dorsal_prism (different groups) interpenetrate by 2.79 units.",
+                "targets": [
+                  "body",
+                  "crystal_dorsal_prism"
+                ]
+              },
+              {
+                "message": "body and crystal_flank_left_prism (different groups) interpenetrate by 1.51 units.",
+                "targets": [
+                  "body",
+                  "crystal_flank_left_prism"
+                ]
+              },
+              {
+                "message": "body and crystal_flank_right_prism (different groups) interpenetrate by 1.81 units.",
+                "targets": [
+                  "body",
+                  "crystal_flank_right_prism"
+                ]
+              },
+              {
+                "message": "body and crystal_rear_left_prism (different groups) interpenetrate by 3.02 units.",
+                "targets": [
+                  "body",
+                  "crystal_rear_left_prism"
+                ]
+              },
+              {
+                "message": "body and crystal_rear_left_tip (different groups) interpenetrate by 1.38 units.",
+                "targets": [
+                  "body",
+                  "crystal_rear_left_tip"
+                ]
+              },
+              {
+                "message": "leg8 and leg9 (different groups) interpenetrate by 2.39 units.",
+                "targets": [
+                  "leg8",
+                  "leg9"
+                ]
+              },
+              {
+                "message": "leg8 and leg9 (different groups) interpenetrate by 2.89 units.",
+                "targets": [
+                  "leg8",
+                  "leg9"
+                ]
+              },
+              {
+                "message": "leg9 and leg10 (different groups) interpenetrate by 1.76 units.",
+                "targets": [
+                  "leg9",
+                  "leg10"
+                ]
+              },
+              {
+                "message": "leg9 and leg11 (different groups) interpenetrate by 0.56 units.",
+                "targets": [
+                  "leg9",
+                  "leg11"
+                ]
+              },
+              {
+                "message": "leg9 and leg9 (different groups) interpenetrate by 2.08 units.",
+                "targets": [
+                  "leg9",
+                  "leg9"
+                ]
+              },
+              {
+                "message": "leg9 and leg10 (different groups) interpenetrate by 0.67 units.",
+                "targets": [
+                  "leg9",
+                  "leg10"
+                ]
+              },
+              {
+                "message": "leg10 and leg11 (different groups) interpenetrate by 1.03 units.",
+                "targets": [
+                  "leg10",
+                  "leg11"
+                ]
+              },
+              {
+                "message": "leg9 and leg10 (different groups) interpenetrate by 3.11 units.",
+                "targets": [
+                  "leg9",
+                  "leg10"
+                ]
+              },
+              {
+                "message": "leg10 and leg11 (different groups) interpenetrate by 1.83 units.",
+                "targets": [
+                  "leg10",
+                  "leg11"
+                ]
+              },
+              {
+                "message": "leg11 and leg12 (different groups) interpenetrate by 1.65 units.",
+                "targets": [
+                  "leg11",
+                  "leg12"
+                ]
+              },
+              {
+                "message": "leg11 and leg13 (different groups) interpenetrate by 1.56 units.",
+                "targets": [
+                  "leg11",
+                  "leg13"
+                ]
+              },
+              {
+                "message": "leg12 and leg13 (different groups) interpenetrate by 1.05 units.",
+                "targets": [
+                  "leg12",
+                  "leg13"
+                ]
+              },
+              {
+                "message": "leg9 and leg10 (different groups) interpenetrate by 2.47 units.",
+                "targets": [
+                  "leg9",
+                  "leg10"
+                ]
+              },
+              {
+                "message": "leg9 and leg10 (different groups) interpenetrate by 2.13 units.",
+                "targets": [
+                  "leg9",
+                  "leg10"
+                ]
+              },
+              {
+                "message": "leg10 and leg11 (different groups) interpenetrate by 2.06 units.",
+                "targets": [
+                  "leg10",
+                  "leg11"
+                ]
+              },
+              {
+                "message": "leg10 and leg13 (different groups) interpenetrate by 1.06 units.",
+                "targets": [
+                  "leg10",
+                  "leg13"
+                ]
+              },
+              {
+                "message": "leg10 and leg10 (different groups) interpenetrate by 2.45 units.",
+                "targets": [
+                  "leg10",
+                  "leg10"
+                ]
+              },
+              {
+                "message": "leg10 and leg11 (different groups) interpenetrate by 1.77 units.",
+                "targets": [
+                  "leg10",
+                  "leg11"
+                ]
+              },
+              {
+                "message": "leg11 and leg13 (different groups) interpenetrate by 1.13 units.",
+                "targets": [
+                  "leg11",
+                  "leg13"
+                ]
+              },
+              {
+                "message": "leg10 and leg11 (different groups) interpenetrate by 3.09 units.",
+                "targets": [
+                  "leg10",
+                  "leg11"
+                ]
+              },
+              {
+                "message": "leg11 and leg12 (different groups) interpenetrate by 1.76 units.",
+                "targets": [
+                  "leg11",
+                  "leg12"
+                ]
+              },
+              {
+                "message": "leg11 and leg13 (different groups) interpenetrate by 0.72 units.",
+                "targets": [
+                  "leg11",
+                  "leg13"
+                ]
+              },
+              {
+                "message": "leg11 and leg14 (different groups) interpenetrate by 0.64 units.",
+                "targets": [
+                  "leg11",
+                  "leg14"
+                ]
+              },
+              {
+                "message": "leg12 and leg13 (different groups) interpenetrate by 1.56 units.",
+                "targets": [
+                  "leg12",
+                  "leg13"
+                ]
+              },
+              {
+                "message": "leg12 and leg14 (different groups) interpenetrate by 1.65 units.",
+                "targets": [
+                  "leg12",
+                  "leg14"
+                ]
+              },
+              {
+                "message": "leg13 and leg14 (different groups) interpenetrate by 1.05 units.",
+                "targets": [
+                  "leg13",
+                  "leg14"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "mirror",
+            "label": "Left/right parts mirror each other",
+            "severity": "warning",
+            "ran": false,
+            "skipped_reason": "No node names carry a left/right token (l, r, left, right).",
+            "violations": []
+          }
+        ],
+        "geckolib": {
+          "diagnostics": [
+            {
+              "severity": "warning",
+              "check_id": "geckolib_modid",
+              "message": "The project has no geckolib_modid; the GeckoLib plugin's export dialog uses it for paths, but the exported files load without it."
+            }
+          ],
+          "summary": {
+            "valid": true,
+            "errors": 0,
+            "warnings": 1
+          }
+        },
+        "notes": []
+      }
+    }
+  }
+}

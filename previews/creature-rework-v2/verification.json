@@ -1,0 +1,247 @@
+{
+  "status": "PASS",
+  "release_gate": false,
+  "screenshots": 22,
+  "native_required_passed": 72,
+  "build_sha256": "25cd7647041ccd22604a57156a6a09718a622759bfee335f6cf22c873220e2e6",
+  "build_logs_sha256": {
+    "ender_infection_colored-build.log": "e5cab9fcd2811ca98898c20935adeeb3c00d88dc8b618943749012aa3205a43f",
+    "ender_infection_neoforge-build.log": "e21d6741f56fc0c6654e707440568c5cb3d9143c242dd0ab1413d570fa444647",
+    "forge-addon-build.log": "ece0d851f17ab327c9191e7d5537612bf5830dc29ff3fa4679fc969a6bf5cd24",
+    "neoforge-addon-build.log": "38055fdafd2a67894c9a40d4c2f43948bd01d8759b66ecaa68a33fb16d7163dc"
+  },
+  "source_hashes": {
+    "colored_units/creature_rework_v2/export-lock.json": {
+      "sha256": "2d4666de732dbe1630f261fbea792d47e8f8656c07852bfd488cad6dee46413b",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/mcp-verification.json": {
+      "sha256": "4d1f5e99f4c3562fd1448d636da15a58363102e94814b719cf5f9e75ad311686",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/mcp_exports/infected_spider.animation.json": {
+      "sha256": "33dce20afa7e5bc4ef0e18bfa73025e1429cea04ed5fc9dc0d6bac6baca7408f",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/mcp_exports/infected_spider.geo.json": {
+      "sha256": "8fadf46788b49ee81297a3fd9c3e13f1b54885112404f107d56ddc8fa7156498",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/models/infected_spider.bbmodel": {
+      "sha256": "ea55fc2736fdc098fa90fe595ea7a4995af2b369fd91c0a1d459a47860161a7d",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/README.md": {
+      "sha256": "03005050163ebb9a16f070f6a43e3978af333f1a10acca0aadf10b2f22d561e1",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/source/elma_spider.viewer.json": {
+      "sha256": "ad64750a8a50e6843bcf8426bce1c7e4219ae40d88ce1aa2577dbfac862fa1d1",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/source-provenance.json": {
+      "sha256": "eb2a59bedae41b36286330b01a9ab9ac2307a940c3a7064d7382140950ceceaf",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/java/dev/hui/enderinfection/client/CreatureMotionCheck.java": {
+      "sha256": "d2ddceec57ab4198b840d771b5692dda75bba119b20bc39e2cd8acf074642295",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/java/dev/hui/enderinfection/client/InfectedRenderer.java": {
+      "sha256": "81779b57ca937c649595fa02be4b64be335d350bc837fd9a87a2f38b005f360b",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/java/dev/hui/enderinfection/entity/InfectedMob.java": {
+      "sha256": "133ca2c47fca477d6dcd9d52ee11c798f4b00fe259a49b5fab33d9e3e30c441c",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_spider.animation.json": {
+      "sha256": "7a8e450296a1bcfe56e612618b0d64d7c25ea006445fea5863a1f320f2db1eca",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_spider.geo.json": {
+      "sha256": "df936172e085b4c142a596678fff8e0ce2aa3f3863b1ea34525a60721ced34a4",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_spider.png": {
+      "sha256": "3d22e9a1745b58d97613d96589999df93addb420ee91479fd13f7c23c218d792",
+      "scheme": "raw"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_spider_glowmask.png": {
+      "sha256": "9c1e39ae72efae1db295502365a503cf310043b2d11df4c2aaf7b9a4499cd997",
+      "scheme": "raw"
+    },
+    "ender_infection_neoforge/src/main/java/dev/hui/enderinfection/client/CreatureMotionCheck.java": {
+      "sha256": "cfa6c494052d0063378db734f80edc92a278e4b2f4f73e4fb885fc336e8b526b",
+      "scheme": "git-lf"
+    },
+    "ender_infection_neoforge/src/main/java/dev/hui/enderinfection/client/InfectedRenderer.java": {
+      "sha256": "1c739739c78c8737f5fb63b3806e3734d074be39e7d9b5b2971d674b675e800a",
+      "scheme": "git-lf"
+    },
+    "ender_infection_neoforge/src/main/java/dev/hui/enderinfection/entity/InfectedMob.java": {
+      "sha256": "dc40e81dbab6a0c9a7eae3d60643dbf6662c8808fadf34f0edecabdd365ee158",
+      "scheme": "git-lf"
+    },
+    "tools/export_creature_reworks.py": {
+      "sha256": "34b3f8c77421dac90091e95f5f7f622e2bd1e31a707680d247119e7da7df0b26",
+      "scheme": "git-lf"
+    }
+  },
+  "loaders": [
+    {
+      "status": "PASS",
+      "loader": "forge",
+      "screenshots": 11,
+      "native_required_passed": 36,
+      "zero_light_views": 2,
+      "logs_sha256": {
+        "motion": "f11df476fcb70d87234784c4620ca321c5f25f64bb0008a18a95a4b0ea282909",
+        "glow": "ed59417530954540d8b90d7875869301ca5ad9d556beefbf747e469df6f07f5c",
+        "ai": "e977e8abac8b5567cb075a293f8fad0c24778e75a5378be5359f4b983a8cb822"
+      },
+      "motion_states": {
+        "idle_front": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "idle_back": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "walk_a": {
+          "moved": 0.7851038142741407,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "walk_b": {
+          "moved": 1.8728440421254713,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "attack_windup": {
+          "moved": 0.5203542766745941,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 10.0
+        },
+        "attack_impact": {
+          "moved": 1.2008291352679759,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 0.0
+        },
+        "infection": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": true,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "death_start": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 4,
+          "target_health": -1.0
+        },
+        "death_end": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 16,
+          "target_health": -1.0
+        }
+      }
+    },
+    {
+      "status": "PASS",
+      "loader": "neo",
+      "screenshots": 11,
+      "native_required_passed": 36,
+      "zero_light_views": 2,
+      "logs_sha256": {
+        "motion": "e453dc9a8f3d5d69001817ce85243ec10f1c0730d8b922b591367408749500c3",
+        "glow": "9832a5ac18ce4c64f7efa1ff50aa11a62135b0632dc4c1b9a8d602f6fdcdfd2c",
+        "ai": "0c1df264706687bee809e5a0e7a568fa84571c6a7cb36b66803d2088ded24242"
+      },
+      "motion_states": {
+        "idle_front": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "idle_back": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "walk_a": {
+          "moved": 0.8716962940422783,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "walk_b": {
+          "moved": 1.8728440421254713,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "attack_windup": {
+          "moved": 0.5203542766745941,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 10.0
+        },
+        "attack_impact": {
+          "moved": 1.2008291352679759,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 1.1999998
+        },
+        "infection": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": true,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "death_start": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 4,
+          "target_health": -1.0
+        },
+        "death_end": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 16,
+          "target_health": -1.0
+        }
+      }
+    }
+  ]
+}

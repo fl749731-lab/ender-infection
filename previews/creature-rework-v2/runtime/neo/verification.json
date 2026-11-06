@@ -1,0 +1,189 @@
+{
+  "status": "PASS",
+  "loader": "neo",
+  "screenshots": 11,
+  "native_required_passed": 36,
+  "zero_light_views": 2,
+  "logs_sha256": {
+    "motion": "e453dc9a8f3d5d69001817ce85243ec10f1c0730d8b922b591367408749500c3",
+    "glow": "9832a5ac18ce4c64f7efa1ff50aa11a62135b0632dc4c1b9a8d602f6fdcdfd2c",
+    "ai": "0c1df264706687bee809e5a0e7a568fa84571c6a7cb36b66803d2088ded24242"
+  },
+  "motion_states": {
+    "idle_front": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "idle_back": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "walk_a": {
+      "moved": 0.8716962940422783,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "walk_b": {
+      "moved": 1.8728440421254713,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "attack_windup": {
+      "moved": 0.5203542766745941,
+      "attacking": true,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": 10.0
+    },
+    "attack_impact": {
+      "moved": 1.2008291352679759,
+      "attacking": true,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": 1.1999998
+    },
+    "infection": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": true,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "death_start": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 4,
+      "target_health": -1.0
+    },
+    "death_end": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 16,
+      "target_health": -1.0
+    }
+  },
+  "frames": [
+    {
+      "mode": "motion",
+      "name": "spider_idle_front",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "c169d12800084abc6fee2c045bd3e57974748b4cb88e46d1646fad50f85b210d",
+      "purple_pixels": 7240
+    },
+    {
+      "mode": "motion",
+      "name": "spider_idle_back",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "dee9e284b51d6a7e82e64b2abf29794c3733a9b60af062769a4b8a99d9081bb2",
+      "purple_pixels": 9013
+    },
+    {
+      "mode": "motion",
+      "name": "spider_walk_a",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "0bcfdc19b8513faa441524dcb82687cf64c53ebdcbcede62630fa602bb8f90a2",
+      "purple_pixels": 8249
+    },
+    {
+      "mode": "motion",
+      "name": "spider_walk_b",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "6bea6c3561815d085fe7f276ce7c0ebbb5cba6fce1184d1ad9a36518bf47b6a5",
+      "purple_pixels": 6081
+    },
+    {
+      "mode": "motion",
+      "name": "spider_attack_windup",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "8e76fec7cb91c79c6e3336626733f156b62613771b40b098e2e9f4fde54355ce",
+      "purple_pixels": 8108
+    },
+    {
+      "mode": "motion",
+      "name": "spider_attack_impact",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "0d3f0bc1688f6f204a3bca4aad9ac5c66e34d4742e7c0bfe98d2e9f912691602",
+      "purple_pixels": 16709
+    },
+    {
+      "mode": "motion",
+      "name": "spider_infection",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "bf29904ff43680356ea7defd335b74a4e3d47627fd1ff77bffd9e32b421ecc5c",
+      "purple_pixels": 5532
+    },
+    {
+      "mode": "motion",
+      "name": "spider_death_start",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "52d5bbcbe2206cfba9d49ef63f3e5ce7413b00440c0646cbacbf188fc8d986ac",
+      "purple_pixels": 30943
+    },
+    {
+      "mode": "motion",
+      "name": "spider_death_end",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "f4980b6c533560290e1a0aaea838cf0113604a2e31cb27d46b9e111103fe860a",
+      "purple_pixels": 45417
+    },
+    {
+      "mode": "glow",
+      "name": "spider_front",
+      "size": [
+        854,
+        480
+      ],
+      "sha256": "893c372fad5180172ec0ff4efd2dd120c06f84824d08f339dae316ce3604a534",
+      "purple_pixels": 1673
+    },
+    {
+      "mode": "glow",
+      "name": "spider_back",
+      "size": [
+        854,
+        480
+      ],
+      "sha256": "490036e54efbc9b544f41c478832c4725c69bf4bda21c4e123c9e8e3fa0f369e",
+      "purple_pixels": 1821
+    }
+  ]
+}

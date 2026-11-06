@@ -1,0 +1,189 @@
+{
+  "status": "PASS",
+  "loader": "forge",
+  "screenshots": 11,
+  "native_required_passed": 36,
+  "zero_light_views": 2,
+  "logs_sha256": {
+    "motion": "f11df476fcb70d87234784c4620ca321c5f25f64bb0008a18a95a4b0ea282909",
+    "glow": "ed59417530954540d8b90d7875869301ca5ad9d556beefbf747e469df6f07f5c",
+    "ai": "e977e8abac8b5567cb075a293f8fad0c24778e75a5378be5359f4b983a8cb822"
+  },
+  "motion_states": {
+    "idle_front": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "idle_back": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "walk_a": {
+      "moved": 0.7851038142741407,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "walk_b": {
+      "moved": 1.8728440421254713,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "attack_windup": {
+      "moved": 0.5203542766745941,
+      "attacking": true,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": 10.0
+    },
+    "attack_impact": {
+      "moved": 1.2008291352679759,
+      "attacking": true,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": 0.0
+    },
+    "infection": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": true,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "death_start": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 4,
+      "target_health": -1.0
+    },
+    "death_end": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 16,
+      "target_health": -1.0
+    }
+  },
+  "frames": [
+    {
+      "mode": "motion",
+      "name": "spider_idle_front",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "fd76f29b66e44e057c08b82918ab56c1eb1f68d02e43c276c5af18d6193d2f66",
+      "purple_pixels": 7257
+    },
+    {
+      "mode": "motion",
+      "name": "spider_idle_back",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "b576c7861ce80642f53166bde0c56e338440ae0f03f7c848f4709a2cf3633f31",
+      "purple_pixels": 8999
+    },
+    {
+      "mode": "motion",
+      "name": "spider_walk_a",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "d53f8790b685c946224ff3e84937471970171942a13c14e8a6c1b2bba75fd8d4",
+      "purple_pixels": 7996
+    },
+    {
+      "mode": "motion",
+      "name": "spider_walk_b",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "8e3b34ec469481cf8cb7453ce129309e70c7880df393b77814e203cc10d4fa2a",
+      "purple_pixels": 7666
+    },
+    {
+      "mode": "motion",
+      "name": "spider_attack_windup",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "afe809d6eeee84501543f3153f6a11dec391637edd90a4bed3f738634cd4ce05",
+      "purple_pixels": 7923
+    },
+    {
+      "mode": "motion",
+      "name": "spider_attack_impact",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "b0d5f1340cdf1da393754ee2232a7c6f5f59cbd3c3f10bb5564d2e71baa040eb",
+      "purple_pixels": 9619
+    },
+    {
+      "mode": "motion",
+      "name": "spider_infection",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "dd6730580ff31d2d6091d39eb231f1193386a6612bc57e134199be92440b3f43",
+      "purple_pixels": 9004
+    },
+    {
+      "mode": "motion",
+      "name": "spider_death_start",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "0eaa8d5964b757213fd7135e1f4fd7f2342554a5900ee48e5c37b4a3392f9c0f",
+      "purple_pixels": 29244
+    },
+    {
+      "mode": "motion",
+      "name": "spider_death_end",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "7d26a757be03f736320eb6a0ab56efd78d7b9c4f74ff408dd6272f3bfd7c0c39",
+      "purple_pixels": 38400
+    },
+    {
+      "mode": "glow",
+      "name": "spider_front",
+      "size": [
+        854,
+        480
+      ],
+      "sha256": "d4b0761a4fe0cba477b930833b823c3f91d3e4e1bbee95aea96cb18e07fe3d4d",
+      "purple_pixels": 1731
+    },
+    {
+      "mode": "glow",
+      "name": "spider_back",
+      "size": [
+        854,
+        480
+      ],
+      "sha256": "73f37111a383db98814562c86f0a2576a2d4588d3888a20b1b45e82b7553fb4f",
+      "purple_pixels": 1786
+    }
+  ]
+}

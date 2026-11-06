@@ -540,7 +540,7 @@ public final class InfectedMob extends Monster implements GeoEntity {
     @Override protected net.minecraft.sounds.SoundEvent getDeathSound(){return kind==InfectedKind.SIEGE_BEAST?SoundEvents.RAVAGER_DEATH:super.getDeathSound();}
     @Override public void die(DamageSource source){
         if(kind==InfectedKind.SIEGE_BEAST&&!siegeDeathBurst&&level() instanceof ServerLevel server){siegeDeathBurst=true;triggerAnim("action","death");dev.hui.enderinfection.particle.SiegeEffects.death(server,this);}
-        if(kind.designed()||kind==InfectedKind.SKELETON||kind==InfectedKind.CORE)triggerAnim("action","death");
+        if(kind.designed()||kind==InfectedKind.SKELETON||kind==InfectedKind.CORE||kind==InfectedKind.SPIDER)triggerAnim("action","death");
         super.die(source);
     }
     @Override public AnimatableInstanceCache getAnimatableInstanceCache(){return cache;}
@@ -551,7 +551,7 @@ public final class InfectedMob extends Monster implements GeoEntity {
             return state.setAndContinue(RawAnimation.begin().thenLoop(prefix+(state.isMoving()?"walk":"idle")));
         }));
         var action=new AnimationController<InfectedMob>(this,"action",0,state->PlayState.STOP).setAnimationSpeedHandler(entity->entity.emerging()?(double)entity.morphSpeed():1.0).triggerableAnim("special",RawAnimation.begin().thenPlay(prefix+"special")).triggerableAnim("infection",RawAnimation.begin().thenPlay(prefix+"infection"));
-        if(kind==InfectedKind.SIEGE_BEAST||kind.designed()||kind==InfectedKind.SKELETON||kind==InfectedKind.CORE)action.triggerableAnim("death",RawAnimation.begin().thenPlay(prefix+"death"));
+        if(kind==InfectedKind.SIEGE_BEAST||kind.designed()||kind==InfectedKind.SKELETON||kind==InfectedKind.CORE||kind==InfectedKind.SPIDER)action.triggerableAnim("death",RawAnimation.begin().thenPlay(prefix+"death"));
         if(dev.hui.enderinfection.rift.RiftCombat.unit(this))action.triggerableAnim("phase",RawAnimation.begin().thenPlay(prefix+"phase"));
         controllers.add(action);
         if(kind==InfectedKind.ANCHOR_GUARD)controllers.add(new AnimationController<>(this,"rift_shell",2,state->{if(attacking()||emerging())return PlayState.STOP;return state.setAndContinue(RawAnimation.begin().thenLoop(prefix+(riftExposed()?"exposed":"closed")));}));

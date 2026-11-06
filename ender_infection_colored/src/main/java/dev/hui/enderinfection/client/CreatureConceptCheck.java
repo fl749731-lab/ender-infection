@@ -78,7 +78,7 @@ public final class CreatureConceptCheck {
         Set<String> selected = selectedSubjects();
         int index = 0;
         for (InfectedKind kind : InfectedKind.values()) {
-            if (!kind.designed() || (!selected.isEmpty() && !selected.contains(kind.key))) continue;
+            if ((!kind.designed() && !selected.contains(kind.key)) || (!selected.isEmpty() && !selected.contains(kind.key))) continue;
             double x = 3 + (index % 5) * 24, z = 12 + (index++ / 5) * 24;
             double elevation = kind == InfectedKind.SPOREWING_SCOUT ? .8 : 0;
             var mob = Objects.requireNonNull(InfectedContent.TYPES.get(kind).get().create(level));
@@ -114,7 +114,7 @@ public final class CreatureConceptCheck {
         Set<String> selected = new HashSet<>();
         if (requested.isBlank()) return selected;
         Set<String> valid = new HashSet<>();
-        for (InfectedKind kind : InfectedKind.values()) if (kind.designed()) valid.add(kind.key);
+        for (InfectedKind kind : InfectedKind.values()) valid.add(kind.key);
         for (String value : requested.split(",", -1)) {
             String key = value.trim();
             if (!valid.contains(key)) throw new IllegalArgumentException("Unknown concept subject: " + key);

@@ -8,6 +8,7 @@ import numpy as np
 from PIL import Image
 
 from design_catalog import ASSETS, ROOT
+from export_creature_reworks import SPECS as REWORKS
 
 LEGACY_CREATURE_SOURCES = {
     'infected_' + species: ROOT / 'colored_units' / f'infected_{species}_colored.bbmodel'
@@ -15,7 +16,7 @@ LEGACY_CREATURE_SOURCES = {
         'cow', 'pig', 'sheep', 'spider',
         'cow_early', 'pig_early', 'sheep_early', 'skeleton_early',
         'spider_early', 'zombie_early',
-    )
+    ) if 'infected_' + species not in REWORKS
 }
 
 

@@ -104,7 +104,9 @@ def export(names=None,assets=ASSETS):
   for relative,content in files.items():p=assets/relative;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(content)
   rows.append(row)
  credits={'license':'CC-BY-4.0','license_url':'https://creativecommons.org/licenses/by/4.0/','models':[{k:v for k,v in spec.items() if k in ('runtime','author','original','url','changes')} for spec in SPECS.values()]}
- p=assets/'third_party/model_credits.json';p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(encoded(credits))
+ p=assets/'third_party/model_credits.json'
+ if p.exists():credits['models'] += [row for row in read(p).get('models',[]) if row['runtime'] not in {spec['runtime'] for spec in SPECS.values()}]
+ p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(encoded(credits))
  bounds=read(assets/'concept_visual_bounds.json');verification=read(PACK/'mcp-verification.json')
  for name in names or SPECS:
   spec=SPECS[name];b=verification['models'][name]['info']['bounds'];lo=b['min'];hi=b['max'];s=spec['scale']/16

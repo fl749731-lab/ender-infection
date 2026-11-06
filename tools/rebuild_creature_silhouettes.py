@@ -65,7 +65,9 @@ def validate(data):
     assert {'idle', 'attack', 'emerge', 'death'} <= clips
     for animation in data['animations']:
         for uid, track in animation.get('animators', {}).items():
-            assert uid in groups and track['name'] == groups[uid]['name']
+            # Blockbench keeps a cached animator name after a group rename.
+            # UUID is the binding used by both prepare_render and our exporter.
+            assert uid in groups, f"Animation references missing group: {uid}"
         for phase in (0, .25, .5, .75, 1):
             posed_bounds(data, (animation, phase * animation['length']))
 
@@ -84,6 +86,8 @@ def main():
     manifest_path = PACK / 'manifest.json'
     manifest = json.loads(manifest_path.read_text('utf-8'))
     records = {r['id']: r for r in manifest['models']}
+    from export_public_model_adaptations import SPECS as public_specs
+    protected_sources = {spec['legacy_source'] for spec in public_specs.values()}
     backup = PROJECT / 'build/concept-before'
     backup.mkdir(parents=True, exist_ok=True)
     for model in models:
@@ -92,10 +96,16 @@ def main():
             dest = backup / old.name
             if not dest.exists():
                 shutil.copy2(old, dest)
-    runtime_bounds, validation = {}, []
+    # Keep bounds for legacy species which are outside these 14 concept units.
+    runtime_bounds = json.loads((ASSETS / 'concept_visual_bounds.json').read_text('utf-8'))
+    validation = []
     preview_dir = PROJECT / 'build/concept-review/final'
     preview_dir.mkdir(parents=True, exist_ok=True)
     for model in models:
+        if model.key in protected_sources:
+            # Their canonical sources are the verified public-model MCP projects.
+            # Neither the normal rebuild nor --regenerate may restore the old rig.
+            continue
         if args.regenerate:
             with concept_palette():
                 data, texture, record = model.save(PACK / 'monsters')
@@ -141,6 +151,8 @@ def main():
     report_path = PROJECT / 'verification/design_asset_manifest.json'
     report = json.loads(report_path.read_text('utf-8'))
     for source, row in units.items():
+        if source in protected_sources:
+            continue
         data = exporter.load(source)
         norm = records[source]['runtime_normalization']
         key = 'infected_' + row[1]
@@ -150,7 +162,13 @@ def main():
         for mapped in report['assets']:
             if mapped.get('source') == source:
                 mapped['scale'] = norm['scale']
+    from export_public_model_adaptations import export as export_public
+    from export_creature_reworks import export as export_reworks
+    replacement_rows = export_public(assets=ASSETS) + export_reworks(update_manifest=False)
+    replacement_ids = {row['runtime'] for row in replacement_rows}
+    report['assets'] = [row for row in report['assets'] if row['runtime'] not in replacement_ids] + replacement_rows
     exporter.write(report_path, report)
+    validation.extend(replacement_rows)
     (PROJECT / 'verification/creature_silhouettes.json').write_text(
         json.dumps({'status': 'ASSETS_VALIDATED', 'models': validation,
                     'native_visual': 'pending'}, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')

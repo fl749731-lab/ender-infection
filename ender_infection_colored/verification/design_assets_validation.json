@@ -1,11 +1,11 @@
 {
   "status": "PASS",
-  "geometry_files": 40,
-  "validated_faces": 62340,
+  "geometry_files": 41,
+  "validated_faces": 61116,
   "obj_files": 129,
-  "glow_masks": 51,
+  "glow_masks": 52,
   "creature_glow_textures": 35,
-  "crystal_pixels": 23145,
+  "crystal_pixels": 39558,
   "missing_crystal_pixels": 0,
   "non_crystal_glow_pixels": 0,
   "legacy_creature_glow": [
@@ -24,12 +24,6 @@
     {
       "runtime": "infected_sheep",
       "source": "colored_units/infected_sheep_colored.bbmodel",
-      "crystal_elements": 2,
-      "crystal_pixels": 38
-    },
-    {
-      "runtime": "infected_spider",
-      "source": "colored_units/infected_spider_colored.bbmodel",
       "crystal_elements": 2,
       "crystal_pixels": 38
     },
@@ -96,7 +90,62 @@
       "height": 2.75
     }
   ],
-  "mapped_source_models": 61,
+  "mapped_source_models": 62,
   "scene_source_models": 2,
-  "errors": []
+  "errors": [],
+  "public_model_adaptations": [
+    {
+      "source": "resonance_priest",
+      "editable_source": "colored_units/public_model_adaptations_v1/models/resonance_priest.bbmodel",
+      "runtime": "infected_resonance_priest",
+      "kind": "entity",
+      "scale": 0.52,
+      "pipeline": "tools/export_public_model_adaptations.py",
+      "cubes": 299,
+      "bones": 91,
+      "atlas": [
+        512,
+        512
+      ],
+      "emissive_pixels": 17160
+    },
+    {
+      "source": "crystalback_carrier",
+      "editable_source": "colored_units/public_model_adaptations_v1/models/crystalback_carrier.bbmodel",
+      "runtime": "infected_carrier",
+      "kind": "entity",
+      "scale": 0.7,
+      "pipeline": "tools/export_public_model_adaptations.py",
+      "cubes": 191,
+      "bones": 142,
+      "atlas": [
+        512,
+        256
+      ],
+      "emissive_pixels": 18
+    },
+    {
+      "source": "mcp_rework_infected_spider",
+      "editable_source": "colored_units/creature_rework_v2/models/infected_spider.bbmodel",
+      "runtime": "infected_spider",
+      "kind": "entity",
+      "pipeline": "tools/export_creature_reworks.py",
+      "scale": 1.05,
+      "cubes": 69,
+      "bones": 61,
+      "atlas": [
+        256,
+        128
+      ],
+      "emissive_pixels": 50,
+      "crystal_faces": 72,
+      "visual_bounds": {
+        "width": 3.0180937500000002,
+        "height": 1.4630187499999998,
+        "depth": 2.12296875,
+        "center_x": -0.0,
+        "center_z": 0.01050000000000001
+      }
+    }
+  ]
 }

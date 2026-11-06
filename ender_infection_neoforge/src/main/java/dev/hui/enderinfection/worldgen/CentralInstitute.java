@@ -255,6 +255,7 @@ public final class CentralInstitute {
                 if (tileBox.intersects(clip) && !templates.get(tileIndex).placeInWorld(level, at, at, settings(clip), random, UPDATE_FLAGS))
                     throw new IllegalStateException("模板放置失败 " + tile.template());
             }
+            dev.hui.enderinfection.institute.InstituteProtection.register(level,job.origin);
             job.cursor++; setDirty();
             if (job.cursor == job.total()) {
                 lastStatus = "中央研究所已完成：120×104×55，起点 " + job.origin.toShortString()

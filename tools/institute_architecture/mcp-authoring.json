@@ -1,0 +1,854 @@
+{
+  "server": {
+    "name": "minecraft-structure-designer",
+    "version": ""
+  },
+  "target_data_version": 3465,
+  "render_assets": "Minecraft 1.21.1",
+  "assets": [
+    {
+      "file": "tools/institute_architecture/entry_portico.nbt",
+      "sha256": "42f9f36f07ee1ac39ba7313d72eb99ae0ed19b8cbb598b4e7eb459c952b4fd94"
+    },
+    {
+      "file": "tools/institute_architecture/atrium_halo.nbt",
+      "sha256": "ed483df5957e4cd7b9ba2f6893d0a8bc75298c7d504819459aa451579ccbb120"
+    },
+    {
+      "file": "tools/institute_architecture/atrium_bench.nbt",
+      "sha256": "3743b19b64bfba5947a83d43d01f204eaa6d0fde0e0ec970a905c5e46ad1bb93"
+    },
+    {
+      "file": "tools/institute_architecture/research_bench.nbt",
+      "sha256": "22d85ec291cac99c0f1e40cd97786d2bbf006287fde02721b4f10412b95d6175"
+    }
+  ],
+  "calls": [
+    {
+      "tool": "new_structure",
+      "arguments": {
+        "name": "entry_portico",
+        "size_x": 22,
+        "size_y": 12,
+        "size_z": 9,
+        "minecraft_version": "1.20.1"
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "entry_portico",
+        "x1": 0,
+        "y1": 0,
+        "z1": 0,
+        "x2": 21,
+        "y2": 0,
+        "z2": 8,
+        "state": "polished_andesite",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "entry_portico",
+        "x1": 0,
+        "y1": 0,
+        "z1": 0,
+        "x2": 0,
+        "y2": 0,
+        "z2": 8,
+        "state": "polished_deepslate",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "entry_portico",
+        "x1": 21,
+        "y1": 0,
+        "z1": 0,
+        "x2": 21,
+        "y2": 0,
+        "z2": 8,
+        "state": "polished_deepslate",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "entry_portico",
+        "x1": 1,
+        "y1": 1,
+        "z1": 1,
+        "x2": 1,
+        "y2": 10,
+        "z2": 2,
+        "state": "white_concrete",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "entry_portico",
+        "x1": 1,
+        "y1": 2,
+        "z1": 3,
+        "x2": 1,
+        "y2": 9,
+        "z2": 3,
+        "state": "cyan_stained_glass",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "entry_portico",
+        "x1": 1,
+        "y1": 1,
+        "z1": 7,
+        "x2": 1,
+        "y2": 5,
+        "z2": 7,
+        "state": "polished_deepslate",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "entry_portico",
+        "x1": 20,
+        "y1": 1,
+        "z1": 1,
+        "x2": 20,
+        "y2": 10,
+        "z2": 2,
+        "state": "white_concrete",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "entry_portico",
+        "x1": 20,
+        "y1": 2,
+        "z1": 3,
+        "x2": 20,
+        "y2": 9,
+        "z2": 3,
+        "state": "cyan_stained_glass",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "entry_portico",
+        "x1": 20,
+        "y1": 1,
+        "z1": 7,
+        "x2": 20,
+        "y2": 5,
+        "z2": 7,
+        "state": "polished_deepslate",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "entry_portico",
+        "x1": 0,
+        "y1": 6,
+        "z1": 0,
+        "x2": 21,
+        "y2": 6,
+        "z2": 8,
+        "state": "smooth_quartz_slab[type=top,waterlogged=false]",
+        "mode": "outline"
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "entry_portico",
+        "x1": 3,
+        "y1": 6,
+        "z1": 1,
+        "x2": 18,
+        "y2": 6,
+        "z2": 7,
+        "state": "gray_stained_glass",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "entry_portico",
+        "x1": 2,
+        "y1": 6,
+        "z1": 0,
+        "x2": 2,
+        "y2": 6,
+        "z2": 8,
+        "state": "polished_deepslate",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "entry_portico",
+        "x1": 7,
+        "y1": 6,
+        "z1": 0,
+        "x2": 7,
+        "y2": 6,
+        "z2": 8,
+        "state": "polished_deepslate",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "entry_portico",
+        "x1": 14,
+        "y1": 6,
+        "z1": 0,
+        "x2": 14,
+        "y2": 6,
+        "z2": 8,
+        "state": "polished_deepslate",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "entry_portico",
+        "x1": 19,
+        "y1": 6,
+        "z1": 0,
+        "x2": 19,
+        "y2": 6,
+        "z2": 8,
+        "state": "polished_deepslate",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "entry_portico",
+        "x1": 1,
+        "y1": 10,
+        "z1": 1,
+        "x2": 20,
+        "y2": 10,
+        "z2": 2,
+        "state": "white_concrete",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "entry_portico",
+        "x1": 4,
+        "y1": 8,
+        "z1": 1,
+        "x2": 17,
+        "y2": 9,
+        "z2": 2,
+        "state": "polished_deepslate",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "entry_portico",
+        "x1": 4,
+        "y1": 7,
+        "z1": 2,
+        "x2": 17,
+        "y2": 7,
+        "z2": 2,
+        "state": "cyan_concrete",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "set_blocks",
+      "arguments": {
+        "name": "entry_portico",
+        "blocks": [
+          {
+            "x": 3,
+            "y": 5,
+            "z": 7,
+            "state": "sea_lantern"
+          },
+          {
+            "x": 3,
+            "y": 9,
+            "z": 2,
+            "state": "sea_lantern"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "set_blocks",
+      "arguments": {
+        "name": "entry_portico",
+        "blocks": [
+          {
+            "x": 18,
+            "y": 5,
+            "z": 7,
+            "state": "sea_lantern"
+          },
+          {
+            "x": 18,
+            "y": 9,
+            "z": 2,
+            "state": "sea_lantern"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "set_blocks",
+      "arguments": {
+        "name": "entry_portico",
+        "blocks": [
+          {
+            "x": 4,
+            "y": 0,
+            "z": 2,
+            "state": "cyan_concrete"
+          },
+          {
+            "x": 17,
+            "y": 0,
+            "z": 2,
+            "state": "cyan_concrete"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "set_blocks",
+      "arguments": {
+        "name": "entry_portico",
+        "blocks": [
+          {
+            "x": 4,
+            "y": 0,
+            "z": 5,
+            "state": "cyan_concrete"
+          },
+          {
+            "x": 17,
+            "y": 0,
+            "z": 5,
+            "state": "cyan_concrete"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "set_blocks",
+      "arguments": {
+        "name": "entry_portico",
+        "blocks": [
+          {
+            "x": 4,
+            "y": 0,
+            "z": 8,
+            "state": "cyan_concrete"
+          },
+          {
+            "x": 17,
+            "y": 0,
+            "z": 8,
+            "state": "cyan_concrete"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "new_structure",
+      "arguments": {
+        "name": "atrium_halo",
+        "size_x": 20,
+        "size_y": 6,
+        "size_z": 12,
+        "minecraft_version": "1.20.1"
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "atrium_halo",
+        "x1": 0,
+        "y1": 0,
+        "z1": 0,
+        "x2": 19,
+        "y2": 0,
+        "z2": 11,
+        "state": "polished_deepslate",
+        "mode": "outline"
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "atrium_halo",
+        "x1": 2,
+        "y1": 0,
+        "z1": 2,
+        "x2": 17,
+        "y2": 0,
+        "z2": 9,
+        "state": "void",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "atrium_halo",
+        "x1": 1,
+        "y1": 1,
+        "z1": 0,
+        "x2": 18,
+        "y2": 1,
+        "z2": 0,
+        "state": "cyan_stained_glass",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "atrium_halo",
+        "x1": 1,
+        "y1": 1,
+        "z1": 11,
+        "x2": 18,
+        "y2": 1,
+        "z2": 11,
+        "state": "cyan_stained_glass",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "atrium_halo",
+        "x1": 0,
+        "y1": 1,
+        "z1": 1,
+        "x2": 0,
+        "y2": 1,
+        "z2": 10,
+        "state": "cyan_stained_glass",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "atrium_halo",
+        "x1": 19,
+        "y1": 1,
+        "z1": 1,
+        "x2": 19,
+        "y2": 1,
+        "z2": 10,
+        "state": "cyan_stained_glass",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "set_blocks",
+      "arguments": {
+        "name": "atrium_halo",
+        "blocks": [
+          {
+            "x": 1,
+            "y": 0,
+            "z": 1,
+            "state": "sea_lantern"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "atrium_halo",
+        "x1": 1,
+        "y1": 1,
+        "z1": 1,
+        "x2": 1,
+        "y2": 5,
+        "z2": 1,
+        "state": "iron_bars",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "set_blocks",
+      "arguments": {
+        "name": "atrium_halo",
+        "blocks": [
+          {
+            "x": 1,
+            "y": 0,
+            "z": 10,
+            "state": "sea_lantern"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "atrium_halo",
+        "x1": 1,
+        "y1": 1,
+        "z1": 10,
+        "x2": 1,
+        "y2": 5,
+        "z2": 10,
+        "state": "iron_bars",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "set_blocks",
+      "arguments": {
+        "name": "atrium_halo",
+        "blocks": [
+          {
+            "x": 18,
+            "y": 0,
+            "z": 1,
+            "state": "sea_lantern"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "atrium_halo",
+        "x1": 18,
+        "y1": 1,
+        "z1": 1,
+        "x2": 18,
+        "y2": 5,
+        "z2": 1,
+        "state": "iron_bars",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "set_blocks",
+      "arguments": {
+        "name": "atrium_halo",
+        "blocks": [
+          {
+            "x": 18,
+            "y": 0,
+            "z": 10,
+            "state": "sea_lantern"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "atrium_halo",
+        "x1": 18,
+        "y1": 1,
+        "z1": 10,
+        "x2": 18,
+        "y2": 5,
+        "z2": 10,
+        "state": "iron_bars",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "new_structure",
+      "arguments": {
+        "name": "atrium_bench",
+        "size_x": 5,
+        "size_y": 3,
+        "size_z": 3,
+        "minecraft_version": "1.20.1"
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "atrium_bench",
+        "x1": 0,
+        "y1": 0,
+        "z1": 0,
+        "x2": 4,
+        "y2": 0,
+        "z2": 2,
+        "state": "polished_andesite",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "atrium_bench",
+        "x1": 1,
+        "y1": 1,
+        "z1": 1,
+        "x2": 3,
+        "y2": 1,
+        "z2": 1,
+        "state": "smooth_quartz_stairs[facing=north,half=bottom,shape=straight,waterlogged=false]",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "set_blocks",
+      "arguments": {
+        "name": "atrium_bench",
+        "blocks": [
+          {
+            "x": 0,
+            "y": 1,
+            "z": 1,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 2,
+            "z": 1,
+            "state": "oak_leaves[persistent=true,distance=7,waterlogged=false]"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "set_blocks",
+      "arguments": {
+        "name": "atrium_bench",
+        "blocks": [
+          {
+            "x": 4,
+            "y": 1,
+            "z": 1,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 2,
+            "z": 1,
+            "state": "oak_leaves[persistent=true,distance=7,waterlogged=false]"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "new_structure",
+      "arguments": {
+        "name": "research_bench",
+        "size_x": 5,
+        "size_y": 4,
+        "size_z": 4,
+        "minecraft_version": "1.20.1"
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "research_bench",
+        "x1": 0,
+        "y1": 0,
+        "z1": 0,
+        "x2": 4,
+        "y2": 0,
+        "z2": 3,
+        "state": "light_gray_concrete",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "research_bench",
+        "x1": 0,
+        "y1": 0,
+        "z1": 3,
+        "x2": 4,
+        "y2": 0,
+        "z2": 3,
+        "state": "light_blue_concrete",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "fill",
+      "arguments": {
+        "name": "research_bench",
+        "x1": 0,
+        "y1": 1,
+        "z1": 1,
+        "x2": 4,
+        "y2": 1,
+        "z2": 1,
+        "state": "smooth_quartz_slab[type=top,waterlogged=false]",
+        "mode": "replace"
+      }
+    },
+    {
+      "tool": "set_blocks",
+      "arguments": {
+        "name": "research_bench",
+        "blocks": [
+          {
+            "x": 0,
+            "y": 1,
+            "z": 1,
+            "state": "white_concrete"
+          },
+          {
+            "x": 4,
+            "y": 1,
+            "z": 1,
+            "state": "white_concrete"
+          },
+          {
+            "x": 1,
+            "y": 2,
+            "z": 1,
+            "state": "ender_infection:lab_monitor[facing=south]"
+          },
+          {
+            "x": 3,
+            "y": 2,
+            "z": 1,
+            "state": "ender_infection:lab_sample_rack[facing=south]"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "save_structure",
+      "arguments": {
+        "name": "entry_portico",
+        "path": "tools/institute_architecture/entry_portico.nbt"
+      }
+    },
+    {
+      "tool": "render",
+      "arguments": {
+        "name": "entry_portico",
+        "view": "se",
+        "scale": 28,
+        "max_size": 1200
+      }
+    },
+    {
+      "tool": "layer_text",
+      "arguments": {
+        "name": "entry_portico",
+        "y": 1
+      }
+    },
+    {
+      "tool": "save_structure",
+      "arguments": {
+        "name": "atrium_halo",
+        "path": "tools/institute_architecture/atrium_halo.nbt"
+      }
+    },
+    {
+      "tool": "render",
+      "arguments": {
+        "name": "atrium_halo",
+        "view": "se",
+        "scale": 28,
+        "max_size": 1200
+      }
+    },
+    {
+      "tool": "layer_text",
+      "arguments": {
+        "name": "atrium_halo",
+        "y": 1
+      }
+    },
+    {
+      "tool": "save_structure",
+      "arguments": {
+        "name": "atrium_bench",
+        "path": "tools/institute_architecture/atrium_bench.nbt"
+      }
+    },
+    {
+      "tool": "render",
+      "arguments": {
+        "name": "atrium_bench",
+        "view": "se",
+        "scale": 28,
+        "max_size": 1200
+      }
+    },
+    {
+      "tool": "layer_text",
+      "arguments": {
+        "name": "atrium_bench",
+        "y": 1
+      }
+    },
+    {
+      "tool": "save_structure",
+      "arguments": {
+        "name": "research_bench",
+        "path": "tools/institute_architecture/research_bench.nbt"
+      }
+    },
+    {
+      "tool": "render",
+      "arguments": {
+        "name": "research_bench",
+        "view": "se",
+        "scale": 28,
+        "max_size": 1200
+      }
+    },
+    {
+      "tool": "layer_text",
+      "arguments": {
+        "name": "research_bench",
+        "y": 1
+      }
+    }
+  ],
+  "path_base": "workspace root; authoring calls used resolved absolute paths",
+  "subsequent_edits": [
+    "tools/institute_architecture/mcp-density-update.json"
+  ]
+}

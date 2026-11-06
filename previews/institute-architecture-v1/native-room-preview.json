@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "target": "NeoForge Minecraft 1.21.1",
+  "rooms": [
+    "B2",
+    "B4",
+    "A7"
+  ],
+  "screenshots": 6,
+  "source": "Native current room templates clipped into an isolated new flat world",
+  "lighting": "Real facility powered state; captures wait for actual client light levels. Stale packets are refreshed from the server light engine.",
+  "natural_generation_acceptance": false,
+  "manifest_sha256": "b48ba0504bdf428fb2ed63b6b8056a7156018335c14eb9f415396471c1624e9d",
+  "images": [
+    {
+      "file": "previews/institute-architecture-v1/neoforge/room_A7_back.png",
+      "width": 1280,
+      "height": 800,
+      "sha256": "f14ea8a116885423be64ccf909fd216dbb00e6d6177cb3533ed10bbc29c4baa6",
+      "sample_colors": 2981
+    },
+    {
+      "file": "previews/institute-architecture-v1/neoforge/room_A7_front.png",
+      "width": 1280,
+      "height": 800,
+      "sha256": "fc0e515816f412b200d87fbd8126b720a60eb31cfd7550a468a4aca338265eb7",
+      "sample_colors": 3112
+    },
+    {
+      "file": "previews/institute-architecture-v1/neoforge/room_B2_back.png",
+      "width": 1280,
+      "height": 800,
+      "sha256": "05c66cd1c736656ae5d51e4246572ce41a4f44b83107b9c884eded7831eab929",
+      "sample_colors": 3160
+    },
+    {
+      "file": "previews/institute-architecture-v1/neoforge/room_B2_front.png",
+      "width": 1280,
+      "height": 800,
+      "sha256": "033f117f58eecc1801c93d612bc85a64fc9eff8f170021bbed8a93e877dcb451",
+      "sample_colors": 2981
+    },
+    {
+      "file": "previews/institute-architecture-v1/neoforge/room_B4_back.png",
+      "width": 1280,
+      "height": 800,
+      "sha256": "8f99a07c0ddc758f066785be074f85c9edad9b7c6cd501801b6dca393880b0b1",
+      "sample_colors": 2740
+    },
+    {
+      "file": "previews/institute-architecture-v1/neoforge/room_B4_front.png",
+      "width": 1280,
+      "height": 800,
+      "sha256": "dd676200469cdead5dc750491d6bbdad774f4a04334f09beb68a47f02a4e0527",
+      "sample_colors": 3066
+    }
+  ]
+}

@@ -116,6 +116,9 @@ public final class InfectedMob extends Monster implements GeoEntity {
     }
     @Override protected void defineSynchedData(net.minecraft.network.syncher.SynchedEntityData.Builder builder) { super.defineSynchedData(builder); builder.define(ATTACKING,false);builder.define(EMERGING,true);builder.define(MOTHER_STAGE,1);builder.define(MOTHER_STATE,0);builder.define(CLIMBING,false);builder.define(MORPH_SPEED,1F);builder.define(RIFT_EXPOSED,false); }
     public boolean attacking() { return entityData.get(ATTACKING); }
+    public boolean instituteContained(){return kind==InfectedKind.CORE&&getPersistentData().getBoolean("InstituteContained");}
+    public void releaseInstituteContainment(){if(instituteContained()){getPersistentData().remove("InstituteContained");expansionNodeCreated=false;}}
+    @Override protected boolean shouldDespawnInPeaceful(){return instituteContained()?false:super.shouldDespawnInPeaceful();}
     public void interruptForOrders(){getPersistentData().putInt("CrystalCastSequence",getPersistentData().getInt("CrystalCastSequence")+1);entityData.set(ATTACKING,false);attackTick=0;cooldown=Math.max(cooldown,10);getNavigation().stop();}
     public boolean riftExposed(){return entityData.get(RIFT_EXPOSED);}
     public void setRiftExposed(boolean value){entityData.set(RIFT_EXPOSED,value);}
@@ -265,9 +268,9 @@ public final class InfectedMob extends Monster implements GeoEntity {
     }
     @Override public void tick() {
         super.tick(); if (!(level() instanceof ServerLevel server) || !isAlive()) return;
-        if(kind==InfectedKind.CORE)collectTerritoryBiomass(server);
+        if(kind==InfectedKind.CORE&&!instituteContained())collectTerritoryBiomass(server);
         if(kind==InfectedKind.SPIDER||kind==InfectedKind.EARLY_SPIDER)entityData.set(CLIMBING,horizontalCollision);
-        if(kind==InfectedKind.CORE&&!expansionNodeCreated&&tickCount%40==0)establishExpansionNode(server);
+        if(kind==InfectedKind.CORE&&!instituteContained()&&!expansionNodeCreated&&tickCount%40==0)establishExpansionNode(server);
         if(motherBrain!=null)motherBrain.tick(server);
         if(emergenceTicks>0){
             FactionEffects.emerge(server,position(),emergenceTicks);

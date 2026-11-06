@@ -79,8 +79,9 @@ public final class WardenGameTests {
     @GameTest(template="empty64",templateNamespace="ender_warden_checks",timeoutTicks=750,batch="warden_start")
     public static void researchArchiveIncidentAndSurvivalGuardTheActualBoundTerminal(GameTestHelper h) {
         var s=new Scene(h);s.card();h.assertTrue(!s.start()&&s.status().phase()==WardenEncounter.Phase.IDLE,"Research prerequisites ignored");s.ready();
+        h.assertTrue(!s.facility(s.saved()).getBoolean("StoryRiftOpened"),"Research or power unlocked the story protection before a rift");
         s.player.setGameMode(GameType.CREATIVE);h.assertTrue(!s.start(),"Creative started a facility encounter");s.player.setGameMode(GameType.SURVIVAL);
-        s.run(x->{if(!x.active())return;h.assertTrue(x.boss().getHealth()==360&&x.status().spawned(),"Wrong boss or missing durable spawn flag");x.success();});
+        s.run(x->{if(!x.active())return;h.assertTrue(x.boss().getHealth()==360&&x.status().spawned(),"Wrong boss or missing durable spawn flag");h.assertTrue(x.facility(x.saved()).getBoolean("StoryRiftOpened"),"Actual F8 rift spawn did not unlock this facility");x.success();});
     }
     @GameTest(template="empty64",templateNamespace="ender_warden_checks",timeoutTicks=750,batch="warden_reward")
     public static void sharedRewardIsAtomicOnceOnlyAndSurvivesSavedDataReload(GameTestHelper h) {

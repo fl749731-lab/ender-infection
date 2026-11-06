@@ -1,0 +1,592 @@
+{
+  "status": "PASS",
+  "target": "NeoForge Minecraft 1.21.1",
+  "rooms": 48,
+  "screenshots": 96,
+  "natural_generation_acceptance": false,
+  "manifest_sha256": "e75b720debcc8ddbef0a2274dcec396860404bc3b5710f92eb25d3de30e422fa",
+  "log": "build/dual-version-validation/neoforge-all-rooms-final.log",
+  "images": [
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_A1_back.png",
+      "sha256": "c7059ed591db2aca9de89f6ffbdcf47eca45f6c88312c662c05e54b41660a381",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_A1_front.png",
+      "sha256": "9124a8b74a23fb663feecc696a95d8d6c88593eaa1ae1956911ef0e754590bdd",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_A2_back.png",
+      "sha256": "fd9c7895110cda9f8a7e838fb0602d02c91699a58e9341642d44388787cc86bd",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_A2_front.png",
+      "sha256": "f74ea4e4a8dc90c9b9652d8862cd8139e39bf821451299254c86a80d0a14b988",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_A3_back.png",
+      "sha256": "5104bc831d0fd5113064234c8740aed2aa03fb63b47561165e49491553ad41a1",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_A3_front.png",
+      "sha256": "33de63838ee3cbff97a7d2c6a194fea62dc6cc3c36f380e8b5eb0922999ce5fa",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_A4_back.png",
+      "sha256": "479b33a75b4e3df39875386c77096dc6999f01c09f7f034e17bd89d19403d6d3",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_A4_front.png",
+      "sha256": "5e571fae9074c62b6c75145d9130b6b71bb37977de8203d55d660d3bdc5dbe0b",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_A5_back.png",
+      "sha256": "d0dd28317d36ce7ed95ce86fce3c64dd8afb7a5b9d77244d9fe685da9ee77d78",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_A5_front.png",
+      "sha256": "1454ff08df8bfd35d732b13e01a6531ceac2f97b4a472a9dfbc32a5d7efad6bb",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_A6_back.png",
+      "sha256": "32961a3f87be80959029e50544950a8f97f4d9fcac4d9129d9963d16c3c003df",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_A6_front.png",
+      "sha256": "409e129f953ca058bb7551306ed0ca7e0dbb1c8efc71e3075a86868ad1c5fe28",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_A7_back.png",
+      "sha256": "3b6287eb0eb43872e435bc41900d15744ea5b9f49ec545ccaf4e783edc5830c2",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_A7_front.png",
+      "sha256": "7dd4cdcbae3bb433de54e0456c06d1315328166dd5e0794987165e8c1badc454",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_A8_back.png",
+      "sha256": "495a12cd938aababcf2ac1bf0b123dca428ed9556b1ed9bb443796ef987769c7",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_A8_front.png",
+      "sha256": "585d32230c088888046b4e1f7647374f4f5eb9ca1b565f9b09da2ef7517f7328",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_B1_back.png",
+      "sha256": "665fd0fdc95522bf5d9bd9ee6a79c81c7da8ef4eafeb901c39c2f3b47ac59ebc",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_B1_front.png",
+      "sha256": "ef57a249f06463d865b0a0f39d9ab107f24e4e4375643499bea36a45dff110ee",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_B2_back.png",
+      "sha256": "21e9d31b478edc9c8ad1a15482f08ff3a20392e34f6b5ff3359a28248da36afc",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_B2_front.png",
+      "sha256": "388f62328bace5f7b78d18122dc08c9d7cdf468e27b37c78c2205eb9bf6da4fe",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_B3_back.png",
+      "sha256": "3c1376cc026a299b2a688985a83c3b7d4b358404ae68eaaff6bdda6dcbe45473",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_B3_front.png",
+      "sha256": "c393e192d00418e9c52552d381fe227da9e62c99b53edc2e62fac101d189dd63",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_B4_back.png",
+      "sha256": "076875ddb214d66163a0ed090facb98b351929bb84e58fe97392c4cbd8385a30",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_B4_front.png",
+      "sha256": "4d5432ef7b9d7163246db6e570606c8f80b252f5a8db2f51283c4db5a6009d6f",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_B5_back.png",
+      "sha256": "1e3e66160b122e33f9d7182a87616b7b6a226aa1c2cfa38139cf27af66fa001e",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_B5_front.png",
+      "sha256": "168c0aecf19cabd021c26eb98dc99c714467c7ea7b4142e68066a4d67dc5eec0",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_B6_back.png",
+      "sha256": "8c974664b592b449ddd7ab81df6ba919bcdd72453c0d4d131d8aeb3c88fcff07",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_B6_front.png",
+      "sha256": "ce9bfd123b1399493ed8cc7c1a9154f3b01a2f6ab6f996d4b967471ab1577a46",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_B7_back.png",
+      "sha256": "9d4e80b5ce9d2b3e67a13b27ddf36be5019cf869477435258815eb7bad83722c",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_B7_front.png",
+      "sha256": "747f48e637adac9486e8b8d49e0d238ebfff3ae0ef9236985dbd6c3468122c52",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_B8_back.png",
+      "sha256": "46e1bb1e2a0df98075d70d1d0f5345923b8a82b6b4dd16565db18a6e1474e550",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_B8_front.png",
+      "sha256": "8be5b987974421add6fda838c801f8ed389c8af885850738e3623b872cff7eef",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_C1_back.png",
+      "sha256": "fc6ec0c8ea14923a120fbaf97b4e19fa30e517e206f3f95ee805bef7f7117a5b",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_C1_front.png",
+      "sha256": "a7ed23e01e6b396ee095b514fcd4790a29b99823bee47a329abf1dadfef0b2c7",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_C2_back.png",
+      "sha256": "35b62401726f881635f63d423b5a65677162e452aa844d999edd9c4aff5db0c1",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_C2_front.png",
+      "sha256": "c2d28325d594413472616a7084f95cafb276a570dc690954b3cdf17777db4c82",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_C3_back.png",
+      "sha256": "667f6454b2f86b98d19a39d6418f96c9dbc2aae0691092c6c2ca6b360bcdfb9a",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_C3_front.png",
+      "sha256": "11c1a8937300c42bb44b7f63bae76b47e3e100e19267a61a9aea4590392a5bfc",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_C4_back.png",
+      "sha256": "1948b84cdfc93258ebfd3779f9fc8964dc8f76fbcfca8ac58eaeba3b65555bed",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_C4_front.png",
+      "sha256": "038a75fbdc018752590530ea1bf40e0b4e8ecce257ce54ee7c90568b62caa0dc",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_C5_back.png",
+      "sha256": "f58b8efe08786675d5f70525c797a92833528a48eaf26566fc7c4a0407de6feb",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_C5_front.png",
+      "sha256": "82fd6b075fbea89c6d1d40ea074424cff334f0e02651d236ebd56a2c8fcc1501",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_C6_back.png",
+      "sha256": "054a00c5d2f56cd37edb28428dbbaa2bb232cee9235e607f6a8166f033e68abd",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_C6_front.png",
+      "sha256": "b4ccb2c61079596b9c74eb933ba5af1421a67c83007220d2126ab2a0ccbb9e5c",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_C7_back.png",
+      "sha256": "102891b8531cf8fd9b71069216b6865619b4bdf1c5e84b1073a6fbe2f2e1c3ed",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_C7_front.png",
+      "sha256": "8adda08b411d80e9b284fc47c395e4cc3e05166da9c4168e93676987f9bf1d06",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_C8_back.png",
+      "sha256": "186b765e389ada4821418cfb9b2a7af13e6173a0c329593b8c5b0aafbb317bec",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_C8_front.png",
+      "sha256": "998161e69e67ac24274be99adb3a93e03c70a4bc23502ac10f31650e96ba6e13",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_D1_back.png",
+      "sha256": "449984f10dfb5b226ae2ba8ce5822f977960daac944d6dda27ba6542897fea17",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_D1_front.png",
+      "sha256": "6aed15bece8865a1f6f2c7e4911149385f35acc8060ff1cd89b3c918515c344f",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_D2_back.png",
+      "sha256": "ae8293a5d9f24b0c3449d7d093e4fc2c08eb343bcd2a0c863195d892111b3bcc",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_D2_front.png",
+      "sha256": "4f59c7ec49a4c7f247e09576b523a79b1ddc62463430ec64929f69b758f360ab",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_D3_back.png",
+      "sha256": "2ac6c29d84078b83adf0db7f1efded4a51af08bf1117a5da9f3006a3c5195495",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_D3_front.png",
+      "sha256": "d1122b4c6b41c6f6c1dc5a7151e63c4b1c1c6e2619ec0d0d3f8db046e34b1b67",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_D4_back.png",
+      "sha256": "9b0d327180ff1e5d7d3be7ac3e6d19a8ea5614969aa478c4f8dd0df966327f53",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_D4_front.png",
+      "sha256": "ed88aa81681f3194b6ea8e3d0dd7b3c1d24c5c67458b8f0cd0944d46e7dfd089",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_D5_back.png",
+      "sha256": "c5a954002da996bfe140d569d91ee24566aef7ae4f9bc0eec0e4865918da1d1e",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_D5_front.png",
+      "sha256": "779b5c59b7ea35af513b00a7ce800ea5a116c3d15cde419b933c16ef0e4c64cd",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_D6_back.png",
+      "sha256": "5d47c9dee1fbcce62dade0f15f9f6c9e8b55d0a36b9d3640ed1bf5d73d128123",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_D6_front.png",
+      "sha256": "1792518ab12317f52a1b20072e7cb3d923119d210cb3c4b8848deefb38d64811",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_D7_back.png",
+      "sha256": "b12702a073f6371d16d4ff62ce4dceffba6d27a814285806f6e705b4e60b9354",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_D7_front.png",
+      "sha256": "d3652c2782f221aff0c5b5c5b962f420eb5f2c0032b45332b97f99d84fcbd1ef",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_D8_back.png",
+      "sha256": "1b857c7ef437c8c242020c9abb57fffc5995afe73f2b89eaceb7e1b68e00f8f8",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_D8_front.png",
+      "sha256": "ed9c48b99dc09bffa5b249b7e3af519ca0a4e5009f821556d6cdbda3c86d2b23",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_E1_back.png",
+      "sha256": "cbe135039d9e2e5cd4df879d77f93a48a8ed343ac890c1185ce8f5f7641f9992",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_E1_front.png",
+      "sha256": "2bae76c4bb2df92fdb3e693580f26676a0f25c13db94e8a69d04b19d4b5af521",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_E2_back.png",
+      "sha256": "fbf1a0251b37975e77f78a7a8eb9db57700835577f553e2514e4118dbb84e6d2",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_E2_front.png",
+      "sha256": "46600e905d489d2bdaa9e14f59aa9532fc0a9d87883160cbe7530f09d3f0a77f",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_E3_back.png",
+      "sha256": "438346a3e853f98a485ebc04a0e2d6c53ce6ef15186f95c7eb119a1e9f8ffc66",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_E3_front.png",
+      "sha256": "525d81c99587400898d1d7ac51cadc1398e936d40e8d166fbb45414b0fbbd103",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_E4_back.png",
+      "sha256": "38db57b6d28281a43185f3419019de568f89ed2193abf9d22b0fab1a9a4e32eb",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_E4_front.png",
+      "sha256": "056e3dedc2918c3ee4c34d2825e7d5eebc5466be8416f84eec13fabbe3fa94db",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_E5_back.png",
+      "sha256": "95bec825e95351144a339d3e442b08d4fbb76666301e25ccc7038295d9a9ac71",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_E5_front.png",
+      "sha256": "86f741a50fb79939619ecdcc1313a0783eed6ea016a402653caa45e3e6697fba",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_E6_back.png",
+      "sha256": "ecad188f4c438a01bf803a366131a2f2b74b4ae890e2e47d8b82fdca628c161f",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_E6_front.png",
+      "sha256": "e70337db3705ca5100789f5a8d177efee6f466a26f33dd72acaea8a2d2d645fa",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_E7_back.png",
+      "sha256": "42196f8502b43eb206f4e71198388fd6b126d7302110a2f7be06f6136b0d0112",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_E7_front.png",
+      "sha256": "5ed419512b452e29a2de60995ec69e00d72d3440bde72daac6168c16d420cabb",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_E8_back.png",
+      "sha256": "73fb7538e00b2d1119d643c8b372a4908739cc2b55b454377a97afb07daf3c3b",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_E8_front.png",
+      "sha256": "52b2139444eaf524774043fe553310ef5f6fddca4b0e8fe6aa8e31c6b3fa7ac6",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_F1_back.png",
+      "sha256": "81e202492af521bf2af1f69a8c0fa4b9252a15da4b36042059b7a5672aeb59ee",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_F1_front.png",
+      "sha256": "9c7150aea2d1777e5aaf5532dfc943d91d4c0fae98cf4aeea5379344305f2b52",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_F2_back.png",
+      "sha256": "8d30678d1ee13a1bbbf14a258acce4c5711d229ad4e5c55e0283dd58c1810177",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_F2_front.png",
+      "sha256": "eb081c7fc46231d024b3898ed77f75e4a591189a6210a42d3bc838547674020e",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_F3_back.png",
+      "sha256": "b32538b5ecfef29df085b71b37c59d52ff7168ada1810bbe3aeb605f137d9e87",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_F3_front.png",
+      "sha256": "28e21b75b33733759459828e1371ad4b803bdd6142289c6fe0336871a3b700df",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_F4_back.png",
+      "sha256": "3144f0a2a24d69f77af4c7dadd6f159cf8c346bc4db0714a3b71a4f4357b3502",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_F4_front.png",
+      "sha256": "008f1c5c8362dbda998bc8990c7b30d4f3f47636c86a14d6d892b0262b1b6cb7",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_F5_back.png",
+      "sha256": "49fca247434dda2935c9b7779d1742861c3b64350bf4817087a7cdf2a145eb78",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_F5_front.png",
+      "sha256": "c1a44ff1cfbcb7fb6f00219518f3691085b36d66b9c443765c4c682880ea8d2c",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_F6_back.png",
+      "sha256": "eb5e1cb924aa5bca54912148ef6c7956143d554776d6f1afba16cc459197d88a",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_F6_front.png",
+      "sha256": "ac8c44c6f58892f79a078ac689e83fd451a6bf697ed29794485cff9e31c0322b",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_F7_back.png",
+      "sha256": "59dad32f6bdadeb8537accb994842040b5285aef5c0a1914b12a9de87e6872c1",
+      "width": 1280,
+      "height": 800,
+      "capture_log": "build/dual-version-validation/neoforge-f7-final-closeup.log"
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_F7_front.png",
+      "sha256": "f09ebe64d8f26b22d56ac6834c07ef2fd4252c01458df71bb20c2be9d0e5fc7a",
+      "width": 1280,
+      "height": 800,
+      "capture_log": "build/dual-version-validation/neoforge-f7-final-closeup.log"
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_F8_back.png",
+      "sha256": "bb9f6079f23b719d8d589d003ca8056a543bbd88c84bda8385d54ca3f051e6c8",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "file": "previews/institute-rooms-v2/neoforge/room_F8_front.png",
+      "sha256": "416187453ce098bbf58aa48536dda67f6fdd6334820ae42bc08a82b472f30416",
+      "width": 1280,
+      "height": 800
+    }
+  ],
+  "supplementary_capture_logs": [
+    "build/dual-version-validation/neoforge-f7-final-closeup.log"
+  ]
+}

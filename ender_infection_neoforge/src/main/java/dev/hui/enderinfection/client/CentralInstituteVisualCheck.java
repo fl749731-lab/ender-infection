@@ -156,6 +156,23 @@ public final class CentralInstituteVisualCheck {
         int i=0;for(var value:data.getAsJsonArray("stairs")){var flight=value.getAsJsonObject();if(i++!=0&&i!=10)continue;var p=pos(flight.get("lower_landing"));var target=pos(flight.get("upper_landing"));look("stairs_"+i,ox+p.getX()+.5,oy+p.getY()+1.05,oz+p.getZ()+.5,ox+target.getX()+.5,oy+target.getY()+1.8,oz+target.getZ()+.5,false);}
         look("night_exterior",ox+148,oy+60,oz+142,ox+60,oy+30,oz+52,true);
         look("night_reactor",ox+44,oy+5.2,oz+40,ox+60,oy+8,oz+48,true);
+        if(data.has("architecture")&&Boolean.getBoolean("ender_infection.architectureVisualCheck")){
+            look("architecture_entry",ox+76,oy+32,oz+110,ox+60,oy+34,oz+91,false);
+            look("architecture_halo",ox+60,oy+30,oz+57,ox+60,oy+43,oz+46,false);
+            for(var value:data.getAsJsonObject("architecture").getAsJsonArray("prefabs")){
+                var prefab=value.getAsJsonObject();
+                if(prefab.has("room")&&prefab.get("room").getAsString().equals("B2")){
+                    var at=pos(prefab.get("origin"));
+                    look("architecture_bench",ox+at.getX()+2.5,oy+at.getY()+1.2,oz+at.getZ()+3.5,
+                         ox+at.getX()+2.5,oy+at.getY()+2.4,oz+at.getZ()+1.5,false);
+                    break;
+                }
+            }
+            if(SHOTS.size()!=64)throw new IllegalStateException("Architecture fixture omitted a close-up camera");
+            System.out.println("CENTRAL_INSTITUTE_ARCHITECTURE_VIEWS shots=64");
+            System.out.println("CENTRAL_INSTITUTE_ARCHITECTURE_MANIFEST sha256="+dev.hui.enderinfection.worldgen.CentralInstitute.manifest(player.serverLevel()).hash());
+            Collections.rotate(SHOTS,3); // Show the three requested new details first.
+        }
         if(SHOTS.stream().filter(s->s.name.startsWith("room_")).count()!=48)throw new IllegalStateException("Visual fixture omitted room cameras");
     }
     private static void position(ServerPlayer player,Shot shot){player.serverLevel().setDayTime(shot.night?18000:6000);player.teleportTo(player.serverLevel(),shot.x,shot.y,shot.z,shot.yaw,shot.pitch);}
@@ -163,6 +180,7 @@ public final class CentralInstituteVisualCheck {
         int missing=0;for(int x=bounds.minX()>>4;x<=bounds.maxX()>>4;x++)for(int z=bounds.minZ()>>4;z<=bounds.maxZ()>>4;z++)if(mc.level.getChunkSource().getChunk(x,z,ChunkStatus.FULL,false)==null)missing++;return missing;
     }
     private static BlockPos visibleGeometryProbe(Shot shot){
+        if(shot.name.equals("architecture_entry"))return new BlockPos(bounds.minX()+59,bounds.minY()+36,bounds.minZ()+89);
         if(shot.name.contains("exterior"))return new BlockPos(bounds.minX()+(shot.x<bounds.minX()+60?8:111),bounds.minY()+44,bounds.minZ()+(shot.z<bounds.minZ()+52?8:87));
         return BlockPos.containing(shot.x,shot.y+1,shot.z);
     }

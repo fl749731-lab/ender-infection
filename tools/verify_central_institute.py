@@ -10,6 +10,8 @@ from array import array
 from collections import Counter, deque
 import json
 import hashlib
+import base64
+import zlib
 from pathlib import Path
 import sys
 
@@ -247,6 +249,60 @@ def verify(manifest, resources):
         require(text == sign["text"] and text[0].startswith(sign["room"] + " "), f"Room sign NBT/text differs from its declared room: {sign}")
     start = coord(manifest["entrance"])
     visited = model.reachable(start)
+    architecture = manifest.get("architecture")
+    protection = manifest.get("protection")
+    if protection:
+        require(protection["encoding"] == "zlib-base64-bitset-le", "Unknown story protection encoding")
+        mask = zlib.decompress(base64.b64decode(protection["mask"]))
+        require(len(mask) == (model.volume + 7) // 8, "Story protection mask has wrong dimensions")
+        for index, state in enumerate(model.voxels):
+            expected = model.palette[state][0] not in AIR | {"minecraft:structure_void"}
+            require(bool(mask[index // 8] & (1 << (index % 8))) == expected, "Story protection mask misses a generated block or includes unrelated terrain")
+        for point, entity in model.entities.items():
+            require(tuple(entity.get("NeoForgeData", {}).get("InstituteOriginOffset", [])) == point,
+                    f"Building block entity cannot restore story protection on load: {point}")
+    chamber = manifest.get("mother_chamber")
+    if chamber:
+        require(chamber["room"] == "F7", "Mother chamber must stay in the bottom-floor isolation room")
+        anchor = coord(chamber["anchor_pos"])
+        require(model.state(anchor)[0] == "ender_infection:rift_anchor", "F7 anchor is not a real rift block")
+        marker = model.entities.get(anchor, {}).get("InstituteChamber", {})
+        require(marker.get("MotherStage") == 2 and not marker.get("Initialized"), "New chamber marker must create one stage-two mother")
+        offset = tuple(marker.get("MotherOffset", []))
+        require(len(offset) == 3 and tuple(anchor[i] + offset[i] for i in range(3)) == coord(chamber["mother_pos"]), "Mother marker disagrees with manifest")
+        lo, hi = coord(chamber["bounds_min"]), coord(chamber["bounds_max"])
+        require(tuple(anchor[i] + marker["ShellMin"][i] for i in range(3)) == lo and tuple(anchor[i] + marker["ShellMax"][i] for i in range(3)) == hi, "Chamber shell bounds disagree")
+        for x in range(lo[0], hi[0] + 1):
+            for y in range(lo[1], hi[1] + 1):
+                for z in range(lo[2], hi[2] + 1):
+                    if x in (lo[0], hi[0]) or y in (lo[1], hi[1]) or z in (lo[2], hi[2]):
+                        require(model.state((x,y,z))[0] in {"minecraft:purple_stained_glass", "minecraft:polished_deepslate", "minecraft:gray_concrete", "minecraft:sea_lantern", "minecraft:amethyst_block"}, "Mother shell contains a gap")
+        x,y,z = coord(chamber["mother_pos"])
+        for X in range(x-1,x+2):
+            for Y in range(y,y+3):
+                for Z in range(z-1,z+2):
+                    require(model.empty_for_walking((X,Y,Z)), "Mother spawn body intersects containment equipment")
+    if architecture:
+        # Read the final tiles independently: a good-looking prefab must not
+        # introduce a low canopy, inaccessible workbench or solid atrium lid.
+        for x in range(53, 67):
+            for z in range(88, 96):
+                feet = x, 29, z
+                require(model.standing(feet) and visited[model.index(feet)], f"Entry portico blocks the main approach: {feet}")
+                if 58 <= x < 62:
+                    require(model.empty_for_walking((x, 31, z)), f"Entry portico loses three-block headroom in its central lane: {feet}")
+        for x in range(52, 68):
+            for z in range(44, 52):
+                require(model.state((x, 48, z))[0] in AIR, "The suspended atrium light must remain open in the middle")
+        for point in architecture["protected_work_positions"]:
+            at = coord(point)
+            require(model.standing(at) and visited[model.index(at)], f"Research workbench service side is blocked: {at}")
+        for room in (room for room in rooms if room["floor"] == "G2"):
+            floor = Counter(model.state((x, room["y"], z))[0]
+                for x in range(room["x"] + 1, room["x"] + room["width"] - 1)
+                for z in range(room["z"] + 1, room["z"] + room["length"] - 1))
+            require(floor["ender_infection:lab_tile_light"] > floor["ender_infection:lab_checker"],
+                    f"Research floor still dominated by checkerboard: {room['id']}")
     # Inspect actual final road geometry independently of the generator source.
     for tread in range(8):
         y = 28 - tread

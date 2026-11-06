@@ -29,5 +29,5 @@ public final class CentralInstitutePiece extends TemplateStructurePiece {
             throw new IllegalStateException("Missing or empty central institute tile " + templateName);
     }
     @Override protected void handleDataMarker(String marker, BlockPos pos, net.minecraft.world.level.ServerLevelAccessor level,
-            RandomSource random, BoundingBox clip) { /* This layout has no runtime markers. */ }
+            RandomSource random, BoundingBox clip) { /* No structure-block markers; F7 initializes later in its anchor's server tick. */ }
 }

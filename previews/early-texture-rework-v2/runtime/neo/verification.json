@@ -1,0 +1,1400 @@
+{
+  "status": "PASS",
+  "loader": "neo",
+  "screenshots": 88,
+  "native_required_passed": 36,
+  "zero_light_views": 16,
+  "motion_states": {
+    "cow_idle_front": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "cow_idle_back": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "cow_walk_a": {
+      "moved": 0.5405036211400217,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "cow_walk_b": {
+      "moved": 1.2981917941481533,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "cow_attack_windup": {
+      "moved": 0.0,
+      "attacking": true,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": 10.0
+    },
+    "cow_attack_impact": {
+      "moved": 1.139892578125,
+      "attacking": true,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": 0.0
+    },
+    "cow_infection": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": true,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "cow_death_start": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 4,
+      "target_health": -1.0
+    },
+    "cow_death_end": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 16,
+      "target_health": -1.0
+    },
+    "pig_idle_front": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "pig_idle_back": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "pig_walk_a": {
+      "moved": 0.729412850271363,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "pig_walk_b": {
+      "moved": 1.7196451390274208,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "pig_attack_windup": {
+      "moved": 0.0,
+      "attacking": true,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": 10.0
+    },
+    "pig_attack_impact": {
+      "moved": 1.7226728100596236,
+      "attacking": true,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": 0.0
+    },
+    "pig_infection": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": true,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "pig_death_start": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 4,
+      "target_health": -1.0
+    },
+    "pig_death_end": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 16,
+      "target_health": -1.0
+    },
+    "sheep_idle_front": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "sheep_idle_back": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "sheep_walk_a": {
+      "moved": 0.5037308845587879,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "sheep_walk_b": {
+      "moved": 1.1900037895254885,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "sheep_attack_windup": {
+      "moved": 0.0,
+      "attacking": true,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": 10.0
+    },
+    "sheep_attack_impact": {
+      "moved": 0.0,
+      "attacking": true,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": 3.0
+    },
+    "sheep_infection": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": true,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "sheep_death_start": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 4,
+      "target_health": -1.0
+    },
+    "sheep_death_end": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 16,
+      "target_health": -1.0
+    },
+    "cow_early_idle_front": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "cow_early_idle_back": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "cow_early_walk_a": {
+      "moved": 0.399757663362162,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "cow_early_walk_b": {
+      "moved": 0.9845153585950949,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "cow_early_attack_windup": {
+      "moved": 0.46903887430628194,
+      "attacking": true,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": 10.0
+    },
+    "cow_early_attack_impact": {
+      "moved": 0.46903887430628194,
+      "attacking": true,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": 4.0
+    },
+    "cow_early_infection": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": true,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "cow_early_death_start": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 4,
+      "target_health": -1.0
+    },
+    "cow_early_death_end": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 16,
+      "target_health": -1.0
+    },
+    "pig_early_idle_front": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "pig_early_idle_back": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "pig_early_walk_a": {
+      "moved": 0.5295692668026808,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "pig_early_walk_b": {
+      "moved": 1.2891981886748067,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "pig_early_attack_windup": {
+      "moved": 0.8364031555357981,
+      "attacking": true,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": 10.0
+    },
+    "pig_early_attack_impact": {
+      "moved": 0.8364031555357981,
+      "attacking": true,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": 5.0
+    },
+    "pig_early_infection": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": true,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "pig_early_death_start": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 4,
+      "target_health": -1.0
+    },
+    "pig_early_death_end": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 16,
+      "target_health": -1.0
+    },
+    "sheep_early_idle_front": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "sheep_early_idle_back": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "sheep_early_walk_a": {
+      "moved": 0.4110714619850582,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "sheep_early_walk_b": {
+      "moved": 1.0037104054371566,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "sheep_early_attack_windup": {
+      "moved": 0.8751469216294834,
+      "attacking": true,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": 10.0
+    },
+    "sheep_early_attack_impact": {
+      "moved": 0.8751469216294834,
+      "attacking": true,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": 5.0
+    },
+    "sheep_early_infection": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": true,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "sheep_early_death_start": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 4,
+      "target_health": -1.0
+    },
+    "sheep_early_death_end": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 16,
+      "target_health": -1.0
+    },
+    "spider_early_idle_front": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "spider_early_idle_back": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "spider_early_walk_a": {
+      "moved": 0.6296768367587758,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "spider_early_walk_b": {
+      "moved": 1.5067575410378469,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "spider_early_attack_windup": {
+      "moved": 0.8983206496915717,
+      "attacking": true,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": 10.0
+    },
+    "spider_early_attack_impact": {
+      "moved": 1.1656618669746308,
+      "attacking": true,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": 5.2
+    },
+    "spider_early_infection": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": true,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "spider_early_death_start": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 4,
+      "target_health": -1.0
+    },
+    "spider_early_death_end": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 16,
+      "target_health": -1.0
+    },
+    "throat_spitter_idle_front": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "throat_spitter_idle_back": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "throat_spitter_walk_a": {
+      "moved": 0.46412170817428183,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "throat_spitter_walk_b": {
+      "moved": 1.3714134370505247,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "throat_spitter_attack_windup": {
+      "moved": 0.0,
+      "attacking": true,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": 10.0
+    },
+    "throat_spitter_attack_impact": {
+      "moved": 0.0,
+      "attacking": true,
+      "emerging": false,
+      "death_time": 0,
+      "target_health": 1.0
+    },
+    "throat_spitter_infection": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": true,
+      "death_time": 0,
+      "target_health": -1.0
+    },
+    "throat_spitter_death_start": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 4,
+      "target_health": -1.0
+    },
+    "throat_spitter_death_end": {
+      "moved": 0.0,
+      "attacking": false,
+      "emerging": false,
+      "death_time": 16,
+      "target_health": -1.0
+    }
+  },
+  "frames": [
+    {
+      "mode": "motion",
+      "name": "cow_attack_impact",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "53621759a7b6b48b1335a46837eba26721437744f1f492c0b2e83b07e9fd0c1d",
+      "purple_pixels": 7288
+    },
+    {
+      "mode": "motion",
+      "name": "cow_attack_windup",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "6c2e70af0a1d875a1ce39256cfb715d90155e97bca8b993b48be796dede8f830",
+      "purple_pixels": 13599
+    },
+    {
+      "mode": "motion",
+      "name": "cow_death_end",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "21f7b4dd2ac6916b98640dcea1baf8bc51721e1f47fcf56b81a1980de7e167cf",
+      "purple_pixels": 9761
+    },
+    {
+      "mode": "motion",
+      "name": "cow_death_start",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "415634af8c7abb642f10e32db7a30a1f3971b5c9c65280020857779769827a40",
+      "purple_pixels": 11625
+    },
+    {
+      "mode": "motion",
+      "name": "cow_early_attack_impact",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "a854c38eb378727133415c38b9a27a487203bb8080650bf161c43c2727c9a8e0",
+      "purple_pixels": 3750
+    },
+    {
+      "mode": "motion",
+      "name": "cow_early_attack_windup",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "ca11716fd890944a37819b386d31a5d656b9097ac9d642e32953752e180404ce",
+      "purple_pixels": 1215
+    },
+    {
+      "mode": "motion",
+      "name": "cow_early_death_end",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "c7690d4de2e27117dee5836d2ca56ced5647c1b7ba0c62ed864972fcba356bf4",
+      "purple_pixels": 4154
+    },
+    {
+      "mode": "motion",
+      "name": "cow_early_death_start",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "d2567f9e776c470a7eaed88eeebe8ae0612ad7f7a7bb2a23581e82ab12ef9bc2",
+      "purple_pixels": 2418
+    },
+    {
+      "mode": "motion",
+      "name": "cow_early_idle_back",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "aa4da92ee5de62179909d4876f1b85246d8a851517a7a21309acdcd9f6bcb422",
+      "purple_pixels": 727
+    },
+    {
+      "mode": "motion",
+      "name": "cow_early_idle_front",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "fb5f825a9ea73bbd4886a38afbcb03d94e436419da89354d8c7a390e7cdd74c1",
+      "purple_pixels": 813
+    },
+    {
+      "mode": "motion",
+      "name": "cow_early_infection",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "834e0298dba1330c5a8b52f6d3306b53a86ea3cf1bd6fe5a275f86e74d9a4fea",
+      "purple_pixels": 3004
+    },
+    {
+      "mode": "motion",
+      "name": "cow_early_walk_a",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "c9f2c8d804cfcd01ad5596b5c73e9078ef527d45a999f09a1eb6c0fbbb7970cf",
+      "purple_pixels": 505
+    },
+    {
+      "mode": "motion",
+      "name": "cow_early_walk_b",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "987d2d9a6e3d9aa463e7df6f1faa3ada332f77ff073bda577d72313c5904745c",
+      "purple_pixels": 518
+    },
+    {
+      "mode": "motion",
+      "name": "cow_idle_back",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "8aa6a84728e2809c54e2cef4495876da07ac4f0b80be83a768579f2f985335ec",
+      "purple_pixels": 13404
+    },
+    {
+      "mode": "motion",
+      "name": "cow_idle_front",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "0d029ce6fbf27b54116d3b7ee6f1995e54e37b1817958d5c55ac7a746dcb4b0e",
+      "purple_pixels": 10091
+    },
+    {
+      "mode": "motion",
+      "name": "cow_infection",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "ae5693128183476ac0a459b588ae47afab0dfab69223e35d0e9cbe3dade61a10",
+      "purple_pixels": 8360
+    },
+    {
+      "mode": "motion",
+      "name": "cow_walk_a",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "8ba964ce4081982f83b648459eac22b680cf9daf825d9d59d294b308bc6ed862",
+      "purple_pixels": 6630
+    },
+    {
+      "mode": "motion",
+      "name": "cow_walk_b",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "debe56643e8386137dfa40111a02888c0438607db4643f6cb0f9edd66b0ed7ba",
+      "purple_pixels": 10833
+    },
+    {
+      "mode": "motion",
+      "name": "pig_attack_impact",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "2d0030a33b70c0095098df94ba82c0fc3510f6b92c3e94b87a2c044125a075d4",
+      "purple_pixels": 7101
+    },
+    {
+      "mode": "motion",
+      "name": "pig_attack_windup",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "1d02a24496bab3f27d493caaaa3e0aa06accc76a5ec38aeebc38763e536b5e53",
+      "purple_pixels": 7129
+    },
+    {
+      "mode": "motion",
+      "name": "pig_death_end",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "d6270ce53af6761117a89a5c19691ffd400e03a32b40155cc99ca064857e7799",
+      "purple_pixels": 12665
+    },
+    {
+      "mode": "motion",
+      "name": "pig_death_start",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "aa3ff7eb39060a419a0862d7a201b3543da534220952c36e0cfa1aeeb5ca1434",
+      "purple_pixels": 13068
+    },
+    {
+      "mode": "motion",
+      "name": "pig_early_attack_impact",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "f60450d6f055f50de9ba9918c5b0ddb7f006ce4235b18ac183dfabaf37f4032d",
+      "purple_pixels": 3165
+    },
+    {
+      "mode": "motion",
+      "name": "pig_early_attack_windup",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "9b71fe1472b0a2da1f688cc8066de47b803bd1383dd586375b481b541fe80bc3",
+      "purple_pixels": 1645
+    },
+    {
+      "mode": "motion",
+      "name": "pig_early_death_end",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "4e1689c9b887b6a05d5519ec38b3efeb5db15ff7a11a906a165234a9ab521010",
+      "purple_pixels": 3646
+    },
+    {
+      "mode": "motion",
+      "name": "pig_early_death_start",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "805db78c9c014014a2b4c63efa1eedc19b7a66f8a84b53757a064c3c3b51fb60",
+      "purple_pixels": 4731
+    },
+    {
+      "mode": "motion",
+      "name": "pig_early_idle_back",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "61a15dadee0856bdc4b0be4d28a73ce4a7cf95ce3b7828acf402044ac94d8e84",
+      "purple_pixels": 426
+    },
+    {
+      "mode": "motion",
+      "name": "pig_early_idle_front",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "1039356accd74e38543cfca7af791c2cc62f426bfb78692399e28d012f6f6452",
+      "purple_pixels": 1446
+    },
+    {
+      "mode": "motion",
+      "name": "pig_early_infection",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "47b268879da69eeffce1a285e441114bb0e26d5ea88653e497bd24085e29e4e2",
+      "purple_pixels": 3253
+    },
+    {
+      "mode": "motion",
+      "name": "pig_early_walk_a",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "c59958489177033de831c6c69b9004480ab7fa2b40c1737e3bbde0211a4e0f86",
+      "purple_pixels": 1777
+    },
+    {
+      "mode": "motion",
+      "name": "pig_early_walk_b",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "27dd26a972eb0e739c869c923c9d4d4b2c4559cf86a5a32ad77c509e48dd55eb",
+      "purple_pixels": 1513
+    },
+    {
+      "mode": "motion",
+      "name": "pig_idle_back",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "f2dc5ecda980e4447d0dc1a34c197da2881f5a9d5409401b2fda06185c4312de",
+      "purple_pixels": 8847
+    },
+    {
+      "mode": "motion",
+      "name": "pig_idle_front",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "7e84f1d56405de26bf58ba9f5dc19d315c5859d4e7dcca8f0af72a4e2d46a18f",
+      "purple_pixels": 7032
+    },
+    {
+      "mode": "motion",
+      "name": "pig_infection",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "b8c391270729194e238b3e1f45b87cb4893785131acc34c74a0f0fa6e3d20e7d",
+      "purple_pixels": 16374
+    },
+    {
+      "mode": "motion",
+      "name": "pig_walk_a",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "74e11e43d720fd05e94f33bc79c886ef250a7ae288cab7d829127ee7ef226777",
+      "purple_pixels": 6816
+    },
+    {
+      "mode": "motion",
+      "name": "pig_walk_b",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "5c4dc8314e8391460f988ad658894e0601283ec9669c63fd6fa649280c45a0ea",
+      "purple_pixels": 10326
+    },
+    {
+      "mode": "motion",
+      "name": "sheep_attack_impact",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "58afbfaf40d668927d2827b1bd55729b288f8d1bba9f3318ed1c1ec8cb0d5f50",
+      "purple_pixels": 23550
+    },
+    {
+      "mode": "motion",
+      "name": "sheep_attack_windup",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "bd8415d8e0c1579f06e57fb3225c612bf6f5d1800c793ed37435ccf9c3a83afd",
+      "purple_pixels": 9097
+    },
+    {
+      "mode": "motion",
+      "name": "sheep_death_end",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "e8473fd3bf43ee707c5e3e1c808b5c5a12e5b3984733297714ac30bf5e54b5b6",
+      "purple_pixels": 9081
+    },
+    {
+      "mode": "motion",
+      "name": "sheep_death_start",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "cfb687c5dd3e5f8bc55bc303300ec212509f6091a3c57e701b39c7f6f514e8f6",
+      "purple_pixels": 8554
+    },
+    {
+      "mode": "motion",
+      "name": "sheep_early_attack_impact",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "576a10d98fbbb51c57336f2dc9846adee5b95022c9dfa09e8a9d3baea3fee650",
+      "purple_pixels": 3734
+    },
+    {
+      "mode": "motion",
+      "name": "sheep_early_attack_windup",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "61c9a0b0b1177a7ac1b65079efb18ebfa32cd1e18176d38a19e1c5fd8128d6a0",
+      "purple_pixels": 164
+    },
+    {
+      "mode": "motion",
+      "name": "sheep_early_death_end",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "ed5ba97e57ec439ff559783bf6fc01549f2146e118f721ee4714c70b331e52a5",
+      "purple_pixels": 1975
+    },
+    {
+      "mode": "motion",
+      "name": "sheep_early_death_start",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "af5076e1f84f12f20aa85fb5967a8a9d90b2fb7c4debb51bb3631f95698dcb2a",
+      "purple_pixels": 2948
+    },
+    {
+      "mode": "motion",
+      "name": "sheep_early_idle_back",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "848df238f272918d3baa8759268f8c5a044ce08f1c27598d2733b48988ff9318",
+      "purple_pixels": 233
+    },
+    {
+      "mode": "motion",
+      "name": "sheep_early_idle_front",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "587dfffeac191b5ac3bb1a4084684c3af6992b179c07c1ac0ddfd8be6ef666b6",
+      "purple_pixels": 181
+    },
+    {
+      "mode": "motion",
+      "name": "sheep_early_infection",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "590ce98779d1fbc7e6bae58be46b0f7c18e7a1918bf276078bfdf7ab8b6170aa",
+      "purple_pixels": 2660
+    },
+    {
+      "mode": "motion",
+      "name": "sheep_early_walk_a",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "510087e94c754b854ddc85c856cc0933ec3e4bfcf50d7d77a173ab9fb4c9ec05",
+      "purple_pixels": 141
+    },
+    {
+      "mode": "motion",
+      "name": "sheep_early_walk_b",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "760e54a8ee91de50c18f8dfbc1d5a9bb009679bd7582cf2048f04d8a4d7c0e6d",
+      "purple_pixels": 172
+    },
+    {
+      "mode": "motion",
+      "name": "sheep_idle_back",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "a246852ecc202b852b6665aa6b055f92ba16ce5c4e9b0df76ad515bc8a16ae4c",
+      "purple_pixels": 9629
+    },
+    {
+      "mode": "motion",
+      "name": "sheep_idle_front",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "b8bb36831b22474fc4cca89bf20a3389f23e654cb3b9d9e0136fe267e9fd2019",
+      "purple_pixels": 6789
+    },
+    {
+      "mode": "motion",
+      "name": "sheep_infection",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "9a87e90527632478db1706d3695d810a793b361a2a4fc6dc900275e6fc6e4b4b",
+      "purple_pixels": 7192
+    },
+    {
+      "mode": "motion",
+      "name": "sheep_walk_a",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "94b4ae8b3e96465196f72e77cfda8cc1596c78e74e37a3eb757bea85b7c4e77c",
+      "purple_pixels": 3857
+    },
+    {
+      "mode": "motion",
+      "name": "sheep_walk_b",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "9cd96e3b4395fb47c19133fc19cb8fe007dd3655373c1fa97f1474712839b7d3",
+      "purple_pixels": 6571
+    },
+    {
+      "mode": "motion",
+      "name": "spider_early_attack_impact",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "5fc63922866e5840309e3be789ed6b7b2c2893cf792fc04cda339deaf916bb5c",
+      "purple_pixels": 5120
+    },
+    {
+      "mode": "motion",
+      "name": "spider_early_attack_windup",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "85891fc6d1640a06c3dffbcda3ee1a8d6baaa85b0346325a580a74c9f7d34f0d",
+      "purple_pixels": 1275
+    },
+    {
+      "mode": "motion",
+      "name": "spider_early_death_end",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "07c92833f13f669387c488adc62a27b339f10d05426050759856181ba2f81b8b",
+      "purple_pixels": 8198
+    },
+    {
+      "mode": "motion",
+      "name": "spider_early_death_start",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "9e418076f1e68457bb84577d0186f7edbde7a405c94de0a2793d9c44bfc8a9fd",
+      "purple_pixels": 12729
+    },
+    {
+      "mode": "motion",
+      "name": "spider_early_idle_back",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "04a5383ee5ef80bf3e52e53b0dc4045764116f041c4b4617f0b6d6f4ab963141",
+      "purple_pixels": 1132
+    },
+    {
+      "mode": "motion",
+      "name": "spider_early_idle_front",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "7ddc5764eaa152868e5f6d3d63cf07956baeb4cca597301f75ac17a03f0eead9",
+      "purple_pixels": 617
+    },
+    {
+      "mode": "motion",
+      "name": "spider_early_infection",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "37fe88646d2982d997297e43936bb86d334b76dc692ca7207398af3dde6fb9e5",
+      "purple_pixels": 2037
+    },
+    {
+      "mode": "motion",
+      "name": "spider_early_walk_a",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "1a0e06d987a567bb8f83aae2b6f2e756d488a71ed2a75ed82b6adf4fad5659b2",
+      "purple_pixels": 695
+    },
+    {
+      "mode": "motion",
+      "name": "spider_early_walk_b",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "6db4f88b3db3605477159a351d1ee187274037f4526238d77f0237b4cacc8a68",
+      "purple_pixels": 793
+    },
+    {
+      "mode": "motion",
+      "name": "throat_spitter_attack_impact",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "db3341053fe2f974a85248a139c0143a22975a74d9fa0b0430ee8de198648a6c",
+      "purple_pixels": 27007
+    },
+    {
+      "mode": "motion",
+      "name": "throat_spitter_attack_windup",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "d5d4b15ad442efd67360f3efd4598c0aaa63b500ff746f4c5ac41f562d8ec59b",
+      "purple_pixels": 27250
+    },
+    {
+      "mode": "motion",
+      "name": "throat_spitter_death_end",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "7c65c3789372e74d5d70b71ae03de55e85437c2038ea6334b7f4ccf0e841731b",
+      "purple_pixels": 26292
+    },
+    {
+      "mode": "motion",
+      "name": "throat_spitter_death_start",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "eff44e546567a38861b9dc6abb91a6d892d402308fc4fb3e6339b7486552c7df",
+      "purple_pixels": 36866
+    },
+    {
+      "mode": "motion",
+      "name": "throat_spitter_idle_back",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "27a2976c564b4918ddd4e8da8a409c0d9e28a1005821fb8eb455cd99e169ac06",
+      "purple_pixels": 41675
+    },
+    {
+      "mode": "motion",
+      "name": "throat_spitter_idle_front",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "6ba5f231134b4b7cc2225802d96589d1f92c56fd4917852b3f618e33384c6feb",
+      "purple_pixels": 25192
+    },
+    {
+      "mode": "motion",
+      "name": "throat_spitter_infection",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "4ebe11862a14addae0c305dba6bc82d33d63c018f99317bb4aeac5ad38415481",
+      "purple_pixels": 28320
+    },
+    {
+      "mode": "motion",
+      "name": "throat_spitter_walk_a",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "24257bb6053eae9d05cb5b44eca48e27e7a3ac8d3c9e0a817d8586af35691038",
+      "purple_pixels": 17235
+    },
+    {
+      "mode": "motion",
+      "name": "throat_spitter_walk_b",
+      "size": [
+        1280,
+        800
+      ],
+      "sha256": "ce4177194d74b6e406490ce2e287f0de8b804e55b3940fcf14923f5c83b9574b",
+      "purple_pixels": 25138
+    },
+    {
+      "mode": "glow",
+      "name": "cow_back",
+      "size": [
+        854,
+        480
+      ],
+      "sha256": "2bacb53fdef2d9ab2d76c319d631bf70aca8c04f9fcc87379b9674bd54ffc3b7",
+      "purple_pixels": 2461
+    },
+    {
+      "mode": "glow",
+      "name": "cow_early_back",
+      "size": [
+        854,
+        480
+      ],
+      "sha256": "ecfe9bb01081c25fc6b67d146410c1ee2419e43d6e68e7be46a1e445fbf102a5",
+      "purple_pixels": 249
+    },
+    {
+      "mode": "glow",
+      "name": "cow_early_front",
+      "size": [
+        854,
+        480
+      ],
+      "sha256": "116ad3a53b5e4c65b30c1301c101cac5523bb0cb14012533991560daf95ff366",
+      "purple_pixels": 185
+    },
+    {
+      "mode": "glow",
+      "name": "cow_front",
+      "size": [
+        854,
+        480
+      ],
+      "sha256": "555718f900e52505b354c8a4f20be55276bc6a17fae6b355a60b3f5d7a392409",
+      "purple_pixels": 1497
+    },
+    {
+      "mode": "glow",
+      "name": "pig_back",
+      "size": [
+        854,
+        480
+      ],
+      "sha256": "34d393af74fc917c7d3f2de138573ae5dc216d1c3c0566ebd4238aad59845a4a",
+      "purple_pixels": 2082
+    },
+    {
+      "mode": "glow",
+      "name": "pig_early_back",
+      "size": [
+        854,
+        480
+      ],
+      "sha256": "03ebe03683d77eabd4f3df8cd2f3357722c293e5c0fe3ac3f2573fe41b5d2eb5",
+      "purple_pixels": 255
+    },
+    {
+      "mode": "glow",
+      "name": "pig_early_front",
+      "size": [
+        854,
+        480
+      ],
+      "sha256": "a65b856604bb583c6036bf305d84c311a3e01ef41ec48fed34517bfec8fe77e7",
+      "purple_pixels": 240
+    },
+    {
+      "mode": "glow",
+      "name": "pig_front",
+      "size": [
+        854,
+        480
+      ],
+      "sha256": "5d126518c6a40aa3c3c1f5b92a366c09d1b9078676e74d1c8567228dc3fd22e1",
+      "purple_pixels": 1399
+    },
+    {
+      "mode": "glow",
+      "name": "sheep_back",
+      "size": [
+        854,
+        480
+      ],
+      "sha256": "553a87ff99a241b8ebc285d4cf8cfa48e07d901911a847dcc7d45474eaed499c",
+      "purple_pixels": 1320
+    },
+    {
+      "mode": "glow",
+      "name": "sheep_early_back",
+      "size": [
+        854,
+        480
+      ],
+      "sha256": "cf70face1c93aeaa44ff77ccd7e54caafbd0d12a21d5749b9a071250bae04be1",
+      "purple_pixels": 116
+    },
+    {
+      "mode": "glow",
+      "name": "sheep_early_front",
+      "size": [
+        854,
+        480
+      ],
+      "sha256": "b8b33e170382860897168600685ff8dc3355e131ab9db8cff9bac2d28019ae92",
+      "purple_pixels": 13
+    },
+    {
+      "mode": "glow",
+      "name": "sheep_front",
+      "size": [
+        854,
+        480
+      ],
+      "sha256": "6eda535bb0077fcedc85b4affe13c04c65914f79704f09e65453f363ab81abe9",
+      "purple_pixels": 1180
+    },
+    {
+      "mode": "glow",
+      "name": "spider_early_back",
+      "size": [
+        854,
+        480
+      ],
+      "sha256": "9247aee7574c75d92a1af23595fb835cef7dc4af9547869624435c960e72041b",
+      "purple_pixels": 40
+    },
+    {
+      "mode": "glow",
+      "name": "spider_early_front",
+      "size": [
+        854,
+        480
+      ],
+      "sha256": "1b30887900a45843a25bda0f7f1dad0803e28d490622ab21d6d06631a36a8e57",
+      "purple_pixels": 27
+    },
+    {
+      "mode": "glow",
+      "name": "throat_spitter_back",
+      "size": [
+        854,
+        480
+      ],
+      "sha256": "017deec58de848bf800297017b2ed81cde6126f5d415a7da3b1576239c488e21",
+      "purple_pixels": 3724
+    },
+    {
+      "mode": "glow",
+      "name": "throat_spitter_front",
+      "size": [
+        854,
+        480
+      ],
+      "sha256": "9e9b7096476bdd446eec1a421f9e70bf13628fa08155c3e519c1881cf1749375",
+      "purple_pixels": 984
+    }
+  ],
+  "logs_sha256": {
+    "ai": "c431cb512e2fce8f56e1929cb878dbf25320bb210cf54bcb15bf1293d787b99c",
+    "motion": "88b9f71da35bf604a6cb70d6d208364314d40e57063109a0c123bf8be5c02e69",
+    "glow": "a81925b4f830861388530432566aba5265b9efe51b8da5f1aabab3ba378a00c5"
+  }
+}

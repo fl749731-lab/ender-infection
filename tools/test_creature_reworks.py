@@ -6,6 +6,26 @@ from PIL import Image
 import export_creature_reworks as rework
 
 class CreatureReworkTests(unittest.TestCase):
+ def test_polished_material_is_bound_and_critical_face_pixels_stay_exact(self):
+  import io,base64
+  before=Image.open(rework.PACK/'materials/quadruped-atlas-v1.png').convert('RGBA');after=Image.open(rework.PACK/'materials/quadruped-atlas-v2.png').convert('RGBA')
+  self.assertNotEqual(before.crop((0,0,128,32)).tobytes(),after.crop((0,0,128,32)).tobytes())
+  for region in [(64,32,128,64),(0,64,128,128)]:self.assertEqual(before.crop(region).tobytes(),after.crop(region).tobytes())
+  for kind in ['cow','pig','sheep','cow_early','pig_early','sheep_early']:
+   d=rework.read(rework.PACK/'models'/('infected_'+kind+'.bbmodel'));embedded=Image.open(io.BytesIO(base64.b64decode(d['textures'][1]['source'].split(',',1)[1]))).convert('RGBA');self.assertEqual(embedded.tobytes(),after.tobytes())
+
+ def test_early_stage_has_anatomy_without_developed_mutation_and_exact_attack(self):
+  for kind in ['cow','pig','sheep','spider']:
+   runtime='infected_'+kind+'_early';files,row=rework.build(runtime);model=rework.read(rework.PACK/'models'/(runtime+'.bbmodel'));names={e['name'] for e in model['elements']};self.assertEqual(sum(n.startswith('crystal_early_') for n in names),4)
+   self.assertFalse(any(n.startswith('exposed_rib') or n in ['ruptured_shoulder','parasitic_flank','central_throat'] for n in names))
+   clips=json.loads(files['animations/'+runtime+'.animation.json'])['animations'];special=clips['animation.'+runtime+'.special'];self.assertEqual(special['animation_length'],rework.SPECS[runtime]['duration_ticks']/20)
+   for a in model['animations']:
+    if a['name'] not in ['idle','walk']:continue
+    for tr in a['animators'].values():
+     for channel in {k['channel'] for k in tr['keyframes']}:
+      keys=sorted([k for k in tr['keyframes'] if k['channel']==channel],key=lambda k:k['time']);v=lambda k:[float(k['data_points'][0][axis]) for axis in ['x','y','z']]
+      self.assertEqual(v(keys[0]),v(keys[-1]),(kind,a['name'],channel))
+
  def test_original_body_pixels_and_crystal_only_emission(self):
   files,row=rework.build('infected_spider');import io,base64
   d=rework.read(rework.PACK/'models/infected_spider.bbmodel');body=Image.open(io.BytesIO(base64.b64decode(d['textures'][0]['source'].split(',',1)[1]))).convert('RGBA')

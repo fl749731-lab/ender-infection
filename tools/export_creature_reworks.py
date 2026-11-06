@@ -15,6 +15,10 @@ SPECS={
  'infected_cow':dict(scale=1.2,offset_y=0,atlas=[256,128],placements={1:[0,0],0:[128,0]},emissive_materials=[0],hit_tick=14,duration_ticks=30,death_ticks=18,project_original=True),
  'infected_pig':dict(scale=1.08,offset_y=0,atlas=[256,128],placements={1:[0,0],0:[128,0]},emissive_materials=[0],hit_tick=12,duration_ticks=28,death_ticks=18,project_original=True),
  'infected_sheep':dict(scale=1.3,offset_y=0,atlas=[256,128],placements={1:[0,0],0:[128,0]},emissive_materials=[0],hit_tick=20,duration_ticks=40,death_ticks=18,project_original=True),
+ 'infected_cow_early':dict(scale=1,offset_y=0,atlas=[256,128],placements={1:[0,0],0:[128,0]},emissive_materials=[0],hit_tick=14,duration_ticks=30,death_ticks=18,project_original=True),
+ 'infected_pig_early':dict(scale=.88,offset_y=0,atlas=[256,128],placements={1:[0,0],0:[128,0]},emissive_materials=[0],hit_tick=12,duration_ticks=28,death_ticks=18,project_original=True),
+ 'infected_sheep_early':dict(scale=1.02,offset_y=0,atlas=[256,128],placements={1:[0,0],0:[128,0]},emissive_materials=[0],hit_tick=20,duration_ticks=40,death_ticks=18,project_original=True),
+ 'infected_spider_early':dict(scale=.49,offset_y=0,atlas=[256,128],placements={0:[0,0],3:[128,0]},emissive_materials=[3],hit_tick=12,duration_ticks=26,death_ticks=18,provenance_file='early-provenance.json'),
 }
 
 def read(path):return json.loads(path.read_text('utf-8'))
@@ -100,13 +104,16 @@ def export(update_manifest=True):
  for row in rows:bounds[row['runtime'].removeprefix('infected_')]=row['visual_bounds']
  (ASSETS/'concept_visual_bounds.json').write_bytes(encoded(bounds))
  provenance=read(PACK/'source-provenance.json');credits_path=ASSETS/'third_party/model_credits.json';credits=read(credits_path)
+ credits['license_scope']='license and license_url apply to the third-party models collection; original_reworks records project-original assets separately.'
  credits['models']=[row for row in credits['models'] if row['runtime'] not in SPECS]
  original=read(PACK/'quadruped-provenance.json') if any(s.get('project_original') for s in SPECS.values()) else {}
  credits['original_reworks']=[row for row in credits.get('original_reworks',[]) if row['runtime'] not in SPECS]
  for runtime,spec in SPECS.items():
   if spec.get('project_original'):
    row=original['models'][runtime];credits['original_reworks'].append(dict(runtime=runtime,author='Ender Infection project',source_pack='creature_rework_v2',original_source=row['source'],original_source_sha256=row['source_sha256'],provenance='Existing project original, reworked with user authorization; no third-party artwork imported',changes='; '.join(row['changes'])))
-  else:credits['models'].append(dict(runtime=runtime,author=provenance['author'],original=provenance['original'],url=provenance['page'],license=provenance['license'],license_url=provenance['license_url'],source_pack='creature_rework_v2',changes='; '.join(provenance['changes'])))
+  else:
+   source=read(PACK/spec['provenance_file'])['models'][runtime] if spec.get('provenance_file') else provenance
+   credits['models'].append(dict(runtime=runtime,author=source['author'],original=source['original'],url=source['page'],license=source['license'],license_url=source['license_url'],source_pack='creature_rework_v2',changes='; '.join(source['changes'])))
  credits_path.write_bytes(encoded(credits))
  if update_manifest:
   path=ROOT/'ender_infection_colored/verification/design_asset_manifest.json';manifest=read(path)

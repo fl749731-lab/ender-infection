@@ -32,7 +32,7 @@ public enum InfectedKind {
     EARLY_ZOMBIE("zombie_early",36,.23,6,12,26,2,.65F,1.95F),
     ANCHOR_GUARD("anchor_guard",180,.19,12,16,40,3.3,2.5F,2.75F);
     /** Species with the second-batch anatomical rig and its own short death pose. */
-    public boolean anatomicalRework(){return this==COW||this==PIG||this==SHEEP||this==SPIDER;}
+    public boolean anatomicalRework(){return this==COW||this==PIG||this==SHEEP||this==SPIDER||this==EARLY_COW||this==EARLY_PIG||this==EARLY_SHEEP||this==EARLY_SPIDER||this==THROAT_SPITTER;}
     public boolean designed(){return ordinal()>=FORAGER.ordinal()&&ordinal()<=BURROW_KING.ordinal();}
     public boolean stationary(){return this==CORE||this==HATCH_SAC||this==ROOT_TURRET;}
     public boolean ranged(){return this==SKELETON||this==EARLY_SKELETON||this==SPOREWING_SCOUT||this==THROAT_SPITTER||this==ROOT_TURRET||this==RESONANCE_PRIEST||this==BURROW_KING;}

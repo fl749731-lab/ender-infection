@@ -45,7 +45,7 @@ public final class CreatureMotionCheck {
             for(var p:BlockPos.betweenClosed(new BlockPos(-8,FLOOR-1,-8),new BlockPos(30,FLOOR-1,30)))level.setBlock(p,Blocks.SMOOTH_STONE.defaultBlockState(),2);
             for(String key:System.getProperty("ender_infection.creatureMotionSubjects","spider").split(",")){
                 var kind=Arrays.stream(InfectedKind.values()).filter(k->k.key.equals(key)).findFirst().orElseThrow();
-                String[] phases={"idle_front","idle_back","walk_a","walk_b","attack_windup","attack_impact","infection","death_start","death_end"};int[] delays={20,20,8,14,Math.max(1,kind.hitTick-6),kind.hitTick+1,12,4,16};
+                String[] phases={"idle_front","idle_back","walk_a","walk_b","attack_windup","attack_impact","infection","death_start","death_end"};int[] delays={20,20,8,14,Math.max(1,kind.hitTick-6),kind.hitTick+(kind.ranged()?6:1),12,4,16};
                 for(int i=0;i<phases.length;i++)SHOTS.add(new Shot(kind,phases[i],delays[i]));
             }
             player.setGameMode(GameType.SPECTATOR);player.getInventory().clearContent();prepare(player);
@@ -59,7 +59,11 @@ public final class CreatureMotionCheck {
         var tag=new CompoundTag();subject.addAdditionalSaveData(tag);tag.putInt("EmergenceTicks",0);subject.readAdditionalSaveData(tag);
         // A path can only be requested after the fresh walker has naturally landed.
         subject.moveTo(8,FLOOR,8,0,0);subject.setNoAi(!shot.phase.startsWith("walk"));subject.setPersistenceRequired();level.addFreshEntity(subject);entityId=subject.getId();
-        if(shot.phase.startsWith("attack")){victim=Objects.requireNonNull(EntityType.COW.create(level));victim.moveTo(8,FLOOR,10.5,0,0);victim.setNoAi(true);victim.setPersistenceRequired();level.addFreshEntity(victim);victimId=victim.getId();}
+        if(shot.phase.startsWith("attack")){
+            // Sheep also have a non-damaging roar. This damage-capture scene pins their existing slam.
+            if(shot.kind==InfectedKind.SHEEP||shot.kind==InfectedKind.EARLY_SHEEP){subject.forceAttackMode(InfectedMob.AttackMode.SLAM);System.out.println("CREATURE_MOTION_FORCED_MODE "+shot.kind.key+"_"+shot.phase+" SLAM");}
+            victim=Objects.requireNonNull(EntityType.COW.create(level));victim.moveTo(8,FLOOR,10.5,0,0);victim.setNoAi(true);victim.setPersistenceRequired();level.addFreshEntity(victim);victimId=victim.getId();
+        }
         player.teleportTo(level,11,FLOOR+2,12,135,15);System.out.println("CREATURE_MOTION_PREPARE "+shot.kind.key+"_"+shot.phase+" entity="+entityId);ready=true;
     }
     private static void act(ServerPlayer player){

@@ -1,0 +1,1459 @@
+{
+  "status": "PASS",
+  "release_gate": false,
+  "subjects": [
+    "cow",
+    "pig",
+    "sheep",
+    "cow_early",
+    "pig_early",
+    "sheep_early",
+    "spider_early",
+    "throat_spitter"
+  ],
+  "screenshots": 176,
+  "native_required_passed": 72,
+  "source_hashes": {
+    "colored_units/creature_rework_v2/early-provenance.json": {
+      "sha256": "ea661208c3dd56ebc393ae6314ecc39b77113557e9341bdaceddd688740b7a96",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/export-lock.json": {
+      "sha256": "85966dd6cf9bec66473f745c45ba027f908c87f2f54c224f343725524358501b",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/materials/generated-master-v2.png": {
+      "sha256": "e388d58fc4b3748bdcb2369cc4291f8050b579680534d992cd3a5b9ed7c7a01f",
+      "scheme": "raw"
+    },
+    "colored_units/creature_rework_v2/materials/generation-v2.json": {
+      "sha256": "93bdf794dde3ba66363f3568f2fdd7134e121e474ccc1db8c652efe9a1634989",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/materials/quadruped-atlas-v1.png": {
+      "sha256": "d9d56e0f314dc1033d40809c04307f9c9bb4743ddea187ff6a83377d7e3d7652",
+      "scheme": "raw"
+    },
+    "colored_units/creature_rework_v2/materials/quadruped-atlas-v2.png": {
+      "sha256": "c0904753e3ebee2fdaa96acbdaeb4bbd8de3840e31150ef988dc3fe58490fe1f",
+      "scheme": "raw"
+    },
+    "colored_units/creature_rework_v2/mcp-verification.json": {
+      "sha256": "08d8cd41ebeb53732374384a23485336e36cb96e5b510343fdafe20cb45068d1",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/mcp_exports/infected_cow.animation.json": {
+      "sha256": "e06c81d85c6ed411e6bd0b0bf193ec565e125864c92a50aa173c41bd3312911f",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/mcp_exports/infected_cow.geo.json": {
+      "sha256": "1ce3f7c2c445a2273e3cfb36088e9141d774ea2b42e6278c674a905c8f006973",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/mcp_exports/infected_cow_early.animation.json": {
+      "sha256": "206a53aba384c32fd0af411db297164148207ba77a7ab9e07b848c516f1288a9",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/mcp_exports/infected_cow_early.geo.json": {
+      "sha256": "7fd490c17db04ea67de530ac9b666154ed72cca75acef0c3187f856b477c802b",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/mcp_exports/infected_pig.animation.json": {
+      "sha256": "3a67f86532b632b2a435265fee6691e16b22bae6511297ec917ff091e4d0c40f",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/mcp_exports/infected_pig.geo.json": {
+      "sha256": "1a1adf6a25fd0e591b878979e610f8ca88e108517dfce2919e59487fceb63590",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/mcp_exports/infected_pig_early.animation.json": {
+      "sha256": "958bb88a30bfaec84bc6e5a0fbe6135d01f4fce6e9dc804277d716ede0c76642",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/mcp_exports/infected_pig_early.geo.json": {
+      "sha256": "9662e022ca29424b2f2bdfabd9c2483d3557a08f631b8598081efcdd05467ee5",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/mcp_exports/infected_sheep.animation.json": {
+      "sha256": "06edc4569d67cddedbe297c268c3e69e0f5bc6b667b190379ca58652ed10761e",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/mcp_exports/infected_sheep.geo.json": {
+      "sha256": "5dbecf01f5d83f5cb20c4d5f262b795880dc6d56dc7f925c7a6228501ba855d3",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/mcp_exports/infected_sheep_early.animation.json": {
+      "sha256": "58381617d54b7b58a14d7f8b4a996750109fb042a8860886bddfe2da454a5aa2",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/mcp_exports/infected_sheep_early.geo.json": {
+      "sha256": "50e552ac3e8b9631905588cece39ae661855fcba32bb5e238a9939191a7285df",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/mcp_exports/infected_spider.animation.json": {
+      "sha256": "33dce20afa7e5bc4ef0e18bfa73025e1429cea04ed5fc9dc0d6bac6baca7408f",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/mcp_exports/infected_spider.geo.json": {
+      "sha256": "8fadf46788b49ee81297a3fd9c3e13f1b54885112404f107d56ddc8fa7156498",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/mcp_exports/infected_spider_early.animation.json": {
+      "sha256": "1c23bf8793d00d6a6c6c7c9a4f074529ca0fb904198a3b7f0a8d2fc7b6ebb030",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/mcp_exports/infected_spider_early.geo.json": {
+      "sha256": "f118ad58bc8603b85b3fe7c1d94ac3f9b7e1fef5d3c64f30e8d7f37d2f144d92",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/models/infected_cow.bbmodel": {
+      "sha256": "ffb941ef1017c23deb59cfabc81e69d858567af35c1b5c818698cf2ad0fb4138",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/models/infected_cow_early.bbmodel": {
+      "sha256": "748da6894b0862cfde47c86bc0e7696ff52d00e272be31bdb3a3f4141c318d66",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/models/infected_pig.bbmodel": {
+      "sha256": "2c2609d52c9b9a5e8caf95e00ee7e502be1c53509d70c1d7e8c7a74fc2377ec1",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/models/infected_pig_early.bbmodel": {
+      "sha256": "6592d8f95c1c13ea41821a008d128400f913b4c41a72d9d5089b3280cc6e123a",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/models/infected_sheep.bbmodel": {
+      "sha256": "91fd1ad07001731fdebb055a9e35a8954c9ebea7b97e500068ad33b6e7007489",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/models/infected_sheep_early.bbmodel": {
+      "sha256": "60a91e753471b250148ef8f7409b3413eeafea29b3f7d63d23496526c4c2e52d",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/models/infected_spider.bbmodel": {
+      "sha256": "ea55fc2736fdc098fa90fe595ea7a4995af2b369fd91c0a1d459a47860161a7d",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/models/infected_spider_early.bbmodel": {
+      "sha256": "c6cbe47a207dab07262c1f0f5332ca41aec2ada6e761d23c1394c8668feef254",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/quadruped-provenance.json": {
+      "sha256": "8d559d4ae6f290655b3be4896c2b1c86a60130fa3572f4bc532f3194b4f587d6",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/README.md": {
+      "sha256": "6d0d7cd409518457d5f279f746969bcc4aa5e51ca9e38c82ae680758d041d29e",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/source/elma_spider.viewer.json": {
+      "sha256": "ad64750a8a50e6843bcf8426bce1c7e4219ae40d88ce1aa2577dbfac862fa1d1",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/source/project-original/infected_cow_colored.bbmodel": {
+      "sha256": "3100bce80322c096d82d7a77ff707601fe7ecb7f13cbdc4566bab069f19e7063",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/source/project-original/infected_cow_early_colored.bbmodel": {
+      "sha256": "b638b733f57dbdde02f6dc2a23c764de0f3de6a2f1e7231ce40a83a332962e3c",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/source/project-original/infected_pig_colored.bbmodel": {
+      "sha256": "fcb61ea7f3044c8d5c73d7ed0ddd7dc65d32c68fe78d756b381976042b1662cd",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/source/project-original/infected_pig_early_colored.bbmodel": {
+      "sha256": "67e9dddf5645b76d28d08d32ea10e515865b69a3c2c55735846d3d7a067e6b4f",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/source/project-original/infected_sheep_colored.bbmodel": {
+      "sha256": "adc0fcd92626d8c953b28b5400f77a3b7c7c14cf3930da0ec7442d73b9eab12d",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/source/project-original/infected_sheep_early_colored.bbmodel": {
+      "sha256": "435a00560e798c70cfe4cd2fdb6d5af197e9e0995b643ccf382048906d2a452a",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/source/project-original/infected_spider_early_colored.bbmodel": {
+      "sha256": "500480e3f8e0d6c20bd8459896792c9ccc544d530e59da4a6193290424a34a70",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/source/project-original/rift_throat_spitter-before-alpha8.bbmodel": {
+      "sha256": "2e4dbbc64d2e788e118690005b51813671e335290c8a04d5c4026a643acc6055",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/source-provenance.json": {
+      "sha256": "eb2a59bedae41b36286330b01a9ab9ac2307a940c3a7064d7382140950ceceaf",
+      "scheme": "git-lf"
+    },
+    "colored_units/creature_rework_v2/spitter-rework.json": {
+      "sha256": "bb748fbfd714175f2792ad1a933789adcc52cf00aeaefd5b964a7a3217a6b093",
+      "scheme": "git-lf"
+    },
+    "colored_units/design_pack_2026-11-02_v2/manifest.json": {
+      "sha256": "53447ba02214152c478428d5013e45f682e437bc2d66e574ee1e2e7ed66cbe0a",
+      "scheme": "git-lf"
+    },
+    "colored_units/design_pack_2026-11-02_v2/monsters/rift_throat_spitter.bbmodel": {
+      "sha256": "ef01ffaa1cc7d7aef789450ccfddc00fc1ff85091b671e0309b9a5dd0842ca6c",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/java/dev/hui/enderinfection/client/CreatureMotionCheck.java": {
+      "sha256": "24fa7a62b5abd8752750dece7ed7e0d5dad059227075d725f135d86597a88ad3",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/java/dev/hui/enderinfection/client/InfectedRenderer.java": {
+      "sha256": "fc17639a446b6adc17136da4256a1e3a7d4055e09150af2f2e5bb912d7026eb4",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/java/dev/hui/enderinfection/entity/InfectedKind.java": {
+      "sha256": "786b958dffde7e6d93b89e236f83a6f1b6c3c07889587c98f8051090bed69805",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/java/dev/hui/enderinfection/entity/InfectedMob.java": {
+      "sha256": "55df5a440690e9ce1a6ce6e84c12e0e3a2366240e1ac525da466dd350c2ba4d2",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_cow.animation.json": {
+      "sha256": "17d28feea960993e4ab526a7cdc06fb51851567b231b47a17056a44bda27c3a0",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_cow_early.animation.json": {
+      "sha256": "c5c86c597e1e611dce30556d32f67a0ff5fedc84a6d8c74b5a3abe641d9d6f07",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_pig.animation.json": {
+      "sha256": "a984c810776cfab0a468260f18f446fcd3cf795ff789596ed1b2facd2b68e051",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_pig_early.animation.json": {
+      "sha256": "2bacd0cae569974aa5639d50d1e836a461efc1ca151c0ce9b66bf15fc628bc12",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_sheep.animation.json": {
+      "sha256": "864e9c3fa0ba5df99048261b1211c45a798cac5141c4f7d97bccbe1f7d32efa9",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_sheep_early.animation.json": {
+      "sha256": "acecea2818a840e7b5e13e4830cc1dd112fb815f91c31b2972068fd151329653",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_spider.animation.json": {
+      "sha256": "7a8e450296a1bcfe56e612618b0d64d7c25ea006445fea5863a1f320f2db1eca",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_spider_early.animation.json": {
+      "sha256": "bb1b44c1a33ca0b7c6a40b6837b98801e2c960347f73cff167a81be0080bc13c",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_throat_spitter.animation.json": {
+      "sha256": "ebb63d4fb330bc359f7d3df59f803cde0c4f533dcf73b54387d480813c234797",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/concept_visual_bounds.json": {
+      "sha256": "e2912d7878f9c1bc561adfe31a21850e918d0857681006da1912b854b1560b1b",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_cow.geo.json": {
+      "sha256": "3058d16c655710f45d7f9eb7a9861d1b9ce2a44dcaa34f024e718e259dd721b6",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_cow_early.geo.json": {
+      "sha256": "fc1885f39c2e822a159f92c9bd8b0b5c049b8e102fd94680c33a7140378d8868",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_pig.geo.json": {
+      "sha256": "4222277d420accabc1bf21297bbb575b18ec3b87e89fc518abbe3a525647e3f5",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_pig_early.geo.json": {
+      "sha256": "9ec91fe1d586533902dc925fe1bc0d386fa8060617fafac416c7dc51362833d7",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_sheep.geo.json": {
+      "sha256": "84b7217c4041a5142586cba182b8a534789cf8c63c4829f1c6cae93e64f4fe4e",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_sheep_early.geo.json": {
+      "sha256": "12527e266187738ea609673b7f3b066f6e362fc21e14e4be63380ca736b1083d",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_spider.geo.json": {
+      "sha256": "df936172e085b4c142a596678fff8e0ce2aa3f3863b1ea34525a60721ced34a4",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_spider_early.geo.json": {
+      "sha256": "b7383f8a41066e7138454b34d1eceebf0885e601c4183216edf31209587e60c1",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_throat_spitter.geo.json": {
+      "sha256": "72e6d0e4bc510a035e5456095d5686ee012fa17fd4527562f886c510a73c2c96",
+      "scheme": "git-lf"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_cow.png": {
+      "sha256": "5b0b6ea14c8e00cbbb0aca85e715558864fa5d4cafbd03453d0e5edba68d280c",
+      "scheme": "raw"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_cow_early.png": {
+      "sha256": "5b0b6ea14c8e00cbbb0aca85e715558864fa5d4cafbd03453d0e5edba68d280c",
+      "scheme": "raw"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_cow_early_glowmask.png": {
+      "sha256": "9c1e39ae72efae1db295502365a503cf310043b2d11df4c2aaf7b9a4499cd997",
+      "scheme": "raw"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_cow_glowmask.png": {
+      "sha256": "9c1e39ae72efae1db295502365a503cf310043b2d11df4c2aaf7b9a4499cd997",
+      "scheme": "raw"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_pig.png": {
+      "sha256": "5b0b6ea14c8e00cbbb0aca85e715558864fa5d4cafbd03453d0e5edba68d280c",
+      "scheme": "raw"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_pig_early.png": {
+      "sha256": "5b0b6ea14c8e00cbbb0aca85e715558864fa5d4cafbd03453d0e5edba68d280c",
+      "scheme": "raw"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_pig_early_glowmask.png": {
+      "sha256": "9c1e39ae72efae1db295502365a503cf310043b2d11df4c2aaf7b9a4499cd997",
+      "scheme": "raw"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_pig_glowmask.png": {
+      "sha256": "9c1e39ae72efae1db295502365a503cf310043b2d11df4c2aaf7b9a4499cd997",
+      "scheme": "raw"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_sheep.png": {
+      "sha256": "5b0b6ea14c8e00cbbb0aca85e715558864fa5d4cafbd03453d0e5edba68d280c",
+      "scheme": "raw"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_sheep_early.png": {
+      "sha256": "5b0b6ea14c8e00cbbb0aca85e715558864fa5d4cafbd03453d0e5edba68d280c",
+      "scheme": "raw"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_sheep_early_glowmask.png": {
+      "sha256": "9c1e39ae72efae1db295502365a503cf310043b2d11df4c2aaf7b9a4499cd997",
+      "scheme": "raw"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_sheep_glowmask.png": {
+      "sha256": "9c1e39ae72efae1db295502365a503cf310043b2d11df4c2aaf7b9a4499cd997",
+      "scheme": "raw"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_spider.png": {
+      "sha256": "3d22e9a1745b58d97613d96589999df93addb420ee91479fd13f7c23c218d792",
+      "scheme": "raw"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_spider_early.png": {
+      "sha256": "3d22e9a1745b58d97613d96589999df93addb420ee91479fd13f7c23c218d792",
+      "scheme": "raw"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_spider_early_glowmask.png": {
+      "sha256": "9c1e39ae72efae1db295502365a503cf310043b2d11df4c2aaf7b9a4499cd997",
+      "scheme": "raw"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_spider_glowmask.png": {
+      "sha256": "9c1e39ae72efae1db295502365a503cf310043b2d11df4c2aaf7b9a4499cd997",
+      "scheme": "raw"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_throat_spitter.png": {
+      "sha256": "a06ebdab7815c8ed5bceae184e5846d9fef78b0290e413143c0e618be2f675b7",
+      "scheme": "raw"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_throat_spitter_glowmask.png": {
+      "sha256": "b4027bbeb88e91988d9ddc54cf3b59fd72a2452b807645ba6b9cbe169ec9fc15",
+      "scheme": "raw"
+    },
+    "ender_infection_colored/src/main/resources/assets/ender_infection/third_party/model_credits.json": {
+      "sha256": "cf78a97cf72d65c01698794e6784a5e02b6805d0650821e1a07b4ebbb69ff7dc",
+      "scheme": "git-lf"
+    },
+    "ender_infection_neoforge/src/main/java/dev/hui/enderinfection/client/CreatureMotionCheck.java": {
+      "sha256": "7bf23980d6b456ca745b50e047f3a27cd3aa8a737f626fb7377fbb8a3d11f3b0",
+      "scheme": "git-lf"
+    },
+    "ender_infection_neoforge/src/main/java/dev/hui/enderinfection/client/InfectedRenderer.java": {
+      "sha256": "7ba4995b5ac9a7b9f0e5c21f663a34b4644a977e25bfafed038564f8b5fc49bb",
+      "scheme": "git-lf"
+    },
+    "ender_infection_neoforge/src/main/java/dev/hui/enderinfection/entity/InfectedKind.java": {
+      "sha256": "786b958dffde7e6d93b89e236f83a6f1b6c3c07889587c98f8051090bed69805",
+      "scheme": "git-lf"
+    },
+    "ender_infection_neoforge/src/main/java/dev/hui/enderinfection/entity/InfectedMob.java": {
+      "sha256": "2cb8476c7189c781790a5d10f5a7e7becd7e6d03a8f7a9ad2639c5ea8e6d60fd",
+      "scheme": "git-lf"
+    },
+    "tools/export_creature_reworks.py": {
+      "sha256": "c3db6c428ba97a1f38f36d6ad39e4cc9dff7cb422777f6e4fc47c2a07af44022",
+      "scheme": "git-lf"
+    },
+    "tools/export_public_model_adaptations.py": {
+      "sha256": "bf99db8e4c0ed01d9ccf58123b98e6777c857b83491afd9940815c2f75492414",
+      "scheme": "git-lf"
+    },
+    "tools/pack_quadruped_materials.ps1": {
+      "sha256": "7aff87175fc2e448caa13052cb09b9be4ed3a9ec06a5b0cbcc31f59f56883618",
+      "scheme": "git-lf"
+    },
+    "tools/rebuild_creature_silhouettes.py": {
+      "sha256": "a08106ee648bed2ab4f361a3a7e9642a7cc6b9a7b6494dc7ea619b4d338a5ecf",
+      "scheme": "git-lf"
+    },
+    "tools/test_creature_reworks.py": {
+      "sha256": "f9964a7c248a311b7ca5af6ff426de446ce3b70b958d50bc4f1a47f55d5b307d",
+      "scheme": "git-lf"
+    },
+    "tools/verify_early_texture_runtime.py": {
+      "sha256": "ea163d4470e09b687d302f36937cd0e5168f62fec0e5f2297bf35c70e2c661e0",
+      "scheme": "git-lf"
+    },
+    "tools/verify_quadruped_runtime.py": {
+      "sha256": "6fe0d91710d164966e68c217a4817c2f6749343cb15eb09a0560a749c0520221",
+      "scheme": "git-lf"
+    }
+  },
+  "build_sha256": "ab3d427ad59ddf84eaa0c82fdb1e62b9c043199144b14e2bb843e275976e9e97",
+  "build_logs_sha256": {
+    "ender_infection_colored-build.log": "295f78aebcb45b25e59b1ba360e4e8e369ea3d28eca034685c0df5e0f2c00b5e",
+    "ender_infection_neoforge-build.log": "e21d6741f56fc0c6654e707440568c5cb3d9143c242dd0ab1413d570fa444647",
+    "forge-addon-build.log": "992ad74c7f00ceb60c31343aaa0e37707082bf5def76320b69acecc4f09a4f95",
+    "neoforge-addon-build.log": "38055fdafd2a67894c9a40d4c2f43948bd01d8759b66ecaa68a33fb16d7163dc"
+  },
+  "loaders": [
+    {
+      "status": "PASS",
+      "loader": "forge",
+      "screenshots": 88,
+      "native_required_passed": 36,
+      "zero_light_views": 16,
+      "motion_states": {
+        "cow_idle_front": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "cow_idle_back": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "cow_walk_a": {
+          "moved": 0.5484004788520915,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "cow_walk_b": {
+          "moved": 1.601916981958663,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "cow_attack_windup": {
+          "moved": 0.26671006944444464,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 10.0
+        },
+        "cow_attack_impact": {
+          "moved": 0.97998046875,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 0.0
+        },
+        "cow_infection": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": true,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "cow_death_start": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 4,
+          "target_health": -1.0
+        },
+        "cow_death_end": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 16,
+          "target_health": -1.0
+        },
+        "pig_idle_front": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "pig_idle_back": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "pig_walk_a": {
+          "moved": 0.7344003060179572,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "pig_walk_b": {
+          "moved": 1.7100902636381152,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "pig_attack_windup": {
+          "moved": 0.0,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 10.0
+        },
+        "pig_attack_impact": {
+          "moved": 1.7226728100596236,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 0.0
+        },
+        "pig_infection": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": true,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "pig_death_start": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 4,
+          "target_health": -1.0
+        },
+        "pig_death_end": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 16,
+          "target_health": -1.0
+        },
+        "sheep_idle_front": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "sheep_idle_back": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "sheep_walk_a": {
+          "moved": 0.505394138045614,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "sheep_walk_b": {
+          "moved": 1.1887480608689063,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "sheep_attack_windup": {
+          "moved": 0.0,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 10.0
+        },
+        "sheep_attack_impact": {
+          "moved": 0.0,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 3.0
+        },
+        "sheep_infection": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": true,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "sheep_death_start": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 4,
+          "target_health": -1.0
+        },
+        "sheep_death_end": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 16,
+          "target_health": -1.0
+        },
+        "cow_early_idle_front": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "cow_early_idle_back": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "cow_early_walk_a": {
+          "moved": 0.46412170817428183,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "cow_early_walk_b": {
+          "moved": 0.16673693699092187,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "cow_early_attack_windup": {
+          "moved": 0.2983845576057329,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 10.0
+        },
+        "cow_early_attack_impact": {
+          "moved": 0.2983845576057329,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 4.0
+        },
+        "cow_early_infection": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": true,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "cow_early_death_start": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 4,
+          "target_health": -1.0
+        },
+        "cow_early_death_end": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 16,
+          "target_health": -1.0
+        },
+        "pig_early_idle_front": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "pig_early_idle_back": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "pig_early_walk_a": {
+          "moved": 0.3289745492354791,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "pig_early_walk_b": {
+          "moved": 1.2014574770182183,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "pig_early_attack_windup": {
+          "moved": 0.8394284819911805,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 10.0
+        },
+        "pig_early_attack_impact": {
+          "moved": 0.8394284819911805,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 5.0
+        },
+        "pig_early_infection": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": true,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "pig_early_death_start": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 4,
+          "target_health": -1.0
+        },
+        "pig_early_death_end": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 16,
+          "target_health": -1.0
+        },
+        "sheep_early_idle_front": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "sheep_early_idle_back": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "sheep_early_walk_a": {
+          "moved": 0.4247175414517427,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "sheep_early_walk_b": {
+          "moved": 0.3052887922712339,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "sheep_early_attack_windup": {
+          "moved": 0.8679973439723383,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 10.0
+        },
+        "sheep_early_attack_impact": {
+          "moved": 0.8679973439723383,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 5.0
+        },
+        "sheep_early_infection": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": true,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "sheep_early_death_start": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 4,
+          "target_health": -1.0
+        },
+        "sheep_early_death_end": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 16,
+          "target_health": -1.0
+        },
+        "spider_early_idle_front": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "spider_early_idle_back": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "spider_early_walk_a": {
+          "moved": 0.6369914038471944,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "spider_early_walk_b": {
+          "moved": 1.4949705450668447,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "spider_early_attack_windup": {
+          "moved": 0.9169252740493476,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 10.0
+        },
+        "spider_early_attack_impact": {
+          "moved": 1.1848808397902317,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 5.2
+        },
+        "spider_early_infection": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": true,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "spider_early_death_start": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 4,
+          "target_health": -1.0
+        },
+        "spider_early_death_end": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 16,
+          "target_health": -1.0
+        },
+        "throat_spitter_idle_front": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "throat_spitter_idle_back": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "throat_spitter_walk_a": {
+          "moved": 0.7253529731256646,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "throat_spitter_walk_b": {
+          "moved": 1.1469813774579032,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "throat_spitter_attack_windup": {
+          "moved": 0.0,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 10.0
+        },
+        "throat_spitter_attack_impact": {
+          "moved": 0.0,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 1.0
+        },
+        "throat_spitter_infection": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": true,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "throat_spitter_death_start": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 4,
+          "target_health": -1.0
+        },
+        "throat_spitter_death_end": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 16,
+          "target_health": -1.0
+        }
+      },
+      "logs_sha256": {
+        "ai": "d80aaef426ecdd98ddab274aff2ae562b02b3e6da859f2a955a67eacd5b8d635",
+        "motion": "0a0d1e5da4c062f2e2e0c971e1c7728ba849af9afd8b82cf4ab21d547da0828d",
+        "glow": "63f5a38d8163ad8032d7277e21cb7af27e04347c720cc3bc2a03af7f8b210cea"
+      }
+    },
+    {
+      "status": "PASS",
+      "loader": "neo",
+      "screenshots": 88,
+      "native_required_passed": 36,
+      "zero_light_views": 16,
+      "motion_states": {
+        "cow_idle_front": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "cow_idle_back": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "cow_walk_a": {
+          "moved": 0.5405036211400217,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "cow_walk_b": {
+          "moved": 1.2981917941481533,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "cow_attack_windup": {
+          "moved": 0.0,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 10.0
+        },
+        "cow_attack_impact": {
+          "moved": 1.139892578125,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 0.0
+        },
+        "cow_infection": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": true,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "cow_death_start": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 4,
+          "target_health": -1.0
+        },
+        "cow_death_end": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 16,
+          "target_health": -1.0
+        },
+        "pig_idle_front": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "pig_idle_back": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "pig_walk_a": {
+          "moved": 0.729412850271363,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "pig_walk_b": {
+          "moved": 1.7196451390274208,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "pig_attack_windup": {
+          "moved": 0.0,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 10.0
+        },
+        "pig_attack_impact": {
+          "moved": 1.7226728100596236,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 0.0
+        },
+        "pig_infection": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": true,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "pig_death_start": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 4,
+          "target_health": -1.0
+        },
+        "pig_death_end": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 16,
+          "target_health": -1.0
+        },
+        "sheep_idle_front": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "sheep_idle_back": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "sheep_walk_a": {
+          "moved": 0.5037308845587879,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "sheep_walk_b": {
+          "moved": 1.1900037895254885,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "sheep_attack_windup": {
+          "moved": 0.0,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 10.0
+        },
+        "sheep_attack_impact": {
+          "moved": 0.0,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 3.0
+        },
+        "sheep_infection": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": true,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "sheep_death_start": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 4,
+          "target_health": -1.0
+        },
+        "sheep_death_end": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 16,
+          "target_health": -1.0
+        },
+        "cow_early_idle_front": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "cow_early_idle_back": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "cow_early_walk_a": {
+          "moved": 0.399757663362162,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "cow_early_walk_b": {
+          "moved": 0.9845153585950949,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "cow_early_attack_windup": {
+          "moved": 0.46903887430628194,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 10.0
+        },
+        "cow_early_attack_impact": {
+          "moved": 0.46903887430628194,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 4.0
+        },
+        "cow_early_infection": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": true,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "cow_early_death_start": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 4,
+          "target_health": -1.0
+        },
+        "cow_early_death_end": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 16,
+          "target_health": -1.0
+        },
+        "pig_early_idle_front": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "pig_early_idle_back": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "pig_early_walk_a": {
+          "moved": 0.5295692668026808,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "pig_early_walk_b": {
+          "moved": 1.2891981886748067,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "pig_early_attack_windup": {
+          "moved": 0.8364031555357981,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 10.0
+        },
+        "pig_early_attack_impact": {
+          "moved": 0.8364031555357981,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 5.0
+        },
+        "pig_early_infection": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": true,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "pig_early_death_start": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 4,
+          "target_health": -1.0
+        },
+        "pig_early_death_end": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 16,
+          "target_health": -1.0
+        },
+        "sheep_early_idle_front": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "sheep_early_idle_back": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "sheep_early_walk_a": {
+          "moved": 0.4110714619850582,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "sheep_early_walk_b": {
+          "moved": 1.0037104054371566,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "sheep_early_attack_windup": {
+          "moved": 0.8751469216294834,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 10.0
+        },
+        "sheep_early_attack_impact": {
+          "moved": 0.8751469216294834,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 5.0
+        },
+        "sheep_early_infection": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": true,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "sheep_early_death_start": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 4,
+          "target_health": -1.0
+        },
+        "sheep_early_death_end": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 16,
+          "target_health": -1.0
+        },
+        "spider_early_idle_front": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "spider_early_idle_back": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "spider_early_walk_a": {
+          "moved": 0.6296768367587758,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "spider_early_walk_b": {
+          "moved": 1.5067575410378469,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "spider_early_attack_windup": {
+          "moved": 0.8983206496915717,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 10.0
+        },
+        "spider_early_attack_impact": {
+          "moved": 1.1656618669746308,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 5.2
+        },
+        "spider_early_infection": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": true,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "spider_early_death_start": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 4,
+          "target_health": -1.0
+        },
+        "spider_early_death_end": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 16,
+          "target_health": -1.0
+        },
+        "throat_spitter_idle_front": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "throat_spitter_idle_back": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "throat_spitter_walk_a": {
+          "moved": 0.46412170817428183,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "throat_spitter_walk_b": {
+          "moved": 1.3714134370505247,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "throat_spitter_attack_windup": {
+          "moved": 0.0,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 10.0
+        },
+        "throat_spitter_attack_impact": {
+          "moved": 0.0,
+          "attacking": true,
+          "emerging": false,
+          "death_time": 0,
+          "target_health": 1.0
+        },
+        "throat_spitter_infection": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": true,
+          "death_time": 0,
+          "target_health": -1.0
+        },
+        "throat_spitter_death_start": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 4,
+          "target_health": -1.0
+        },
+        "throat_spitter_death_end": {
+          "moved": 0.0,
+          "attacking": false,
+          "emerging": false,
+          "death_time": 16,
+          "target_health": -1.0
+        }
+      },
+      "logs_sha256": {
+        "ai": "c431cb512e2fce8f56e1929cb878dbf25320bb210cf54bcb15bf1293d787b99c",
+        "motion": "88b9f71da35bf604a6cb70d6d208364314d40e57063109a0c123bf8be5c02e69",
+        "glow": "a81925b4f830861388530432566aba5265b9efe51b8da5f1aabab3ba378a00c5"
+      }
+    }
+  ]
+}

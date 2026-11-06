@@ -1,0 +1,31 @@
+{
+  "models": {
+    "infected_spider_early": {
+      "author": "@elma_taburlas",
+      "original": "Spider",
+      "page": "https://blockbenchworkshop.com/model/elma_taburlas/spider",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "source_ai_disclosure": "Human-created",
+      "adaptation_ai_assisted": true,
+      "source_file": "source/elma_spider.viewer.json",
+      "source_sha256": "ad64750a8a50e6843bcf8426bce1c7e4219ae40d88ce1aa2577dbfac862fa1d1",
+      "public_viewer_url": "https://blockbenchworkshop.com/cdn/previews/GGsCmdoG52ubN9KaRem2KzMXZkzYMUvm/d8514ee6-84e5-4cb7-9dac-642777dcaf14.json?v=5",
+      "access": "Complete viewer JSON made public by the work page; not the login-only download endpoint",
+      "changes": [
+        "Original @elma_taburlas striped body, segmented legs and red eyes preserved",
+        "Early variant derived from reviewed anatomical spider, two small abdomen growths; reduced attack amplitude and 12/26-tick timing",
+        "Added native-compatible infection/death and actual MCP 48 Hz sampled contact correction"
+      ],
+      "base_commit": "82cf387be838a4f371bacbb314636fda63d5ffcb"
+    }
+  },
+  "plan": {
+    "target": "MC Java GeckoLib, Forge 1.20.1 and NeoForge 1.21.1",
+    "preference": "appearance and animation first",
+    "materials": "Existing material UV layout, original species albedo atlas enhanced using built-in imagegen; exact eye/nose and crystal pixels preserved; shader-free base plus emissive overlay",
+    "budget": "Each early quadruped under 50 cubes and 22 bones, spider under 65 cubes / 60 bones, existing 256x128 runtime atlas; no performance claim",
+    "stage_difference": "Intact skin/wool and small local budding lesions; no large rupture, paired throat sac, heavy tusks or dorsal crown",
+    "motions": "Five numeric bone clips, closed locomotion loops, 48 Hz contact inspection, original impact/duration retained"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "tool": "built-in image_gen",
+  "mode": "edit",
+  "prompt": "Use case: precise-object-edit. Asset: production Minecraft Java entity albedo material atlas. Edit target: the attached 128x128 material atlas. Preserve its exact 4-column by 4-row tile layout, each tile logically 32x32 pixels. Improve the first SIX material squares with carefully authored Minecraft pixel art, replacing repetitive checker/noise and flat blocks with readable organic clustered shading. Row 1 from left: (1) chestnut-brown cow hide with a few irregular cream-white hide patches, softly broken pixel edges and subtle fur directional clusters, not a checker pattern; (2) natural muted warm pink pig skin, gentle broad tonal shading, tiny sparse freckles and crease clusters, no furry texture; (3) warm ivory sheep fleece with irregular rounded wool clump shading, sparse beige-gray creases, do not make uniform rows or a knitted checker; (4) aged warm ivory bone, restrained fine fissures and soft porous edge shading. Row 2 col1: restrained deep dusky plum/burgundy infected tissue with branching subtle darker veins and a few soft wet highlights, no gore drawing; row2 col2: dark charcoal-brown hoof keratin with subtle directional wear and fine gray-brown chips, keep it dark. All six squares are continuous fully opaque texture swatches, usable anywhere within each square; no decorative border or central object, no baked directional spotlight, no 3D render. Keep every remaining tile in rows 2-4 including black, amber eye, nose and nostril artwork exactly in its current position and palette; unused bottom cells remain transparent. Produce a sharp pixel-art sheet on a logical 128x128 pixel grid enlarged to 1024x1024 with exact square hard pixels, 8x8 output pixels per logical pixel. Broad readable color clusters, coherent muted palette, no blur, no smooth photographic noise, no dithering, no repeated geometric diamond pattern, no text, no labels, no tile outlines, no watermark. The goal is richer attractive materials that remain recognizably Minecraft when wrapped over cuboid animals.",
+  "reference": "E:/mc/build/asset-overhaul/texture-polish/atlas-v1.png",
+  "conversion": "Exact six-swatch atlas packing via System.Drawing; nearest-neighbor to logical 128px grid; all remaining pixels preserved from original",
+  "master": "materials/generated-master-v2.png",
+  "runtime_material": "materials/quadruped-atlas-v2.png",
+  "reference_artifact": "materials/quadruped-atlas-v1.png",
+  "packing_script": "tools/pack_quadruped_materials.ps1",
+  "sha256": {
+    "generated-master-v2.png": "e388d58fc4b3748bdcb2369cc4291f8050b579680534d992cd3a5b9ed7c7a01f",
+    "quadruped-atlas-v1.png": "d9d56e0f314dc1033d40809c04307f9c9bb4743ddea187ff6a83377d7e3d7652",
+    "quadruped-atlas-v2.png": "c0904753e3ebee2fdaa96acbdaeb4bbd8de3840e31150ef988dc3fe58490fe1f"
+  }
+}

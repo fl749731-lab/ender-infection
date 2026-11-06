@@ -1,0 +1,2226 @@
+{
+  "source": "colored_units/creature_rework_v2/source/project-original/rift_throat_spitter-before-alpha8.bbmodel",
+  "source_sha256": "2e4dbbc64d2e788e118690005b51813671e335290c8a04d5c4026a643acc6055",
+  "edited_source": "colored_units/design_pack_2026-11-02_v2/monsters/rift_throat_spitter.bbmodel",
+  "edited_source_sha256": "ef01ffaa1cc7d7aef789450ccfddc00fc1ff85091b671e0309b9a5dd0842ca6c",
+  "plan": {
+    "target": "Existing Java GeckoLib entity, Forge 1.20.1 / NeoForge 1.21.1",
+    "preference": "appearance and animation first",
+    "source": "Existing project original, no external asset copied",
+    "geometry_budget": "Retain the curved 443-cube anatomy; merge two subpixel floating terminal tips into their preceding segments and add two continuous throat connectors, final 443 cubes",
+    "materials": "Existing one 256x256 atlas plus emissive overlay. Uniformly shrunken organ uses finer grain intentionally; face aspect ratios unchanged.",
+    "animation": "Preserve five numeric clips and 24/52-tick attack; restrained sac rotation and existing inflation/compression; death retimed to 18 ticks",
+    "sacs": [
+      {
+        "group": "throat_sac_left",
+        "old_pivot": [
+          -3.7,
+          29,
+          -6
+        ],
+        "new_pivot": [
+          -3.7,
+          27,
+          -1
+        ],
+        "uniform_scale": 0.65,
+        "retained_elements": 110
+      },
+      {
+        "group": "throat_sac_1",
+        "old_pivot": [
+          3.7,
+          29,
+          -6
+        ],
+        "new_pivot": [
+          3.7,
+          27,
+          -1
+        ],
+        "uniform_scale": 0.65,
+        "retained_elements": 110
+      }
+    ]
+  },
+  "verification": {
+    "info": {
+      "path": "E:\\mc\\build\\asset-overhaul\\worktree\\colored_units\\design_pack_2026-11-02_v2\\monsters\\rift_throat_spitter.bbmodel",
+      "revision": "ef01ffaa1cc7d7ae",
+      "name": "rift_throat_spitter",
+      "model_identifier": "rift_throat_spitter",
+      "format": "free",
+      "format_version": "5.0",
+      "box_uv": false,
+      "resolution": {
+        "width": 256,
+        "height": 256
+      },
+      "counts": {
+        "groups": 14,
+        "cubes": 443,
+        "meshes": 0,
+        "other_elements": 0,
+        "textures": 1,
+        "animations": 5
+      },
+      "bounds": {
+        "min": [
+          -10.14,
+          0.282,
+          -19.495
+        ],
+        "max": [
+          10.14,
+          34.623,
+          12.851
+        ],
+        "size": [
+          20.281,
+          34.341,
+          32.346
+        ]
+      },
+      "ai_used": true,
+      "notes": []
+    },
+    "motion": {
+      "revision": "ef01ffaa1cc7d7ae",
+      "checked": [
+        "animation.rift_throat_spitter.idle",
+        "animation.rift_throat_spitter.walk",
+        "animation.rift_throat_spitter.attack",
+        "animation.rift_throat_spitter.emerge",
+        "animation.rift_throat_spitter.death"
+      ],
+      "summary": {
+        "errors": 0,
+        "warnings": 0,
+        "passed": true
+      },
+      "gates": [
+        {
+          "id": "animated_bones_exist",
+          "label": "Animators target groups that exist",
+          "severity": "error",
+          "ran": true,
+          "violations": []
+        },
+        {
+          "id": "keyframe_timing",
+          "label": "Keyframes lie inside the clip and do not collide",
+          "severity": "warning",
+          "ran": true,
+          "violations": []
+        },
+        {
+          "id": "ground_sink",
+          "label": "No part sinks below the ground during a clip",
+          "severity": "warning",
+          "ran": true,
+          "violations": []
+        },
+        {
+          "id": "detachment",
+          "label": "Attached groups stay attached to their parent during a clip",
+          "severity": "warning",
+          "ran": true,
+          "violations": []
+        }
+      ],
+      "skipped_channels": [],
+      "approximated_bezier": [],
+      "capped_clips": []
+    },
+    "geometry": {
+      "revision": "ef01ffaa1cc7d7ae",
+      "format": "free",
+      "summary": {
+        "errors": 0,
+        "warnings": 310,
+        "passed": true
+      },
+      "gates": [
+        {
+          "id": "outliner",
+          "label": "Outliner references resolve and UUIDs are unique",
+          "severity": "error",
+          "ran": true,
+          "violations": []
+        },
+        {
+          "id": "unlisted_nodes",
+          "label": "Every group and element is placed in the outliner",
+          "severity": "warning",
+          "ran": true,
+          "violations": []
+        },
+        {
+          "id": "degenerate",
+          "label": "No sliver or inverted cubes",
+          "severity": "warning",
+          "ran": true,
+          "violations": [
+            {
+              "message": "sac_nodule1_145 is 0.347×0.162×0.347; an axis is thinner than 0.2.",
+              "targets": [
+                "sac_nodule1_145"
+              ]
+            },
+            {
+              "message": "sac_nodule2_146 is 0.289×0.15×0.289; an axis is thinner than 0.2.",
+              "targets": [
+                "sac_nodule2_146"
+              ]
+            },
+            {
+              "message": "sac_nodule3_147 is 0.231×0.127×0.231; an axis is thinner than 0.2.",
+              "targets": [
+                "sac_nodule3_147"
+              ]
+            },
+            {
+              "message": "sac_nodule4_148 is 0.165×0.116×0.165; an axis is thinner than 0.2.",
+              "targets": [
+                "sac_nodule4_148"
+              ]
+            },
+            {
+              "message": "sac_nodule5_149 is 0.107×0.242×0.107; an axis is thinner than 0.2.",
+              "targets": [
+                "sac_nodule5_149"
+              ]
+            },
+            {
+              "message": "sac_nodule_facet_151 is 0.12×0.682×0.078; an axis is thinner than 0.2.",
+              "targets": [
+                "sac_nodule_facet_151"
+              ]
+            },
+            {
+              "message": "sac_nodule1_310 is 0.347×0.162×0.347; an axis is thinner than 0.2.",
+              "targets": [
+                "sac_nodule1_310"
+              ]
+            },
+            {
+              "message": "sac_nodule2_311 is 0.289×0.15×0.289; an axis is thinner than 0.2.",
+              "targets": [
+                "sac_nodule2_311"
+              ]
+            },
+            {
+              "message": "sac_nodule3_312 is 0.231×0.127×0.231; an axis is thinner than 0.2.",
+              "targets": [
+                "sac_nodule3_312"
+              ]
+            },
+            {
+              "message": "sac_nodule4_313 is 0.165×0.116×0.165; an axis is thinner than 0.2.",
+              "targets": [
+                "sac_nodule4_313"
+              ]
+            },
+            {
+              "message": "sac_nodule5_314 is 0.107×0.242×0.107; an axis is thinner than 0.2.",
+              "targets": [
+                "sac_nodule5_314"
+              ]
+            },
+            {
+              "message": "sac_nodule_facet_316 is 0.12×0.682×0.078; an axis is thinner than 0.2.",
+              "targets": [
+                "sac_nodule_facet_316"
+              ]
+            },
+            {
+              "message": "eye_socket_381 is 1.17×0.9×0.184; an axis is thinner than 0.2.",
+              "targets": [
+                "eye_socket_381"
+              ]
+            },
+            {
+              "message": "eye_glint_382 is 0.585×0.4×0.184; an axis is thinner than 0.2.",
+              "targets": [
+                "eye_glint_382"
+              ]
+            },
+            {
+              "message": "eye_socket_383 is 1.17×0.9×0.184; an axis is thinner than 0.2.",
+              "targets": [
+                "eye_socket_383"
+              ]
+            },
+            {
+              "message": "eye_glint_384 is 0.585×0.4×0.184; an axis is thinner than 0.2.",
+              "targets": [
+                "eye_glint_384"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "block_limits",
+          "label": "Geometry stays inside the block-model limits",
+          "severity": "error",
+          "ran": false,
+          "skipped_reason": "Pass block_limits: java_block or bedrock_block to enable.",
+          "violations": []
+        },
+        {
+          "id": "floating",
+          "label": "Every part touches the main body",
+          "severity": "warning",
+          "ran": true,
+          "violations": []
+        },
+        {
+          "id": "interpenetration",
+          "label": "Parts of different groups do not pass through each other",
+          "severity": "warning",
+          "ran": true,
+          "violations": [
+            {
+              "message": "arched_back_center_1 and curved_neck_6 (different groups) interpenetrate by 4.3 units.",
+              "targets": [
+                "arched_back_center_1",
+                "curved_neck_6"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and thin_arm_34 (different groups) interpenetrate by 0.95 units.",
+              "targets": [
+                "arched_back_center_1",
+                "thin_arm_34"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_54 (different groups) interpenetrate by 0.62 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_54"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_58 (different groups) interpenetrate by 0.61 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_58"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_59 (different groups) interpenetrate by 0.65 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_59"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_60 (different groups) interpenetrate by 0.65 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_60"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_61 (different groups) interpenetrate by 0.65 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_61"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_62 (different groups) interpenetrate by 0.65 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_62"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_63 (different groups) interpenetrate by 0.65 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_63"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_69 (different groups) interpenetrate by 0.64 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_69"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_70 (different groups) interpenetrate by 0.64 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_70"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_71 (different groups) interpenetrate by 0.64 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_71"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_72 (different groups) interpenetrate by 0.64 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_72"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_73 (different groups) interpenetrate by 0.64 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_73"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_74 (different groups) interpenetrate by 0.64 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_74"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_80 (different groups) interpenetrate by 0.63 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_80"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_81 (different groups) interpenetrate by 0.63 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_81"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_82 (different groups) interpenetrate by 0.63 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_82"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_83 (different groups) interpenetrate by 0.63 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_83"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_84 (different groups) interpenetrate by 0.63 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_84"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_85 (different groups) interpenetrate by 0.63 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_85"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_92 (different groups) interpenetrate by 0.61 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_92"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_93 (different groups) interpenetrate by 0.61 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_93"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_94 (different groups) interpenetrate by 0.61 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_94"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_95 (different groups) interpenetrate by 0.61 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_95"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_96 (different groups) interpenetrate by 0.61 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_96"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_103 (different groups) interpenetrate by 0.58 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_103"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_104 (different groups) interpenetrate by 0.58 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_104"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_105 (different groups) interpenetrate by 0.58 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_105"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_106 (different groups) interpenetrate by 0.58 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_106"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_107 (different groups) interpenetrate by 0.58 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_107"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_115 (different groups) interpenetrate by 0.55 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_115"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_116 (different groups) interpenetrate by 0.55 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_116"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_117 (different groups) interpenetrate by 0.55 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_117"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_118 (different groups) interpenetrate by 0.55 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_118"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and thin_arm_199 (different groups) interpenetrate by 0.95 units.",
+              "targets": [
+                "arched_back_center_1",
+                "thin_arm_199"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_219 (different groups) interpenetrate by 0.62 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_219"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_223 (different groups) interpenetrate by 0.61 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_223"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_224 (different groups) interpenetrate by 0.65 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_224"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_225 (different groups) interpenetrate by 0.65 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_225"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_226 (different groups) interpenetrate by 0.65 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_226"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_227 (different groups) interpenetrate by 0.65 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_227"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_228 (different groups) interpenetrate by 0.65 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_228"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_234 (different groups) interpenetrate by 0.64 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_234"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_235 (different groups) interpenetrate by 0.64 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_235"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_236 (different groups) interpenetrate by 0.64 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_236"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_237 (different groups) interpenetrate by 0.64 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_237"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_238 (different groups) interpenetrate by 0.64 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_238"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_239 (different groups) interpenetrate by 0.64 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_239"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_245 (different groups) interpenetrate by 0.63 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_245"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_246 (different groups) interpenetrate by 0.63 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_246"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_247 (different groups) interpenetrate by 0.63 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_247"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_248 (different groups) interpenetrate by 0.63 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_248"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_249 (different groups) interpenetrate by 0.63 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_249"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_250 (different groups) interpenetrate by 0.63 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_250"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_257 (different groups) interpenetrate by 0.61 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_257"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_258 (different groups) interpenetrate by 0.61 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_258"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_259 (different groups) interpenetrate by 0.61 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_259"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_260 (different groups) interpenetrate by 0.61 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_260"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_261 (different groups) interpenetrate by 0.61 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_261"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_268 (different groups) interpenetrate by 0.58 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_268"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_269 (different groups) interpenetrate by 0.58 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_269"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_270 (different groups) interpenetrate by 0.58 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_270"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_271 (different groups) interpenetrate by 0.58 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_271"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_272 (different groups) interpenetrate by 0.58 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_272"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_280 (different groups) interpenetrate by 0.55 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_280"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_281 (different groups) interpenetrate by 0.55 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_281"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_282 (different groups) interpenetrate by 0.55 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_282"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and pendulous_throat_sac_curved_lobe_283 (different groups) interpenetrate by 0.55 units.",
+              "targets": [
+                "arched_back_center_1",
+                "pendulous_throat_sac_curved_lobe_283"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and temple_fan_dark_joint_411 (different groups) interpenetrate by 0.61 units.",
+              "targets": [
+                "arched_back_center_1",
+                "temple_fan_dark_joint_411"
+              ]
+            },
+            {
+              "message": "arched_back_center_1 and temple_fan_dark_joint_436 (different groups) interpenetrate by 0.61 units.",
+              "targets": [
+                "arched_back_center_1",
+                "temple_fan_dark_joint_436"
+              ]
+            },
+            {
+              "message": "arched_back_chamfer_2 and leg_-1_upper_7 (different groups) interpenetrate by 1.58 units.",
+              "targets": [
+                "arched_back_chamfer_2",
+                "leg_-1_upper_7"
+              ]
+            },
+            {
+              "message": "arched_back_chamfer_2 and leg_-1_upper_joint_8 (different groups) interpenetrate by 2.28 units.",
+              "targets": [
+                "arched_back_chamfer_2",
+                "leg_-1_upper_joint_8"
+              ]
+            },
+            {
+              "message": "arched_back_chamfer_2 and leg_-1_thigh_plate_dark_joint_11 (different groups) interpenetrate by 0.79 units.",
+              "targets": [
+                "arched_back_chamfer_2",
+                "leg_-1_thigh_plate_dark_joint_11"
+              ]
+            },
+            {
+              "message": "arched_back_chamfer_2 and leg_-1_thigh_plate_scalloped_armor_14 (different groups) interpenetrate by 0.83 units.",
+              "targets": [
+                "arched_back_chamfer_2",
+                "leg_-1_thigh_plate_scalloped_armor_14"
+              ]
+            },
+            {
+              "message": "arched_back_chamfer_2 and leg_1_upper_172 (different groups) interpenetrate by 1.58 units.",
+              "targets": [
+                "arched_back_chamfer_2",
+                "leg_1_upper_172"
+              ]
+            },
+            {
+              "message": "arched_back_chamfer_2 and leg_1_upper_joint_173 (different groups) interpenetrate by 2.28 units.",
+              "targets": [
+                "arched_back_chamfer_2",
+                "leg_1_upper_joint_173"
+              ]
+            },
+            {
+              "message": "arched_back_chamfer_2 and leg_1_thigh_plate_dark_joint_176 (different groups) interpenetrate by 0.75 units.",
+              "targets": [
+                "arched_back_chamfer_2",
+                "leg_1_thigh_plate_dark_joint_176"
+              ]
+            },
+            {
+              "message": "arched_back_chamfer_2 and leg_1_thigh_plate_scalloped_armor_179 (different groups) interpenetrate by 0.79 units.",
+              "targets": [
+                "arched_back_chamfer_2",
+                "leg_1_thigh_plate_scalloped_armor_179"
+              ]
+            },
+            {
+              "message": "arched_back_cap_3 and leg_-1_upper_7 (different groups) interpenetrate by 1.49 units.",
+              "targets": [
+                "arched_back_cap_3",
+                "leg_-1_upper_7"
+              ]
+            },
+            {
+              "message": "arched_back_cap_3 and leg_-1_upper_joint_8 (different groups) interpenetrate by 1.76 units.",
+              "targets": [
+                "arched_back_cap_3",
+                "leg_-1_upper_joint_8"
+              ]
+            },
+            {
+              "message": "arched_back_cap_3 and leg_-1_thigh_plate_dark_joint_11 (different groups) interpenetrate by 1.05 units.",
+              "targets": [
+                "arched_back_cap_3",
+                "leg_-1_thigh_plate_dark_joint_11"
+              ]
+            },
+            {
+              "message": "arched_back_cap_3 and leg_-1_thigh_plate_scalloped_armor_14 (different groups) interpenetrate by 0.95 units.",
+              "targets": [
+                "arched_back_cap_3",
+                "leg_-1_thigh_plate_scalloped_armor_14"
+              ]
+            },
+            {
+              "message": "arched_back_cap_3 and leg_1_upper_172 (different groups) interpenetrate by 1.49 units.",
+              "targets": [
+                "arched_back_cap_3",
+                "leg_1_upper_172"
+              ]
+            },
+            {
+              "message": "arched_back_cap_3 and leg_1_upper_joint_173 (different groups) interpenetrate by 1.76 units.",
+              "targets": [
+                "arched_back_cap_3",
+                "leg_1_upper_joint_173"
+              ]
+            },
+            {
+              "message": "arched_back_cap_3 and leg_1_thigh_plate_dark_joint_176 (different groups) interpenetrate by 1 units.",
+              "targets": [
+                "arched_back_cap_3",
+                "leg_1_thigh_plate_dark_joint_176"
+              ]
+            },
+            {
+              "message": "arched_back_cap_3 and leg_1_thigh_plate_scalloped_armor_179 (different groups) interpenetrate by 0.74 units.",
+              "targets": [
+                "arched_back_cap_3",
+                "leg_1_thigh_plate_scalloped_armor_179"
+              ]
+            },
+            {
+              "message": "arched_back_chamfer_4 and curved_neck_6 (different groups) interpenetrate by 4.3 units.",
+              "targets": [
+                "arched_back_chamfer_4",
+                "curved_neck_6"
+              ]
+            },
+            {
+              "message": "arched_back_chamfer_4 and temple_fan_dark_joint_411 (different groups) interpenetrate by 0.65 units.",
+              "targets": [
+                "arched_back_chamfer_4",
+                "temple_fan_dark_joint_411"
+              ]
+            },
+            {
+              "message": "arched_back_chamfer_4 and temple_fan_dark_joint_436 (different groups) interpenetrate by 0.65 units.",
+              "targets": [
+                "arched_back_chamfer_4",
+                "temple_fan_dark_joint_436"
+              ]
+            },
+            {
+              "message": "arched_back_cap_5 and curved_neck_6 (different groups) interpenetrate by 2.46 units.",
+              "targets": [
+                "arched_back_cap_5",
+                "curved_neck_6"
+              ]
+            },
+            {
+              "message": "curved_neck_6 and cranial_arch_377 (different groups) interpenetrate by 2.12 units.",
+              "targets": [
+                "curved_neck_6",
+                "cranial_arch_377"
+              ]
+            },
+            {
+              "message": "curved_neck_6 and mouth_cavity_390 (different groups) interpenetrate by 1.85 units.",
+              "targets": [
+                "curved_neck_6",
+                "mouth_cavity_390"
+              ]
+            },
+            {
+              "message": "curved_neck_6 and throat_to_sac_left (different groups) interpenetrate by 1.49 units.",
+              "targets": [
+                "curved_neck_6",
+                "throat_to_sac_left"
+              ]
+            },
+            {
+              "message": "curved_neck_6 and throat_to_sac_right (different groups) interpenetrate by 1.49 units.",
+              "targets": [
+                "curved_neck_6",
+                "throat_to_sac_right"
+              ]
+            },
+            {
+              "message": "leg_-1_upper_7 and leg_-1_lower_9 (different groups) interpenetrate by 1.97 units.",
+              "targets": [
+                "leg_-1_upper_7",
+                "leg_-1_lower_9"
+              ]
+            },
+            {
+              "message": "leg_-1_upper_7 and leg_-1_lower_joint_10 (different groups) interpenetrate by 2.37 units.",
+              "targets": [
+                "leg_-1_upper_7",
+                "leg_-1_lower_joint_10"
+              ]
+            },
+            {
+              "message": "leg_-1_upper_7 and leg_-1_knee_cap_24 (different groups) interpenetrate by 1.62 units.",
+              "targets": [
+                "leg_-1_upper_7",
+                "leg_-1_knee_cap_24"
+              ]
+            },
+            {
+              "message": "leg_-1_thigh_plate_dark_joint_16 and leg_-1_knee_cap_24 (different groups) interpenetrate by 0.63 units.",
+              "targets": [
+                "leg_-1_thigh_plate_dark_joint_16",
+                "leg_-1_knee_cap_24"
+              ]
+            },
+            {
+              "message": "leg_-1_thigh_plate_scalloped_armor_17 and leg_-1_knee_cap_24 (different groups) interpenetrate by 0.7 units.",
+              "targets": [
+                "leg_-1_thigh_plate_scalloped_armor_17",
+                "leg_-1_knee_cap_24"
+              ]
+            },
+            {
+              "message": "thin_arm_34 and pendulous_throat_sac_curved_lobe_47 (different groups) interpenetrate by 0.67 units.",
+              "targets": [
+                "thin_arm_34",
+                "pendulous_throat_sac_curved_lobe_47"
+              ]
+            },
+            {
+              "message": "thin_arm_34 and pendulous_throat_sac_curved_lobe_53 (different groups) interpenetrate by 0.66 units.",
+              "targets": [
+                "thin_arm_34",
+                "pendulous_throat_sac_curved_lobe_53"
+              ]
+            },
+            {
+              "message": "thin_arm_34 and pendulous_throat_sac_curved_lobe_54 (different groups) interpenetrate by 0.66 units.",
+              "targets": [
+                "thin_arm_34",
+                "pendulous_throat_sac_curved_lobe_54"
+              ]
+            },
+            {
+              "message": "thin_arm_34 and pendulous_throat_sac_curved_lobe_61 (different groups) interpenetrate by 0.63 units.",
+              "targets": [
+                "thin_arm_34",
+                "pendulous_throat_sac_curved_lobe_61"
+              ]
+            },
+            {
+              "message": "thin_arm_34 and pendulous_throat_sac_curved_lobe_62 (different groups) interpenetrate by 0.65 units.",
+              "targets": [
+                "thin_arm_34",
+                "pendulous_throat_sac_curved_lobe_62"
+              ]
+            },
+            {
+              "message": "thin_arm_34 and pendulous_throat_sac_curved_lobe_63 (different groups) interpenetrate by 0.65 units.",
+              "targets": [
+                "thin_arm_34",
+                "pendulous_throat_sac_curved_lobe_63"
+              ]
+            },
+            {
+              "message": "thin_arm_34 and pendulous_throat_sac_curved_lobe_72 (different groups) interpenetrate by 0.64 units.",
+              "targets": [
+                "thin_arm_34",
+                "pendulous_throat_sac_curved_lobe_72"
+              ]
+            },
+            {
+              "message": "thin_arm_34 and pendulous_throat_sac_curved_lobe_73 (different groups) interpenetrate by 0.64 units.",
+              "targets": [
+                "thin_arm_34",
+                "pendulous_throat_sac_curved_lobe_73"
+              ]
+            },
+            {
+              "message": "thin_arm_34 and pendulous_throat_sac_curved_lobe_74 (different groups) interpenetrate by 0.64 units.",
+              "targets": [
+                "thin_arm_34",
+                "pendulous_throat_sac_curved_lobe_74"
+              ]
+            },
+            {
+              "message": "thin_arm_34 and pendulous_throat_sac_curved_lobe_83 (different groups) interpenetrate by 0.63 units.",
+              "targets": [
+                "thin_arm_34",
+                "pendulous_throat_sac_curved_lobe_83"
+              ]
+            },
+            {
+              "message": "thin_arm_34 and pendulous_throat_sac_curved_lobe_84 (different groups) interpenetrate by 0.63 units.",
+              "targets": [
+                "thin_arm_34",
+                "pendulous_throat_sac_curved_lobe_84"
+              ]
+            },
+            {
+              "message": "thin_arm_34 and pendulous_throat_sac_curved_lobe_85 (different groups) interpenetrate by 0.63 units.",
+              "targets": [
+                "thin_arm_34",
+                "pendulous_throat_sac_curved_lobe_85"
+              ]
+            },
+            {
+              "message": "thin_arm_34 and pendulous_throat_sac_curved_lobe_95 (different groups) interpenetrate by 0.61 units.",
+              "targets": [
+                "thin_arm_34",
+                "pendulous_throat_sac_curved_lobe_95"
+              ]
+            },
+            {
+              "message": "thin_arm_34 and pendulous_throat_sac_curved_lobe_96 (different groups) interpenetrate by 0.61 units.",
+              "targets": [
+                "thin_arm_34",
+                "pendulous_throat_sac_curved_lobe_96"
+              ]
+            },
+            {
+              "message": "thin_arm_34 and pendulous_throat_sac_curved_lobe_106 (different groups) interpenetrate by 0.56 units.",
+              "targets": [
+                "thin_arm_34",
+                "pendulous_throat_sac_curved_lobe_106"
+              ]
+            },
+            {
+              "message": "thin_arm_34 and pendulous_throat_sac_curved_lobe_107 (different groups) interpenetrate by 0.58 units.",
+              "targets": [
+                "thin_arm_34",
+                "pendulous_throat_sac_curved_lobe_107"
+              ]
+            },
+            {
+              "message": "thin_arm_34 and pendulous_throat_sac_curved_lobe_118 (different groups) interpenetrate by 0.55 units.",
+              "targets": [
+                "thin_arm_34",
+                "pendulous_throat_sac_curved_lobe_118"
+              ]
+            },
+            {
+              "message": "sac_stalk_42 and throat_to_sac_left (different groups) interpenetrate by 1.12 units.",
+              "targets": [
+                "sac_stalk_42",
+                "throat_to_sac_left"
+              ]
+            },
+            {
+              "message": "leg_1_upper_172 and leg_1_lower_174 (different groups) interpenetrate by 1.97 units.",
+              "targets": [
+                "leg_1_upper_172",
+                "leg_1_lower_174"
+              ]
+            },
+            {
+              "message": "leg_1_upper_172 and leg_1_lower_joint_175 (different groups) interpenetrate by 2.37 units.",
+              "targets": [
+                "leg_1_upper_172",
+                "leg_1_lower_joint_175"
+              ]
+            },
+            {
+              "message": "leg_1_upper_172 and leg_1_knee_cap_189 (different groups) interpenetrate by 1.62 units.",
+              "targets": [
+                "leg_1_upper_172",
+                "leg_1_knee_cap_189"
+              ]
+            },
+            {
+              "message": "leg_1_thigh_plate_dark_joint_181 and leg_1_knee_cap_189 (different groups) interpenetrate by 0.59 units.",
+              "targets": [
+                "leg_1_thigh_plate_dark_joint_181",
+                "leg_1_knee_cap_189"
+              ]
+            },
+            {
+              "message": "leg_1_thigh_plate_scalloped_armor_182 and leg_1_knee_cap_189 (different groups) interpenetrate by 0.67 units.",
+              "targets": [
+                "leg_1_thigh_plate_scalloped_armor_182",
+                "leg_1_knee_cap_189"
+              ]
+            },
+            {
+              "message": "thin_arm_199 and pendulous_throat_sac_curved_lobe_212 (different groups) interpenetrate by 0.67 units.",
+              "targets": [
+                "thin_arm_199",
+                "pendulous_throat_sac_curved_lobe_212"
+              ]
+            },
+            {
+              "message": "thin_arm_199 and pendulous_throat_sac_curved_lobe_218 (different groups) interpenetrate by 0.66 units.",
+              "targets": [
+                "thin_arm_199",
+                "pendulous_throat_sac_curved_lobe_218"
+              ]
+            },
+            {
+              "message": "thin_arm_199 and pendulous_throat_sac_curved_lobe_219 (different groups) interpenetrate by 0.66 units.",
+              "targets": [
+                "thin_arm_199",
+                "pendulous_throat_sac_curved_lobe_219"
+              ]
+            },
+            {
+              "message": "thin_arm_199 and pendulous_throat_sac_curved_lobe_226 (different groups) interpenetrate by 0.63 units.",
+              "targets": [
+                "thin_arm_199",
+                "pendulous_throat_sac_curved_lobe_226"
+              ]
+            },
+            {
+              "message": "thin_arm_199 and pendulous_throat_sac_curved_lobe_227 (different groups) interpenetrate by 0.65 units.",
+              "targets": [
+                "thin_arm_199",
+                "pendulous_throat_sac_curved_lobe_227"
+              ]
+            },
+            {
+              "message": "thin_arm_199 and pendulous_throat_sac_curved_lobe_228 (different groups) interpenetrate by 0.65 units.",
+              "targets": [
+                "thin_arm_199",
+                "pendulous_throat_sac_curved_lobe_228"
+              ]
+            },
+            {
+              "message": "thin_arm_199 and pendulous_throat_sac_curved_lobe_237 (different groups) interpenetrate by 0.64 units.",
+              "targets": [
+                "thin_arm_199",
+                "pendulous_throat_sac_curved_lobe_237"
+              ]
+            },
+            {
+              "message": "thin_arm_199 and pendulous_throat_sac_curved_lobe_238 (different groups) interpenetrate by 0.64 units.",
+              "targets": [
+                "thin_arm_199",
+                "pendulous_throat_sac_curved_lobe_238"
+              ]
+            },
+            {
+              "message": "thin_arm_199 and pendulous_throat_sac_curved_lobe_239 (different groups) interpenetrate by 0.64 units.",
+              "targets": [
+                "thin_arm_199",
+                "pendulous_throat_sac_curved_lobe_239"
+              ]
+            },
+            {
+              "message": "thin_arm_199 and pendulous_throat_sac_curved_lobe_248 (different groups) interpenetrate by 0.63 units.",
+              "targets": [
+                "thin_arm_199",
+                "pendulous_throat_sac_curved_lobe_248"
+              ]
+            },
+            {
+              "message": "thin_arm_199 and pendulous_throat_sac_curved_lobe_249 (different groups) interpenetrate by 0.63 units.",
+              "targets": [
+                "thin_arm_199",
+                "pendulous_throat_sac_curved_lobe_249"
+              ]
+            },
+            {
+              "message": "thin_arm_199 and pendulous_throat_sac_curved_lobe_250 (different groups) interpenetrate by 0.63 units.",
+              "targets": [
+                "thin_arm_199",
+                "pendulous_throat_sac_curved_lobe_250"
+              ]
+            },
+            {
+              "message": "thin_arm_199 and pendulous_throat_sac_curved_lobe_260 (different groups) interpenetrate by 0.61 units.",
+              "targets": [
+                "thin_arm_199",
+                "pendulous_throat_sac_curved_lobe_260"
+              ]
+            },
+            {
+              "message": "thin_arm_199 and pendulous_throat_sac_curved_lobe_261 (different groups) interpenetrate by 0.61 units.",
+              "targets": [
+                "thin_arm_199",
+                "pendulous_throat_sac_curved_lobe_261"
+              ]
+            },
+            {
+              "message": "thin_arm_199 and pendulous_throat_sac_curved_lobe_271 (different groups) interpenetrate by 0.56 units.",
+              "targets": [
+                "thin_arm_199",
+                "pendulous_throat_sac_curved_lobe_271"
+              ]
+            },
+            {
+              "message": "thin_arm_199 and pendulous_throat_sac_curved_lobe_272 (different groups) interpenetrate by 0.58 units.",
+              "targets": [
+                "thin_arm_199",
+                "pendulous_throat_sac_curved_lobe_272"
+              ]
+            },
+            {
+              "message": "thin_arm_199 and pendulous_throat_sac_curved_lobe_283 (different groups) interpenetrate by 0.55 units.",
+              "targets": [
+                "thin_arm_199",
+                "pendulous_throat_sac_curved_lobe_283"
+              ]
+            },
+            {
+              "message": "sac_stalk_207 and throat_to_sac_right (different groups) interpenetrate by 1.12 units.",
+              "targets": [
+                "sac_stalk_207",
+                "throat_to_sac_right"
+              ]
+            },
+            {
+              "message": "cranial_arch_377 and throat_to_sac_left (different groups) interpenetrate by 0.62 units.",
+              "targets": [
+                "cranial_arch_377",
+                "throat_to_sac_left"
+              ]
+            },
+            {
+              "message": "cranial_arch_377 and throat_to_sac_right (different groups) interpenetrate by 0.62 units.",
+              "targets": [
+                "cranial_arch_377",
+                "throat_to_sac_right"
+              ]
+            },
+            {
+              "message": "jaw_ramus_385 and throat_to_sac_left (different groups) interpenetrate by 1.66 units.",
+              "targets": [
+                "jaw_ramus_385",
+                "throat_to_sac_left"
+              ]
+            },
+            {
+              "message": "jaw_ramus_387 and throat_to_sac_right (different groups) interpenetrate by 1.66 units.",
+              "targets": [
+                "jaw_ramus_387",
+                "throat_to_sac_right"
+              ]
+            },
+            {
+              "message": "mouth_cavity_390 and polish_throat_transfer (different groups) interpenetrate by 2.01 units.",
+              "targets": [
+                "mouth_cavity_390",
+                "polish_throat_transfer"
+              ]
+            },
+            {
+              "message": "mouth_cavity_390 and throat_to_sac_left (different groups) interpenetrate by 1.23 units.",
+              "targets": [
+                "mouth_cavity_390",
+                "throat_to_sac_left"
+              ]
+            },
+            {
+              "message": "mouth_cavity_390 and throat_to_sac_right (different groups) interpenetrate by 1.23 units.",
+              "targets": [
+                "mouth_cavity_390",
+                "throat_to_sac_right"
+              ]
+            },
+            {
+              "message": "polish_throat_transfer and throat_to_sac_left (different groups) interpenetrate by 1.14 units.",
+              "targets": [
+                "polish_throat_transfer",
+                "throat_to_sac_left"
+              ]
+            },
+            {
+              "message": "polish_throat_transfer and throat_to_sac_right (different groups) interpenetrate by 1.14 units.",
+              "targets": [
+                "polish_throat_transfer",
+                "throat_to_sac_right"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mirror",
+          "label": "Left/right parts mirror each other",
+          "severity": "warning",
+          "ran": true,
+          "violations": [
+            {
+              "message": "root/body/leg_left/leg_-1_upper_7 has no mirror counterpart root/body/leg_right/leg_-1_upper_7.",
+              "targets": [
+                "leg_-1_upper_7"
+              ]
+            },
+            {
+              "message": "root/body/leg_left/leg_-1_upper_joint_8 has no mirror counterpart root/body/leg_right/leg_-1_upper_joint_8.",
+              "targets": [
+                "leg_-1_upper_joint_8"
+              ]
+            },
+            {
+              "message": "root/body/leg_left/leg_left_lower/leg_-1_lower_9 has no mirror counterpart root/body/leg_right/leg_right_lower/leg_-1_lower_9.",
+              "targets": [
+                "leg_-1_lower_9"
+              ]
+            },
+            {
+              "message": "root/body/leg_left/leg_left_lower/leg_-1_lower_joint_10 has no mirror counterpart root/body/leg_right/leg_right_lower/leg_-1_lower_joint_10.",
+              "targets": [
+                "leg_-1_lower_joint_10"
+              ]
+            },
+            {
+              "message": "root/body/leg_left/leg_-1_thigh_plate_dark_joint_11 has no mirror counterpart root/body/leg_right/leg_-1_thigh_plate_dark_joint_11.",
+              "targets": [
+                "leg_-1_thigh_plate_dark_joint_11"
+              ]
+            },
+            {
+              "message": "root/body/leg_left/leg_-1_thigh_plate_scalloped_armor_12 has no mirror counterpart root/body/leg_right/leg_-1_thigh_plate_scalloped_armor_12.",
+              "targets": [
+                "leg_-1_thigh_plate_scalloped_armor_12"
+              ]
+            },
+            {
+              "message": "root/body/leg_left/leg_-1_thigh_plate_scalloped_armor_13 has no mirror counterpart root/body/leg_right/leg_-1_thigh_plate_scalloped_armor_13.",
+              "targets": [
+                "leg_-1_thigh_plate_scalloped_armor_13"
+              ]
+            },
+            {
+              "message": "root/body/leg_left/leg_-1_thigh_plate_scalloped_armor_14 has no mirror counterpart root/body/leg_right/leg_-1_thigh_plate_scalloped_armor_14.",
+              "targets": [
+                "leg_-1_thigh_plate_scalloped_armor_14"
+              ]
+            },
+            {
+              "message": "root/body/leg_left/leg_-1_thigh_plate_raised_keel_15 has no mirror counterpart root/body/leg_right/leg_-1_thigh_plate_raised_keel_15.",
+              "targets": [
+                "leg_-1_thigh_plate_raised_keel_15"
+              ]
+            },
+            {
+              "message": "root/body/leg_left/leg_-1_thigh_plate_dark_joint_16 has no mirror counterpart root/body/leg_right/leg_-1_thigh_plate_dark_joint_16.",
+              "targets": [
+                "leg_-1_thigh_plate_dark_joint_16"
+              ]
+            },
+            {
+              "message": "root/body/leg_left/leg_-1_thigh_plate_scalloped_armor_17 has no mirror counterpart root/body/leg_right/leg_-1_thigh_plate_scalloped_armor_17.",
+              "targets": [
+                "leg_-1_thigh_plate_scalloped_armor_17"
+              ]
+            },
+            {
+              "message": "root/body/leg_left/leg_-1_thigh_plate_scalloped_armor_18 has no mirror counterpart root/body/leg_right/leg_-1_thigh_plate_scalloped_armor_18.",
+              "targets": [
+                "leg_-1_thigh_plate_scalloped_armor_18"
+              ]
+            },
+            {
+              "message": "root/body/leg_left/leg_-1_thigh_plate_scalloped_armor_19 has no mirror counterpart root/body/leg_right/leg_-1_thigh_plate_scalloped_armor_19.",
+              "targets": [
+                "leg_-1_thigh_plate_scalloped_armor_19"
+              ]
+            },
+            {
+              "message": "root/body/leg_left/leg_-1_thigh_plate_raised_keel_20 has no mirror counterpart root/body/leg_right/leg_-1_thigh_plate_raised_keel_20.",
+              "targets": [
+                "leg_-1_thigh_plate_raised_keel_20"
+              ]
+            },
+            {
+              "message": "root/body/leg_left/leg_left_lower/leg_-1_shin_cuff_21 has no mirror counterpart root/body/leg_right/leg_right_lower/leg_-1_shin_cuff_21.",
+              "targets": [
+                "leg_-1_shin_cuff_21"
+              ]
+            },
+            {
+              "message": "root/body/leg_left/leg_left_lower/leg_-1_shin_cuff_22 has no mirror counterpart root/body/leg_right/leg_right_lower/leg_-1_shin_cuff_22.",
+              "targets": [
+                "leg_-1_shin_cuff_22"
+              ]
+            },
+            {
+              "message": "root/body/leg_left/leg_left_lower/leg_-1_shin_cuff_23 has no mirror counterpart root/body/leg_right/leg_right_lower/leg_-1_shin_cuff_23.",
+              "targets": [
+                "leg_-1_shin_cuff_23"
+              ]
+            },
+            {
+              "message": "root/body/leg_left/leg_left_lower/leg_-1_knee_cap_24 has no mirror counterpart root/body/leg_right/leg_right_lower/leg_-1_knee_cap_24.",
+              "targets": [
+                "leg_-1_knee_cap_24"
+              ]
+            },
+            {
+              "message": "root/body/leg_left/leg_left_lower/leg_-1_foot_25 has no mirror counterpart root/body/leg_right/leg_right_lower/leg_-1_foot_25.",
+              "targets": [
+                "leg_-1_foot_25"
+              ]
+            },
+            {
+              "message": "root/body/leg_left/leg_left_lower/leg_-1_toe_26 has no mirror counterpart root/body/leg_right/leg_right_lower/leg_-1_toe_26.",
+              "targets": [
+                "leg_-1_toe_26"
+              ]
+            },
+            {
+              "message": "root/body/leg_left/leg_left_lower/leg_-1_toe_27 has no mirror counterpart root/body/leg_right/leg_right_lower/leg_-1_toe_27.",
+              "targets": [
+                "leg_-1_toe_27"
+              ]
+            },
+            {
+              "message": "root/body/leg_left/leg_left_lower/talon_28 has no mirror counterpart root/body/leg_right/leg_right_lower/talon_28.",
+              "targets": [
+                "talon_28"
+              ]
+            },
+            {
+              "message": "root/body/leg_left/leg_left_lower/talon_29 has no mirror counterpart root/body/leg_right/leg_right_lower/talon_29.",
+              "targets": [
+                "talon_29"
+              ]
+            },
+            {
+              "message": "root/body/leg_left/leg_left_lower/talon_30 has no mirror counterpart root/body/leg_right/leg_right_lower/talon_30.",
+              "targets": [
+                "talon_30"
+              ]
+            },
+            {
+              "message": "root/body/leg_left/leg_left_lower/talon_31 has no mirror counterpart root/body/leg_right/leg_right_lower/talon_31.",
+              "targets": [
+                "talon_31"
+              ]
+            },
+            {
+              "message": "root/body/leg_left/leg_left_lower/talon_32 has no mirror counterpart root/body/leg_right/leg_right_lower/talon_32.",
+              "targets": [
+                "talon_32"
+              ]
+            },
+            {
+              "message": "root/body/leg_left/leg_left_lower/talon_33 has no mirror counterpart root/body/leg_right/leg_right_lower/talon_33.",
+              "targets": [
+                "talon_33"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/arm_left/thin_arm_34 has no mirror counterpart root/body/hunched_upper_body/arm_right/thin_arm_34.",
+              "targets": [
+                "thin_arm_34"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/arm_left/thin_arm_35 has no mirror counterpart root/body/hunched_upper_body/arm_right/thin_arm_35.",
+              "targets": [
+                "thin_arm_35"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/arm_left/claw_36 has no mirror counterpart root/body/hunched_upper_body/arm_right/claw_36.",
+              "targets": [
+                "claw_36"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/arm_left/claw_37 has no mirror counterpart root/body/hunched_upper_body/arm_right/claw_37.",
+              "targets": [
+                "claw_37"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/arm_left/claw_38 has no mirror counterpart root/body/hunched_upper_body/arm_right/claw_38.",
+              "targets": [
+                "claw_38"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/arm_left/claw_39 has no mirror counterpart root/body/hunched_upper_body/arm_right/claw_39.",
+              "targets": [
+                "claw_39"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/arm_left/claw_40 has no mirror counterpart root/body/hunched_upper_body/arm_right/claw_40.",
+              "targets": [
+                "claw_40"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/arm_left/claw_41 has no mirror counterpart root/body/hunched_upper_body/arm_right/claw_41.",
+              "targets": [
+                "claw_41"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/sac_stalk_42 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/sac_stalk_42.",
+              "targets": [
+                "sac_stalk_42"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_43 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_43.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_43"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_44 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_44.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_44"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_45 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_45.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_45"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_46 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_46.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_46"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_47 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_47.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_47"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_48 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_48.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_48"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_49 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_49.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_49"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_50 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_50.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_50"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_51 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_51.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_51"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_52 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_52.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_52"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_53 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_53.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_53"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_54 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_54.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_54"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_55 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_55.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_55"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_56 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_56.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_56"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_57 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_57.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_57"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_58 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_58.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_58"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_59 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_59.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_59"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_60 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_60.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_60"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_61 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_61.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_61"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_62 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_62.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_62"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_63 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_63.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_63"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_64 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_64.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_64"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_65 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_65.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_65"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_66 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_66.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_66"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_67 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_67.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_67"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_68 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_68.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_68"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_69 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_69.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_69"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_70 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_70.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_70"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_71 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_71.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_71"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_72 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_72.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_72"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_73 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_73.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_73"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_74 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_74.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_74"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_75 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_75.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_75"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_76 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_76.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_76"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_77 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_77.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_77"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_78 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_78.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_78"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_79 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_79.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_79"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_80 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_80.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_80"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_81 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_81.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_81"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_82 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_82.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_82"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_83 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_83.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_83"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_84 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_84.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_84"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_85 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_85.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_85"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_86 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_86.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_86"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_87 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_87.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_87"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_88 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_88.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_88"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_89 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_89.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_89"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_90 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_90.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_90"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_91 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_91.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_91"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_92 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_92.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_92"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_93 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_93.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_93"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_94 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_94.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_94"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_95 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_95.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_95"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_96 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_96.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_96"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_97 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_97.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_97"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_98 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_98.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_98"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_99 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_99.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_99"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_100 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_100.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_100"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_101 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_101.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_101"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_102 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_102.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_102"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_103 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_103.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_103"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_104 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_104.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_104"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_105 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_105.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_105"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_106 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_106.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_106"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_107 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_107.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_107"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_108 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_108.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_108"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_109 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_109.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_109"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_110 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_110.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_110"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_111 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_111.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_111"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_112 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_112.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_112"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_113 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_113.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_113"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_114 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_114.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_114"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_115 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_115.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_115"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_116 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_116.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_116"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_117 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_117.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_117"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_118 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_118.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_118"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_119 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_119.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_119"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_120 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_120.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_120"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_121 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_121.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_121"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_122 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_122.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_122"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_123 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_123.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_123"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_124 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_124.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_124"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_125 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_125.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_125"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_126 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_126.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_126"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_127 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_127.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_127"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_128 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_128.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_128"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_129 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_129.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_129"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_130 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_130.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_130"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_131 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_131.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_131"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_132 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_132.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_132"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_133 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_133.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_133"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_134 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_134.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_134"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_135 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_135.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_135"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_136 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_136.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_136"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_137 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_137.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_137"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_138 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_138.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_138"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/pendulous_throat_sac_curved_lobe_139 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/pendulous_throat_sac_curved_lobe_139.",
+              "targets": [
+                "pendulous_throat_sac_curved_lobe_139"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/sac_vein_140 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/sac_vein_140.",
+              "targets": [
+                "sac_vein_140"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/sac_vein_141 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/sac_vein_141.",
+              "targets": [
+                "sac_vein_141"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/sac_vein_142 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/sac_vein_142.",
+              "targets": [
+                "sac_vein_142"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/sac_vein_143 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/sac_vein_143.",
+              "targets": [
+                "sac_vein_143"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/sac_nodule0_144 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/sac_nodule0_144.",
+              "targets": [
+                "sac_nodule0_144"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/sac_nodule1_145 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/sac_nodule1_145.",
+              "targets": [
+                "sac_nodule1_145"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/sac_nodule2_146 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/sac_nodule2_146.",
+              "targets": [
+                "sac_nodule2_146"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/sac_nodule3_147 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/sac_nodule3_147.",
+              "targets": [
+                "sac_nodule3_147"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/sac_nodule4_148 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/sac_nodule4_148.",
+              "targets": [
+                "sac_nodule4_148"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/sac_nodule5_149 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/sac_nodule5_149.",
+              "targets": [
+                "sac_nodule5_149"
+              ]
+            },
+            {
+              "message": "root/body/hunched_upper_body/throat_sac_left/sac_nodule_facet_151 has no mirror counterpart root/body/hunched_upper_body/throat_sac_right/sac_nodule_facet_151.",
+              "targets": [
+                "sac_nodule_facet_151"
+              ]
+            }
+          ]
+        }
+      ],
+      "geckolib": {
+        "diagnostics": [
+          {
+            "severity": "warning",
+            "check_id": "geckolib_modid",
+            "message": "The project has no geckolib_modid; the GeckoLib plugin's export dialog uses it for paths, but the exported files load without it."
+          }
+        ],
+        "summary": {
+          "valid": true,
+          "errors": 0,
+          "warnings": 1
+        }
+      },
+      "notes": []
+    }
+  },
+  "tip_repair": "Two subpixel floating terminal segments merged into the preceding nodule segment; the rounded sac contours are retained"
+}

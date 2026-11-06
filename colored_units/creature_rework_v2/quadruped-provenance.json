@@ -161,6 +161,45 @@
         ],
         "operations": 101
       }
+    },
+    "infected_cow_early": {
+      "source": "colored_units/creature_rework_v2/source/project-original/infected_cow_early_colored.bbmodel",
+      "source_sha256": "b638b733f57dbdde02f6dc2a23c764de0f3de6a2f1e7231ce40a83a332962e3c",
+      "origin": "Existing project original, anatomical base from alpha.8 af9ca39; no third-party artwork",
+      "changes": [
+        "Retained articulated species base with intact skin/wool; removed developed-stage rupture and large growths",
+        "Two small anatomically localized budding sites instead of repeated back crystal accessory",
+        "MCP five-action adaptation with original early-stage impact/duration and 18-tick death",
+        "Stage-specific contact correction and native runtime validation"
+      ],
+      "base": "colored_units/creature_rework_v2/models/infected_cow.bbmodel",
+      "base_commit": "af9ca39d11dd97368034725b15f6eaee9bd28c42"
+    },
+    "infected_pig_early": {
+      "source": "colored_units/creature_rework_v2/source/project-original/infected_pig_early_colored.bbmodel",
+      "source_sha256": "67e9dddf5645b76d28d08d32ea10e515865b69a3c2c55735846d3d7a067e6b4f",
+      "origin": "Existing project original, anatomical base from alpha.8 af9ca39; no third-party artwork",
+      "changes": [
+        "Retained articulated species base with intact skin/wool; removed developed-stage rupture and large growths",
+        "Two small anatomically localized budding sites instead of repeated back crystal accessory",
+        "MCP five-action adaptation with original early-stage impact/duration and 18-tick death",
+        "Stage-specific contact correction and native runtime validation"
+      ],
+      "base": "colored_units/creature_rework_v2/models/infected_pig.bbmodel",
+      "base_commit": "af9ca39d11dd97368034725b15f6eaee9bd28c42"
+    },
+    "infected_sheep_early": {
+      "source": "colored_units/creature_rework_v2/source/project-original/infected_sheep_early_colored.bbmodel",
+      "source_sha256": "435a00560e798c70cfe4cd2fdb6d5af197e9e0995b643ccf382048906d2a452a",
+      "origin": "Existing project original, anatomical base from alpha.8 af9ca39; no third-party artwork",
+      "changes": [
+        "Retained articulated species base with intact skin/wool; removed developed-stage rupture and large growths",
+        "Two small anatomically localized budding sites instead of repeated back crystal accessory",
+        "MCP five-action adaptation with original early-stage impact/duration and 18-tick death",
+        "Stage-specific contact correction and native runtime validation"
+      ],
+      "base": "colored_units/creature_rework_v2/models/infected_sheep.bbmodel",
+      "base_commit": "af9ca39d11dd97368034725b15f6eaee9bd28c42"
     }
   },
   "research": [

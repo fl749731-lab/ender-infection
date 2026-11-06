@@ -41,6 +41,7 @@ neoForge {
                 systemProperty 'ender_infection.crystalCheck', 'true'
             }
             if (project.hasProperty('riftVisualCheck')) systemProperty 'ender_infection.riftVisualCheck', 'true'
+            if (project.hasProperty('armorVisualCheck')) { gameDirectory = project.file('build/armor-visual-check'); systemProperty 'ender_infection.armorVisualCheck','true'; programArgument '--width'; programArgument '1280'; programArgument '--height'; programArgument '800' }
             if (project.hasProperty('staffVisualCheck')) { gameDirectory = project.file('build/staff-visual-check'); systemProperty 'ender_infection.staffVisualCheck','true'; programArgument '--width'; programArgument '1280'; programArgument '--height'; programArgument '800' }
             if (project.hasProperty('mutantMotionCheck')) { gameDirectory = project.file('build/mutant-motion-check'); systemProperty 'ender_infection.mutantMotionCheck','true'; programArgument '--width'; programArgument '1280'; programArgument '--height'; programArgument '800' }
             if (project.hasProperty('creatureMotionCheck')) {

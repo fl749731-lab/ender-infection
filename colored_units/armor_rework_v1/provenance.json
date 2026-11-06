@@ -1,0 +1,29 @@
+{
+  "author": "@eanncrod",
+  "original": "Kintsugi Armor",
+  "page": "https://blockbenchworkshop.com/model/eanncrod/kintsugi-armor",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "source_file": "source/kintsugi-armor.viewer.json",
+  "source_json_sha256": "5b58d9fccd7a2073d367f581ee3c46168d990413b3db77aaec6edde53ed98b6b",
+  "source_url": "https://blockbenchworkshop.com/cdn/previews/DqDU6nRe4OL2c1TLJxab6YAOJCddxS2e/9a0c29fd-41fd-4680-b15d-3039c7b8e073.json?v=5",
+  "creator_rights": "Not recorded (legacy listing)",
+  "source_ai_use": "Undisclosed",
+  "download_note": "Public viewer JSON normalized as JSON; not byte-identical HTTP evidence",
+  "changes": [
+    "Preserve original gold repair and charcoal artwork; narrower helmet, shorter torso/arm shells and fitted leg plates",
+    "Remove seven decorative studs; add project-original purple crystals on helmet, shoulders, breastplate and boots",
+    "Replace biped wrappers/waist with eight native armor slot bones; correct right thigh and boot pivots",
+    "Split tabard and bind both skirt halves to their corresponding thighs; repair one out-of-range face UV",
+    "Add crystal-only emission and adapt worn/item rendering for both Java loaders"
+  ],
+  "light_source": "colored_units/design_pack_2026-11-02_v2/armor/crystal_carapace_light_armor.bbmodel",
+  "light_source_sha256": "fe1e06cf97c5b26347f8dbe8e772499ce819710b58692c939a60f4b8e8be8c1e",
+  "light_changes": [
+    "Retain own layered plate and gauntlet geometry; remove duplicate chest crystal and face/crest clutter",
+    "Remove shoulder straps reaching into helmet; narrow pauldrons and expose face/joints",
+    "Correct arm/leg pivots and positions without the previous two-unit arm drop; split boots to native equipment slot",
+    "Keep purple heart facets and add a small purple helmet ridge with crystal-only emission"
+  ],
+  "ai_assisted_modifications": true
+}

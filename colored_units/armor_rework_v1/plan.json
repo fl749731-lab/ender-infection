@@ -1,0 +1,13 @@
+{
+  "intent": "Adopt a licensed heavy armor base and distinguish the project light armor while preserving useful three-dimensional plates and native player poses",
+  "priority": "Appearance and movement first, as requested by the user",
+  "targets": ["Forge 1.20.1 / Java 17 / GeckoLib 4.4.9", "NeoForge 1.21.1 / Java 21 / GeckoLib 4.9.3"],
+  "device_and_renderer": "Desktop Minecraft Java; native OpenGL client, standard cutout shading, no shader pack required",
+  "materials": "Original pixel-painted albedo plus project purple crystals, alpha cutout and crystal-only fullbright glow mask; no PBR maps or environment dynamic lights",
+  "texture_plan": {"source_images": [128,128], "packed_atlas": [256,128], "uv": "Per-face atlas, no tiled material, preserve upstream artwork pixels", "density": "Authored armor density retained near 1 pixel/model-unit; small crystal facets share a low-frequency opaque 1-2 by 1-3 pixel patch"},
+  "geometry_budget": {"heavy_cube_ceiling": 60, "light_cube_ceiling": 130, "actual_heavy_cubes": 40, "actual_light_cubes": 101, "heavy_base_triangles": 480, "light_base_triangles": 1212, "note": "Six quad faces per cube; emissive pass adds rendering work. Slot visibility limits each draw to its equipment part."},
+  "rig": "Eight independent standard equipment bones, no unmapped waist/root wrapper; skirt halves follow respective thighs; boots follow feet slot",
+  "animation": "Native HumanoidModel poses copied by GeoArmorRenderer, including body translations and arm/leg rotations; no authored animation clips",
+  "delivery": "Editable MCP bbmodels, MCP geometry exports, exact-pixel runtime atlas and glow mask, matching four-slot item meshes, licenses and dual-client proof",
+  "verification": "Native player front/back, walk, crouch, bow, riding, four individual slots, mixed sets, inventory and zero-light room; inspect actual screenshots and assert renderer slot visibility/pose correspondence"
+}

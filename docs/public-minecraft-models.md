@@ -24,3 +24,10 @@
 这两项随 alpha.7 发布，保留署名、许可链接和修改说明；未替换监管体。来源及可编辑工程见[第一批模型包](../colored_units/public_model_adaptations_v1/README.md)，全部怪物（含初期感染／畸变）、武器、护甲和特效的结论见[统一评审](model-visual-review.md)。alpha.6 及更早下载包不包含这两项改造。
 
 灾变则继续作为形体与特效参考：已阅读末影守卫的模型构造、父子骨骼与关键帧实现。其原始美术素材和源码授权不同于上述 CC0／CC BY 候选，不能把公开仓库直接当作可任意改色分发的资源库。见[本轮灾变特效对照](../previews/containment-warden-vfx-v1/cataclysm-reference.md)。
+
+## 后续已采用的装备底模
+
+- [Void Staff — @alexander](https://blockbenchworkshop.com/model/alexander/void-staff)，CC BY 4.0：已改成可动共鸣法杖，保留作者杖体与原始像素，另做紫晶核心、握点和双版施法联动。[模型与许可](../colored_units/resonance_staff_public_v1/README.md)。
+- [Kintsugi Armor — @eanncrod](https://blockbenchworkshop.com/model/eanncrod/kintsugi-armor)，CC BY 4.0：已改成巢骸重甲，保留金缮纹理，调整体型、分裙与装备槽骨骼，加入本项目紫晶；并重整项目自有晶壳轻甲。该旧条目未记录作者权利声明，AI 使用未披露；不能称为平台已核实原创。[来源与修改](../colored_units/armor_rework_v1/README.md)。
+
+这两批属于 alpha.8 开发分支。公开发行仍为 alpha.7，不能据此认定下载页已经包含新护甲。

@@ -289,6 +289,9 @@ def export(units=None):
  from export_staff_rework import export as export_staff
  REPORT[:]=[row for row in REPORT if row['runtime']!='resonance_staff']
  REPORT.extend(export_staff(update_manifest=False))
+ from export_armor_reworks import export as export_armor, SPECS as ARMOR_REWORKS
+ REPORT[:]=[row for row in REPORT if row['runtime'] not in ARMOR_REWORKS]
+ REPORT.extend(export_armor(update_manifest=False))
  # Rift replacements have their own canonical MCP-authored BB5 sources.
  from export_rift_assets import export as export_rift
  export_rift()

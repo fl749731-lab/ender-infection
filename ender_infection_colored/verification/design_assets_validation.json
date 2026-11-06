@@ -1,7 +1,7 @@
 {
   "status": "PASS",
   "geometry_files": 49,
-  "validated_faces": 62748,
+  "validated_faces": 61692,
   "obj_files": 129,
   "glow_masks": 53,
   "creature_glow_textures": 35,
@@ -75,6 +75,56 @@
         "center_z": 0.0
       },
       "public_base": "Void Staff by @alexander"
+    }
+  ],
+  "armor_adaptations": [
+    {
+      "source": "brood_heavy_armor",
+      "editable_source": "colored_units/armor_rework_v1/models/brood_heavy.bbmodel",
+      "runtime": "brood_heavy",
+      "kind": "armor_set",
+      "pipeline": "tools/export_armor_reworks.py",
+      "scale": 1,
+      "cubes": 40,
+      "bones": 8,
+      "atlas": [
+        256,
+        128
+      ],
+      "emissive_pixels": 4,
+      "crystal_faces": 126,
+      "visual_bounds": {
+        "width": 1.1625,
+        "height": 2.407125,
+        "depth": 0.7951875,
+        "center_x": -0.0,
+        "center_z": -0.062406249999999996
+      },
+      "pose_source": "Native HumanoidModel through GeoArmorRenderer; no canned clips"
+    },
+    {
+      "source": "crystal_carapace_light_armor",
+      "editable_source": "colored_units/armor_rework_v1/models/crystal_carapace.bbmodel",
+      "runtime": "crystal_carapace",
+      "kind": "armor_set",
+      "pipeline": "tools/export_armor_reworks.py",
+      "scale": 1,
+      "cubes": 101,
+      "bones": 8,
+      "atlas": [
+        256,
+        128
+      ],
+      "emissive_pixels": 6,
+      "crystal_faces": 66,
+      "visual_bounds": {
+        "width": 1.153875,
+        "height": 2.3625000000000003,
+        "depth": 0.655625,
+        "center_x": -0.0,
+        "center_z": -0.037187499999999984
+      },
+      "pose_source": "Native HumanoidModel through GeoArmorRenderer; no canned clips"
     }
   ],
   "public_model_adaptations": [

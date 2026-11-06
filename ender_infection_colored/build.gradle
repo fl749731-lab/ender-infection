@@ -53,6 +53,9 @@ minecraft {
         if (project.hasProperty('riftVisualCheck')) {
             client { workingDirectory project.file('build/rift-visual-check'); property 'ender_infection.riftVisualCheck','true' }
         }
+        if (project.hasProperty('armorVisualCheck')) {
+            client { workingDirectory project.file('build/armor-visual-check'); property 'ender_infection.armorVisualCheck','true'; args '--width','1280','--height','800' }
+        }
         if (project.hasProperty('staffVisualCheck')) {
             client { workingDirectory project.file('build/staff-visual-check'); property 'ender_infection.staffVisualCheck','true'; args '--width','1280','--height','800' }
         }

@@ -1,0 +1,691 @@
+{
+  "models": {
+    "brood_heavy": {
+      "info": {
+        "path": "E:\\mc\\build\\asset-overhaul\\worktree\\colored_units\\armor_rework_v1\\models\\brood_heavy.bbmodel",
+        "revision": "9ba1b3b5d2ea350e",
+        "name": "brood_heavy",
+        "model_identifier": "",
+        "format": "free",
+        "format_version": "5.0",
+        "box_uv": false,
+        "resolution": {
+          "width": 128,
+          "height": 128
+        },
+        "counts": {
+          "groups": 8,
+          "cubes": 40,
+          "meshes": 0,
+          "other_elements": 0,
+          "textures": 2,
+          "animations": 0
+        },
+        "bounds": {
+          "min": [
+            -9.3,
+            -0.5,
+            -7.36
+          ],
+          "max": [
+            9.3,
+            34.814,
+            5.363
+          ],
+          "size": [
+            18.6,
+            35.314,
+            12.723
+          ]
+        },
+        "ai_used": true,
+        "notes": []
+      },
+      "geometry": {
+        "revision": "9ba1b3b5d2ea350e",
+        "format": "free",
+        "summary": {
+          "errors": 0,
+          "warnings": 48,
+          "passed": true
+        },
+        "gates": [
+          {
+            "id": "outliner",
+            "label": "Outliner references resolve and UUIDs are unique",
+            "severity": "error",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "unlisted_nodes",
+            "label": "Every group and element is placed in the outliner",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "degenerate",
+            "label": "No sliver or inverted cubes",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "block_limits",
+            "label": "Geometry stays inside the block-model limits",
+            "severity": "error",
+            "ran": false,
+            "skipped_reason": "Pass block_limits: java_block or bedrock_block to enable.",
+            "violations": []
+          },
+          {
+            "id": "floating",
+            "label": "Every part touches the main body",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "interpenetration",
+            "label": "Parts of different groups do not pass through each other",
+            "severity": "warning",
+            "ran": true,
+            "violations": [
+              {
+                "message": "original_00 and original_02 (different groups) interpenetrate by 0.62 units.",
+                "targets": [
+                  "original_00",
+                  "original_02"
+                ]
+              },
+              {
+                "message": "original_00 and original_04 (different groups) interpenetrate by 1.21 units.",
+                "targets": [
+                  "original_00",
+                  "original_04"
+                ]
+              },
+              {
+                "message": "original_00 and original_09 (different groups) interpenetrate by 0.76 units.",
+                "targets": [
+                  "original_00",
+                  "original_09"
+                ]
+              },
+              {
+                "message": "original_00 and original_11 (different groups) interpenetrate by 1.21 units.",
+                "targets": [
+                  "original_00",
+                  "original_11"
+                ]
+              },
+              {
+                "message": "original_00 and original_12 (different groups) interpenetrate by 0.76 units.",
+                "targets": [
+                  "original_00",
+                  "original_12"
+                ]
+              },
+              {
+                "message": "original_01 and original_02 (different groups) interpenetrate by 1.31 units.",
+                "targets": [
+                  "original_01",
+                  "original_02"
+                ]
+              },
+              {
+                "message": "original_01 and original_03 (different groups) interpenetrate by 0.95 units.",
+                "targets": [
+                  "original_01",
+                  "original_03"
+                ]
+              },
+              {
+                "message": "original_01 and original_04 (different groups) interpenetrate by 1.1 units.",
+                "targets": [
+                  "original_01",
+                  "original_04"
+                ]
+              },
+              {
+                "message": "original_01 and original_09 (different groups) interpenetrate by 1.05 units.",
+                "targets": [
+                  "original_01",
+                  "original_09"
+                ]
+              },
+              {
+                "message": "original_01 and original_10 (different groups) interpenetrate by 0.8 units.",
+                "targets": [
+                  "original_01",
+                  "original_10"
+                ]
+              },
+              {
+                "message": "original_01 and original_11 (different groups) interpenetrate by 1.1 units.",
+                "targets": [
+                  "original_01",
+                  "original_11"
+                ]
+              },
+              {
+                "message": "original_01 and original_12 (different groups) interpenetrate by 1.05 units.",
+                "targets": [
+                  "original_01",
+                  "original_12"
+                ]
+              },
+              {
+                "message": "original_01 and original_16 (different groups) interpenetrate by 0.8 units.",
+                "targets": [
+                  "original_01",
+                  "original_16"
+                ]
+              },
+              {
+                "message": "original_02 and original_04 (different groups) interpenetrate by 1.41 units.",
+                "targets": [
+                  "original_02",
+                  "original_04"
+                ]
+              },
+              {
+                "message": "original_02 and original_09 (different groups) interpenetrate by 1.36 units.",
+                "targets": [
+                  "original_02",
+                  "original_09"
+                ]
+              },
+              {
+                "message": "original_02 and original_10 (different groups) interpenetrate by 1.11 units.",
+                "targets": [
+                  "original_02",
+                  "original_10"
+                ]
+              },
+              {
+                "message": "original_02 and original_11 (different groups) interpenetrate by 1.41 units.",
+                "targets": [
+                  "original_02",
+                  "original_11"
+                ]
+              },
+              {
+                "message": "original_02 and original_12 (different groups) interpenetrate by 1.36 units.",
+                "targets": [
+                  "original_02",
+                  "original_12"
+                ]
+              },
+              {
+                "message": "original_02 and original_16 (different groups) interpenetrate by 1.11 units.",
+                "targets": [
+                  "original_02",
+                  "original_16"
+                ]
+              },
+              {
+                "message": "original_02 and original_19 (different groups) interpenetrate by 1.35 units.",
+                "targets": [
+                  "original_02",
+                  "original_19"
+                ]
+              },
+              {
+                "message": "original_02 and original_20 (different groups) interpenetrate by 1.35 units.",
+                "targets": [
+                  "original_02",
+                  "original_20"
+                ]
+              },
+              {
+                "message": "original_03 and original_04 (different groups) interpenetrate by 1.05 units.",
+                "targets": [
+                  "original_03",
+                  "original_04"
+                ]
+              },
+              {
+                "message": "original_03 and original_09 (different groups) interpenetrate by 1 units.",
+                "targets": [
+                  "original_03",
+                  "original_09"
+                ]
+              },
+              {
+                "message": "original_03 and original_10 (different groups) interpenetrate by 0.75 units.",
+                "targets": [
+                  "original_03",
+                  "original_10"
+                ]
+              },
+              {
+                "message": "original_03 and original_11 (different groups) interpenetrate by 1.05 units.",
+                "targets": [
+                  "original_03",
+                  "original_11"
+                ]
+              },
+              {
+                "message": "original_03 and original_12 (different groups) interpenetrate by 1 units.",
+                "targets": [
+                  "original_03",
+                  "original_12"
+                ]
+              },
+              {
+                "message": "original_03 and original_16 (different groups) interpenetrate by 0.75 units.",
+                "targets": [
+                  "original_03",
+                  "original_16"
+                ]
+              },
+              {
+                "message": "original_03 and original_19 (different groups) interpenetrate by 0.99 units.",
+                "targets": [
+                  "original_03",
+                  "original_19"
+                ]
+              },
+              {
+                "message": "original_03 and original_20 (different groups) interpenetrate by 0.99 units.",
+                "targets": [
+                  "original_03",
+                  "original_20"
+                ]
+              },
+              {
+                "message": "original_10 and original_17 (different groups) interpenetrate by 1 units.",
+                "targets": [
+                  "original_10",
+                  "original_17"
+                ]
+              },
+              {
+                "message": "original_10 and original_19 (different groups) interpenetrate by 2.24 units.",
+                "targets": [
+                  "original_10",
+                  "original_19"
+                ]
+              },
+              {
+                "message": "original_16 and original_17 (different groups) interpenetrate by 1 units.",
+                "targets": [
+                  "original_16",
+                  "original_17"
+                ]
+              },
+              {
+                "message": "original_16 and original_20 (different groups) interpenetrate by 2.24 units.",
+                "targets": [
+                  "original_16",
+                  "original_20"
+                ]
+              },
+              {
+                "message": "original_17 and original_19 (different groups) interpenetrate by 3.24 units.",
+                "targets": [
+                  "original_17",
+                  "original_19"
+                ]
+              },
+              {
+                "message": "original_17 and original_20 (different groups) interpenetrate by 3.24 units.",
+                "targets": [
+                  "original_17",
+                  "original_20"
+                ]
+              },
+              {
+                "message": "original_17 and original_21 (different groups) interpenetrate by 1.25 units.",
+                "targets": [
+                  "original_17",
+                  "original_21"
+                ]
+              },
+              {
+                "message": "original_17 and original_23 (different groups) interpenetrate by 1.25 units.",
+                "targets": [
+                  "original_17",
+                  "original_23"
+                ]
+              },
+              {
+                "message": "original_21 and original_22 (different groups) interpenetrate by 1.75 units.",
+                "targets": [
+                  "original_21",
+                  "original_22"
+                ]
+              },
+              {
+                "message": "original_21 and original_24 (different groups) interpenetrate by 0.75 units.",
+                "targets": [
+                  "original_21",
+                  "original_24"
+                ]
+              },
+              {
+                "message": "original_22 and original_23 (different groups) interpenetrate by 0.75 units.",
+                "targets": [
+                  "original_22",
+                  "original_23"
+                ]
+              },
+              {
+                "message": "original_22 and original_24 (different groups) interpenetrate by 1 units.",
+                "targets": [
+                  "original_22",
+                  "original_24"
+                ]
+              },
+              {
+                "message": "original_23 and original_24 (different groups) interpenetrate by 1.75 units.",
+                "targets": [
+                  "original_23",
+                  "original_24"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "mirror",
+            "label": "Left/right parts mirror each other",
+            "severity": "warning",
+            "ran": true,
+            "violations": [
+              {
+                "message": "armorLeftArm/crystal_shoulder_Left_0 has no mirror counterpart armorLeftArm/crystal_shoulder_Right_0.",
+                "targets": [
+                  "crystal_shoulder_Left_0"
+                ]
+              },
+              {
+                "message": "armorLeftArm/crystal_shoulder_Left_1 has no mirror counterpart armorLeftArm/crystal_shoulder_Right_1.",
+                "targets": [
+                  "crystal_shoulder_Left_1"
+                ]
+              },
+              {
+                "message": "armorLeftArm/crystal_shoulder_Left_2 has no mirror counterpart armorLeftArm/crystal_shoulder_Right_2.",
+                "targets": [
+                  "crystal_shoulder_Left_2"
+                ]
+              },
+              {
+                "message": "armorLeftBoot/crystal_boot_Left_0 has no mirror counterpart armorLeftBoot/crystal_boot_Right_0.",
+                "targets": [
+                  "crystal_boot_Left_0"
+                ]
+              },
+              {
+                "message": "armorLeftBoot/crystal_boot_Left_1 has no mirror counterpart armorLeftBoot/crystal_boot_Right_1.",
+                "targets": [
+                  "crystal_boot_Left_1"
+                ]
+              },
+              {
+                "message": "armorLeftBoot/crystal_boot_Left_2 has no mirror counterpart armorLeftBoot/crystal_boot_Right_2.",
+                "targets": [
+                  "crystal_boot_Left_2"
+                ]
+              }
+            ]
+          }
+        ],
+        "notes": []
+      },
+      "motion": {
+        "revision": "9ba1b3b5d2ea350e",
+        "checked": [],
+        "summary": {
+          "errors": 0,
+          "warnings": 0,
+          "passed": true
+        },
+        "gates": [
+          {
+            "id": "animations",
+            "label": "Animation checks",
+            "severity": "warning",
+            "ran": false,
+            "skipped_reason": "The model has no animations.",
+            "violations": []
+          }
+        ],
+        "skipped_channels": [],
+        "approximated_bezier": [],
+        "capped_clips": []
+      },
+      "geometry_export": {
+        "path": "E:\\mc\\build\\asset-overhaul\\worktree\\colored_units\\armor_rework_v1\\mcp_exports\\brood_heavy.geo.json",
+        "skipped": [],
+        "web_app": {
+          "launcher": {
+            "path": "C:\\Users\\hui\\AppData\\Local\\Temp\\blockbench-mcp-headless-b0458fb1-b55c-429f-9dea-1cd009b8742a\\web-app\\brood_heavy.geo.json-34e17809.html",
+            "file_url": "file:///C:/Users/hui/AppData/Local/Temp/blockbench-mcp-headless-b0458fb1-b55c-429f-9dea-1cd009b8742a/web-app/brood_heavy.geo.json-34e17809.html"
+          },
+          "length": 21199,
+          "note": "The URL is 21 KB, too long to paste. Open launcher.file_url in a Chromium browser."
+        }
+      },
+      "animation_export": {
+        "path": "E:\\mc\\build\\asset-overhaul\\worktree\\colored_units\\armor_rework_v1\\mcp_exports\\brood_heavy.animation.json",
+        "animations": []
+      }
+    },
+    "crystal_carapace": {
+      "info": {
+        "path": "E:\\mc\\build\\asset-overhaul\\worktree\\colored_units\\armor_rework_v1\\models\\crystal_carapace.bbmodel",
+        "revision": "e80cae4f2f659989",
+        "name": "crystal_carapace",
+        "model_identifier": "",
+        "format": "free",
+        "format_version": "5.0",
+        "box_uv": false,
+        "resolution": {
+          "width": 128,
+          "height": 128
+        },
+        "counts": {
+          "groups": 8,
+          "cubes": 101,
+          "meshes": 0,
+          "other_elements": 0,
+          "textures": 2,
+          "animations": 0
+        },
+        "bounds": {
+          "min": [
+            -9.231,
+            -0.1,
+            -5.84
+          ],
+          "max": [
+            9.231,
+            34.5,
+            4.65
+          ],
+          "size": [
+            18.462,
+            34.6,
+            10.49
+          ]
+        },
+        "ai_used": true,
+        "notes": []
+      },
+      "geometry": {
+        "revision": "e80cae4f2f659989",
+        "format": "free",
+        "summary": {
+          "errors": 0,
+          "warnings": 8,
+          "passed": true
+        },
+        "gates": [
+          {
+            "id": "outliner",
+            "label": "Outliner references resolve and UUIDs are unique",
+            "severity": "error",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "unlisted_nodes",
+            "label": "Every group and element is placed in the outliner",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "degenerate",
+            "label": "No sliver or inverted cubes",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "block_limits",
+            "label": "Geometry stays inside the block-model limits",
+            "severity": "error",
+            "ran": false,
+            "skipped_reason": "Pass block_limits: java_block or bedrock_block to enable.",
+            "violations": []
+          },
+          {
+            "id": "floating",
+            "label": "Every part touches the main body",
+            "severity": "warning",
+            "ran": true,
+            "violations": [
+              {
+                "message": "helmet_side_7, brow_8, cheek_guard_9, helmet_side_11, brow_12, cheek_guard_13 and 9 more touch nothing in the main body. Add to free_elements if intended.",
+                "targets": [
+                  "helmet_side_7",
+                  "brow_8",
+                  "cheek_guard_9",
+                  "helmet_side_11",
+                  "brow_12",
+                  "cheek_guard_13",
+                  "helmet_top_15",
+                  "helmet_back_16",
+                  "temple_plate_underlay_77",
+                  "temple_plate_face_78",
+                  "temple_plate_underlay_106",
+                  "temple_plate_face_107",
+                  "crystal_helmet_ridge_0",
+                  "crystal_helmet_ridge_1",
+                  "crystal_helmet_ridge_2"
+                ]
+              },
+              {
+                "message": "abdomen_overlap_111 touches nothing in the main body. Add to free_elements if intended.",
+                "targets": [
+                  "abdomen_overlap_111"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "interpenetration",
+            "label": "Parts of different groups do not pass through each other",
+            "severity": "warning",
+            "ran": true,
+            "violations": [
+              {
+                "message": "belt_21 and gauntlet_palm_63 (different groups) interpenetrate by 0.85 units.",
+                "targets": [
+                  "belt_21",
+                  "gauntlet_palm_63"
+                ]
+              },
+              {
+                "message": "belt_21 and gauntlet_palm_92 (different groups) interpenetrate by 0.85 units.",
+                "targets": [
+                  "belt_21",
+                  "gauntlet_palm_92"
+                ]
+              },
+              {
+                "message": "boot_front_37 and leg_lamella_underlay_73 (different groups) interpenetrate by 0.7 units.",
+                "targets": [
+                  "boot_front_37",
+                  "leg_lamella_underlay_73"
+                ]
+              },
+              {
+                "message": "boot_front_37 and leg_lamella_face_74 (different groups) interpenetrate by 0.7 units.",
+                "targets": [
+                  "boot_front_37",
+                  "leg_lamella_face_74"
+                ]
+              },
+              {
+                "message": "boot_front_46 and leg_lamella_underlay_102 (different groups) interpenetrate by 0.7 units.",
+                "targets": [
+                  "boot_front_46",
+                  "leg_lamella_underlay_102"
+                ]
+              },
+              {
+                "message": "boot_front_46 and leg_lamella_face_103 (different groups) interpenetrate by 0.7 units.",
+                "targets": [
+                  "boot_front_46",
+                  "leg_lamella_face_103"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "mirror",
+            "label": "Left/right parts mirror each other",
+            "severity": "warning",
+            "ran": false,
+            "skipped_reason": "No node names carry a left/right token (l, r, left, right).",
+            "violations": []
+          }
+        ],
+        "notes": []
+      },
+      "motion": {
+        "revision": "e80cae4f2f659989",
+        "checked": [],
+        "summary": {
+          "errors": 0,
+          "warnings": 0,
+          "passed": true
+        },
+        "gates": [
+          {
+            "id": "animations",
+            "label": "Animation checks",
+            "severity": "warning",
+            "ran": false,
+            "skipped_reason": "The model has no animations.",
+            "violations": []
+          }
+        ],
+        "skipped_channels": [],
+        "approximated_bezier": [],
+        "capped_clips": []
+      },
+      "geometry_export": {
+        "path": "E:\\mc\\build\\asset-overhaul\\worktree\\colored_units\\armor_rework_v1\\mcp_exports\\crystal_carapace.geo.json",
+        "skipped": [],
+        "web_app": {
+          "launcher": {
+            "path": "C:\\Users\\hui\\AppData\\Local\\Temp\\blockbench-mcp-headless-b0458fb1-b55c-429f-9dea-1cd009b8742a\\web-app\\crystal_carapace.geo.json-d629a4ad.html",
+            "file_url": "file:///C:/Users/hui/AppData/Local/Temp/blockbench-mcp-headless-b0458fb1-b55c-429f-9dea-1cd009b8742a/web-app/crystal_carapace.geo.json-d629a4ad.html"
+          },
+          "length": 52994,
+          "note": "The URL is 52 KB, too long to paste. Open launcher.file_url in a Chromium browser."
+        }
+      },
+      "animation_export": {
+        "path": "E:\\mc\\build\\asset-overhaul\\worktree\\colored_units\\armor_rework_v1\\mcp_exports\\crystal_carapace.animation.json",
+        "animations": []
+      }
+    }
+  }
+}

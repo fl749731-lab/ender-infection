@@ -1,0 +1,168 @@
+{
+  "loader": "forge",
+  "status": "PASS",
+  "native_frames": 24,
+  "events": {
+    "CLAW_WARNING": 1,
+    "STOMP_WARNING": 1,
+    "BURST_WARNING": 1,
+    "CLAW": 1,
+    "SHOCK": 1,
+    "PULSE": 3,
+    "CORE_OPEN": 1,
+    "CORE": 1,
+    "CORE_CLOSE": 1,
+    "CONSOLE": 2
+  },
+  "peak_simultaneous_quad_budget_per_boss": 80,
+  "core_quads": 16,
+  "quad_submissions_over_entire_run": 19207,
+  "scope": "Actual F8 room, real AI timing and console packets; isolated fixture unlocks progression, holds movement for attack shots, uses a client-only overview camera, then kills boss for reward checks. Budget is geometry, not a GPU benchmark.",
+  "frames": [
+    {
+      "name": "warning",
+      "file": "previews/containment-warden-vfx-v1/runtime/forge/warden_vfx_warning.png",
+      "bytes": 157548,
+      "sha256": "fdd761785a710150ea384231d6c465a0a47bf7b9d502dd8cffa48cc810e7031b"
+    },
+    {
+      "name": "front",
+      "file": "previews/containment-warden-vfx-v1/runtime/forge/warden_vfx_front.png",
+      "bytes": 171551,
+      "sha256": "09c5f938f6262ab0bf0098b389d39e19e99f6bd004c694118acc1ba6826df6e8"
+    },
+    {
+      "name": "side",
+      "file": "previews/containment-warden-vfx-v1/runtime/forge/warden_vfx_side.png",
+      "bytes": 302727,
+      "sha256": "2d73c73bab559d2c10e6d39bf9984aa32cb847eee9fe449ed20e865907a29197"
+    },
+    {
+      "name": "back",
+      "file": "previews/containment-warden-vfx-v1/runtime/forge/warden_vfx_back.png",
+      "bytes": 181332,
+      "sha256": "c6e7d961bb4f007c183ba4fb475e5b8badd9e5499f0777b3855a9243c6c09937"
+    },
+    {
+      "name": "night_glow",
+      "file": "previews/containment-warden-vfx-v1/runtime/forge/warden_vfx_night_glow.png",
+      "bytes": 138960,
+      "sha256": "34fbde5ca371c20e654b3ec5950830d2dea7d2b76ed7dd08c7f4916ea7e1157a"
+    },
+    {
+      "name": "walk",
+      "file": "previews/containment-warden-vfx-v1/runtime/forge/warden_vfx_walk.png",
+      "bytes": 140919,
+      "sha256": "a161f27f1aa654e5e246d1ab4b5789c46d9a2cec40ae655c417ffc1e567674f4"
+    },
+    {
+      "name": "claw_windup",
+      "file": "previews/containment-warden-vfx-v1/runtime/forge/warden_vfx_claw_windup.png",
+      "bytes": 406798,
+      "sha256": "5a67f6bf84a59e3dfbeccf3c1a57a2c862460810e8725deedb76a1d4c3f6b295"
+    },
+    {
+      "name": "claw_hit",
+      "file": "previews/containment-warden-vfx-v1/runtime/forge/warden_vfx_claw_hit.png",
+      "bytes": 403451,
+      "sha256": "0fd53b0a573e1edeecd4559bfaa0620925b0805a130c97e847fe61c1ebf2c0c3"
+    },
+    {
+      "name": "stomp_windup",
+      "file": "previews/containment-warden-vfx-v1/runtime/forge/warden_vfx_stomp_windup.png",
+      "bytes": 407101,
+      "sha256": "5458556c8bcca5a95eaf887255639ec161f09f51d884546f37efcc5d63de38a2"
+    },
+    {
+      "name": "stomp_hit",
+      "file": "previews/containment-warden-vfx-v1/runtime/forge/warden_vfx_stomp_hit.png",
+      "bytes": 417628,
+      "sha256": "5d1ffa90ba82ee217fa43d96ba3b0855163424e484677091dd260357d7700b58"
+    },
+    {
+      "name": "burst_warning",
+      "file": "previews/containment-warden-vfx-v1/runtime/forge/warden_vfx_burst_warning.png",
+      "bytes": 425708,
+      "sha256": "0980a0f7b6960e2853f28535fd5b70bc7db0b60388d1912290025c2e99b9581c"
+    },
+    {
+      "name": "pulse_1",
+      "file": "previews/containment-warden-vfx-v1/runtime/forge/warden_vfx_pulse_1.png",
+      "bytes": 438685,
+      "sha256": "f0262357cab528f9cc286eb498e390604e9655cee6d6007218925d662d810317"
+    },
+    {
+      "name": "pulse_2",
+      "file": "previews/containment-warden-vfx-v1/runtime/forge/warden_vfx_pulse_2.png",
+      "bytes": 431326,
+      "sha256": "511b2ce0723adb85aec846e3132bb67f04388606b3119500ef8fa1d66c470613"
+    },
+    {
+      "name": "pulse_3",
+      "file": "previews/containment-warden-vfx-v1/runtime/forge/warden_vfx_pulse_3.png",
+      "bytes": 422461,
+      "sha256": "83dc94d19d75bcc139c3eddebc05e7bd88161dd69b14522aad059d30c5a227c1"
+    },
+    {
+      "name": "burst",
+      "file": "previews/containment-warden-vfx-v1/runtime/forge/warden_vfx_burst.png",
+      "bytes": 426066,
+      "sha256": "ac0176331fd4b0b64ce09bd7eda9ea81397f5077ee37f3442551ef9c78a5c417"
+    },
+    {
+      "name": "console_discharge",
+      "file": "previews/containment-warden-vfx-v1/runtime/forge/warden_vfx_console_discharge.png",
+      "bytes": 185256,
+      "sha256": "0db2a56a2d3cd5931f50ce4a426038d2dc666ec33e9414b68e4f8e341e229853"
+    },
+    {
+      "name": "console_one",
+      "file": "previews/containment-warden-vfx-v1/runtime/forge/warden_vfx_console_one.png",
+      "bytes": 167559,
+      "sha256": "8b227ffa629f4584cb4311c66850f274dc6b3f650bda85c37a39517ad2ff41ed"
+    },
+    {
+      "name": "core_exposed",
+      "file": "previews/containment-warden-vfx-v1/runtime/forge/warden_vfx_core_exposed.png",
+      "bytes": 407566,
+      "sha256": "434299fc1c2d6f2f4567925fb8b7b91f14f29f11219b139a4b76f33676bdb788"
+    },
+    {
+      "name": "core_recovery",
+      "file": "previews/containment-warden-vfx-v1/runtime/forge/warden_vfx_core_recovery.png",
+      "bytes": 406917,
+      "sha256": "af4bf33f9ba3e8c132d706ac1ea9d08fed71edb2fdfad5e4e87cc0bdb1284c8d"
+    },
+    {
+      "name": "death_mid",
+      "file": "previews/containment-warden-vfx-v1/runtime/forge/warden_vfx_death_mid.png",
+      "bytes": 238794,
+      "sha256": "8caa046fe62ea3da8320ea92317b014a6659249487a7b92f23eef24aab1aef24"
+    },
+    {
+      "name": "death_kneel",
+      "file": "previews/containment-warden-vfx-v1/runtime/forge/warden_vfx_death_kneel.png",
+      "bytes": 221511,
+      "sha256": "6e7e80a3337d3ed3b696dcc5537a9344c3a3bcd9761e6a02e0850138d529ee64"
+    },
+    {
+      "name": "reward_claimed",
+      "file": "previews/containment-warden-vfx-v1/runtime/forge/warden_vfx_reward_claimed.png",
+      "bytes": 143195,
+      "sha256": "40d232b2dddef93045f2756493eb1313158e0d18cc0cde6128571352177450b0"
+    },
+    {
+      "name": "inventory",
+      "file": "previews/containment-warden-vfx-v1/runtime/forge/warden_vfx_inventory.png",
+      "bytes": 95165,
+      "sha256": "72b28fb8012dc931ce581da6f716720e8126e56a9b080f1cfbe19a3eeb310765"
+    },
+    {
+      "name": "core_cooldown",
+      "file": "previews/containment-warden-vfx-v1/runtime/forge/warden_vfx_core_cooldown.png",
+      "bytes": 134214,
+      "sha256": "ce464e35fd47379bd26f6c47e600f52ede557bdc83ca8d68e650ad8bc50365b7"
+    }
+  ],
+  "log": "build/warden-vfx-v1/checks/forge-runClient.log"
+}

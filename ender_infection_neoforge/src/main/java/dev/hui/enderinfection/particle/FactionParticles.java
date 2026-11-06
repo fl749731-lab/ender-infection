@@ -16,6 +16,7 @@ public final class FactionParticles {
     public static final DeferredHolder<net.minecraft.core.particles.ParticleType<?>,SimpleParticleType> RUNE=TYPES.register("rupture_rune",()->new SimpleParticleType(false));
     public static final DeferredHolder<net.minecraft.core.particles.ParticleType<?>,SimpleParticleType> SIEGE_SHOCK=TYPES.register("siege_shockwave",()->new SimpleParticleType(false));
     public static final DeferredHolder<net.minecraft.core.particles.ParticleType<?>,SimpleParticleType> SIEGE_SPARK=TYPES.register("siege_spark",()->new SimpleParticleType(false));
+    public static final DeferredHolder<net.minecraft.core.particles.ParticleType<?>,SimpleParticleType> WARDEN_VFX=TYPES.register("warden_vfx",()->new SimpleParticleType(true));
     private FactionParticles(){}
     public static void register(IEventBus bus){TYPES.register(bus);}
 }

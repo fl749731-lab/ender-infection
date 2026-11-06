@@ -23,6 +23,8 @@
 - [署名导入建筑及使用范围](imported-buildings.md)
 - [alpha.6 验收及模型效果](../previews/incident-alpha6/README.md)
 - [F8 研究所 Boss（alpha.7 开发版）](institute-boss.md)
+- [Boss 特效设计与本轮实景](../previews/containment-warden-vfx-v1/README.md)
+- [公开 Minecraft 模型网站与候选](public-minecraft-models.md)
 
 ## 历史资料
 

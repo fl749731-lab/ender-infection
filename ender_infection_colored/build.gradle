@@ -31,6 +31,9 @@ minecraft {
             mods { ender_infection { source sourceSets.main } }
         }
         client { property 'mixin.env.remapRefMap','true'; property 'mixin.env.refMapRemappingFile',project.file('build/createSrgToMcp/output.srg').absolutePath; if (project.hasProperty('designSmoke')) { workingDirectory project.file('build/design-smoke'); property 'ender_infection.designSmoke','true' } }
+        if (project.hasProperty('wardenVfxCheck')) {
+            client { workingDirectory project.file('build/warden-vfx-check'); property 'ender_infection.wardenVfxCheck','true'; args '--width','1280','--height','800' }
+        }
         if (project.hasProperty('wardenVisualCheck')) {
             client { workingDirectory project.file('build/warden-visual-check'); property 'ender_infection.wardenVisualCheck','true' }
         }

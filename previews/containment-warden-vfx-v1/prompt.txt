@@ -1,0 +1,39 @@
+Use case: stylized-concept.
+Asset type: a production VFX concept sheet for a Minecraft Java boss, not a game screenshot and not an exported particle atlas.
+
+INPUT IMAGES: Reference image 1 is the actual Blockbench/MCP model and is the authoritative character identity. Reference image 2 is its actual in-game stomp pose and supplies pose, scale and laboratory materials only. Both are references, not edit targets. Create an entirely new presentation sheet. Keep the SAME character in every cell: 3.4-block-tall original Containment Warden, pale gray layered armor, dark purple tissue, short recessed head, tall asymmetrical C-17 collar, purple eye slit, long amethyst chest core, anatomical LEFT arm integrated broad rectangular guard (viewer's RIGHT when front-facing), anatomical RIGHT hand three articulated claws, shoulder crystals, digitigrade feet. Do not redesign it or add armor, weapons, horns, floating sacs or tentacles.
+
+PRIMARY REQUEST:
+Draw a polished, high-resolution illustrated VFX design board titled exactly “收容监管体 · 特效设计 V1”. Prefer a large portrait 3:4 canvas with clean margins, subtle charcoal blueprint grid and readable Simplified Chinese typography. It must be practical to implement with Minecraft pixel particles, billboard sprites, thin faceted arcs and ground projections. This is an illustrated effects board: detailed voxel character miniatures and hand-designed glowing effect shapes, NOT a flat vector-only flowchart.
+
+LAYOUT:
+Four horizontal skill rows and three time-sequence columns. Large column headers exactly “预警 / 蓄力”, “爆发 / 判定”, “消散 / 复位”. Separate cells with quiet thin rules, connect beats with small arrows. Use consistent three-quarter game-scale camera and a sparse tiled laboratory floor in each scene; show entire effect bounds and silhouette. Give the impact column the most visual energy while keeping the boss, player footing and escape space legible. Add small top-down range diagrams where helpful. NO HUD, health bars, first-person hands, screenshot chat, menus or watermark.
+
+ROW 01 — title “三爪横扫”:
+Windup: right three-clawed arm pulls back, faint violet streaks gather at the fingertips; a broken AMBER floor sector warns the forward 120-degree area, radius 4.2 blocks.
+Impact: three distinct short, faceted violet slash crescents follow the three right claws forward, a tiny white-violet contact flash, sparse angular amethyst chips. Do NOT draw a full-body spinning ring or a giant opaque blade.
+Fade: slashes split into a few tiny squared chips and vanish rapidly; model visible, floor unchanged.
+Exact compact labels: “0.85 s 命中” and “4.2 格 / 120°”.
+
+ROW 02 — title “跺地冲击”:
+Windup: use the raised-right-leg silhouette from the reference; a thin segmented amber warning circle radius 5.5 blocks, transparent interior, clear ground grid.
+Impact: a white-violet contact star under the right foot, a broad but THIN low hexagonal/stepped shock ring moving outward with a few upward crystal chips. Show a tiny jumping player silhouette safely above the ground wave in a small explanatory inset.
+Fade: the ring breaks into spaced pixel segments and fades. No real cracks, removed floor tiles, huge smoke plume, crater or terrain destruction.
+Exact compact labels: “1.10 s 落地” and “半径 5.5 格”.
+
+ROW 03 — title “晶体脉冲”:
+Windup: chest core gathers light; three faint amber fan-shaped outlines warn the left, center and right directions. Each fan is 20 degrees wide, center axes -20 / 0 / +20 degrees, range 12 blocks, clearly distinct from the stomp's circle.
+Impact: sequential LEFT, CENTER, RIGHT amethyst pulse fronts, numbered 1, 2, 3. White-violet hot core, translucent purple stepped/faceted edges, sparse square motes. Use directional fan pulses, not homing missiles, a continuous solid laser wall, or three attacks firing simultaneously.
+Fade: pulse edges fragment into violet squares, chest returns to its normal glow.
+Exact labels: “1.00 / 1.30 / 1.60 s” and “射程 12 格”.
+
+ROW 04 — title “核心暴露”:
+Windup: a small inset with the existing two gray laboratory console blocks labelled A and B, one mint indicator on each, connected by a simple schematic bracket, not huge room-crossing lightning ropes.
+Active: both chest armor halves open outward; central amethyst glows cool white-violet, a few tight voxel rune fragments and two short broken rings orbit ONLY the exposed core. Shoulder crystals keep their ordinary purple glow. Mint cyan console indicators mean a successful containment discharge. The open core must remain clearly targetable, not hidden by bloom.
+Recovery: rune fragments retract and fade, plates close, core returns to violet. Small subdued console cooldown indicator; do not add a new boss attack here.
+Exact labels: “双台触发”, “暴露 5 s”, “T=15 s 可再触发”.
+
+PALETTE AND FOOTER:
+Amber/gold = danger warning; amethyst violet = attack energy; cool white = brief impact highlight; mint cyan = suppression device state. Pale armor and near-black purple tissue remain unchanged. Use small stepped/pixelated glows, strong designed shapes, translucent empty spaces, sharp square sparks. No volumetric fog, full-screen bloom, glossy realistic lightning, blue fire, red lava, or particles covering the whole character.
+At the bottom add a neat strip of SIX tiny sprite-shape studies: triple slash trail, crystal shard, ring segment, square mote, fan pulse edge, short angular discharge arc. Caption exactly “粒子素材示意 · 非成品贴图”.
+Keep any other prose minimal and make these Chinese labels readable.

@@ -1,0 +1,71 @@
+{
+  "status": "PASS",
+  "version": "0.12.0-alpha.7",
+  "release_state": "development-not-published",
+  "native_required_passed": 34,
+  "native_client_frames": 48,
+  "client_checks": [
+    {
+      "loader": "forge",
+      "status": "PASS",
+      "native_frames": 24,
+      "events": {
+        "CLAW_WARNING": 1,
+        "STOMP_WARNING": 1,
+        "BURST_WARNING": 1,
+        "CLAW": 1,
+        "SHOCK": 1,
+        "PULSE": 3,
+        "CORE_OPEN": 1,
+        "CORE": 1,
+        "CORE_CLOSE": 1,
+        "CONSOLE": 2
+      },
+      "peak_simultaneous_quad_budget_per_boss": 80,
+      "core_quads": 16,
+      "quad_submissions_over_entire_run": 19207,
+      "scope": "Actual F8 room, real AI timing and console packets; isolated fixture unlocks progression, holds movement for attack shots, uses a client-only overview camera, then kills boss for reward checks. Budget is geometry, not a GPU benchmark.",
+      "log": "build/warden-vfx-v1/checks/forge-runClient.log"
+    },
+    {
+      "loader": "neoforge",
+      "status": "PASS",
+      "native_frames": 24,
+      "events": {
+        "CLAW_WARNING": 1,
+        "STOMP_WARNING": 1,
+        "BURST_WARNING": 1,
+        "CLAW": 1,
+        "SHOCK": 1,
+        "PULSE": 3,
+        "CORE_OPEN": 1,
+        "CORE": 1,
+        "CORE_CLOSE": 1,
+        "CONSOLE": 2
+      },
+      "peak_simultaneous_quad_budget_per_boss": 80,
+      "core_quads": 16,
+      "quad_submissions_over_entire_run": 16092,
+      "scope": "Actual F8 room, real AI timing and console packets; isolated fixture unlocks progression, holds movement for attack shots, uses a client-only overview camera, then kills boss for reward checks. Budget is geometry, not a GPU benchmark.",
+      "log": "build/warden-vfx-v1/checks/neo-runClient.log"
+    }
+  ],
+  "input_files": 5965,
+  "input_set_sha256": "191533b58b00e088ceb13f248a7e39bb13765694c5470ab3bec8607d66a4d296",
+  "jars": [
+    {
+      "loader": "forge",
+      "file": "ender_infection_colored/build/libs/ender-infection-0.12.0-alpha.7.jar",
+      "bytes": 6127407,
+      "sha256": "b09bc0e6ba5f1fa2a60475b9acd74fcc0a4942df2bfe6992258d3aa0d97e4e9c"
+    },
+    {
+      "loader": "neoforge",
+      "file": "ender_infection_neoforge/build/libs/ender-infection-neoforge-1.21.1-0.12.0-alpha.7.jar",
+      "bytes": 5976837,
+      "sha256": "8c9f29e3bb43de89241f5f58a8ab317ffc40f18c989a5105095702282ae90dbb"
+    }
+  ],
+  "release_gate_run_this_round": false,
+  "scope": "Focused real Warden GameTests (17 per loader), real clients, dual main/API/example builds. Historical 197-test clean integration evidence remains separate. Run tools/build_dual_version.py --clean --gametests before publishing. No two-client multiplayer or GPU/FPS benchmark was performed."
+}

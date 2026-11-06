@@ -107,14 +107,17 @@ public final class WardenGameTests {
     @GameTest(template="empty64",templateNamespace="ender_warden_checks",timeoutTicks=750,batch="warden_consoles")
     public static void independentConsolesExposeCoreAndPersistTheirCooldown(GameTestHelper h) {
         var s=ready(h);s.run(x->{if(x.stage!=0||!x.active())return;x.stage=1;var mob=x.boss();
+            for(int i=0;i<2;i++)h.assertTrue(mob.visualConsoleAnchor(i).orElseThrow().equals(x.f.origin.offset(x.d.consoles().get(i).pos())),"Console VFX anchor ignored server definition");
             h.assertTrue(x.use(x.d.consoles().get(0)).consumesAction()&&!mob.exposed(),"One console opened core");
             h.assertTrue(x.use(x.d.consoles().get(0))==InteractionResult.FAIL&&!mob.exposed(),"Same console discharged twice");
             h.assertTrue(x.use(x.d.consoles().get(1)).consumesAction()&&mob.exposed()&&mob.consoleMask()==3,"Two consoles failed to expose core");
+            h.assertTrue(mob.visualConsoles()==3&&mob.visualClock()==0,"Console visual snapshot missed exposure/cancellation");
             var tag=new CompoundTag();mob.addAdditionalSaveData(tag);mob.readAdditionalSaveData(tag);
+            h.assertTrue(mob.visualConsoles()==3&&mob.visualClock()==0&&!mob.visualActive()&&mob.visualConsoleAnchor(1).isPresent(),"Reload invented a live hit or lost visual anchors");
             h.assertTrue(mob.exposed()&&mob.consoleCooldown()==300&&!mob.activateConsole(0),"Exposure/cooldown lost on entity load");
             mob.hurt(x.f.level.damageSources().generic(),10);h.assertTrue(mob.getHealth()<350,"Exposed damage modifier missing");
             x.freeze=false;mob.setNoAi(false);h.runAfterDelay(110,()->{if(x.closed)return;try{
-                h.assertTrue(!mob.exposed()&&mob.consoleMask()==0&&mob.consoleCooldown()>180&&mob.consoleCooldown()<=200&&!mob.activateConsole(0),"Core did not close or consoles ignored cooldown");x.success();
+                h.assertTrue(!mob.exposed()&&mob.consoleMask()==0&&mob.visualConsoles()==0&&mob.consoleCooldown()>180&&mob.consoleCooldown()<=200&&!mob.activateConsole(0),"Core did not close or consoles ignored cooldown");x.success();
             }catch(RuntimeException|Error e){x.close();throw e;}});
         });
     }
@@ -142,7 +145,7 @@ public final class WardenGameTests {
         var s=ready(h);s.run(x->{if(x.stage==0){if(!x.start())return;x.stage=1;x.player.setGameMode(GameType.SPECTATOR);var before=x.saved();
                 h.runAfterDelay(80,()->{if(x.closed)return;h.assertTrue(x.saved().equals(before)&&!x.status().spawned(),"Absent players advanced warning");x.player.setGameMode(GameType.SURVIVAL);});
             }else if(x.stage==1&&x.active()){x.stage=2;var id=x.status().identity();x.f.level.getServer().setDifficulty(Difficulty.PEACEFUL,true);var unbound=x.standalone(3);
-                h.runAfterDelay(60,()->{if(x.closed)return;try{h.assertTrue(x.boss()!=null&&x.boss().isAlive()&&x.status().phase()==WardenEncounter.Phase.ACTIVE&&x.status().identity().equals(id)&&x.status().paused(),"Peaceful deleted/defeated/duplicated the boss");h.assertTrue(unbound.isAlive()&&!unbound.fighting()&&unbound.attack()==ContainmentWarden.Attack.NONE,"Unbound Warden attacked in Peaceful");x.success();}catch(RuntimeException|Error e){x.close();throw e;}});
+                h.runAfterDelay(60,()->{if(x.closed)return;try{h.assertTrue(x.boss()!=null&&x.boss().isAlive()&&x.status().phase()==WardenEncounter.Phase.ACTIVE&&x.status().identity().equals(id)&&x.status().paused(),"Peaceful deleted/defeated/duplicated the boss");h.assertTrue(unbound.isAlive()&&!unbound.fighting()&&unbound.attack()==ContainmentWarden.Attack.NONE&&!unbound.visualActive()&&unbound.visualClock()==0,"Unbound Warden attacked in Peaceful");x.success();}catch(RuntimeException|Error e){x.close();throw e;}});
             }});
     }
     @GameTest(template="empty64",templateNamespace="ender_warden_checks",timeoutTicks=150,batch="warden_old_data")
@@ -157,6 +160,8 @@ public final class WardenGameTests {
     private static void attack(GameTestHelper h,ContainmentWarden.Attack expected,double distance,int impact) {
         var s=ready(h);var mob=s.standalone(distance);var victim=mob.getTarget();float health=victim.getHealth();
         s.run(x->{if(mob.attack()!=expected)return;
+            h.assertTrue(mob.visualSequence()>0&&mob.visualClock()==mob.attackTicks()&&mob.visualActive(),"Visual clock/round diverged from live AI");
+            h.assertTrue(Math.abs(mob.visualAim())<.01,"Locked visual axis diverged from target direction");
             if(mob.attackTicks()<impact)h.assertTrue(victim.getHealth()==health,"Damage before telegraph finished");
             if(mob.attackTicks()>=impact+1){h.assertTrue(victim.getHealth()<health,"AI attack failed to damage target at its event time");x.success();}
         });

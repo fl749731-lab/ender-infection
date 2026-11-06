@@ -1,0 +1,168 @@
+{
+  "loader": "neoforge",
+  "status": "PASS",
+  "native_frames": 24,
+  "events": {
+    "CLAW_WARNING": 1,
+    "STOMP_WARNING": 1,
+    "BURST_WARNING": 1,
+    "CLAW": 1,
+    "SHOCK": 1,
+    "PULSE": 3,
+    "CORE_OPEN": 1,
+    "CORE": 1,
+    "CORE_CLOSE": 1,
+    "CONSOLE": 2
+  },
+  "peak_simultaneous_quad_budget_per_boss": 80,
+  "core_quads": 16,
+  "quad_submissions_over_entire_run": 16092,
+  "scope": "Actual F8 room, real AI timing and console packets; isolated fixture unlocks progression, holds movement for attack shots, uses a client-only overview camera, then kills boss for reward checks. Budget is geometry, not a GPU benchmark.",
+  "frames": [
+    {
+      "name": "warning",
+      "file": "previews/containment-warden-vfx-v1/runtime/neoforge/warden_vfx_warning.png",
+      "bytes": 168593,
+      "sha256": "50a5357871114194f53b6e6e0c6123b37cccf808f0423c672ee31b9a8f60a247"
+    },
+    {
+      "name": "front",
+      "file": "previews/containment-warden-vfx-v1/runtime/neoforge/warden_vfx_front.png",
+      "bytes": 290979,
+      "sha256": "3ce38be7df423971a331cdaf3805a1f36125a5134b170a234c9dee1867a7f0cd"
+    },
+    {
+      "name": "side",
+      "file": "previews/containment-warden-vfx-v1/runtime/neoforge/warden_vfx_side.png",
+      "bytes": 447301,
+      "sha256": "cb9b2a173ae5b9129c112861836d6cf5bafb615e73d96748cc2a30bce4d1030f"
+    },
+    {
+      "name": "back",
+      "file": "previews/containment-warden-vfx-v1/runtime/neoforge/warden_vfx_back.png",
+      "bytes": 265920,
+      "sha256": "837c27f69d0bbe49ae4ca7a57f955cecb40c921ebd587d2da3701b734b26721e"
+    },
+    {
+      "name": "night_glow",
+      "file": "previews/containment-warden-vfx-v1/runtime/neoforge/warden_vfx_night_glow.png",
+      "bytes": 268903,
+      "sha256": "c69741e0c570bdd7b737255bd113718e7471c658e276d88f424d8dd4c67e0193"
+    },
+    {
+      "name": "walk",
+      "file": "previews/containment-warden-vfx-v1/runtime/neoforge/warden_vfx_walk.png",
+      "bytes": 262396,
+      "sha256": "c70a1a58adb5b89d55405678a533ae5407bda8499a1fc76c10e9153485c841ed"
+    },
+    {
+      "name": "claw_windup",
+      "file": "previews/containment-warden-vfx-v1/runtime/neoforge/warden_vfx_claw_windup.png",
+      "bytes": 566587,
+      "sha256": "367f15726cb96ccfb58688700423bcee61778a746cb54beb3510bd851b250e1c"
+    },
+    {
+      "name": "claw_hit",
+      "file": "previews/containment-warden-vfx-v1/runtime/neoforge/warden_vfx_claw_hit.png",
+      "bytes": 564504,
+      "sha256": "fa45f7c5e0f74c140870528f3b38505a68d70ff2ba042ac6dd6677c8e71f0b55"
+    },
+    {
+      "name": "stomp_windup",
+      "file": "previews/containment-warden-vfx-v1/runtime/neoforge/warden_vfx_stomp_windup.png",
+      "bytes": 563937,
+      "sha256": "f9f6edb08d6b7d36f6dcf2793437b3de5f9497a024ff47b13ebc319f3f5a8c8c"
+    },
+    {
+      "name": "stomp_hit",
+      "file": "previews/containment-warden-vfx-v1/runtime/neoforge/warden_vfx_stomp_hit.png",
+      "bytes": 572847,
+      "sha256": "355a21d0097d03deafac378b498c7a1c9eb26578015167493451f591984f5c16"
+    },
+    {
+      "name": "burst_warning",
+      "file": "previews/containment-warden-vfx-v1/runtime/neoforge/warden_vfx_burst_warning.png",
+      "bytes": 578424,
+      "sha256": "2e8087e65dd3b88c5628bb5881ebfa7c0e46809e9c25ad9d34cfc1a5205d532d"
+    },
+    {
+      "name": "pulse_1",
+      "file": "previews/containment-warden-vfx-v1/runtime/neoforge/warden_vfx_pulse_1.png",
+      "bytes": 589609,
+      "sha256": "dd53ac0043834a631ff3c2debb3d23506045732c96a9467a0340fb6ed15b4565"
+    },
+    {
+      "name": "pulse_2",
+      "file": "previews/containment-warden-vfx-v1/runtime/neoforge/warden_vfx_pulse_2.png",
+      "bytes": 589843,
+      "sha256": "28b42f32d92298076504ebb00aebe90072833aaf4cfed91865e6053ec5d6cce1"
+    },
+    {
+      "name": "pulse_3",
+      "file": "previews/containment-warden-vfx-v1/runtime/neoforge/warden_vfx_pulse_3.png",
+      "bytes": 584645,
+      "sha256": "de5d3e4253a9b8d1eb2ded7d1928fb3085b4db744606d85a5280adef9214111b"
+    },
+    {
+      "name": "burst",
+      "file": "previews/containment-warden-vfx-v1/runtime/neoforge/warden_vfx_burst.png",
+      "bytes": 585478,
+      "sha256": "e76c5d771227f771e509edb15ee3f140b815c720ea47baafc4d96b35bb70ca0b"
+    },
+    {
+      "name": "console_discharge",
+      "file": "previews/containment-warden-vfx-v1/runtime/neoforge/warden_vfx_console_discharge.png",
+      "bytes": 160396,
+      "sha256": "94ff7a754db9675724446e5041a4b1ecc2d4cb279d81f09c54b65ce19539901a"
+    },
+    {
+      "name": "console_one",
+      "file": "previews/containment-warden-vfx-v1/runtime/neoforge/warden_vfx_console_one.png",
+      "bytes": 161476,
+      "sha256": "f2ac5d527ccfeb4873ccacb26e3a56df0c33c1f4bcd1c828bfed7ef0a117c167"
+    },
+    {
+      "name": "core_exposed",
+      "file": "previews/containment-warden-vfx-v1/runtime/neoforge/warden_vfx_core_exposed.png",
+      "bytes": 562521,
+      "sha256": "e8d75e964d29e938d21e2b66ca0c09e9338ab2c17e3eec0d0b07effed090b103"
+    },
+    {
+      "name": "core_recovery",
+      "file": "previews/containment-warden-vfx-v1/runtime/neoforge/warden_vfx_core_recovery.png",
+      "bytes": 561215,
+      "sha256": "084470cbe3d7fab5c3248b70cbc9ac24d7ce7a918e2ad8c336d204724911dfe9"
+    },
+    {
+      "name": "death_mid",
+      "file": "previews/containment-warden-vfx-v1/runtime/neoforge/warden_vfx_death_mid.png",
+      "bytes": 341479,
+      "sha256": "5a5ac7ad582ced20a2b43dfdf57778dcd5433072358dad31b7d4817ebbdf1fda"
+    },
+    {
+      "name": "death_kneel",
+      "file": "previews/containment-warden-vfx-v1/runtime/neoforge/warden_vfx_death_kneel.png",
+      "bytes": 348493,
+      "sha256": "57a4a0d23ca7f07d5534635e7744c6d1ac839d08544552d2f8118b8cbc4c6c39"
+    },
+    {
+      "name": "reward_claimed",
+      "file": "previews/containment-warden-vfx-v1/runtime/neoforge/warden_vfx_reward_claimed.png",
+      "bytes": 146082,
+      "sha256": "0b5cafd2f9d5846be916546ea683a35bc98192ed2ac5f6b5e157d6d036edd455"
+    },
+    {
+      "name": "inventory",
+      "file": "previews/containment-warden-vfx-v1/runtime/neoforge/warden_vfx_inventory.png",
+      "bytes": 96754,
+      "sha256": "a29e60374a2f8341002a3cd7ef71f6c7563e3d17b235e62183a6dfbea1882c2f"
+    },
+    {
+      "name": "core_cooldown",
+      "file": "previews/containment-warden-vfx-v1/runtime/neoforge/warden_vfx_core_cooldown.png",
+      "bytes": 150996,
+      "sha256": "c28dcce4b8186279bf77fbcf29c387c88b2c3fa026766fbfafea3666c580ba40"
+    }
+  ],
+  "log": "build/warden-vfx-v1/checks/neo-runClient.log"
+}

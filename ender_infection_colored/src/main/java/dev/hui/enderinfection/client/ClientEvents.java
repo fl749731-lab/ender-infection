@@ -44,6 +44,7 @@ public final class ClientEvents {
         event.register((stack,index)->index==0?FoliageColor.getDefaultColor():-1,InfectedContent.TERRAIN_ITEMS.get("eroded_leaves").get());
     }
     @SubscribeEvent public static void particles(RegisterParticleProvidersEvent event){
+        event.registerSpriteSet(FactionParticles.WARDEN_VFX.get(), WardenParticle.Provider::new);
         event.registerSpriteSet(FactionParticles.SHARD.get(),sprites->new FactionParticle.Provider(sprites,FactionParticle.Kind.SHARD));
         event.registerSpriteSet(FactionParticles.SPORE.get(),sprites->new FactionParticle.Provider(sprites,FactionParticle.Kind.SPORE));
         event.registerSpriteSet(FactionParticles.MOTE.get(),sprites->new FactionParticle.Provider(sprites,FactionParticle.Kind.MOTE));

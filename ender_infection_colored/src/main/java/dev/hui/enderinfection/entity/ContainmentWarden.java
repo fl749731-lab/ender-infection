@@ -5,8 +5,6 @@ import java.util.EnumSet;
 import java.util.Optional;
 import java.util.UUID;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.DustParticleOptions;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -34,7 +32,6 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import org.joml.Vector3f;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
@@ -52,7 +49,14 @@ public final class ContainmentWarden extends Monster implements GeoEntity {
     private static final EntityDataAccessor<Integer> ACTION = SynchedEntityData.defineId(ContainmentWarden.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Boolean> EXPOSED = SynchedEntityData.defineId(ContainmentWarden.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> ENRAGED = SynchedEntityData.defineId(ContainmentWarden.class, EntityDataSerializers.BOOLEAN);
-    private static final DustParticleOptions DUST = new DustParticleOptions(new Vector3f(.69F, .3F, .95F), 1.2F);
+    // Server-owned visual snapshot. Clients never infer attack timing from animation playback.
+    private static final EntityDataAccessor<Integer> VFX_SEQUENCE = SynchedEntityData.defineId(ContainmentWarden.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> VFX_CLOCK = SynchedEntityData.defineId(ContainmentWarden.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Float> VFX_AIM = SynchedEntityData.defineId(ContainmentWarden.class, EntityDataSerializers.FLOAT);
+    private static final EntityDataAccessor<Boolean> VFX_ACTIVE = SynchedEntityData.defineId(ContainmentWarden.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Integer> VFX_CONSOLES = SynchedEntityData.defineId(ContainmentWarden.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Optional<BlockPos>> VFX_CONSOLE_A = SynchedEntityData.defineId(ContainmentWarden.class, EntityDataSerializers.OPTIONAL_BLOCK_POS);
+    private static final EntityDataAccessor<Optional<BlockPos>> VFX_CONSOLE_B = SynchedEntityData.defineId(ContainmentWarden.class, EntityDataSerializers.OPTIONAL_BLOCK_POS);
     private static final String PREFIX = "animation.containment_warden.";
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private final ServerBossEvent bar = new ServerBossEvent(Component.translatable("entity.ender_infection.containment_warden"), BossEvent.BossBarColor.PURPLE, BossEvent.BossBarOverlay.PROGRESS);
@@ -70,6 +74,9 @@ public final class ContainmentWarden extends Monster implements GeoEntity {
     }
     @Override protected void defineSynchedData() {
         super.defineSynchedData(); entityData.define(ACTION, 0); entityData.define(EXPOSED, false); entityData.define(ENRAGED, false);
+        entityData.define(VFX_SEQUENCE, 0); entityData.define(VFX_CLOCK, 0); entityData.define(VFX_AIM, 0F);
+        entityData.define(VFX_ACTIVE, false); entityData.define(VFX_CONSOLES, 0);
+        entityData.define(VFX_CONSOLE_A, Optional.empty()); entityData.define(VFX_CONSOLE_B, Optional.empty());
     }
     @Override protected void registerGoals() {
         goalSelector.addGoal(0, new FloatGoal(this)); goalSelector.addGoal(1, new CombatGoal());
@@ -79,9 +86,24 @@ public final class ContainmentWarden extends Monster implements GeoEntity {
     }
     public Optional<BlockPos> facilityOrigin() { return Optional.ofNullable(facilityOrigin); }
     public Optional<UUID> encounterRun() { return Optional.ofNullable(encounterRun); }
-    public void bindFacility(BlockPos origin, UUID run) { facilityOrigin = origin.immutable(); encounterRun = run; }
+    public void bindFacility(BlockPos origin, UUID run) { facilityOrigin = origin.immutable(); encounterRun = run; refreshVisualAnchors(); }
     public Attack attack() { int id = entityData.get(ACTION); return Attack.values()[Math.max(0, Math.min(3, id))]; }
     public int attackTicks() { return attackTicks; }
+    public int visualSequence() { return entityData.get(VFX_SEQUENCE); }
+    public int visualClock() { return entityData.get(VFX_CLOCK); }
+    public float visualAim() { return entityData.get(VFX_AIM); }
+    public boolean visualActive() { return entityData.get(VFX_ACTIVE); }
+    public int visualConsoles() { return entityData.get(VFX_CONSOLES); }
+    public Optional<BlockPos> visualConsoleAnchor(int index) { return entityData.get(index == 0 ? VFX_CONSOLE_A : VFX_CONSOLE_B); }
+    private void refreshVisualAnchors() {
+        if (!(level() instanceof ServerLevel server)) return;
+        var definition = facilityOrigin == null ? Optional.<WardenEncounter.Definition>empty() : WardenEncounter.definition(server);
+        for (int i = 0; i < 2; i++) {
+            final int index = i;
+            entityData.set(i == 0 ? VFX_CONSOLE_A : VFX_CONSOLE_B,
+                definition.filter(d -> d.consoles().size() > index).map(d -> facilityOrigin.offset(d.consoles().get(index).pos())));
+        }
+    }
     public boolean exposed() { return entityData.get(EXPOSED); }
     public boolean enraged() { return entityData.get(ENRAGED); }
     public int consoleMask() { return consoleMask; }
@@ -107,38 +129,27 @@ public final class ContainmentWarden extends Monster implements GeoEntity {
         bar.setProgress(getHealth() / getMaxHealth());
         bar.setName(Component.translatable("entity.ender_infection.containment_warden"));
         bar.setColor(exposed() ? BossEvent.BossBarColor.WHITE : enraged() ? BossEvent.BossBarColor.RED : BossEvent.BossBarColor.PURPLE);
-        bar.setVisible(fighting());
-        if (!fighting() || isNoAi()) { cancelAttack(); getNavigation().stop(); return; }
+        boolean active = fighting(); entityData.set(VFX_ACTIVE, active);
+        bar.setVisible(active);
+        if (!active || isNoAi()) { cancelAttack(); getNavigation().stop(); return; }
         if (consoleCooldown > 0) consoleCooldown--;
         if (exposureTicks > 0) {
             exposureTicks--; cancelAttack(); getNavigation().stop();
-            if (exposureTicks == 0) { entityData.set(EXPOSED, false); consoleMask = 0; cooldown = 30; }
+            if (exposureTicks == 0) { entityData.set(EXPOSED, false); consoleMask = 0; entityData.set(VFX_CONSOLES, 0); cooldown = 30; }
             return;
         }
         if (cooldown > 0) cooldown--;
         if (attack() != Attack.NONE) tickAttack(server);
     }
-    private void cancelAttack() { entityData.set(ACTION, 0); attackTicks = 0; }
+    private void cancelAttack() { entityData.set(ACTION, 0); attackTicks = 0; entityData.set(VFX_CLOCK, 0); }
     private void beginAttack(Attack attack, LivingEntity target) {
         var delta = target.position().subtract(position());
         attackYaw = (float)Math.toDegrees(Math.atan2(-delta.x, delta.z));
         setYRot(attackYaw); yBodyRot = attackYaw; setYHeadRot(attackYaw);
-        entityData.set(ACTION, attack.ordinal()); attackTicks = 0; getNavigation().stop();
+        entityData.set(ACTION, attack.ordinal()); attackTicks = 0;
+        entityData.set(VFX_CLOCK, 0); entityData.set(VFX_AIM, attackYaw);
+        entityData.set(VFX_SEQUENCE, visualSequence() == Integer.MAX_VALUE ? 1 : visualSequence() + 1); getNavigation().stop();
         level().playSound(null, blockPosition(), SoundEvents.AMETHYST_BLOCK_RESONATE, SoundSource.HOSTILE, 1F, attack == Attack.BURST ? .5F : .8F);
-    }
-    private void telegraph(ServerLevel level) {
-        if (attack() == Attack.STOMP) {
-            for (int i=0; i<24; i++) {
-                double angle = i * Math.PI / 12;
-                level.sendParticles(DUST, getX()+Math.cos(angle)*5.5, getY()+.12, getZ()+Math.sin(angle)*5.5, 1, 0,0,0,0);
-            }
-        } else {
-            for (int ray=0; ray<(attack()==Attack.BURST?3:1); ray++) {
-                double angle = Math.toRadians(attackYaw + (attack()==Attack.BURST ? (ray-1)*20 : 0));
-                for (int i=2; i<=(attack()==Attack.BURST?12:4); i++)
-                    level.sendParticles(DUST, getX()-Math.sin(angle)*i, getY()+.15, getZ()+Math.cos(angle)*i, 1,0,0,0,0);
-            }
-        }
     }
     private boolean cone(LivingEntity victim, float yaw, double halfAngle) {
         Vec3 delta = victim.position().subtract(position()).multiply(1,0,1);
@@ -156,21 +167,17 @@ public final class ContainmentWarden extends Monster implements GeoEntity {
         }
     }
     private void tickAttack(ServerLevel level) {
-        attackTicks++; setYRot(attackYaw); yBodyRot = attackYaw; setYHeadRot(attackYaw); getNavigation().stop();
+        attackTicks++; entityData.set(VFX_CLOCK, attackTicks); setYRot(attackYaw); yBodyRot = attackYaw; setYHeadRot(attackYaw); getNavigation().stop();
         Attack action = attack();
-        if (attackTicks % 4 == 0 && attackTicks < (action == Attack.CLAW ? 17 : 20)) telegraph(level);
         if (action == Attack.CLAW && attackTicks == 17) {
             strike(level, 4.2, attackYaw, 60, 12, false);
             level.playSound(null, blockPosition(), SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.HOSTILE, 1, .65F);
         } else if (action == Attack.STOMP && attackTicks == 22) {
             strike(level, 5.5, attackYaw, 180, 10, true);
-            level.sendParticles(ParticleTypes.CRIT, getX(),getY()+.2,getZ(),40,3,.2,3,.1);
             level.playSound(null, blockPosition(), SoundEvents.IRON_GOLEM_ATTACK, SoundSource.HOSTILE, 1, .65F);
         } else if (action == Attack.BURST && (attackTicks == 20 || attackTicks == 26 || attackTicks == 32)) {
             float yaw = attackYaw + ((attackTicks-20)/6-1)*20;
             strike(level, 12, yaw, 10, 8, false);
-            double angle = Math.toRadians(yaw);
-            for (int i=1; i<=12; i++) level.sendParticles(ParticleTypes.END_ROD,getX()-Math.sin(angle)*i,getY()+1.8,getZ()+Math.cos(angle)*i,2,.1,.15,.1,.01);
             level.playSound(null,blockPosition(),SoundEvents.AMETHYST_BLOCK_BREAK,SoundSource.HOSTILE,.8F,1.2F);
         }
         if (attackTicks >= action.duration) { cancelAttack(); cooldown = enraged() ? 24 : 40; }
@@ -178,7 +185,7 @@ public final class ContainmentWarden extends Monster implements GeoEntity {
     /** Both independent consoles must discharge. Reusing one cannot open the core. */
     public boolean activateConsole(int index) {
         if (level().isClientSide || index < 0 || index > 1 || !isAlive() || !fighting() || consoleCooldown > 0 || exposed() || (consoleMask & 1<<index) != 0) return false;
-        consoleMask |= 1<<index;
+        consoleMask |= 1<<index; entityData.set(VFX_CONSOLES, consoleMask);
         if (consoleMask == 3) {
             exposureTicks = 100; consoleCooldown = 300; entityData.set(EXPOSED,true); cancelAttack(); getNavigation().stop();
             level().playSound(null,blockPosition(),SoundEvents.BEACON_DEACTIVATE,SoundSource.HOSTILE,1,.7F);
@@ -192,7 +199,7 @@ public final class ContainmentWarden extends Monster implements GeoEntity {
         }
         return super.hurt(source, amount);
     }
-    @Override public void die(DamageSource source) { super.die(source); if (dead) { bar.setVisible(false); if (level() instanceof ServerLevel) WardenEncounter.defeated(this); } }
+    @Override public void die(DamageSource source) { super.die(source); if (dead) { entityData.set(VFX_ACTIVE, false); cancelAttack(); bar.setVisible(false); if (level() instanceof ServerLevel) WardenEncounter.defeated(this); } }
     @Override protected void tickDeath() {
         deathTime++;
         if (deathTime >= 60 && !level().isClientSide) { level().broadcastEntityEvent(this,(byte)60); remove(RemovalReason.KILLED); }
@@ -210,6 +217,7 @@ public final class ContainmentWarden extends Monster implements GeoEntity {
         encounterRun = facilityOrigin == null ? null : tag.getUUID("WardenRun");
         exposureTicks = Math.max(0,Math.min(100,tag.getInt("WardenExposure"))); consoleMask = tag.getInt("WardenConsoles")&3;
         consoleCooldown = Math.max(0,Math.min(300,tag.getInt("WardenConsoleCooldown"))); nextAttack = Math.floorMod(tag.getInt("WardenNextAttack"),3);
+        refreshVisualAnchors(); entityData.set(VFX_CONSOLES, consoleMask); entityData.set(VFX_ACTIVE, false);
         entityData.set(EXPOSED,exposureTicks>0); entityData.set(ENRAGED,getHealth()<=getMaxHealth()*.6F); cancelAttack(); cooldown=40;
     }
     @Override public AnimatableInstanceCache getAnimatableInstanceCache() { return cache; }

@@ -1,0 +1,197 @@
+{
+  "models": {
+    "infected_cow": {
+      "source": "colored_units/creature_rework_v2/source/project-original/infected_cow_colored.bbmodel",
+      "source_sha256": "3100bce80322c096d82d7a77ff707601fe7ecb7f13cbdc4566bab069f19e7063",
+      "origin": "Existing project original; adapted with MCP, no third-party model or texture imported",
+      "changes": [
+        "Natural species proportions, separate jaw, ears and tail, four true knees and cloven hooves; compact asymmetric infection growths",
+        "Species-specific original albedo tiles and exact legacy cow crystal artwork",
+        "Independent knee, ear, jaw and tail rigs",
+        "Five numeric clips with original native impact/duration; sampled contact corrections and closed locomotion loops"
+      ],
+      "plan": {
+        "target": "Java GeckoLib entity / Forge 1.20.1 and NeoForge 1.21.1; same IDs, attributes, collision and skill timing",
+        "device": "Existing desktop shader-free pipeline; observed Iris Xe reference, no new hardware minimum",
+        "preference": "Appearance and animation first; retain meaningful 3D details",
+        "copies_at_once_assumption": 12,
+        "shading": "Original color albedo, cutout base plus exact crystal emissive overlay; no PBR requirement",
+        "working_budget": {
+          "cubes": 100,
+          "triangles_upper_estimate": 1200,
+          "bones": 28,
+          "atlas": [
+            256,
+            128
+          ],
+          "passes": "base + emissive overlay, draw submissions unmeasured"
+        },
+        "texel_density": "Approximately 1 pixel per source model unit, ceil to whole pixels; unique material tiles, consistent short/long face spans",
+        "geometry_changes": "Natural species proportions, separate jaw, ears and tail, four true knees and cloven hooves; compact asymmetric infection growths",
+        "materials": "Original project material tiles; old cow crystal artwork reused exactly; no third-party artwork in these three models",
+        "hips": [
+          [
+            -4.3,
+            12,
+            -4
+          ],
+          [
+            4.3,
+            12,
+            -4
+          ],
+          [
+            -3.9,
+            11.5,
+            8
+          ],
+          [
+            3.9,
+            11.5,
+            8
+          ]
+        ],
+        "operations": 90
+      }
+    },
+    "infected_pig": {
+      "source": "colored_units/creature_rework_v2/source/project-original/infected_pig_colored.bbmodel",
+      "source_sha256": "fcb61ea7f3044c8d5c73d7ed0ddd7dc65d32c68fe78d756b381976042b1662cd",
+      "origin": "Existing project original; adapted with MCP, no third-party model or texture imported",
+      "changes": [
+        "Natural species proportions, separate jaw, ears and tail, four true knees and cloven hooves; compact asymmetric infection growths",
+        "Species-specific original albedo tiles and exact legacy cow crystal artwork",
+        "Independent knee, ear, jaw and tail rigs",
+        "Five numeric clips with original native impact/duration; sampled contact corrections and closed locomotion loops"
+      ],
+      "plan": {
+        "target": "Java GeckoLib entity / Forge 1.20.1 and NeoForge 1.21.1; same IDs, attributes, collision and skill timing",
+        "device": "Existing desktop shader-free pipeline; observed Iris Xe reference, no new hardware minimum",
+        "preference": "Appearance and animation first; retain meaningful 3D details",
+        "copies_at_once_assumption": 12,
+        "shading": "Original color albedo, cutout base plus exact crystal emissive overlay; no PBR requirement",
+        "working_budget": {
+          "cubes": 100,
+          "triangles_upper_estimate": 1200,
+          "bones": 28,
+          "atlas": [
+            256,
+            128
+          ],
+          "passes": "base + emissive overlay, draw submissions unmeasured"
+        },
+        "texel_density": "Approximately 1 pixel per source model unit, ceil to whole pixels; unique material tiles, consistent short/long face spans",
+        "geometry_changes": "Natural species proportions, separate jaw, ears and tail, four true knees and cloven hooves; compact asymmetric infection growths",
+        "materials": "Original project material tiles; old cow crystal artwork reused exactly; no third-party artwork in these three models",
+        "hips": [
+          [
+            -4,
+            6.4,
+            -3.5
+          ],
+          [
+            4,
+            6.4,
+            -3.5
+          ],
+          [
+            -4,
+            6.2,
+            6.1
+          ],
+          [
+            4,
+            6.2,
+            6.1
+          ]
+        ],
+        "operations": 87
+      }
+    },
+    "infected_sheep": {
+      "source": "colored_units/creature_rework_v2/source/project-original/infected_sheep_colored.bbmodel",
+      "source_sha256": "adc0fcd92626d8c953b28b5400f77a3b7c7c14cf3930da0ec7442d73b9eab12d",
+      "origin": "Existing project original; adapted with MCP, no third-party model or texture imported",
+      "changes": [
+        "Natural species proportions, separate jaw, ears and tail, four true knees and cloven hooves; compact asymmetric infection growths",
+        "Species-specific original albedo tiles and exact legacy cow crystal artwork",
+        "Independent knee, ear, jaw and tail rigs",
+        "Five numeric clips with original native impact/duration; sampled contact corrections and closed locomotion loops"
+      ],
+      "plan": {
+        "target": "Java GeckoLib entity / Forge 1.20.1 and NeoForge 1.21.1; same IDs, attributes, collision and skill timing",
+        "device": "Existing desktop shader-free pipeline; observed Iris Xe reference, no new hardware minimum",
+        "preference": "Appearance and animation first; retain meaningful 3D details",
+        "copies_at_once_assumption": 12,
+        "shading": "Original color albedo, cutout base plus exact crystal emissive overlay; no PBR requirement",
+        "working_budget": {
+          "cubes": 100,
+          "triangles_upper_estimate": 1200,
+          "bones": 28,
+          "atlas": [
+            256,
+            128
+          ],
+          "passes": "base + emissive overlay, draw submissions unmeasured"
+        },
+        "texel_density": "Approximately 1 pixel per source model unit, ceil to whole pixels; unique material tiles, consistent short/long face spans",
+        "geometry_changes": "Natural species proportions, separate jaw, ears and tail, four true knees and cloven hooves; compact asymmetric infection growths",
+        "materials": "Original project material tiles; old cow crystal artwork reused exactly; no third-party artwork in these three models",
+        "hips": [
+          [
+            -3.1,
+            10.8,
+            -3.5
+          ],
+          [
+            3.1,
+            10.8,
+            -3.5
+          ],
+          [
+            -3.1,
+            10.8,
+            6.8
+          ],
+          [
+            3.1,
+            10.8,
+            6.8
+          ]
+        ],
+        "operations": 101
+      }
+    }
+  },
+  "research": [
+    {
+      "title": "Highland Cow",
+      "author": "@lukygive",
+      "url": "https://blockbenchworkshop.com/model/lukygive/highland-cow",
+      "license": "All Rights Reserved / showcase only",
+      "decision": "Not imported. No permitted derivative redistribution."
+    },
+    {
+      "title": "Grimwool sheep, male/female",
+      "author": "@cepakabra",
+      "url": "https://blockbenchworkshop.com/models/sheep",
+      "license": "Showcase only",
+      "decision": "Not imported; no redistribution permission in listing."
+    },
+    {
+      "title": "Celestial Caprine Zombie",
+      "author": "@kyoukster",
+      "url": "https://blockbenchworkshop.com/model/kyoukster/celestial-caprine-zombie",
+      "license": "All Rights Reserved / showcase only",
+      "decision": "Not imported. Zombie-goat anatomy does not establish permission to reuse."
+    },
+    {
+      "title": "Peeper / Pee",
+      "author": "@elma_taburlas",
+      "url": "https://blockbenchworkshop.com/model/elma_taburlas/peeper",
+      "related_url": "https://blockbenchworkshop.com/model/elma_taburlas/pee",
+      "license": "CC-BY-4.0",
+      "decision": "Not adopted: creeper/bee fusion, 7/10 cubes, not an anatomical upgrade for the existing pig."
+    }
+  ]
+}

@@ -12,6 +12,9 @@ PACK=ROOT/'colored_units/creature_rework_v2'
 ASSETS=ROOT/'ender_infection_colored/src/main/resources/assets/ender_infection'
 SPECS={
  'infected_spider':dict(scale=1.05,offset_y=.566,atlas=[256,128],placements={0:[0,0],3:[128,0]},emissive_materials=[3],hit_tick=14,duration_ticks=30,death_ticks=18),
+ 'infected_cow':dict(scale=1.2,offset_y=0,atlas=[256,128],placements={1:[0,0],0:[128,0]},emissive_materials=[0],hit_tick=14,duration_ticks=30,death_ticks=18,project_original=True),
+ 'infected_pig':dict(scale=1.08,offset_y=0,atlas=[256,128],placements={1:[0,0],0:[128,0]},emissive_materials=[0],hit_tick=12,duration_ticks=28,death_ticks=18,project_original=True),
+ 'infected_sheep':dict(scale=1.3,offset_y=0,atlas=[256,128],placements={1:[0,0],0:[128,0]},emissive_materials=[0],hit_tick=20,duration_ticks=40,death_ticks=18,project_original=True),
 }
 
 def read(path):return json.loads(path.read_text('utf-8'))
@@ -98,7 +101,12 @@ def export(update_manifest=True):
  (ASSETS/'concept_visual_bounds.json').write_bytes(encoded(bounds))
  provenance=read(PACK/'source-provenance.json');credits_path=ASSETS/'third_party/model_credits.json';credits=read(credits_path)
  credits['models']=[row for row in credits['models'] if row['runtime'] not in SPECS]
- for runtime in SPECS:credits['models'].append(dict(runtime=runtime,author=provenance['author'],original=provenance['original'],url=provenance['page'],license=provenance['license'],license_url=provenance['license_url'],source_pack='creature_rework_v2',changes='; '.join(provenance['changes'])))
+ original=read(PACK/'quadruped-provenance.json') if any(s.get('project_original') for s in SPECS.values()) else {}
+ credits['original_reworks']=[row for row in credits.get('original_reworks',[]) if row['runtime'] not in SPECS]
+ for runtime,spec in SPECS.items():
+  if spec.get('project_original'):
+   row=original['models'][runtime];credits['original_reworks'].append(dict(runtime=runtime,author='Ender Infection project',source_pack='creature_rework_v2',original_source=row['source'],original_source_sha256=row['source_sha256'],provenance='Existing project original, reworked with user authorization; no third-party artwork imported',changes='; '.join(row['changes'])))
+  else:credits['models'].append(dict(runtime=runtime,author=provenance['author'],original=provenance['original'],url=provenance['page'],license=provenance['license'],license_url=provenance['license_url'],source_pack='creature_rework_v2',changes='; '.join(provenance['changes'])))
  credits_path.write_bytes(encoded(credits))
  if update_manifest:
   path=ROOT/'ender_infection_colored/verification/design_asset_manifest.json';manifest=read(path)

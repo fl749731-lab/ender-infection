@@ -45,7 +45,7 @@ public final class CreatureMotionCheck {
             for(var p:BlockPos.betweenClosed(new BlockPos(-8,FLOOR-1,-8),new BlockPos(30,FLOOR-1,30)))level.setBlock(p,Blocks.SMOOTH_STONE.defaultBlockState(),2);
             for(String key:System.getProperty("ender_infection.creatureMotionSubjects","spider").split(",")){
                 var kind=Arrays.stream(InfectedKind.values()).filter(k->k.key.equals(key)).findFirst().orElseThrow();
-                String[] phases={"idle_front","idle_back","walk_a","walk_b","attack_windup","attack_impact","infection","death_start","death_end"};int[] delays={20,20,8,14,8,15,12,4,16};
+                String[] phases={"idle_front","idle_back","walk_a","walk_b","attack_windup","attack_impact","infection","death_start","death_end"};int[] delays={20,20,8,14,Math.max(1,kind.hitTick-6),kind.hitTick+1,12,4,16};
                 for(int i=0;i<phases.length;i++)SHOTS.add(new Shot(kind,phases[i],delays[i]));
             }
             player.setGameMode(GameType.SPECTATOR);player.getInventory().clearContent();prepare(player);
@@ -53,7 +53,9 @@ public final class CreatureMotionCheck {
     }
     private static void prepare(ServerPlayer player){
         ready=false;acted=false;if(subject!=null)subject.discard();if(victim!=null)victim.discard();victim=null;victimId=-1;
-        var shot=SHOTS.get(index);var level=player.serverLevel();subject=Objects.requireNonNull(InfectedContent.TYPES.get(shot.kind).get().create(level));
+        var shot=SHOTS.get(index);var level=player.serverLevel();
+        level.getEntitiesOfClass(net.minecraft.world.entity.item.ItemEntity.class,new net.minecraft.world.phys.AABB(-8,FLOOR-3,-8,30,FLOOR+12,30)).forEach(net.minecraft.world.entity.Entity::discard);
+        subject=Objects.requireNonNull(InfectedContent.TYPES.get(shot.kind).get().create(level));
         var tag=new CompoundTag();subject.addAdditionalSaveData(tag);tag.putInt("EmergenceTicks",0);subject.readAdditionalSaveData(tag);
         // A path can only be requested after the fresh walker has naturally landed.
         subject.moveTo(8,FLOOR,8,0,0);subject.setNoAi(!shot.phase.startsWith("walk"));subject.setPersistenceRequired();level.addFreshEntity(subject);entityId=subject.getId();

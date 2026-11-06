@@ -31,6 +31,26 @@ class CreatureReworkTests(unittest.TestCase):
   with patch.object(rework,'sha',mismatch):
    with self.assertRaisesRegex(ValueError,'Stale MCP export'):rework.build('infected_spider')
 
+ def test_quadruped_anatomy_joint_binding_and_native_timing(self):
+  counts={'cow':(53,22),'pig':(49,19),'sheep':(57,22)}
+  for kind,(cubes,bones) in counts.items():
+   runtime='infected_'+kind;files,row=rework.build(runtime);spec=rework.SPECS[runtime]
+   geo=json.loads(files['geo/'+runtime+'.geo.json'])['minecraft:geometry'][0];names={b['name'] for b in geo['bones']};clips=json.loads(files['animations/'+runtime+'.animation.json'])['animations'];prefix='animation.'+runtime+'.'
+   self.assertEqual((row['cubes'],row['bones']),(cubes,bones));self.assertTrue({'ear_left','ear_right','tail_base'}<=names)
+   for i in range(4):self.assertIn('leg_'+str(i)+'_lower_rig',names)
+   self.assertEqual(clips[prefix+'special']['animation_length'],spec['duration_ticks']/20);self.assertEqual(clips[prefix+'death']['animation_length'],.9)
+   self.assertTrue(any(float(t)==spec['hit_tick']/20 for t in clips[prefix+'special']['bones']['head']['rotation']))
+   # An opening lower jaw moves away from the head, instead of rotating into it.
+   jaw=clips[prefix+'special']['bones']['infected_jaw']['rotation'];self.assertTrue(any(float(v[0])>0 for v in jaw.values()))
+   import io
+   mask=Image.open(io.BytesIO(files['textures/entity/'+runtime+'_glowmask.png'])).convert('RGBA')
+   self.assertIsNone(mask.crop((0,0,128,128)).getchannel('A').getbbox());self.assertEqual(row['emissive_pixels'],50)
+   for clip_name in ['idle','walk']:
+    clip=clips[prefix+clip_name]
+    for channels in clip['bones'].values():
+     for track in channels.values():
+      keys=sorted(track,key=float);self.assertEqual(track[keys[0]],track[keys[-1]],(kind,clip_name))
+
  def test_legacy_silhouette_rebuild_preserves_replacements_and_unrelated_bounds(self):
   import rebuild_creature_silhouettes as silhouettes
   import export_design_assets as legacy
@@ -51,10 +71,13 @@ class CreatureReworkTests(unittest.TestCase):
    for name in public.SPECS:
     files,_=public.build(name)
     for relative,content in files.items():self.assertEqual((assets/relative).read_bytes(),content)
-   files,_=rework.build('infected_spider')
-   for relative,content in files.items():self.assertEqual((assets/relative).read_bytes(),content)
+   for runtime in rework.SPECS:
+    files,_=rework.build(runtime)
+    for relative,content in files.items():self.assertEqual((assets/relative).read_bytes(),content)
    after=rework.read(assets/'concept_visual_bounds.json');self.assertEqual(after['spider'],before['spider'])
    ids={row['runtime'] for row in rework.read(assets/'third_party/model_credits.json')['models']}
    self.assertTrue({'infected_carrier','infected_resonance_priest','infected_spider'}<=ids)
+   credits=rework.read(assets/'third_party/model_credits.json');own={row['runtime'] for row in credits['original_reworks']}
+   self.assertTrue({'infected_cow','infected_pig','infected_sheep'}<=own)
 
 if __name__=='__main__':unittest.main()

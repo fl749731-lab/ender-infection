@@ -958,6 +958,1172 @@
         },
         "notes": []
       }
+    },
+    "infected_cow": {
+      "info": {
+        "path": "E:\\mc\\build\\asset-overhaul\\worktree\\colored_units\\creature_rework_v2\\models\\infected_cow.bbmodel",
+        "revision": "4afb93b9e3925bd9",
+        "name": "Ender Infection - anatomical cow",
+        "model_identifier": "infected_cow",
+        "format": "free",
+        "format_version": "5.0",
+        "box_uv": false,
+        "resolution": {
+          "width": 128,
+          "height": 128
+        },
+        "counts": {
+          "groups": 22,
+          "cubes": 53,
+          "meshes": 0,
+          "other_elements": 0,
+          "textures": 2,
+          "animations": 5
+        },
+        "bounds": {
+          "min": [
+            -8.084,
+            0,
+            -18
+          ],
+          "max": [
+            8.084,
+            23.302,
+            14.225
+          ],
+          "size": [
+            16.168,
+            23.302,
+            32.225
+          ]
+        },
+        "ai_used": true,
+        "notes": []
+      },
+      "motion": {
+        "revision": "4afb93b9e3925bd9",
+        "checked": [
+          "idle",
+          "walk",
+          "special",
+          "infection",
+          "death"
+        ],
+        "summary": {
+          "errors": 0,
+          "warnings": 0,
+          "passed": true
+        },
+        "gates": [
+          {
+            "id": "animated_bones_exist",
+            "label": "Animators target groups that exist",
+            "severity": "error",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "keyframe_timing",
+            "label": "Keyframes lie inside the clip and do not collide",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "ground_sink",
+            "label": "No part sinks below the ground during a clip",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "detachment",
+            "label": "Attached groups stay attached to their parent during a clip",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          }
+        ],
+        "skipped_channels": [],
+        "approximated_bezier": [],
+        "capped_clips": []
+      },
+      "geometry": {
+        "revision": "4afb93b9e3925bd9",
+        "format": "free",
+        "summary": {
+          "errors": 0,
+          "warnings": 26,
+          "passed": true
+        },
+        "gates": [
+          {
+            "id": "outliner",
+            "label": "Outliner references resolve and UUIDs are unique",
+            "severity": "error",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "unlisted_nodes",
+            "label": "Every group and element is placed in the outliner",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "degenerate",
+            "label": "No sliver or inverted cubes",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "block_limits",
+            "label": "Geometry stays inside the block-model limits",
+            "severity": "error",
+            "ran": false,
+            "skipped_reason": "Pass block_limits: java_block or bedrock_block to enable.",
+            "violations": []
+          },
+          {
+            "id": "floating",
+            "label": "Every part touches the main body",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "interpenetration",
+            "label": "Parts of different groups do not pass through each other",
+            "severity": "warning",
+            "ran": true,
+            "violations": [
+              {
+                "message": "high_shoulders and leg_0_upper (different groups) interpenetrate by 2.5 units.",
+                "targets": [
+                  "high_shoulders",
+                  "leg_0_upper"
+                ]
+              },
+              {
+                "message": "high_shoulders and leg_1_upper (different groups) interpenetrate by 2.5 units.",
+                "targets": [
+                  "high_shoulders",
+                  "leg_1_upper"
+                ]
+              },
+              {
+                "message": "high_shoulders and crystal_shoulder_base (different groups) interpenetrate by 1.59 units.",
+                "targets": [
+                  "high_shoulders",
+                  "crystal_shoulder_base"
+                ]
+              },
+              {
+                "message": "sagging_hindbody and leg_2_upper (different groups) interpenetrate by 1.5 units.",
+                "targets": [
+                  "sagging_hindbody",
+                  "leg_2_upper"
+                ]
+              },
+              {
+                "message": "sagging_hindbody and leg_3_upper (different groups) interpenetrate by 1.5 units.",
+                "targets": [
+                  "sagging_hindbody",
+                  "leg_3_upper"
+                ]
+              },
+              {
+                "message": "sagging_hindbody and crystal_rump_base (different groups) interpenetrate by 1.39 units.",
+                "targets": [
+                  "sagging_hindbody",
+                  "crystal_rump_base"
+                ]
+              },
+              {
+                "message": "sagging_hindbody and tail_stem (different groups) interpenetrate by 0.59 units.",
+                "targets": [
+                  "sagging_hindbody",
+                  "tail_stem"
+                ]
+              },
+              {
+                "message": "neck_stump and broken_skull (different groups) interpenetrate by 2.49 units.",
+                "targets": [
+                  "neck_stump",
+                  "broken_skull"
+                ]
+              },
+              {
+                "message": "neck_stump and leg_0_upper (different groups) interpenetrate by 1.25 units.",
+                "targets": [
+                  "neck_stump",
+                  "leg_0_upper"
+                ]
+              },
+              {
+                "message": "neck_stump and leg_1_upper (different groups) interpenetrate by 1.25 units.",
+                "targets": [
+                  "neck_stump",
+                  "leg_1_upper"
+                ]
+              },
+              {
+                "message": "neck_stump and ear_left_outer (different groups) interpenetrate by 0.71 units.",
+                "targets": [
+                  "neck_stump",
+                  "ear_left_outer"
+                ]
+              },
+              {
+                "message": "neck_stump and horn_left_base (different groups) interpenetrate by 0.79 units.",
+                "targets": [
+                  "neck_stump",
+                  "horn_left_base"
+                ]
+              },
+              {
+                "message": "neck_stump and ear_right_outer (different groups) interpenetrate by 0.71 units.",
+                "targets": [
+                  "neck_stump",
+                  "ear_right_outer"
+                ]
+              },
+              {
+                "message": "neck_stump and horn_right_base (different groups) interpenetrate by 0.79 units.",
+                "targets": [
+                  "neck_stump",
+                  "horn_right_base"
+                ]
+              },
+              {
+                "message": "broken_skull and left_gaping_cheek (different groups) interpenetrate by 1 units.",
+                "targets": [
+                  "broken_skull",
+                  "left_gaping_cheek"
+                ]
+              },
+              {
+                "message": "broken_skull and right_gaping_cheek (different groups) interpenetrate by 1 units.",
+                "targets": [
+                  "broken_skull",
+                  "right_gaping_cheek"
+                ]
+              },
+              {
+                "message": "broken_skull and ear_left_outer (different groups) interpenetrate by 0.81 units.",
+                "targets": [
+                  "broken_skull",
+                  "ear_left_outer"
+                ]
+              },
+              {
+                "message": "broken_skull and horn_left_base (different groups) interpenetrate by 1.33 units.",
+                "targets": [
+                  "broken_skull",
+                  "horn_left_base"
+                ]
+              },
+              {
+                "message": "broken_skull and ear_right_outer (different groups) interpenetrate by 0.81 units.",
+                "targets": [
+                  "broken_skull",
+                  "ear_right_outer"
+                ]
+              },
+              {
+                "message": "broken_skull and horn_right_base (different groups) interpenetrate by 1.33 units.",
+                "targets": [
+                  "broken_skull",
+                  "horn_right_base"
+                ]
+              },
+              {
+                "message": "crooked_muzzle and hanging_jaw (different groups) interpenetrate by 0.6 units.",
+                "targets": [
+                  "crooked_muzzle",
+                  "hanging_jaw"
+                ]
+              },
+              {
+                "message": "leg_0_upper and leg_0_lower (different groups) interpenetrate by 0.76 units.",
+                "targets": [
+                  "leg_0_upper",
+                  "leg_0_lower"
+                ]
+              },
+              {
+                "message": "leg_1_upper and leg_1_lower (different groups) interpenetrate by 0.76 units.",
+                "targets": [
+                  "leg_1_upper",
+                  "leg_1_lower"
+                ]
+              },
+              {
+                "message": "leg_2_upper and leg_2_lower (different groups) interpenetrate by 0.75 units.",
+                "targets": [
+                  "leg_2_upper",
+                  "leg_2_lower"
+                ]
+              },
+              {
+                "message": "leg_3_upper and leg_3_lower (different groups) interpenetrate by 0.75 units.",
+                "targets": [
+                  "leg_3_upper",
+                  "leg_3_lower"
+                ]
+              },
+              {
+                "message": "ruptured_shoulder and crystal_shoulder_base (different groups) interpenetrate by 2.73 units.",
+                "targets": [
+                  "ruptured_shoulder",
+                  "crystal_shoulder_base"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "mirror",
+            "label": "Left/right parts mirror each other",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          }
+        ],
+        "geckolib": {
+          "diagnostics": [
+            {
+              "severity": "warning",
+              "check_id": "geckolib_modid",
+              "message": "The project has no geckolib_modid; the GeckoLib plugin's export dialog uses it for paths, but the exported files load without it."
+            }
+          ],
+          "summary": {
+            "valid": true,
+            "errors": 0,
+            "warnings": 1
+          }
+        },
+        "notes": []
+      }
+    },
+    "infected_pig": {
+      "info": {
+        "path": "E:\\mc\\build\\asset-overhaul\\worktree\\colored_units\\creature_rework_v2\\models\\infected_pig.bbmodel",
+        "revision": "45645bececd57ffe",
+        "name": "Ender Infection - anatomical pig",
+        "model_identifier": "infected_pig",
+        "format": "free",
+        "format_version": "5.0",
+        "box_uv": false,
+        "resolution": {
+          "width": 128,
+          "height": 128
+        },
+        "counts": {
+          "groups": 19,
+          "cubes": 49,
+          "meshes": 0,
+          "other_elements": 0,
+          "textures": 2,
+          "animations": 5
+        },
+        "bounds": {
+          "min": [
+            -6.993,
+            0,
+            -16.2
+          ],
+          "max": [
+            7.336,
+            17.176,
+            10.9
+          ],
+          "size": [
+            14.33,
+            17.176,
+            27.1
+          ]
+        },
+        "ai_used": true,
+        "notes": []
+      },
+      "motion": {
+        "revision": "45645bececd57ffe",
+        "checked": [
+          "idle",
+          "walk",
+          "special",
+          "infection",
+          "death"
+        ],
+        "summary": {
+          "errors": 0,
+          "warnings": 0,
+          "passed": true
+        },
+        "gates": [
+          {
+            "id": "animated_bones_exist",
+            "label": "Animators target groups that exist",
+            "severity": "error",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "keyframe_timing",
+            "label": "Keyframes lie inside the clip and do not collide",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "ground_sink",
+            "label": "No part sinks below the ground during a clip",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "detachment",
+            "label": "Attached groups stay attached to their parent during a clip",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          }
+        ],
+        "skipped_channels": [],
+        "approximated_bezier": [],
+        "capped_clips": []
+      },
+      "geometry": {
+        "revision": "45645bececd57ffe",
+        "format": "free",
+        "summary": {
+          "errors": 0,
+          "warnings": 25,
+          "passed": true
+        },
+        "gates": [
+          {
+            "id": "outliner",
+            "label": "Outliner references resolve and UUIDs are unique",
+            "severity": "error",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "unlisted_nodes",
+            "label": "Every group and element is placed in the outliner",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "degenerate",
+            "label": "No sliver or inverted cubes",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "block_limits",
+            "label": "Geometry stays inside the block-model limits",
+            "severity": "error",
+            "ran": false,
+            "skipped_reason": "Pass block_limits: java_block or bedrock_block to enable.",
+            "violations": []
+          },
+          {
+            "id": "floating",
+            "label": "Every part touches the main body",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "interpenetration",
+            "label": "Parts of different groups do not pass through each other",
+            "severity": "warning",
+            "ran": true,
+            "violations": [
+              {
+                "message": "low_back and leg_0_upper (different groups) interpenetrate by 0.9 units.",
+                "targets": [
+                  "low_back",
+                  "leg_0_upper"
+                ]
+              },
+              {
+                "message": "low_back and leg_1_upper (different groups) interpenetrate by 0.9 units.",
+                "targets": [
+                  "low_back",
+                  "leg_1_upper"
+                ]
+              },
+              {
+                "message": "low_back and leg_2_upper (different groups) interpenetrate by 0.7 units.",
+                "targets": [
+                  "low_back",
+                  "leg_2_upper"
+                ]
+              },
+              {
+                "message": "low_back and leg_3_upper (different groups) interpenetrate by 0.7 units.",
+                "targets": [
+                  "low_back",
+                  "leg_3_upper"
+                ]
+              },
+              {
+                "message": "low_back and crystal_flank_base (different groups) interpenetrate by 1.88 units.",
+                "targets": [
+                  "low_back",
+                  "crystal_flank_base"
+                ]
+              },
+              {
+                "message": "low_back and crystal_spine_base (different groups) interpenetrate by 0.86 units.",
+                "targets": [
+                  "low_back",
+                  "crystal_spine_base"
+                ]
+              },
+              {
+                "message": "left_belly and leg_0_upper (different groups) interpenetrate by 1.6 units.",
+                "targets": [
+                  "left_belly",
+                  "leg_0_upper"
+                ]
+              },
+              {
+                "message": "left_belly and leg_2_upper (different groups) interpenetrate by 2.2 units.",
+                "targets": [
+                  "left_belly",
+                  "leg_2_upper"
+                ]
+              },
+              {
+                "message": "right_belly and leg_1_upper (different groups) interpenetrate by 1.6 units.",
+                "targets": [
+                  "right_belly",
+                  "leg_1_upper"
+                ]
+              },
+              {
+                "message": "right_belly and leg_3_upper (different groups) interpenetrate by 2.2 units.",
+                "targets": [
+                  "right_belly",
+                  "leg_3_upper"
+                ]
+              },
+              {
+                "message": "split_face_upper and mandible_left (different groups) interpenetrate by 1.3 units.",
+                "targets": [
+                  "split_face_upper",
+                  "mandible_left"
+                ]
+              },
+              {
+                "message": "split_face_upper and mandible_right (different groups) interpenetrate by 1.3 units.",
+                "targets": [
+                  "split_face_upper",
+                  "mandible_right"
+                ]
+              },
+              {
+                "message": "split_face_upper and left_tusk (different groups) interpenetrate by 1 units.",
+                "targets": [
+                  "split_face_upper",
+                  "left_tusk"
+                ]
+              },
+              {
+                "message": "split_face_upper and right_tusk (different groups) interpenetrate by 1 units.",
+                "targets": [
+                  "split_face_upper",
+                  "right_tusk"
+                ]
+              },
+              {
+                "message": "split_face_upper and ear_left_outer (different groups) interpenetrate by 2 units.",
+                "targets": [
+                  "split_face_upper",
+                  "ear_left_outer"
+                ]
+              },
+              {
+                "message": "split_face_upper and ear_left_inner (different groups) interpenetrate by 0.68 units.",
+                "targets": [
+                  "split_face_upper",
+                  "ear_left_inner"
+                ]
+              },
+              {
+                "message": "split_face_upper and ear_right_outer (different groups) interpenetrate by 2 units.",
+                "targets": [
+                  "split_face_upper",
+                  "ear_right_outer"
+                ]
+              },
+              {
+                "message": "split_face_upper and ear_right_inner (different groups) interpenetrate by 0.68 units.",
+                "targets": [
+                  "split_face_upper",
+                  "ear_right_inner"
+                ]
+              },
+              {
+                "message": "mandible_left and left_tusk (different groups) interpenetrate by 0.8 units.",
+                "targets": [
+                  "mandible_left",
+                  "left_tusk"
+                ]
+              },
+              {
+                "message": "mandible_right and right_tusk (different groups) interpenetrate by 0.8 units.",
+                "targets": [
+                  "mandible_right",
+                  "right_tusk"
+                ]
+              },
+              {
+                "message": "leg_0_upper and leg_0_lower (different groups) interpenetrate by 0.59 units.",
+                "targets": [
+                  "leg_0_upper",
+                  "leg_0_lower"
+                ]
+              },
+              {
+                "message": "leg_1_upper and leg_1_lower (different groups) interpenetrate by 0.59 units.",
+                "targets": [
+                  "leg_1_upper",
+                  "leg_1_lower"
+                ]
+              },
+              {
+                "message": "leg_2_upper and leg_2_lower (different groups) interpenetrate by 0.59 units.",
+                "targets": [
+                  "leg_2_upper",
+                  "leg_2_lower"
+                ]
+              },
+              {
+                "message": "leg_3_upper and leg_3_lower (different groups) interpenetrate by 0.59 units.",
+                "targets": [
+                  "leg_3_upper",
+                  "leg_3_lower"
+                ]
+              },
+              {
+                "message": "parasitic_flank and crystal_flank_base (different groups) interpenetrate by 1.85 units.",
+                "targets": [
+                  "parasitic_flank",
+                  "crystal_flank_base"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "mirror",
+            "label": "Left/right parts mirror each other",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          }
+        ],
+        "geckolib": {
+          "diagnostics": [
+            {
+              "severity": "warning",
+              "check_id": "geckolib_modid",
+              "message": "The project has no geckolib_modid; the GeckoLib plugin's export dialog uses it for paths, but the exported files load without it."
+            }
+          ],
+          "summary": {
+            "valid": true,
+            "errors": 0,
+            "warnings": 1
+          }
+        },
+        "notes": []
+      }
+    },
+    "infected_sheep": {
+      "info": {
+        "path": "E:\\mc\\build\\asset-overhaul\\worktree\\colored_units\\creature_rework_v2\\models\\infected_sheep.bbmodel",
+        "revision": "fe3853e81d2cfe3b",
+        "name": "Ender Infection - anatomical sheep",
+        "model_identifier": "infected_sheep",
+        "format": "free",
+        "format_version": "5.0",
+        "box_uv": false,
+        "resolution": {
+          "width": 128,
+          "height": 128
+        },
+        "counts": {
+          "groups": 22,
+          "cubes": 57,
+          "meshes": 0,
+          "other_elements": 0,
+          "textures": 2,
+          "animations": 5
+        },
+        "bounds": {
+          "min": [
+            -7.006,
+            0,
+            -14.4
+          ],
+          "max": [
+            6.721,
+            22.41,
+            11.525
+          ],
+          "size": [
+            13.726,
+            22.41,
+            25.925
+          ]
+        },
+        "ai_used": true,
+        "notes": []
+      },
+      "motion": {
+        "revision": "fe3853e81d2cfe3b",
+        "checked": [
+          "idle",
+          "walk",
+          "special",
+          "infection",
+          "death"
+        ],
+        "summary": {
+          "errors": 0,
+          "warnings": 0,
+          "passed": true
+        },
+        "gates": [
+          {
+            "id": "animated_bones_exist",
+            "label": "Animators target groups that exist",
+            "severity": "error",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "keyframe_timing",
+            "label": "Keyframes lie inside the clip and do not collide",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "ground_sink",
+            "label": "No part sinks below the ground during a clip",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "detachment",
+            "label": "Attached groups stay attached to their parent during a clip",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          }
+        ],
+        "skipped_channels": [],
+        "approximated_bezier": [],
+        "capped_clips": []
+      },
+      "geometry": {
+        "revision": "fe3853e81d2cfe3b",
+        "format": "free",
+        "summary": {
+          "errors": 0,
+          "warnings": 44,
+          "passed": true
+        },
+        "gates": [
+          {
+            "id": "outliner",
+            "label": "Outliner references resolve and UUIDs are unique",
+            "severity": "error",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "unlisted_nodes",
+            "label": "Every group and element is placed in the outliner",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "degenerate",
+            "label": "No sliver or inverted cubes",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "block_limits",
+            "label": "Geometry stays inside the block-model limits",
+            "severity": "error",
+            "ran": false,
+            "skipped_reason": "Pass block_limits: java_block or bedrock_block to enable.",
+            "violations": []
+          },
+          {
+            "id": "floating",
+            "label": "Every part touches the main body",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "interpenetration",
+            "label": "Parts of different groups do not pass through each other",
+            "severity": "warning",
+            "ran": true,
+            "violations": [
+              {
+                "message": "lean_body and central_throat (different groups) interpenetrate by 2 units.",
+                "targets": [
+                  "lean_body",
+                  "central_throat"
+                ]
+              },
+              {
+                "message": "lean_body and throat_left_lobe (different groups) interpenetrate by 2.39 units.",
+                "targets": [
+                  "lean_body",
+                  "throat_left_lobe"
+                ]
+              },
+              {
+                "message": "lean_body and throat_right_lobe (different groups) interpenetrate by 2.53 units.",
+                "targets": [
+                  "lean_body",
+                  "throat_right_lobe"
+                ]
+              },
+              {
+                "message": "lean_body and brood_sac (different groups) interpenetrate by 2.15 units.",
+                "targets": [
+                  "lean_body",
+                  "brood_sac"
+                ]
+              },
+              {
+                "message": "lean_body and leg_0_upper (different groups) interpenetrate by 1.5 units.",
+                "targets": [
+                  "lean_body",
+                  "leg_0_upper"
+                ]
+              },
+              {
+                "message": "lean_body and leg_1_upper (different groups) interpenetrate by 1.5 units.",
+                "targets": [
+                  "lean_body",
+                  "leg_1_upper"
+                ]
+              },
+              {
+                "message": "lean_body and leg_2_upper (different groups) interpenetrate by 1.5 units.",
+                "targets": [
+                  "lean_body",
+                  "leg_2_upper"
+                ]
+              },
+              {
+                "message": "lean_body and leg_3_upper (different groups) interpenetrate by 1.5 units.",
+                "targets": [
+                  "lean_body",
+                  "leg_3_upper"
+                ]
+              },
+              {
+                "message": "broken_wool_shell0 and curl_horn_left_1 (different groups) interpenetrate by 0.75 units.",
+                "targets": [
+                  "broken_wool_shell0",
+                  "curl_horn_left_1"
+                ]
+              },
+              {
+                "message": "broken_wool_shell2 and throat_left_lobe (different groups) interpenetrate by 1.78 units.",
+                "targets": [
+                  "broken_wool_shell2",
+                  "throat_left_lobe"
+                ]
+              },
+              {
+                "message": "broken_wool_shell2 and crystal_back_base (different groups) interpenetrate by 1.38 units.",
+                "targets": [
+                  "broken_wool_shell2",
+                  "crystal_back_base"
+                ]
+              },
+              {
+                "message": "broken_wool_shell3 and throat_right_lobe (different groups) interpenetrate by 1.67 units.",
+                "targets": [
+                  "broken_wool_shell3",
+                  "throat_right_lobe"
+                ]
+              },
+              {
+                "message": "broken_wool_shell3 and brood_sac (different groups) interpenetrate by 2.92 units.",
+                "targets": [
+                  "broken_wool_shell3",
+                  "brood_sac"
+                ]
+              },
+              {
+                "message": "dangling_sheep_face and left_rupture (different groups) interpenetrate by 0.72 units.",
+                "targets": [
+                  "dangling_sheep_face",
+                  "left_rupture"
+                ]
+              },
+              {
+                "message": "dangling_sheep_face and right_rupture (different groups) interpenetrate by 0.72 units.",
+                "targets": [
+                  "dangling_sheep_face",
+                  "right_rupture"
+                ]
+              },
+              {
+                "message": "dangling_sheep_face and wool_tuft_5 (different groups) interpenetrate by 1.01 units.",
+                "targets": [
+                  "dangling_sheep_face",
+                  "wool_tuft_5"
+                ]
+              },
+              {
+                "message": "dangling_sheep_face and curl_horn_left_0 (different groups) interpenetrate by 0.76 units.",
+                "targets": [
+                  "dangling_sheep_face",
+                  "curl_horn_left_0"
+                ]
+              },
+              {
+                "message": "dangling_sheep_face and curl_horn_right_0 (different groups) interpenetrate by 0.76 units.",
+                "targets": [
+                  "dangling_sheep_face",
+                  "curl_horn_right_0"
+                ]
+              },
+              {
+                "message": "central_throat and wool_tuft_1 (different groups) interpenetrate by 2.1 units.",
+                "targets": [
+                  "central_throat",
+                  "wool_tuft_1"
+                ]
+              },
+              {
+                "message": "central_throat and crystal_back_base (different groups) interpenetrate by 1.07 units.",
+                "targets": [
+                  "central_throat",
+                  "crystal_back_base"
+                ]
+              },
+              {
+                "message": "throat_left_lobe and wool_tuft_1 (different groups) interpenetrate by 1.71 units.",
+                "targets": [
+                  "throat_left_lobe",
+                  "wool_tuft_1"
+                ]
+              },
+              {
+                "message": "throat_left_lobe and wool_tuft_4 (different groups) interpenetrate by 1.26 units.",
+                "targets": [
+                  "throat_left_lobe",
+                  "wool_tuft_4"
+                ]
+              },
+              {
+                "message": "throat_left_lobe and crystal_back_base (different groups) interpenetrate by 2.1 units.",
+                "targets": [
+                  "throat_left_lobe",
+                  "crystal_back_base"
+                ]
+              },
+              {
+                "message": "throat_right_lobe and wool_tuft_1 (different groups) interpenetrate by 1.71 units.",
+                "targets": [
+                  "throat_right_lobe",
+                  "wool_tuft_1"
+                ]
+              },
+              {
+                "message": "brood_sac and wool_tuft_3 (different groups) interpenetrate by 1.91 units.",
+                "targets": [
+                  "brood_sac",
+                  "wool_tuft_3"
+                ]
+              },
+              {
+                "message": "leg_0_upper and leg_0_lower (different groups) interpenetrate by 0.72 units.",
+                "targets": [
+                  "leg_0_upper",
+                  "leg_0_lower"
+                ]
+              },
+              {
+                "message": "leg_1_upper and leg_1_lower (different groups) interpenetrate by 0.72 units.",
+                "targets": [
+                  "leg_1_upper",
+                  "leg_1_lower"
+                ]
+              },
+              {
+                "message": "leg_2_upper and leg_2_lower (different groups) interpenetrate by 0.72 units.",
+                "targets": [
+                  "leg_2_upper",
+                  "leg_2_lower"
+                ]
+              },
+              {
+                "message": "leg_3_upper and leg_3_lower (different groups) interpenetrate by 0.72 units.",
+                "targets": [
+                  "leg_3_upper",
+                  "leg_3_lower"
+                ]
+              },
+              {
+                "message": "wool_tuft_1 and crystal_back_base (different groups) interpenetrate by 1.09 units.",
+                "targets": [
+                  "wool_tuft_1",
+                  "crystal_back_base"
+                ]
+              },
+              {
+                "message": "wool_tuft_4 and crystal_back_base (different groups) interpenetrate by 0.87 units.",
+                "targets": [
+                  "wool_tuft_4",
+                  "crystal_back_base"
+                ]
+              },
+              {
+                "message": "wool_tuft_5 and sheep_forehead_wool (different groups) interpenetrate by 1.71 units.",
+                "targets": [
+                  "wool_tuft_5",
+                  "sheep_forehead_wool"
+                ]
+              },
+              {
+                "message": "wool_tuft_5 and curl_horn_right_0 (different groups) interpenetrate by 1.61 units.",
+                "targets": [
+                  "wool_tuft_5",
+                  "curl_horn_right_0"
+                ]
+              },
+              {
+                "message": "wool_tuft_5 and curl_horn_right_1 (different groups) interpenetrate by 1.95 units.",
+                "targets": [
+                  "wool_tuft_5",
+                  "curl_horn_right_1"
+                ]
+              },
+              {
+                "message": "wool_tuft_5 and curl_horn_right_2 (different groups) interpenetrate by 1.37 units.",
+                "targets": [
+                  "wool_tuft_5",
+                  "curl_horn_right_2"
+                ]
+              },
+              {
+                "message": "wool_tuft_5 and crystal_horn_base (different groups) interpenetrate by 1.64 units.",
+                "targets": [
+                  "wool_tuft_5",
+                  "crystal_horn_base"
+                ]
+              },
+              {
+                "message": "sheep_forehead_wool and curl_horn_left_0 (different groups) interpenetrate by 2.19 units.",
+                "targets": [
+                  "sheep_forehead_wool",
+                  "curl_horn_left_0"
+                ]
+              },
+              {
+                "message": "sheep_forehead_wool and curl_horn_left_1 (different groups) interpenetrate by 0.87 units.",
+                "targets": [
+                  "sheep_forehead_wool",
+                  "curl_horn_left_1"
+                ]
+              },
+              {
+                "message": "sheep_forehead_wool and curl_horn_right_0 (different groups) interpenetrate by 2.19 units.",
+                "targets": [
+                  "sheep_forehead_wool",
+                  "curl_horn_right_0"
+                ]
+              },
+              {
+                "message": "sheep_forehead_wool and curl_horn_right_1 (different groups) interpenetrate by 0.87 units.",
+                "targets": [
+                  "sheep_forehead_wool",
+                  "curl_horn_right_1"
+                ]
+              },
+              {
+                "message": "sheep_forehead_wool and crystal_horn_base (different groups) interpenetrate by 0.62 units.",
+                "targets": [
+                  "sheep_forehead_wool",
+                  "crystal_horn_base"
+                ]
+              },
+              {
+                "message": "curl_horn_right_0 and crystal_horn_base (different groups) interpenetrate by 1.38 units.",
+                "targets": [
+                  "curl_horn_right_0",
+                  "crystal_horn_base"
+                ]
+              },
+              {
+                "message": "curl_horn_right_1 and crystal_horn_base (different groups) interpenetrate by 1.89 units.",
+                "targets": [
+                  "curl_horn_right_1",
+                  "crystal_horn_base"
+                ]
+              },
+              {
+                "message": "curl_horn_right_2 and crystal_horn_base (different groups) interpenetrate by 0.67 units.",
+                "targets": [
+                  "curl_horn_right_2",
+                  "crystal_horn_base"
+                ]
+              }
+            ]
+          },
+          {
+            "id": "mirror",
+            "label": "Left/right parts mirror each other",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          }
+        ],
+        "geckolib": {
+          "diagnostics": [
+            {
+              "severity": "warning",
+              "check_id": "geckolib_modid",
+              "message": "The project has no geckolib_modid; the GeckoLib plugin's export dialog uses it for paths, but the exported files load without it."
+            }
+          ],
+          "summary": {
+            "valid": true,
+            "errors": 0,
+            "warnings": 1
+          }
+        },
+        "notes": []
+      }
     }
   }
 }

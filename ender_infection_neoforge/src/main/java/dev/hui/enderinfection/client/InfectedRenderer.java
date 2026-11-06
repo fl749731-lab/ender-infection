@@ -13,7 +13,7 @@ public final class InfectedRenderer extends GeoEntityRenderer<InfectedMob> {
         super(context,new Model(kind));this.shadowRadius=kind.width*.5F;
         addRenderLayer(new GuardedGlowLayer<>(this));
     }
-    @Override protected float getDeathMaxRotation(InfectedMob mob){return mob.kind==InfectedKind.SPIDER?0:super.getDeathMaxRotation(mob);}
+    @Override protected float getDeathMaxRotation(InfectedMob mob){return mob.kind.anatomicalRework()?0:super.getDeathMaxRotation(mob);}
     private static final class Model extends GeoModel<InfectedMob>{
         private final String key;
         Model(InfectedKind kind){key="infected_"+kind.key;}

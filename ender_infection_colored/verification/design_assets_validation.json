@@ -1,32 +1,14 @@
 {
   "status": "PASS",
-  "geometry_files": 41,
-  "validated_faces": 61116,
+  "geometry_files": 44,
+  "validated_faces": 62070,
   "obj_files": 129,
   "glow_masks": 52,
   "creature_glow_textures": 35,
-  "crystal_pixels": 39558,
+  "crystal_pixels": 39582,
   "missing_crystal_pixels": 0,
   "non_crystal_glow_pixels": 0,
   "legacy_creature_glow": [
-    {
-      "runtime": "infected_cow",
-      "source": "colored_units/infected_cow_colored.bbmodel",
-      "crystal_elements": 2,
-      "crystal_pixels": 50
-    },
-    {
-      "runtime": "infected_pig",
-      "source": "colored_units/infected_pig_colored.bbmodel",
-      "crystal_elements": 2,
-      "crystal_pixels": 38
-    },
-    {
-      "runtime": "infected_sheep",
-      "source": "colored_units/infected_sheep_colored.bbmodel",
-      "crystal_elements": 2,
-      "crystal_pixels": 38
-    },
     {
       "runtime": "infected_cow_early",
       "source": "colored_units/infected_cow_early_colored.bbmodel",
@@ -90,7 +72,7 @@
       "height": 2.75
     }
   ],
-  "mapped_source_models": 62,
+  "mapped_source_models": 65,
   "scene_source_models": 2,
   "errors": [],
   "public_model_adaptations": [
@@ -145,6 +127,75 @@
         "depth": 2.12296875,
         "center_x": -0.0,
         "center_z": 0.01050000000000001
+      }
+    },
+    {
+      "source": "mcp_rework_infected_cow",
+      "editable_source": "colored_units/creature_rework_v2/models/infected_cow.bbmodel",
+      "runtime": "infected_cow",
+      "kind": "entity",
+      "pipeline": "tools/export_creature_reworks.py",
+      "scale": 1.2,
+      "cubes": 53,
+      "bones": 22,
+      "atlas": [
+        256,
+        128
+      ],
+      "emissive_pixels": 50,
+      "crystal_faces": 36,
+      "visual_bounds": {
+        "width": 1.2126,
+        "height": 1.9476499999999999,
+        "depth": 2.416875,
+        "center_x": -0.0,
+        "center_z": -0.1415625
+      }
+    },
+    {
+      "source": "mcp_rework_infected_pig",
+      "editable_source": "colored_units/creature_rework_v2/models/infected_pig.bbmodel",
+      "runtime": "infected_pig",
+      "kind": "entity",
+      "pipeline": "tools/export_creature_reworks.py",
+      "scale": 1.08,
+      "cubes": 49,
+      "bones": 19,
+      "atlas": [
+        256,
+        128
+      ],
+      "emissive_pixels": 50,
+      "crystal_faces": 24,
+      "visual_bounds": {
+        "width": 0.9672075000000001,
+        "height": 1.35938,
+        "depth": 1.8292500000000003,
+        "center_x": -0.01157625,
+        "center_z": -0.17887499999999998
+      }
+    },
+    {
+      "source": "mcp_rework_infected_sheep",
+      "editable_source": "colored_units/creature_rework_v2/models/infected_sheep.bbmodel",
+      "runtime": "infected_sheep",
+      "kind": "entity",
+      "pipeline": "tools/export_creature_reworks.py",
+      "scale": 1.3,
+      "cubes": 57,
+      "bones": 22,
+      "atlas": [
+        256,
+        128
+      ],
+      "emissive_pixels": 50,
+      "crystal_faces": 24,
+      "visual_bounds": {
+        "width": 1.1153187500000001,
+        "height": 2.0208125000000003,
+        "depth": 2.10640625,
+        "center_x": 0.011578125000000007,
+        "center_z": -0.11679687500000001
       }
     }
   ]

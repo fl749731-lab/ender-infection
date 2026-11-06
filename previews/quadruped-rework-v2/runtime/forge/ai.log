@@ -1,0 +1,219 @@
+Picked up JAVA_TOOL_OPTIONS: -Xms32m -Xmx1024m -XX:MaxMetaspaceSize=384m -XX:ActiveProcessorCount=2
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.8/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Task :compileJava
+E:\mc\build\asset-overhaul\worktree\ender_infection_colored\src\main\java\dev\hui\enderinfection\EnderInfection.java:34: 警告: [removal] FMLJavaModLoadingContext 中的 get() 已过时, 且标记为待删除
+        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+                                                ^
+注: 某些输入文件使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+注: E:\mc\build\asset-overhaul\worktree\ender_infection_colored\src\main\java\dev\hui\enderinfection\test\InfectionGameTests.java使用了未经检查或不安全的操作。
+注: 有关详细信息, 请使用 -Xlint:unchecked 重新编译。
+1 个警告
+
+> Task :processResources
+> Task :classes
+> Task :downloadMcpConfig
+> Task :extractSrg UP-TO-DATE
+> Task :createSrgToMcp UP-TO-DATE
+> Task :downloadMCMeta UP-TO-DATE
+> Task :downloadAssets UP-TO-DATE
+> Task :extractNatives UP-TO-DATE
+> Task :makeSrcDirs
+> Task :prepareRuns
+> Task :prepareRunGameTestServer
+> Task :prepareRunGameTestServerCompile
+
+> Task :runGameTestServer
+Picked up JAVA_TOOL_OPTIONS: -Xms32m -Xmx1024m -XX:MaxMetaspaceSize=384m -XX:ActiveProcessorCount=2
+2026-11-06 16:41:35,719 main WARN Advanced terminal features are not available in this environment
+[16:41:35] [main/INFO] [cp.mo.mo.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgegametestserveruserdev, --gameDir, ., --fml.forgeVersion, 47.3.12, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412]
+[16:41:35] [main/INFO] [cp.mo.mo.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.20.1 by Eclipse Adoptium; OS Windows 11 arch amd64 version 10.0
+[16:41:35] [main/WARN] [ne.mi.fm.lo.FMLConfig/CORE]: Configuration file E:\mc\build\asset-overhaul\worktree\ender_infection_colored\build\gametest-1793979655347\config\fml.toml is not correct. Correcting
+[16:41:35] [main/INFO] [ne.mi.fm.lo.FMLConfig/CORE]: Incorrect key [earlyWindowSkipGLVersions] was corrected from null to []
+[16:41:35] [main/INFO] [ne.mi.fm.lo.FMLConfig/CORE]: Incorrect key [earlyWindowLogHelpMessage] was corrected from null to true
+[16:41:35] [main/INFO] [ne.mi.fm.lo.FMLConfig/CORE]: Incorrect key [earlyWindowSquir] was corrected from null to false
+[16:41:35] [main/INFO] [ne.mi.fm.lo.FMLConfig/CORE]: Incorrect key [earlyWindowShowCPU] was corrected from null to false
+[16:41:35] [main/INFO] [ne.mi.fm.lo.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgegametestserveruserdev
+[16:41:35] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/hui/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23128!/ Service=ModLauncher Env=SERVER
+[16:41:36] [main/WARN] [ne.mi.fm.lo.mo.ModFileParser/LOADING]: Mod file C:\Users\hui\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.3.12\f6b9f7f45e33548b47f78d9f54c7b4eb1e94e9bd\javafmllanguage-1.20.1-47.3.12.jar is missing mods.toml file
+[16:41:36] [main/WARN] [ne.mi.fm.lo.mo.ModFileParser/LOADING]: Mod file C:\Users\hui\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.3.12\81de74e1180787af25604b6ecb3728fc485bd3c7\lowcodelanguage-1.20.1-47.3.12.jar is missing mods.toml file
+[16:41:36] [main/WARN] [ne.mi.fm.lo.mo.ModFileParser/LOADING]: Mod file C:\Users\hui\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.3.12\1ff4ed058e0774b82d8da352d9e051e6d2a154eb\mclanguage-1.20.1-47.3.12.jar is missing mods.toml file
+[16:41:36] [main/WARN] [ne.mi.fm.lo.mo.ModFileParser/LOADING]: Mod file C:\Users\hui\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.3.12\9a4d9f99e106aa2358cdbe6777921855d353371\fmlcore-1.20.1-47.3.12.jar is missing mods.toml file
+[16:41:36] [main/INFO] [ne.mi.fm.lo.mo.JarInJarDependencyLocator/]: Found 1 dependencies adding them to mods collection
+[16:41:37] [main/INFO] [mixin/]: Compatibility level set to JAVA_17
+[16:41:37] [main/INFO] [cp.mo.mo.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgegametestserveruserdev' with arguments [--gameDir, .]
+[16:41:40] [modloading-worker-0/INFO] [ne.mi.co.ForgeMod/FORGEMOD]: Forge mod loading, version 47.3.12, for MC 1.20.1 with MCP 20230612.114412
+[16:41:40] [modloading-worker-0/INFO] [ne.mi.co.MinecraftForge/FORGE]: MinecraftForge v47.3.12 Initialized
+[16:41:41] [Forge Version Check/INFO] [ne.mi.fm.VersionChecker/]: [forge] Starting version check at https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json
+[16:41:41] [Forge Version Check/INFO] [ne.mi.fm.VersionChecker/]: [forge] Found status: OUTDATED Current: 47.3.12 Target: 47.4.28
+[16:41:42] [main/INFO] [mojang/YggdrasilAuthenticationService]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
+[16:41:42] [main/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/C:/Users/hui/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.3.12_mapped_official_1.20.1/forge-1.20.1-47.3.12_mapped_official_1.20.1.jar%23191!/assets/.mcassetsroot' uses unexpected schema
+[16:41:42] [main/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/C:/Users/hui/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.3.12_mapped_official_1.20.1/forge-1.20.1-47.3.12_mapped_official_1.20.1.jar%23191!/data/.mcassetsroot' uses unexpected schema
+[16:41:43] [main/INFO] [minecraft/RecipeManager]: Loaded 7 recipes
+[16:41:43] [main/INFO] [minecraft/AdvancementList]: Loaded 1287 advancements
+[16:41:43] [main/INFO] [ne.mi.ga.ForgeGameTestHooks/]: Enabled Gametest Namespaces: [ender_ai_checks, ender_rift_checks]
+[16:41:43] [Server thread/WARN] [ne.mi.co.ForgeConfigSpec/CORE]: Configuration file .\world\serverconfig\forge-server.toml is not correct. Correcting
+[16:41:43] [Server thread/WARN] [ne.mi.co.ForgeConfigSpec/CORE]: Incorrect key server was corrected from null to its default, SimpleCommentedConfig:{}. 
+[16:41:43] [Server thread/WARN] [ne.mi.co.ForgeConfigSpec/CORE]: Incorrect key server.removeErroringBlockEntities was corrected from null to its default, false. 
+[16:41:43] [Server thread/WARN] [ne.mi.co.ForgeConfigSpec/CORE]: Incorrect key server.removeErroringEntities was corrected from null to its default, false. 
+[16:41:43] [Server thread/WARN] [ne.mi.co.ForgeConfigSpec/CORE]: Incorrect key server.fullBoundingBoxLadders was corrected from null to its default, false. 
+[16:41:43] [Server thread/WARN] [ne.mi.co.ForgeConfigSpec/CORE]: Incorrect key server.zombieBaseSummonChance was corrected from null to its default, 0.1. 
+[16:41:43] [Server thread/WARN] [ne.mi.co.ForgeConfigSpec/CORE]: Incorrect key server.zombieBabyChance was corrected from null to its default, 0.05. 
+[16:41:43] [Server thread/WARN] [ne.mi.co.ForgeConfigSpec/CORE]: Incorrect key server.permissionHandler was corrected from null to its default, forge:default_handler. 
+[16:41:43] [Server thread/WARN] [ne.mi.co.ForgeConfigSpec/CORE]: Incorrect key server.advertiseDedicatedServerToLan was corrected from null to its default, true. 
+[16:41:44] [Server thread/INFO] [minecraft/MinecraftServer]: Preparing start region for dimension minecraft:overworld
+[16:41:44] [Worker-Main-1/INFO] [minecraft/LoggerChunkProgressListener]: Preparing spawn area: 0%
+[16:41:44] [Worker-Main-1/INFO] [minecraft/LoggerChunkProgressListener]: Preparing spawn area: 0%
+[16:41:45] [Worker-Main-1/INFO] [minecraft/LoggerChunkProgressListener]: Preparing spawn area: 0%
+[16:41:45] [Worker-Main-1/INFO] [minecraft/LoggerChunkProgressListener]: Preparing spawn area: 0%
+[16:41:45] [Server thread/INFO] [minecraft/LoggerChunkProgressListener]: Time elapsed: 1714 ms
+[16:41:45] [Server thread/INFO] [minecraft/GameTestServer]: Started game test server
+[16:41:45] [Server thread/INFO] [ne.mi.se.pe.PermissionAPI/]: Successfully initialized permission handler forge:default_handler
+[16:41:46] [Server thread/INFO] [minecraft/GameTestBatchRunner]: Running test batch 'rift_empty_pulse:1' (1 tests)...
+[16:41:46] [Server thread/INFO] [minecraft/GameTestServer]: 36 tests are now running!
+[16:41:46] [Server thread/INFO] [minecraft/GameTestBatchRunner]: Running test batch 'brood_ambush:1' (1 tests)...
+[16:41:46] [Server thread/INFO] [minecraft/GameTestServer]: [+_                                  ]
+[16:41:46] [Server thread/INFO] [minecraft/GameTestServer]: [+_                                  ]
+[16:41:47] [Server thread/INFO] [minecraft/GameTestBatchRunner]: Running test batch 'design_carrier:1' (1 tests)...
+[16:41:47] [Server thread/INFO] [minecraft/GameTestServer]: [++_                                 ]
+[16:41:47] [Server thread/INFO] [minecraft/GameTestServer]: [++_                                 ]
+[16:41:47] [Server thread/INFO] [minecraft/GameTestServer]: [++_                                 ]
+[16:41:47] [Server thread/INFO] [minecraft/GameTestServer]: [++_                                 ]
+[16:41:47] [Server thread/INFO] [minecraft/GameTestServer]: [++_                                 ]
+[16:41:47] [Server thread/INFO] [minecraft/GameTestServer]: [++_                                 ]
+[16:41:47] [Server thread/INFO] [minecraft/GameTestServer]: [++_                                 ]
+[16:41:47] [Server thread/INFO] [minecraft/GameTestServer]: [++_                                 ]
+[16:41:47] [Server thread/INFO] [minecraft/GameTestBatchRunner]: Running test batch 'brood_cargo:1' (1 tests)...
+[16:41:47] [Server thread/INFO] [minecraft/GameTestServer]: [+++_                                ]
+[16:41:47] [Server thread/INFO] [minecraft/GameTestServer]: [+++_                                ]
+[16:41:47] [Server thread/INFO] [minecraft/GameTestServer]: [+++_                                ]
+[16:41:48] [Server thread/INFO] [minecraft/GameTestBatchRunner]: Running test batch 'design_timing:1' (4 tests)...
+[16:41:48] [Server thread/INFO] [minecraft/GameTestServer]: [++++____                            ]
+[16:41:48] [Server thread/INFO] [minecraft/GameTestServer]: [++++____                            ]
+[16:41:48] [Server thread/INFO] [minecraft/GameTestServer]: [++++____                            ]
+[16:41:48] [Server thread/INFO] [minecraft/GameTestServer]: [++++____                            ]
+[16:41:48] [Server thread/INFO] [minecraft/GameTestServer]: [++++____                            ]
+[16:41:48] [Server thread/INFO] [minecraft/GameTestServer]: [++++__+_                            ]
+[16:41:50] [Server thread/INFO] [minecraft/GameTestBatchRunner]: Running test batch 'design_combat:1' (12 tests)...
+[16:41:51] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++____________                ]
+[16:41:51] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++____________                ]
+[16:41:51] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++____________                ]
+[16:41:51] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++___________                ]
+[16:41:51] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++___________                ]
+[16:41:51] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++________+_+                ]
+[16:41:51] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++_____+_++++                ]
+[16:41:51] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++__+_+++++++                ]
+[16:41:51] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++_+++++++++                ]
+[16:41:51] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++_+++++++++                ]
+[16:41:51] [Server thread/INFO] [minecraft/GameTestBatchRunner]: Running test batch 'rift_leash:1' (1 tests)...
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++_               ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++_               ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++_               ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++_               ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++_               ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++_               ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++_               ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++_               ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++_               ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++_               ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++_               ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++_               ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++_               ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++_               ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++_               ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++_               ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++_               ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestBatchRunner]: Running test batch 'isolated_wave:1' (1 tests)...
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++_              ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++_              ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++_              ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++_              ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++_              ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++_              ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestBatchRunner]: Running test batch 'brood_scout:1' (1 tests)...
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++++_             ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++++_             ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++++_             ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++++_             ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestBatchRunner]: Running test batch 'rift_interrupt:1' (1 tests)...
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++++_            ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++++_            ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++++_            ]
+[16:41:52] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++++_            ]
+[16:41:53] [Server thread/INFO] [minecraft/GameTestBatchRunner]: Running test batch 'rift_attack:1' (2 tests)...
+[16:41:53] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++++++__          ]
+[16:41:53] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++++++__          ]
+[16:41:53] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++++++__          ]
+[16:41:53] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++++++__          ]
+[16:41:53] [Server thread/INFO] [minecraft/GameTestBatchRunner]: Running test batch 'rift_suppression:1' (1 tests)...
+[16:41:53] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++++++++_         ]
+[16:41:53] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++++++++_         ]
+[16:41:53] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++++++++_         ]
+[16:41:53] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++++++++_         ]
+[16:41:53] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++++++++_         ]
+[16:41:53] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++++++++_         ]
+[16:41:53] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++++++++_         ]
+[16:41:53] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++++++++_         ]
+[16:41:53] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++++++++_         ]
+[16:41:53] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++++++++_         ]
+[16:41:53] [Server thread/INFO] [minecraft/GameTestBatchRunner]: Running test batch 'rift_budget:1' (1 tests)...
+[16:41:54] [Server thread/INFO] [minecraft/GameTestBatchRunner]: Running test batch 'rift_site:1' (1 tests)...
+[16:41:54] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++++++++++        ]
+[16:41:54] [Server thread/INFO] [minecraft/GameTestBatchRunner]: Running test batch 'isolated_projectile_tactics:1' (1 tests)...
+[16:41:54] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++++++++++_      ]
+[16:41:54] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++++++++++_      ]
+[16:41:54] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++++++++++_      ]
+[16:41:54] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++++++++++_      ]
+[16:41:54] [Server thread/INFO] [minecraft/GameTestBatchRunner]: Running test batch 'brood_spitter:1' (1 tests)...
+[16:41:54] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++++++++++++_     ]
+[16:41:54] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++++++++++++_     ]
+[16:41:54] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++++++++++++_     ]
+[16:41:54] [Server thread/INFO] [minecraft/GameTestBatchRunner]: Running test batch 'design_spider:1' (1 tests)...
+[16:41:54] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++++++++++++_    ]
+[16:41:54] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++++++++++++_    ]
+[16:41:54] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++++++++++++_    ]
+[16:41:54] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++++++++++++_    ]
+[16:41:54] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++++++++++++_    ]
+[16:41:54] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++++++++++++_    ]
+[16:41:54] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++++++++++++_    ]
+[16:41:54] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++++++++++++_    ]
+[16:41:54] [Server thread/INFO] [minecraft/GameTestBatchRunner]: Running test batch 'rift_shield:1' (1 tests)...
+[16:41:55] [Server thread/INFO] [minecraft/GameTestBatchRunner]: Running test batch 'isolated_archer:1' (1 tests)...
+[16:41:55] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++++++++++++++_  ]
+[16:41:55] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++++++++++++++_  ]
+[16:41:55] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++++++++++++++_  ]
+[16:41:55] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++++++++++++++_  ]
+[16:41:55] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++++++++++++++_  ]
+[16:41:55] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++++++++++++++_  ]
+[16:41:55] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++++++++++++++_  ]
+[16:41:55] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++++++++++++++_  ]
+[16:41:55] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++++++++++++++_  ]
+[16:41:55] [Server thread/INFO] [minecraft/GameTestServer]: [+++++++++++++++++++++++++++++++++_  ]
+[16:41:55] [Server thread/INFO] [minecraft/GameTestBatchRunner]: Running test batch 'rift_fixture:1' (1 tests)...
+[16:41:55] [Server thread/INFO] [minecraft/GameTestBatchRunner]: Running test batch 'rift_landing:1' (1 tests)...
+[16:41:55] [Server thread/INFO] [minecraft/GameTestServer]: [++++++++++++++++++++++++++++++++++++]
+[16:41:55] [Server thread/INFO] [minecraft/GameTestServer]: ========= 36 GAME TESTS COMPLETE ======================
+[16:41:55] [Server thread/INFO] [minecraft/GameTestServer]: All 36 required tests passed :)
+[16:41:55] [Server thread/INFO] [minecraft/GameTestServer]: ====================================================
+[16:41:55] [Server thread/INFO] [minecraft/MinecraftServer]: Stopping server
+[16:41:55] [Server thread/INFO] [minecraft/MinecraftServer]: Saving players
+[16:41:55] [Server thread/INFO] [minecraft/MinecraftServer]: Saving worlds
+[16:41:56] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
+[16:41:57] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_end
+[16:41:57] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_nether
+[16:41:57] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[16:41:57] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[16:41:57] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[16:41:57] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage: All dimensions are saved
+[16:41:58] [Server thread/INFO] [minecraft/GameTestServer]: Game test server shutting down
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.8/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 1m 10s
+10 actionable tasks: 5 executed, 5 up-to-date

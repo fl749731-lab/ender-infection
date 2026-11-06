@@ -25,7 +25,7 @@ public final class DesignContent {
     public static final RegistryObject<Block> PART=BLOCKS.register("lab_fixture_part",()->new LabPartBlock(BlockBehaviour.Properties.of().strength(3).noOcclusion().dynamicShape()));
     static {
         for(String key:new String[]{"mycelium_bundle","spore_pod","chitin_plate","condensed_biomass","resonance_organ"})ITEMS_BY_KEY.put(key,ITEMS.register(key,()->new Item(new Item.Properties())));
-        for(String key:new String[]{"prism_spear","earthsplitter_hammer","crystal_spike_crossbow","resonance_staff"})ITEMS_BY_KEY.put(key,ITEMS.register(key,()->new DesignWeapon(key)));
+        for(String key:new String[]{"prism_spear","earthsplitter_hammer","crystal_spike_crossbow","resonance_staff"})ITEMS_BY_KEY.put(key,ITEMS.register(key,()->key.equals("resonance_staff")?new ResonanceStaff():new DesignWeapon(key)));
         for(String set:new String[]{"crystal_carapace","brood_heavy"})for(ArmorItem.Type slot:ArmorItem.Type.values()){
             String key=set+"_"+slot.getName();ITEMS_BY_KEY.put(key,ITEMS.register(key,()->new DesignArmor(set,new Material(set),slot)));
         }

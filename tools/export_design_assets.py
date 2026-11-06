@@ -286,6 +286,9 @@ def export(units=None):
  REPORT.extend(export_reworks(update_manifest=False))
  from export_mutant_rework import export as export_mutant
  REPORT.extend(export_mutant(update_manifest=False))
+ from export_staff_rework import export as export_staff
+ REPORT[:]=[row for row in REPORT if row['runtime']!='resonance_staff']
+ REPORT.extend(export_staff(update_manifest=False))
  # Rift replacements have their own canonical MCP-authored BB5 sources.
  from export_rift_assets import export as export_rift
  export_rift()

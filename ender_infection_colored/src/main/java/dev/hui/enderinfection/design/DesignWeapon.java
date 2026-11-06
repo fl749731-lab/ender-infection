@@ -11,7 +11,7 @@ import net.minecraft.world.phys.*;
 import net.minecraft.world.level.Level;
 
 /** Server-authoritative abilities: ammunition, charge, cooldown and durability are consumed once. */
-public final class DesignWeapon extends SwordItem {
+public class DesignWeapon extends SwordItem {
     public final String key;
     public DesignWeapon(String key){super(Tiers.DIAMOND,key.equals("earthsplitter_hammer")?7:key.equals("prism_spear")?4:1,key.equals("earthsplitter_hammer")?-3.3F:-2.6F,new Item.Properties().durability(650).rarity(Rarity.RARE));this.key=key;}
     @Override public int getUseDuration(ItemStack stack){return key.equals("crystal_spike_crossbow")?72000:0;}

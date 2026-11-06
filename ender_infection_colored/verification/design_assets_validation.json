@@ -1,9 +1,9 @@
 {
   "status": "PASS",
-  "geometry_files": 48,
-  "validated_faces": 62580,
+  "geometry_files": 49,
+  "validated_faces": 62748,
   "obj_files": 129,
-  "glow_masks": 52,
+  "glow_masks": 53,
   "creature_glow_textures": 35,
   "crystal_pixels": 39442,
   "missing_crystal_pixels": 0,
@@ -51,6 +51,32 @@
   "mapped_source_models": 69,
   "scene_source_models": 2,
   "errors": [],
+  "public_weapon_adaptations": [
+    {
+      "source": "resonance_staff",
+      "editable_source": "colored_units/resonance_staff_public_v1/models/resonance_staff.bbmodel",
+      "runtime": "resonance_staff",
+      "kind": "weapon",
+      "pipeline": "tools/export_staff_rework.py",
+      "scale": 0.8,
+      "cubes": 28,
+      "bones": 4,
+      "atlas": [
+        256,
+        128
+      ],
+      "emissive_pixels": 6,
+      "crystal_faces": 18,
+      "visual_bounds": {
+        "width": 0.9871000000000001,
+        "height": 2.2353500000000004,
+        "depth": 0.652,
+        "center_x": -0.0,
+        "center_z": 0.0
+      },
+      "public_base": "Void Staff by @alexander"
+    }
+  ],
   "public_model_adaptations": [
     {
       "source": "resonance_priest",

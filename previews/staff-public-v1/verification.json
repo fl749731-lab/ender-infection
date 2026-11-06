@@ -1,0 +1,391 @@
+{
+  "status": "PASS",
+  "release_gate": false,
+  "scope": "Licensed staff development validation; not full release gate",
+  "native_tests": 72,
+  "screenshots": 24,
+  "model": {
+    "source": "resonance_staff",
+    "editable_source": "colored_units/resonance_staff_public_v1/models/resonance_staff.bbmodel",
+    "runtime": "resonance_staff",
+    "kind": "weapon",
+    "pipeline": "tools/export_staff_rework.py",
+    "scale": 0.8,
+    "cubes": 28,
+    "bones": 4,
+    "atlas": [
+      256,
+      128
+    ],
+    "emissive_pixels": 6,
+    "crystal_faces": 18,
+    "visual_bounds": {
+      "width": 0.9871000000000001,
+      "height": 2.2353500000000004,
+      "depth": 0.652,
+      "center_x": -0.0,
+      "center_z": 0.0
+    },
+    "public_base": "Void Staff by @alexander"
+  },
+  "platforms": {
+    "forge": {
+      "frames": [
+        {
+          "phase": "first_right_idle",
+          "file": "first_right_idle.png",
+          "sha256": "87a06882e822fa8ee79520797de1725be68be6affbe35fdbdd50744a98914377",
+          "fork": 0.0,
+          "core_scale": 1.0,
+          "triggered": false,
+          "block": 0,
+          "sky": 15
+        },
+        {
+          "phase": "first_right_cast",
+          "file": "first_right_cast.png",
+          "sha256": "d9375b41727f6f11f0ff3a0ae1aa818139aecc1e7e19d96a692ccac133869515",
+          "fork": 0.22693439,
+          "core_scale": 1.1499286,
+          "triggered": true,
+          "block": 0,
+          "sky": 15
+        },
+        {
+          "phase": "first_right_recover",
+          "file": "first_right_recover.png",
+          "sha256": "4a1b3281696b9a9280c7a4dedfde39ad7af3a106785b65459a9e453ab0cc6081",
+          "fork": 0.0,
+          "core_scale": 1.0,
+          "triggered": false,
+          "block": 0,
+          "sky": 15
+        },
+        {
+          "phase": "first_right_recast",
+          "file": "first_right_recast.png",
+          "sha256": "68950baf66a337c55316411e0ba56b5efb1eeabc8411dba42a918d20089ec5a6",
+          "fork": 0.2185007,
+          "core_scale": 1.164425,
+          "triggered": true,
+          "block": 0,
+          "sky": 15
+        },
+        {
+          "phase": "first_left_idle",
+          "file": "first_left_idle.png",
+          "sha256": "6c740a7a60bb720d936b87fa026fb5a82f22d5bc9550d2a622ef666ddfabfab5",
+          "fork": 0.0,
+          "core_scale": 1.0,
+          "triggered": false,
+          "block": 0,
+          "sky": 15
+        },
+        {
+          "phase": "first_left_cast",
+          "file": "first_left_cast.png",
+          "sha256": "4b79ca541a3ec8c8297ab13c6c7728033b680b5d51e5bd6bba5b2eb66a4619af",
+          "fork": 0.22563857,
+          "core_scale": 1.1521559,
+          "triggered": true,
+          "block": 0,
+          "sky": 15
+        },
+        {
+          "phase": "third_right",
+          "file": "third_right.png",
+          "sha256": "66e277574b9c780b7bf1eeb954ed9772267aad3a1e5bfd4b24292895ba1d08d1",
+          "fork": 0.0,
+          "core_scale": 1.0,
+          "triggered": false,
+          "block": 0,
+          "sky": 15
+        },
+        {
+          "phase": "third_left",
+          "file": "third_left.png",
+          "sha256": "00474a4edc16866ed6932486f13b5856eab255de440e5db976421d271fe9e49a",
+          "fork": 0.0,
+          "core_scale": 1.0,
+          "triggered": false,
+          "block": 0,
+          "sky": 15
+        },
+        {
+          "phase": "inventory",
+          "file": "inventory.png",
+          "sha256": "0b289944f5014f614931aad3741662291cd5e4179fad17a72f83ccfe3dd392b3",
+          "fork": 0.0,
+          "core_scale": 1.0,
+          "triggered": false,
+          "block": 0,
+          "sky": 15
+        },
+        {
+          "phase": "ground",
+          "file": "ground.png",
+          "sha256": "e6affd44ff4c9cc32a87f980851c360dd0ce33226ffcd18b8d2e3004af3dc662",
+          "fork": 0.0,
+          "core_scale": 1.0,
+          "triggered": false,
+          "block": 0,
+          "sky": 15
+        },
+        {
+          "phase": "dark_right",
+          "file": "dark_right.png",
+          "sha256": "033d5fa29879af6b362c516345a44991dece5bee2837c1a95848f41f16673c14",
+          "fork": 0.0,
+          "core_scale": 1.0,
+          "triggered": false,
+          "block": 0,
+          "sky": 0
+        },
+        {
+          "phase": "dark_cast",
+          "file": "dark_cast.png",
+          "sha256": "bc58be8361c5891e264bd909143cbaa892938762783b12e17d36bb7f96f466f9",
+          "fork": 0.22629127,
+          "core_scale": 1.151034,
+          "triggered": true,
+          "block": 0,
+          "sky": 0
+        }
+      ],
+      "casts": [
+        [
+          "first_right_cast",
+          "2",
+          "2"
+        ],
+        [
+          "first_right_recast",
+          "4",
+          "2"
+        ],
+        [
+          "first_left_cast",
+          "2",
+          "4"
+        ],
+        [
+          "dark_cast",
+          "2",
+          "10"
+        ]
+      ],
+      "native_tests": 36
+    },
+    "neo": {
+      "frames": [
+        {
+          "phase": "first_right_idle",
+          "file": "first_right_idle.png",
+          "sha256": "1cc03fb1eeedabf1dd3c6f2f1af8f2779a3220e6f845af97be2f78595f258031",
+          "fork": 0.0,
+          "core_scale": 1.0,
+          "triggered": false,
+          "block": 0,
+          "sky": 15
+        },
+        {
+          "phase": "first_right_cast",
+          "file": "first_right_cast.png",
+          "sha256": "6cb4df2c101527d18677ba7b58bfaaa99fad1196d81eb5b71ae2d7244378d16c",
+          "fork": 0.2290223,
+          "core_scale": 1.1463397,
+          "triggered": true,
+          "block": 0,
+          "sky": 15
+        },
+        {
+          "phase": "first_right_recover",
+          "file": "first_right_recover.png",
+          "sha256": "0230467aef3aba83c3c46ec723afe92040fab80aa40fbb31131fb4304fb7f0fb",
+          "fork": 0.0,
+          "core_scale": 1.0,
+          "triggered": false,
+          "block": 0,
+          "sky": 15
+        },
+        {
+          "phase": "first_right_recast",
+          "file": "first_right_recast.png",
+          "sha256": "588d9d2c79ee8e269752b5a91e17720f8831a51b53c89571a117a5eeb7d87b22",
+          "fork": 0.22801302,
+          "core_scale": 1.1480745,
+          "triggered": true,
+          "block": 0,
+          "sky": 15
+        },
+        {
+          "phase": "first_left_idle",
+          "file": "first_left_idle.png",
+          "sha256": "bdbab9c18ef93645457a5bbaf1079d1bb24789866e813d50180c5653ebd85dc2",
+          "fork": 0.0,
+          "core_scale": 1.0,
+          "triggered": false,
+          "block": 0,
+          "sky": 15
+        },
+        {
+          "phase": "first_left_cast",
+          "file": "first_left_cast.png",
+          "sha256": "28a03c63bc31d2e05019005a8fe7208b63034754c84a6f61873a3c760ea1f114",
+          "fork": 0.22791314,
+          "core_scale": 1.1482462,
+          "triggered": true,
+          "block": 0,
+          "sky": 15
+        },
+        {
+          "phase": "third_right",
+          "file": "third_right.png",
+          "sha256": "51133235562afe38f9a2d2359a95d1dc203d6a729fd3a0926f9736e0b98f0962",
+          "fork": 0.0,
+          "core_scale": 1.0,
+          "triggered": false,
+          "block": 0,
+          "sky": 15
+        },
+        {
+          "phase": "third_left",
+          "file": "third_left.png",
+          "sha256": "f2835ae6c7f99aaafc9abd0ee41b1fa22de454f1917675ebb2cef18abe763f26",
+          "fork": 0.0,
+          "core_scale": 1.0,
+          "triggered": false,
+          "block": 0,
+          "sky": 15
+        },
+        {
+          "phase": "inventory",
+          "file": "inventory.png",
+          "sha256": "5edbd94ef33c79c495e04869541d22ace8cfe2ac8230fd4882344ed6d91dced4",
+          "fork": 0.0,
+          "core_scale": 1.0,
+          "triggered": false,
+          "block": 0,
+          "sky": 15
+        },
+        {
+          "phase": "ground",
+          "file": "ground.png",
+          "sha256": "88e9c1a97c74c4b1a284e09e8c4eee15455b89873fd9e692080ec99ef3ad6b0e",
+          "fork": 0.0,
+          "core_scale": 1.0,
+          "triggered": false,
+          "block": 0,
+          "sky": 15
+        },
+        {
+          "phase": "dark_right",
+          "file": "dark_right.png",
+          "sha256": "969ea5db637b703599ed6fc37c2cff436dd4f4932b61358f13996a211fe87078",
+          "fork": 0.0,
+          "core_scale": 1.0,
+          "triggered": false,
+          "block": 0,
+          "sky": 0
+        },
+        {
+          "phase": "dark_cast",
+          "file": "dark_cast.png",
+          "sha256": "ffb1925de47a11fd843e6fc4e488e4929a7a22e5fb5f65c328bef8dc71d8f022",
+          "fork": 0.23463297,
+          "core_scale": 1.1366956,
+          "triggered": true,
+          "block": 0,
+          "sky": 0
+        }
+      ],
+      "casts": [
+        [
+          "first_right_cast",
+          "2",
+          "2"
+        ],
+        [
+          "first_right_recast",
+          "4",
+          "2"
+        ],
+        [
+          "first_left_cast",
+          "2",
+          "4"
+        ],
+        [
+          "dark_cast",
+          "2",
+          "10"
+        ]
+      ],
+      "native_tests": 36
+    }
+  },
+  "source_hashes": {
+    "ender_infection_colored/src/main/resources/assets/ender_infection/geo/resonance_staff.geo.json": "32cb40c012078e59ac527fa13bb01e2d56875f1477a613ce0f840d5629fe19c7",
+    "ender_infection_colored/src/main/resources/assets/ender_infection/animations/resonance_staff.animation.json": "fa45d8fe70775ad42d9720c6711228882d81539f02e37b0e2413706d2a14ff75",
+    "ender_infection_colored/src/main/resources/assets/ender_infection/textures/item/design/resonance_staff.png": "edb70133d4bf1d451132a6e97ea5c334b258d72383cacc771252a57319b46fcd",
+    "ender_infection_colored/src/main/resources/assets/ender_infection/textures/item/design/resonance_staff_glowmask.png": "d9eeb90a925348c60ea3344e915b063fb56d801971fa558d4da08a4193658614",
+    "ender_infection_colored/src/main/resources/assets/ender_infection/models/item/resonance_staff.json": "919407e3de828c1eebcc0ec04e79f907d5e7b0a135c1c58e8426fcf2029c7154",
+    "ender_infection_colored/src/main/resources/assets/ender_infection/third_party/model_credits.json": "0b76cb728dc7a1cef737e2f73ef7e3bb09b69e48905cbab701db5406484f10c0",
+    "colored_units/resonance_staff_public_v1/models/resonance_staff.bbmodel": "0e755c0eea3e55e58757c9ae49e529a89e4c64845aa4db2c6ff9571abbab28b8",
+    "colored_units/resonance_staff_public_v1/export-lock.json": "f13d5bdbcfa055e586f4b6f2c9249fb9035abe48ff6362af0c61336358f83a54",
+    "colored_units/resonance_staff_public_v1/mcp-verification.json": "8bc60170022d8acdd19eea2ca38fbf95edef925aacec373fe6d10020e42cf00b",
+    "colored_units/resonance_staff_public_v1/provenance.json": "c0a416d8a9ecffb662b7ad4536e973a05f5b1abd96170e385ae8eaa4388042ef",
+    "colored_units/resonance_staff_public_v1/source/void-staff.viewer.json": "af42113c5a7b07d54a6d07009147a643c24613f0490fef24e04ee9f2eede2bd0",
+    "ender_infection_colored/build.gradle": "931d4e8713e8260d19ae92ba7fe237cd81c6590ecc7d7ac78692dc6901633bd2",
+    "ender_infection_colored/src/main/java/dev/hui/enderinfection/design/ResonanceStaff.java": "7313c68601e256478b385a4f5924cfa5d6076d2d36fa8fa1197c992327f77a0c",
+    "ender_infection_colored/src/main/java/dev/hui/enderinfection/design/DesignWeapon.java": "f12f8098c26f5560988f2ab8f4a3a99defe5dbcf86bbdd81925a54acb1eabd46",
+    "ender_infection_colored/src/main/java/dev/hui/enderinfection/design/DesignContent.java": "e7dd74d0f168ec1689d4f7bf63f225bcdb9d2c10ef3ecbcb87e99f75508fbc4b",
+    "ender_infection_colored/src/main/java/dev/hui/enderinfection/client/ResonanceStaffRenderer.java": "5021e2b9a693983cef759142f352c43b85402fc95830de1d8b5495e1ce1e0dfc",
+    "ender_infection_colored/src/main/java/dev/hui/enderinfection/client/StaffVisualCheck.java": "97ba4bfd646384134de142d83a4e4bb05b983f0681f9beb95ce120b2c4184f01",
+    "ender_infection_neoforge/build.gradle": "bfbbda4e7f9bf4b15034f1191f9ca3370a9a4653b93dcda33e0b7665591f8400",
+    "ender_infection_neoforge/src/main/java/dev/hui/enderinfection/design/ResonanceStaff.java": "283d54e6b7cdb23e4c8d4d2ec27e95e43fc81411050a801d11278c0f2eeac119",
+    "ender_infection_neoforge/src/main/java/dev/hui/enderinfection/design/DesignWeapon.java": "95238ba3a3dd2349922b779358a786964fc8affd36018bed3b4218e7efd4b006",
+    "ender_infection_neoforge/src/main/java/dev/hui/enderinfection/design/DesignContent.java": "076824b0cfd42d098c65d107fca2fc16e683b7c2c45bf41960aaa93cadd5042b",
+    "ender_infection_neoforge/src/main/java/dev/hui/enderinfection/client/ResonanceStaffRenderer.java": "21853e1c6abf9ff3477632f0a00231db43859b477abf0af51971cd90f0ec49e3",
+    "ender_infection_neoforge/src/main/java/dev/hui/enderinfection/client/StaffVisualCheck.java": "e395c9ed2050c5bedd7ad7a5c240143883fc0d7c416b7de96722bab932c69c6d",
+    "tools/export_staff_rework.py": "7a36101f118276972019a4f9707d426e4fc789309d8f3142012316831303dec8",
+    "tools/export_design_assets.py": "90278a54dd28964ff73e8d07b32421a2ad43402219b1c21eb06d5c461d44962b",
+    "tools/validate_design_assets.py": "8a2d92a9f4c46c0006255e48d8007d076173bfa3b7f3fdbb92f6c72780d65465",
+    "tools/verify_staff_runtime.py": "309c3145e596fb5afddf00a176e12d6025b5f3007179fd16ca01debf924fb4aa"
+  },
+  "evidence_hashes": {
+    "runtime/development/ender_infection_colored-build.log": "664da32260db19951247816228469a4906106d846218ba0b058a26a2ef192e54",
+    "runtime/development/ender_infection_neoforge-build.log": "ba50a224e9c685084c71ab80b667d523d1411e95d72e878ab3e677f5109167fe",
+    "runtime/development/forge-addon-build.log": "ce1ea7b17231c655359de439dc3564b942aec8b5a4ae94890ace527b1e277a14",
+    "runtime/development/neoforge-addon-build.log": "75c1fbba3d87f8c29835f11b18ac2206f79e8e713dc1142aaaef38ae89fb1f9d",
+    "runtime/development/verified-builds.json": "8b0141a77101cc801b1a1df72b34d5be4e8c58bcc0d1185ad0aa4f34ce9f2eea",
+    "runtime/forge/dark_cast.png": "bc58be8361c5891e264bd909143cbaa892938762783b12e17d36bb7f96f466f9",
+    "runtime/forge/dark_right.png": "033d5fa29879af6b362c516345a44991dece5bee2837c1a95848f41f16673c14",
+    "runtime/forge/first_left_cast.png": "4b79ca541a3ec8c8297ab13c6c7728033b680b5d51e5bd6bba5b2eb66a4619af",
+    "runtime/forge/first_left_idle.png": "6c740a7a60bb720d936b87fa026fb5a82f22d5bc9550d2a622ef666ddfabfab5",
+    "runtime/forge/first_right_cast.png": "d9375b41727f6f11f0ff3a0ae1aa818139aecc1e7e19d96a692ccac133869515",
+    "runtime/forge/first_right_idle.png": "87a06882e822fa8ee79520797de1725be68be6affbe35fdbdd50744a98914377",
+    "runtime/forge/first_right_recast.png": "68950baf66a337c55316411e0ba56b5efb1eeabc8411dba42a918d20089ec5a6",
+    "runtime/forge/first_right_recover.png": "4a1b3281696b9a9280c7a4dedfde39ad7af3a106785b65459a9e453ab0cc6081",
+    "runtime/forge/ground.png": "e6affd44ff4c9cc32a87f980851c360dd0ce33226ffcd18b8d2e3004af3dc662",
+    "runtime/forge/inventory.png": "0b289944f5014f614931aad3741662291cd5e4179fad17a72f83ccfe3dd392b3",
+    "runtime/forge/native.log": "0e91c7d30eaba7264ad339c27a6f73a36456dd9470595c2d40cdeba15880ee1b",
+    "runtime/forge/third_left.png": "00474a4edc16866ed6932486f13b5856eab255de440e5db976421d271fe9e49a",
+    "runtime/forge/third_right.png": "66e277574b9c780b7bf1eeb954ed9772267aad3a1e5bfd4b24292895ba1d08d1",
+    "runtime/forge/visual.log": "10e8b484ef7705492225acd9012d4a92953b99cf814420105122859a36ff6835",
+    "runtime/neo/dark_cast.png": "ffb1925de47a11fd843e6fc4e488e4929a7a22e5fb5f65c328bef8dc71d8f022",
+    "runtime/neo/dark_right.png": "969ea5db637b703599ed6fc37c2cff436dd4f4932b61358f13996a211fe87078",
+    "runtime/neo/first_left_cast.png": "28a03c63bc31d2e05019005a8fe7208b63034754c84a6f61873a3c760ea1f114",
+    "runtime/neo/first_left_idle.png": "bdbab9c18ef93645457a5bbaf1079d1bb24789866e813d50180c5653ebd85dc2",
+    "runtime/neo/first_right_cast.png": "6cb4df2c101527d18677ba7b58bfaaa99fad1196d81eb5b71ae2d7244378d16c",
+    "runtime/neo/first_right_idle.png": "1cc03fb1eeedabf1dd3c6f2f1af8f2779a3220e6f845af97be2f78595f258031",
+    "runtime/neo/first_right_recast.png": "588d9d2c79ee8e269752b5a91e17720f8831a51b53c89571a117a5eeb7d87b22",
+    "runtime/neo/first_right_recover.png": "0230467aef3aba83c3c46ec723afe92040fab80aa40fbb31131fb4304fb7f0fb",
+    "runtime/neo/ground.png": "88e9c1a97c74c4b1a284e09e8c4eee15455b89873fd9e692080ec99ef3ad6b0e",
+    "runtime/neo/inventory.png": "5edbd94ef33c79c495e04869541d22ace8cfe2ac8230fd4882344ed6d91dced4",
+    "runtime/neo/native.log": "98e2aeb77ac3593decc2328adafe106a835b5049d2742a8c816219510c7ddc22",
+    "runtime/neo/third_left.png": "f2835ae6c7f99aaafc9abd0ee41b1fa22de454f1917675ebb2cef18abe763f26",
+    "runtime/neo/third_right.png": "51133235562afe38f9a2d2359a95d1dc203d6a729fd3a0926f9736e0b98f0962",
+    "runtime/neo/visual.log": "980c7973c9464a9cf61f17f8992a6ef4381c9b09b0c684b8226f359861f090f1"
+  }
+}

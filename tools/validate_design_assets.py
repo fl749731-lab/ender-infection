@@ -9,12 +9,13 @@ from validate_rift_runtime import validate as validate_rift
 from export_public_model_adaptations import SPECS as ADAPTATIONS, validate as validate_adaptations
 from export_creature_reworks import SPECS as REWORKS, validate as validate_reworks
 from export_mutant_rework import RUNTIME as MUTANT_REWORK, validate as validate_mutant
+from export_staff_rework import validate as validate_staff
 sys.path.insert(0,str(PACK/'source'))
 from modelkit import PALETTES,rgb
 from concept_materials import CONCEPT_PALETTES
 report=json.loads((PROJECT/'verification/design_asset_manifest.json').read_text('utf-8'));errors=[];checked_geo=checked_uv=checked_obj=0
 for row in report['assets']:
- if row['kind'] in ('entity','mother','armor_set','block'):
+ if row['kind'] in ('entity','mother','armor_set','block') or row.get('pipeline')=='tools/export_staff_rework.py':
   p=ASSETS/'geo'/f"{row['runtime']}.geo.json"
   if not p.exists():
    if row['kind']!='block':errors.append('Missing '+str(p))
@@ -127,5 +128,7 @@ rift=[]
 try:rift=validate_rift()
 except (AssertionError,ValueError,OSError,KeyError) as error:errors.append('Rift runtime assets: '+str(error))
 result={'status':'FAIL' if errors else 'PASS','geometry_files':checked_geo,'validated_faces':checked_uv,'obj_files':checked_obj,'glow_masks':checked_glow,'creature_glow_textures':creature_glow_textures+len(rift),'crystal_pixels':crystal_pixels+sum(r['emissive_pixels'] for r in rift),'missing_crystal_pixels':missing_crystal_pixels,'non_crystal_glow_pixels':non_crystal_glow_pixels,'legacy_creature_glow':legacy_glow,'rift_models':rift,'mapped_source_models':len(sources),'scene_source_models':2,'errors':errors}
+try:result['public_weapon_adaptations']=validate_staff()
+except (ValueError,OSError,KeyError) as error:errors.append('Staff runtime: '+str(error));result['status']='FAIL'
 result['public_model_adaptations']=adaptations
 (PROJECT/'verification/design_assets_validation.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8');print(json.dumps(result,ensure_ascii=False));raise SystemExit(bool(errors))

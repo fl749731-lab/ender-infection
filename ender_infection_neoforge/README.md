@@ -2,7 +2,7 @@
 
 此目录是 Minecraft 1.21.1 + NeoForge 版本。Forge 1.20.1 工程保留在 `../ender_infection_colored`；两版的游戏存档、运行目录和 JAR 分开使用。
 
-该平台从 **v0.12.0-alpha.2** 起与 Forge 1.20.1 同步发行，同时提供研究所 API v1。发布附件见 [alpha.2 发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.2)。
+该平台从 v0.12.0-alpha.2 起与 Forge 1.20.1 同步发行，同时提供研究所 API v1。当前为 **v0.12.0-alpha.7**，发布附件见 [alpha.7 发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.7)。
 
 - Java 21；NeoForge 21.1.265；GeckoLib 4.9.3。
 - 版本号读取 Forge 工程的 `build.gradle`，由同一版本号维护。
@@ -31,4 +31,4 @@
 
 首次运行会下载 Minecraft 资源。空间不足时，可在当前 PowerShell 会话设置 `NFRT_ASSET_ROOT` 到有足够空间的目录；这是 NeoForm 官方支持的缓存位置选项，正常构建不需要设置。更改此变量不会移动游戏存档。
 
-大型中央研究院目前仍是设计图册；扩展 API 的 9×7×9 示例房间不代表整座研究院已集成自然生成。
+大型中央研究所已接入六层、48 间内饰与原生结构生成；alpha.7 使用 v5 布局，包含 E8 事件及 F8 监管体启动终端和两座抑制台。旧建筑不会自动覆盖，操作见[中央研究所](../docs/central-institute.md)。API 的 9×7×9 示例房间是独立扩展示例。

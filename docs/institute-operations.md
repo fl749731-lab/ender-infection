@@ -1,6 +1,6 @@
 # 研究所供电与样本研究
 
-适用于主模组 **0.12.0-alpha.6**。本页操作最初于 alpha.4 接入；当前下载见[alpha.6 发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.6)。Forge 1.20.1 / Java 17 与 NeoForge 1.21.1 / Java 21 同步提供。
+适用于主模组 **0.12.0-alpha.7**。本页操作最初于 alpha.4 接入；当前下载见[alpha.7 发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.7)。Forge 1.20.1 / Java 17 与 NeoForge 1.21.1 / Java 21 同步提供。
 
 本轮把中央研究所的探索连成“取得物资 → 修复电源 → 分区送电 → 领取门禁卡 → 分析与分离 → 领取核心档案”。完成研究后可继续 [E8 收容事故](containment-incident.md)；研究所 Boss 尚未接入。
 
@@ -67,4 +67,4 @@ python tools/build_dual_version.py --clean --gametests
 `InstituteOperationsVisualCheck` 使用各工程独立的 `build/operations-visual-check`，检查真实交互、门禁、加工菜单、档案奖励及医疗家具；截图在其 `screenshots` 子目录，结果标记写入 `operations-visual-result.txt`。开发检查不使用玩家已有实例或存档。两版附属示例还需在对应工程运行 `build runGameTestServer`，随后执行示例目录的 `verify_examples.py`。
 
 <!-- alpha4-validation -->
-基础设施首次 alpha.4 验收的 139 项测试与 20 张截图属于[历史记录](../previews/institute-operations-alpha4/README.md)。公开 alpha.6 的 163 项测试和 32 张截图见[已发布验收](../previews/incident-alpha6/README.md)；本地 alpha.7 的 F8 Boss 操作与验收见[收容监管体](institute-boss.md)。
+基础设施首次 alpha.4 验收的 139 项测试与 20 张截图属于[历史记录](../previews/institute-operations-alpha4/README.md)。alpha.6 的 163 项测试和 32 张截图见[历史事件验收](../previews/incident-alpha6/README.md)；alpha.7 的 F8 Boss 操作见[收容监管体](institute-boss.md)，本次完整验收结果随发行附件提供。

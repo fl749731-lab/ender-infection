@@ -1,6 +1,6 @@
 # 双版本构建与维护
 
-主模组公开版本为 0.12.0-alpha.6，本地开发版本为 alpha.7（F8 Boss）。Forge 1.20.1 使用 Java 17，NeoForge 1.21.1 使用 Java 21。
+主模组公开版本为 0.12.0-alpha.7，包含 F8 Boss 及首批公开底模改造。Forge 1.20.1 使用 Java 17，NeoForge 1.21.1 使用 Java 21。
 
 ## 源码与资源
 
@@ -26,7 +26,7 @@ python tools/build_dual_version.py --clean --gametests
 
 此入口检查布局、共享源和注册 ID，构建两版主模组、API 开发包与附属示例，运行原生测试及 E8 的真实服务器重启／区块卸载验收。当前 alpha.6 通过 18 组共 163 项必需测试、每版 3 次专用服务器启动；另保留 32 张客户端截图。[完整验收记录](../previews/incident-alpha6/README.md)。
 
-alpha.7 开发版另加入 F8 Boss 原生测试和真实重启／卸载检查。该版结果、36 张客户端截图与最终 JAR 摘要集中在 [F8 运行验收](../previews/institute-boss-alpha7/runtime/README.md)，不与 alpha.6 的历史数量混用。
+alpha.7 加入 F8 Boss 原生测试和真实重启／卸载检查。开发阶段的结果和 36 张客户端截图集中在 [F8 运行验收](../previews/institute-boss-alpha7/runtime/README.md)；本次公开安装包的完整干净验收与最终 JAR 摘要随 alpha.7 发行附件提供，不与早期开发包或 alpha.6 的历史数量混用。
 
 后续增强特效的开发增量验收单独记录在 [VFX 运行记录](../previews/containment-warden-vfx-v1/runtime/README.md)：Warden 34 项原生用例、48 张客户端实景及本轮开发 JAR。该记录不替代公开发布前的干净全量门槛。
 

@@ -21,6 +21,6 @@
 
 后续已取得 Skeleton Lord 作品页公开的完整预览模型 JSON，并从作者链接取得 Leathern Drake 的 Blockbench／GeckoLib 包。匿名登录下载端点未绕过。两者已通过 MCP 检查本体、骨骼及动作，并分别改造为共鸣祭司和晶背搬运兽。其余候选保持研究状态。
 
-这两项进入 alpha.7 开发资源，保留署名、许可链接和修改说明；未替换监管体。来源及可编辑工程见[第一批模型包](../colored_units/public_model_adaptations_v1/README.md)，全部怪物（含初期感染／畸变）、武器、护甲和特效的结论见[统一评审](model-visual-review.md)。公开 alpha.6 下载包不包含这两项改造。
+这两项随 alpha.7 发布，保留署名、许可链接和修改说明；未替换监管体。来源及可编辑工程见[第一批模型包](../colored_units/public_model_adaptations_v1/README.md)，全部怪物（含初期感染／畸变）、武器、护甲和特效的结论见[统一评审](model-visual-review.md)。alpha.6 及更早下载包不包含这两项改造。
 
 灾变则继续作为形体与特效参考：已阅读末影守卫的模型构造、父子骨骼与关键帧实现。其原始美术素材和源码授权不同于上述 CC0／CC BY 候选，不能把公开仓库直接当作可任意改色分发的资源库。见[本轮灾变特效对照](../previews/containment-warden-vfx-v1/cataclysm-reference.md)。

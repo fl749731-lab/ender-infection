@@ -5,6 +5,7 @@ import numpy as np
 from PIL import Image
 from design_catalog import *
 from export_legacy_creature_glow import export as export_legacy_glow
+from export_public_model_adaptations import SPECS as ADAPTATIONS, build as build_adaptation, export as export_adaptations
 sys.path.insert(0,str(PACK/'source'))
 from modelkit import prepare_render,resolve_groups,PALETTES,rgb
 MAN=json.loads((PACK/'manifest.json').read_text('utf-8'))
@@ -207,6 +208,10 @@ def export(units=None):
  if prior is not None and not isinstance(prior.get('assets'),list):raise ValueError('Invalid existing design export report')
  prepared=[]
  for row in rows:
+  adaptation=next((name for name,spec in ADAPTATIONS.items() if spec['runtime']=='infected_'+row[1]),None)
+  if adaptation:
+   build_adaptation(adaptation) # Fail a stale MCP export before any asset write.
+   prepared.append((row,adaptation,None));continue
   d=load(row[2]);native=validate_native_attack('infected_'+row[1],d,row[7],row[8])
   if native:
    pixels=np.array(Image.open(io.BytesIO(base64.b64decode(d['textures'][0]['source'].split(',')[1]))).convert('RGBA'))
@@ -214,6 +219,8 @@ def export(units=None):
   prepared.append((row,d,native))
  REPORT.clear()
  for row,d,native in prepared:
+  if isinstance(d,str):
+   REPORT.extend(export_adaptations([d],assets=ASSETS));continue
   enum,key,source,label,hp,spd,dmg,hit,dur,reach,width,height,stage,price=row
   normalization=SOURCES[source].get('runtime_normalization')
   if normalization:

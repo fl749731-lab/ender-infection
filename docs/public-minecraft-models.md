@@ -16,11 +16,11 @@
 |---|---|---|
 | [Skeleton Lord，@anim](https://blockbenchworkshop.com/model/anim/skeleton-lord) | 通用 Blockbench 模型，286 元素、88 骨骼、9 动画、5 贴图；含 idle、walk、run、spell knockback | CC BY 4.0，修改和再分发需署名、链接授权并说明改动。适合研究感染施法者的大体块、非对称肩部、披风及持杖动作 |
 | [Ender Whale，@logan_kant](https://blockbenchworkshop.com/model/logan_kant/ender-whale) | GeckoLib 模型，55 元素、37 骨骼、6 动画；含漂浮、游动、鸣唱、翻滚、裂隙下潜和出现 | 页面标注 CC0、人工创作。适合末影空域生态或大型环境生物；尚未在本模组导入 |
-| [Leathern Drake，Breathfang / Drageon DB](https://sketchfab.com/3d-models/leathern-drake-blockbench-021865367838492a9839c64c6f3cb984) | 作者说明有 18 动画、4 种贴图，并提供 Blockbench／GeckoLib 文件链接 | CC BY，保留作者署名。适合检查四足、颈尾、翼和咬击／喷吐动作的配合 |
+| [Leathern Drake，Breathfang / Drageon DB](https://sketchfab.com/3d-models/leathern-drake-blockbench-021865367838492a9839c64c6f3cb984) | 作者说明有 18 动画、4 种贴图，并提供 Blockbench／GeckoLib 文件链接 | CC BY，保留作者署名。下载后确认是无翼四足，适合颈尾、咬击及承载型生物，不能当作飞行底模 |
 | [Dungeon Starter，1CAMOU](https://1camou.itch.io/dungeon-starter-blockimagine) | 30 方块模型、25 个带骨骼动画，含 `.bbmodel`、GLB 与 PNG；有骷髅、兽人、宝箱怪等 | CC0；作者披露 AI 生成后人工整理。可作为可编辑原型，质量仍需逐只检查 |
 
-本轮已在网页打开 Skeleton Lord 的立体预览并播放 `spell knockback`，检查头肩、披风、持杖和晶体部分的立体关系。其余候选核实到作者页面的格式、动画与授权信息，尚未逐一下载验骨骼或测试导出。Skeleton Lord 的匿名下载端点返回 401，因此没有取得完整文件，也没有据此宣称已完成转换。
+后续已取得 Skeleton Lord 作品页公开的完整预览模型 JSON，并从作者链接取得 Leathern Drake 的 Blockbench／GeckoLib 包。匿名登录下载端点未绕过。两者已通过 MCP 检查本体、骨骼及动作，并分别改造为共鸣祭司和晶背搬运兽。其余候选保持研究状态。
 
-后续采用模型时，应先检查正／侧／背面、关节枢轴、骨骼层级、动画命中时点及 UV，再决定是否修改。外部模型目前没有替换监管体或进入任何 JAR。
+这两项进入 alpha.7 开发资源，保留署名、许可链接和修改说明；未替换监管体。来源及可编辑工程见[第一批模型包](../colored_units/public_model_adaptations_v1/README.md)，全部怪物（含初期感染／畸变）、武器、护甲和特效的结论见[统一评审](model-visual-review.md)。公开 alpha.6 下载包不包含这两项改造。
 
 灾变则继续作为形体与特效参考：已阅读末影守卫的模型构造、父子骨骼与关键帧实现。其原始美术素材和源码授权不同于上述 CC0／CC BY 候选，不能把公开仓库直接当作可任意改色分发的资源库。见[本轮灾变特效对照](../previews/containment-warden-vfx-v1/cataclysm-reference.md)。

@@ -38,7 +38,7 @@ Minecraft 感染阵营与研究所探索模组。感染母体通过生物质和�
 
 [alpha.6 更新说明与附件](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.6) · [验收与效果图](previews/incident-alpha6/README.md) · [完整更新日志](CHANGELOG.md)
 
-本地 alpha.7 已接入[研究所 Boss](docs/institute-boss.md)、七组动作和[增强特效](previews/containment-warden-vfx-v1/README.md)，尚未公开发布。上方 alpha.6 下载包的 E8 为普通感染者事件。
+本地 alpha.7 已接入[研究所 Boss](docs/institute-boss.md)、七组动作和[增强特效](previews/containment-warden-vfx-v1/README.md)，并以署名公开底模改造共鸣祭司与晶背搬运兽，尚未公开发布。[全部怪物、感染阶段、装备与特效评审](docs/model-visual-review.md)集中记录已改内容和后续优先级。上方 alpha.6 下载包的 E8 为普通感染者事件。
 
 ## 文档入口
 

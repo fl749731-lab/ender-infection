@@ -6,6 +6,7 @@ from PIL import Image
 from design_catalog import *
 from export_legacy_creature_glow import LEGACY_CREATURE_SOURCES,legacy_crystal_pixels
 from validate_rift_runtime import validate as validate_rift
+from export_public_model_adaptations import SPECS as ADAPTATIONS, validate as validate_adaptations
 sys.path.insert(0,str(PACK/'source'))
 from modelkit import PALETTES,rgb
 from concept_materials import CONCEPT_PALETTES
@@ -67,8 +68,18 @@ def color_pixels(pixels,colors):
  for color in colors:selected|=(pixels[:,:,:3]==color).all(axis=2)
  return selected&(pixels[:,:,3]>0)
 creature_glow_textures=crystal_pixels=missing_crystal_pixels=non_crystal_glow_pixels=0
+adaptations=[]
+try:adaptations=validate_adaptations()
+except (AssertionError,ValueError,OSError,KeyError) as error:errors.append('Public model adaptations: '+str(error))
+adapted_runtime={spec['runtime'] for spec in ADAPTATIONS.values()}
 for row in report['assets']:
  if row['kind'] not in ('entity','mother'):continue
+ if row['runtime'] in adapted_runtime:
+  # Public source materials have a separate exact atlas/material glow contract,
+  # verified above. Their palettes cannot use our legacy color-only classifier.
+  creature_glow_textures+=1
+  crystal_pixels+=next((r['emissive_pixels'] for r in adaptations if r['runtime']==row['runtime']),0)
+  continue
  base=ASSETS/'textures/entity'/f"{row['runtime']}.png";mask=base.with_name(base.stem+'_glowmask.png')
  if not base.exists():errors.append('Missing creature texture '+str(base));continue
  with Image.open(base) as texture:pixels=np.array(texture.convert('RGBA'))
@@ -108,4 +119,5 @@ rift=[]
 try:rift=validate_rift()
 except (AssertionError,ValueError,OSError,KeyError) as error:errors.append('Rift runtime assets: '+str(error))
 result={'status':'FAIL' if errors else 'PASS','geometry_files':checked_geo,'validated_faces':checked_uv,'obj_files':checked_obj,'glow_masks':checked_glow,'creature_glow_textures':creature_glow_textures+len(rift),'crystal_pixels':crystal_pixels+sum(r['emissive_pixels'] for r in rift),'missing_crystal_pixels':missing_crystal_pixels,'non_crystal_glow_pixels':non_crystal_glow_pixels,'legacy_creature_glow':legacy_glow,'rift_models':rift,'mapped_source_models':len(sources),'scene_source_models':2,'errors':errors}
+result['public_model_adaptations']=adaptations
 (PROJECT/'verification/design_assets_validation.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8');print(json.dumps(result,ensure_ascii=False));raise SystemExit(bool(errors))

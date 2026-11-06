@@ -36,6 +36,10 @@ neoForge {
             client()
             gameDirectory = project.file(project.hasProperty('crystalGlowCheck') ? 'build/crystal-glow-check' : project.hasProperty('riftVisualCheck') ? 'build/rift-visual-check' : 'build/client-review')
             if (project.hasProperty('designSmoke')) systemProperty 'ender_infection.designSmoke', 'true'
+            if (project.hasProperty('crystalCheck')) {
+                gameDirectory = project.file('build/crystal-check')
+                systemProperty 'ender_infection.crystalCheck', 'true'
+            }
             if (project.hasProperty('riftVisualCheck')) systemProperty 'ender_infection.riftVisualCheck', 'true'
             if (project.hasProperty('conceptCheck')) {
                 gameDirectory = project.file('build/concept-check')

@@ -1,0 +1,276 @@
+{
+  "format": 1,
+  "tool": "Blockbench headless MCP",
+  "sampling_hz": 24,
+  "limits": [
+    "Selected outliner, unlisted-node and degenerate-geometry gates; intentional crystal asymmetry and overlapping plates are not symmetry/collision proofs.",
+    "Locomotion and special animations sampled; infection and death additionally reviewed as poses.",
+    "The carrier's two author locators are not geometry and are not included in the Java model."
+  ],
+  "models": {
+    "resonance_priest": {
+      "info": {
+        "path": "E:\\mc\\colored_units\\public_model_adaptations_v1\\models\\resonance_priest.bbmodel",
+        "revision": "442baf14dd356c4f",
+        "name": "resonance_priest_adapted",
+        "model_identifier": "resonance_priest_adapted",
+        "format": "free",
+        "format_version": "5.0",
+        "box_uv": false,
+        "resolution": {
+          "width": 256,
+          "height": 256
+        },
+        "counts": {
+          "groups": 91,
+          "cubes": 299,
+          "meshes": 0,
+          "other_elements": 0,
+          "textures": 5,
+          "animations": 5
+        },
+        "bounds": {
+          "min": [
+            -21,
+            0,
+            -12.293
+          ],
+          "max": [
+            21,
+            91.5,
+            7.7
+          ],
+          "size": [
+            42,
+            91.5,
+            19.993
+          ]
+        },
+        "ai_used": true,
+        "notes": []
+      },
+      "geometry": {
+        "revision": "442baf14dd356c4f",
+        "format": "free",
+        "summary": {
+          "errors": 0,
+          "warnings": 0,
+          "passed": true
+        },
+        "gates": [
+          {
+            "id": "outliner",
+            "label": "Outliner references resolve and UUIDs are unique",
+            "severity": "error",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "unlisted_nodes",
+            "label": "Every group and element is placed in the outliner",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "degenerate",
+            "label": "No sliver or inverted cubes",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          }
+        ],
+        "notes": []
+      },
+      "animationChecks": {
+        "revision": "442baf14dd356c4f",
+        "checked": [
+          "idle",
+          "walk",
+          "special"
+        ],
+        "summary": {
+          "errors": 0,
+          "warnings": 0,
+          "passed": true
+        },
+        "gates": [
+          {
+            "id": "animated_bones_exist",
+            "label": "Animators target groups that exist",
+            "severity": "error",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "keyframe_timing",
+            "label": "Keyframes lie inside the clip and do not collide",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "ground_sink",
+            "label": "No part sinks below the ground during a clip",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "detachment",
+            "label": "Attached groups stay attached to their parent during a clip",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          }
+        ],
+        "skipped_channels": [],
+        "approximated_bezier": [],
+        "capped_clips": []
+      }
+    },
+    "crystalback_carrier": {
+      "info": {
+        "path": "E:\\mc\\colored_units\\public_model_adaptations_v1\\models\\crystalback_carrier.bbmodel",
+        "revision": "1cb1736dabdf72d1",
+        "name": "crystalback_carrier_adapted",
+        "model_identifier": "crystalback_carrier_adapted",
+        "format": "free",
+        "format_version": "5.0",
+        "box_uv": true,
+        "resolution": {
+          "width": 256,
+          "height": 256
+        },
+        "counts": {
+          "groups": 142,
+          "cubes": 191,
+          "meshes": 0,
+          "other_elements": 2,
+          "textures": 5,
+          "animations": 5
+        },
+        "bounds": {
+          "min": [
+            -14.51,
+            -1.238,
+            -46.663
+          ],
+          "max": [
+            14.51,
+            45.264,
+            40.032
+          ],
+          "size": [
+            29.02,
+            46.502,
+            86.694
+          ]
+        },
+        "ai_used": true,
+        "notes": []
+      },
+      "geometry": {
+        "revision": "1cb1736dabdf72d1",
+        "format": "free",
+        "summary": {
+          "errors": 0,
+          "warnings": 0,
+          "passed": true
+        },
+        "gates": [
+          {
+            "id": "outliner",
+            "label": "Outliner references resolve and UUIDs are unique",
+            "severity": "error",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "unlisted_nodes",
+            "label": "Every group and element is placed in the outliner",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "degenerate",
+            "label": "No sliver or inverted cubes",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          }
+        ],
+        "notes": []
+      },
+      "animationChecks": {
+        "revision": "1cb1736dabdf72d1",
+        "checked": [
+          "idle",
+          "walk",
+          "special"
+        ],
+        "summary": {
+          "errors": 0,
+          "warnings": 0,
+          "passed": true
+        },
+        "gates": [
+          {
+            "id": "animated_bones_exist",
+            "label": "Animators target groups that exist",
+            "severity": "error",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "keyframe_timing",
+            "label": "Keyframes lie inside the clip and do not collide",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "ground_sink",
+            "label": "No part sinks below the ground during a clip",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          },
+          {
+            "id": "detachment",
+            "label": "Attached groups stay attached to their parent during a clip",
+            "severity": "warning",
+            "ran": true,
+            "violations": []
+          }
+        ],
+        "skipped_channels": [],
+        "approximated_bezier": [],
+        "capped_clips": []
+      }
+    }
+  },
+  "loop_seams": [
+    {
+      "model": "resonance_priest",
+      "clip": "idle",
+      "max_channel_delta": 0
+    },
+    {
+      "model": "resonance_priest",
+      "clip": "walk",
+      "max_channel_delta": 0
+    },
+    {
+      "model": "crystalback_carrier",
+      "clip": "idle",
+      "max_channel_delta": 0
+    },
+    {
+      "model": "crystalback_carrier",
+      "clip": "walk",
+      "max_channel_delta": 0
+    }
+  ]
+}

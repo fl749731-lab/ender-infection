@@ -1,0 +1,1378 @@
+{
+  "status": "PASS",
+  "basis": "Canonical runtime geometry, textures and animation pose samples before the two public-model replacements",
+  "base_commit": "36994d7",
+  "tool": "Blockbench headless MCP",
+  "forms": 36,
+  "captures": 180,
+  "models": [
+    {
+      "key": "infected_anchor_guard",
+      "group": "designed",
+      "cubes": 185,
+      "bones": 23,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_anchor_guard.geo.json": "5a51e8bc2b2b322c83b13895e0d73928715bb6d391948344e2aef8fd85b51ae3",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_anchor_guard.animation.json": "b335146fe8cf8aef791f741fab61a1343ac3b49f1e38077f772f097eb58fc487",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_anchor_guard.png": "be54a4041278c82de86843239f39f2ce405e2baa888f6e6e4acc5ae1bd73204f"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_anchor_guard-front.png",
+          "sha256": "f245e0a84e4ffc9e672529be3ceb60dec87ef1dcfd55614685356c279114e6a0"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_anchor_guard-side.png",
+          "sha256": "f1d656ad1b71dc26f28a60caba184fe11c21caf2816c6a9873e49f7e4af53eb0"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_anchor_guard-back.png",
+          "sha256": "89fb6426941c74140f9537d6b3af477161e084e2ff2a402406702f2a653eb583"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_anchor_guard-walk.png",
+          "sha256": "6cd682bb1f2a223440991d9ce9063c94b86f5982a388ae0d619b350af8174d01"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_anchor_guard-attack.png",
+          "sha256": "964d76a5705f4aad1b405ac514de4792b49ac23a1e0249692b3e2a6f0039ef09"
+        }
+      ]
+    },
+    {
+      "key": "infected_burrow_king",
+      "group": "designed",
+      "cubes": 743,
+      "bones": 12,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_burrow_king.geo.json": "442cfd4ffffa8609deb7adcd732e8eeae65dec861137db1c6f1e657e9b850761",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_burrow_king.animation.json": "d357e6ed0e57e22c87eb06a91a297eaa24403f54f53814db2909c26a378602b7",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_burrow_king.png": "50545717d38555c7fed4ecaef74dd7625a42c7ef2639f2820d31285cdc875e02"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_burrow_king-front.png",
+          "sha256": "b1d588fb7e2839b9a1bb06b04eeb5ffe2b35ee3d4ac79ce77cd84142024c3b89"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_burrow_king-side.png",
+          "sha256": "0e51ad9ab4f2f58efc0c7716474f701fa9e0eb291931f459d5ce0af671c2dc9e"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_burrow_king-back.png",
+          "sha256": "cc218542cc8829ead7a56379a8b15e0a58df44b812ec84b703310c5e94dac3bf"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_burrow_king-walk.png",
+          "sha256": "806c4c4d3f6343c0081a7b312d3aa91c25055c5dd6972d9e5d079c4730ed5fea"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_burrow_king-attack.png",
+          "sha256": "568eb205d0b8cf3a9e46c55d61430592e8c6a56f9deec8119c99ad5aab152a8b"
+        }
+      ]
+    },
+    {
+      "key": "infected_burrower",
+      "group": "designed",
+      "cubes": 135,
+      "bones": 10,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_burrower.geo.json": "6e2405a8bbd3b5aa7da0657232d1996a46bd60d2d9998b2232b5a54c726c68ea",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_burrower.animation.json": "60b86b6cbccbaeff57b3f3fd5c9ac14ba2f3924ad6fd8d96e56aacd6cf5a18d9",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_burrower.png": "0b43c1ef5ff0159dd64036363ad950f9aae7694852bf059a560551fcc7ee4ad1"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_burrower-front.png",
+          "sha256": "1443bb46ce6cea76ef8ceb763d9e058d3580e58d92a7b46148b913bae484e591"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_burrower-side.png",
+          "sha256": "3f7c86eecd61d8aedbbdfdc368fc89e947f75b40d0a83fe03936e652dd2650a1"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_burrower-back.png",
+          "sha256": "a99cbd4755a2428c060bfd918e5ce23daaf7886295d5f6f245177151901676f2"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_burrower-walk.png",
+          "sha256": "b59f5790dbfd7f33cc3649b5f30cf056c1f98f376556257d2efc37b56cbeeb04"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_burrower-attack.png",
+          "sha256": "d5b67c94a6287fe97412a23d2772fb88d2d29e4f67ba3996f43311ffe881e83b"
+        }
+      ]
+    },
+    {
+      "key": "infected_carrier",
+      "group": "designed",
+      "cubes": 543,
+      "bones": 15,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_carrier.geo.json": "3c809846c58c395629bfc28df1bea50ac41d6f4b8db651ac65ee310f8d520edb",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_carrier.animation.json": "80b04afcf526ec940b22eb07d370399b71ab0416bbbb1cf73a9cccc51681d900",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_carrier.png": "84ea10a5544014278f526e0ba9d3f1100e70f709ae88dee2c55d3a323e2ff30f"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_carrier-front.png",
+          "sha256": "69dffb0747d3c8c161d20564df3ac9ac290ce0d6e2bf713867b6e2339a8074e7"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_carrier-side.png",
+          "sha256": "3dd1104b1960d4f651640271f0924c10e82463573adb88bb4d67da56d38e4f54"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_carrier-back.png",
+          "sha256": "efb2f020222100cccb162b24a1000f691c82bfed380bbe8b48cc956e25ddb8bd"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_carrier-walk.png",
+          "sha256": "672e5276696f993c078485573c0536c6871218857fe3c41b74bf541721b8f9fd"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_carrier-attack.png",
+          "sha256": "d25b8471b3f5000db60d324eaae1d4e63b8bf462508c1a15c5fb9022291f205d"
+        }
+      ]
+    },
+    {
+      "key": "infected_core",
+      "group": "boss",
+      "cubes": 474,
+      "bones": 13,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_core.geo.json": "a2340958378c25e0ec28de624e4a919c0af5ed232c7220275416a29598155aaa",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_core.animation.json": "fee948ab2a36bb3dc510d14f2920526eab8be1167e81fc730fe2bbbf5b853966",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_core.png": "3e6891b3f05d88c3fc73475c7557bb0d8955e2b065eccd7b4872d9cac9512bc0"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_core-front.png",
+          "sha256": "3717fa7e2dda8857c775dbd5ea8c2fe550f0ba3d66153f6574b66bf6d2580a6b"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_core-side.png",
+          "sha256": "52538f4f68892dc7e6e9b7dc05466ac21cbadc95f80159cd2f208e21e1385ac1"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_core-back.png",
+          "sha256": "db7cc127e235db42e339e1313824184ae60e1130b6f999cae182e8aaaff91b62"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_core-walk.png",
+          "sha256": "a65bb030e9c9dab83719b867a7bf2b1f9cad4868db29224640d7b65c9724eca1"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_core-attack.png",
+          "sha256": "12826940b12a248c4b6cf5963da2f8b20548f12324136bbd5d21a73b6a1fb40f"
+        }
+      ]
+    },
+    {
+      "key": "infected_core_stage1",
+      "group": "boss",
+      "cubes": 474,
+      "bones": 13,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_core_stage1.geo.json": "3a6685ccd19945a4a203d665dcffdf60afdeb0d5edb388e10c6ef8f1158edac3",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_core_stage1.animation.json": "c42b10de625f6e580f5cd5efe40d0cd67ee42ddb9d0b8ade91948c5ce443bf8b",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_core_stage1.png": "3e6891b3f05d88c3fc73475c7557bb0d8955e2b065eccd7b4872d9cac9512bc0"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_core_stage1-front.png",
+          "sha256": "299d118147c13187f19144c47c8bde47ed7035532073174961e640685d0ad643"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_core_stage1-side.png",
+          "sha256": "f4db8f3b4080490df5d38ad52951496021cf65175e955918433c76d6a730e07f"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_core_stage1-back.png",
+          "sha256": "32df583f041238c1bfee4fc59a2b8fc8881e5b021dda3dd03ef82c8a85ae8a63"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_core_stage1-walk.png",
+          "sha256": "df725e60666a640be5374de635af02e449da07ebb298db042c87423fd03b6aa1"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_core_stage1-attack.png",
+          "sha256": "d4f756e2bf00bf5f5c2e0eace871741a73a3b31fac9f09d2a2296ccf98719180"
+        }
+      ]
+    },
+    {
+      "key": "infected_core_stage3",
+      "group": "boss",
+      "cubes": 474,
+      "bones": 13,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_core_stage3.geo.json": "03db3b9aa64e404c4d1014a47cfd60bf152b2addb9ea07c13881e74e48d28136",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_core_stage3.animation.json": "0d7e1ebbb29bb50f8d9d76708243fc755ba8a0457059809fc0e73a847db31920",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_core_stage3.png": "3e6891b3f05d88c3fc73475c7557bb0d8955e2b065eccd7b4872d9cac9512bc0"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_core_stage3-front.png",
+          "sha256": "cab9fee399b41c54e71502f4aa9744c63736b2d90d4a62c68e9907ef92bd2345"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_core_stage3-side.png",
+          "sha256": "4bfd7ac7db1bde1f8a44315479ec88197162d45bcd243b5036e75462b5694b2c"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_core_stage3-back.png",
+          "sha256": "5feff7a128d4d6eb9395bfaa8d27421e75e4269f301ef3311543384b20cefea8"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_core_stage3-walk.png",
+          "sha256": "91fa6898a45211b91af23ed09f33eebb1f19352a199258fb5871110bfdb11813"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_core_stage3-attack.png",
+          "sha256": "ea8e862923fd5acd07da8d53fe3c196943de14b8ec313a2faebe95d15f33c01f"
+        }
+      ]
+    },
+    {
+      "key": "infected_core_stage4",
+      "group": "boss",
+      "cubes": 474,
+      "bones": 13,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_core_stage4.geo.json": "c0cc320bcef0b1b9db8f7f92d652305f9637887e142d755d78be1272c6b05db6",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_core_stage4.animation.json": "97fc30e1382bbcf622dc2e0617e48571886a30f9f04fa7b019e215c3770bddbc",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_core_stage4.png": "3e6891b3f05d88c3fc73475c7557bb0d8955e2b065eccd7b4872d9cac9512bc0"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_core_stage4-front.png",
+          "sha256": "b23770875721a8d888b2de6243604f8fb12f441cf723afd32605a62434f6f4b8"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_core_stage4-side.png",
+          "sha256": "5fa5da85c29e9f94c91a1bb6ee318a4fa095b044c7ac801ea5e782ddbff854ec"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_core_stage4-back.png",
+          "sha256": "fed52e1f762f4fd0c30c158b72b6628d8c1bb821c98fee1a9ff6d7d87a11f790"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_core_stage4-walk.png",
+          "sha256": "a15d361ebec200e09cc19eee230abba7a9961472c0e1fbfc8fdcc2711bbbf617"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_core_stage4-attack.png",
+          "sha256": "814eab1bf6a45ecb3ab8be1bb79d72a21b1eb3b1259d60a228fb4186ffccd6e2"
+        }
+      ]
+    },
+    {
+      "key": "infected_core_stage5",
+      "group": "boss",
+      "cubes": 566,
+      "bones": 15,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_core_stage5.geo.json": "f00b108478cf5e4cb35411194ee302cfaeefb4d763a6ffc53f2a8e45ff066b24",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_core_stage5.animation.json": "2b18e62ce850fdd45a0cdea057a8fd578545f3f3f450c123444158f37cdfa88f",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_core_stage5.png": "6b59a673171e82e18083f66f322d9681078338e0bedd77ab6b0d4af8e7380c48"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_core_stage5-front.png",
+          "sha256": "e4e7213d4caeeb2fc8afdcf9bfbf4c14fdc29676c83690bf0cae0d8643a2d71d"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_core_stage5-side.png",
+          "sha256": "0569080c8aae0128f200f9cc93b20deed7669f4281889c1cc1bd80996daadc79"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_core_stage5-back.png",
+          "sha256": "87dc7fbc515b271aac67f80a13062ae551a2026bdf6f03a065e4f50f82f59efb"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_core_stage5-walk.png",
+          "sha256": "aa9d30fea2175a363dc42d2662f4de6441c4badf5c75a363ba0b314da2f1eefe"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_core_stage5-attack.png",
+          "sha256": "08e75dbe382a21bb2a7190969dc40b9576082e3f4e13c30d07ecbd3a59bb3ab6"
+        }
+      ]
+    },
+    {
+      "key": "infected_cow",
+      "group": "mutated",
+      "cubes": 41,
+      "bones": 10,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_cow.geo.json": "d8c2b4dc693ca4dd5646388c3a8c054d71b2bc5b0ff32edef81ef3ba850ce875",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_cow.animation.json": "9c9014e7b8d50826a74923c4c1078b8861481abcc807b5ee86a7b109d47233a1",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_cow.png": "1a9758e094cf33fe630067a2a3dc317ac506d3b6d7f1c59e80fd153d22403096"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_cow-front.png",
+          "sha256": "ad3cef440f91405666b8a39900ad8287d66c244edbbf4c276144dfeb5a463c1a"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_cow-side.png",
+          "sha256": "f8ec0f4284ca580e48b09228657694295be1e1bb88ca1982c8aa29d56ef561d9"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_cow-back.png",
+          "sha256": "2c54a113ce612a27c52e5a294a51e1a2ec590d4d3159ac351dd698a11f3e62df"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_cow-walk.png",
+          "sha256": "9292cb91cf170fde51db9a447dad8b9b5d0244752fbf1423b9e029747b22c30d"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_cow-attack.png",
+          "sha256": "1863972d708358e9bce54ff49c3340031db3b493f503a0deacb246a9a8eeb12e"
+        }
+      ]
+    },
+    {
+      "key": "infected_cow_early",
+      "group": "early",
+      "cubes": 17,
+      "bones": 10,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_cow_early.geo.json": "a76a6b05828d1a932a5dda1a11f2d1a05ff15309918893eff8ead67034e53aa9",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_cow_early.animation.json": "b5d26d6c38a15c7b35a067b498f9038ef75edec0c0182a0c4c87359da66662a9",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_cow_early.png": "8b4424f61606ae55585179b8ac6ad2dcb17f4e10456c040d1708c4a096ed4f9d"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_cow_early-front.png",
+          "sha256": "b92f3aee7b6ff64c6e3626ecfc01acd353301248dec5b27c9f2cb3cdf5f2a2d2"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_cow_early-side.png",
+          "sha256": "dade73ea4dc31c40c8d8d08b4481a195798b201d47d9d8b251e1e27143074a75"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_cow_early-back.png",
+          "sha256": "cb57f6d736aabb7238fec7603c0f92155aea2da596568a4ab494964865d2ad33"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_cow_early-walk.png",
+          "sha256": "30f3677bac7cf0177b7d66d429985e52c6049d341d0d08dce2fe1f28d1c0e196"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_cow_early-attack.png",
+          "sha256": "26a00dd33a17c94d3ac537b1e5113f5f31b9ce1b0ef2e04179c877371d75da3e"
+        }
+      ]
+    },
+    {
+      "key": "infected_enderman",
+      "group": "mutated",
+      "cubes": 153,
+      "bones": 22,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_enderman.geo.json": "4486a049dc4916d0754d6e560117d49fbab5fc2cd22db09fef30917dbbb4547e",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_enderman.animation.json": "0f985a2956c6cefb8a158627b5183529952f431fef83f5853d76f0b1d4c94df7",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_enderman.png": "4641e83ff12e2025e1dc6acd37015fb9d4af0af9547a9ba5b08b16c55ee77571"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_enderman-front.png",
+          "sha256": "9c049b5d59e5a793ae057f37c28c1eadcc4a2e861320a3bf7486081febd049f5"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_enderman-side.png",
+          "sha256": "3a051d5c67721caf21cc93ff35f25676cf5b44398511cee6ff137eefd7a91064"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_enderman-back.png",
+          "sha256": "16cc7a0bd4333a8ed8ff0494e4a8c43167aebfe03187c1a52ebc7d9e57eea67f"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_enderman-walk.png",
+          "sha256": "7d020a670d59bafbc6a2c65eb5ba114c5750512acd19ea71058978c8bb12e516"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_enderman-attack.png",
+          "sha256": "658b39c2929cec779b295ebcfb524bab8c4cafa39f31bc200c2b550a9f4ebf84"
+        }
+      ]
+    },
+    {
+      "key": "infected_enderman_early",
+      "group": "early",
+      "cubes": 59,
+      "bones": 16,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_enderman_early.geo.json": "97341a12d58263ac466a5f14f641d2bca42156d6f25a3eb3d64861f4e7b44eb9",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_enderman_early.animation.json": "4111f0f5ccce733c7943bdb9789f82ddc7bf3583a6fb7967f00f20dc9b418a86",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_enderman_early.png": "319ea38318ce19370fa89582eac1460440d334d3bca0beeb372a55ed460ff646"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_enderman_early-front.png",
+          "sha256": "1223cf97139ca7f49720d19386e152fa7496a373b911b3ded94989fb19d16fb1"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_enderman_early-side.png",
+          "sha256": "16e3fc9c92521495ac21ec3186ac8348051937772f4b09a221cc5a04b0d0bffa"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_enderman_early-back.png",
+          "sha256": "aa7574b643e50bfdbc3373ab2dee5e2c8294be36a9b494d946cbb57f5594e43f"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_enderman_early-walk.png",
+          "sha256": "54370c8af18fb451abac5e9fcc930b05a653601d006f5e9d2b387dc440b845d9"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_enderman_early-attack.png",
+          "sha256": "0c1c680c500e81e252c143b2c3684ee3f8c9a04e7a3f175b9d21e8aca01570dc"
+        }
+      ]
+    },
+    {
+      "key": "infected_forager",
+      "group": "designed",
+      "cubes": 256,
+      "bones": 18,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_forager.geo.json": "1db840c0706324e89eddbbe3cee3bae17174c6326d1f53469444796a2f70e198",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_forager.animation.json": "08a5bdc0d34410525127c178bffa572bce7fc9757191209fe497adaebbaf961b",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_forager.png": "8ad308328566d9bc44efd12e902f616071b25d7e84369bba1dca15e66182309a"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_forager-front.png",
+          "sha256": "a22ff58b313c1718a1765f2d3bf5b16039b3359cd0b8220949351f0809408d25"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_forager-side.png",
+          "sha256": "1914e06b02ba4d0b3ac3b4f2f0ba0eaa740a095ae234845c65c22b256e448ad1"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_forager-back.png",
+          "sha256": "f27c56143248d29fc64dadfed6bf70f303d54c25501f0c6e5ba2ae92f1e814f9"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_forager-walk.png",
+          "sha256": "5640d110b2693794b2c22bfba0f79310d5e68d3db1c09e2adb806cab152d4f6c"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_forager-attack.png",
+          "sha256": "539e56072d48232ddef454016c91b8b39c00f6839cc46b77a2e5496b9e256f3f"
+        }
+      ]
+    },
+    {
+      "key": "infected_hatch_sac",
+      "group": "designed",
+      "cubes": 357,
+      "bones": 9,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_hatch_sac.geo.json": "130495e28a6956091253bd8b709f7398f87b8ed0f036cbdd46b6a4822e311358",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_hatch_sac.animation.json": "cef1fc701b5b2c7a6b74cd5704729ae070ae648d851355c0fd9c52162473b5df",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_hatch_sac.png": "42b2e00b619133defc78d3b9f8e3f1092438521f908c0a0e440b28bb39b387ac"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_hatch_sac-front.png",
+          "sha256": "1c757972ae4a077d5280e0e1bff7d11ca0139e9074ab138e1b77ab5073abb736"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_hatch_sac-side.png",
+          "sha256": "84b46c9be2b843d2e016faedd6a3d60fb07c4e9125829d19247ffbfceecda32a"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_hatch_sac-back.png",
+          "sha256": "00fe9584441eba772602fa93477d2244de0811664adfc41c5355d520978a6a2c"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_hatch_sac-walk.png",
+          "sha256": "026240efbad877ca02df9e3f0455c5a47563610638819f4001f8ee8a38f656e9"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_hatch_sac-attack.png",
+          "sha256": "1b6945869f60ea798367c7feaa46d9d387174020d0c4e98d42fd144fedcaf0ec"
+        }
+      ]
+    },
+    {
+      "key": "infected_leap_ambusher",
+      "group": "designed",
+      "cubes": 221,
+      "bones": 17,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_leap_ambusher.geo.json": "465ec7b63233f308cda02c87d899c7b4f2dd94f4a83f33007eacf76120a20601",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_leap_ambusher.animation.json": "fa2fbee08bb0413b501b91b74605cb94b8127a11421556f3552a8d449b25d2d9",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_leap_ambusher.png": "94961115378ee378fc6b754b8d98f0a308f2e986e67c96ff770c8cdf78326e1e"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_leap_ambusher-front.png",
+          "sha256": "5db09d4d26bfed0eec2ced268a89a2b53de6050ffacc143f57d68a94dc383155"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_leap_ambusher-side.png",
+          "sha256": "19e22542c55aecd19abde565e2fe94d3c6abe5dd23eb09521fb824101fb56874"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_leap_ambusher-back.png",
+          "sha256": "e3af74e79f9f753520fd190f55ba56b714d13f0973106bc2c47a9b220694e7b7"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_leap_ambusher-walk.png",
+          "sha256": "03f114bd952743b880059448a000ec0266561ff740f7331c53bdda5fc3ee042c"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_leap_ambusher-attack.png",
+          "sha256": "47670eb9dc5380ae16e01cd7aeafb5c869335fcdfbf59fc2e10653c940af6abb"
+        }
+      ]
+    },
+    {
+      "key": "infected_pig",
+      "group": "mutated",
+      "cubes": 39,
+      "bones": 10,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_pig.geo.json": "26b37feafee8d86264daf407b2d3157af77f9292e9c1ec57060f3b5db1070e71",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_pig.animation.json": "33a0a97a88c307271b75941f778f014d2a7586158d4548f0754a9bb5a1ef5c76",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_pig.png": "0e8b59eb4edb60ae539e6a1601acd416128431b3629a31925dea6953a43d9ab4"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_pig-front.png",
+          "sha256": "60e08dc80230255c665d7de39d4ae0d1490d130645eae974e585a3c801cb9dab"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_pig-side.png",
+          "sha256": "9f4d378b6effb051a05bdc4607759367159b74d03774c124ca349db10b348986"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_pig-back.png",
+          "sha256": "9d1a5fef6d8ed3978b980c17144b88747ce2386c3991e99570506ea86047c091"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_pig-walk.png",
+          "sha256": "65161b74c605bc05bd83102752a44a0dc59257f38d6b442f18dfe4cde653b8c7"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_pig-attack.png",
+          "sha256": "3c8a99d56b34d27b63c84b3b05e31a04258ebd48bdcf83d625eafaf3b08dfcbb"
+        }
+      ]
+    },
+    {
+      "key": "infected_pig_early",
+      "group": "early",
+      "cubes": 17,
+      "bones": 10,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_pig_early.geo.json": "4bcd421aa04d509761a7c1989bb811161f3943b63c54b5565ce2c8c643e7c337",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_pig_early.animation.json": "1d6b280bdd109ca0f5e6c997de11a412d268484461958d13b567e054a1867faa",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_pig_early.png": "2e3c27f79a6c8899d78bb3e254b411da9bf62f6fb18202bf2e7f605615a5769a"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_pig_early-front.png",
+          "sha256": "af0b8014c1dd3eceabc3b1c464a37ee4a3012a35810caea71509d395fcf2e44f"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_pig_early-side.png",
+          "sha256": "f6e93148aee0b6ff4e0b5a922930606485e2a3913050e85f6ec04c5c5e51b63f"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_pig_early-back.png",
+          "sha256": "db6ba3a900af74f8d10d6151e2120ba0635e46ea404c98a0a169701c54abf70f"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_pig_early-walk.png",
+          "sha256": "bffe95c6fcbb5aea506330b44a2cac8accae55f23f0f4ef8db9bc7b9264115a9"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_pig_early-attack.png",
+          "sha256": "b4999b0ec0776eafe7a85a63c37575857d0825d3b74f044093ee17a8be9ebec5"
+        }
+      ]
+    },
+    {
+      "key": "infected_resonance_priest",
+      "group": "designed",
+      "cubes": 234,
+      "bones": 20,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_resonance_priest.geo.json": "7f6849be89a3e765fa63b9888e42a8ea7b464e352cd8bff3995caaf7dee1ffe0",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_resonance_priest.animation.json": "6acc54324ef0fd5b376c7a3e6bd92ecd0ba32461848ff8c4a2823d52069b7b49",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_resonance_priest.png": "73472fff852fadddcb7f633ad9421ed88ed8bf0ae536a13538aa15a666add1da"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_resonance_priest-front.png",
+          "sha256": "132fccc78f116ee453461410cc3fb1138af51bb21744ee48ffef6f820331d3d6"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_resonance_priest-side.png",
+          "sha256": "ccde90c05480665e51f4ba6b7ff2efdb348ee93f4a48e81eb889cdf7facd2c08"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_resonance_priest-back.png",
+          "sha256": "4ca6d1218248d1987f8c3f35d0a0441093be8a9e866fce650986da4a9a72bd21"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_resonance_priest-walk.png",
+          "sha256": "4c9a001169fbb2892a1e527933af236cdb3a1ddc602d6700f083d01080af71fd"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_resonance_priest-attack.png",
+          "sha256": "07f77c8366ccf4ca19b796b1139baece99765d7ce555cf3e897df209c5a56da7"
+        }
+      ]
+    },
+    {
+      "key": "infected_root_turret",
+      "group": "designed",
+      "cubes": 304,
+      "bones": 12,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_root_turret.geo.json": "384638e8497ba1568ad3b7d2b899be3a1da8ec9adcc8f1c2433420f7b4a51728",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_root_turret.animation.json": "c060a2a8cba22d0b2259602af1a0e095a1e5ad04ccf91d8c123a821a12c8dd9b",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_root_turret.png": "c506633e895b5a82c866c53f8a2ad27b62b544f4e9dac6414ad0fde09189d9a4"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_root_turret-front.png",
+          "sha256": "2bcfd8b266082ff8db0a9f177322821b679cb8a266544c1fdd76ca3bd3abb6b3"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_root_turret-side.png",
+          "sha256": "532de775859984681204b004528e83fe0896ffa2bdfb25223cd942aa702b1499"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_root_turret-back.png",
+          "sha256": "a49b92710507c8e7267e537547e98ede301a6b38110563c02673ba92e7de5730"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_root_turret-walk.png",
+          "sha256": "a055375722450cfe4fe6d52da336ed73080b9f2e09ec40fb85fb44914540582d"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_root_turret-attack.png",
+          "sha256": "28fa4531604a4e10beed8e35b5320241014336f6ef4be2510b81ea0bbb716871"
+        }
+      ]
+    },
+    {
+      "key": "infected_sheep",
+      "group": "mutated",
+      "cubes": 40,
+      "bones": 11,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_sheep.geo.json": "14cef0d2465e97a2bc25221e1a33ad48f34bb040f005490a65dd91c2852f1e8a",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_sheep.animation.json": "de77f8a55636a1fa3629a33f53d0a01380be921dfdad377cc508ee7e55da594f",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_sheep.png": "4202a215230d47195d290917a994eb453b5b4dcea18cf5fa9919f769831d87d5"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_sheep-front.png",
+          "sha256": "3ec0d6d7fad89f91bf11a8fae47297ec331144c6ba3db4c2fd0dee5832fdabc4"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_sheep-side.png",
+          "sha256": "68066f583934a015e32f6aac9567e73f4130248dd779993608c3061df9fa0d8c"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_sheep-back.png",
+          "sha256": "429a89b23903719ff3d5d4a0b2aaed25ebfeb28d95e62eb163c86334cb5f4317"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_sheep-walk.png",
+          "sha256": "65e6e118b8902f30165b0083d371778a14c6dc179f1d2eddef74ab0ec91b4dd3"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_sheep-attack.png",
+          "sha256": "36f1f616105d394e4b782a9c8e3139e80c571f36f127f930e07a6382c7790460"
+        }
+      ]
+    },
+    {
+      "key": "infected_sheep_early",
+      "group": "early",
+      "cubes": 15,
+      "bones": 11,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_sheep_early.geo.json": "d5f14be1f959f51c872972551c9bacb368b30cebe160dc6739b373d98db1c85e",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_sheep_early.animation.json": "6dffbe5cb28222770d88c0205ce9e6d48d1d8a24df49c1ae75e0b97cbdf2d658",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_sheep_early.png": "806c6d25cd83449aff024c91f3872284ee1f1337b431015425be70aa07a26285"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_sheep_early-front.png",
+          "sha256": "69779c6285e798467cabdff6937c21ee5959852e4b20953e81a4229b19ac5734"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_sheep_early-side.png",
+          "sha256": "4914d01d62176e7950be28e336f96c8658b0ac0bdecac8659e0d5831f0cd034c"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_sheep_early-back.png",
+          "sha256": "c045671f449698481f1f5a7527326b7d5f52d483d89c5701cb7b33e2294279b2"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_sheep_early-walk.png",
+          "sha256": "b6cd87afbb352f5b555a607bd474d69c2937ccbde8ee3e651eadf2de99aa73f8"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_sheep_early-attack.png",
+          "sha256": "031acb4afd87147a02e02c2acfd23033f210148b41e163875846a9eae2e1fd8d"
+        }
+      ]
+    },
+    {
+      "key": "infected_shield_sentinel",
+      "group": "designed",
+      "cubes": 376,
+      "bones": 12,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_shield_sentinel.geo.json": "5d87ddd939303b3c795f44efec551d85c4ec6c14cf6ee1ba236440769e90102b",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_shield_sentinel.animation.json": "822a447a38afea417c0c7b7a8b7379ffc4179f53b950dfa3abb3c51899b130b4",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_shield_sentinel.png": "2483c80ef3d32e877297514aaff689c05d980e9cf5372ef577805f6721862fdc"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_shield_sentinel-front.png",
+          "sha256": "5189ee9d34ef969eb78ad58dee50a5132743835b448531e055d703705bbbc489"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_shield_sentinel-side.png",
+          "sha256": "e90018b08f231e7aa99ffd2b426eceb09a72eb8b531bc63a5e5853b4282ec449"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_shield_sentinel-back.png",
+          "sha256": "1218236e2d8337b168b058ade13b4ac2846ab39404b9bc053ffc0cec4778ba09"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_shield_sentinel-walk.png",
+          "sha256": "77a8374fd7822f40375874239abd832347bd5b6b0aeab92f777a4604feb9a308"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_shield_sentinel-attack.png",
+          "sha256": "0a968da5e976b6eb088a99b7516e4b56ab5d78181d10cb21f8a208f1d8573343"
+        }
+      ]
+    },
+    {
+      "key": "infected_siege_beast",
+      "group": "designed",
+      "cubes": 450,
+      "bones": 13,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_siege_beast.geo.json": "7e8d750f064c929494aecf157389cba3bd1ad87962533aae952a59e4c09350ea",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_siege_beast.animation.json": "7d411fa8003265d377cd532f3f41fabedfe5906d8aefbfc7da71f399541e10fc",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_siege_beast.png": "b0a4f61ea4b4cf0f3201c8b6cd275bd571366a7c933503e83ac99f2ec78d2a74"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_siege_beast-front.png",
+          "sha256": "1ae8d1b60fe17490af3686e7df29f8d7a6f542f2182f4b1bb2383b9783e5d7cc"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_siege_beast-side.png",
+          "sha256": "38240ccaf692452aee36750e4fc82bf908b5bc1754b306b5191866f60f495a1c"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_siege_beast-back.png",
+          "sha256": "9b809e1edaebde2867030d8d7fa580c794b7d5ce4d19efaa70b2be43cb9c1733"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_siege_beast-walk.png",
+          "sha256": "24c5bb999fbabfe04b4ef0be683c699de722f5ba0cdf97e9f23f9a0da1abd5d2"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_siege_beast-attack.png",
+          "sha256": "9c50ac0c6ea91568bf656b5a3198909d90aff13408aac6b4d3b028f1e33445bc"
+        }
+      ]
+    },
+    {
+      "key": "infected_siegebreaker",
+      "group": "designed",
+      "cubes": 359,
+      "bones": 13,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_siegebreaker.geo.json": "7afdd6bbd8a565244681ace449e6effc8abe0a8a348c8140403d30c77ce499df",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_siegebreaker.animation.json": "457fc78bf31bae3db1aed53ea1e981b480a98639ed8ce73782f8ae4e90e380ef",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_siegebreaker.png": "0794b452c1eac335b047eb0e040c60411f8ae72ff04663af93087bab0c487328"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_siegebreaker-front.png",
+          "sha256": "dc9ccf0a3df767e8c46037e3953cea17123434575a47857189f80253f9d89283"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_siegebreaker-side.png",
+          "sha256": "7e454dd791f142de69a7c77b683be2fc394f10d0faede1a811da2357531fd5d7"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_siegebreaker-back.png",
+          "sha256": "997a93d2ff144a9d6dc2018f1f592e046a4c67b283429dc5fe46dab5d0039e56"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_siegebreaker-walk.png",
+          "sha256": "3ff6fbd1816e2ac7e116af21b8140592bac61f0c49944aad58a170212d2973f0"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_siegebreaker-attack.png",
+          "sha256": "181933f58481d8421efb77fcf8e50edd43ac352ca637916fce6a4da9440922df"
+        }
+      ]
+    },
+    {
+      "key": "infected_skeleton",
+      "group": "mutated",
+      "cubes": 123,
+      "bones": 12,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_skeleton.geo.json": "f09f1af98b30fce7692fbeee5722519796ea889a14f0d4bafdbe4b04b0b81a2b",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_skeleton.animation.json": "a552259eb617a78a771325881c180c4ca5f64b2ebf28afb46099e486bc95dd3e",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_skeleton.png": "546ddafaf14a0f21ee1c559ba0f982ee9b2b249755f9e028776a62e1477f0265"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_skeleton-front.png",
+          "sha256": "59a35d5998125f8df7282da523e5902026253989440d6fe17a6ba9387a0866d7"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_skeleton-side.png",
+          "sha256": "7c3f03f419d25d18543450429e02f71e71bfa4c90458cc7c2aa0759d4072364e"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_skeleton-back.png",
+          "sha256": "7c38b6280f4fdc94402e3f7f672143312b87540683bf781291d1a3ce637ac185"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_skeleton-walk.png",
+          "sha256": "af8750b8115a87db48790752fe3d57c9a0e8a7252ada11c7d2c623a1837ee0e2"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_skeleton-attack.png",
+          "sha256": "7652ecb2a11d27fefea93476f6c0885ffef42ddbab34e5e4d17314188b0d204b"
+        }
+      ]
+    },
+    {
+      "key": "infected_skeleton_early",
+      "group": "early",
+      "cubes": 10,
+      "bones": 7,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_skeleton_early.geo.json": "160e70d618ad501cbb435f9b3c2e689ebba893d6cacedf8d39d334fc9364b256",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_skeleton_early.animation.json": "a89a4f7cefc224a4b74cde3d544a61fe9c93a165826bee70fe0fb387a438b7b4",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_skeleton_early.png": "42b36a6719f27d0463516ed2a4466950cffb2761e40607933fa1085559bc76fd"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_skeleton_early-front.png",
+          "sha256": "db97091d594d6603640003c487eed0da6bc2acc033d14c8fbd19824149bea1a3"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_skeleton_early-side.png",
+          "sha256": "e876b7cb5809cb941f81a3d4fe01afa7f81865ccef92c222ac75a96944c297fa"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_skeleton_early-back.png",
+          "sha256": "cd6c4638b36ce397724d65852911a4ec3b13f88264a3fe2f900977d96f2815d6"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_skeleton_early-walk.png",
+          "sha256": "6c0ff14f895177cf791d839e58c12aa5569332476026ccfe2cfe049524a48ce4"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_skeleton_early-attack.png",
+          "sha256": "c2d93a744405791a49a0cee17faf6ed05956bcca02b96fc00f66fb8c18d06eae"
+        }
+      ]
+    },
+    {
+      "key": "infected_spider",
+      "group": "mutated",
+      "cubes": 71,
+      "bones": 15,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_spider.geo.json": "5bfe2a960c1cee17123328b04e765273823395ec61e39f8f010f54ef015c976e",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_spider.animation.json": "3e6f13ecdd83e3a34abe52cd3934a3cb43268d33b1922bb68cbed3741f9d1b08",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_spider.png": "bfa974acb08930d8d8a2074d78a0f543a9d7e220e27632792e012d091c31569d"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_spider-front.png",
+          "sha256": "12db97f4f7a60cb27fc5a9510053e4c0b7a3b60e6dee4f3c95b1c0310241543b"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_spider-side.png",
+          "sha256": "88728314bcb53cdc910ddd1fb8c71356271dfa6a988986532565d271b620def2"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_spider-back.png",
+          "sha256": "2c67af00b61f666cd69b3e3abdff254a8c9292a4995858b4e4953f3b198bc1ff"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_spider-walk.png",
+          "sha256": "dc23a33b31fe2dd864a550abf420a441fbaee07165127eeee37ed1f34202e975"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_spider-attack.png",
+          "sha256": "a055c45eaf8229f954f9d40b23512b975f1947b5d9d955de42c3b4809d2937e1"
+        }
+      ]
+    },
+    {
+      "key": "infected_spider_early",
+      "group": "early",
+      "cubes": 55,
+      "bones": 11,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_spider_early.geo.json": "5d563715bbe44b3932fc4313c801a1854bb496a89e09d4c32b7c8a213bfa50f5",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_spider_early.animation.json": "fbb5c23b4e0519cd74e6c5efd23fc5b0bf3f487fc0779babb2eb751aaed99d6f",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_spider_early.png": "9f78c7c38fc2d9e9c09483eb2a1f7ca6a33dd0138b4a8830b7cd5da68862e83f"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_spider_early-front.png",
+          "sha256": "3747b7b7601822970cdc26ffb78d17dd97fd97887795366435238e7d4288ad05"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_spider_early-side.png",
+          "sha256": "077460d8f7be860598bffbde8af29f9a9384d09e662801310691db2c824d044d"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_spider_early-back.png",
+          "sha256": "2edf144cbca3af288efcbed7e24ba3a260523e0117e6e5ab06ab55fe53b8939b"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_spider_early-walk.png",
+          "sha256": "d323dd23c6cfed86b4075aba5174acf030b786a0a691ac1a52541980950617de"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_spider_early-attack.png",
+          "sha256": "47a056224d5be4e1d66f62eea68ddcea5f265009a68319e622a4837b06b9cc01"
+        }
+      ]
+    },
+    {
+      "key": "infected_spider_mother",
+      "group": "designed",
+      "cubes": 640,
+      "bones": 21,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_spider_mother.geo.json": "702a72bd36be0ff0e2b7a60e08fed099f41ecd6c404cba771029f15567a4f5c7",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_spider_mother.animation.json": "d0b35522b0bbb06d85d9fcf5f88f49c8150aa582592113f255c58e80b0d0382e",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_spider_mother.png": "472ddfa770836ff04148b616d99e04ee24cd4e9bceec93f5ed95fa8b8355166a"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_spider_mother-front.png",
+          "sha256": "250ccaea5c487451a4bdb48c5cc512e38b36f8adab0dc7d6d0f9ae44a52e1163"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_spider_mother-side.png",
+          "sha256": "1d6725e734d5302f4411361fb797fdbd466ad80e02df064fb74109722a06dbf7"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_spider_mother-back.png",
+          "sha256": "ffa2d06502fa48b40de4a175ea87105e40e44f7e11e9b5e41a62c10a48a52da1"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_spider_mother-walk.png",
+          "sha256": "b3fe17941067d251f826ac30906dbba479eeefd6bb3430e76f512cc64e09fe60"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_spider_mother-attack.png",
+          "sha256": "e2c3c7e8cdafae42a3bc50ee17e78b3d73b46aad392a48b35706b17009d088fa"
+        }
+      ]
+    },
+    {
+      "key": "infected_sporewing_scout",
+      "group": "designed",
+      "cubes": 352,
+      "bones": 13,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_sporewing_scout.geo.json": "f28f168086fc6abbf1fe9391e6eb6d682b7cbc99e6cb60112a374a7303d1c432",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_sporewing_scout.animation.json": "6874a4f6d313dd77c7db8ba55729c7d5533bc9d21e004cadcdb8b29dd60e9a78",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_sporewing_scout.png": "1e8223ed09044c7df39a3d69d7723fea91689711cdf7a370020440ddf37f4d3e"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_sporewing_scout-front.png",
+          "sha256": "7f11208a8855256685b08cfd3106051bf05834b0690b92bd579576b3ff7d643d"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_sporewing_scout-side.png",
+          "sha256": "503124bc041680807f47b7f23e751c3a376b3484fb59e302829bf12fa2c0a5bb"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_sporewing_scout-back.png",
+          "sha256": "15e6096db876476ae41f74c49d892e6c00980770bd96e7501f41c22a46aa47a2"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_sporewing_scout-walk.png",
+          "sha256": "985d9e538ca5bdb3530cf87afbf86e88f0099be4f51116e566abdf28287730d2"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_sporewing_scout-attack.png",
+          "sha256": "76434021b327cb63c415e9ca10bbbe56ad818b1fa68dd4f2df2012781242e3c9"
+        }
+      ]
+    },
+    {
+      "key": "infected_throat_spitter",
+      "group": "designed",
+      "cubes": 443,
+      "bones": 14,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_throat_spitter.geo.json": "abde1f10f6eb8f2565827b4297e9d4840c3fbd73476afa872f4667ba1e8285a6",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_throat_spitter.animation.json": "3d1988059e6bb81902f80ba508545c68b2094b9e11c23a3392ccfb9ab89fd034",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_throat_spitter.png": "a06ebdab7815c8ed5bceae184e5846d9fef78b0290e413143c0e618be2f675b7"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_throat_spitter-front.png",
+          "sha256": "d6e7c79362bd97a0f7ebec527450200ad2087b4fb4e8e011c3cd38e528f9a519"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_throat_spitter-side.png",
+          "sha256": "7756d5e2f86aeb784db97a52bddac61d0ae836a63f4f2c7e0bb9a5d03277b725"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_throat_spitter-back.png",
+          "sha256": "c2652d5fc1e1800a1415a3b693e0a0ff89d689834ee316ce6145db84c170b317"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_throat_spitter-walk.png",
+          "sha256": "a75fc91b5ff79bd52205fa966bde62029b08064edcdd6e4f9411b0cb4af72882"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_throat_spitter-attack.png",
+          "sha256": "af5e50bb0c46cca393603ef7f3edda568a75e5307082bf4b125380f8ee3e1982"
+        }
+      ]
+    },
+    {
+      "key": "infected_walking_nest",
+      "group": "designed",
+      "cubes": 1270,
+      "bones": 24,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_walking_nest.geo.json": "209de72d9b12c7cf33c03f5b4afdabfc02b48a68a9cf3fdcdcaaaf89fde8e7cb",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_walking_nest.animation.json": "08d0e68a31f97f72b66ea4b9593920fa37237101638ce0d6a79bee909729cff1",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_walking_nest.png": "a41674ce1390618991f792e07e807badb8cf53d4e23d6ef263d7cf817d9ce275"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_walking_nest-front.png",
+          "sha256": "22dfa980bd5edf752158450af7939a9a378f521c48aa5f33e03b535cdb5e7ded"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_walking_nest-side.png",
+          "sha256": "f803c5c8e4d964a539b11b6777d3c5c005941c4582017d7a435cb808796f3b6c"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_walking_nest-back.png",
+          "sha256": "1d94171255683957f740c1782b1a1e4677677e3e0815eece8baf79e4c1f02b75"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_walking_nest-walk.png",
+          "sha256": "28ee41df0f9d49bd400936078929f45e76d462aabf12f102699da703df5531fd"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_walking_nest-attack.png",
+          "sha256": "ba5cf239f6500e93347322ea7ee3b52caaabd5916c950d6e27a16c2999873166"
+        }
+      ]
+    },
+    {
+      "key": "infected_zombie_early",
+      "group": "early",
+      "cubes": 10,
+      "bones": 7,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/infected_zombie_early.geo.json": "5ed3e982ee95503606844769dfb74bc0daaeebf976fe7a31eaaf700958761e71",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/infected_zombie_early.animation.json": "89c073d95413cebc11a1b0a1307425753c7687833391b9994760f0bc0e30ffa7",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/infected_zombie_early.png": "0ea5a37c2f29a6d8c9fd364daacc793766ff0f3b4ed221ff5c2318ab456e54c8"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_zombie_early-front.png",
+          "sha256": "28c160ab44f3833701edaeff7ee773bc67c7df771761bda5363583a9ff9a6216"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_zombie_early-side.png",
+          "sha256": "95b29a9cbdbb2a6aa0caf4ce80b5c45eaadb1bcdbdee9e1479fee736684bd585"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_zombie_early-back.png",
+          "sha256": "a34edfd7b8e58b738afbd6d8b898958436e75b0770b733ac1a8e3ca3e237cb4f"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_zombie_early-walk.png",
+          "sha256": "2e118f31644397be9a723ac48eefe697656b94c1a5f161b2c84a01d81fd3f8f9"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/infected_zombie_early-attack.png",
+          "sha256": "3b483f69c599e3e7ae2d5c642fa8ddb08310b9f1c83921b02331c42dc25e2209"
+        }
+      ]
+    },
+    {
+      "key": "ender_mutant_zombie",
+      "group": "mutated",
+      "cubes": 133,
+      "bones": 11,
+      "sample_times": [
+        0,
+        0.25,
+        0.8
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/ender_mutant_zombie.geo.json": "368ea3ae359cf168cbb98fa2acf43b1abed257fb0093f6cf33c4ee9bcf4df0e2",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/ender_mutant_zombie.animation.json": "2c44f5121179bdf2db6c9f9b97d00e5a67f472db7019b287f3425ffb891fe1e1",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/ender_mutant_zombie.png": "439706c9975c4196d0e0ba58e4e85bf552eb8d8abffa3d893856d6cfa55b8f00"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/ender_mutant_zombie-front.png",
+          "sha256": "082191edcdfd17fa7ddd451a97a0a6eb099c357ef577497ac2e36fbb4ca75cde"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/ender_mutant_zombie-side.png",
+          "sha256": "63d5aea9eaafe2fb3d8b06b195fa757dbfeed1d1d3562ef115bfb05c9cdb7d42"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/ender_mutant_zombie-back.png",
+          "sha256": "0d90d8a26dce7732a061ed7d34eb2487540e1e8399d538df9bee100897fc9b20"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/ender_mutant_zombie-walk.png",
+          "sha256": "d0b03298d625cf4fd2a64d69a35a2e358d66e80f162c126ce5e11d27622df3f0"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/ender_mutant_zombie-attack.png",
+          "sha256": "c3ec32b5d7d3364b35cc0f35f0223de26f4cd06ab43bc631fbe9ed00b2787351"
+        }
+      ]
+    },
+    {
+      "key": "containment_warden",
+      "group": "boss",
+      "cubes": 128,
+      "bones": 21,
+      "sample_times": [
+        0,
+        0.25,
+        1
+      ],
+      "asset_sha256": {
+        "ender_infection_colored/src/main/resources/assets/ender_infection/geo/containment_warden.geo.json": "c48d8a6b060423cb78ef5d9f3a045d91b3a208df008ce66b9be7f6695d92d41f",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/animations/containment_warden.animation.json": "a4d8a47c7cfea19c3fdcd2d7f9fe93806fe2844a94253b3c4d33c600efa64087",
+        "ender_infection_colored/src/main/resources/assets/ender_infection/textures/entity/containment_warden.png": "6bc560468be70b650f4316daea0516de69256e572b157eab4ea8411092391bd1"
+      },
+      "images": [
+        {
+          "file": "previews/public-model-adaptations-v1/audit/containment_warden-front.png",
+          "sha256": "875386a3bffc84b3f21f862ccc9d9828ad26db2b1d1d54ec6d469ee11138c9be"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/containment_warden-side.png",
+          "sha256": "d84bc9cca32ae6c7a734c383a8b2efa6329ce8c8e079e32b365cf6a2a3d45a81"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/containment_warden-back.png",
+          "sha256": "933f7a8f1bc923e9b0ba33dc751fb92292f9976f65cd3565d1bc7f7553e1b4fd"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/containment_warden-walk.png",
+          "sha256": "f8d9d99e156073d782964efb99bf94309b1bc3d3d3da6163cae34394d33c06a9"
+        },
+        {
+          "file": "previews/public-model-adaptations-v1/audit/containment_warden-attack.png",
+          "sha256": "074ddd15a33aae15c554d1461bc010b970345fd2c4b267512555750d42428576"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "verified_on": "2026-11-06",
+  "sources": [
+    {
+      "name": "Skeleton Lord",
+      "author": "@anim",
+      "page": "https://blockbenchworkshop.com/model/anim/skeleton-lord",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "retrieval": "The work page's public complete viewer JSON; the login-only download endpoint was not bypassed.",
+      "asset_url": "https://blockbenchworkshop.com/cdn/previews/y2BntgWXrPICFijrO0OqZ3jOhNPzLLEE/15506186-efdc-4be1-9c31-50125e63d3a8.json?v=5",
+      "file": "source/skeleton_lord.bbmodel",
+      "bytes": 846302,
+      "sha256": "bb3d8b25927d875708af27a66068572ee75555aff213f922e8cf8a17ed11b68e"
+    },
+    {
+      "name": "Leathern Drake",
+      "author": "Breathfang (Drageon DB)",
+      "page": "https://sketchfab.com/3d-models/leathern-drake-blockbench-021865367838492a9839c64c6f3cb984",
+      "license": "CC-BY-4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0/",
+      "license_evidence": "Public Sketchfab v3 model metadata license.url = http://creativecommons.org/licenses/by/4.0/",
+      "metadata_url": "https://api.sketchfab.com/v3/models/021865367838492a9839c64c6f3cb984",
+      "asset_url": "https://www.mediafire.com/file/a0cf1lycqb4gh1e/Leathern_Drake_Blockbench_Model.zip/file",
+      "zip_sha256": "cfac3b438896f6c473dc1f1d5157c76b6a5bba81ae5df0432c66f18a6cc91903",
+      "files": [
+        {"file":"source/leathern_drake.bbmodel","bytes":1500205,"sha256":"de629aeb77eebabcf506cbb1b502b3e1ea75a8ead56f224fcd55d4070c993cc8"},
+        {"file":"source/leathern_drake_geckolib.animation.json","bytes":499212,"sha256":"039e3d94afcd449d9dac0d6eaf4f2f7e420e0c06a8e3e4de7e943ae44eb65e42"}
+      ]
+    }
+  ],
+  "modifications": "AI-assisted Blockbench MCP adaptation; original sources retained; see README.md and runtime model_credits.json."
+}

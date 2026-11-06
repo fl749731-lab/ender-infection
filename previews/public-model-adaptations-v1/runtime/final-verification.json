@@ -1,0 +1,187 @@
+{
+  "status": "PASS",
+  "version": "0.12.0-alpha.7",
+  "scope": "Development increment; 36-form baseline, two adapted models, equipment and effects review; no public release",
+  "baseline_forms": 36,
+  "baseline_mcp_images": 180,
+  "public_model_contract_tests": 5,
+  "existing_export_tests": 6,
+  "native_tests": [
+    {
+      "status": "PASS",
+      "log": "previews/public-model-adaptations-v1/runtime/forge/native-tests.log",
+      "total": 36,
+      "required_passed": 36,
+      "sha256": "01d867e9532fb03b21c24973bb8a9c6c1d4b42702bdf6362e2222e4d2eb5bb4b"
+    },
+    {
+      "status": "PASS",
+      "log": "previews/public-model-adaptations-v1/runtime/neo/native-tests.log",
+      "total": 36,
+      "required_passed": 36,
+      "sha256": "82a79f6efea4d4a4971ab537328381ab430f77e8ec07e37e499504077f036f1e"
+    }
+  ],
+  "native_required_passed": 72,
+  "client_captures": 196,
+  "clients": [
+    {
+      "status": "PASS",
+      "loader": "forge",
+      "mode": "concept",
+      "screenshots": 8,
+      "log_sha256": "4401b65300f5426ed9b0880553ccb543a49a14999288125716124668d35a0b62",
+      "zero_light_probes": null
+    },
+    {
+      "status": "PASS",
+      "loader": "forge",
+      "mode": "glow",
+      "screenshots": 70,
+      "log_sha256": "2910a1d63812a8eab5ec6cc5f9bd96c022368fc8d8c30275a2beccef547a038d",
+      "zero_light_probes": 70,
+      "occluded_views": [
+        "sheep_front",
+        "spider_front",
+        "burrower_back",
+        "skeleton_early_front",
+        "zombie_early_front"
+      ]
+    },
+    {
+      "status": "PASS",
+      "loader": "forge",
+      "mode": "equipment",
+      "screenshots": 20,
+      "log_sha256": "60f2e19b55d1f4c190b8f579d1f959a6969a5a6b2b4369c32f7a5cdc71b64b39",
+      "zero_light_probes": null
+    },
+    {
+      "status": "PASS",
+      "loader": "neo",
+      "mode": "concept",
+      "screenshots": 8,
+      "log_sha256": "5d38015f20c5769a992cbdfb4c8a01f321832216719d165c3d1b1d43e97cbfa7",
+      "zero_light_probes": null
+    },
+    {
+      "status": "PASS",
+      "loader": "neo",
+      "mode": "glow",
+      "screenshots": 70,
+      "log_sha256": "e099c19ed42833f836ddb91f77a23f29b7d2a4033209343b6eb5262be3dea082",
+      "zero_light_probes": 70,
+      "occluded_views": [
+        "sheep_front",
+        "spider_front",
+        "burrower_back",
+        "skeleton_early_front",
+        "zombie_early_front"
+      ]
+    },
+    {
+      "status": "PASS",
+      "loader": "neo",
+      "mode": "equipment",
+      "screenshots": 20,
+      "log_sha256": "9a84902c3cc4f5427ae856c73b180b1fc4c909fbea6c0e11a51ba569886c0926",
+      "zero_light_probes": null
+    }
+  ],
+  "models": [
+    {
+      "source": "resonance_priest",
+      "editable_source": "colored_units/public_model_adaptations_v1/models/resonance_priest.bbmodel",
+      "runtime": "infected_resonance_priest",
+      "kind": "entity",
+      "scale": 0.52,
+      "pipeline": "tools/export_public_model_adaptations.py",
+      "cubes": 299,
+      "bones": 91,
+      "atlas": [
+        512,
+        512
+      ],
+      "emissive_pixels": 17160
+    },
+    {
+      "source": "crystalback_carrier",
+      "editable_source": "colored_units/public_model_adaptations_v1/models/crystalback_carrier.bbmodel",
+      "runtime": "infected_carrier",
+      "kind": "entity",
+      "scale": 0.7,
+      "pipeline": "tools/export_public_model_adaptations.py",
+      "cubes": 191,
+      "bones": 142,
+      "atlas": [
+        512,
+        256
+      ],
+      "emissive_pixels": 18
+    }
+  ],
+  "loop_seams": [
+    {
+      "model": "resonance_priest",
+      "clip": "idle",
+      "max_channel_delta": 0
+    },
+    {
+      "model": "resonance_priest",
+      "clip": "walk",
+      "max_channel_delta": 0
+    },
+    {
+      "model": "crystalback_carrier",
+      "clip": "idle",
+      "max_channel_delta": 0
+    },
+    {
+      "model": "crystalback_carrier",
+      "clip": "walk",
+      "max_channel_delta": 0
+    }
+  ],
+  "glow_and_geometry_unchanged_after_loop_fix": true,
+  "jars": [
+    {
+      "file": "ender_infection_colored/build/libs/ender-infection-0.12.0-alpha.7.jar",
+      "bytes": 6204885,
+      "sha256": "baaf052c917083e0b29dec297d0c181e7962105f157e0f5b0285db2cb19a7448"
+    },
+    {
+      "file": "ender_infection_neoforge/build/libs/ender-infection-neoforge-1.21.1-0.12.0-alpha.7.jar",
+      "bytes": 6054322,
+      "sha256": "c0062005cca5ef4df2c44efab551c90326249d230766ebe919872acd7fd41065"
+    }
+  ],
+  "jar_resource_checks": [
+    {
+      "file": "ender_infection_colored/build/libs/ender-infection-0.12.0-alpha.7.jar",
+      "matched_assets": 10
+    },
+    {
+      "file": "ender_infection_neoforge/build/libs/ender-infection-neoforge-1.21.1-0.12.0-alpha.7.jar",
+      "matched_assets": 10
+    }
+  ],
+  "clean_full_release_gate_executed": false,
+  "limits": [
+    "Native GameTests do not validate appearance.",
+    "MCP numeric samples and selected pose captures are not full animation collision proofs.",
+    "Full dark-room and equipment captures preceded endpoint correction; their geometry and materials are byte-identical. Final concept captures were repeated on both loaders after correction.",
+    "No full institute persistence/restart gate was rerun in this increment."
+  ],
+  "final_resource_sha256": {
+    "geo/infected_resonance_priest.geo.json": "fe0e0259c51ecc5cc92bf4343351a102ea13ce2a913a15ec3c520f40801856e4",
+    "animations/infected_resonance_priest.animation.json": "c01cd1c8581b10904f33b323c44172d503b746cd46a83e19dd2663a4806c52e0",
+    "textures/entity/infected_resonance_priest.png": "06bcf75bc16743411b3814fdced8b374f9ea7609b00f7d3c2d8b31e3b0edbc73",
+    "textures/entity/infected_resonance_priest_glowmask.png": "67182acc9859843b68e0764ebb89ffeab6e986e35d2d330c4ba211174766a3ba",
+    "geo/infected_carrier.geo.json": "1a1bf1d33b0e21a6ba3a8193a77ef156ff4ce4658118fa94dac310326b993e30",
+    "animations/infected_carrier.animation.json": "cacbcb0eb160929ef2add07f8e833d76f9d020e79084f2f9e04e804176273260",
+    "textures/entity/infected_carrier.png": "708274fda585de6ea5ab241d61e8b14783e24906f9794dcd38857e487b0ba721",
+    "textures/entity/infected_carrier_glowmask.png": "2217ae9fbe32b8776be02f3ae297fadf580bb4f358191e5f5631701ad22fed5a",
+    "third_party/model_credits.json": "cf63d4a2cea2e40ff39fd1cee9620aef43b2133078c473177a6b73579d1e91aa",
+    "concept_visual_bounds.json": "fbf7b62a5c0aa5b2ec001cab686b03af0c196b42f1f263665088a378fc312e16"
+  }
+}

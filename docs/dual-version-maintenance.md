@@ -30,6 +30,8 @@ alpha.7 开发版另加入 F8 Boss 原生测试和真实重启／卸载检查。
 
 后续增强特效的开发增量验收单独记录在 [VFX 运行记录](../previews/containment-warden-vfx-v1/runtime/README.md)：Warden 34 项原生用例、48 张客户端实景及本轮开发 JAR。该记录不替代公开发布前的干净全量门槛。
 
+公开底模适配的模型、发光、装备视图与增量测试见[本轮模型验收](../previews/public-model-adaptations-v1/README.md)；其余怪物和感染阶段的改造顺序集中在[全体评审](model-visual-review.md)。
+
 结果位于 `build/dual-version-validation`。后续实现变化需要重新验证；历史版本的通过结果不替代新代码验收。原生测试必须核对实际执行数，零项不算通过。
 
 ## 共振工业

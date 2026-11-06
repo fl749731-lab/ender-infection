@@ -1,0 +1,43 @@
+{
+  "status": "PASS",
+  "change": "Only idle/walk endpoint animation keys changed after the full dark-room and equipment captures.",
+  "geometry_and_materials_unchanged": true,
+  "before": {
+    "geo/infected_carrier.geo.json": "1a1bf1d33b0e21a6ba3a8193a77ef156ff4ce4658118fa94dac310326b993e30",
+    "geo/infected_resonance_priest.geo.json": "fe0e0259c51ecc5cc92bf4343351a102ea13ce2a913a15ec3c520f40801856e4",
+    "textures/entity/infected_carrier.png": "708274fda585de6ea5ab241d61e8b14783e24906f9794dcd38857e487b0ba721",
+    "textures/entity/infected_carrier_glowmask.png": "2217ae9fbe32b8776be02f3ae297fadf580bb4f358191e5f5631701ad22fed5a",
+    "textures/entity/infected_resonance_priest.png": "06bcf75bc16743411b3814fdced8b374f9ea7609b00f7d3c2d8b31e3b0edbc73",
+    "textures/entity/infected_resonance_priest_glowmask.png": "67182acc9859843b68e0764ebb89ffeab6e986e35d2d330c4ba211174766a3ba"
+  },
+  "after": {
+    "geo/infected_carrier.geo.json": "1a1bf1d33b0e21a6ba3a8193a77ef156ff4ce4658118fa94dac310326b993e30",
+    "geo/infected_resonance_priest.geo.json": "fe0e0259c51ecc5cc92bf4343351a102ea13ce2a913a15ec3c520f40801856e4",
+    "textures/entity/infected_carrier.png": "708274fda585de6ea5ab241d61e8b14783e24906f9794dcd38857e487b0ba721",
+    "textures/entity/infected_carrier_glowmask.png": "2217ae9fbe32b8776be02f3ae297fadf580bb4f358191e5f5631701ad22fed5a",
+    "textures/entity/infected_resonance_priest.png": "06bcf75bc16743411b3814fdced8b374f9ea7609b00f7d3c2d8b31e3b0edbc73",
+    "textures/entity/infected_resonance_priest_glowmask.png": "67182acc9859843b68e0764ebb89ffeab6e986e35d2d330c4ba211174766a3ba"
+  },
+  "final_loop_seams": [
+    {
+      "model": "resonance_priest",
+      "clip": "idle",
+      "max_channel_delta": 0
+    },
+    {
+      "model": "resonance_priest",
+      "clip": "walk",
+      "max_channel_delta": 0
+    },
+    {
+      "model": "crystalback_carrier",
+      "clip": "idle",
+      "max_channel_delta": 0
+    },
+    {
+      "model": "crystalback_carrier",
+      "clip": "walk",
+      "max_channel_delta": 0
+    }
+  ]
+}

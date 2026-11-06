@@ -25,6 +25,7 @@
 - [F8 研究所 Boss（alpha.7 开发版）](institute-boss.md)
 - [Boss 特效设计与本轮实景](../previews/containment-warden-vfx-v1/README.md)
 - [公开 Minecraft 模型网站与候选](public-minecraft-models.md)
+- [全部怪物、感染形态、装备与特效评审](model-visual-review.md)
 
 ## 历史资料
 

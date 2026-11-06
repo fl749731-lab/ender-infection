@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "version": "0.12.0-alpha.6",
-  "created_at": "2026-11-05T20:48:10.316374+00:00",
+  "version": "0.12.0-alpha.7",
+  "created_at": "2026-11-06T15:33:11.5719184+01:00",
   "mode": "commit",
   "channel": "alpha",
-  "fingerprint": "sha256:47bd72bdc62deb511d992ffe7d6667c6b71f54dc43ddf0856433500dca29872c",
+  "fingerprint": "sha256:09bf9000fb2fcbc40ac575a5a521f41c1fdf1d22343f1d5298f3a41293d2d4e0",
   "repo": {
     "host": "github.com",
     "owner": "fl749731-lab",
@@ -13,27 +13,31 @@
   },
   "verified": {
     "commands": [
+      "python tools/test_design_export.py",
+      "python tools/test_public_model_adaptations.py",
+      "python tools/export_public_model_adaptations.py --verify",
+      "python tools/export_lab_door_variants.py --verify",
       "python tools/build_dual_version.py --clean --gametests"
     ],
     "skipped": false,
-    "at": "2026-11-05T20:48:10.316374+00:00"
+    "at": "2026-11-06T15:33:11.5719184+01:00"
   },
   "packages": [
     {
       "name": "java@ender_infection_colored",
       "path": "ender_infection_colored",
       "resolver": "java",
-      "current": "0.12.0-alpha.6",
-      "next": "0.12.0-alpha.6",
+      "current": "0.12.0-alpha.7",
+      "next": "0.12.0-alpha.7",
       "bump": "minor",
-      "tag": "v0.12.0-alpha.6",
+      "tag": "v0.12.0-alpha.7",
       "publish": false
     }
   ],
   "releases": [
     {
-      "version": "0.12.0-alpha.6",
-      "tag": "v0.12.0-alpha.6",
+      "version": "0.12.0-alpha.7",
+      "tag": "v0.12.0-alpha.7",
       "packages": [
         "java@ender_infection_colored"
       ],
@@ -42,6 +46,18 @@
   ],
   "changes": [
     {
+      "file": ".changes/boss-models-alpha7.md",
+      "type": "feat",
+      "scope": "visuals",
+      "bump": "patch",
+      "packages": [
+        "java@ender_infection_colored"
+      ],
+      "body": "发布 F8 收容监管体、layout v5 启动终端与两座抑制台，加入七套动作、三种带预警的攻击、共享一次性核心奖励与状态持久化。增强晶体扇浪的立体前沿和卷曲，补充右爪斩痕、核心符文和抑制台电弧。\n\n以署名的 CC BY 公开底模改造共鸣祭司和晶背搬运兽，保留立体关节与有用细节，适配五套动作、握点、尾部和接地，修正待机／行走循环接点；紫晶材质自发光。同步 Forge 1.20.1 与 NeoForge 1.21.1，保留原注册 ID 和技能时点。\n\n增加全体怪物（含初期感染和畸变）、武器、护甲及特效评审和原生实景记录。其余畸变形态及设备的批量替换是后续持续目标，本版不将评审中尚未改造的对象记为已经替换。\n\n修复储柜、玻璃柜、低温柜和服务器柜门向内旋转导致穿过层板的问题；接待台显示器增加连续支杆与落台底座。相邻同类、同朝向的两扇研究所门自动组成双开门，外侧铰链对开、中间无门柱，点击任一上／下半部同步开关；同时校验两侧门禁，保留室内应急出口、单门与原存档兼容。",
+      "commit": "4c8b76497ce8b0342b3710d849720f4c053379db",
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/4c8b76497ce8b0342b3710d849720f4c053379db"
+    },
+    {
       "file": ".changes/central-institute-runtime.md",
       "type": "feat",
       "scope": "institute",
@@ -49,9 +65,22 @@
       "packages": [
         "java@ender_infection_colored"
       ],
-      "body": "将中央研究所图纸组装为 120×104 场地、地上三层和地下三层共 48 间有内饰的游戏建筑。双楼梯、货梯、中庭连桥及 48 个分类补给桶连接完整布局；在适合的主世界新区块原生生成，保留六种旧小型实验室与署名导入建筑。\n\n把 13 类有储物结构的家具接入真实 27 格原版箱子界面：普通及侵蚀储柜、普通及侵蚀工作台抽屉、冷柜、货箱、货架、洗手盆下柜、玻璃展示柜、低温柜、服务器机架、控制台和推车。中央研究所模板包含 1417 个按房型分配战利品的储物根，六种旧小站模板合计包含 368 个；另保留中央研究所的 48 个独立补给桶。使用原版延迟战利品机制，生成后保存实际物品，重复打开和读档不重新抽取；玩家自行摆放为空，不向旧世界未标记的家具补刷免费物资。\n\n柜门和抽屉随实际使用开合，多人同时使用时保持开启，关闭或离开后合上。根方块与占位部件共享一份库存，破坏时内容只掉落一次；菜单同步槽位，普通区块更新不广播库存和未开奖励。\n\n补充玻璃展示柜、低温柜、服务器机架、控制台、推车、可开合隐私隔帘、显微镜、离心机、冷却泵和工作灯，调整对应房间设备及布置。五色细墙带替代整格深色条，补齐房间标识，修正门口、竖井、柜门前与补给通路；保留楼梯、货梯及中庭通行。\n\n按原房间用途修正 E5 培养舱阵列与 A3 医疗观察室：E5 恢复六座大型培养舱，A3 配置四张观察床，并保留设备前方和床边通路。\n\n新增 `/enderinstitute previewcentral <origin>`、`build <origin>`、`status` 和 `cancel`。先检查完整区域，再按已加载区块施工；保护已有容器、设备和活动方块，支持保存进度与保守恢复，取消保留已经完成的部分。入口阶梯及地下支撑适配 8 格地形高差；59 处紫晶组合补充实际表面光照，保留相邻空气和长芽空间。\n\nForge Minecraft 1.20.1 与 NeoForge Minecraft 1.21.1 同步更新，公共 API 维持 v1，附属 Mod 示例保持兼容。本次发行执行完整双版本干净构建，实际 115 项必需原生测试全部通过；四个原生客户端完成 150 张截图验收：122 张中央研究所实景，加 28 张真实库存界面及开柜模型。最终 JAR 校验和、布局与图像 SHA256 见发布验证清单。整楼电网联动、收容事件与研究所 Boss 机制尚未接入。",
+      "body": "将中央研究所图纸组装为 120×104 场地、地上三层和地下三层共 48 间有内饰的游戏建筑。双楼梯、货梯、中庭连桥及 48 个分类补给桶连接完整布局；在适合的主世界新区块原生生成，保留六种旧小型实验室与署名导入建筑。\n\n把 13 类有储物结构的家具接入真实 27 格原版箱子界面：普通及侵蚀储柜、普通及侵蚀工作台抽屉、冷柜、货箱、货架、洗手盆下柜、玻璃展示柜、低温柜、服务器机架、控制台和推车。中央研究所模板包含 1417 个按房型分配战利品的储物根，六种旧小站模板合计包含 368 个；另保留中央研究所的 48 个独立补给桶。使用原版延迟战利品机制，生成后保存实际物品，重复打开和读档不重新抽取；玩家自行摆放为空，不向旧世界未标记的家具补刷免费物资。\n\n柜门和抽屉随实际使用开合，多人同时使用时保持开启，关闭或离开后合上。根方块与占位部件共享一份库存，破坏时内容只掉落一次；菜单同步槽位，普通区块更新不广播库存和未开奖励。\n\n补充玻璃展示柜、低温柜、服务器机架、控制台、推车、可开合隐私隔帘、显微镜、离心机、冷却泵和工作灯，调整对应房间设备及布置。五色细墙带替代整格深色条，补齐房间标识，修正门口、竖井、柜门前与补给通路；保留楼梯、货梯及中庭通行。\n\n按原房间用途修正 E5 培养舱阵列与 A3 医疗观察室：E5 恢复六座大型培养舱，A3 配置四张观察床，并保留设备前方和床边通路。\n\n新增 `/enderinstitute previewcentral \u003corigin\u003e`、`build \u003corigin\u003e`、`status` 和 `cancel`。先检查完整区域，再按已加载区块施工；保护已有容器、设备和活动方块，支持保存进度与保守恢复，取消保留已经完成的部分。入口阶梯及地下支撑适配 8 格地形高差；59 处紫晶组合补充实际表面光照，保留相邻空气和长芽空间。\n\nForge Minecraft 1.20.1 与 NeoForge Minecraft 1.21.1 同步更新，公共 API 维持 v1，附属 Mod 示例保持兼容。本次发行执行完整双版本干净构建，实际 115 项必需原生测试全部通过；四个原生客户端完成 150 张截图验收：122 张中央研究所实景，加 28 张真实库存界面及开柜模型。最终 JAR 校验和、布局与图像 SHA256 见发布验证清单。整楼电网联动、收容事件与研究所 Boss 机制尚未接入。",
       "commit": "44698dbf3db5d5f5347c24905d209eea4115624b",
       "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/44698dbf3db5d5f5347c24905d209eea4115624b",
+      "author": "fl749731-lab"
+    },
+    {
+      "file": ".changes/containment-incident-alpha6.md",
+      "type": "feat",
+      "scope": "institute",
+      "bump": "patch",
+      "packages": [
+        "java@ender_infection_colored"
+      ],
+      "body": "两版同步加入 B2 E8 收容事故：研究前置、两波最多六只普通感染者、局部冷却与监视故障、隔离阀复位，以及全体玩家共享的一次性研究奖励。阶段、实体 UUID 和领奖资格持久化；保留原有配电开关、门禁及应急出口。新事件只随 v4 结构生成，已有 v3 建筑不会被覆盖。\n\n通过 Blockbench MCP 为晶盾卫士补充盾面分层骨板、调整眉骨，为裂喉喷吐者缩短胸前双囊并保持贴图密度。导出动画按骨骼 UUID 绑定，避免改名后引用旧骨骼名。紫晶继续使用完整自发光遮罩。",
+      "commit": "769d444fece5344a505784a3fd3735e7b2e8bea8",
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/769d444fece5344a505784a3fd3735e7b2e8bea8",
       "author": "fl749731-lab"
     },
     {
@@ -76,8 +105,7 @@
       ],
       "body": "为 Forge 1.20.1 与 NeoForge 1.21.1 同步追加中央研究所修复、两区供电、门禁、显微分析、离心分离、一次性核心档案任务及 7 种任务物品。D2 发电机修复消耗保险丝 ×1、铜锭 ×4、红石 ×4；D1 配电控制器主手普通右键切换服务区，主手空手潜行右键切换收容区。服务区供电后在 A7 领取门禁卡，完成本设施分析与分离并恢复收容区供电后，可在 F5 提交研究记录片和分离试剂，领取一次性核心档案与虚空晶奖励。\n\n新布局接入 881 盏分区灯、40 个受管门和 42 台加工设备，保留 120 处常亮光源及 59 处紫晶表面补光。外侧开门要求供电并手持门禁卡，内侧保留手动应急。加工使用 3 个机器槽与 36 个背包槽，断电或产物槽满时暂停；设施状态、机器物品和进度随存档保存。多人共用设施进度，门禁卡按玩家领取，核心档案每座设施共用一次；材料与奖励完整检查后结算，背包放不下时不扣材料、不掉物。\n\n新增原生两格医疗观察床、拼接等候沙发和桌面细节，保留原有 13 类储物库存与一次性战利品规则；提供 25 份可编辑家具模型，其中本轮新增 7 份。公共 Java 17 API 仍为 v1，追加只读设施状态、可关闭的事件订阅和加工配方，已有 v1 附属保持兼容；双版附属示例追加纸张复制配方，当前示例最低核心依赖为 `[0.12.0-alpha.4,)`。\n\n新玩法适用于新生成或新施工的 layout v3，已有 alpha.3 建筑不会自动重建或绑定任务，更新不会重抽已领取的储物战利品，玩家自行放置机器不会自动绑定或取得设施供电。收容事故事件与研究所 Boss 战仍未实现。alpha.3 历史发行及附件继续保留，稳定版保持 0.11.0。\n\nalpha.4 已完成完整双版本干净构建与 16 组原生测试，139 项必需测试通过（含两版附属各 2 项）；两版独立客户端功能场景各完成 10 张真实交互截图，共 20 张，覆盖供电、门禁、加工菜单、一次性档案奖励及医疗家具。",
       "commit": "394dfa0cf462ba4f394045bb4572906641c0e94e",
-      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/394dfa0cf462ba4f394045bb4572906641c0e94e",
-      "author": "fl749731-lab"
+      "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/394dfa0cf462ba4f394045bb4572906641c0e94e"
     },
     {
       "file": ".changes/model-polish-alpha5.md",
@@ -114,16 +142,6 @@
       "body": "接入由 Blockbench MCP 制作的初期感染末影人、畸变末影人和晶壳锚卫模型、紫晶发光与动画。末影单位的相位移动提供落点预警，可被抑制器打断；锚卫围绕锚点防守，供能时减伤、受抑制时开甲。\n\n新增裂隙锚点、相位抑制器及合成配方，并提供 `/enderrift outpost` 手动生成前哨战斗原型。此预发布暂不包含裂隙前哨自然生成及规划中的后续首领。",
       "commit": "588fdd61d09a9e9ad19c0f526a01a4ab82325cd5",
       "commit_url": "https://github.com/fl749731-lab/ender-infection/commit/588fdd61d09a9e9ad19c0f526a01a4ab82325cd5"
-    },
-    {
-      "file": ".changes/containment-incident-alpha6.md",
-      "type": "feat",
-      "scope": "institute",
-      "bump": "patch",
-      "packages": [
-        "java@ender_infection_colored"
-      ],
-      "body": "两版同步加入 B2 E8 收容事故：研究前置、两波最多六只普通感染者、局部冷却与监视故障、隔离阀复位，以及全体玩家共享的一次性研究奖励。阶段、实体 UUID 和领奖资格持久化；保留原有配电开关、门禁及应急出口。新事件只随 v4 结构生成，已有 v3 建筑不会被覆盖。\n\n通过 Blockbench MCP 为晶盾卫士补充盾面分层骨板、调整眉骨，为裂喉喷吐者缩短胸前双囊并保持贴图密度。导出动画按骨骼 UUID 绑定，避免改名后引用旧骨骼名。紫晶继续使用完整自发光遮罩。"
     }
   ],
   "previous_changes": [
@@ -132,7 +150,8 @@
     ".changes/institute-operations.md",
     ".changes/model-polish-alpha5.md",
     ".changes/release-tooling.md",
-    ".changes/rift-outpost.md"
+    ".changes/rift-outpost.md",
+    ".changes/containment-incident-alpha6.md"
   ],
   "qegg": {
     "version": "0.12.0"

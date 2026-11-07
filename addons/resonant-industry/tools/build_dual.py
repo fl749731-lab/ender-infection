@@ -2,6 +2,7 @@
 from __future__ import annotations
 import argparse, hashlib, json, os, re, shutil, sys, time, zipfile
 from pathlib import Path
+from validation_contract import INDUSTRY_FRAMES, LABWARE_FRAMES, NATIVE_MINIMUM
 BASE=Path(__file__).resolve().parents[1]
 ROOT=BASE.parents[1]
 sys.path.insert(0,str(ROOT/'tools'))
@@ -50,17 +51,12 @@ def labware_client(loader,major):
     lines=[line for line in options.read_text('utf-8').splitlines() if not line.startswith('lang:')];lines.append('lang:zh_cn');options.write_text('\n'.join(lines)+'\n','utf-8')
     log=dual.run_project('Labware '+loader,(BASE/loader).relative_to(ROOT).as_posix(),major,['runClient','-PlabwareVisualCheck'],f'{loader}-labware-client.log')
     content=log.read_text('utf-8',errors='replace')
-    assert 'LABWARE_VISUAL_PASS step=59 shots=23' in content and 'LABWARE_NATIVE_INTERACTIONS_PASS volume=1000' in content and 'LABWARE_VISUAL_FAIL' not in content
+    assert f'LABWARE_VISUAL_PASS step=59 shots={len(LABWARE_FRAMES)}' in content and 'LABWARE_NATIVE_INTERACTIONS_PASS volume=1000' in content and 'LABWARE_VISUAL_FAIL' not in content
     assert 'CHEMISTRY_NATIVE_INTERACTIONS_PASS input=500 remaining=450 evaporated=50 crystals=1' in content
     assert 'SEPARATION_NATIVE_INTERACTIONS_PASS suspension=50 filtrate=50 distilled=40 concentrate=10 calcite=1' in content
     assert not re.search(r'Parsing error loading recipe resonant_industry:|Missing textures in model resonant_industry:',content),'Broken addon recipe/model in actual client'
     captures=[]
-    names = ['lab_empty','lab_water','lab_pipette_sample','lab_six_vessels','lab_transfer','lab_blocked','lab_five_mb','lab_retrieve','lab_handbook',
-             'chemistry_measured','chemistry_waiting_signal','chemistry_stirring','chemistry_neutralized',
-             'chemistry_crystallizing','chemistry_crystals','chemistry_stations','chemistry_handbook',
-             'separation_filtered','separation_waiting_receiver','separation_distilling',
-             'separation_recovered','separation_stations','separation_handbook']
-    for name in names:
+    for name in LABWARE_FRAMES:
         path=BASE/loader/'build/client-review/screenshots'/f'{name}.png';assert path.is_file();dest=OUT/'clients'/loader/path.name;dest.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(path,dest);captures.append({'path':dest.relative_to(ROOT).as_posix(),'sha256':hashlib.sha256(dest.read_bytes()).hexdigest()})
     return {'status':'PASS','log':log.relative_to(ROOT).as_posix(),'screenshots':captures,'conserved_volume_mb':1000,
             'chemistry':{'input_mb':500,'remaining_mb':450,'evaporated_mb':50,'salt_crystals':1},
@@ -92,7 +88,7 @@ def main():
                 'core':{'file':core_jar.relative_to(ROOT).as_posix(),'sha256':hashlib.sha256(core_jar.read_bytes()).hexdigest(),'version':core_version[1] if core_version else 'unknown','institute_manifest_sha256':hashlib.sha256(manifest).hexdigest()}}
         if args.gametests:
             blueprint=BASE/loader/'build/verified-blueprints.json';blueprint.unlink(missing_ok=True)
-            log=dual.run_project('Industry '+loader,folder,major,['runGameTestServer'],f'{loader}-native-tests.log');result['tests']=dual.verify(log,45)
+            log=dual.run_project('Industry '+loader,folder,major,['runGameTestServer'],f'{loader}-native-tests.log');result['tests']=dual.verify(log,NATIVE_MINIMUM[loader])
             data=json.loads(blueprint.read_text('utf-8'));assert len(data['machines'])>=3;result['blueprints_sha256']=hashlib.sha256(blueprint.read_bytes()).hexdigest()
             result['persistence']=persistence(loader,major)
             result['compound_persistence']=persistence(loader,major,compound=True)
@@ -102,9 +98,9 @@ def main():
             lines=options.read_text('utf-8').splitlines() if options.exists() else []
             # Inspect the actual Chinese and English layouts across the two clients.
             lines=[line for line in lines if not line.startswith('lang:')];lines.append('lang:'+('zh_cn' if loader=='forge' else 'en_us'));options.write_text('\n'.join(lines)+'\n','utf-8')
-            log=dual.run_project('Industry '+loader,folder,major,['runClient','-PindustryVisualCheck'],f'{loader}-client.log');content=log.read_text('utf-8',errors='replace');assert 'INDUSTRY_VISUAL_PASS step=44 shots=15' in content and 'INDUSTRY_VISUAL_FAIL' not in content
+            log=dual.run_project('Industry '+loader,folder,major,['runClient','-PindustryVisualCheck'],f'{loader}-client.log');content=log.read_text('utf-8',errors='replace');assert f'INDUSTRY_VISUAL_PASS step=44 shots={len(INDUSTRY_FRAMES)}' in content and 'INDUSTRY_VISUAL_FAIL' not in content
             captures=[]
-            for name in ['preview_missing','generator_running','processor_running','centrifuge_running','centrifuge_complete','production_line','generator_detail','processor_detail','centrifuge_detail','cable_detail','handbook','layer_blueprint','compound_running','compound_complete','compound_guide']:
+            for name in INDUSTRY_FRAMES:
                 path=BASE/loader/'build/client-review/screenshots'/f'{name}.png';assert path.is_file();dest=OUT/'clients'/loader/path.name;dest.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(path,dest);captures.append({'path':dest.relative_to(ROOT).as_posix(),'sha256':hashlib.sha256(dest.read_bytes()).hexdigest()})
             result['client_screenshots']=captures
             if loader=='neoforge':result['labware_client']=labware_client(loader,major)

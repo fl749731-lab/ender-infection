@@ -79,6 +79,12 @@ jobs:
         run: |
           java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain --no-daemon --console=plain runGameTestServer -PcentralInstituteChecks | tee central-institute-tests.log
           python ../tools/verify_gametest_log.py central-institute-tests.log --minimum 1
+      - name: Test F7 mother chamber and institute story protection
+        if: matrix.addon == 'neoforge'
+        working-directory: ${{ matrix.project }}
+        run: |
+          java -cp gradle/wrapper/gradle-wrapper.jar org.gradle.wrapper.GradleWrapperMain --no-daemon --console=plain runGameTestServer -PmotherChamberChecks -PinstituteProtectionChecks | tee institute-story-tests.log
+          python ../tools/verify_gametest_log.py institute-story-tests.log --minimum 7
       - name: Test laboratory storage and loot
         working-directory: ${{ matrix.project }}
         run: |
@@ -126,3 +132,4 @@ jobs:
             ${{ matrix.project }}/build/**/crash-reports/*.txt
             build/dual-version-validation/*incident*
             ${{ matrix.project }}/incident-tests.log
+            ${{ matrix.project }}/institute-story-tests.log

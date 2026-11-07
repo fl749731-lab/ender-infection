@@ -119,7 +119,8 @@ public final class ChemistryStation implements Container {
             else if (heater && temperature < experiment.temperature) status = fuelTicks > 0 ? Status.HEATING : Status.FUEL;
             else {
                 status = Status.RUNNING;
-                if (++progress >= experiment.duration) complete(experiment);
+                if (progress + 1 >= experiment.duration) complete(experiment);
+                else progress++;
             }
             bench.markReactionDirty();
         }
@@ -202,13 +203,21 @@ public final class ChemistryStation implements Container {
             else output.grow(1);
         }
 
-        items.set(INGREDIENT, ingredient);
-        items.set(PRODUCT, output);
-        running = false;
-        status = Status.COMPLETE;
-        bench.replaceReactionVessel(SAMPLE, sample);
-        bench.replaceReactionVessel(LIQUID_REAGENT, reagent);
-        if (destination != null) destination.replaceReactionVessel(receiverSlot(recipe), recovered);
+        var product = output;
+        var receivingBench = destination;
+        var receivingVessel = recovered;
+        Runnable settle = () -> {
+            items.set(INGREDIENT, ingredient);
+            items.set(PRODUCT, product);
+            running = false;
+            progress = recipe.duration;
+            status = Status.COMPLETE;
+            bench.replaceReactionVessel(SAMPLE, sample);
+            bench.replaceReactionVessel(LIQUID_REAGENT, reagent);
+            if (receivingBench != null) receivingBench.replaceReactionVessel(receiverSlot(recipe), receivingVessel);
+        };
+        if (recipe.distillation()) LabPlatform.settleDistillation(bench, receivingBench, settle);
+        else settle.run();
         bench.setChanged();
         if (destination != null && destination != bench) destination.setChanged();
     }

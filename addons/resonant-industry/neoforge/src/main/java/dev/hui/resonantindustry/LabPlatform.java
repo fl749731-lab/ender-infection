@@ -22,5 +22,8 @@ public final class LabPlatform {
     public static IFluidHandler handler(Level l,BlockPos p,Direction side){return IndustryNode.loaded(l,p)?l.getCapability(Capabilities.FluidHandler.BLOCK,p,side):null;}
     public static net.neoforged.neoforge.fluids.capability.IFluidHandlerItem capability(ItemStack stack){return stack.getCapability(Capabilities.FluidHandler.ITEM);}
     public static boolean plain(FluidStack f){return f.getComponentsPatch().isEmpty();}
+    static void settleDistillation(LabBenchEntity heater, LabBenchEntity receiver, Runnable settle) {
+        DistillationJournal.settle(heater, receiver, settle);
+    }
     private LabPlatform(){}
 }

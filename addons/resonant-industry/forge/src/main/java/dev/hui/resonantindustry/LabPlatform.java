@@ -18,5 +18,8 @@ public final class LabPlatform {
     public static net.minecraftforge.fluids.capability.IFluidHandlerItem itemHandler(ItemStack stack){var view=LabFluids.view(stack,null,()->{});return new net.minecraftforge.fluids.capability.IFluidHandlerItem(){public ItemStack getContainer(){return stack;}public int getTanks(){return view.getTanks();}public FluidStack getFluidInTank(int i){return view.getFluidInTank(i);}public int getTankCapacity(int i){return view.getTankCapacity(i);}public boolean isFluidValid(int i,FluidStack f){return view.isFluidValid(i,f);}public int fill(FluidStack f,FluidAction a){return view.fill(f,a);}public FluidStack drain(FluidStack f,FluidAction a){return view.drain(f,a);}public FluidStack drain(int n,FluidAction a){return view.drain(n,a);}};}
     public static net.minecraftforge.fluids.capability.IFluidHandlerItem capability(ItemStack stack){return stack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).resolve().orElse(null);}
     public static boolean plain(FluidStack f){return !f.hasTag();}
+    static void settleDistillation(LabBenchEntity heater, LabBenchEntity receiver, Runnable settle) {
+        settle.run();
+    }
     private LabPlatform(){}
 }

@@ -13,6 +13,13 @@ ROOT = Path(__file__).resolve().parents[1]
 FORGE = ROOT / "ender_infection_colored"
 NEO = ROOT / "ender_infection_neoforge"
 
+# These checks cover institute behavior currently scoped to NeoForge 1.21.1.
+NEOFORGE_ONLY = {
+    "dev/hui/enderinfection/client/InstituteRoomVisualCheck.java",
+    "dev/hui/enderinfection/test/InstituteMotherGameTests.java",
+    "dev/hui/enderinfection/test/InstituteProtectionGameTests.java",
+}
+
 
 def check() -> dict:
     issues = []
@@ -44,7 +51,11 @@ def check() -> dict:
     missing_classes = sorted(x for x in inventories["forge"] - inventories["neoforge"] if "/institute/" not in x)
     if missing_classes:
         issues.append("NeoForge is missing Forge gameplay/test classes: " + ", ".join(missing_classes))
-    extra_classes = sorted(x for x in inventories["neoforge"] - inventories["forge"] if "/institute/" not in x)
+    neo_only = inventories["neoforge"] - inventories["forge"]
+    stale_exemptions = sorted(NEOFORGE_ONLY - neo_only)
+    if stale_exemptions:
+        issues.append("Update NeoForge-only inventory declarations: " + ", ".join(stale_exemptions))
+    extra_classes = sorted(x for x in neo_only - NEOFORGE_ONLY if "/institute/" not in x)
     if extra_classes:
         issues.append("Forge is missing NeoForge gameplay/test classes: " + ", ".join(extra_classes))
     missing_ids = sorted(registers["forge"] - registers["neoforge"])
@@ -80,6 +91,7 @@ def check() -> dict:
         "version": version.group(1), "shared_api_sources": len(shared),
         "forge_java_sources": len(inventories["forge"]), "neoforge_java_sources": len(inventories["neoforge"]),
         "forge_literal_registration_ids": len(registers["forge"]), "shared_resource_files": resource_count,
+        "neoforge_only_checks": sorted(NEOFORGE_ONLY),
         "issues": issues,
         "scope": "Source/registration inventory and shared-resource consistency; runtime behavior is covered by both native GameTest runs.",
     }

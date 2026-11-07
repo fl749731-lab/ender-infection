@@ -1,0 +1,36 @@
+{
+  "variants": {
+    "facing=north,lit=false": {
+      "model": "resonant_industry:block/magnetic_stirrer",
+      "y": 0
+    },
+    "facing=east,lit=false": {
+      "model": "resonant_industry:block/magnetic_stirrer",
+      "y": 90
+    },
+    "facing=south,lit=false": {
+      "model": "resonant_industry:block/magnetic_stirrer",
+      "y": 180
+    },
+    "facing=west,lit=false": {
+      "model": "resonant_industry:block/magnetic_stirrer",
+      "y": 270
+    },
+    "facing=north,lit=true": {
+      "model": "resonant_industry:block/magnetic_stirrer_running",
+      "y": 0
+    },
+    "facing=east,lit=true": {
+      "model": "resonant_industry:block/magnetic_stirrer_running",
+      "y": 90
+    },
+    "facing=south,lit=true": {
+      "model": "resonant_industry:block/magnetic_stirrer_running",
+      "y": 180
+    },
+    "facing=west,lit=true": {
+      "model": "resonant_industry:block/magnetic_stirrer_running",
+      "y": 270
+    }
+  }
+}

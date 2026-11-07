@@ -6,10 +6,10 @@ from PIL import Image, ImageDraw
 from generate_labware_assets import NS, RES, cube, write
 
 
-def station(name, surface, attachments):
+def station(name, surface, attachments, *, animated=True):
     prefix = f'{NS}:block/{name}'
     variants = {}
-    for running in (False, True):
+    for running in ((False, True) if animated else (False,)):
         model = prefix + ('_running' if running else '')
         textures = {
             'body': surface, 'metal': 'minecraft:block/iron_block', 'tube': 'minecraft:block/copper_block',
@@ -25,8 +25,10 @@ def station(name, surface, attachments):
         write(f'assets/{NS}/models/block/{model.split("/")[-1]}.json', {
             'textures': textures, 'render_type': 'minecraft:translucent', 'elements': elements,
         })
+    for lit in (False, True):
+        model = prefix + ('_running' if lit and animated else '')
         for facing, angle in [('north', 0), ('east', 90), ('south', 180), ('west', 270)]:
-            variants[f'facing={facing},lit={str(running).lower()}'] = {'model': model, 'y': angle}
+            variants[f'facing={facing},lit={str(lit).lower()}'] = {'model': model, 'y': angle}
     write(f'assets/{NS}/blockstates/{name}.json', {'variants': variants})
     write(f'assets/{NS}/models/item/{name}.json', {'parent': prefix})
     write(f'data/{NS}/loot_tables/blocks/{name}.json', {'type': 'minecraft:block', 'pools': [{
@@ -91,7 +93,7 @@ def main():
         ([6, 18, 13], [13, 19, 15], 'tube'), ([6, 15, 13], [13, 16, 15], 'tube'),
         ([6, 19, 13], [7, 22, 15], 'tube'), ([12, 16, 13], [13, 19, 15], 'tube'),
         ([4, 14, 7], [5, 16, 14], 'tube'), ([3, 16, 5], [5, 17, 8], 'tube'),
-    ])
+    ], animated=False)
     path = RES / f'assets/{NS}/textures/item/filter_paper.png'
     path.parent.mkdir(parents=True, exist_ok=True)
     icon = Image.new('RGBA', (16, 16))

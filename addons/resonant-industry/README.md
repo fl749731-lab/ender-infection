@@ -1,6 +1,6 @@
 # 末影感染：共振工业
 
-独立科技附属，当前发行版本 **0.1.0**，本轮实现与验证目标为 **NeoForge Minecraft 1.21.1 / Java 21**，适配末影感染核心 **0.12.0-alpha.7** 及 GeckoLib。附属不内嵌主模组代码，Forge 历史工程与共享资源源保留。
+独立科技附属，当前发行版本 **0.1.0**，本轮实现与验证目标为 **NeoForge Minecraft 1.21.1 / Java 21**，适配末影感染核心 **0.12.0** 及 GeckoLib。附属不内嵌主模组代码，Forge 历史工程与共享资源源保留。
 
 已公开的 [alpha.1 下载与更新说明](https://github.com/fl749731-lab/ender-infection/releases/tag/resonant-industry-v0.1.0-alpha.1)及其配套[核心 alpha.5](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.5)保留为历史版本。`resonant-industry-guide-0.1.0-alpha.1.zip` 内含首版图纸与运行图集。
 

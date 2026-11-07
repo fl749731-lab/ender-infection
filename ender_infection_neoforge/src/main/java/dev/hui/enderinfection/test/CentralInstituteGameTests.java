@@ -86,7 +86,21 @@ public final class CentralInstituteGameTests {
         h.assertTrue(level.getBlockState(preservedTerrain).is(Blocks.STONE),"Outdoor underground terrain was excavated by a preserve cell");
         System.out.println("CENTRAL_INSTITUTE_PLACEMENT_PERFORMANCE elapsed_ms="+((System.nanoTime()-placementStarted)/1_000_000)+" furniture_containers="+data.getAsJsonArray("storage_containers").size());
         verifyFinalTiles(h,data,base,completedFoundation);verifyRoomsAndDoors(h,data,base);verifyLift(h,data,base);verifyStairLandings(h,data,base);
+        // GameTestServer runs without normal tick pacing. Drain the actual
+        // asynchronous lighting tasks before its accelerated timeout expires.
+        // Keep every emission and exposed-crystal brightness assertion below.
+        var lighting=new ArrayList<java.util.concurrent.CompletableFuture<?>>();
+        for(int x=(base.getX()>>4)-1;x<=((base.getX()+119)>>4)+1;x++)for(int z=(base.getZ()>>4)-1;z<=((base.getZ()+103)>>4)+1;z++)
+            lighting.add(level.getChunkSource().getLightEngine().waitForPendingTasks(x,z));
+        var lightBarrier=java.util.concurrent.CompletableFuture.allOf(lighting.toArray(java.util.concurrent.CompletableFuture[]::new));
         h.runAtTickTime(100,()->h.succeedWhen(()->{
+            level.getChunkSource().getLightEngine().tryScheduleUpdate();
+            if(!lightBarrier.isDone()){
+                // Yield the accelerated test loop to the lighting worker while
+                // still letting normal server ticks apply forced-chunk tickets.
+                try{Thread.sleep(2);}catch(InterruptedException e){Thread.currentThread().interrupt();throw new RuntimeException(e);}
+            }
+            h.assertTrue(lightBarrier.isDone(),"Native lighting tasks are still pending");lightBarrier.join();
             int lights=0;for(var item:data.getAsJsonArray("light_sources")){var light=item.getAsJsonObject();var at=base.offset(pos(light));int emission=level.getBlockState(at).getLightEmission();h.assertTrue(emission==light.get("light_level").getAsInt(),"Registered lamp emission differs at "+at);int actual=level.getBrightness(net.minecraft.world.level.LightLayer.BLOCK,at);h.assertTrue(actual>=emission,"Block lighting still pending at "+at+": actual="+actual+", expected="+emission);lights++;}
             int exposed=0,enclosed=0;for(var value:data.getAsJsonArray("crystal_lighting")){var crystal=value.getAsJsonObject();var at=base.offset(pos(crystal));int faces=0,brightest=0;
                 for(Direction face:Direction.values()){var neighbour=at.relative(face);var state=level.getBlockState(neighbour);if(state.isAir()||state.is(Blocks.LIGHT)){faces++;brightest=Math.max(brightest,level.getBrightness(net.minecraft.world.level.LightLayer.BLOCK,neighbour));}}

@@ -1,0 +1,2434 @@
+{
+  "schema_version": 1,
+  "status": "design_only",
+  "date": "2026-11-07",
+  "target": {
+    "minecraft": "1.21.1",
+    "loader": "NeoForge",
+    "java": 21
+  },
+  "progression_model": "two_parallel_mainlines_with_optional_crossovers",
+  "scope": {
+    "planned_material_entries": 148,
+    "planned_chemical_branches": 12,
+    "long_term_distinct_process_recipe_target": [
+      350,
+      500
+    ],
+    "planned_equipment_classes": 28,
+    "first_chemistry_delivery_target": {
+      "material_entries": [
+        30,
+        40
+      ],
+      "process_recipes": [
+        60,
+        90
+      ],
+      "complete_production_loops": 3
+    },
+    "planned_laboratory_apparatus": 14,
+    "chemical_catalogue_recipe_definitions_implemented": 0,
+    "implemented_laboratory_apparatus": 10,
+    "implemented_starter_experiments": 11
+  },
+  "counting_rules": [
+    "原料、混合介质、聚合物、废物和虚构共振物质分别标记",
+    "同一化学物质的纯度、浓度、相态和包装不重复计数",
+    "工艺数量不以装桶、反向拆装、换皮设备或无用途中间物凑数",
+    "清单为候选设计，不表示已注册物质或已写完配方"
+  ],
+  "tracks": [
+    {
+      "id": "chemistry",
+      "name_zh": "化学工程主线",
+      "stages": [
+        {
+          "id": "C0",
+          "name_zh": "实验室起步",
+          "features": [
+            "玻璃器具",
+            "取样",
+            "基础加热",
+            "化学手册"
+          ],
+          "requires": []
+        },
+        {
+          "id": "C1",
+          "name_zh": "水、空气与气体",
+          "features": [
+            "水处理",
+            "气体制备",
+            "分离与储存"
+          ],
+          "requires": [
+            "C0"
+          ]
+        },
+        {
+          "id": "C2",
+          "name_zh": "无机与湿法化工",
+          "features": [
+            "酸碱盐",
+            "浸出",
+            "沉淀",
+            "结晶",
+            "介质回收"
+          ],
+          "requires": [
+            "C1"
+          ]
+        },
+        {
+          "id": "C3",
+          "name_zh": "有机与石油化工",
+          "features": [
+            "精馏",
+            "工艺反应",
+            "溶剂",
+            "润滑基础油"
+          ],
+          "requires": [
+            "C2"
+          ]
+        },
+        {
+          "id": "C4",
+          "name_zh": "高分子与精细材料",
+          "features": [
+            "聚合物",
+            "催化",
+            "电子与电池材料"
+          ],
+          "requires": [
+            "C3"
+          ]
+        },
+        {
+          "id": "C5",
+          "name_zh": "生化及先进介质",
+          "features": [
+            "灭菌与酶催化",
+            "核工业配套",
+            "共振材料"
+          ],
+          "requires": [
+            "C4"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "industry",
+      "name_zh": "工业工程主线",
+      "stages": [
+        {
+          "id": "I0",
+          "name_zh": "基础工坊",
+          "features": [
+            "手动零件",
+            "工具",
+            "小型动力"
+          ],
+          "requires": []
+        },
+        {
+          "id": "I1",
+          "name_zh": "采矿与冶金",
+          "features": [
+            "矿石处理",
+            "焦化与高炉",
+            "金属成形"
+          ],
+          "requires": [
+            "I0"
+          ]
+        },
+        {
+          "id": "I2",
+          "name_zh": "机械加工与电气",
+          "features": [
+            "车铣压制",
+            "电机",
+            "基础电路",
+            "FE 电网"
+          ],
+          "requires": [
+            "I1"
+          ]
+        },
+        {
+          "id": "I3",
+          "name_zh": "物流与装配",
+          "features": [
+            "运输",
+            "分类储存",
+            "自动装配",
+            "生产监控"
+          ],
+          "requires": [
+            "I2"
+          ]
+        },
+        {
+          "id": "I4",
+          "name_zh": "大型能源",
+          "features": [
+            "锅炉",
+            "汽轮机",
+            "冷凝",
+            "调度与储能"
+          ],
+          "requires": [
+            "I3"
+          ]
+        },
+        {
+          "id": "I5",
+          "name_zh": "综合工业基地",
+          "features": [
+            "自动采掘与加工",
+            "工程设备",
+            "大规模制造",
+            "核能分支接口"
+          ],
+          "requires": [
+            "I4"
+          ]
+        }
+      ]
+    }
+  ],
+  "crossovers": [
+    {
+      "id": "sealed_machines",
+      "name_zh": "密封与耐蚀机器",
+      "requires": [
+        "C2",
+        "I2"
+      ],
+      "products": [
+        "耐蚀衬里",
+        "密封泵",
+        "可靠流体端口"
+      ]
+    },
+    {
+      "id": "precision_factory",
+      "name_zh": "精密化工工厂",
+      "requires": [
+        "C3",
+        "I3"
+      ],
+      "products": [
+        "润滑系统",
+        "精密泵",
+        "工业反应设备"
+      ]
+    },
+    {
+      "id": "advanced_electronics",
+      "name_zh": "先进电气材料",
+      "requires": [
+        "C4",
+        "I3"
+      ],
+      "products": [
+        "高阶绝缘",
+        "先进电路",
+        "大容量储能"
+      ]
+    },
+    {
+      "id": "nuclear_power",
+      "name_zh": "核工业分支",
+      "requires": [
+        "C4",
+        "I4"
+      ],
+      "products": [
+        "游戏化核燃料组件",
+        "受控裂变堆",
+        "冷却回路",
+        "乏燃料与废物管理"
+      ]
+    },
+    {
+      "id": "nuclear_services",
+      "name_zh": "先进核化工配套",
+      "requires": [
+        "C5",
+        "I4"
+      ],
+      "products": [
+        "冷却介质管理",
+        "屏蔽与封装材料",
+        "废物固化与有限回收"
+      ]
+    },
+    {
+      "id": "resonant_bioindustry",
+      "name_zh": "共振生物工业",
+      "requires": [
+        "C5",
+        "I5"
+      ],
+      "products": [
+        "母体监测",
+        "高阶抑制设备",
+        "受控裂隙工程"
+      ]
+    }
+  ],
+  "branches": [
+    {
+      "id": "water_air",
+      "name_zh": "水处理与工业气体",
+      "main_expansion_stage": "C1",
+      "purpose": "纯水、保护气、氧化与还原介质",
+      "materials": [
+        "water",
+        "air",
+        "hydrogen",
+        "oxygen",
+        "nitrogen",
+        "carbon_dioxide",
+        "carbon_monoxide",
+        "argon",
+        "helium",
+        "ammonia",
+        "chlorine",
+        "sulfur_dioxide"
+      ]
+    },
+    {
+      "id": "acids_bases",
+      "name_zh": "酸碱与基础试剂",
+      "main_expansion_stage": "C2",
+      "purpose": "清洗、浸出、电解、反应介质与中和",
+      "materials": [
+        "sulfuric_acid",
+        "hydrochloric_acid",
+        "nitric_acid",
+        "phosphoric_acid",
+        "boric_acid",
+        "carbonic_acid",
+        "sodium_hydroxide",
+        "potassium_hydroxide",
+        "calcium_hydroxide",
+        "aqueous_ammonia",
+        "hydrogen_peroxide",
+        "sodium_silicate"
+      ]
+    },
+    {
+      "id": "salts",
+      "name_zh": "盐类与矿物化学",
+      "main_expansion_stage": "C2",
+      "purpose": "试剂、电解原料、水处理与培养添加物",
+      "materials": [
+        "sodium_chloride",
+        "potassium_chloride",
+        "calcium_chloride",
+        "magnesium_chloride",
+        "sodium_carbonate",
+        "sodium_bicarbonate",
+        "sodium_sulfate",
+        "calcium_sulfate",
+        "sodium_phosphate",
+        "potassium_phosphate",
+        "ammonium_sulfate",
+        "calcium_carbonate"
+      ]
+    },
+    {
+      "id": "hydrometallurgy",
+      "name_zh": "湿法冶金与提纯",
+      "main_expansion_stage": "C2",
+      "purpose": "高纯金属、沉淀分离、电积与工艺回收",
+      "materials": [
+        "iron_oxide",
+        "copper_oxide",
+        "zinc_oxide",
+        "aluminium_oxide",
+        "titanium_dioxide",
+        "silica",
+        "copper_sulfate",
+        "ferrous_sulfate",
+        "ferric_chloride",
+        "aluminium_sulfate",
+        "zinc_sulfate",
+        "nickel_sulfate"
+      ]
+    },
+    {
+      "id": "petrochemistry",
+      "name_zh": "石油与烃类化工",
+      "main_expansion_stage": "C3",
+      "purpose": "燃料、润滑基础油、塑料与橡胶原料",
+      "materials": [
+        "crude_oil",
+        "natural_gas",
+        "naphtha",
+        "light_fuel",
+        "heavy_fuel",
+        "bitumen",
+        "lubricant_base_oil",
+        "methane",
+        "ethane",
+        "propane",
+        "ethene",
+        "propene",
+        "butadiene",
+        "benzene",
+        "toluene",
+        "xylenes"
+      ]
+    },
+    {
+      "id": "organic_intermediates",
+      "name_zh": "有机中间体与溶剂",
+      "main_expansion_stage": "C3",
+      "purpose": "溶剂、树脂单体、冷却添加物与溶剂回收",
+      "materials": [
+        "methanol",
+        "ethanol",
+        "isopropanol",
+        "acetone",
+        "acetic_acid",
+        "ethyl_acetate",
+        "glycerol",
+        "ethylene_glycol",
+        "phenol",
+        "formaldehyde",
+        "ethylene_oxide",
+        "styrene"
+      ]
+    },
+    {
+      "id": "polymers",
+      "name_zh": "高分子与功能材料",
+      "main_expansion_stage": "C4",
+      "purpose": "绝缘、耐蚀衬里、密封、结构件与涂层",
+      "materials": [
+        "polyethylene",
+        "polypropylene",
+        "polyvinyl_chloride",
+        "polystyrene",
+        "ptfe",
+        "polyamide",
+        "polyurethane",
+        "epoxy_resin",
+        "phenolic_resin",
+        "silicone",
+        "synthetic_rubber",
+        "butyl_rubber"
+      ]
+    },
+    {
+      "id": "advanced_materials",
+      "name_zh": "电子、电化学与先进材料",
+      "main_expansion_stage": "C4",
+      "purpose": "电极、吸附剂、电池、精密电子与耐热部件",
+      "materials": [
+        "graphite",
+        "carbon_black",
+        "activated_carbon",
+        "graphene",
+        "carbon_fiber",
+        "silicon",
+        "silicon_carbide",
+        "boron_nitride",
+        "aluminium_nitride",
+        "lithium_carbonate",
+        "lithium_iron_phosphate",
+        "polyaniline"
+      ]
+    },
+    {
+      "id": "biochemistry",
+      "name_zh": "发酵、生化与灭菌",
+      "main_expansion_stage": "C5",
+      "purpose": "培养、净化膜、酶催化、组织加工与抑制耗材",
+      "materials": [
+        "glucose",
+        "starch",
+        "cellulose",
+        "lactic_acid",
+        "citric_acid",
+        "amino_acid_mix",
+        "enzyme_concentrate",
+        "protein_isolate",
+        "fermentation_broth",
+        "nutrient_medium",
+        "chitosan",
+        "alginate"
+      ]
+    },
+    {
+      "id": "environmental",
+      "name_zh": "废物处理与资源回收",
+      "main_expansion_stage": "C2",
+      "purpose": "废液分类、再生介质、金属回收与残余物封存",
+      "materials": [
+        "process_wastewater",
+        "oily_sludge",
+        "spent_solvent",
+        "spent_catalyst",
+        "metal_hydroxide_sludge",
+        "spent_ion_exchange_resin",
+        "filter_cake",
+        "neutralization_brine",
+        "treatment_sorbent",
+        "exhaust_gas",
+        "biological_sludge",
+        "recovered_salt_mix"
+      ]
+    },
+    {
+      "id": "nuclear_process_support",
+      "name_zh": "核工业化学配套",
+      "main_expansion_stage": "C5",
+      "purpose": "冷却、水化学、屏蔽材料与废物固化",
+      "materials": [
+        "boron_carbide",
+        "lithium_hydroxide",
+        "sodium",
+        "lead_bismuth_alloy",
+        "fluoride_salt_mix",
+        "inhibited_coolant",
+        "ion_exchange_resin",
+        "heavy_water",
+        "borated_coolant",
+        "spent_coolant",
+        "waste_glass_feed",
+        "encapsulation_ceramic"
+      ]
+    },
+    {
+      "id": "resonant_chemistry",
+      "name_zh": "共振与感染化学",
+      "main_expansion_stage": "C5",
+      "purpose": "连接感染材料、母体、抑制设备与裂隙工程",
+      "materials": [
+        "resonant_leachate",
+        "stabilized_resonance_solution",
+        "void_chelate",
+        "spore_inhibitor",
+        "bio_stabilizer",
+        "neural_extract",
+        "chamber_sealant",
+        "crystal_growth_medium",
+        "conductive_bioresin",
+        "radiation_resistant_biopolymer",
+        "rift_coolant",
+        "spent_rift_medium"
+      ]
+    }
+  ],
+  "materials": [
+    {
+      "id": "water",
+      "name_zh": "水",
+      "branch": "water_air",
+      "kind": "substance",
+      "design_stage": "C1",
+      "status": "candidate"
+    },
+    {
+      "id": "air",
+      "name_zh": "空气",
+      "branch": "water_air",
+      "kind": "mixture",
+      "design_stage": "C1",
+      "status": "candidate"
+    },
+    {
+      "id": "hydrogen",
+      "name_zh": "氢",
+      "branch": "water_air",
+      "kind": "substance",
+      "design_stage": "C1",
+      "status": "candidate"
+    },
+    {
+      "id": "oxygen",
+      "name_zh": "氧",
+      "branch": "water_air",
+      "kind": "substance",
+      "design_stage": "C1",
+      "status": "candidate"
+    },
+    {
+      "id": "nitrogen",
+      "name_zh": "氮",
+      "branch": "water_air",
+      "kind": "substance",
+      "design_stage": "C1",
+      "status": "candidate"
+    },
+    {
+      "id": "carbon_dioxide",
+      "name_zh": "二氧化碳",
+      "branch": "water_air",
+      "kind": "substance",
+      "design_stage": "C1",
+      "status": "candidate"
+    },
+    {
+      "id": "carbon_monoxide",
+      "name_zh": "一氧化碳",
+      "branch": "water_air",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "argon",
+      "name_zh": "氩",
+      "branch": "water_air",
+      "kind": "substance",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "helium",
+      "name_zh": "氦",
+      "branch": "water_air",
+      "kind": "substance",
+      "design_stage": "C4",
+      "status": "candidate"
+    },
+    {
+      "id": "ammonia",
+      "name_zh": "氨",
+      "branch": "water_air",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "chlorine",
+      "name_zh": "氯",
+      "branch": "water_air",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "sulfur_dioxide",
+      "name_zh": "二氧化硫",
+      "branch": "water_air",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "sulfuric_acid",
+      "name_zh": "硫酸",
+      "branch": "acids_bases",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "hydrochloric_acid",
+      "name_zh": "盐酸",
+      "branch": "acids_bases",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "nitric_acid",
+      "name_zh": "硝酸",
+      "branch": "acids_bases",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "phosphoric_acid",
+      "name_zh": "磷酸",
+      "branch": "acids_bases",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "boric_acid",
+      "name_zh": "硼酸",
+      "branch": "acids_bases",
+      "kind": "substance",
+      "design_stage": "C4",
+      "status": "candidate"
+    },
+    {
+      "id": "carbonic_acid",
+      "name_zh": "碳酸",
+      "branch": "acids_bases",
+      "kind": "substance",
+      "design_stage": "C1",
+      "status": "candidate"
+    },
+    {
+      "id": "sodium_hydroxide",
+      "name_zh": "氢氧化钠",
+      "branch": "acids_bases",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "potassium_hydroxide",
+      "name_zh": "氢氧化钾",
+      "branch": "acids_bases",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "calcium_hydroxide",
+      "name_zh": "氢氧化钙",
+      "branch": "acids_bases",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "aqueous_ammonia",
+      "name_zh": "氨水",
+      "branch": "acids_bases",
+      "kind": "mixture",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "hydrogen_peroxide",
+      "name_zh": "过氧化氢",
+      "branch": "acids_bases",
+      "kind": "substance",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "sodium_silicate",
+      "name_zh": "硅酸钠",
+      "branch": "acids_bases",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "sodium_chloride",
+      "name_zh": "氯化钠",
+      "branch": "salts",
+      "kind": "substance",
+      "design_stage": "C1",
+      "status": "candidate"
+    },
+    {
+      "id": "potassium_chloride",
+      "name_zh": "氯化钾",
+      "branch": "salts",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "calcium_chloride",
+      "name_zh": "氯化钙",
+      "branch": "salts",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "magnesium_chloride",
+      "name_zh": "氯化镁",
+      "branch": "salts",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "sodium_carbonate",
+      "name_zh": "碳酸钠",
+      "branch": "salts",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "sodium_bicarbonate",
+      "name_zh": "碳酸氢钠",
+      "branch": "salts",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "sodium_sulfate",
+      "name_zh": "硫酸钠",
+      "branch": "salts",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "calcium_sulfate",
+      "name_zh": "硫酸钙",
+      "branch": "salts",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "sodium_phosphate",
+      "name_zh": "磷酸钠",
+      "branch": "salts",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "potassium_phosphate",
+      "name_zh": "磷酸钾",
+      "branch": "salts",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "ammonium_sulfate",
+      "name_zh": "硫酸铵",
+      "branch": "salts",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "calcium_carbonate",
+      "name_zh": "碳酸钙",
+      "branch": "salts",
+      "kind": "substance",
+      "design_stage": "C1",
+      "status": "candidate"
+    },
+    {
+      "id": "iron_oxide",
+      "name_zh": "氧化铁",
+      "branch": "hydrometallurgy",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "copper_oxide",
+      "name_zh": "氧化铜",
+      "branch": "hydrometallurgy",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "zinc_oxide",
+      "name_zh": "氧化锌",
+      "branch": "hydrometallurgy",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "aluminium_oxide",
+      "name_zh": "氧化铝",
+      "branch": "hydrometallurgy",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "titanium_dioxide",
+      "name_zh": "二氧化钛",
+      "branch": "hydrometallurgy",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "silica",
+      "name_zh": "二氧化硅",
+      "branch": "hydrometallurgy",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "copper_sulfate",
+      "name_zh": "硫酸铜",
+      "branch": "hydrometallurgy",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "ferrous_sulfate",
+      "name_zh": "硫酸亚铁",
+      "branch": "hydrometallurgy",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "ferric_chloride",
+      "name_zh": "氯化铁",
+      "branch": "hydrometallurgy",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "aluminium_sulfate",
+      "name_zh": "硫酸铝",
+      "branch": "hydrometallurgy",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "zinc_sulfate",
+      "name_zh": "硫酸锌",
+      "branch": "hydrometallurgy",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "nickel_sulfate",
+      "name_zh": "硫酸镍",
+      "branch": "hydrometallurgy",
+      "kind": "substance",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "crude_oil",
+      "name_zh": "原油",
+      "branch": "petrochemistry",
+      "kind": "mixture",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "natural_gas",
+      "name_zh": "天然气",
+      "branch": "petrochemistry",
+      "kind": "mixture",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "naphtha",
+      "name_zh": "石脑油",
+      "branch": "petrochemistry",
+      "kind": "mixture",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "light_fuel",
+      "name_zh": "轻质燃料馏分",
+      "branch": "petrochemistry",
+      "kind": "mixture",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "heavy_fuel",
+      "name_zh": "重质燃料馏分",
+      "branch": "petrochemistry",
+      "kind": "mixture",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "bitumen",
+      "name_zh": "沥青",
+      "branch": "petrochemistry",
+      "kind": "mixture",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "lubricant_base_oil",
+      "name_zh": "润滑基础油",
+      "branch": "petrochemistry",
+      "kind": "mixture",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "methane",
+      "name_zh": "甲烷",
+      "branch": "petrochemistry",
+      "kind": "substance",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "ethane",
+      "name_zh": "乙烷",
+      "branch": "petrochemistry",
+      "kind": "substance",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "propane",
+      "name_zh": "丙烷",
+      "branch": "petrochemistry",
+      "kind": "substance",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "ethene",
+      "name_zh": "乙烯",
+      "branch": "petrochemistry",
+      "kind": "substance",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "propene",
+      "name_zh": "丙烯",
+      "branch": "petrochemistry",
+      "kind": "substance",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "butadiene",
+      "name_zh": "丁二烯",
+      "branch": "petrochemistry",
+      "kind": "substance",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "benzene",
+      "name_zh": "苯",
+      "branch": "petrochemistry",
+      "kind": "substance",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "toluene",
+      "name_zh": "甲苯",
+      "branch": "petrochemistry",
+      "kind": "substance",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "xylenes",
+      "name_zh": "二甲苯混合物",
+      "branch": "petrochemistry",
+      "kind": "mixture",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "methanol",
+      "name_zh": "甲醇",
+      "branch": "organic_intermediates",
+      "kind": "substance",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "ethanol",
+      "name_zh": "乙醇",
+      "branch": "organic_intermediates",
+      "kind": "substance",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "isopropanol",
+      "name_zh": "异丙醇",
+      "branch": "organic_intermediates",
+      "kind": "substance",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "acetone",
+      "name_zh": "丙酮",
+      "branch": "organic_intermediates",
+      "kind": "substance",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "acetic_acid",
+      "name_zh": "乙酸",
+      "branch": "organic_intermediates",
+      "kind": "substance",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "ethyl_acetate",
+      "name_zh": "乙酸乙酯",
+      "branch": "organic_intermediates",
+      "kind": "substance",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "glycerol",
+      "name_zh": "甘油",
+      "branch": "organic_intermediates",
+      "kind": "substance",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "ethylene_glycol",
+      "name_zh": "乙二醇",
+      "branch": "organic_intermediates",
+      "kind": "substance",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "phenol",
+      "name_zh": "苯酚",
+      "branch": "organic_intermediates",
+      "kind": "substance",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "formaldehyde",
+      "name_zh": "甲醛",
+      "branch": "organic_intermediates",
+      "kind": "substance",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "ethylene_oxide",
+      "name_zh": "环氧乙烷",
+      "branch": "organic_intermediates",
+      "kind": "substance",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "styrene",
+      "name_zh": "苯乙烯",
+      "branch": "organic_intermediates",
+      "kind": "substance",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "polyethylene",
+      "name_zh": "聚乙烯",
+      "branch": "polymers",
+      "kind": "material",
+      "design_stage": "C4",
+      "status": "candidate"
+    },
+    {
+      "id": "polypropylene",
+      "name_zh": "聚丙烯",
+      "branch": "polymers",
+      "kind": "material",
+      "design_stage": "C4",
+      "status": "candidate"
+    },
+    {
+      "id": "polyvinyl_chloride",
+      "name_zh": "聚氯乙烯",
+      "branch": "polymers",
+      "kind": "material",
+      "design_stage": "C4",
+      "status": "candidate"
+    },
+    {
+      "id": "polystyrene",
+      "name_zh": "聚苯乙烯",
+      "branch": "polymers",
+      "kind": "material",
+      "design_stage": "C4",
+      "status": "candidate"
+    },
+    {
+      "id": "ptfe",
+      "name_zh": "聚四氟乙烯",
+      "branch": "polymers",
+      "kind": "material",
+      "design_stage": "C4",
+      "status": "candidate"
+    },
+    {
+      "id": "polyamide",
+      "name_zh": "聚酰胺",
+      "branch": "polymers",
+      "kind": "material",
+      "design_stage": "C4",
+      "status": "candidate"
+    },
+    {
+      "id": "polyurethane",
+      "name_zh": "聚氨酯",
+      "branch": "polymers",
+      "kind": "material",
+      "design_stage": "C4",
+      "status": "candidate"
+    },
+    {
+      "id": "epoxy_resin",
+      "name_zh": "环氧树脂",
+      "branch": "polymers",
+      "kind": "material",
+      "design_stage": "C4",
+      "status": "candidate"
+    },
+    {
+      "id": "phenolic_resin",
+      "name_zh": "酚醛树脂",
+      "branch": "polymers",
+      "kind": "material",
+      "design_stage": "C4",
+      "status": "candidate"
+    },
+    {
+      "id": "silicone",
+      "name_zh": "有机硅材料",
+      "branch": "polymers",
+      "kind": "material",
+      "design_stage": "C4",
+      "status": "candidate"
+    },
+    {
+      "id": "synthetic_rubber",
+      "name_zh": "通用合成橡胶",
+      "branch": "polymers",
+      "kind": "material",
+      "design_stage": "C4",
+      "status": "candidate"
+    },
+    {
+      "id": "butyl_rubber",
+      "name_zh": "丁基橡胶",
+      "branch": "polymers",
+      "kind": "material",
+      "design_stage": "C4",
+      "status": "candidate"
+    },
+    {
+      "id": "graphite",
+      "name_zh": "石墨",
+      "branch": "advanced_materials",
+      "kind": "material",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "carbon_black",
+      "name_zh": "炭黑",
+      "branch": "advanced_materials",
+      "kind": "material",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "activated_carbon",
+      "name_zh": "活性炭",
+      "branch": "advanced_materials",
+      "kind": "material",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "graphene",
+      "name_zh": "石墨烯",
+      "branch": "advanced_materials",
+      "kind": "material",
+      "design_stage": "C4",
+      "status": "candidate"
+    },
+    {
+      "id": "carbon_fiber",
+      "name_zh": "碳纤维",
+      "branch": "advanced_materials",
+      "kind": "material",
+      "design_stage": "C4",
+      "status": "candidate"
+    },
+    {
+      "id": "silicon",
+      "name_zh": "硅",
+      "branch": "advanced_materials",
+      "kind": "substance",
+      "design_stage": "C4",
+      "status": "candidate"
+    },
+    {
+      "id": "silicon_carbide",
+      "name_zh": "碳化硅",
+      "branch": "advanced_materials",
+      "kind": "substance",
+      "design_stage": "C4",
+      "status": "candidate"
+    },
+    {
+      "id": "boron_nitride",
+      "name_zh": "氮化硼",
+      "branch": "advanced_materials",
+      "kind": "substance",
+      "design_stage": "C4",
+      "status": "candidate"
+    },
+    {
+      "id": "aluminium_nitride",
+      "name_zh": "氮化铝",
+      "branch": "advanced_materials",
+      "kind": "substance",
+      "design_stage": "C4",
+      "status": "candidate"
+    },
+    {
+      "id": "lithium_carbonate",
+      "name_zh": "碳酸锂",
+      "branch": "advanced_materials",
+      "kind": "substance",
+      "design_stage": "C4",
+      "status": "candidate"
+    },
+    {
+      "id": "lithium_iron_phosphate",
+      "name_zh": "磷酸铁锂",
+      "branch": "advanced_materials",
+      "kind": "substance",
+      "design_stage": "C4",
+      "status": "candidate"
+    },
+    {
+      "id": "polyaniline",
+      "name_zh": "聚苯胺",
+      "branch": "advanced_materials",
+      "kind": "material",
+      "design_stage": "C4",
+      "status": "candidate"
+    },
+    {
+      "id": "glucose",
+      "name_zh": "葡萄糖",
+      "branch": "biochemistry",
+      "kind": "substance",
+      "design_stage": "C1",
+      "status": "candidate"
+    },
+    {
+      "id": "starch",
+      "name_zh": "淀粉",
+      "branch": "biochemistry",
+      "kind": "material",
+      "design_stage": "C1",
+      "status": "candidate"
+    },
+    {
+      "id": "cellulose",
+      "name_zh": "纤维素",
+      "branch": "biochemistry",
+      "kind": "material",
+      "design_stage": "C1",
+      "status": "candidate"
+    },
+    {
+      "id": "lactic_acid",
+      "name_zh": "乳酸",
+      "branch": "biochemistry",
+      "kind": "substance",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "citric_acid",
+      "name_zh": "柠檬酸",
+      "branch": "biochemistry",
+      "kind": "substance",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "amino_acid_mix",
+      "name_zh": "氨基酸混合物",
+      "branch": "biochemistry",
+      "kind": "mixture",
+      "design_stage": "C5",
+      "status": "candidate"
+    },
+    {
+      "id": "enzyme_concentrate",
+      "name_zh": "酶浓缩物",
+      "branch": "biochemistry",
+      "kind": "mixture",
+      "design_stage": "C4",
+      "status": "candidate"
+    },
+    {
+      "id": "protein_isolate",
+      "name_zh": "分离蛋白",
+      "branch": "biochemistry",
+      "kind": "mixture",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "fermentation_broth",
+      "name_zh": "发酵液",
+      "branch": "biochemistry",
+      "kind": "mixture",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "nutrient_medium",
+      "name_zh": "培养基",
+      "branch": "biochemistry",
+      "kind": "mixture",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "chitosan",
+      "name_zh": "壳聚糖",
+      "branch": "biochemistry",
+      "kind": "material",
+      "design_stage": "C4",
+      "status": "candidate"
+    },
+    {
+      "id": "alginate",
+      "name_zh": "海藻酸盐材料",
+      "branch": "biochemistry",
+      "kind": "material",
+      "design_stage": "C4",
+      "status": "candidate"
+    },
+    {
+      "id": "process_wastewater",
+      "name_zh": "工艺废水",
+      "branch": "environmental",
+      "kind": "waste",
+      "design_stage": "C1",
+      "status": "candidate"
+    },
+    {
+      "id": "oily_sludge",
+      "name_zh": "含油污泥",
+      "branch": "environmental",
+      "kind": "waste",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "spent_solvent",
+      "name_zh": "废溶剂混合物",
+      "branch": "environmental",
+      "kind": "waste",
+      "design_stage": "C3",
+      "status": "candidate"
+    },
+    {
+      "id": "spent_catalyst",
+      "name_zh": "失活催化剂",
+      "branch": "environmental",
+      "kind": "waste",
+      "design_stage": "C4",
+      "status": "candidate"
+    },
+    {
+      "id": "metal_hydroxide_sludge",
+      "name_zh": "金属氢氧化物污泥",
+      "branch": "environmental",
+      "kind": "waste",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "spent_ion_exchange_resin",
+      "name_zh": "废离子交换树脂",
+      "branch": "environmental",
+      "kind": "waste",
+      "design_stage": "C5",
+      "status": "candidate"
+    },
+    {
+      "id": "filter_cake",
+      "name_zh": "工艺滤饼",
+      "branch": "environmental",
+      "kind": "waste",
+      "design_stage": "C1",
+      "status": "candidate"
+    },
+    {
+      "id": "neutralization_brine",
+      "name_zh": "中和盐水",
+      "branch": "environmental",
+      "kind": "waste",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "treatment_sorbent",
+      "name_zh": "复合处理吸附剂",
+      "branch": "environmental",
+      "kind": "material",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "exhaust_gas",
+      "name_zh": "工艺尾气",
+      "branch": "environmental",
+      "kind": "waste",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "biological_sludge",
+      "name_zh": "生化处理污泥",
+      "branch": "environmental",
+      "kind": "waste",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "recovered_salt_mix",
+      "name_zh": "回收混合盐",
+      "branch": "environmental",
+      "kind": "mixture",
+      "design_stage": "C2",
+      "status": "candidate"
+    },
+    {
+      "id": "boron_carbide",
+      "name_zh": "碳化硼",
+      "branch": "nuclear_process_support",
+      "kind": "substance",
+      "design_stage": "C5",
+      "status": "candidate"
+    },
+    {
+      "id": "lithium_hydroxide",
+      "name_zh": "氢氧化锂",
+      "branch": "nuclear_process_support",
+      "kind": "substance",
+      "design_stage": "C5",
+      "status": "candidate"
+    },
+    {
+      "id": "sodium",
+      "name_zh": "钠",
+      "branch": "nuclear_process_support",
+      "kind": "substance",
+      "design_stage": "C5",
+      "status": "candidate"
+    },
+    {
+      "id": "lead_bismuth_alloy",
+      "name_zh": "铅铋合金",
+      "branch": "nuclear_process_support",
+      "kind": "material",
+      "design_stage": "C5",
+      "status": "candidate"
+    },
+    {
+      "id": "fluoride_salt_mix",
+      "name_zh": "工业氟盐混合物",
+      "branch": "nuclear_process_support",
+      "kind": "mixture",
+      "design_stage": "C5",
+      "status": "candidate"
+    },
+    {
+      "id": "inhibited_coolant",
+      "name_zh": "缓蚀冷却液",
+      "branch": "nuclear_process_support",
+      "kind": "mixture",
+      "design_stage": "C5",
+      "status": "candidate"
+    },
+    {
+      "id": "ion_exchange_resin",
+      "name_zh": "离子交换树脂",
+      "branch": "nuclear_process_support",
+      "kind": "material",
+      "design_stage": "C5",
+      "status": "candidate"
+    },
+    {
+      "id": "heavy_water",
+      "name_zh": "重水",
+      "branch": "nuclear_process_support",
+      "kind": "substance",
+      "design_stage": "C5",
+      "status": "candidate"
+    },
+    {
+      "id": "borated_coolant",
+      "name_zh": "含硼冷却液",
+      "branch": "nuclear_process_support",
+      "kind": "mixture",
+      "design_stage": "C5",
+      "status": "candidate"
+    },
+    {
+      "id": "spent_coolant",
+      "name_zh": "废冷却液",
+      "branch": "nuclear_process_support",
+      "kind": "waste",
+      "design_stage": "C5",
+      "status": "candidate"
+    },
+    {
+      "id": "waste_glass_feed",
+      "name_zh": "废物玻璃固化料",
+      "branch": "nuclear_process_support",
+      "kind": "mixture",
+      "design_stage": "C5",
+      "status": "candidate"
+    },
+    {
+      "id": "encapsulation_ceramic",
+      "name_zh": "封装陶瓷",
+      "branch": "nuclear_process_support",
+      "kind": "material",
+      "design_stage": "C5",
+      "status": "candidate"
+    },
+    {
+      "id": "resonant_leachate",
+      "name_zh": "共振浸出液",
+      "branch": "resonant_chemistry",
+      "kind": "fictional",
+      "design_stage": "C5",
+      "status": "candidate"
+    },
+    {
+      "id": "stabilized_resonance_solution",
+      "name_zh": "稳定共振液",
+      "branch": "resonant_chemistry",
+      "kind": "fictional",
+      "design_stage": "C5",
+      "status": "candidate"
+    },
+    {
+      "id": "void_chelate",
+      "name_zh": "虚空螯合液",
+      "branch": "resonant_chemistry",
+      "kind": "fictional",
+      "design_stage": "C5",
+      "status": "candidate"
+    },
+    {
+      "id": "spore_inhibitor",
+      "name_zh": "孢子抑制剂",
+      "branch": "resonant_chemistry",
+      "kind": "fictional",
+      "design_stage": "C5",
+      "status": "candidate"
+    },
+    {
+      "id": "bio_stabilizer",
+      "name_zh": "生物稳定剂",
+      "branch": "resonant_chemistry",
+      "kind": "fictional",
+      "design_stage": "C5",
+      "status": "candidate"
+    },
+    {
+      "id": "neural_extract",
+      "name_zh": "神经组织提取物",
+      "branch": "resonant_chemistry",
+      "kind": "fictional",
+      "design_stage": "C5",
+      "status": "candidate"
+    },
+    {
+      "id": "chamber_sealant",
+      "name_zh": "收容密封胶",
+      "branch": "resonant_chemistry",
+      "kind": "fictional",
+      "design_stage": "C5",
+      "status": "candidate"
+    },
+    {
+      "id": "crystal_growth_medium",
+      "name_zh": "晶体培养液",
+      "branch": "resonant_chemistry",
+      "kind": "fictional",
+      "design_stage": "C5",
+      "status": "candidate"
+    },
+    {
+      "id": "conductive_bioresin",
+      "name_zh": "导电生物树脂",
+      "branch": "resonant_chemistry",
+      "kind": "fictional",
+      "design_stage": "C5",
+      "status": "candidate"
+    },
+    {
+      "id": "radiation_resistant_biopolymer",
+      "name_zh": "耐辐射生物聚合物",
+      "branch": "resonant_chemistry",
+      "kind": "fictional",
+      "design_stage": "C5",
+      "status": "candidate"
+    },
+    {
+      "id": "rift_coolant",
+      "name_zh": "裂隙冷却介质",
+      "branch": "resonant_chemistry",
+      "kind": "fictional",
+      "design_stage": "C5",
+      "status": "candidate"
+    },
+    {
+      "id": "spent_rift_medium",
+      "name_zh": "废裂隙介质",
+      "branch": "resonant_chemistry",
+      "kind": "waste",
+      "design_stage": "C5",
+      "status": "candidate"
+    }
+  ],
+  "first_batch_material_candidates": [
+    "water",
+    "air",
+    "hydrogen",
+    "oxygen",
+    "nitrogen",
+    "carbon_dioxide",
+    "sodium_chloride",
+    "sodium_hydroxide",
+    "chlorine",
+    "hydrochloric_acid",
+    "sulfuric_acid",
+    "calcium_hydroxide",
+    "calcium_carbonate",
+    "sodium_carbonate",
+    "sodium_bicarbonate",
+    "sodium_sulfate",
+    "calcium_sulfate",
+    "sodium_phosphate",
+    "ammonium_sulfate",
+    "silica",
+    "iron_oxide",
+    "copper_oxide",
+    "copper_sulfate",
+    "graphite",
+    "activated_carbon",
+    "glucose",
+    "starch",
+    "cellulose",
+    "fermentation_broth",
+    "nutrient_medium",
+    "protein_isolate",
+    "process_wastewater",
+    "filter_cake",
+    "neutralization_brine",
+    "biological_sludge"
+  ],
+  "equipment_classes": [
+    {
+      "id": "crusher",
+      "name_zh": "破碎与制粉机",
+      "status": "planned_process_class"
+    },
+    {
+      "id": "ore_washer",
+      "name_zh": "洗矿机",
+      "status": "planned_process_class"
+    },
+    {
+      "id": "dissolver",
+      "name_zh": "溶解槽",
+      "status": "planned_process_class"
+    },
+    {
+      "id": "filter_press",
+      "name_zh": "压滤机",
+      "status": "planned_process_class"
+    },
+    {
+      "id": "centrifuge",
+      "name_zh": "离心分离机",
+      "status": "planned_process_class"
+    },
+    {
+      "id": "dryer",
+      "name_zh": "干燥机",
+      "status": "planned_process_class"
+    },
+    {
+      "id": "crystallizer",
+      "name_zh": "结晶器",
+      "status": "planned_process_class"
+    },
+    {
+      "id": "distillation_column",
+      "name_zh": "精馏塔",
+      "status": "planned_process_class"
+    },
+    {
+      "id": "vacuum_distillation",
+      "name_zh": "真空蒸馏装置",
+      "status": "planned_process_class"
+    },
+    {
+      "id": "gas_separator",
+      "name_zh": "气体分离装置",
+      "status": "planned_process_class"
+    },
+    {
+      "id": "absorption_column",
+      "name_zh": "吸收塔",
+      "status": "planned_process_class"
+    },
+    {
+      "id": "desorption_column",
+      "name_zh": "解吸再生塔",
+      "status": "planned_process_class"
+    },
+    {
+      "id": "stirred_reactor",
+      "name_zh": "搅拌反应釜",
+      "status": "planned_process_class"
+    },
+    {
+      "id": "pressurized_reactor",
+      "name_zh": "加压反应釜",
+      "status": "planned_process_class"
+    },
+    {
+      "id": "electrolyzer",
+      "name_zh": "电解槽",
+      "status": "planned_process_class"
+    },
+    {
+      "id": "catalytic_reactor",
+      "name_zh": "催化反应器",
+      "status": "planned_process_class"
+    },
+    {
+      "id": "polymerization_reactor",
+      "name_zh": "聚合反应器",
+      "status": "planned_process_class"
+    },
+    {
+      "id": "fermenter",
+      "name_zh": "发酵罐",
+      "status": "planned_process_class"
+    },
+    {
+      "id": "sterilizer",
+      "name_zh": "灭菌舱",
+      "status": "planned_process_class"
+    },
+    {
+      "id": "membrane_separator",
+      "name_zh": "膜分离装置",
+      "status": "planned_process_class"
+    },
+    {
+      "id": "boiler",
+      "name_zh": "锅炉",
+      "status": "planned_process_class"
+    },
+    {
+      "id": "heat_exchanger",
+      "name_zh": "换热器",
+      "status": "planned_process_class"
+    },
+    {
+      "id": "condenser",
+      "name_zh": "冷凝器",
+      "status": "planned_process_class"
+    },
+    {
+      "id": "cryogenic_unit",
+      "name_zh": "低温装置",
+      "status": "planned_process_class"
+    },
+    {
+      "id": "rotary_kiln",
+      "name_zh": "回转煅烧窑",
+      "status": "planned_process_class"
+    },
+    {
+      "id": "neutralization_unit",
+      "name_zh": "中和处理装置",
+      "status": "planned_process_class"
+    },
+    {
+      "id": "gas_scrubber",
+      "name_zh": "尾气洗涤装置",
+      "status": "planned_process_class"
+    },
+    {
+      "id": "solidification_unit",
+      "name_zh": "废物固化装置",
+      "status": "planned_process_class"
+    }
+  ],
+  "production_loop_concepts": [
+    {
+      "id": "water_gases",
+      "name_zh": "水与气体工厂",
+      "material_references": [
+        "water",
+        "air",
+        "hydrogen",
+        "oxygen",
+        "nitrogen",
+        "argon"
+      ],
+      "game_process_stages": [
+        "过滤与纯化",
+        "气体分离",
+        "储存与输送"
+      ],
+      "intended_products": [
+        "工艺水",
+        "保护气",
+        "工业反应介质"
+      ]
+    },
+    {
+      "id": "salt_reagents",
+      "name_zh": "盐化工与试剂",
+      "material_references": [
+        "water",
+        "sodium_chloride",
+        "sodium_hydroxide",
+        "chlorine",
+        "hydrochloric_acid"
+      ],
+      "game_process_stages": [
+        "盐类预处理",
+        "电解与分离",
+        "试剂加工",
+        "残液处理"
+      ],
+      "intended_products": [
+        "清洗剂",
+        "浸出介质",
+        "中和介质"
+      ]
+    },
+    {
+      "id": "mineral_nutrients",
+      "name_zh": "矿物盐与培养添加物",
+      "material_references": [
+        "ammonia",
+        "ammonium_sulfate",
+        "potassium_phosphate",
+        "nutrient_medium"
+      ],
+      "game_process_stages": [
+        "原料处理",
+        "反应与结晶",
+        "添加物配制"
+      ],
+      "intended_products": [
+        "培养添加物",
+        "矿物试剂"
+      ]
+    },
+    {
+      "id": "wet_metals",
+      "name_zh": "湿法金属提纯",
+      "material_references": [
+        "copper_oxide",
+        "sulfuric_acid",
+        "copper_sulfate",
+        "metal_hydroxide_sludge"
+      ],
+      "game_process_stages": [
+        "浸出",
+        "过滤",
+        "分离与回收",
+        "残液处理"
+      ],
+      "intended_products": [
+        "高纯金属",
+        "电极原料",
+        "可回收介质"
+      ]
+    },
+    {
+      "id": "oil_polymers",
+      "name_zh": "石油到功能材料",
+      "material_references": [
+        "crude_oil",
+        "naphtha",
+        "ethene",
+        "propene",
+        "polyethylene",
+        "polypropylene"
+      ],
+      "game_process_stages": [
+        "预处理",
+        "分馏",
+        "游戏化中间体加工",
+        "聚合与成形"
+      ],
+      "intended_products": [
+        "管道衬里",
+        "绝缘件",
+        "设备外壳"
+      ]
+    },
+    {
+      "id": "solvent_recovery",
+      "name_zh": "溶剂与树脂工厂",
+      "material_references": [
+        "ethanol",
+        "acetone",
+        "ethyl_acetate",
+        "epoxy_resin",
+        "spent_solvent"
+      ],
+      "game_process_stages": [
+        "原料制备",
+        "精馏",
+        "工艺配制",
+        "溶剂回收"
+      ],
+      "intended_products": [
+        "清洗溶剂",
+        "绝缘树脂",
+        "密封材料"
+      ]
+    },
+    {
+      "id": "seals_lubricants",
+      "name_zh": "润滑与密封材料",
+      "material_references": [
+        "lubricant_base_oil",
+        "synthetic_rubber",
+        "butyl_rubber",
+        "ptfe"
+      ],
+      "game_process_stages": [
+        "介质配制",
+        "聚合物加工",
+        "成形"
+      ],
+      "intended_products": [
+        "润滑剂",
+        "垫圈",
+        "耐蚀衬里"
+      ]
+    },
+    {
+      "id": "electrochemical",
+      "name_zh": "电子与电化学材料",
+      "material_references": [
+        "graphite",
+        "silicon",
+        "lithium_carbonate",
+        "lithium_iron_phosphate",
+        "polyaniline"
+      ],
+      "game_process_stages": [
+        "提纯",
+        "电极与功能材料加工",
+        "部件成形"
+      ],
+      "intended_products": [
+        "电极",
+        "电池材料",
+        "先进电气部件"
+      ]
+    },
+    {
+      "id": "biomaterials",
+      "name_zh": "发酵与组织净化",
+      "material_references": [
+        "glucose",
+        "fermentation_broth",
+        "enzyme_concentrate",
+        "protein_isolate",
+        "chitosan"
+      ],
+      "game_process_stages": [
+        "培养",
+        "分离",
+        "酶催化",
+        "灭菌与成形"
+      ],
+      "intended_products": [
+        "净化膜",
+        "生化滤芯",
+        "抑制耗材"
+      ]
+    },
+    {
+      "id": "environment",
+      "name_zh": "废物再生与封存",
+      "material_references": [
+        "process_wastewater",
+        "spent_solvent",
+        "spent_catalyst",
+        "filter_cake",
+        "neutralization_brine"
+      ],
+      "game_process_stages": [
+        "分类收集",
+        "分离处理",
+        "有限回收",
+        "残余物处理"
+      ],
+      "intended_products": [
+        "再生介质",
+        "回收材料",
+        "封存残余物"
+      ]
+    },
+    {
+      "id": "nuclear_support",
+      "name_zh": "核工业配套化学",
+      "material_references": [
+        "boric_acid",
+        "ion_exchange_resin",
+        "inhibited_coolant",
+        "spent_coolant",
+        "waste_glass_feed"
+      ],
+      "game_process_stages": [
+        "工艺介质制备",
+        "冷却与净化服务",
+        "废介质管理",
+        "固化封存"
+      ],
+      "intended_products": [
+        "核设施介质",
+        "冷却添加物",
+        "封装材料"
+      ]
+    },
+    {
+      "id": "resonant",
+      "name_zh": "感染到共振材料",
+      "material_references": [
+        "resonant_leachate",
+        "stabilized_resonance_solution",
+        "spore_inhibitor",
+        "conductive_bioresin",
+        "spent_rift_medium"
+      ],
+      "game_process_stages": [
+        "样本与浸出液处理",
+        "稳定化",
+        "材料加工",
+        "废介质管理"
+      ],
+      "intended_products": [
+        "抑制剂",
+        "导电生物材料",
+        "裂隙设备介质"
+      ]
+    }
+  ],
+  "simulation_rules": [
+    "离散纯度与浓度等级",
+    "有限的温度和压力工艺窗口",
+    "催化剂占用、失活与再生",
+    "批次与后续连续工艺分别定义结算",
+    "管材耐温、耐蚀和气体适配",
+    "分类尾气与废液、有限回收和残余物去向",
+    "每种材料可查询来源、用途、替代路线与处理办法"
+  ],
+  "sources": [
+    "https://gregtechceu.github.io/GregTech-Modern/1.20.1/Modpacks/Materials-and-Elements/",
+    "https://wiki.aidancbrady.com/wiki/Pressurized_Reaction_Chamber",
+    "https://nucleartech.wiki/wiki/Chemical_Plant"
+  ],
+  "laboratory_apparatus": [
+    {
+      "id": "reagent_bottle",
+      "name_zh": "试剂瓶",
+      "purpose": "带标签、塞盖和内容物保存的试剂储存",
+      "planned_capacity_mb": 250,
+      "stage": "C0",
+      "status": "implemented",
+      "implemented_version": "0.1.0-alpha.3",
+      "runtime_id": "resonant_industry:reagent_bottle",
+      "capacity_mb": 250
+    },
+    {
+      "id": "dropper_bottle",
+      "name_zh": "滴瓶",
+      "purpose": "保存试剂并按小剂量滴加",
+      "planned_capacity_mb": 100,
+      "stage": "C0",
+      "status": "implemented",
+      "implemented_version": "0.1.0-alpha.3",
+      "runtime_id": "resonant_industry:dropper_bottle",
+      "capacity_mb": 100
+    },
+    {
+      "id": "pipette",
+      "name_zh": "滴管",
+      "purpose": "取样和定量少量转移",
+      "planned_capacity_mb": 25,
+      "stage": "C0",
+      "status": "implemented",
+      "implemented_version": "0.1.0-alpha.3",
+      "runtime_id": "resonant_industry:pipette",
+      "capacity_mb": 25
+    },
+    {
+      "id": "test_tube",
+      "name_zh": "试管",
+      "purpose": "观察小量反应与样本",
+      "planned_capacity_mb": 50,
+      "stage": "C0",
+      "status": "implemented",
+      "implemented_version": "0.1.0-alpha.3",
+      "runtime_id": "resonant_industry:test_tube",
+      "capacity_mb": 50
+    },
+    {
+      "id": "beaker",
+      "name_zh": "烧杯",
+      "purpose": "混合、溶解和基础加热",
+      "planned_capacity_mb": 1000,
+      "stage": "C0",
+      "status": "implemented",
+      "implemented_version": "0.1.0-alpha.3",
+      "runtime_id": "resonant_industry:beaker",
+      "capacity_mb": 1000
+    },
+    {
+      "id": "erlenmeyer_flask",
+      "name_zh": "锥形瓶",
+      "purpose": "小试反应、摇匀与滴定接收",
+      "planned_capacity_mb": 500,
+      "stage": "C0",
+      "status": "planned"
+    },
+    {
+      "id": "measuring_cylinder",
+      "name_zh": "量筒",
+      "purpose": "测量与配制体积",
+      "planned_capacity_mb": 250,
+      "stage": "C0",
+      "status": "planned"
+    },
+    {
+      "id": "burette",
+      "name_zh": "滴定管",
+      "purpose": "分次加入试剂并读取游戏内测定终点",
+      "planned_capacity_mb": 250,
+      "stage": "C0",
+      "status": "planned"
+    },
+    {
+      "id": "filter_funnel",
+      "name_zh": "过滤漏斗",
+      "purpose": "配合滤纸分离固体与滤液",
+      "planned_capacity_mb": null,
+      "stage": "C0",
+      "status": "implemented",
+      "implemented_version": "0.1.0-alpha.5",
+      "runtime_id": "resonant_industry:filter_funnel"
+    },
+    {
+      "id": "condenser",
+      "name_zh": "冷凝装置",
+      "purpose": "冷凝与回收小试蒸气",
+      "planned_capacity_mb": null,
+      "stage": "C0",
+      "status": "implemented",
+      "implemented_version": "0.1.0-alpha.5",
+      "runtime_id": "resonant_industry:condenser"
+    },
+    {
+      "id": "retort_stand",
+      "name_zh": "铁架台与夹具",
+      "purpose": "固定试管、滴定管和冷凝件",
+      "planned_capacity_mb": null,
+      "stage": "C0",
+      "status": "planned"
+    },
+    {
+      "id": "hot_plate",
+      "name_zh": "加热台",
+      "purpose": "控制小试温度，提供基础加热",
+      "planned_capacity_mb": null,
+      "stage": "C0",
+      "status": "implemented",
+      "implemented_version": "0.1.0-alpha.4",
+      "runtime_id": "resonant_industry:hot_plate"
+    },
+    {
+      "id": "magnetic_stirrer",
+      "name_zh": "搅拌台",
+      "purpose": "均匀混合并连接后续反应工艺",
+      "planned_capacity_mb": null,
+      "stage": "C0",
+      "status": "implemented",
+      "implemented_version": "0.1.0-alpha.4",
+      "runtime_id": "resonant_industry:magnetic_stirrer"
+    },
+    {
+      "id": "laboratory_workbench",
+      "name_zh": "实验工作台",
+      "purpose": "摆放器具、记录配方和处理残液",
+      "planned_capacity_mb": null,
+      "stage": "C0",
+      "status": "implemented",
+      "implemented_version": "0.1.0-alpha.3",
+      "runtime_id": "resonant_industry:lab_bench"
+    }
+  ],
+  "laboratory_workflow": [
+    "取样与标签",
+    "小量测定",
+    "小试工艺",
+    "批量放大",
+    "清洗与分类收集"
+  ],
+  "first_labware_batch": [
+    "reagent_bottle",
+    "dropper_bottle",
+    "pipette",
+    "test_tube",
+    "beaker",
+    "laboratory_workbench"
+  ],
+  "labware_rules": [
+    "容器实际保存物质、数量、纯度与浓度",
+    "定量转移使用服务器结算并检查容积和兼容介质",
+    "清洗耗用工艺水并产出残液",
+    "实验工作台支持可摆放器具和明确的交互区域",
+    "小试发现和记录工艺，工业机器负责放大生产",
+    "已实装十类器具与设备。基础实验包括提取、中和、结晶、清洗、沉淀过滤与冷凝回收。"
+  ],
+  "foundation_progress": {
+    "addon_version": "0.1.0-alpha.5",
+    "core_version": "0.12.0-alpha.7",
+    "target": "NeoForge 1.21.1",
+    "status": "validated",
+    "native_tests": 45,
+    "server_processes": 9,
+    "client_screenshots": 38,
+    "implemented": [
+      "legacy_recipe_adapter",
+      "multiple_item_inputs",
+      "four_input_and_four_output_fluid_channels",
+      "tag_ingredients",
+      "reusable_catalyst_slots",
+      "recipe_priority_and_staged_fluids",
+      "persisted_recipe_signature",
+      "expanded_machine_menu",
+      "compound_separation_recipe"
+    ],
+    "next_labware_status": "first_batch_validated",
+    "labware_implemented": true
+  },
+  "labware_progress": {
+    "addon_version": "0.1.0-alpha.3",
+    "core_version": "0.12.0-alpha.7",
+    "target": "NeoForge 1.21.1",
+    "status": "validated",
+    "native_tests": 34,
+    "new_labware_tests": 13,
+    "server_processes": 9,
+    "client_screenshots": 24,
+    "new_labware_screenshots": 9,
+    "implemented": [
+      "five_persistent_vessels",
+      "full_fluid_components",
+      "native_item_fluid_capabilities",
+      "sampling",
+      "exact_doses",
+      "six_position_bench",
+      "bench_menu",
+      "filled_vessel_drops",
+      "real_restarts_and_chunk_reload"
+    ],
+    "pending": [
+      "purity_and_concentration_rules",
+      "vessel_cleaning_and_waste_collection"
+    ]
+  },
+  "starter_chemistry_progress": {
+    "addon_version": "0.1.0-alpha.4",
+    "target": "NeoForge 1.21.1",
+    "status": "validated",
+    "experiments": [
+      "alkali_ash",
+      "fruit_extraction",
+      "alkali_extraction",
+      "neutralization",
+      "crystallization",
+      "tissue_wash"
+    ],
+    "liquids": [
+      "acid_extract",
+      "alkaline_extract",
+      "neutral_solution"
+    ],
+    "new_native_tests": 6,
+    "new_client_screenshots": 8,
+    "persistent_state": [
+      "experiment",
+      "progress",
+      "temperature",
+      "fuel_ticks",
+      "vessels",
+      "solid_inventory"
+    ]
+  },
+  "separation_progress": {
+    "addon_version": "0.1.0-alpha.5",
+    "target": "NeoForge 1.21.1",
+    "status": "validated",
+    "apparatus": [
+      "filter_funnel",
+      "condenser"
+    ],
+    "consumables": [
+      "filter_paper"
+    ],
+    "experiments": [
+      "calcium_extraction",
+      "precipitation",
+      "filtration",
+      "filtrate_distillation",
+      "neutral_distillation"
+    ],
+    "distillation_mb": {
+      "input": 50,
+      "distilled": 40,
+      "concentrate": 10
+    },
+    "new_native_tests": 5,
+    "new_client_screenshots": 6,
+    "cross_chunk_restart": true
+  }
+}

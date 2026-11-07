@@ -15,6 +15,7 @@ public final class RiftAnchorEntity extends BlockEntity {
     private int energy;
     private long suppressedUntil;
     private UUID mother;
+    private dev.hui.enderinfection.institute.InstituteMotherChamber instituteChamber;
     public RiftAnchorEntity(BlockPos p,BlockState s){super(RiftContent.ANCHOR_ENTITY.get(),p,s);}
     public int energy(){return energy;}
     public boolean suppressed(){return level!=null&&level.getGameTime()<suppressedUntil;}
@@ -30,6 +31,7 @@ public final class RiftAnchorEntity extends BlockEntity {
         if(s!=next)level.setBlock(worldPosition,next,3);
     }
     public static void tick(Level level,BlockPos p,BlockState state,RiftAnchorEntity a){
+        if(level instanceof ServerLevel server&&a.instituteChamber!=null)a.instituteChamber.tick(server,a);
         if(level.getGameTime()%20==0&&!a.suppressed()&&a.energy<CAPACITY&&a.mother!=null&&level instanceof ServerLevel server
             &&server.getEntity(a.mother) instanceof InfectedMob core&&core.kind==InfectedKind.CORE&&core.isAlive()&&!core.isNoAi()
             &&core.distanceToSqr(p.getX()+.5,p.getY()+.5,p.getZ()+.5)<=32*32&&core.spendBiomass(1))a.addEnergy(1);
@@ -43,8 +45,8 @@ public final class RiftAnchorEntity extends BlockEntity {
         }
         list.sort(Comparator.comparingDouble(a->a.getBlockPos().distSqr(center)));return list;
     }
-    @Override protected void saveAdditional(CompoundTag tag, net.minecraft.core.HolderLookup.Provider registries){super.saveAdditional(tag,registries);tag.putInt("Energy",energy);tag.putLong("SuppressedUntil",suppressedUntil);if(mother!=null)tag.putUUID("Mother",mother);}
-    @Override public void loadAdditional(CompoundTag tag, net.minecraft.core.HolderLookup.Provider registries){super.loadAdditional(tag,registries);energy=Math.max(0,Math.min(CAPACITY,tag.getInt("Energy")));suppressedUntil=tag.getLong("SuppressedUntil");mother=tag.hasUUID("Mother")?tag.getUUID("Mother"):null;}
+    @Override protected void saveAdditional(CompoundTag tag, net.minecraft.core.HolderLookup.Provider registries){super.saveAdditional(tag,registries);tag.putInt("Energy",energy);tag.putLong("SuppressedUntil",suppressedUntil);if(mother!=null)tag.putUUID("Mother",mother);if(instituteChamber!=null)tag.put("InstituteChamber",instituteChamber.save());}
+    @Override public void loadAdditional(CompoundTag tag, net.minecraft.core.HolderLookup.Provider registries){super.loadAdditional(tag,registries);energy=Math.max(0,Math.min(CAPACITY,tag.getInt("Energy")));suppressedUntil=tag.getLong("SuppressedUntil");mother=tag.hasUUID("Mother")?tag.getUUID("Mother"):null;instituteChamber=null;if(tag.contains("InstituteChamber",10))try{instituteChamber=dev.hui.enderinfection.institute.InstituteMotherChamber.load(tag.getCompound("InstituteChamber"));}catch(IllegalArgumentException ignored){/* Malformed external markers must not create entities. */}}
 
     /** Convenience for internal diagnostics; normal world I/O uses the registry-aware hooks. */
     public CompoundTag saveWithFullMetadata(){return super.saveWithFullMetadata(level.registryAccess());}

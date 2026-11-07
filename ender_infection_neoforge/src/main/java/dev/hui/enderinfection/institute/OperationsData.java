@@ -20,6 +20,9 @@ public final class OperationsData extends SavedData {
     public static final class Facility {
         public final BlockPos origin;
         boolean repaired, servicePowered, containmentPowered, analyzed, separated, archiveClaimed;
+        boolean riftOpened;
+        final Map<Long,String> requiredBreaks = new LinkedHashMap<>();
+        long storyTargetRevision;
         ContainmentIncident.Progress incident = new ContainmentIncident.Progress();
         WardenEncounter.Progress warden = new WardenEncounter.Progress();
         final Set<UUID> keyRecipients = new LinkedHashSet<>();
@@ -54,6 +57,13 @@ public final class OperationsData extends SavedData {
             facility.archiveClaimed = tag.getBoolean("ArchiveClaimed");
             facility.incident = ContainmentIncident.Progress.load(tag.getCompound("E8Incident"));
             facility.warden = WardenEncounter.Progress.load(tag.getCompound("F8Warden"));
+            facility.riftOpened=tag.contains("StoryRiftOpened")?tag.getBoolean("StoryRiftOpened")
+                    :facility.warden.spawned||facility.warden.phase==WardenEncounter.Phase.DEFEATED;
+            facility.storyTargetRevision=tag.getLong("StoryTargetRevision");
+            for(var targetValue:tag.getList("RequiredStoryBreaks",10)){
+                var target=(CompoundTag)targetValue;
+                if(target.contains("Offset",4)&&target.contains("Block",8))facility.requiredBreaks.put(target.getLong("Offset"),target.getString("Block"));
+            }
             for (var recipient : tag.getList("KeyRecipients", 10)) {
                 var player = (CompoundTag)recipient;
                 if (player.hasUUID("Player")) facility.keyRecipients.add(player.getUUID("Player"));
@@ -64,10 +74,13 @@ public final class OperationsData extends SavedData {
     }
     @Override public CompoundTag save(CompoundTag root, net.minecraft.core.HolderLookup.Provider registries) { return save(root); }
     public CompoundTag save(CompoundTag root) {
-        root.putInt("Version", 3); var list = new ListTag();
+        root.putInt("Version", 4); var list = new ListTag();
         for (var facility : facilities.values()) {
             var tag = new CompoundTag(); tag.putLong("Origin", facility.origin.asLong());
             tag.putBoolean("Repaired", facility.repaired); tag.putBoolean("ServicePowered", facility.servicePowered);
+            tag.putBoolean("StoryRiftOpened",facility.riftOpened);
+            tag.putLong("StoryTargetRevision",facility.storyTargetRevision);
+            var targets=new ListTag();facility.requiredBreaks.forEach((offset,block)->{var target=new CompoundTag();target.putLong("Offset",offset);target.putString("Block",block);targets.add(target);});tag.put("RequiredStoryBreaks",targets);
             tag.putBoolean("ContainmentPowered", facility.containmentPowered); tag.putBoolean("Analyzed", facility.analyzed);
             tag.putBoolean("Separated", facility.separated); tag.putBoolean("ArchiveClaimed", facility.archiveClaimed); tag.put("E8Incident", facility.incident.save()); tag.put("F8Warden", facility.warden.save());
             var recipients = new ListTag();

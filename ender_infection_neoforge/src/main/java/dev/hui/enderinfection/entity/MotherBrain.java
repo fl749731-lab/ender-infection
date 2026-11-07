@@ -38,6 +38,7 @@ public final class MotherBrain {
     public void save(CompoundTag tag){tag.putLong("LastBrood",lastBrood);tag.putLong("NextBroodRetry",nextRetry);tag.putLong("LastRecovery",lastRecovery);tag.putBoolean("BurstArmed",burstArmed);tag.putLong("BurstReadyAt",burstReadyAt);tag.putLong("NextBurstRetry",nextBurstRetry);tag.putLong("BurstDisplayUntil",burstDisplayUntil);tag.putLong("LastSiege",lastSiege);if(observedPlayer!=null)tag.putUUID("ObservedPlayer",observedPlayer);tag.putLong("ObservedPlayerUntil",observedUntil);learning.save(tag);policy.save(tag);}
     public void load(CompoundTag tag){long now=mother.level().getGameTime();lastBrood=tag.contains("LastBrood")?Math.min(now,tag.getLong("LastBrood")):-1000000;nextRetry=Math.min(now+20,tag.getLong("NextBroodRetry"));lastRecovery=Math.min(now,tag.getLong("LastRecovery"));burstArmed=!tag.contains("BurstArmed")||tag.getBoolean("BurstArmed");burstReadyAt=Math.min(now+1200,tag.getLong("BurstReadyAt"));nextBurstRetry=Math.min(now+20,tag.getLong("NextBurstRetry"));burstDisplayUntil=Math.min(now+16,tag.getLong("BurstDisplayUntil"));lastSiege=tag.contains("LastSiege")?Math.min(now,tag.getLong("LastSiege")):-1000000;observedPlayer=tag.hasUUID("ObservedPlayer")?tag.getUUID("ObservedPlayer"):null;observedUntil=Math.min(now+600,Math.max(0,tag.getLong("ObservedPlayerUntil")));learning.load(tag,now);policy.load(tag);}
     public boolean tryIncubate(ServerLevel level){
+        if(mother.instituteContained())return false;
         long now=level.getGameTime();if(mother.isNoAi()||now<nextRetry||now-lastBrood<ColonyEconomy.interval(interval(mother.motherStage()),mother.colonyBiomass()))return false;
         nextRetry=now+20;
         if(mother.motherStage()>=4&&now-lastSiege>=ColonyEconomy.interval(1200,mother.colonyBiomass())&&mother.summonSiege(level)){lastSiege=now;lastBrood=now;return true;}
@@ -45,6 +46,7 @@ public final class MotherBrain {
         if(!mother.summonBrood(level))return false;lastBrood=now;return true;
     }
     public void tick(ServerLevel level){
+        if(mother.instituteContained()){mother.setMotherState(State.WAITING);return;}
         if(mother.isNoAi())return;
         long now=level.getGameTime();
         policy.tick(level,mother,learning);

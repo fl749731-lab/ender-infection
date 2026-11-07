@@ -14,12 +14,16 @@ def verify(log: Path, screenshots: Path) -> dict:
     if "CENTRAL_INSTITUTE_VISUAL_FAIL" in content:
         raise ValueError(f"Native visual acceptance failed: {log}")
     natural = re.search(r"CENTRAL_INSTITUTE_NATURAL_PASS full_chunks=(\d+) rooms=48 pieces=56", content)
-    complete = re.search(r"CENTRAL_INSTITUTE_VISUAL_PASS natural=true rooms=48 full_chunks=(\d+) screenshots=61", content)
+    complete = re.search(r"CENTRAL_INSTITUTE_VISUAL_PASS natural=true rooms=48 full_chunks=(\d+) screenshots=(\d+)", content)
     if not natural or not complete or int(natural[1]) < 90 or natural[1] != complete[1]:
-        raise ValueError(f"No complete natural-generation/61-camera acceptance: {log}")
+        raise ValueError(f"No complete natural-generation/camera acceptance: {log}")
     expected = {f"room_{letter}{number}" for letter in "ABCDEF" for number in range(1, 9)}
     expected.update(f"floor_{floor}" for floor in ("G1", "G2", "G3", "B1", "B2", "B3"))
     expected.update(("00_exterior_front", "01_exterior_rear", "02_atrium", "stairs_1", "stairs_10", "night_exterior", "night_reactor"))
+    if "CENTRAL_INSTITUTE_ARCHITECTURE_VIEWS shots=64" in content:
+        expected.update(("architecture_entry", "architecture_halo", "architecture_bench"))
+    if int(complete[2]) != len(expected):
+        raise ValueError("Completion count differs from the planned cameras")
     captured = re.findall(r"CENTRAL_INSTITUTE_CAPTURE ([a-zA-Z0-9_]+)", content)
     if set(captured) != expected or len(captured) != len(expected):
         raise ValueError("Missing or duplicate camera captures")

@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " G ",
+    "PMP",
+    " I "
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:glass_pane"
+    },
+    "P": {
+      "tag": "resonant_industry:pump_plates"
+    },
+    "M": {
+      "item": "resonant_industry:basic_motor"
+    },
+    "I": {
+      "item": "resonant_industry:iron_plate"
+    }
+  },
+  "result": {
+    "item": "resonant_industry:metering_pump",
+    "count": 1
+  }
+}

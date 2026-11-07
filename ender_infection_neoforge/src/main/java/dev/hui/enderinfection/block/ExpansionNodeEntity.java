@@ -139,10 +139,13 @@ public final class ExpansionNodeEntity extends BlockEntity {
     }
     public net.minecraft.world.phys.Vec3 effectPosition(){return net.minecraft.world.phys.Vec3.atCenterOf(worldPosition).add(0,getBlockState().getValue(InfectedNestBlock.ROOTED)?.5:0,0);}
     public static boolean replaceSurface(ServerLevel level,BlockPos pos,InfectedMob core,boolean allowNatural){
+        if(dev.hui.enderinfection.institute.InstituteProtection.protectedBlock(level,pos,false)
+                ||dev.hui.enderinfection.institute.InstituteProtection.protectedBlock(level,pos.above(),false))return false;
         if(!level.hasChunkAt(pos)||!level.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING))return false;
         BlockState original=level.getBlockState(pos),above=level.getBlockState(pos.above());String key=InfectedContent.terrainKey(original);
         if(original.hasBlockEntity()||!(isGround(key)||allowNatural&&original.is(GROUND))||!(original.isFaceSturdy(level,pos,net.minecraft.core.Direction.UP)||original.getBlock() instanceof net.minecraft.world.level.block.FarmBlock||ErodedGroundBlock.farmland(original))||!above.getFluidState().isEmpty()||!above.isAir()&&!above.canBeReplaced()&&!Vegetation.supported(above)&&!above.is(net.minecraft.world.level.block.Blocks.SNOW))return false;
         boolean tall=Vegetation.tallBottom(above);BlockState upper=level.getBlockState(pos.above(2));
+        if(tall&&dev.hui.enderinfection.institute.InstituteProtection.protectedBlock(level,pos.above(2),false))return false;
         int allowance=Math.min(core.expansionAllowance(),ColonyEconomy.NODE);if(!core.spendForExpansion(ColonyEconomy.NODE))return false;
         if(!above.isAir())level.setBlock(pos.above(),net.minecraft.world.level.block.Blocks.AIR.defaultBlockState(),2);
         if(tall)level.setBlock(pos.above(2),net.minecraft.world.level.block.Blocks.AIR.defaultBlockState(),2);
@@ -174,6 +177,7 @@ public final class ExpansionNodeEntity extends BlockEntity {
     private void sinkColumn(ServerLevel level,BlockPos pos){
         BlockPos cursor=pos.below();int depth=0;boolean changed=false;
         while(depth<SINK_DEPTH&&level.hasChunkAt(cursor)){
+            if(dev.hui.enderinfection.institute.InstituteProtection.protectedBlock(level,cursor,false))break;
             BlockState below=level.getBlockState(cursor);
             if(InfectedContent.terrainKey(below)!=null){cursor=cursor.below();depth++;continue;}
             if(!below.is(GROUND)||below.hasBlockEntity())break;
@@ -185,6 +189,7 @@ public final class ExpansionNodeEntity extends BlockEntity {
     private int groundChangeCost(ServerLevel level,BlockPos pos){BlockState plant=level.getBlockState(pos.above());return 1+(Vegetation.initial(plant)==null?0:Vegetation.tallBottom(plant)?2:1);}
     private int changeCount(ServerLevel level,BlockPos pos,BlockState replacement){int before=purchasedChanges;return change(level,pos,replacement)?purchasedChanges-before:0;}
     private boolean changeAll(ServerLevel level,java.util.LinkedHashMap<BlockPos,BlockState> changes){
+        if(changes.keySet().stream().anyMatch(pos->dev.hui.enderinfection.institute.InstituteProtection.protectedBlock(level,pos,false)))return false;
         if(changes.keySet().stream().anyMatch(pos->!level.hasChunkAt(pos)))return false;
         changes.entrySet().removeIf(e->level.getBlockState(e.getKey()).equals(e.getValue()));if(changes.isEmpty())return false;
         InfectedMob core=mother(level);if(core==null)return false;
@@ -284,6 +289,7 @@ public final class ExpansionNodeEntity extends BlockEntity {
             for(int dy=radius+1;dy>=-radius-4;dy--){
                 BlockPos pos=column.offset(0,dy,0);BlockState state=level.getBlockState(pos);String key=InfectedContent.terrainKey(state);
                 if(key==null)continue;
+                if(dev.hui.enderinfection.institute.InstituteProtection.protectedBlock(level,pos,false))continue;
                 if(!isGround(key)||!key.startsWith("eroded_"))break;
                 if(state.hasProperty(ErodedGroundBlock.EROSION)&&state.getValue(ErodedGroundBlock.EROSION)<2){
                     if(level.setBlock(pos,state.cycle(ErodedGroundBlock.EROSION),3)){changes++;matured++;setChanged();}

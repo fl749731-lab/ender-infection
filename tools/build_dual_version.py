@@ -95,6 +95,9 @@ def main() -> None:
             tests.append(verify(log, 12))
             log = run_project(name, folder, major, ["runGameTestServer", "-PcentralInstituteChecks"], f"{folder}-central-institute.log")
             tests.append(verify(log, 1))
+            if major == 21:
+                log = run_project(name, folder, major, ["runGameTestServer", "-PmotherChamberChecks", "-PinstituteProtectionChecks"], f"{folder}-institute-story.log")
+                tests.append(verify(log, 7))
             log = run_project(name, folder, major, ["runGameTestServer", "-PstorageChecks"], f"{folder}-storage.log")
             tests.append(verify(log, 6))
             log = run_project(name, folder, major, ["runGameTestServer", "-PprocessingChecks"], f"{folder}-processing.log")

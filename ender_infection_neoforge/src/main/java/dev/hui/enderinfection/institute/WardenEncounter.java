@@ -178,6 +178,8 @@ public final class WardenEncounter {
         for(var f:data.facilities.values()) {
             var p=f.warden;for(var target:List.of(d.control,d.consoles.get(0),d.consoles.get(1)))if(validControl(level,f,target))
                 ((OperationsControlEntity)level.getBlockEntity(f.origin.offset(target.pos))).updatePowered(f.repaired&&f.containmentPowered);
+            if(f.riftOpened&&level.getChunkSource().getChunkNow((f.origin.getX()+d.spawn.getX())>>4,(f.origin.getZ()+d.spawn.getZ())>>4)!=null)
+                InstituteProtection.riftPulse(level,f.origin.offset(d.spawn));
             if(p.phase!=Phase.WARNING&&p.phase!=Phase.ACTIVE||!canAdvance(level,f,d))continue;
             if(p.phase==Phase.WARNING&&!p.spawned) {
                 p.warningTicks=Math.min(60,p.warningTicks+20);data.setDirty();if(p.warningTicks<60)continue;
@@ -186,7 +188,8 @@ public final class WardenEncounter {
                 mob.moveTo(at.getX()+.5,at.getY(),at.getZ()+.5,180,0);mob.setUUID(p.identity);mob.bindFacility(f.origin,p.run);
                 if(!level.noCollision(mob)){mob.discard();continue;}
                 p.spawned=true;p.phase=Phase.ACTIVE;p.lastPosition=at;data.setDirty();
-                if(!level.addFreshEntity(mob)){p.spawned=false;p.phase=Phase.WARNING;data.setDirty();}else changed(level,f,"spawned");
+                if(!level.addFreshEntity(mob)){p.spawned=false;p.phase=Phase.WARNING;data.setDirty();}
+                else {InstituteProtection.openStoryRift(level,f.origin,at);changed(level,f,"spawned");}
             } else if(p.phase==Phase.ACTIVE) {
                 var mob=boss(level,f);
                 if(mob==null) { p.missingTicks+=20;if(p.missingTicks>=100){p.phase=Phase.RECOVERY;changed(level,f,"missing_identity");}continue; }

@@ -71,6 +71,7 @@ minecraft {
             client { workingDirectory project.file('build/architecture-check'); property 'ender_infection.architectureCheck','true' }
         }
         if (project.hasProperty('centralInstituteVisualCheck')) {
+            client { property 'ender_infection.architectureVisualCheck', project.hasProperty('architectureVisualCheck').toString() }
             client { workingDirectory project.file('build/central-institute-visual-check'); property 'ender_infection.centralInstituteVisualCheck','true'; property 'ender_infection.centralInstituteSeed',project.findProperty('centralInstituteSeed') ?: '7312026'; jvmArgs '-Xms128m', '-Xmx1536m', '-XX:ActiveProcessorCount=2' }
         }
         if (project.hasProperty('storageVisualCheck')) {

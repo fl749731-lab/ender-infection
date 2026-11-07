@@ -23,10 +23,10 @@ public final class Platform {
         var be=level.getBlockEntity(p);var cap=be==null?null:be.getCapability(ForgeCapabilities.FLUID_HANDLER,side).orElse(null);
         if(cap==null)return null;
         return new FluidAccess(){
-            public String fluid(){var f=cap.getFluidInTank(0);return f.isEmpty()?"":BuiltInRegistries.FLUID.getKey(f.getFluid()).toString();}
-            public int amount(){return cap.getFluidInTank(0).getAmount();}public int capacity(){return cap.getTankCapacity(0);}
+            public String fluid(){var f=cap.getFluidInTank(0);return f.isEmpty()||!LabPlatform.plain(f)?"":BuiltInRegistries.FLUID.getKey(f.getFluid()).toString();}
+            public int amount(){return LabPlatform.plain(cap.getFluidInTank(0))?cap.getFluidInTank(0).getAmount():0;}public int capacity(){return cap.getTankCapacity(0);}
             public int fill(String id,int a,boolean s){return validFluid(id)&&a>0?cap.fill(new FluidStack(BuiltInRegistries.FLUID.get(IndustryContent.id(id)),a),s?IFluidHandler.FluidAction.SIMULATE:IFluidHandler.FluidAction.EXECUTE):0;}
-            public int drain(int a,boolean s){return cap.drain(a,s?IFluidHandler.FluidAction.SIMULATE:IFluidHandler.FluidAction.EXECUTE).getAmount();}
+            public int drain(int a,boolean s){if(!LabPlatform.plain(cap.drain(a,IFluidHandler.FluidAction.SIMULATE)))return 0;return cap.drain(a,s?IFluidHandler.FluidAction.SIMULATE:IFluidHandler.FluidAction.EXECUTE).getAmount();}
         };
     }
     public static IEnergyStorage energyView(IndustryNode node,Direction side){
@@ -44,9 +44,9 @@ public final class Platform {
             public int getTanks(){return 1;}
             public FluidStack getFluidInTank(int tank){return tank==0&&validFluid(access.fluid())&&access.amount()>0?new FluidStack(BuiltInRegistries.FLUID.get(IndustryContent.id(access.fluid())),access.amount()):FluidStack.EMPTY;}
             public int getTankCapacity(int tank){return tank==0?access.capacity():0;}
-            public boolean isFluidValid(int tank,FluidStack fluid){return tank==0&&!fluid.isEmpty()&&access.fill(BuiltInRegistries.FLUID.getKey(fluid.getFluid()).toString(),1,true)==1;}
-            public int fill(FluidStack fluid,FluidAction action){return fluid.isEmpty()?0:access.fill(BuiltInRegistries.FLUID.getKey(fluid.getFluid()).toString(),fluid.getAmount(),action.simulate());}
-            public FluidStack drain(FluidStack fluid,FluidAction action){return fluid.isEmpty()||!BuiltInRegistries.FLUID.getKey(fluid.getFluid()).toString().equals(access.fluid())?FluidStack.EMPTY:drain(fluid.getAmount(),action);}
+            public boolean isFluidValid(int tank,FluidStack fluid){return tank==0&&!fluid.isEmpty()&&LabPlatform.plain(fluid)&&access.fill(BuiltInRegistries.FLUID.getKey(fluid.getFluid()).toString(),1,true)==1;}
+            public int fill(FluidStack fluid,FluidAction action){return fluid.isEmpty()||!LabPlatform.plain(fluid)?0:access.fill(BuiltInRegistries.FLUID.getKey(fluid.getFluid()).toString(),fluid.getAmount(),action.simulate());}
+            public FluidStack drain(FluidStack fluid,FluidAction action){return fluid.isEmpty()||!LabPlatform.plain(fluid)||!BuiltInRegistries.FLUID.getKey(fluid.getFluid()).toString().equals(access.fluid())?FluidStack.EMPTY:drain(fluid.getAmount(),action);}
             public FluidStack drain(int amount,FluidAction action){if(amount<=0||access.amount()==0)return FluidStack.EMPTY;String id=access.fluid();int n=access.drain(amount,action.simulate());return n<=0?FluidStack.EMPTY:new FluidStack(BuiltInRegistries.FLUID.get(IndustryContent.id(id)),n);}
         };
     }

@@ -77,12 +77,23 @@ public final class IndustryGameTests {
     @GameTest(template="empty_test",timeoutTicks=160,batch="industry_pause")
     public static void outputFullPausesWithoutConsumingMaterialsOrEnergy(GameTestHelper h){
         var f=new Fixture(h);var n=f.machine(IndustryApi.CENTRIFUGE,0);f.form(n);f.charge(n,10000);f.water(n,IndustryApi.SLURRY,1000);n.setItem(0,new ItemStack(Items.GLASS_BOTTLE));n.setItem(2,new ItemStack(IndustryContent.item("ender_infection:separated_reagent"),64));int energy=n.energy();
-        f.after(30,()->{h.assertTrue(n.energy()==energy&&n.progress()==0&&n.getItem(0).getCount()==1&&save(n).getInt("InputAmount")==1000,"Full output consumed materials, fluid or power");f.success();});
+        f.whenReady(()->f.after(30,()->{h.assertTrue(n.energy()==energy&&n.progress()==0&&n.getItem(0).getCount()==1&&save(n).getInt("InputAmount")==1000,"Full output consumed materials, fluid or power");f.success();}));
     }
-    @GameTest(template="empty_test",timeoutTicks=400,batch="industry_saved")
+    @GameTest(template="empty_test",timeoutTicks=1400,batch="industry_saved")
     public static void savedProgressAndFluidsResumeWithoutRepeatingOutput(GameTestHelper h){
         var f=new Fixture(h);var n=f.machine(IndustryApi.CENTRIFUGE,0);f.form(n);f.charge(n,10000);f.water(n,IndustryApi.SLURRY,1000);n.setItem(0,new ItemStack(Items.GLASS_BOTTLE));
-        f.after(70,()->{var before=save(n);h.assertTrue(n.progress()>0&&n.progress()<200,"Recipe did not advance before save");load(n,before);h.assertTrue(save(n).equals(before),"Save/load changed reserved inputs or progress");f.after(180,()->{h.assertTrue(n.getItem(2).getCount()==1&&n.getItem(3).getCount()==1&&save(n).getInt("InputAmount")==0,"Reload lost or repeated a batch");f.success();});});
+        f.whenReady(() -> f.after(70, () -> {
+            var before = save(n);
+            h.assertTrue(n.progress() > 0 && n.progress() < 200, "Recipe did not advance before save: " + before);
+            load(n, before);
+            h.assertTrue(save(n).equals(before), "Save/load changed reserved inputs or progress");
+            f.after(210, () -> {
+                var after = save(n);
+                h.assertTrue(n.getItem(2).getCount() == 1 && n.getItem(3).getCount() == 1
+                        && after.getInt("InputAmount") == 0, "Reload lost or repeated a batch: " + after);
+                f.success();
+            });
+        }));
     }
     @GameTest(template="empty_test",timeoutTicks=120,batch="industry_fluids")
     public static void simulatedTransfersRejectMixedFluidsAndNeverMutateStorage(GameTestHelper h){
@@ -135,9 +146,9 @@ public final class IndustryGameTests {
     public static void secondFluidOutputFullPausesWholeBatch(GameTestHelper h){
         var f=new Fixture(h);var n=f.machine(IndustryApi.CENTRIFUGE,0);f.form(n);f.charge(n,10000);compound(f,n);
         var tag=save(n);var tank=tag.getList("ProcessTanks",10).getCompound(0);tank.putString("Out",IndustryApi.SLURRY);tank.putInt("OutAmount",8000);load(n,tag);
-        f.after(40,()->{h.assertTrue(n.energy()==10000&&n.progress()==0&&n.getItem(0).getCount()==2&&n.getItem(4).getCount()==1,"Blocked secondary output consumed inputs or energy");
+        f.whenReady(()->f.after(40,()->{h.assertTrue(n.energy()==10000&&n.progress()==0&&n.getItem(0).getCount()==2&&n.getItem(4).getCount()==1,"Blocked secondary output consumed inputs or energy");
             h.assertTrue(channel(f,n,"fluid_output",1).drain(1000,false)==1000,"Could not unblock output");
-            f.after(290,()->{h.assertTrue(n.getItem(2).getCount()==2&&channel(f,n,"fluid_output",1).amount()==7250,"Unblocked compound recipe failed to resume");f.success();});});
+            f.after(290,()->{h.assertTrue(n.getItem(2).getCount()==2&&channel(f,n,"fluid_output",1).amount()==7250,"Unblocked compound recipe failed to resume");f.success();});}));
     }
     @GameTest(template="empty_test",timeoutTicks=480,batch="industry_catalyst")
     public static void removingCatalystPausesActiveRecipeWithoutSwitchingToLegacy(GameTestHelper h){

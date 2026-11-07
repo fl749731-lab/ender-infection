@@ -21,5 +21,8 @@ public final class LabPlatform {
     static void settleDistillation(LabBenchEntity heater, LabBenchEntity receiver, Runnable settle) {
         settle.run();
     }
+    static ChemistryStation.Status meteredHold(LabBenchEntity bench, boolean consume) {
+        return ChemistryStation.Status.SIGNAL;
+    }
     private LabPlatform(){}
 }

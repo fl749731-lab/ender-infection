@@ -12,7 +12,7 @@ public final class IndustryManualScreen extends Screen {
     private static final String[] PAGES={"intro","generator","processor","centrifuge","transport","assembly","processes","labware","chemistry","experiments","filtration","distillation"};
     public IndustryManualScreen(){super(Component.translatable("item.resonant_industry.manual"));}
     @Override public boolean isPauseScreen(){return false;}
-    private MachineDefinition machine(){return page>=1&&page<=3?IndustryApi.machines().get(IndustryApi.MOD_ID+":"+PAGES[page]):null;}
+    private MachineDefinition machine(){return IndustryApi.machines().get(IndustryApi.MOD_ID+":"+PAGES[page]);}
     @Override protected void init(){
         int x=(width-390)/2,y=(height-222)/2;
         addRenderableWidget(Button.builder(Component.literal("<"),b->{page=Math.floorMod(page-1,PAGES.length);layer=0;}).bounds(x+8,y+197,28,18).build());

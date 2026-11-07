@@ -2,7 +2,7 @@
 from pathlib import Path
 import argparse,hashlib,html,json,re,sys,zipfile
 
-from validation_contract import INDUSTRY_FRAMES, LABWARE_FRAMES, NATIVE_MINIMUM, PERSISTENCE_GROUPS
+from validation_contract import INDUSTRY_FRAMES, LABWARE_FRAMES, NATIVE_MINIMUM, PERSISTENCE_GROUPS, verify_blueprints
 
 BASE=Path(__file__).resolve().parents[1];ROOT=BASE.parents[1]
 sys.path.insert(0,str(ROOT/'tools'))
@@ -28,7 +28,7 @@ def sources():
  for lane in ['forge','neoforge']:
   files.extend(p for p in (BASE/lane).iterdir() if p.is_file())
   files.extend(p for p in (BASE/lane/'gradle').rglob('*') if p.is_file())
- files.extend(BASE/'tools'/name for name in ['sync_neoforge.py','generate_assets.py','formed_models.py','build_dual.py','validation_contract.py','package_release.py'])
+ files.extend(BASE/'tools'/name for name in ['sync_neoforge.py','generate_assets.py','formed_models.py','generate_workshop_assets.py','generate_mineral_assets.py','build_dual.py','validation_contract.py','package_release.py'])
  return {p.relative_to(ROOT).as_posix():source_digest(p) for p in sorted(set(files))}
 
 def summary(validations):
@@ -55,6 +55,8 @@ def evidence(result):
 
  frames=[(result['client_screenshots'],INDUSTRY_FRAMES)]
  if loader=='neoforge':
+  worldgen=result['mineral_worldgen']
+  assert worldgen['status']=='PASS' and 'MINERAL_WORLDGEN_PASS' in (ROOT/worldgen['log']).read_text('utf-8',errors='replace')
   labware=result['labware_client']
   assert labware['status']=='PASS' and labware['conserved_volume_mb']==1000
   assert labware['chemistry']=={'input_mb':500,'remaining_mb':450,'evaporated_mb':50,'salt_crystals':1}
@@ -69,10 +71,13 @@ def evidence(result):
    shots.append({'loader':loader,'file':f'screenshots/{loader}/{path.name}','sha256':shot['sha256'],'source':path})
  return {'required_passed':tests['required_passed'],'persistence':persistence,'client_screenshots':len(shots)},shots
 
-def verify_assets(jar,loader,canonical):
+def verify_assets(jar,loader,canonical,neo_only):
  with zipfile.ZipFile(jar) as archive:
   assert archive.testzip() is None,jar
-  for name,source in canonical.items():
+  assets=canonical | neo_only if loader=='neoforge' else canonical
+  if loader=='forge':
+   assert not neo_only.keys() & set(archive.namelist()),'NeoForge workshop assets leaked into Forge'
+  for name,source in assets.items():
    data=archive.read(name)
    if name.endswith('.json'):
     expected=json.loads(source)
@@ -107,15 +112,19 @@ def package():
  assert builds['status']=='PASS' and builds['version']==VERSION and builds['gametests'] and builds['clients']
  assert core['status']=='PASS' and core['native_gametests_requested']
  assert len(builds['artifacts'])==len(NATIVE_MINIMUM) and {r['loader'] for r in builds['artifacts']}==set(NATIVE_MINIMUM)
- assert read(BASE/'docs/blueprints/definitions.json')==read(BASE/'forge/build/verified-blueprints.json')==read(BASE/'neoforge/build/verified-blueprints.json'),'Blueprints do not match the native layouts'
+ common=read(BASE/'docs/blueprints/definitions.json')
+ for loader in NATIVE_MINIMUM:
+  verify_blueprints(common,read(BASE/loader/'build/verified-blueprints.json'),loader)
  core_tests=sum(t['required_passed'] for t in core['tests']);assert core_tests>=147
  validations={};shots=[];jars=[]
  canonical={p.relative_to(BASE/'forge/src/main/resources').as_posix():p.read_bytes() for p in (BASE/'forge/src/main/resources/assets').rglob('*') if p.is_file()}
+ neo_root=BASE/'forge/src/main/resources/neoforge_only'
+ neo_only={p.relative_to(neo_root).as_posix():p.read_bytes() for p in (neo_root/'assets').rglob('*') if p.is_file()}
  for result in builds['artifacts']:
   loader=result['loader'];jar=ROOT/result['file']
   assert result['core']['version']==core['version'],loader
   assert digest(jar.read_bytes())==result['sha256'],jar
-  verify_assets(jar,loader,canonical)
+  verify_assets(jar,loader,canonical,neo_only)
   validations[loader],captures=evidence(result)
   shots.extend(captures)
   jars.append((loader,jar))
@@ -137,6 +146,7 @@ def package():
    z.writestr(s['file'],s['source'].read_bytes());gallery.append('<figure><a href="'+s['file']+'"><img loading="lazy" src="'+s['file']+'"></a><figcaption>'+html.escape(s['loader']+' / '+Path(s['file']).stem)+'</figcaption></figure>')
   for p in sorted((BASE/'docs/blueprints').glob('*')):
    if p.is_file():z.writestr('blueprints/'+p.name,p.read_bytes())
+  z.write(BASE/'neoforge/build/verified-blueprints.json','blueprints/neoforge-definitions.json')
   for name,frame in [('processor-panel.png','processor_running'),('production-line.png','production_line'),('cable-detail.png','cable_detail')]:
    z.writestr('images/'+name,forge_shots[frame].read_bytes())
   z.writestr('index.html',''.join(gallery)+'</div></html>')

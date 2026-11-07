@@ -63,7 +63,11 @@ public final class Chemistry {
         FILTRATE_DISTILLATION(Station.HEATER, FILTRATE, EMPTY, "", new Portion("filtrate_concentrate", 10),
                 DISTILLATE, "", 100, 140),
         NEUTRAL_DISTILLATION(Station.HEATER, NEUTRAL_BATCH, EMPTY, "", new Portion("neutral_concentrate", 10),
-                DISTILLATE, "", 100, 140);
+                DISTILLATE, "", 100, 140),
+        PUMP_HEAD_RINSE(Station.STIRRER, new Portion("distilled_water", 25), EMPTY, "copper_plate",
+                new Portion("clear_filtrate", 25), "precision_pump_head", 0, 60),
+        SEAL_VULCANIZATION(Station.HEATER, EMPTY, EMPTY, "sulfur_rubber_mix",
+                EMPTY, "vulcanized_seal", 120, 80);
 
         public final Station station;
         public final Portion sample, reagent, product, receiverProduct;

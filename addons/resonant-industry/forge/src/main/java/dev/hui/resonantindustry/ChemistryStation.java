@@ -18,7 +18,7 @@ public final class ChemistryStation implements Container {
     public static final int DATA_COUNT = 11;
     private static final int AMBIENT = 20, MAX_HEAT = 450, FUEL_DURATION = 240;
 
-    public enum Status { IDLE, INPUTS, FUEL, HEATING, SIGNAL, RUNNING, OUTPUT, COMPLETE, STOPPED, CONDENSER, RECEIVER }
+    public enum Status { IDLE, INPUTS, FUEL, HEATING, SIGNAL, RUNNING, OUTPUT, COMPLETE, STOPPED, CONDENSER, RECEIVER, OXIDIZED }
 
     private final LabBenchEntity bench;
     private final Chemistry.Station kind;
@@ -26,7 +26,7 @@ public final class ChemistryStation implements Container {
     private Chemistry.Experiment experiment;
     private Status status = Status.IDLE;
     private int progress, temperature = AMBIENT, fuelTicks;
-    private boolean running;
+    private boolean running, metered;
 
     ChemistryStation(LabBenchEntity bench, Chemistry.Station kind) {
         this.bench = bench;
@@ -71,6 +71,7 @@ public final class ChemistryStation implements Container {
 
     boolean start(boolean distillation) {
         if (running || distillation && kind != Chemistry.Station.HEATER) return false;
+        metered = false;
         experiment = null;
         progress = 0;
         for (var candidate : Chemistry.Experiment.values()) {
@@ -87,8 +88,32 @@ public final class ChemistryStation implements Container {
 
     void stop() {
         running = false;
+        metered = false;
         progress = 0;
         status = Status.STOPPED;
+    }
+
+    boolean metered() { return metered; }
+    boolean meteredComplete() { return metered && status == Status.COMPLETE; }
+    boolean running() { return running; }
+
+    boolean beginMeteredMix(ItemStack sample, ItemStack reagent) {
+        var recipe = Chemistry.Experiment.NEUTRALIZATION;
+        if (kind != recipe.station || running || metered || !matches(recipe, sample, reagent)) return false;
+        if (!LabFluids.read(bench.getItem(SAMPLE), bench.getLevel()).isEmpty()
+                || !LabFluids.read(bench.getItem(LIQUID_REAGENT), bench.getLevel()).isEmpty()) return false;
+        experiment = recipe;
+        progress = 0;
+        running = metered = true;
+        status = Status.RUNNING;
+        bench.replaceReactionVessel(SAMPLE, sample);
+        bench.replaceReactionVessel(LIQUID_REAGENT, reagent);
+        return true;
+    }
+
+    void meteredCollected() {
+        metered = false;
+        bench.markReactionDirty();
     }
 
     void tick() {
@@ -115,7 +140,7 @@ public final class ChemistryStation implements Container {
         }
         if (running) {
             if (blocked != null) status = blocked;
-            else if (kind == Chemistry.Station.STIRRER && !hasSignal()) status = Status.SIGNAL;
+            else if (kind == Chemistry.Station.STIRRER && (blocked = stirringHold(true)) != null) status = blocked;
             else if (heater && temperature < experiment.temperature) status = fuelTicks > 0 ? Status.HEATING : Status.FUEL;
             else {
                 status = Status.RUNNING;
@@ -131,20 +156,25 @@ public final class ChemistryStation implements Container {
         }
     }
 
-    private boolean hasSignal() {
-        return bench.getLevel().hasNeighborSignal(bench.getBlockPos());
+    private Status stirringHold(boolean consume) {
+        if (metered) return LabPlatform.meteredHold(bench, consume);
+        return bench.getLevel().hasNeighborSignal(bench.getBlockPos()) ? null : Status.SIGNAL;
     }
 
     private boolean matches(Chemistry.Experiment recipe) {
-        var sample = bench.getItem(SAMPLE);
+        return matches(recipe, bench.getItem(SAMPLE), bench.getItem(LIQUID_REAGENT));
+    }
+
+    private boolean matches(Chemistry.Experiment recipe, ItemStack sample, ItemStack reagent) {
         if (!LabVesselItem.vessel(sample)) return false;
         if (kind != Chemistry.Station.FILTER && !sample.is(IndustryContent.item("beaker"))
                 && !sample.is(IndustryContent.item("test_tube"))) return false;
         if (recipe.product.amount() > LabVesselItem.capacity(sample)) return false;
         if (!recipe.sample.matches(LabFluids.read(sample, bench.getLevel()), true)) return false;
-        if (recipe.reagent.amount() > 0 && !recipe.reagent.matches(LabFluids.read(bench.getItem(LIQUID_REAGENT), bench.getLevel()), false)) return false;
+        if (recipe.reagent.amount() > 0 && !recipe.reagent.matches(LabFluids.read(reagent, bench.getLevel()), false)) return false;
         var solid = getItem(INGREDIENT);
-        return recipe.ingredient.isEmpty() ? solid.isEmpty() : solid.is(IndustryContent.item(recipe.ingredient));
+        return recipe.ingredient.isEmpty() ? solid.isEmpty()
+                : !solid.isEmpty() && solid.is(IndustryContent.item(recipe.ingredient));
     }
 
     private LabBenchEntity receiver(Chemistry.Experiment recipe) {
@@ -225,6 +255,7 @@ public final class ChemistryStation implements Container {
     void save(CompoundTag tag) {
         if (experiment != null) tag.putString("Experiment", experiment.id());
         tag.putBoolean("Running", running);
+        if (metered) tag.putBoolean("Metered", true);
         tag.putInt("Progress", progress);
         tag.putInt("Temperature", temperature);
         tag.putInt("FuelTicks", fuelTicks);
@@ -240,6 +271,8 @@ public final class ChemistryStation implements Container {
         fuelTicks = Math.max(0, Math.min(FUEL_DURATION, tag.getInt("FuelTicks")));
         try { status = Status.valueOf(tag.getString("Status")); }
         catch (IllegalArgumentException ignored) { status = Status.IDLE; }
+        metered = experiment == Chemistry.Experiment.NEUTRALIZATION && tag.getBoolean("Metered")
+                && (running || status == Status.COMPLETE);
     }
 
     ContainerData data() {
@@ -254,7 +287,7 @@ public final class ChemistryStation implements Container {
                     case 4 -> experiment == null ? 0 : experiment.duration;
                     case 5 -> experiment == null ? 0 : experiment.ordinal() + 1;
                     case 6 -> fuelTicks;
-                    case 7 -> hasSignal() ? 1 : 0;
+                    case 7 -> stirringHold(false) == null ? 1 : 0;
                     case 8 -> experiment == null || status != Status.COMPLETE ? 0 : experiment.evaporated();
                     case 9 -> experiment == null || status != Status.COMPLETE ? 0 : experiment.receiverProduct.amount();
                     case 10 -> kind == Chemistry.Station.HEATER && bench.connectedCondenser() != null ? 1 : 0;

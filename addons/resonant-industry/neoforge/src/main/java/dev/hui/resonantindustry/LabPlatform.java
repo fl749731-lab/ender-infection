@@ -25,5 +25,8 @@ public final class LabPlatform {
     static void settleDistillation(LabBenchEntity heater, LabBenchEntity receiver, Runnable settle) {
         DistillationJournal.settle(heater, receiver, settle);
     }
+    static ChemistryStation.Status meteredHold(LabBenchEntity bench, boolean consume) {
+        return MeteringPumpEntity.mixingHold(bench, consume);
+    }
     private LabPlatform(){}
 }

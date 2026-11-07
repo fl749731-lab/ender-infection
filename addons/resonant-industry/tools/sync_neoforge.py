@@ -9,6 +9,8 @@ from sync_neoforge_resources import target,transform,write_if_changed
 
 def adapt(s,name):
     if name in ('IndustryManualScreen.java','LabBenchScreen.java'):s=s.replace('renderBackground(g);','renderBackground(g,mx,my,partial);')
+    if name=='IndustryManualScreen.java':
+        s=s.replace('"filtration","distillation"}','"filtration","distillation","plate_press","metering","minerals"}')
     s=s.replace('new ResourceLocation(id.contains(":")?id:IndustryApi.MOD_ID+":"+id)','ResourceLocation.parse(id.contains(":")?id:IndustryApi.MOD_ID+":"+id)')
     if name=='LabVesselItem.java':
         start=s.index('    // FORGE_CAP_START');end=s.index('    // FORGE_CAP_END')+len('    // FORGE_CAP_END');s=s[:start]+s[end:]
@@ -82,7 +84,7 @@ def adapt(s,name):
         s=s.replace('net.minecraftforge.registries.*','net.neoforged.neoforge.registries.*').replace('ForgeFlowingFluid','BaseFlowingFluid')
         for a,b in {'ForgeRegistries.BLOCKS':'Registries.BLOCK','ForgeRegistries.ITEMS':'Registries.ITEM','ForgeRegistries.BLOCK_ENTITY_TYPES':'Registries.BLOCK_ENTITY_TYPE','ForgeRegistries.MENU_TYPES':'Registries.MENU','ForgeRegistries.FLUIDS':'Registries.FLUID','ForgeRegistries.Keys.FLUID_TYPES':'NeoForgeRegistries.Keys.FLUID_TYPES'}.items():s=s.replace(a,b)
         s=s.replace('import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;','')
-        s=s.replace('public ResonantIndustry(){','public ResonantIndustry(net.neoforged.bus.api.IEventBus bus){').replace('IndustryApi.bootstrap();var bus=FMLJavaModLoadingContext.get().getModEventBus();','IndustryApi.bootstrap();LabPlatform.register(bus);')
+        s=s.replace('public ResonantIndustry(){','public ResonantIndustry(net.neoforged.bus.api.IEventBus bus){').replace('IndustryApi.bootstrap();var bus=FMLJavaModLoadingContext.get().getModEventBus();','IndustryApi.bootstrap();LabPlatform.register(bus);WorkshopContent.register(bus);')
         s=s.replace('bus.addListener((BuildCreativeModeTabContentsEvent','bus.addListener(Platform::registerCapabilities);\n        bus.addListener((BuildCreativeModeTabContentsEvent')
         start=s.index('        @Override public void initializeClient(')
         brace=s.index('{',start);depth=1;end=brace+1
@@ -101,6 +103,7 @@ def main():
             rel=p.relative_to(BASE/'forge'/folder)
             if folder.endswith('java') and p.name in ('Platform.java','PlatformNodeEntity.java','LabPlatform.java'):continue
             if folder.endswith('resources') and (str(rel).startswith('META-INF') or rel.as_posix()=='pack.mcmeta'):continue
+            if folder.endswith('resources') and rel.parts[0]=='neoforge_only':rel=Path(*rel.parts[1:])
             dest=base/sub/(target(rel) if sub=='sharedResources' else rel)
             if p.suffix=='.java':content=adapt(p.read_text('utf-8'),p.name).encode('utf-8')
             elif p.suffix=='.json':content=(json.dumps(transform(json.loads(p.read_text('utf-8')),len(rel.parts)>2 and rel.parts[2]=='recipes'),ensure_ascii=False,separators=(',',':'))+'\n').encode('utf-8')

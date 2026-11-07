@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " W ",
+    "WIR",
+    " C "
+  ],
+  "key": {
+    "W": {
+      "item": "resonant_industry:copper_wire"
+    },
+    "I": {
+      "tag": "resonant_industry:motor_plates"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "C": {
+      "item": "resonant_industry:copper_plate"
+    }
+  },
+  "result": {
+    "item": "resonant_industry:basic_motor",
+    "count": 1
+  }
+}

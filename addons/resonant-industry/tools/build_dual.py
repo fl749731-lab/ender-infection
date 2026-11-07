@@ -2,7 +2,7 @@
 from __future__ import annotations
 import argparse, hashlib, json, os, re, shutil, sys, time, zipfile
 from pathlib import Path
-from validation_contract import INDUSTRY_FRAMES, LABWARE_FRAMES, NATIVE_MINIMUM
+from validation_contract import INDUSTRY_FRAMES, LABWARE_FRAMES, NATIVE_MINIMUM, verify_blueprints
 BASE=Path(__file__).resolve().parents[1]
 ROOT=BASE.parents[1]
 sys.path.insert(0,str(ROOT/'tools'))
@@ -10,12 +10,21 @@ import build_dual_version as dual
 OUT=BASE/'build/validation'
 dual.OUTPUT=OUT
 
+def test_world(loader, prefix, level_type='flat'):
+    run = BASE / loader / 'build' / f'{prefix}-{time.time_ns()}'
+    run.mkdir(parents=True)
+    (run / 'eula.txt').write_text('eula=true\n', 'utf-8')
+    (run / 'server.properties').write_text(
+        'server-ip=127.0.0.1\nserver-port=0\nonline-mode=false\nspawn-protection=0\n'
+        f'view-distance=2\nsimulation-distance=2\nlevel-type=minecraft:{level_type}\n'
+        'generate-structures=false\nmax-tick-time=0\n'
+        + ('level-seed=40962177\n' if level_type == 'normal' else ''), 'utf-8')
+    return run
+
 def persistence(loader,major,compound=False):
     folder=(BASE/loader).relative_to(ROOT).as_posix()
     mode='compound-' if compound else ''
-    run=BASE/loader/'build'/f'{mode}persistence-{time.time_ns()}';run.mkdir(parents=True)
-    (run/'eula.txt').write_text('eula=true\n','utf-8')
-    (run/'server.properties').write_text('server-ip=127.0.0.1\nserver-port=0\nonline-mode=false\nspawn-protection=0\nview-distance=2\nsimulation-distance=2\nlevel-type=minecraft:flat\ngenerate-structures=false\nmax-tick-time=0\n','utf-8')
+    run=test_world(loader, f'{mode}persistence')
     logs=[]
     for stage in ['seed','resume','finished']:
         tasks=['runServer',f'-PindustryPersistenceDirectory={run}',f'-PindustryPersistenceStage={stage}']
@@ -31,9 +40,7 @@ def persistence(loader,major,compound=False):
     return {'status':'PASS','processes':3,'world':run.relative_to(ROOT).as_posix(),'identities':lines[:3],'saved_progress':int(lines[3]),'logs':logs}
 
 def labware_persistence(loader,major):
-    run=BASE/loader/'build'/f'labware-persistence-{time.time_ns()}';run.mkdir(parents=True)
-    (run/'eula.txt').write_text('eula=true\n','utf-8')
-    (run/'server.properties').write_text('server-ip=127.0.0.1\nserver-port=0\nonline-mode=false\nspawn-protection=0\nview-distance=2\nsimulation-distance=2\nlevel-type=minecraft:flat\ngenerate-structures=false\nmax-tick-time=0\n','utf-8')
+    run=test_world(loader, 'labware-persistence')
     logs=[]
     for stage in ['seed','resume','finished']:
         log=dual.run_project('Labware '+loader,(BASE/loader).relative_to(ROOT).as_posix(),major,['runServer',f'-PlabwarePersistenceDirectory={run}',f'-PlabwarePersistenceStage={stage}'],f'{loader}-labware-persistence-{stage}.log')
@@ -45,6 +52,27 @@ def labware_persistence(loader,major):
         logs.append(log.relative_to(ROOT).as_posix())
     assert (run/'labware-persistence.txt').read_text().splitlines()==['seed','resume']
     return {'status':'PASS','processes':3,'world':run.relative_to(ROOT).as_posix(),'logs':logs}
+
+def workshop_persistence():
+    run = test_world('neoforge', 'workshop-persistence')
+    folder = (BASE / 'neoforge').relative_to(ROOT).as_posix()
+    logs = []
+    for stage in ('seed', 'resume', 'finished'):
+        tasks = ['runServer', f'-PworkshopPersistenceDirectory={run}', f'-PworkshopPersistenceStage={stage}']
+        log = dual.run_project('NeoForge workshop', folder, 21, tasks, f'neoforge-workshop-persistence-{stage}.log')
+        content = log.read_text('utf-8', errors='replace')
+        assert f'WORKSHOP_PERSISTENCE_PASS {stage}' in content and 'WORKSHOP_PERSISTENCE_FAIL' not in content, log
+        logs.append(log.relative_to(ROOT).as_posix())
+    return {'status': 'PASS', 'processes': len(logs), 'world': run.relative_to(ROOT).as_posix(), 'logs': logs}
+
+def mineral_worldgen():
+    run = test_world('neoforge', 'mineral-worldgen', 'normal')
+    folder = (BASE / 'neoforge').relative_to(ROOT).as_posix()
+    log = dual.run_project('NeoForge minerals', folder, 21,
+                           ['runServer', f'-PmineralWorldCheckDirectory={run}'], 'neoforge-mineral-worldgen.log')
+    content = log.read_text('utf-8', errors='replace')
+    assert 'MINERAL_WORLDGEN_PASS' in content and 'MINERAL_WORLDGEN_FAIL' not in content, log
+    return {'status': 'PASS', 'world': run.relative_to(ROOT).as_posix(), 'log': log.relative_to(ROOT).as_posix()}
 
 def labware_client(loader,major):
     options=BASE/loader/'build/client-review/options.txt'
@@ -89,10 +117,15 @@ def main():
         if args.gametests:
             blueprint=BASE/loader/'build/verified-blueprints.json';blueprint.unlink(missing_ok=True)
             log=dual.run_project('Industry '+loader,folder,major,['runGameTestServer'],f'{loader}-native-tests.log');result['tests']=dual.verify(log,NATIVE_MINIMUM[loader])
-            data=json.loads(blueprint.read_text('utf-8'));assert len(data['machines'])>=3;result['blueprints_sha256']=hashlib.sha256(blueprint.read_bytes()).hexdigest()
+            common=json.loads((BASE/'docs/blueprints/definitions.json').read_text('utf-8'))
+            verify_blueprints(common,json.loads(blueprint.read_text('utf-8')),loader)
+            result['blueprints_sha256']=hashlib.sha256(blueprint.read_bytes()).hexdigest()
             result['persistence']=persistence(loader,major)
             result['compound_persistence']=persistence(loader,major,compound=True)
-            if loader=='neoforge':result['labware_persistence']=labware_persistence(loader,major)
+            if loader=='neoforge':
+                result['labware_persistence']=labware_persistence(loader,major)
+                result['workshop_persistence']=workshop_persistence()
+                result['mineral_worldgen']=mineral_worldgen()
         if args.clients:
             options=BASE/loader/'build/client-review/options.txt';options.parent.mkdir(parents=True,exist_ok=True)
             lines=options.read_text('utf-8').splitlines() if options.exists() else []
@@ -105,8 +138,6 @@ def main():
             result['client_screenshots']=captures
             if loader=='neoforge':result['labware_client']=labware_client(loader,major)
         reports.append(result)
-    if args.gametests and args.loader=='both':
-        a=json.loads((BASE/'forge/build/verified-blueprints.json').read_text());b=json.loads((BASE/'neoforge/build/verified-blueprints.json').read_text());assert a==b,'Loader layout mismatch'
     result={'status':'PASS','version':version,'published':False,'gametests':args.gametests,'clients':args.clients,'artifacts':reports}
     receipt.write_text(json.dumps(result,indent=2)+'\n','utf-8');print(json.dumps(result,indent=2),flush=True)
 

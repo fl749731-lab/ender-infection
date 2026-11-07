@@ -1,9 +1,9 @@
 """Evidence required by the addon build and release commands."""
 
-NATIVE_MINIMUM = {"forge": 45, "neoforge": 46}
+NATIVE_MINIMUM = {"forge": 45, "neoforge": 53}
 PERSISTENCE_GROUPS = {
     "forge": ("persistence", "compound_persistence"),
-    "neoforge": ("persistence", "compound_persistence", "labware_persistence"),
+    "neoforge": ("persistence", "compound_persistence", "labware_persistence", "workshop_persistence"),
 }
 INDUSTRY_FRAMES = (
     "preview_missing", "generator_running", "processor_running", "centrifuge_running", "centrifuge_complete",
@@ -17,3 +17,13 @@ LABWARE_FRAMES = (
     "chemistry_stations", "chemistry_handbook", "separation_filtered", "separation_waiting_receiver",
     "separation_distilling", "separation_recovered", "separation_stations", "separation_handbook",
 )
+
+
+def verify_blueprints(common, actual, loader):
+    extras = {"resonant_industry:plate_press"} if loader == "neoforge" else set()
+    actual_machines = actual["machines"]
+    ids = [machine["id"] for machine in actual_machines]
+    assert len(set(ids)) == len(ids), "Duplicate native blueprint"
+    assert set(ids).intersection(extras) == extras, "Missing loader blueprint"
+    shared = [machine for machine in actual_machines if machine["id"] not in extras]
+    assert dict(actual, machines=shared) == common, f"{loader} common blueprint layout mismatch"

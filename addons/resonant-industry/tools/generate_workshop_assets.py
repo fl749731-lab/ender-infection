@@ -217,7 +217,7 @@ def main():
     item_sprites()
     textures = {name: f'{NS}:item/{name}' for name in
                 ('iron_plate', 'copper_plate', 'copper_wire', 'basic_motor', 'precision_pump_head')}
-    textures['plate_press_blueprint'] = f'{NS}:item/processor_blueprint'
+    textures['plate_press_blueprint'] = 'minecraft:item/map'
     for name, texture in textures.items():
         scoped(f'assets/{NS}/models/item/{name}.json', {'parent': 'minecraft:item/generated', 'textures': {'layer0': texture}})
     recipe('plate_press_blueprint', [' I ', 'CPC', ' R '], {

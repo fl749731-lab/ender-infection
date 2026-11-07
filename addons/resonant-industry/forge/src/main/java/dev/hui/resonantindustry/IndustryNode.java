@@ -254,7 +254,11 @@ public final class IndustryNode extends PlatformNodeEntity implements WorldlyCon
     }
     private static boolean fluidMatches(String selector,String fluid){
         if(fluid.isEmpty())return false;
-        return selector.startsWith("#")?net.minecraft.core.registries.BuiltInRegistries.FLUID.getHolder(IndustryContent.id(fluid)).map(h->h.is(net.minecraft.tags.TagKey.create(net.minecraft.core.registries.Registries.FLUID,IndustryContent.id(selector.substring(1))))).orElse(false):selector.equals(fluid);
+        if (!selector.startsWith("#")) return selector.equals(fluid);
+        var registry = net.minecraft.core.registries.Registries.FLUID;
+        var key = net.minecraft.resources.ResourceKey.create(registry, IndustryContent.id(fluid));
+        var tag = net.minecraft.tags.TagKey.create(registry, IndustryContent.id(selector.substring(1)));
+        return net.minecraft.core.registries.BuiltInRegistries.FLUID.getHolder(key).map(holder -> holder.is(tag)).orElse(false);
     }
     private boolean acceptsFluid(int channel,String fluid){return IndustryApi.processes().values().stream().filter(r->r.machine().equals(machineId)).flatMap(r->r.fluids().stream()).anyMatch(p->p.tank()==channel&&fluidMatches(p.ingredient(),fluid));}
     private boolean matchesItems(ProcessRecipe r){return r.inputs().stream().allMatch(p->itemMatches(p.ingredient(),items.get(INPUT_SLOTS[p.slot()]))&&items.get(INPUT_SLOTS[p.slot()]).getCount()>=p.amount())

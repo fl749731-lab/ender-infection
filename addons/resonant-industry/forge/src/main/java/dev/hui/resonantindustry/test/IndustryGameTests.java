@@ -184,14 +184,22 @@ public final class IndustryGameTests {
         var tag=save(n);String foreign="resonant_industry:slurry_mycelium_bundle";tag.putString("Recipe",foreign);tag.putString("ProcessSignature",IndustryApi.processFingerprint(foreign));tag.putInt("Progress",159);tag.putInt("Duration",160);tag.putString("InputFluid","minecraft:water");tag.putInt("InputAmount",1000);load(n,tag);
         f.whenReady(()->f.after(30,()->{h.assertTrue(n.progress()==0&&n.energy()==10000&&n.getItem(0).getCount()==1&&n.outputAmount()==0,"Foreign machine recipe consumed inputs or reused imported progress: "+save(n));f.success();}));
     }
-    @GameTest(template="empty_test",timeoutTicks=440,batch="industry_staged_fluids")
+    @GameTest(template="empty_test",timeoutTicks=1450,batch="industry_staged_fluids")
     public static void stagedCompoundWaitsForSecondFluidInsteadOfStartingLegacy(GameTestHelper h){
         var f=new Fixture(h);var n=f.machine(IndustryApi.CENTRIFUGE,0);f.form(n);f.charge(n,10000);
         n.setItem(0,new ItemStack(Items.GLASS_BOTTLE,2));n.setItem(4,new ItemStack(Items.PAPER));n.setItem(1,new ItemStack(Items.COAL));
         h.assertTrue(channel(f,n,"fluid_input",0).fill(IndustryApi.SLURRY,1000,false)==1000,"Staged slurry rejected");
-        f.after(80,()->{h.assertTrue(n.progress()==0&&n.energy()==10000&&n.getItem(2).isEmpty()&&n.status()==3,"First fluid started legacy recipe before second fluid arrived");
-            h.assertTrue(channel(f,n,"fluid_input",1).fill("minecraft:water",1000,false)==1000,"Staged second fluid rejected");
-            f.after(290,()->{h.assertTrue(n.getItem(2).getCount()==2&&n.getItem(4).isEmpty()&&n.getItem(1).is(Items.COAL),"Staged compound recipe did not complete");f.success();});});
+        f.whenReady(() -> f.after(80, () -> {
+            h.assertTrue(n.progress() == 0 && n.energy() == 10000 && n.getItem(2).isEmpty() && n.status() == 3,
+                    "Staged recipe must wait for its second fluid: " + save(n));
+            h.assertTrue(channel(f, n, "fluid_input", 1).fill("minecraft:water", 1000, false) == 1000,
+                    "Staged second fluid rejected");
+            f.after(290, () -> {
+                h.assertTrue(n.getItem(2).getCount() == 2 && n.getItem(4).isEmpty() && n.getItem(1).is(Items.COAL),
+                        "Staged compound recipe did not complete: " + save(n));
+                f.success();
+            });
+        }));
     }
     @GameTest(template="empty_test",timeoutTicks=2350,batch="industry_finite_energy")
     public static void oneCoalProducesExactly102400FeAndThenStops(GameTestHelper h){

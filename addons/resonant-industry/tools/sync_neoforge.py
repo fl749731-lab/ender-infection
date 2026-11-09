@@ -57,7 +57,7 @@ def adapt(s,name):
     s=s.replace('net.minecraftforge.energy','net.neoforged.neoforge.energy').replace('net.minecraftforge.fluids','net.neoforged.neoforge.fluids').replace('net.minecraftforge.items','net.neoforged.neoforge.items')
     s=s.replace('import net.neoforged.fml.common.Mod;','import net.neoforged.fml.common.Mod;\nimport net.neoforged.fml.common.EventBusSubscriber;')
     s=s.replace('@Mod.EventBusSubscriber','@EventBusSubscriber').replace('Mod.EventBusSubscriber.Bus.','EventBusSubscriber.Bus.')
-    if name in ('IndustryVisualCheck.java','LabwareVisualCheck.java','ManualBookmarkVisualCheck.java'):
+    if name in ('IndustryVisualCheck.java','LabwareVisualCheck.java','ManualBookmarkVisualCheck.java','ManualLocatorVisualCheck.java'):
         s=s.replace('import net.neoforged.neoforge.event.TickEvent;','import net.neoforged.neoforge.client.event.ClientTickEvent;')
         s=s.replace('TickEvent.ClientTickEvent event','ClientTickEvent.Post event').replace('||event.phase!=TickEvent.Phase.END','')
         s=s.replace(' || event.phase != TickEvent.Phase.END', '')

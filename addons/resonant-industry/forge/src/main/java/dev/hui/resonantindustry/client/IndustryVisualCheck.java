@@ -33,6 +33,7 @@ public final class IndustryVisualCheck {
     private static IndustryScene scene;private static volatile boolean built,busy;private static boolean launched,finished,manualReopened,manualRotated;
     private static volatile String failure;private static volatile View view;
     private static BlockPos aim,missing;private static Vec3 eye,focus;private static int step,age,captureReadyAt;private static long began;
+    private static GraphicsStatus originalGraphics;
     private static final List<String> SHOTS=new ArrayList<>();
     private record View(boolean generator,boolean processor,boolean centrifuge,int progress,int output,int fluids,int channel){}
     private static boolean enabled(){return Boolean.getBoolean("resonant_industry.visualCheck");}
@@ -75,7 +76,27 @@ public final class IndustryVisualCheck {
             if(child instanceof Button button&&button.visible&&button.active&&button.getMessage().getString().equals(label.getString()))return button;
         throw new IllegalStateException("Visible manual control missing: "+label.getString());
     }
-    private static void finish(Minecraft mc,boolean pass){finished=true;var result=(pass?"INDUSTRY_VISUAL_PASS":"INDUSTRY_VISUAL_FAIL")+" step="+step+" shots="+SHOTS.size()+" "+failure;System.out.println(result);try{Files.writeString(mc.gameDirectory.toPath().resolve("industry-visual-result.txt"),result+"\n"+String.join("\n",SHOTS));}catch(Exception e){throw new RuntimeException(e);}mc.stop();}
+    private static void restoreGraphics(Minecraft mc) {
+        if(originalGraphics==null)return;
+        mc.options.graphicsMode().set(originalGraphics);
+        originalGraphics=null;
+        mc.levelRenderer.allChanged();
+    }
+    private static void requireFabulousTargets(Minecraft mc) {
+        if(mc.options.graphicsMode().get()!=GraphicsStatus.FABULOUS||!Minecraft.useShaderTransparency()
+                ||mc.levelRenderer.getItemEntityTarget()==null||mc.levelRenderer.getTranslucentTarget()==null
+                ||mc.levelRenderer.getItemEntityTarget()==mc.getMainRenderTarget()
+                ||mc.levelRenderer.getTranslucentTarget()==mc.getMainRenderTarget())
+            throw new IllegalStateException("Fabulous fixture did not activate separate transparency targets");
+    }
+    private static void clickManualOutput(IndustryManualScreen manual) {
+        int row=new ArrayList<>(manual.materialCounts().keySet()).indexOf("item_output");
+        if(row<0)throw new IllegalStateException("Output material row missing");
+        double x=manual.screenX(210),y=manual.screenY(68+row*14+6);
+        if(!manual.mouseClicked(x,y,0))throw new IllegalStateException("Output material rejected native click");
+        manual.mouseReleased(x,y,0);
+    }
+    private static void finish(Minecraft mc,boolean pass){finished=true;var result=(pass?"INDUSTRY_VISUAL_PASS":"INDUSTRY_VISUAL_FAIL")+" step="+step+" shots="+SHOTS.size()+" "+failure;System.out.println(result);try{Files.writeString(mc.gameDirectory.toPath().resolve("industry-visual-result.txt"),result+"\n"+String.join("\n",SHOTS));}catch(Exception e){throw new RuntimeException(e);}finally{restoreGraphics(mc);mc.stop();}}
     @SubscribeEvent public static void tick(TickEvent.ClientTickEvent event){
         if(!enabled()||finished||event.phase!=TickEvent.Phase.END)return;var mc=Minecraft.getInstance();if(began==0)began=System.currentTimeMillis();
         if(!launched&&mc.screen!=null&&(mc.screen instanceof TitleScreen||mc.screen.getClass().getSimpleName().contains("AccessibilityOnboarding"))&&mc.getOverlay()==null){launched=true;mc.options.pauseOnLostFocus=false;mc.options.renderDistance().set(4);mc.getTutorial().setStep(net.minecraft.client.tutorial.TutorialSteps.NONE);mc.createWorldOpenFlows().createFreshLevel(WORLD,new LevelSettings(WORLD,GameType.CREATIVE,false,Difficulty.NORMAL,true,new GameRules(),WorldDataConfiguration.DEFAULT),new WorldOptions(7312026L,false,false),r->r.registryOrThrow(Registries.WORLD_PRESET).getHolderOrThrow(WorldPresets.FLAT).value().createWorldDimensions());return;}
@@ -142,10 +163,36 @@ public final class IndustryVisualCheck {
                     }else{
                         System.out.println("INDUSTRY_MANUAL_ROTATION_PASS chapter=processor full_structure=true");
                         shot(mc,"manual_structure_3d");
-                        allLayers.onPress();
+                        originalGraphics=mc.options.graphicsMode().get();
+                        mc.options.graphicsMode().set(GraphicsStatus.FABULOUS);
+                        mc.levelRenderer.allChanged();
                         age=0;
-                        step=25;
+                        step=47;
                     }
+                }
+            }
+            case 47->{
+                if(age>30&&mc.screen instanceof IndustryManualScreen manual){
+                    requireFabulousTargets(mc);
+                    clickManualOutput(manual);
+                    if(!"item_output".equals(manual.selectedMaterial()))throw new IllegalStateException("Fabulous material selection failed");
+                    org.lwjgl.glfw.GLFW.glfwSetCursorPos(mc.getWindow().getWindow(),1,1);
+                    age=0;
+                    step=48;
+                }
+            }
+            case 48->{
+                if(age>20&&mc.screen instanceof IndustryManualScreen manual){
+                    requireFabulousTargets(mc);
+                    if(!"item_output".equals(manual.selectedMaterial()))throw new IllegalStateException("Fabulous capture lost the material selection");
+                    shot(mc,"manual_locator_fabulous");
+                    System.out.println("INDUSTRY_MANUAL_FABULOUS_PASS item_entity_target=true translucent_target=true selection=item_output");
+                    restoreGraphics(mc);
+                    clickManualOutput(manual);
+                    if(manual.selectedMaterial()!=null)throw new IllegalStateException("Material selection did not clear after Fabulous capture");
+                    manualButton(mc,Component.translatable("guide.resonant_industry.all_layers")).onPress();
+                    age=0;
+                    step=25;
                 }
             }
             case 25->{
@@ -160,7 +207,7 @@ public final class IndustryVisualCheck {
                     }else{
                         System.out.println("INDUSTRY_MANUAL_MEMORY_PASS chapter=processor layer=1");
                         shot(mc,"layer_blueprint");
-                        if(SHOTS.size()!=14)throw new IllegalStateException("Wrong handbook frame count");
+                        if(SHOTS.size()!=15)throw new IllegalStateException("Wrong handbook frame count");
                         mc.setScreen(null);
                         call(mc,p->{p.getInventory().clearContent();p.getInventory().setItem(1,new ItemStack(Items.GLASS_BOTTLE,2));p.getInventory().setItem(2,new ItemStack(Items.PAPER));p.getInventory().setItem(3,new ItemStack(Items.CHARCOAL));p.getInventory().setItem(4,new ItemStack(Items.WATER_BUCKET));p.getInventory().setItem(5,new ItemStack(IndustryContent.item("slurry_canister")));point(p,scene.origin.west(12),new Vec3(-11.5,64,-3));});
                         mc.player.getInventory().selected=6;
@@ -183,7 +230,7 @@ public final class IndustryVisualCheck {
             case 41->{if(use(mc))step=42;}
             case 42->{var m=menu(mc);if(m!=null&&m.progress()>20&&m.value(8)==5&&age>15){if(m.value(27)!=1000||!m.getSlot(44).hasItem()||m.value(16)!=32)throw new IllegalStateException("Compound menu did not synchronize second fluid, catalyst or real consumption");shot(mc,"compound_running");age=0;step=43;}}
             case 43->{var m=menu(mc);if(m!=null&&m.getSlot(1).getItem().getCount()==2){if(captureReadyAt==0)captureReadyAt=age;if(age-captureReadyAt>=10){if(m.getSlot(2).getItem().getCount()!=1||m.getSlot(39).hasItem()||!m.getSlot(44).getItem().is(Items.CHARCOAL)||m.value(25)!=500||m.value(29)!=250)throw new IllegalStateException("Native compound output/catalyst/fluid mismatch");shot(mc,"compound_complete");captureReadyAt=0;mc.player.closeContainer();openManualChapter(mc,"processes");age=0;step=44;}}}
-            case 44->{if(age>20&&mc.screen instanceof IndustryManualScreen){shot(mc,"compound_guide");if(SHOTS.size()!=17)throw new IllegalStateException("Wrong extended frame count");finish(mc,true);}}
+            case 44->{if(age>20&&mc.screen instanceof IndustryManualScreen){shot(mc,"compound_guide");if(SHOTS.size()!=18)throw new IllegalStateException("Wrong extended frame count");finish(mc,true);}}
             default->throw new IllegalStateException("Unknown step");
         }}catch(Exception e){failure=e.toString();finish(mc,false);}
     }

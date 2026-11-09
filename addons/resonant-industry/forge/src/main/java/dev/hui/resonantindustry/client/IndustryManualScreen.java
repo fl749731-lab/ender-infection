@@ -13,6 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.SortedMap;
 import java.util.TreeMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -20,10 +21,14 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.LightTexture;
+import net.minecraft.client.renderer.LevelRenderer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.AABB;
+import org.joml.Vector3f;
 
 public final class IndustryManualScreen extends Screen {
     private static final int PANEL_WIDTH = 390, PANEL_HEIGHT = 222;
@@ -37,6 +42,9 @@ public final class IndustryManualScreen extends Screen {
     private boolean contents, instructions;
     private Button layerButton, previousLayer, resetView, details;
     private final List<Button> chapters = new ArrayList<>();
+    private final List<Button> materialButtons = new ArrayList<>();
+    private List<String> materialRoles = List.of();
+    private String selectedMaterial;
     private int left, top;
 
     public IndustryManualScreen() { this(Minecraft.getInstance().gameDirectory.toPath()); }
@@ -77,6 +85,17 @@ public final class IndustryManualScreen extends Screen {
             var title = Component.translatable("guide.resonant_industry." + PAGES[index] + ".title");
             chapters.add(button(12 + (index / 8) * 186, 35 + (index % 8) * 19, 180, title, () -> showPage(target)));
         }
+        materialButtons.clear();
+        // All nine non-air roles in MachineDefinition; real buttons also support keyboard navigation.
+        for (int index = 0; index < 9; index++) {
+            final int row = index;
+            materialButtons.add(addRenderableWidget(new Button(left + 182, top + 68 + row * 14, 196, 14,
+                    Component.empty(), ignored -> selectMaterial(row), narration -> narration.get()) {
+                @Override protected void renderWidget(GuiGraphics g, int mx, int my, float partial) {
+                    renderMaterialRow(g, row, isHoveredOrFocused());
+                }
+            }));
+        }
         syncButtons();
     }
 
@@ -97,6 +116,7 @@ public final class IndustryManualScreen extends Screen {
         scroll = 0;
         contents = false;
         instructions = false;
+        selectedMaterial = null;
         syncButtons();
         remember();
     }
@@ -121,6 +141,40 @@ public final class IndustryManualScreen extends Screen {
         }
         details.setMessage(label(instructions ? "materials" : "instructions"));
         chapters.forEach(button -> button.visible = contents);
+        var counts = materialCounts();
+        materialRoles = List.copyOf(counts.keySet());
+        for (int row = 0; row < materialButtons.size(); row++) {
+            var button = materialButtons.get(row);
+            button.visible = structure && !instructions && row < materialRoles.size();
+            if (row < materialRoles.size()) {
+                String role = materialRoles.get(row);
+                var count = counts.get(role);
+                button.setMessage(materialName(role).append(". ").append(label("material_count_detail", count.visible(), count.total()))
+                        .append(". ").append(label("material_select")));
+            }
+        }
+    }
+
+    record MaterialCount(int visible, int total) {}
+
+    SortedMap<String, MaterialCount> materialCounts() {
+        var counts = new TreeMap<String, MaterialCount>();
+        var machine = machine();
+        if (machine != null) machine.cells().forEach((cell, role) -> {
+            if (role.equals("air")) return;
+            var old = counts.getOrDefault(role, new MaterialCount(0, 0));
+            counts.put(role, new MaterialCount(old.visible() + (layer < 0 || cell.y() == layer - 1 ? 1 : 0), old.total() + 1));
+        });
+        return counts;
+    }
+
+    String selectedMaterial() { return selectedMaterial; }
+    double screenX(double panelX) { return (left + panelX) * uiScale; }
+    double screenY(double panelY) { return (top + panelY) * uiScale; }
+
+    private void selectMaterial(int row) {
+        String role = materialRoles.get(row);
+        selectedMaterial = role.equals(selectedMaterial) ? null : role;
     }
 
     @Override public void removed() {
@@ -157,7 +211,7 @@ public final class IndustryManualScreen extends Screen {
                 if (machine != null) {
                     renderStructure(g, machine);
                     if (instructions) renderText(g, 182, 58, 196, 128);
-                    else materialTooltip = renderMaterials(g, machine, logicalMouseX, logicalMouseY);
+                    else materialTooltip = renderMaterials(g, logicalMouseX, logicalMouseY);
                 } else if (PAGES[page].equals("distillation")) {
                     renderDistillationMap(g);
                     renderText(g, 12, 113, 366, 72);
@@ -171,7 +225,7 @@ public final class IndustryManualScreen extends Screen {
             // Screen.render draws the background again on 1.21.1; render only the widgets here.
             for (var renderable : renderables) renderable.render(g, logicalMouseX, logicalMouseY, partial);
             for (var child : children()) {
-                if (child instanceof Button button && button.visible && button.isHovered()
+                if (child instanceof Button button && button.visible && button.isHovered() && !materialButtons.contains(button)
                         && font.width(button.getMessage()) > button.getWidth() - 4) materialTooltip = button.getMessage();
             }
         } finally {
@@ -203,6 +257,7 @@ public final class IndustryManualScreen extends Screen {
         RenderSystem.enableDepthTest();
         Lighting.setupFor3DItems();
         var pose = g.pose();
+        Vector3f front = new Vector3f(), marker = new Vector3f();
         pose.pushPose();
         try {
             pose.translate(left + 91, top + 110, 150);
@@ -213,42 +268,116 @@ public final class IndustryManualScreen extends Screen {
             pose.mulPose(Axis.YP.rotationDegrees(yaw));
             pose.translate(-.5, -(machine.height() - 2) / 2.0, -machine.length() / 2.0);
             var buffers = minecraft.renderBuffers().bufferSource();
+            if (selectedMaterial != null) renderMaterialOutlines(g, machine, buffers, false);
             for (var entry : machine.cells().entrySet()) {
                 var cell = entry.getKey();
                 if (entry.getValue().equals("air") || layer >= 0 && cell.y() != layer - 1) continue;
                 pose.pushPose();
                 pose.translate(cell.x(), cell.y(), cell.z());
-                minecraft.getBlockRenderer().renderSingleBlock(IndustryContent.block(entry.getValue()).defaultBlockState(),
-                        pose, buffers, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY);
+                if (selectedMaterial == null || selectedMaterial.equals(entry.getValue())) {
+                    minecraft.getBlockRenderer().renderSingleBlock(IndustryContent.block(entry.getValue()).defaultBlockState(),
+                            pose, buffers, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY);
+                }
                 pose.popPose();
             }
             buffers.endBatch();
+            if (selectedMaterial != null) renderMaterialOutlines(g, machine, buffers, true);
+            // Project the controller side with the same model transform, including layer and zoom.
+            float frontY = layer < 0 ? .5f : layer - .5f;
+            pose.last().pose().transformPosition(front.set(.5f, frontY, -.03f));
+            pose.last().pose().transformPosition(marker.set(.5f, frontY, -1.1f));
+            front.div(uiScale);
+            marker.div(uiScale);
         } finally {
             pose.popPose();
             g.disableScissor();
             Lighting.setupFor3DItems();
         }
+        pose.pushPose();
+        pose.translate(0, 0, 400);
+        try {
+            renderFrontMarker(g, front, marker);
+            if (selectedMaterial != null && materialCounts().get(selectedMaterial).visible() == 0) {
+                g.fill(left + 12, top + 56, left + 170, top + 69, 0xe5101d26);
+                g.drawCenteredString(font, label("material_none_here"), left + 91, top + 58, 0xffffd694);
+            }
+        } finally {
+            g.flush();
+            pose.popPose();
+        }
         g.drawString(font, label("rotate_zoom"), left + 76, top + 174, 0xffa5becb, false);
     }
 
-    private Component renderMaterials(GuiGraphics g, MachineDefinition machine, int mx, int my) {
-        var counts = new TreeMap<String, Integer>();
-        machine.cells().values().stream().filter(role -> !role.equals("air")).forEach(role -> counts.merge(role, 1, Integer::sum));
-        int row = 0;
-        Component hovered = null;
-        for (var entry : counts.entrySet()) {
-            int y = top + 57 + row++ * 14;
-            var stack = new ItemStack(IndustryContent.block(entry.getKey()));
-            g.pose().pushPose();
-            g.pose().translate(left + 183, y - 1, 0);
-            g.pose().scale(.75f, .75f, .75f);
-            g.renderItem(stack, 0, 0);
-            g.pose().popPose();
-            var text = Component.translatable("block.resonant_industry." + entry.getKey()).append(" ×" + entry.getValue());
-            g.drawString(font, font.plainSubstrByWidth(text.getString(), 177), left + 200, y + 1, 0xffc4d8df, false);
-            if (mx >= left + 182 && mx < left + 378 && my >= y && my < y + 14) hovered = text;
+    private void renderMaterialOutlines(GuiGraphics g, MachineDefinition machine, MultiBufferSource.BufferSource buffers, boolean selected) {
+        var lines = buffers.getBuffer(ManualRenderTypes.lines());
+        for (var entry : machine.cells().entrySet()) {
+            var cell = entry.getKey();
+            if (entry.getValue().equals("air") || layer >= 0 && cell.y() != layer - 1
+                    || selectedMaterial.equals(entry.getValue()) != selected) continue;
+            var box = new AABB(cell.x(), cell.y(), cell.z(), cell.x() + 1, cell.y() + 1, cell.z() + 1);
+            LevelRenderer.renderLineBox(g.pose(), lines, box.inflate(selected ? .007 : -.015),
+                    selected ? 1f : .32f, selected ? .78f : .47f, selected ? .38f : .56f, selected ? 1f : .45f);
         }
-        return hovered;
+        buffers.endBatch(ManualRenderTypes.lines());
+    }
+
+    private void renderFrontMarker(GuiGraphics g, Vector3f front, Vector3f marker) {
+        if (front.x < left + 11 || front.x > left + 171 || front.y < top + 56 || front.y > top + 162) return;
+        int anchorX = Math.round(front.x), anchorY = Math.round(front.y);
+        int tipX = Mth.clamp(Math.round(marker.x), left + 15, left + 167);
+        int tipY = Mth.clamp(Math.round(marker.y), top + 65, top + 152);
+        int distance = Math.max(Math.abs(tipX - anchorX), Math.abs(tipY - anchorY));
+        for (int i = 0; i <= distance; i++) {
+            float t = distance == 0 ? 0 : (float) i / distance;
+            int x = Math.round(Mth.lerp(t, anchorX, tipX)), y = Math.round(Mth.lerp(t, anchorY, tipY));
+            g.fill(x, y, x + 1, y + 1, 0xffffc86b);
+        }
+        g.fill(anchorX - 2, anchorY - 2, anchorX + 3, anchorY + 3, 0xffffc86b);
+        var text = label("structure_front");
+        int textWidth = font.width(text);
+        int x = Mth.clamp(tipX - textWidth / 2, left + 13, left + 169 - textWidth);
+        int y = tipY + 4;
+        g.fill(x - 2, y - 2, x + textWidth + 2, y + 10, 0xe5101d26);
+        g.drawString(font, text, x, y, 0xffffd694, false);
+    }
+
+    private Component renderMaterials(GuiGraphics g, int mx, int my) {
+        var heading = label(layer < 0 ? "material_count_all" : "material_count_layer");
+        int headingX = left + 377 - font.width(heading);
+        g.drawString(font, font.plainSubstrByWidth(label("material_hint").getString(), headingX - left - 187),
+                left + 183, top + 55, 0xffa5becb, false);
+        g.drawString(font, heading, headingX, top + 55, 0xffa5becb, false);
+        int row = (my - top - 68) / 14;
+        if (mx < left + 182 || mx >= left + 378 || my < top + 68 || row >= materialRoles.size()) return null;
+        String role = materialRoles.get(row);
+        var count = materialCounts().get(role);
+        var tooltip = materialName(role).append("\n").append(label("material_count_detail", count.visible(), count.total()))
+                .append("\n").append(label("material_select"));
+        if (count.visible() == 0) tooltip.append("\n").append(label("material_other_layer"));
+        return tooltip;
+    }
+
+    private void renderMaterialRow(GuiGraphics g, int row, boolean hovered) {
+        String role = materialRoles.get(row);
+        var count = materialCounts().get(role);
+        boolean selected = role.equals(selectedMaterial);
+        int y = top + 68 + row * 14;
+        if (selected || hovered) g.fill(left + 182, y, left + 378, y + 14, selected ? 0xff4a4251 : 0xff283d4a);
+        if (selected) g.fill(left + 182, y, left + 184, y + 14, 0xffffc86b);
+        g.pose().pushPose();
+        g.pose().translate(left + 185, y + 1, 0);
+        g.pose().scale(.75f, .75f, .75f);
+        g.renderItem(new ItemStack(IndustryContent.block(role)), 0, 0);
+        g.pose().popPose();
+        String countText = layer < 0 ? "×" + count.total() : count.visible() + " / " + count.total();
+        int countX = left + 376 - font.width(countText);
+        int color = selected ? 0xffffd694 : count.visible() == 0 ? 0xff84949e : 0xffc4d8df;
+        g.drawString(font, font.plainSubstrByWidth(materialName(role).getString(), countX - left - 205), left + 200, y + 3, color, false);
+        g.drawString(font, countText, countX, y + 3, color, false);
+    }
+
+    private static net.minecraft.network.chat.MutableComponent materialName(String role) {
+        return Component.translatable("block.resonant_industry." + role);
     }
 
     private void renderBenchMap(GuiGraphics g) {

@@ -8,7 +8,7 @@ PERSISTENCE_GROUPS = {
 INDUSTRY_FRAMES = (
     "preview_missing", "generator_running", "processor_running", "centrifuge_running", "centrifuge_complete",
     "production_line", "generator_detail", "processor_detail", "centrifuge_detail", "cable_detail", "wrench_first_person", "handbook",
-    "manual_structure_3d", "layer_blueprint", "compound_running", "compound_complete", "compound_guide",
+    "manual_structure_3d", "manual_locator_fabulous", "layer_blueprint", "compound_running", "compound_complete", "compound_guide",
 )
 LABWARE_FRAMES = (
     "lab_empty", "lab_water", "lab_pipette_sample", "lab_six_vessels", "lab_transfer", "lab_blocked",

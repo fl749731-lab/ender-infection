@@ -63,6 +63,10 @@ minecraft {
                 workingDirectory project.file('build/manual-bookmark-review')
                 property 'resonant_industry.manualBookmarkCheck', project.property('manualBookmarkCheck')
             }
+            if (project.hasProperty('manualLocatorCheck')) {
+                workingDirectory project.file('build/manual-locator-review')
+                property 'resonant_industry.manualLocatorCheck', 'true'
+            }
         }
         server {
             args '--nogui'

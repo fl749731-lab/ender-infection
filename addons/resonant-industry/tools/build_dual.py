@@ -123,6 +123,31 @@ def manual_bookmark_client(loader, major):
     return {'status': 'PASS', 'processes': 2, 'logs': logs, 'screenshots': captures}
 
 
+def manual_locator_client(loader, major, language='zh_cn'):
+    run = BASE / loader / 'build/manual-locator-review'
+    run.mkdir(parents=True, exist_ok=True)
+    options = run / 'options.txt'
+    lines = options.read_text('utf-8').splitlines() if options.exists() else []
+    lines = [line for line in lines if not line.startswith(('lang:', 'guiScale:', 'fullscreen:'))]
+    options.write_text('\n'.join(lines + ['lang:' + language, 'guiScale:2', 'fullscreen:false']) + '\n', 'utf-8')
+    log = dual.run_project('Manual locator ' + loader, (BASE / loader).relative_to(ROOT).as_posix(), major,
+                           ['runClient', '-PmanualLocatorCheck'], f'{loader}-manual-locator-{language}.log')
+    content = log.read_text('utf-8', errors='replace')
+    assert 'MANUAL_LOCATOR_PASS shots=4 gui=320x240' in content and 'MANUAL_LOCATOR_FAIL' not in content, log
+    captures = []
+    for name in ('manual-locator-full', 'manual-locator-absent-layer', 'manual-locator-rotated-front', 'manual-locator-narrow'):
+        assert 'MANUAL_LOCATOR_CAPTURE ' + name in content, log
+        source = run / 'screenshots' / (name + '.png')
+        assert source.is_file(), source
+        destination = OUT / 'clients' / loader / language / source.name
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(source, destination)
+        captures.append({'path': destination.relative_to(ROOT).as_posix(),
+                         'sha256': hashlib.sha256(destination.read_bytes()).hexdigest()})
+    return {'status': 'PASS', 'processes': 1, 'language': language, 'log': log.relative_to(ROOT).as_posix(),
+            'screenshots': captures}
+
+
 def main():
     p=argparse.ArgumentParser();p.add_argument('--loader',choices=['forge','neoforge','both'],default='both');p.add_argument('--clean',action='store_true');p.add_argument('--gametests',action='store_true');p.add_argument('--clients',action='store_true');args=p.parse_args()
     OUT.mkdir(parents=True,exist_ok=True);receipt=OUT/'verified-builds.json';receipt.unlink(missing_ok=True)
@@ -165,11 +190,13 @@ def main():
             # Inspect the actual Chinese and English layouts across the two clients.
             lines=[line for line in lines if not line.startswith('lang:')];lines.append('lang:'+('zh_cn' if loader=='forge' else 'en_us'));options.write_text('\n'.join(lines)+'\n','utf-8')
             log=dual.run_project('Industry '+loader,folder,major,['runClient','-PindustryVisualCheck'],f'{loader}-client.log');content=log.read_text('utf-8',errors='replace');assert f'INDUSTRY_VISUAL_PASS step=44 shots={len(INDUSTRY_FRAMES)}' in content and 'INDUSTRY_VISUAL_FAIL' not in content
+            assert 'INDUSTRY_MANUAL_FABULOUS_PASS item_entity_target=true translucent_target=true selection=item_output' in content, log
             captures=[]
             for name in INDUSTRY_FRAMES:
                 path=BASE/loader/'build/client-review/screenshots'/f'{name}.png';assert path.is_file();dest=OUT/'clients'/loader/path.name;dest.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(path,dest);captures.append({'path':dest.relative_to(ROOT).as_posix(),'sha256':hashlib.sha256(dest.read_bytes()).hexdigest()})
             result['client_screenshots']=captures
             result['manual_bookmark_client']=manual_bookmark_client(loader,major)
+            result['manual_locator_client']=manual_locator_client(loader,major,'zh_cn' if loader=='forge' else 'en_us')
             if loader=='neoforge':result['labware_client']=labware_client(loader,major)
         reports.append(result)
     result={'status':'PASS','version':version,'published':False,'gametests':args.gametests,'clients':args.clients,'artifacts':reports}

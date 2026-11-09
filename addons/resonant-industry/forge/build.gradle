@@ -67,6 +67,10 @@ minecraft {
                 workingDirectory project.file('build/manual-locator-review')
                 property 'resonant_industry.manualLocatorCheck', 'true'
             }
+            if (project.hasProperty('buildProgressCheck')) {
+                workingDirectory project.file('build/build-progress-review')
+                property 'resonant_industry.buildProgressCheck', 'true'
+            }
         }
         server {
             args '--nogui'

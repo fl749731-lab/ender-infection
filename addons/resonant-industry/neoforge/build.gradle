@@ -67,6 +67,10 @@ neoForge {
                 gameDirectory = project.file('build/manual-locator-review')
                 systemProperty 'resonant_industry.manualLocatorCheck', 'true'
             }
+            if (project.hasProperty('buildProgressCheck')) {
+                gameDirectory = project.file('build/build-progress-review')
+                systemProperty 'resonant_industry.buildProgressCheck', 'true'
+            }
             if (project.hasProperty('meteringPanelVisualCheck')) {
                 gameDirectory = project.file('build/metering-panel-review')
                 systemProperty 'resonant_industry.meteringPanelVisualCheck','true'

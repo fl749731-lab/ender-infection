@@ -80,22 +80,19 @@ public final class IndustryClient {
     }
     @Mod.EventBusSubscriber(modid=IndustryApi.MOD_ID,value=Dist.CLIENT)
     public static final class Preview {
-        private static net.minecraft.core.BlockPos pinned;
+        @SubscribeEvent public static void hud(RenderGuiEvent.Post event) { BuildGuide.render(event.getGuiGraphics()); }
+        @SubscribeEvent public static void unload(net.minecraftforge.event.level.LevelEvent.Unload event) {
+            if (event.getLevel() instanceof net.minecraft.world.level.Level level && level.isClientSide) BuildGuide.clear(level);
+        }
         @SubscribeEvent public static void draw(RenderLevelStageEvent event){
             if(event.getStage()!=RenderLevelStageEvent.Stage.AFTER_TRANSLUCENT_BLOCKS)return;
-            var mc=Minecraft.getInstance();if(mc.player==null||mc.level==null)return;
-            boolean wrench=mc.player.getMainHandItem().is(IndustryContent.item("wrench"));
-            if(wrench&&mc.hitResult instanceof BlockHitResult hit&&mc.level.getBlockEntity(hit.getBlockPos()) instanceof IndustryNode target&&target.role().equals("controller"))pinned=hit.getBlockPos().immutable();
-            if(pinned==null)return;
-            if(mc.player.distanceToSqr(Vec3.atCenterOf(pinned))>256){pinned=null;return;}
-            if(!(mc.level.getBlockEntity(pinned) instanceof IndustryNode node)||!node.role().equals("controller")||node.definition()==null||node.formed()&&!wrench)return;
+            var mc=Minecraft.getInstance();var view=BuildGuide.current();if(view==null)return;
             var pose=event.getPoseStack();var camera=event.getCamera().getPosition();pose.pushPose();pose.translate(-camera.x,-camera.y,-camera.z);
             var consumer=mc.renderBuffers().bufferSource().getBuffer(RenderType.lines());
-            int layer=mc.player.isShiftKeyDown()?(int)(Math.floorMod(mc.level.getGameTime()/30,node.definition().height()))-1:Integer.MIN_VALUE;
-            for(var c:node.definition().cells().entrySet()){
-                if(layer!=Integer.MIN_VALUE&&c.getKey().y()!=layer)continue;
-                var at=node.world(c.getKey());boolean ok=c.getValue().equals("air")?mc.level.getBlockState(at).isAir():mc.level.getBlockState(at).getBlock() instanceof IndustryBlock b&&b.role.equals(c.getValue());
-                LevelRenderer.renderLineBox(pose,consumer,new AABB(at).deflate(.015),ok?.22F:1F,ok?.9F:.3F,ok?1F:.25F,.75F);
+            for(var cell:view.visible().cells()){
+                boolean ok=cell.state()==BuildProgress.State.CORRECT,unknown=cell.state()==BuildProgress.State.UNKNOWN;
+                LevelRenderer.renderLineBox(pose,consumer,new AABB(cell.position()).deflate(.015),
+                        unknown?.55F:ok?.22F:1F,unknown?.6F:ok?.9F:.3F,unknown?.7F:ok?1F:.25F,.75F);
             }
             pose.popPose();mc.renderBuffers().bufferSource().endBatch(RenderType.lines());
         }

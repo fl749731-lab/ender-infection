@@ -148,6 +148,36 @@ def manual_locator_client(loader, major, language='zh_cn'):
             'screenshots': captures}
 
 
+def build_progress_client(loader, major, language='zh_cn'):
+    run = BASE / loader / 'build/build-progress-review'
+    run.mkdir(parents=True, exist_ok=True)
+    options = run / 'options.txt'
+    lines = options.read_text('utf-8').splitlines() if options.exists() else []
+    lines = [line for line in lines if not line.startswith(('lang:', 'guiScale:', 'fullscreen:'))]
+    options.write_text('\n'.join(lines + ['lang:' + language, 'guiScale:2', 'fullscreen:false']) + '\n', 'utf-8')
+    log = dual.run_project('Build progress ' + loader, (BASE / loader).relative_to(ROOT).as_posix(), major,
+                           ['runClient', '-PbuildProgressCheck'], f'{loader}-build-progress-{language}.log')
+    content = log.read_text('utf-8', errors='replace')
+    for marker in ('BUILD_PROGRESS_PASS shots=5 step=9',
+                   'BUILD_PROGRESS_UNLOADED_PASS unknown=12 placed=22 total=34 missing=0',
+                   'BUILD_PROGRESS_LIFECYCLE_PASS distance=true disconnect=true'):
+        assert marker in content, log
+    assert 'BUILD_PROGRESS_FAIL' not in content, log
+    captures = []
+    for name in ('build-progress-missing', 'build-progress-narrow', 'build-progress-layer',
+                 'build-progress-ready', 'build-progress-unloaded'):
+        assert 'BUILD_PROGRESS_CAPTURE ' + name in content, log
+        source = run / 'screenshots' / (name + '.png')
+        assert source.is_file(), source
+        destination = OUT / 'clients' / loader / language / source.name
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(source, destination)
+        captures.append({'path': destination.relative_to(ROOT).as_posix(),
+                         'sha256': hashlib.sha256(destination.read_bytes()).hexdigest()})
+    return {'status': 'PASS', 'processes': 1, 'language': language, 'log': log.relative_to(ROOT).as_posix(),
+            'screenshots': captures, 'unloaded_cells': 12}
+
+
 def main():
     p=argparse.ArgumentParser();p.add_argument('--loader',choices=['forge','neoforge','both'],default='both');p.add_argument('--clean',action='store_true');p.add_argument('--gametests',action='store_true');p.add_argument('--clients',action='store_true');args=p.parse_args()
     OUT.mkdir(parents=True,exist_ok=True);receipt=OUT/'verified-builds.json';receipt.unlink(missing_ok=True)
@@ -197,6 +227,7 @@ def main():
             result['client_screenshots']=captures
             result['manual_bookmark_client']=manual_bookmark_client(loader,major)
             result['manual_locator_client']=manual_locator_client(loader,major,'zh_cn' if loader=='forge' else 'en_us')
+            result['build_progress_client']=build_progress_client(loader,major,'zh_cn' if loader=='forge' else 'en_us')
             if loader=='neoforge':result['labware_client']=labware_client(loader,major)
         reports.append(result)
     result={'status':'PASS','version':version,'published':False,'gametests':args.gametests,'clients':args.clients,'artifacts':reports}

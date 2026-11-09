@@ -4,14 +4,27 @@ import dev.hui.resonantindustry.api.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.ChestBlock;
+import net.minecraft.world.level.block.state.properties.ChestType;
 import net.neoforged.neoforge.capabilities.*;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
 
 public final class Platform {
     public static boolean validFluid(String id){try{return !id.isEmpty()&&BuiltInRegistries.FLUID.containsKey(IndustryContent.id(id))&&!id.equals("minecraft:empty");}catch(IllegalArgumentException e){return false;}}
     public static void invalidate(IndustryNode n){if(n.getLevel()!=null)n.getLevel().invalidateCapabilities(n.getBlockPos());}
+    public static ItemStack insertItems(Level level,BlockPos pos,Direction side,ItemStack stack){
+        if(!IndustryNode.loaded(level,pos))return stack;
+        var state=level.getBlockState(pos);
+        // A vanilla double-chest capability also queries its connected half.
+        if(state.getBlock() instanceof ChestBlock&&state.getValue(ChestBlock.TYPE)!=ChestType.SINGLE
+                &&!IndustryNode.loaded(level,pos.relative(ChestBlock.getConnectedDirection(state))))return stack;
+        var handler=level.getCapability(Capabilities.ItemHandler.BLOCK,pos,side);
+        return handler==null?stack:ItemHandlerHelper.insertItemStacked(handler,stack,false);
+    }
     public static EnergyAccess energy(Level level,BlockPos p,Direction side){
         if(!IndustryNode.loaded(level,p))return null;
         var cap=level.getCapability(Capabilities.EnergyStorage.BLOCK,p,side);

@@ -11,6 +11,8 @@ def adapt(s,name):
     if name in ('IndustryManualScreen.java','LabBenchScreen.java'):s=s.replace('renderBackground(g);','renderBackground(g,mx,my,partial);')
     if name=='IndustryManualScreen.java':
         s=s.replace('"filtration","distillation"}','"filtration","distillation","plate_press","metering","minerals"}')
+        s=s.replace('mouseScrolled(double mx, double my, double delta)', 'mouseScrolled(double mx, double my, double horizontal, double delta)')
+        s=s.replace('super.mouseScrolled(mx, my, delta)', 'super.mouseScrolled(mx, my, horizontal, delta)')
     s=s.replace('new ResourceLocation(id.contains(":")?id:IndustryApi.MOD_ID+":"+id)','ResourceLocation.parse(id.contains(":")?id:IndustryApi.MOD_ID+":"+id)')
     if name=='LabVesselItem.java':
         start=s.index('    // FORGE_CAP_START');end=s.index('    // FORGE_CAP_END')+len('    // FORGE_CAP_END');s=s[:start]+s[end:]

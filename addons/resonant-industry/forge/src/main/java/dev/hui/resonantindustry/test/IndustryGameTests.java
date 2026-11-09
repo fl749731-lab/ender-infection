@@ -79,6 +79,108 @@ public final class IndustryGameTests {
         var f=new Fixture(h);var n=f.machine(IndustryApi.CENTRIFUGE,0);f.form(n);f.charge(n,10000);f.water(n,IndustryApi.SLURRY,1000);n.setItem(0,new ItemStack(Items.GLASS_BOTTLE));n.setItem(2,new ItemStack(IndustryContent.item("ender_infection:separated_reagent"),64));int energy=n.energy();
         f.whenReady(()->f.after(30,()->{h.assertTrue(n.energy()==energy&&n.progress()==0&&n.getItem(0).getCount()==1&&save(n).getInt("InputAmount")==1000,"Full output consumed materials, fluid or power");f.success();}));
     }
+    @GameTest(template="empty_test",timeoutTicks=180,batch="industry_item_export")
+    public static void itemOutputsFeedExternalChestsInEveryOrientation(GameTestHelper h){
+        var f=new Fixture(h);
+        var controllers=new ArrayList<IndustryNode>();
+        var chests=new ArrayList<net.minecraft.world.Container>();
+        int index=0;
+        for(var direction:Direction.Plane.HORIZONTAL){
+            var n=f.machine(IndustryApi.PROCESSOR,f.origin.offset(index++*16,0,0),direction);
+            f.form(n);
+            var chestPos=f.port(n,"item_output").getBlockPos().relative(direction.getOpposite());
+            f.put(chestPos,Blocks.CHEST.defaultBlockState());
+            chests.add((net.minecraft.world.Container)f.level.getBlockEntity(chestPos));
+            controllers.add(n);
+            n.setItem(0,new ItemStack(IndustryContent.item("ender_infection:mycelium_bundle"),3));
+            n.setItem(2,new ItemStack(Items.DIAMOND,10));
+            n.setItem(3,new ItemStack(Items.IRON_INGOT,2));
+        }
+        f.whenReady(()->f.after(20,()->{
+            for(int i=0;i<controllers.size();i++){
+                var n=controllers.get(i);
+                var chest=chests.get(i);
+                h.assertTrue(count(chest,Items.DIAMOND)==10&&count(chest,Items.IRON_INGOT)==2,
+                        "Rotated output lost or duplicated items");
+                h.assertTrue(n.getItem(2).isEmpty()&&n.getItem(3).isEmpty()&&n.getItem(0).getCount()==3,
+                        "Output export touched inputs or retained copied products");
+            }
+            var unloaded=f.origin.offset(1000000,0,1000000);
+            h.assertTrue(!IndustryNode.loaded(f.level,unloaded),"Unloaded export fixture was already loaded");
+            var stack=new ItemStack(Items.DIAMOND,8);
+            var remainder=Platform.insertItems(f.level,unloaded,Direction.NORTH,stack);
+            h.assertTrue(remainder.getCount()==8&&!IndustryNode.loaded(f.level,unloaded),
+                    "Export into an unloaded destination lost items or loaded its chunk");
+            // Restore only the loaded half of a chest, as happens at a chunk boundary.
+            // Direct chunk placement avoids neighbor updates loading the unavailable half.
+            var halfPos=new BlockPos((unloaded.getX()&~15)+15,64,(unloaded.getZ()&~15)+8);
+            var halfChunk=f.level.getChunk(halfPos.getX()>>4,halfPos.getZ()>>4);
+            var pairedPos=halfPos.east();
+            var previous=halfChunk.getBlockState(halfPos);
+            try{
+                halfChunk.setBlockState(halfPos,Blocks.CHEST.defaultBlockState()
+                        .setValue(ChestBlock.FACING,Direction.NORTH)
+                        .setValue(ChestBlock.TYPE,net.minecraft.world.level.block.state.properties.ChestType.LEFT),false);
+                h.assertTrue(IndustryNode.loaded(f.level,halfPos)&&!IndustryNode.loaded(f.level,pairedPos),
+                        "Double-chest fixture did not straddle a loaded/unloaded chunk boundary");
+                var halfRemainder=Platform.insertItems(f.level,halfPos,Direction.NORTH,new ItemStack(Items.DIAMOND,8));
+                h.assertTrue(halfRemainder.getCount()==8&&!IndustryNode.loaded(f.level,pairedPos)
+                                &&((net.minecraft.world.Container)halfChunk.getBlockEntity(halfPos)).isEmpty(),
+                        "Double-chest output loaded its unavailable half or changed inventory");
+            }finally{halfChunk.setBlockState(halfPos,previous,false);}
+            f.success();
+        }));
+    }
+    @GameTest(template="empty_test",timeoutTicks=220,batch="industry_item_export")
+    public static void itemOutputsRespectCapacitySidesAndDisassembly(GameTestHelper h){
+        var f=new Fixture(h);
+        var n=f.machine(IndustryApi.PROCESSOR,0);
+        var sided=f.machine(IndustryApi.PROCESSOR,16);
+        f.form(n);
+        f.form(sided);
+        var chestPos=f.port(n,"item_output").getBlockPos().below();
+        f.put(chestPos,Blocks.CHEST.defaultBlockState());
+        var chest=(net.minecraft.world.Container)f.level.getBlockEntity(chestPos);
+        for(int i=0;i<chest.getContainerSize();i++)chest.setItem(i,new ItemStack(Items.STONE,64));
+        chest.setItem(0,new ItemStack(Items.STONE,62));
+        n.setItem(2,new ItemStack(Items.STONE,8));
+        var sidedPort=f.port(sided,"item_output").getBlockPos();
+        var furnacePos=sidedPort.south();
+        f.put(furnacePos,Blocks.FURNACE.defaultBlockState());
+        var furnace=(net.minecraft.world.Container)f.level.getBlockEntity(furnacePos);
+        sided.setItem(2,new ItemStack(Items.DIAMOND,3));
+        sided.setItem(3,new ItemStack(Items.COAL,4));
+        f.whenReady(()->f.after(20,()->{
+            h.assertTrue(n.getItem(2).getCount()==6&&count(chest,Items.STONE)==chest.getContainerSize()*64,
+                    "Partial insertion into a nearly full chest lost or duplicated products");
+            h.assertTrue(sided.getItem(2).getCount()==3&&sided.getItem(3).isEmpty()
+                    &&furnace.getItem(0).isEmpty()&&furnace.getItem(1).getCount()==4,
+                    "Output ignored the furnace side restriction or stopped at a rejected item");
+            chest.setItem(0,ItemStack.EMPTY);
+            f.put(furnacePos,Blocks.CHEST.defaultBlockState());
+            var replacement=(net.minecraft.world.Container)f.level.getBlockEntity(furnacePos);
+            f.after(20,()->{
+                h.assertTrue(n.getItem(2).isEmpty()&&chest.getItem(0).getCount()==6
+                        &&sided.getItem(2).isEmpty()&&count(replacement,Items.DIAMOND)==3,
+                        "Blocked output did not resume after making room or replacing the destination");
+                f.put(sidedPort,Blocks.AIR.defaultBlockState());
+                sided.setItem(2,new ItemStack(Items.DIAMOND,4));
+                f.after(10,()->{
+                    h.assertTrue(!sided.formed()&&sided.getItem(2).getCount()==4&&count(replacement,Items.DIAMOND)==3,
+                            "A disassembled output continued exporting or duplicated inventory");
+                    f.success();
+                });
+            });
+        }));
+    }
+    private static int count(net.minecraft.world.Container inventory,Item item){
+        int total=0;
+        for(int slot=0;slot<inventory.getContainerSize();slot++){
+            var stack=inventory.getItem(slot);
+            if(stack.is(item))total+=stack.getCount();
+        }
+        return total;
+    }
     @GameTest(template="empty_test",timeoutTicks=1400,batch="industry_saved")
     public static void savedProgressAndFluidsResumeWithoutRepeatingOutput(GameTestHelper h){
         var f=new Fixture(h);var n=f.machine(IndustryApi.CENTRIFUGE,0);f.form(n);f.charge(n,10000);f.water(n,IndustryApi.SLURRY,1000);n.setItem(0,new ItemStack(Items.GLASS_BOTTLE));

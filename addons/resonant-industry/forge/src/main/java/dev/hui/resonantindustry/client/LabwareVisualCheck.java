@@ -169,7 +169,7 @@ public final class LabwareVisualCheck {
             case 17->{if(amount(mc,0)==965&&amount(mc,1)==10){shot(mc,"lab_five_mb");mc.player.closeContainer();shift(mc,true);next();}}
             case 18->use(mc,0);
             case 19->{if(held(mc)==965&&bench(mc).getItem(0).isEmpty()){shift(mc,false);shot(mc,"lab_retrieve");call(mc,p->{var b=(LabBenchEntity)p.serverLevel().getBlockEntity(POS);int sum=LabFluids.read(p.getMainHandItem(),p.serverLevel()).getAmount();for(int i=0;i<6;i++)sum+=LabFluids.read(b.getItem(i),p.serverLevel()).getAmount();require(sum==1000,"Client actions changed total volume: "+sum);require(LabFluids.read(b.getItem(1),p.serverLevel()).getAmount()==10&&LabFluids.read(b.getItem(2),p.serverLevel()).getAmount()==25,"Native quantitative transfer mismatch");System.out.println("LABWARE_NATIVE_INTERACTIONS_PASS volume=1000 pipette_sample=25 pipette_dose=5 bench_dose=5");});next();}}
-            case 20->{mc.setScreen(new IndustryManualScreen());for(var child:mc.screen.children())if(child instanceof net.minecraft.client.gui.components.Button b&&b.getMessage().getString().equals(">")){for(int i=0;i<7;i++)b.onPress();break;}next();}
+            case 20->{IndustryVisualCheck.openManualChapter(mc,"labware");next();}
             case 21 -> {
                 shot(mc, "lab_handbook");
                 require(SHOTS.size() == 9, "Expected nine labware screenshots");
@@ -270,13 +270,7 @@ public final class LabwareVisualCheck {
                 next();
             }
             case 38 -> {
-                mc.setScreen(new IndustryManualScreen());
-                for (var child : mc.screen.children()) {
-                    if (child instanceof net.minecraft.client.gui.components.Button b && b.getMessage().getString().equals(">")) {
-                        for (int i = 0; i < 9; i++) b.onPress();
-                        break;
-                    }
-                }
+                IndustryVisualCheck.openManualChapter(mc,"experiments");
                 next();
             }
             case 39 -> {
@@ -382,13 +376,7 @@ public final class LabwareVisualCheck {
                 next();
             }
             case 58 -> {
-                mc.setScreen(new IndustryManualScreen());
-                for (var child : mc.screen.children()) {
-                    if (child instanceof net.minecraft.client.gui.components.Button b && b.getMessage().getString().equals(">")) {
-                        for (int i = 0; i < 11; i++) b.onPress();
-                        break;
-                    }
-                }
+                IndustryVisualCheck.openManualChapter(mc,"distillation");
                 next();
             }
             case 59 -> {

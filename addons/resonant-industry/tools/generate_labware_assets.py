@@ -5,6 +5,21 @@ from PIL import Image
 BASE=Path(__file__).resolve().parents[1]
 RES=BASE/'forge/src/main/resources'
 NS='resonant_industry'
+def slot_labels(data, lang):
+    words = {
+        'sample': ('样品', 'Sample'), 'reagent': ('液体试剂', 'Reagent'),
+        'receiver': ('接收', 'Receiver'), 'spare': ('备用', 'Spare'), 'vessel': ('器皿位', 'Vessel'),
+        'selection_help': ('蓝框为取液来源，橙框为加液目标。选好两者后点击定量转移。',
+                           'Blue marks the source. Amber marks the destination. Select both, then Transfer dose.'),
+    }
+    positions = [('右前方（靠近玩家）', 'near right'), ('前排中间（靠近玩家）', 'near center'),
+                 ('左前方（靠近玩家）', 'near left'), ('右后方（远离玩家）', 'far right'),
+                 ('后排中间（远离玩家）', 'far center'), ('左后方（远离玩家）', 'far left')]
+    for i, (zh, en) in enumerate(positions):
+        words[f'position.{i}'] = (f'从实验台正面看，{zh}。', f'From the front of the bench, {en}.')
+    for key, pair in words.items():
+        data[f'lab.{NS}.slot.{key}'] = pair[0 if lang == 'zh_cn' else 1]
+
 def write(rel,obj):
     p=RES/rel;p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(obj,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 def cube(a,b,tex,tint=None):
@@ -66,6 +81,7 @@ def main():
         for key,value in zip(['empty','contents','dose','vessel_help','from','to','change_dose','transfer','transferred','blocked'],words):data[f'lab.{NS}.{key}']=value
         data[f'guide.{NS}.labware.title']='实验器皿 · 取样与定量滴加' if lang=='zh_cn' else 'Labware · Sampling and measured doses'
         data[f'guide.{NS}.labware.body']=('容量：试剂瓶250、滴瓶100、滴管25、试管50、烧杯1000 mB。\n手持器皿右键台面空位摆放；水桶可装满烧杯。对已有器皿或储液罐右键：空器皿取样，有液则倒入一剂。潜行右键补取一剂，潜行对空右键切换剂量。\n空手右键实验台打开界面：选择来源、目标与剂量，再点定量转移。潜行空手右键台面器皿可取回。拆除台子会掉落保存原液量的器皿。不同液体或附加成分不能混装。' if lang=='zh_cn' else 'Capacities (mB): reagent bottle 250, dropper bottle 100, pipette 25, test tube 50, beaker 1000.\nUse a vessel on an empty bench position to place it. A water bucket fills a beaker. On a vessel or tank: empty tools sample; filled tools dispense one dose. Sneak to sample one dose; sneak in air to change dose.\nEmpty hand opens the bench: choose source, target and dose, then Transfer. Sneak with an empty hand retrieves a vessel. Breaking the bench drops filled vessels. Different liquids or chemical components cannot mix.')
+        slot_labels(data, lang)
         write(f'assets/{NS}/lang/{lang}.json',data)
     print('Generated five lab vessels, fill models, bench, recipes and translations')
 if __name__=='__main__':main()

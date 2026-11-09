@@ -1,14 +1,14 @@
 """Evidence required by the addon build and release commands."""
 
-NATIVE_MINIMUM = {"forge": 45, "neoforge": 53}
+NATIVE_MINIMUM = {"forge": 47, "neoforge": 55}
 PERSISTENCE_GROUPS = {
     "forge": ("persistence", "compound_persistence"),
     "neoforge": ("persistence", "compound_persistence", "labware_persistence", "workshop_persistence"),
 }
 INDUSTRY_FRAMES = (
     "preview_missing", "generator_running", "processor_running", "centrifuge_running", "centrifuge_complete",
-    "production_line", "generator_detail", "processor_detail", "centrifuge_detail", "cable_detail", "handbook",
-    "layer_blueprint", "compound_running", "compound_complete", "compound_guide",
+    "production_line", "generator_detail", "processor_detail", "centrifuge_detail", "cable_detail", "wrench_first_person", "handbook",
+    "manual_structure_3d", "layer_blueprint", "compound_running", "compound_complete", "compound_guide",
 )
 LABWARE_FRAMES = (
     "lab_empty", "lab_water", "lab_pipette_sample", "lab_six_vessels", "lab_transfer", "lab_blocked",

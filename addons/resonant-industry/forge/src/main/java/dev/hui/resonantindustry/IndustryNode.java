@@ -218,14 +218,44 @@ public final class IndustryNode extends PlatformNodeEntity implements WorldlyCon
         String id=source.fluid();int removed=source.drain(reserve,false),accepted=dest.fill(id,removed,false);
             if(accepted<removed){var root=role().equals("fluid_output")?owner():this;if(root!=null)(role().equals("fluid_output")?root.outputs[fluidChannel]:root.input).fill(id,removed-Math.max(0,accepted),root.fluidCapacity(),false);}
     }
+    private void sendItems(IndustryNode port,MachineDefinition.Cell cell){
+        int remaining=8;
+        var right=facing().getClockWise();
+        var back=facing().getOpposite();
+        for(var side:Direction.values()){
+            var neighbor=new MachineDefinition.Cell(
+                    cell.x()+side.getStepX()*right.getStepX()+side.getStepZ()*right.getStepZ(),
+                    cell.y()+side.getStepY(),
+                    cell.z()+side.getStepX()*back.getStepX()+side.getStepZ()*back.getStepZ());
+            // Only export through a face outside the complete structure volume.
+            if(definition().cells().containsKey(neighbor))continue;
+            var destination=port.worldPosition.relative(side);
+            for(int slot:OUTPUT_SLOTS){
+                var source=items.get(slot);
+                if(source.isEmpty())continue;
+                int offered=Math.min(source.getCount(),remaining);
+                var transfer=source.copy();
+                transfer.setCount(offered);
+                var leftover=Platform.insertItems(level,destination,side.getOpposite(),transfer);
+                int accepted=offered-leftover.getCount();
+                if(accepted<=0)continue;
+                source.shrink(accepted);
+                remaining-=accepted;
+                changed();
+                if(remaining==0)return;
+            }
+        }
+    }
     public static void tick(Level l,BlockPos p,BlockState s,IndustryNode n){if(l instanceof ServerLevel&&!n.isRemoved())n.work();}
     private void work(){
         if(role().equals("fluid_pipe")){FluidNetwork.tick(this);return;}
         if(role().equals("controller")){
             if(operational()){
                 if(definition().generator())generate();else process();
-                if(level.getGameTime()%5==0)for(var cell:definition().cells().entrySet())if(Set.of("energy_port","fluid_output").contains(cell.getValue())){
-                    var port=at(level,world(cell.getKey()));for(var side:Direction.values())if(cell.getValue().equals("energy_port"))port.sendEnergy(side);else port.sendFluid(side);
+                if(level.getGameTime()%5==0)for(var cell:definition().cells().entrySet())if(Set.of("energy_port","fluid_output","item_output").contains(cell.getValue())){
+                    var port=at(level,world(cell.getKey()));
+                    if(cell.getValue().equals("item_output"))sendItems(port,cell.getKey());
+                    else for(var side:Direction.values())if(cell.getValue().equals("energy_port"))port.sendEnergy(side);else port.sendFluid(side);
                 }
             }
             if(level.getGameTime()%10==0)refreshVisuals();return;

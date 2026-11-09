@@ -4,14 +4,28 @@ import dev.hui.resonantindustry.api.*;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.ChestBlock;
+import net.minecraft.world.level.block.state.properties.ChestType;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public final class Platform {
     public static boolean validFluid(String id){try{return !id.isEmpty()&&BuiltInRegistries.FLUID.containsKey(IndustryContent.id(id))&&!id.equals("minecraft:empty");}catch(IllegalArgumentException e){return false;}}
     public static void invalidate(IndustryNode n){n.invalidateCaps();n.reviveCaps();}
+    public static ItemStack insertItems(Level level,BlockPos pos,Direction side,ItemStack stack){
+        if(!IndustryNode.loaded(level,pos))return stack;
+        var state=level.getBlockState(pos);
+        // A vanilla double-chest capability also queries its connected half.
+        if(state.getBlock() instanceof ChestBlock&&state.getValue(ChestBlock.TYPE)!=ChestType.SINGLE
+                &&!IndustryNode.loaded(level,pos.relative(ChestBlock.getConnectedDirection(state))))return stack;
+        var blockEntity=level.getBlockEntity(pos);
+        var handler=blockEntity==null?null:blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER,side).orElse(null);
+        return handler==null?stack:ItemHandlerHelper.insertItemStacked(handler,stack,false);
+    }
     public static EnergyAccess energy(Level level,BlockPos p,Direction side){
         if(!IndustryNode.loaded(level,p))return null;
         var be=level.getBlockEntity(p);var cap=be==null?null:be.getCapability(ForgeCapabilities.ENERGY,side).orElse(null);

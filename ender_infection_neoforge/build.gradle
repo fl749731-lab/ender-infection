@@ -82,12 +82,22 @@ neoForge {
                 systemProperty 'ender_infection.incidentVisualCheck', 'true'
             }
             if (project.hasProperty('centralInstituteVisualCheck')) {
+                systemProperty 'ender_infection.architectureVisualCheck', project.hasProperty('architectureVisualCheck').toString()
                 gameDirectory = project.file('build/central-institute-visual-check')
                 systemProperty 'ender_infection.centralInstituteVisualCheck', 'true'
                 systemProperty 'ender_infection.centralInstituteSeed', project.findProperty('centralInstituteSeed') ?: '7312026'
                 jvmArgument '-Xms128m'
                 jvmArgument '-Xmx1536m'
                 jvmArgument '-XX:ActiveProcessorCount=2'
+            }
+            if (project.hasProperty('roomVisualCheck')) {
+                gameDirectory = project.file('build/institute-room-preview')
+                systemProperty 'ender_infection.roomVisualCheck', 'true'
+                systemProperty 'ender_infection.roomPreviewRooms', project.findProperty('roomPreviewRooms') ?: 'B2,B4,A7'
+                jvmArgument '-Xms128m'
+                jvmArgument '-Xmx2G'
+                jvmArgument '-XX:ActiveProcessorCount=2'
+                programArgument '--width'; programArgument '1280'; programArgument '--height'; programArgument '800'
             }
             if (project.hasProperty('crystalGlowCheck')) {
                 systemProperty 'ender_infection.crystalGlowCheck', 'true'
@@ -116,6 +126,8 @@ neoForge {
             if (project.hasProperty('processingChecks')) namespaces += 'ender_processing_checks'
             if (project.hasProperty('storageChecks')) namespaces += 'ender_storage_checks'
             if (project.hasProperty('centralInstituteChecks')) namespaces += 'ender_central_institute_checks'
+            if (project.hasProperty('motherChamberChecks')) namespaces += 'ender_mother_chamber_checks'
+            if (project.hasProperty('instituteProtectionChecks')) namespaces += 'ender_institute_protection_checks'
             if (project.hasProperty('instituteChecks')) namespaces += 'ender_institute_checks'
             if (project.hasProperty('oreChecks')) namespaces += 'ender_ore_checks'
             if (project.hasProperty('labChecks')) namespaces += 'ender_lab_checks'

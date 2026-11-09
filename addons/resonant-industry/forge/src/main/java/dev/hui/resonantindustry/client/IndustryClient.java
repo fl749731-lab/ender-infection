@@ -15,8 +15,16 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid=IndustryApi.MOD_ID,value=Dist.CLIENT,bus=Mod.EventBusSubscriber.Bus.MOD)
 public final class IndustryClient {
-    @SubscribeEvent public static void setup(net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent e){e.enqueueWork(()->{MenuScreens.register(ResonantIndustry.menuType(),IndustryScreen::new);IndustryContent.OPEN_MANUAL=()->Minecraft.getInstance().setScreen(new IndustryManualScreen());});}
-    @SubscribeEvent public static void renderers(EntityRenderersEvent.RegisterRenderers e){e.registerBlockEntityRenderer(ResonantIndustry.nodeType(),Spindle::new);}
+    @SubscribeEvent public static void setup(net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent e){e.enqueueWork(()->{MenuScreens.register(ResonantIndustry.menuType(),IndustryScreen::new);MenuScreens.register(ResonantIndustry.benchMenuType(),LabBenchScreen::new);MenuScreens.register(ResonantIndustry.stationMenuType(),LabBenchScreen::new);for(String name:java.util.List.of("reagent_bottle","dropper_bottle","pipette","test_tube","beaker")){var item=IndustryContent.item(name);net.minecraft.client.renderer.item.ItemProperties.register(item,IndustryContent.id("fill"),(stack,world,entity,seed)->Math.min(1f,LabPlatform.data(stack).getInt("LabAmount")/(float)((LabVesselItem)item).capacity));}IndustryContent.OPEN_MANUAL=()->Minecraft.getInstance().setScreen(new IndustryManualScreen());});}
+    @SubscribeEvent public static void renderers(EntityRenderersEvent.RegisterRenderers e){e.registerBlockEntityRenderer(ResonantIndustry.nodeType(),Spindle::new);e.registerBlockEntityRenderer(ResonantIndustry.benchType(),Bench::new);}
+    @SubscribeEvent public static void colors(RegisterColorHandlersEvent.Item e){for(String name:java.util.List.of("reagent_bottle","dropper_bottle","pipette","test_tube","beaker"))e.register((stack,tint)->{if(tint!=0)return -1;String id=LabPlatform.data(stack).getString("LabFluid");if(!Platform.validFluid(id))return 0xff67bde8;var fluid=new net.minecraftforge.fluids.FluidStack(net.minecraft.core.registries.BuiltInRegistries.FLUID.get(IndustryContent.id(id)),1);return net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions.of(fluid.getFluid()).getTintColor(fluid);},IndustryContent.item(name));}
+    public static final class Bench implements BlockEntityRenderer<LabBenchEntity>{
+        public Bench(BlockEntityRendererProvider.Context context){}
+        @Override public void render(LabBenchEntity bench,float partial,PoseStack pose,MultiBufferSource buffers,int light,int overlay){
+            pose.pushPose();pose.translate(.5,0,.5);pose.mulPose(com.mojang.math.Axis.YP.rotationDegrees(180-bench.getBlockState().getValue(LabBenchBlock.FACING).toYRot()));pose.translate(-.5,0,-.5);
+            for(int i=0;i<6;i++){var item=bench.getItem(i);if(item.isEmpty())continue;var p=LabBenchEntity.center(i);pose.pushPose();pose.translate(p.x,p.y+.135,p.z);pose.scale(.27f,.27f,.27f);Minecraft.getInstance().getItemRenderer().renderStatic(item,net.minecraft.world.item.ItemDisplayContext.FIXED,light,overlay,pose,buffers,bench.getLevel(),i);pose.popPose();}pose.popPose();
+        }
+    }
     public static final class Spindle implements BlockEntityRenderer<IndustryNode>{
         public Spindle(BlockEntityRendererProvider.Context context){}
         private void model(String name,PoseStack pose,MultiBufferSource buffers,int light,int overlay){Minecraft.getInstance().getBlockRenderer().renderSingleBlock(IndustryContent.block(name).defaultBlockState(),pose,buffers,light,overlay);}
@@ -72,22 +80,19 @@ public final class IndustryClient {
     }
     @Mod.EventBusSubscriber(modid=IndustryApi.MOD_ID,value=Dist.CLIENT)
     public static final class Preview {
-        private static net.minecraft.core.BlockPos pinned;
+        @SubscribeEvent public static void hud(RenderGuiEvent.Post event) { BuildGuide.render(event.getGuiGraphics()); }
+        @SubscribeEvent public static void unload(net.minecraftforge.event.level.LevelEvent.Unload event) {
+            if (event.getLevel() instanceof net.minecraft.world.level.Level level && level.isClientSide) BuildGuide.clear(level);
+        }
         @SubscribeEvent public static void draw(RenderLevelStageEvent event){
             if(event.getStage()!=RenderLevelStageEvent.Stage.AFTER_TRANSLUCENT_BLOCKS)return;
-            var mc=Minecraft.getInstance();if(mc.player==null||mc.level==null)return;
-            boolean wrench=mc.player.getMainHandItem().is(IndustryContent.item("wrench"));
-            if(wrench&&mc.hitResult instanceof BlockHitResult hit&&mc.level.getBlockEntity(hit.getBlockPos()) instanceof IndustryNode target&&target.role().equals("controller"))pinned=hit.getBlockPos().immutable();
-            if(pinned==null)return;
-            if(mc.player.distanceToSqr(Vec3.atCenterOf(pinned))>256){pinned=null;return;}
-            if(!(mc.level.getBlockEntity(pinned) instanceof IndustryNode node)||!node.role().equals("controller")||node.definition()==null||node.formed()&&!wrench)return;
+            var mc=Minecraft.getInstance();var view=BuildGuide.current();if(view==null)return;
             var pose=event.getPoseStack();var camera=event.getCamera().getPosition();pose.pushPose();pose.translate(-camera.x,-camera.y,-camera.z);
             var consumer=mc.renderBuffers().bufferSource().getBuffer(RenderType.lines());
-            int layer=mc.player.isShiftKeyDown()?(int)(Math.floorMod(mc.level.getGameTime()/30,node.definition().height()))-1:Integer.MIN_VALUE;
-            for(var c:node.definition().cells().entrySet()){
-                if(layer!=Integer.MIN_VALUE&&c.getKey().y()!=layer)continue;
-                var at=node.world(c.getKey());boolean ok=c.getValue().equals("air")?mc.level.getBlockState(at).isAir():mc.level.getBlockState(at).getBlock() instanceof IndustryBlock b&&b.role.equals(c.getValue());
-                LevelRenderer.renderLineBox(pose,consumer,new AABB(at).deflate(.015),ok?.22F:1F,ok?.9F:.3F,ok?1F:.25F,.75F);
+            for(var cell:view.visible().cells()){
+                boolean ok=cell.state()==BuildProgress.State.CORRECT,unknown=cell.state()==BuildProgress.State.UNKNOWN;
+                LevelRenderer.renderLineBox(pose,consumer,new AABB(cell.position()).deflate(.015),
+                        unknown?.55F:ok?.22F:1F,unknown?.6F:ok?.9F:.3F,unknown?.7F:ok?1F:.25F,.75F);
             }
             pose.popPose();mc.renderBuffers().bufferSource().endBatch(RenderType.lines());
         }

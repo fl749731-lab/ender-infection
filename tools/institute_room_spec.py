@@ -21,7 +21,7 @@ FACEORDER=list(FACES)
 
 PALETTES={
  'G1':dict(floor='lab_tile_light',border='lab_tile_dark',wall='minecraft:white_concrete',stripe='lab_wall_band_cyan',ceiling='lab_tile_light',accent='minecraft:cyan_concrete',note='白色公共区；深灰收边，青色入口导向'),
- 'G2':dict(floor='lab_checker',border='lab_tile_dark',wall='minecraft:white_concrete',stripe='lab_wall_band_light_blue',ceiling='lab_tile_light',accent='minecraft:light_blue_concrete',note='棋盘科研地面；白墙，浅蓝实验分区'),
+ 'G2':dict(floor='lab_tile_light',border='lab_tile_dark',wall='minecraft:white_concrete',stripe='lab_wall_band_light_blue',ceiling='lab_tile_light',accent='minecraft:light_blue_concrete',note='浅灰科研地面；白墙，浅蓝工作岛与实验分区'),
  'G3':dict(floor='lab_tile_light',border='lab_tile',wall='minecraft:white_concrete',stripe='lab_wall_band_green',ceiling='lab_tile_light',accent='minecraft:green_concrete',note='顶层白灰色；绿色温室与生活区导向'),
  'B1':dict(floor='lab_tile_dark',border='minecraft:polished_andesite',wall='minecraft:smooth_quartz',stripe='lab_wall_band_yellow',ceiling='lab_tile_dark',accent='minecraft:yellow_concrete',note='深灰机房；黄色设备安全边线'),
  'B2':dict(floor='lab_tile_light',border='lab_tile_dark',wall='minecraft:white_concrete',stripe='lab_wall_band_purple',ceiling='lab_tile_light',accent='minecraft:purple_concrete',note='白色收容区；紫色区划，事故房局部侵蚀'),

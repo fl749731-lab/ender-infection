@@ -11,8 +11,11 @@ from pathlib import Path
 import gzip
 import json
 import struct
+import base64
+import zlib
 
 import institute_room_spec as spec
+from institute_architecture import refine, furnish_public, furnish_rooms, mother_chamber
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / 'ender_infection_colored/src/main/resources/data/ender_infection'
@@ -336,6 +339,7 @@ class Institute:
             x, y, z = r['x'], r['y'] - 28, r['z']
             w, d = r['width'], r['length']
             avoid = set()
+            avoid.update((a - x, c - z) for a, b, c in getattr(self, 'architecture_approaches', ()) if b == y + 1)
             for door in r['doors']:
                 u, v = door['x'] - x, door['z'] - z
                 du, dv = (1, 0) if u == 0 else (-1, 0) if u == w - 1 else (0, 1) if v == 0 else (0, -1)
@@ -746,6 +750,8 @@ def utf(value):
 
 
 def payload(kind, value):
+    if kind == 11:
+        return struct.pack('>i', len(value)) + b''.join(struct.pack('>i', n) for n in value)
     if kind == 1:
         return struct.pack('>b', value)
     if kind == 3:
@@ -782,6 +788,12 @@ def write_tile(model, cx, cz):
                     base = name.split(':')[1].replace('_eroded', '')
                     entity_id = 'ender_infection:lab_fixture' if base in spec.STORAGE_FIXTURES else 'ender_infection:lab_storage' if base in spec.STORAGE_DETAILS else 'minecraft:barrel'
                     block['nbt'] = (10, {'id': (8, entity_id), 'LootTable': (8, loot)})
+                if 'nbt' in block:
+                    tag = dict(block['nbt'][1])
+                    marker = (10, {'InstituteOriginOffset': (11, [x, y + 28, z])})
+                    tag['NeoForgeData'] = marker
+                    tag['ForgeData'] = marker
+                    block['nbt'] = (10, tag)
                 blocks.append(block)
     root = {'DataVersion': (3, 3465), 'size': (9, (3, [width, HEIGHT, length])),
             'palette': (9, (10, palette)), 'blocks': (9, (10, blocks)), 'entities': (9, (10, []))}
@@ -849,10 +861,14 @@ def generate():
     model.atrium()
     model.traffic()
     model.exterior()
+    refine(model)
     model.add_loot()
     model.add_room_signs()
-    model.assign_storage_loot()
     model.configure_operations()
+    furnish_public(model)
+    mother_chamber(model)
+    furnish_rooms(model)
+    model.assign_storage_loot()
     model.connect_bars()
     model.bake_powered_lamps()
     model.add_crystal_face_lights()
@@ -860,6 +876,11 @@ def generate():
     sources, crystals = model.lighting()
     DEST.mkdir(parents=True, exist_ok=True)
     tiles = [write_tile(model, cx, cz) for cz in range(7) for cx in range(8)]
+    protection = bytearray((WIDTH * HEIGHT * LENGTH + 7) // 8)
+    for (x, y, z), value in model.grid.items():
+        if value[0] not in ('minecraft:air', 'minecraft:structure_void'):
+            index = ((y + 28) * LENGTH + z) * WIDTH + x
+            protection[index // 8] |= 1 << (index % 8)
     manifest = {'format_version': 1, 'layout_version': LAYOUT_VERSION,
                 'width': WIDTH, 'height': HEIGHT, 'length': LENGTH, 'ground_offset': GROUND_OFFSET,
                 'max_terrain_relief': MAX_TERRAIN_RELIEF,
@@ -870,7 +891,10 @@ def generate():
                 'entrance': model.entrance, 'loot_containers': model.loot,
                 'storage_containers': model.storage, 'room_signs': model.signs,
                 'light_sources': sources, 'crystal_lighting': crystals, 'operations':model.operations,
-                'incidents':model.incidents,'bosses':model.bosses}
+                'incidents':model.incidents,'bosses':model.bosses, 'architecture':model.architecture,
+                'mother_chamber':model.mother_chamber,
+                'protection': {'encoding':'zlib-base64-bitset-le','index':'(y*length+z)*width+x',
+                               'mask':base64.b64encode(zlib.compress(protection)).decode('ascii')}}
     (DATA / 'central_institute.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     loot_tables()
     report['tiles'] = len(tiles)

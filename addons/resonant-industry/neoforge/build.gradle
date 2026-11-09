@@ -54,12 +54,46 @@ dependencies {
 neoForge {
     version = '21.1.265'
     runs {
-        client { client(); gameDirectory = project.file('build/client-review'); if (project.hasProperty('industryVisualCheck')) systemProperty 'resonant_industry.visualCheck','true' }
+        client {
+            client()
+            gameDirectory = project.file('build/client-review')
+            if (project.hasProperty('industryVisualCheck')) systemProperty 'resonant_industry.visualCheck','true'
+            if (project.hasProperty('labwareVisualCheck')) systemProperty 'resonant_industry.labwareVisualCheck','true'
+            if (project.hasProperty('manualBookmarkCheck')) {
+                gameDirectory = project.file('build/manual-bookmark-review')
+                systemProperty 'resonant_industry.manualBookmarkCheck', project.property('manualBookmarkCheck')
+            }
+            if (project.hasProperty('manualLocatorCheck')) {
+                gameDirectory = project.file('build/manual-locator-review')
+                systemProperty 'resonant_industry.manualLocatorCheck', 'true'
+            }
+            if (project.hasProperty('buildProgressCheck')) {
+                gameDirectory = project.file('build/build-progress-review')
+                systemProperty 'resonant_industry.buildProgressCheck', 'true'
+            }
+            if (project.hasProperty('meteringPanelVisualCheck')) {
+                gameDirectory = project.file('build/metering-panel-review')
+                systemProperty 'resonant_industry.meteringPanelVisualCheck','true'
+            }
+        }
         server {
             server(); programArgument '--nogui'; gameDirectory = project.file('build/server-review')
+            if(project.hasProperty('mineralWorldCheckDirectory')) {
+                gameDirectory = project.file(project.property('mineralWorldCheckDirectory'))
+                systemProperty 'resonant_industry.mineralWorldCheck','true'
+            }
+            if(project.hasProperty('workshopPersistenceStage')) {
+                gameDirectory = project.file(project.property('workshopPersistenceDirectory'))
+                systemProperty 'resonant_industry.workshopPersistence',project.property('workshopPersistenceStage')
+            }
+            if(project.hasProperty('labwarePersistenceStage')) {
+                gameDirectory = project.file(project.property('labwarePersistenceDirectory'))
+                systemProperty 'resonant_industry.labwarePersistence',project.property('labwarePersistenceStage')
+            }
             if(project.hasProperty('industryPersistenceStage')) {
                 gameDirectory = project.file(project.property('industryPersistenceDirectory'))
                 systemProperty 'resonant_industry.persistenceStage',project.property('industryPersistenceStage')
+                systemProperty 'resonant_industry.compoundPersistence',project.findProperty('industryCompoundPersistence') ?: 'false'
             }
         }
         gameTestServer {

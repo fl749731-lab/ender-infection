@@ -6,8 +6,8 @@ Minecraft 感染阵营与研究所探索模组。感染母体通过生物质和�
 
 | 内容 | 版本 | 下载 |
 |---|---|---|
-| 主模组预发布 | **0.12.0-alpha.7** | [Forge 1.20.1](https://github.com/fl749731-lab/ender-infection/releases/download/v0.12.0-alpha.7/ender-infection-0.12.0-alpha.7.jar) · [NeoForge 1.21.1](https://github.com/fl749731-lab/ender-infection/releases/download/v0.12.0-alpha.7/ender-infection-neoforge-1.21.1-0.12.0-alpha.7.jar) |
-| 可选科技附属：共振工业 | **0.1.0-alpha.1** | [双版本安装包与图纸](https://github.com/fl749731-lab/ender-infection/releases/tag/resonant-industry-v0.1.0-alpha.1) |
+| 主模组稳定版 | **0.12.0** | [Forge 1.20.1](https://github.com/fl749731-lab/ender-infection/releases/download/v0.12.0/ender-infection-0.12.0.jar) · [NeoForge 1.21.1](https://github.com/fl749731-lab/ender-infection/releases/download/v0.12.0/ender-infection-neoforge-1.21.1-0.12.0.jar) |
+| 可选科技附属：共振工业 | **0.1.0** | [NeoForge 1.21.1 安装包与图纸](https://github.com/fl749731-lab/ender-infection/releases/tag/resonant-industry-v0.1.0) |
 | 历史稳定版 | 0.11.0，Forge 1.20.1 | [稳定版发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.11.0) |
 
 1. 按 Minecraft 版本选择一个加载器分支，安装对应的 Java 和 GeckoLib。
@@ -37,7 +37,7 @@ Minecraft 感染阵营与研究所探索模组。感染母体通过生物质和�
 - 储柜门向外开启，显示器补齐落台支架；相邻同类、同朝向的研究所门组成左右同步的[双开门](docs/lab-fixtures.md)。
 - 事件、奖励和 Boss 状态持久化；两版完整干净构建、原生测试与重启／区块卸载验收，详细结果随发行附件提供。
 
-[alpha.7 更新说明与附件](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.7) · [监管体指南](docs/institute-boss.md) · [模型实景](previews/public-model-adaptations-v1/README.md) · [完整更新日志](CHANGELOG.md)
+[0.12.0 更新说明与附件](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0) · [监管体指南](docs/institute-boss.md) · [模型实景](previews/public-model-adaptations-v1/README.md) · [完整更新日志](CHANGELOG.md)
 
 本版完成两只模型的首批替换。其他感染／畸变生物、基础武器、护甲、普通特效和设备仍按[全体评审](docs/model-visual-review.md)继续改造；评审清单不代表全部对象已替换。alpha.6 及更早安装包不包含 F8 Boss。
 

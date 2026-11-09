@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "platform": "NeoForge 1.21.1",
+  "tests": [
+    {
+      "status": "PASS",
+      "log": "E:\\mc\\build\\dual-version-validation\\neoforge-rooms-v2-mother.log",
+      "total": 2,
+      "required_passed": 2
+    },
+    {
+      "status": "PASS",
+      "log": "E:\\mc\\build\\dual-version-validation\\neoforge-rooms-v2-central.log",
+      "total": 1,
+      "required_passed": 1
+    },
+    {
+      "status": "PASS",
+      "log": "E:\\mc\\build\\dual-version-validation\\neoforge-rooms-v2-rift.log",
+      "total": 36,
+      "required_passed": 36
+    }
+  ],
+  "required_passed": 39,
+  "manifest_sha256": "57c76e6048e70f74fd6b8a56f8ec245f463bc12b5a451da8ad08feed701ff1e6"
+}

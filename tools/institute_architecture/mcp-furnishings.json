@@ -1,0 +1,4925 @@
+{
+  "target": "NeoForge Minecraft 1.21.1",
+  "shared_source_data_version": 3465,
+  "assets": [
+    {
+      "file": "tools/institute_architecture/office_desk.nbt",
+      "sha256": "60281710fa294f1bf8c6ba941cca702a9ef858c3d9ca046ce36a70b2c976c7f2"
+    },
+    {
+      "file": "tools/institute_architecture/supply_rack.nbt",
+      "sha256": "1ef7792d607a8a4984e39916c7763b5e3f024a7172078a840c703bb5640764d5"
+    },
+    {
+      "file": "tools/institute_architecture/cold_bank.nbt",
+      "sha256": "23de3048c5b34b37105d4f419047af7491e297d474092245483204a4b3f1295c"
+    },
+    {
+      "file": "tools/institute_architecture/archive_stack.nbt",
+      "sha256": "400febd27494469cfc81505863f036ad0d71ef5bf0af39d2ee461d4cfd258b1b"
+    },
+    {
+      "file": "tools/institute_architecture/medical_bay.nbt",
+      "sha256": "3ec2c1a921fbce647a62c8f4b9165f1941b68e8fbb0b3143756fc92a0ae18e0c"
+    },
+    {
+      "file": "tools/institute_architecture/bunk_pair.nbt",
+      "sha256": "be838a59aa0006e1ca9a73b51b6cb607cd6e66e325c190eb02e49cb79282b5fa"
+    },
+    {
+      "file": "tools/institute_architecture/dining_table.nbt",
+      "sha256": "f952c83271839a695affba386c594b51d83ef24501f0fd15f4da9fd9b222825a"
+    },
+    {
+      "file": "tools/institute_architecture/planter_bed.nbt",
+      "sha256": "b840071ae4f3490107da70f81f62d497bb023b96ab564738af8458ec4a0065ce"
+    },
+    {
+      "file": "tools/institute_architecture/fungus_bed.nbt",
+      "sha256": "8f676547fc3f27b6e0e7529531326b8deb98026e3bcaa40d969e14567f64cee6"
+    },
+    {
+      "file": "tools/institute_architecture/pump_skid.nbt",
+      "sha256": "eff9791cd4cb82f8c197f357b13eaa007cea76015798a6763556bce4ee426de1"
+    },
+    {
+      "file": "tools/institute_architecture/terminal_bank.nbt",
+      "sha256": "19f6b6403cea562298f6eefb7d3e8a43e3cc83e39f809b4f58f82fe5d690d443"
+    },
+    {
+      "file": "tools/institute_architecture/crate_pallet.nbt",
+      "sha256": "b1dfc9fcfe6b19e56e20ea6625d9da67cc1e14397bc683cc08b72fcb1afc1e96"
+    },
+    {
+      "file": "tools/institute_architecture/mother_chamber.nbt",
+      "sha256": "e08504c33db90b531787986123ccc0d6d09f36e91a3d4abee9d9e9040d2268fa"
+    }
+  ],
+  "server": {
+    "name": "minecraft-structure-designer",
+    "version": ""
+  },
+  "calls": [
+    {
+      "tool": "new_structure",
+      "arguments": {
+        "name": "office_desk",
+        "size_x": 5,
+        "size_y": 4,
+        "size_z": 5,
+        "minecraft_version": "1.20.1"
+      }
+    },
+    {
+      "tool": "set_blocks",
+      "arguments": {
+        "name": "office_desk",
+        "blocks": [
+          {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 4,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 4,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 4,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 4,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 4,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_freezer[facing=south]"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "z": 1,
+            "state": "smooth_quartz_slab[type=top,waterlogged=false]"
+          },
+          {
+            "x": 2,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_freezer[facing=south]"
+          },
+          {
+            "x": 3,
+            "y": 1,
+            "z": 1,
+            "state": "smooth_quartz_slab[type=top,waterlogged=false]"
+          },
+          {
+            "x": 4,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_freezer[facing=south]"
+          },
+          {
+            "x": 1,
+            "y": 2,
+            "z": 1,
+            "state": "ender_infection:lab_monitor[facing=south]"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "z": 3,
+            "state": "ender_infection:lab_chair[facing=north]"
+          },
+          {
+            "x": 3,
+            "y": 2,
+            "z": 1,
+            "state": "ender_infection:lab_monitor[facing=south]"
+          },
+          {
+            "x": 3,
+            "y": 1,
+            "z": 3,
+            "state": "ender_infection:lab_chair[facing=north]"
+          },
+          {
+            "x": 2,
+            "y": 2,
+            "z": 1,
+            "state": "light_blue_stained_glass"
+          },
+          {
+            "x": 2,
+            "y": 3,
+            "z": 1,
+            "state": "light_blue_stained_glass"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "save_structure",
+      "arguments": {
+        "name": "office_desk",
+        "path": "tools/institute_architecture/office_desk.nbt"
+      }
+    },
+    {
+      "tool": "new_structure",
+      "arguments": {
+        "name": "supply_rack",
+        "size_x": 5,
+        "size_y": 4,
+        "size_z": 4,
+        "minecraft_version": "1.20.1"
+      }
+    },
+    {
+      "tool": "set_blocks",
+      "arguments": {
+        "name": "supply_rack",
+        "blocks": [
+          {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_shelf[facing=north]"
+          },
+          {
+            "x": 0,
+            "y": 2,
+            "z": 1,
+            "state": "ender_infection:lab_shelf[facing=north]"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_shelf[facing=north]"
+          },
+          {
+            "x": 1,
+            "y": 2,
+            "z": 1,
+            "state": "ender_infection:lab_shelf[facing=north]"
+          },
+          {
+            "x": 2,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_shelf[facing=north]"
+          },
+          {
+            "x": 2,
+            "y": 2,
+            "z": 1,
+            "state": "ender_infection:lab_shelf[facing=north]"
+          },
+          {
+            "x": 3,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_shelf[facing=north]"
+          },
+          {
+            "x": 3,
+            "y": 2,
+            "z": 1,
+            "state": "ender_infection:lab_shelf[facing=north]"
+          },
+          {
+            "x": 4,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_shelf[facing=north]"
+          },
+          {
+            "x": 4,
+            "y": 2,
+            "z": 1,
+            "state": "ender_infection:lab_shelf[facing=north]"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "z": 2,
+            "state": "ender_infection:lab_shelf[facing=south]"
+          },
+          {
+            "x": 0,
+            "y": 2,
+            "z": 2,
+            "state": "ender_infection:lab_shelf[facing=south]"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "z": 2,
+            "state": "ender_infection:lab_shelf[facing=south]"
+          },
+          {
+            "x": 1,
+            "y": 2,
+            "z": 2,
+            "state": "ender_infection:lab_shelf[facing=south]"
+          },
+          {
+            "x": 2,
+            "y": 1,
+            "z": 2,
+            "state": "ender_infection:lab_shelf[facing=south]"
+          },
+          {
+            "x": 2,
+            "y": 2,
+            "z": 2,
+            "state": "ender_infection:lab_shelf[facing=south]"
+          },
+          {
+            "x": 3,
+            "y": 1,
+            "z": 2,
+            "state": "ender_infection:lab_shelf[facing=south]"
+          },
+          {
+            "x": 3,
+            "y": 2,
+            "z": 2,
+            "state": "ender_infection:lab_shelf[facing=south]"
+          },
+          {
+            "x": 4,
+            "y": 1,
+            "z": 2,
+            "state": "ender_infection:lab_shelf[facing=south]"
+          },
+          {
+            "x": 4,
+            "y": 2,
+            "z": 2,
+            "state": "ender_infection:lab_shelf[facing=south]"
+          },
+          {
+            "x": 0,
+            "y": 3,
+            "z": 1,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          },
+          {
+            "x": 0,
+            "y": 3,
+            "z": 2,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          },
+          {
+            "x": 1,
+            "y": 3,
+            "z": 1,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          },
+          {
+            "x": 1,
+            "y": 3,
+            "z": 2,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          },
+          {
+            "x": 2,
+            "y": 3,
+            "z": 1,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          },
+          {
+            "x": 2,
+            "y": 3,
+            "z": 2,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          },
+          {
+            "x": 3,
+            "y": 3,
+            "z": 1,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          },
+          {
+            "x": 3,
+            "y": 3,
+            "z": 2,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          },
+          {
+            "x": 4,
+            "y": 3,
+            "z": 1,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          },
+          {
+            "x": 4,
+            "y": 3,
+            "z": 2,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "save_structure",
+      "arguments": {
+        "name": "supply_rack",
+        "path": "tools/institute_architecture/supply_rack.nbt"
+      }
+    },
+    {
+      "tool": "new_structure",
+      "arguments": {
+        "name": "cold_bank",
+        "size_x": 5,
+        "size_y": 4,
+        "size_z": 4,
+        "minecraft_version": "1.20.1"
+      }
+    },
+    {
+      "tool": "set_blocks",
+      "arguments": {
+        "name": "cold_bank",
+        "blocks": [
+          {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_freezer[facing=north]"
+          },
+          {
+            "x": 0,
+            "y": 2,
+            "z": 1,
+            "state": "ender_infection:lab_freezer[facing=north]"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_freezer[facing=north]"
+          },
+          {
+            "x": 1,
+            "y": 2,
+            "z": 1,
+            "state": "ender_infection:lab_freezer[facing=north]"
+          },
+          {
+            "x": 2,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_freezer[facing=north]"
+          },
+          {
+            "x": 2,
+            "y": 2,
+            "z": 1,
+            "state": "ender_infection:lab_freezer[facing=north]"
+          },
+          {
+            "x": 3,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_freezer[facing=north]"
+          },
+          {
+            "x": 3,
+            "y": 2,
+            "z": 1,
+            "state": "ender_infection:lab_freezer[facing=north]"
+          },
+          {
+            "x": 4,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_freezer[facing=north]"
+          },
+          {
+            "x": 4,
+            "y": 2,
+            "z": 1,
+            "state": "ender_infection:lab_freezer[facing=north]"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "z": 2,
+            "state": "ender_infection:lab_freezer[facing=south]"
+          },
+          {
+            "x": 0,
+            "y": 2,
+            "z": 2,
+            "state": "ender_infection:lab_freezer[facing=south]"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "z": 2,
+            "state": "ender_infection:lab_freezer[facing=south]"
+          },
+          {
+            "x": 1,
+            "y": 2,
+            "z": 2,
+            "state": "ender_infection:lab_freezer[facing=south]"
+          },
+          {
+            "x": 2,
+            "y": 1,
+            "z": 2,
+            "state": "ender_infection:lab_freezer[facing=south]"
+          },
+          {
+            "x": 2,
+            "y": 2,
+            "z": 2,
+            "state": "ender_infection:lab_freezer[facing=south]"
+          },
+          {
+            "x": 3,
+            "y": 1,
+            "z": 2,
+            "state": "ender_infection:lab_freezer[facing=south]"
+          },
+          {
+            "x": 3,
+            "y": 2,
+            "z": 2,
+            "state": "ender_infection:lab_freezer[facing=south]"
+          },
+          {
+            "x": 4,
+            "y": 1,
+            "z": 2,
+            "state": "ender_infection:lab_freezer[facing=south]"
+          },
+          {
+            "x": 4,
+            "y": 2,
+            "z": 2,
+            "state": "ender_infection:lab_freezer[facing=south]"
+          },
+          {
+            "x": 0,
+            "y": 3,
+            "z": 1,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          },
+          {
+            "x": 0,
+            "y": 3,
+            "z": 2,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          },
+          {
+            "x": 1,
+            "y": 3,
+            "z": 1,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          },
+          {
+            "x": 1,
+            "y": 3,
+            "z": 2,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          },
+          {
+            "x": 2,
+            "y": 3,
+            "z": 1,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          },
+          {
+            "x": 2,
+            "y": 3,
+            "z": 2,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          },
+          {
+            "x": 3,
+            "y": 3,
+            "z": 1,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          },
+          {
+            "x": 3,
+            "y": 3,
+            "z": 2,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          },
+          {
+            "x": 4,
+            "y": 3,
+            "z": 1,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          },
+          {
+            "x": 4,
+            "y": 3,
+            "z": 2,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "save_structure",
+      "arguments": {
+        "name": "cold_bank",
+        "path": "tools/institute_architecture/cold_bank.nbt"
+      }
+    },
+    {
+      "tool": "new_structure",
+      "arguments": {
+        "name": "archive_stack",
+        "size_x": 5,
+        "size_y": 4,
+        "size_z": 4,
+        "minecraft_version": "1.20.1"
+      }
+    },
+    {
+      "tool": "set_blocks",
+      "arguments": {
+        "name": "archive_stack",
+        "blocks": [
+          {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "z": 1,
+            "state": "bookshelf"
+          },
+          {
+            "x": 0,
+            "y": 2,
+            "z": 1,
+            "state": "bookshelf"
+          },
+          {
+            "x": 0,
+            "y": 3,
+            "z": 1,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "z": 1,
+            "state": "bookshelf"
+          },
+          {
+            "x": 1,
+            "y": 2,
+            "z": 1,
+            "state": "bookshelf"
+          },
+          {
+            "x": 1,
+            "y": 3,
+            "z": 1,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          },
+          {
+            "x": 2,
+            "y": 1,
+            "z": 1,
+            "state": "bookshelf"
+          },
+          {
+            "x": 2,
+            "y": 2,
+            "z": 1,
+            "state": "bookshelf"
+          },
+          {
+            "x": 2,
+            "y": 3,
+            "z": 1,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          },
+          {
+            "x": 3,
+            "y": 1,
+            "z": 1,
+            "state": "bookshelf"
+          },
+          {
+            "x": 3,
+            "y": 2,
+            "z": 1,
+            "state": "bookshelf"
+          },
+          {
+            "x": 3,
+            "y": 3,
+            "z": 1,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          },
+          {
+            "x": 4,
+            "y": 1,
+            "z": 1,
+            "state": "bookshelf"
+          },
+          {
+            "x": 4,
+            "y": 2,
+            "z": 1,
+            "state": "bookshelf"
+          },
+          {
+            "x": 4,
+            "y": 3,
+            "z": 1,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "z": 2,
+            "state": "bookshelf"
+          },
+          {
+            "x": 0,
+            "y": 2,
+            "z": 2,
+            "state": "bookshelf"
+          },
+          {
+            "x": 0,
+            "y": 3,
+            "z": 2,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "z": 2,
+            "state": "bookshelf"
+          },
+          {
+            "x": 1,
+            "y": 2,
+            "z": 2,
+            "state": "bookshelf"
+          },
+          {
+            "x": 1,
+            "y": 3,
+            "z": 2,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          },
+          {
+            "x": 2,
+            "y": 1,
+            "z": 2,
+            "state": "bookshelf"
+          },
+          {
+            "x": 2,
+            "y": 2,
+            "z": 2,
+            "state": "bookshelf"
+          },
+          {
+            "x": 2,
+            "y": 3,
+            "z": 2,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          },
+          {
+            "x": 3,
+            "y": 1,
+            "z": 2,
+            "state": "bookshelf"
+          },
+          {
+            "x": 3,
+            "y": 2,
+            "z": 2,
+            "state": "bookshelf"
+          },
+          {
+            "x": 3,
+            "y": 3,
+            "z": 2,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          },
+          {
+            "x": 4,
+            "y": 1,
+            "z": 2,
+            "state": "bookshelf"
+          },
+          {
+            "x": 4,
+            "y": 2,
+            "z": 2,
+            "state": "bookshelf"
+          },
+          {
+            "x": 4,
+            "y": 3,
+            "z": 2,
+            "state": "smooth_quartz_slab[type=bottom,waterlogged=false]"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "save_structure",
+      "arguments": {
+        "name": "archive_stack",
+        "path": "tools/institute_architecture/archive_stack.nbt"
+      }
+    },
+    {
+      "tool": "new_structure",
+      "arguments": {
+        "name": "medical_bay",
+        "size_x": 5,
+        "size_y": 4,
+        "size_z": 5,
+        "minecraft_version": "1.20.1"
+      }
+    },
+    {
+      "tool": "set_blocks",
+      "arguments": {
+        "name": "medical_bay",
+        "blocks": [
+          {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 4,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 4,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 4,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 4,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 4,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_medical_bed[facing=north,part=head,occupied=false]"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "z": 2,
+            "state": "ender_infection:lab_medical_bed[facing=north,part=foot,occupied=false]"
+          },
+          {
+            "x": 3,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_medical_bed[facing=north,part=head,occupied=false]"
+          },
+          {
+            "x": 3,
+            "y": 1,
+            "z": 2,
+            "state": "ender_infection:lab_medical_bed[facing=north,part=foot,occupied=false]"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_freezer[facing=south]"
+          },
+          {
+            "x": 0,
+            "y": 2,
+            "z": 1,
+            "state": "ender_infection:lab_monitor[facing=south]"
+          },
+          {
+            "x": 4,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_freezer[facing=south]"
+          },
+          {
+            "x": 4,
+            "y": 2,
+            "z": 1,
+            "state": "ender_infection:lab_monitor[facing=south]"
+          },
+          {
+            "x": 2,
+            "y": 1,
+            "z": 1,
+            "state": "white_stained_glass"
+          },
+          {
+            "x": 2,
+            "y": 1,
+            "z": 2,
+            "state": "white_stained_glass"
+          },
+          {
+            "x": 2,
+            "y": 2,
+            "z": 1,
+            "state": "white_stained_glass"
+          },
+          {
+            "x": 2,
+            "y": 2,
+            "z": 2,
+            "state": "white_stained_glass"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "save_structure",
+      "arguments": {
+        "name": "medical_bay",
+        "path": "tools/institute_architecture/medical_bay.nbt"
+      }
+    },
+    {
+      "tool": "new_structure",
+      "arguments": {
+        "name": "bunk_pair",
+        "size_x": 5,
+        "size_y": 4,
+        "size_z": 5,
+        "minecraft_version": "1.20.1"
+      }
+    },
+    {
+      "tool": "set_blocks",
+      "arguments": {
+        "name": "bunk_pair",
+        "blocks": [
+          {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 4,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 4,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 4,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 4,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 4,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "z": 1,
+            "state": "gray_bed[facing=north,part=head,occupied=false]"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "z": 2,
+            "state": "gray_bed[facing=north,part=foot,occupied=false]"
+          },
+          {
+            "x": 3,
+            "y": 1,
+            "z": 1,
+            "state": "gray_bed[facing=north,part=head,occupied=false]"
+          },
+          {
+            "x": 3,
+            "y": 1,
+            "z": 2,
+            "state": "gray_bed[facing=north,part=foot,occupied=false]"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_freezer[facing=south]"
+          },
+          {
+            "x": 4,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_freezer[facing=south]"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "save_structure",
+      "arguments": {
+        "name": "bunk_pair",
+        "path": "tools/institute_architecture/bunk_pair.nbt"
+      }
+    },
+    {
+      "tool": "new_structure",
+      "arguments": {
+        "name": "dining_table",
+        "size_x": 5,
+        "size_y": 3,
+        "size_z": 5,
+        "minecraft_version": "1.20.1"
+      }
+    },
+    {
+      "tool": "set_blocks",
+      "arguments": {
+        "name": "dining_table",
+        "blocks": [
+          {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 4,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 4,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 4,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 4,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 4,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 1,
+            "z": 1,
+            "state": "smooth_quartz_slab[type=top,waterlogged=false]"
+          },
+          {
+            "x": 2,
+            "y": 1,
+            "z": 2,
+            "state": "smooth_quartz_slab[type=top,waterlogged=false]"
+          },
+          {
+            "x": 2,
+            "y": 1,
+            "z": 3,
+            "state": "smooth_quartz_slab[type=top,waterlogged=false]"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_chair[facing=east]"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "z": 3,
+            "state": "ender_infection:lab_chair[facing=east]"
+          },
+          {
+            "x": 3,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_chair[facing=west]"
+          },
+          {
+            "x": 3,
+            "y": 1,
+            "z": 3,
+            "state": "ender_infection:lab_chair[facing=west]"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "save_structure",
+      "arguments": {
+        "name": "dining_table",
+        "path": "tools/institute_architecture/dining_table.nbt"
+      }
+    },
+    {
+      "tool": "new_structure",
+      "arguments": {
+        "name": "planter_bed",
+        "size_x": 5,
+        "size_y": 4,
+        "size_z": 4,
+        "minecraft_version": "1.20.1"
+      }
+    },
+    {
+      "tool": "set_blocks",
+      "arguments": {
+        "name": "planter_bed",
+        "blocks": [
+          {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "z": 1,
+            "state": "smooth_quartz"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "z": 2,
+            "state": "smooth_quartz"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "z": 1,
+            "state": "grass_block"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "z": 2,
+            "state": "grass_block"
+          },
+          {
+            "x": 2,
+            "y": 1,
+            "z": 1,
+            "state": "grass_block"
+          },
+          {
+            "x": 2,
+            "y": 1,
+            "z": 2,
+            "state": "grass_block"
+          },
+          {
+            "x": 3,
+            "y": 1,
+            "z": 1,
+            "state": "grass_block"
+          },
+          {
+            "x": 3,
+            "y": 1,
+            "z": 2,
+            "state": "grass_block"
+          },
+          {
+            "x": 4,
+            "y": 1,
+            "z": 1,
+            "state": "smooth_quartz"
+          },
+          {
+            "x": 4,
+            "y": 1,
+            "z": 2,
+            "state": "smooth_quartz"
+          },
+          {
+            "x": 1,
+            "y": 2,
+            "z": 1,
+            "state": "azalea"
+          },
+          {
+            "x": 1,
+            "y": 2,
+            "z": 2,
+            "state": "azalea"
+          },
+          {
+            "x": 2,
+            "y": 2,
+            "z": 1,
+            "state": "azalea"
+          },
+          {
+            "x": 2,
+            "y": 2,
+            "z": 2,
+            "state": "azalea"
+          },
+          {
+            "x": 3,
+            "y": 2,
+            "z": 1,
+            "state": "azalea"
+          },
+          {
+            "x": 3,
+            "y": 2,
+            "z": 2,
+            "state": "azalea"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "save_structure",
+      "arguments": {
+        "name": "planter_bed",
+        "path": "tools/institute_architecture/planter_bed.nbt"
+      }
+    },
+    {
+      "tool": "new_structure",
+      "arguments": {
+        "name": "fungus_bed",
+        "size_x": 5,
+        "size_y": 4,
+        "size_z": 4,
+        "minecraft_version": "1.20.1"
+      }
+    },
+    {
+      "tool": "set_blocks",
+      "arguments": {
+        "name": "fungus_bed",
+        "blocks": [
+          {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "z": 1,
+            "state": "smooth_quartz"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "z": 2,
+            "state": "smooth_quartz"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "z": 1,
+            "state": "mycelium"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "z": 2,
+            "state": "mycelium"
+          },
+          {
+            "x": 2,
+            "y": 1,
+            "z": 1,
+            "state": "mycelium"
+          },
+          {
+            "x": 2,
+            "y": 1,
+            "z": 2,
+            "state": "mycelium"
+          },
+          {
+            "x": 3,
+            "y": 1,
+            "z": 1,
+            "state": "mycelium"
+          },
+          {
+            "x": 3,
+            "y": 1,
+            "z": 2,
+            "state": "mycelium"
+          },
+          {
+            "x": 4,
+            "y": 1,
+            "z": 1,
+            "state": "smooth_quartz"
+          },
+          {
+            "x": 4,
+            "y": 1,
+            "z": 2,
+            "state": "smooth_quartz"
+          },
+          {
+            "x": 1,
+            "y": 2,
+            "z": 1,
+            "state": "brown_mushroom"
+          },
+          {
+            "x": 1,
+            "y": 2,
+            "z": 2,
+            "state": "brown_mushroom"
+          },
+          {
+            "x": 2,
+            "y": 2,
+            "z": 1,
+            "state": "brown_mushroom"
+          },
+          {
+            "x": 2,
+            "y": 2,
+            "z": 2,
+            "state": "brown_mushroom"
+          },
+          {
+            "x": 3,
+            "y": 2,
+            "z": 1,
+            "state": "brown_mushroom"
+          },
+          {
+            "x": 3,
+            "y": 2,
+            "z": 2,
+            "state": "brown_mushroom"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "save_structure",
+      "arguments": {
+        "name": "fungus_bed",
+        "path": "tools/institute_architecture/fungus_bed.nbt"
+      }
+    },
+    {
+      "tool": "new_structure",
+      "arguments": {
+        "name": "pump_skid",
+        "size_x": 5,
+        "size_y": 4,
+        "size_z": 4,
+        "minecraft_version": "1.20.1"
+      }
+    },
+    {
+      "tool": "set_blocks",
+      "arguments": {
+        "name": "pump_skid",
+        "blocks": [
+          {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_cooling_pump[facing=north]"
+          },
+          {
+            "x": 2,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_cooling_pump[facing=north]"
+          },
+          {
+            "x": 4,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_cooling_pump[facing=north]"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "z": 2,
+            "state": "ender_infection:lab_storage_crate[facing=south]"
+          },
+          {
+            "x": 4,
+            "y": 1,
+            "z": 2,
+            "state": "ender_infection:lab_storage_crate[facing=south]"
+          },
+          {
+            "x": 0,
+            "y": 2,
+            "z": 2,
+            "state": "ender_infection:lab_pipe[facing=east]"
+          },
+          {
+            "x": 1,
+            "y": 2,
+            "z": 2,
+            "state": "ender_infection:lab_pipe[facing=east]"
+          },
+          {
+            "x": 2,
+            "y": 2,
+            "z": 2,
+            "state": "ender_infection:lab_pipe[facing=east]"
+          },
+          {
+            "x": 3,
+            "y": 2,
+            "z": 2,
+            "state": "ender_infection:lab_pipe[facing=east]"
+          },
+          {
+            "x": 4,
+            "y": 2,
+            "z": 2,
+            "state": "ender_infection:lab_pipe[facing=east]"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "save_structure",
+      "arguments": {
+        "name": "pump_skid",
+        "path": "tools/institute_architecture/pump_skid.nbt"
+      }
+    },
+    {
+      "tool": "new_structure",
+      "arguments": {
+        "name": "terminal_bank",
+        "size_x": 5,
+        "size_y": 4,
+        "size_z": 4,
+        "minecraft_version": "1.20.1"
+      }
+    },
+    {
+      "tool": "set_blocks",
+      "arguments": {
+        "name": "terminal_bank",
+        "blocks": [
+          {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_freezer[facing=north]"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_freezer[facing=north]"
+          },
+          {
+            "x": 2,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_freezer[facing=north]"
+          },
+          {
+            "x": 3,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_freezer[facing=north]"
+          },
+          {
+            "x": 4,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_freezer[facing=north]"
+          },
+          {
+            "x": 0,
+            "y": 2,
+            "z": 1,
+            "state": "ender_infection:lab_monitor[facing=north]"
+          },
+          {
+            "x": 2,
+            "y": 2,
+            "z": 1,
+            "state": "ender_infection:lab_monitor[facing=north]"
+          },
+          {
+            "x": 4,
+            "y": 2,
+            "z": 1,
+            "state": "ender_infection:lab_monitor[facing=north]"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "z": 2,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 2,
+            "z": 2,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 3,
+            "z": 2,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "z": 2,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 2,
+            "z": 2,
+            "state": "cyan_stained_glass"
+          },
+          {
+            "x": 1,
+            "y": 3,
+            "z": 2,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 1,
+            "z": 2,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 2,
+            "z": 2,
+            "state": "cyan_stained_glass"
+          },
+          {
+            "x": 2,
+            "y": 3,
+            "z": 2,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 1,
+            "z": 2,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 2,
+            "z": 2,
+            "state": "cyan_stained_glass"
+          },
+          {
+            "x": 3,
+            "y": 3,
+            "z": 2,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 1,
+            "z": 2,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 2,
+            "z": 2,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 3,
+            "z": 2,
+            "state": "gray_concrete"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "save_structure",
+      "arguments": {
+        "name": "terminal_bank",
+        "path": "tools/institute_architecture/terminal_bank.nbt"
+      }
+    },
+    {
+      "tool": "new_structure",
+      "arguments": {
+        "name": "crate_pallet",
+        "size_x": 5,
+        "size_y": 4,
+        "size_z": 4,
+        "minecraft_version": "1.20.1"
+      }
+    },
+    {
+      "tool": "set_blocks",
+      "arguments": {
+        "name": "crate_pallet",
+        "blocks": [
+          {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_storage_crate[facing=north]"
+          },
+          {
+            "x": 0,
+            "y": 2,
+            "z": 1,
+            "state": "ender_infection:lab_storage_crate[facing=north]"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_storage_crate[facing=north]"
+          },
+          {
+            "x": 1,
+            "y": 2,
+            "z": 1,
+            "state": "ender_infection:lab_storage_crate[facing=north]"
+          },
+          {
+            "x": 3,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_storage_crate[facing=north]"
+          },
+          {
+            "x": 3,
+            "y": 2,
+            "z": 1,
+            "state": "ender_infection:lab_storage_crate[facing=north]"
+          },
+          {
+            "x": 4,
+            "y": 1,
+            "z": 1,
+            "state": "ender_infection:lab_storage_crate[facing=north]"
+          },
+          {
+            "x": 4,
+            "y": 2,
+            "z": 1,
+            "state": "ender_infection:lab_storage_crate[facing=north]"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "z": 2,
+            "state": "ender_infection:lab_storage_crate[facing=south]"
+          },
+          {
+            "x": 0,
+            "y": 2,
+            "z": 2,
+            "state": "ender_infection:lab_storage_crate[facing=south]"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "z": 2,
+            "state": "ender_infection:lab_storage_crate[facing=south]"
+          },
+          {
+            "x": 1,
+            "y": 2,
+            "z": 2,
+            "state": "ender_infection:lab_storage_crate[facing=south]"
+          },
+          {
+            "x": 3,
+            "y": 1,
+            "z": 2,
+            "state": "ender_infection:lab_storage_crate[facing=south]"
+          },
+          {
+            "x": 3,
+            "y": 2,
+            "z": 2,
+            "state": "ender_infection:lab_storage_crate[facing=south]"
+          },
+          {
+            "x": 4,
+            "y": 1,
+            "z": 2,
+            "state": "ender_infection:lab_storage_crate[facing=south]"
+          },
+          {
+            "x": 4,
+            "y": 2,
+            "z": 2,
+            "state": "ender_infection:lab_storage_crate[facing=south]"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "save_structure",
+      "arguments": {
+        "name": "crate_pallet",
+        "path": "tools/institute_architecture/crate_pallet.nbt"
+      }
+    },
+    {
+      "tool": "new_structure",
+      "arguments": {
+        "name": "mother_chamber",
+        "size_x": 12,
+        "size_y": 7,
+        "size_z": 7,
+        "minecraft_version": "1.20.1"
+      }
+    },
+    {
+      "tool": "set_blocks",
+      "arguments": {
+        "name": "mother_chamber",
+        "blocks": [
+          {
+            "x": 0,
+            "y": 0,
+            "z": 0,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 1,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 2,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 3,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 4,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 5,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 0,
+            "y": 0,
+            "z": 6,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 0,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 1,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 2,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 3,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 4,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 5,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 1,
+            "y": 0,
+            "z": 6,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 0,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 1,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 2,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 3,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 4,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 5,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 2,
+            "y": 0,
+            "z": 6,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 0,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 1,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 2,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 3,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 4,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 5,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 3,
+            "y": 0,
+            "z": 6,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 0,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 1,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 2,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 3,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 4,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 5,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 4,
+            "y": 0,
+            "z": 6,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 5,
+            "y": 0,
+            "z": 0,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 5,
+            "y": 0,
+            "z": 1,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 5,
+            "y": 0,
+            "z": 2,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 5,
+            "y": 0,
+            "z": 3,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 5,
+            "y": 0,
+            "z": 4,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 5,
+            "y": 0,
+            "z": 5,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 5,
+            "y": 0,
+            "z": 6,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 6,
+            "y": 0,
+            "z": 0,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 6,
+            "y": 0,
+            "z": 1,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 6,
+            "y": 0,
+            "z": 2,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 6,
+            "y": 0,
+            "z": 3,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 6,
+            "y": 0,
+            "z": 4,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 6,
+            "y": 0,
+            "z": 5,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 6,
+            "y": 0,
+            "z": 6,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 7,
+            "y": 0,
+            "z": 0,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 7,
+            "y": 0,
+            "z": 1,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 7,
+            "y": 0,
+            "z": 2,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 7,
+            "y": 0,
+            "z": 3,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 7,
+            "y": 0,
+            "z": 4,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 7,
+            "y": 0,
+            "z": 5,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 7,
+            "y": 0,
+            "z": 6,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 8,
+            "y": 0,
+            "z": 0,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 8,
+            "y": 0,
+            "z": 1,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 8,
+            "y": 0,
+            "z": 2,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 8,
+            "y": 0,
+            "z": 3,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 8,
+            "y": 0,
+            "z": 4,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 8,
+            "y": 0,
+            "z": 5,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 8,
+            "y": 0,
+            "z": 6,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 9,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 9,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 9,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 9,
+            "y": 0,
+            "z": 3,
+            "state": "purple_concrete"
+          },
+          {
+            "x": 9,
+            "y": 0,
+            "z": 4,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 9,
+            "y": 0,
+            "z": 5,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 9,
+            "y": 0,
+            "z": 6,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 10,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 10,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 10,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 10,
+            "y": 0,
+            "z": 3,
+            "state": "purple_concrete"
+          },
+          {
+            "x": 10,
+            "y": 0,
+            "z": 4,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 10,
+            "y": 0,
+            "z": 5,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 10,
+            "y": 0,
+            "z": 6,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 11,
+            "y": 0,
+            "z": 0,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 11,
+            "y": 0,
+            "z": 1,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 11,
+            "y": 0,
+            "z": 2,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 11,
+            "y": 0,
+            "z": 3,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 11,
+            "y": 0,
+            "z": 4,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 11,
+            "y": 0,
+            "z": 5,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 11,
+            "y": 0,
+            "z": 6,
+            "state": "light_gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "z": 0,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 2,
+            "y": 1,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 3,
+            "y": 1,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 4,
+            "y": 1,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 5,
+            "y": 1,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 6,
+            "y": 1,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 7,
+            "y": 1,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 1,
+            "z": 0,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "z": 6,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 1,
+            "y": 1,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 2,
+            "y": 1,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 3,
+            "y": 1,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 4,
+            "y": 1,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 5,
+            "y": 1,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 6,
+            "y": 1,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 7,
+            "y": 1,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 1,
+            "z": 6,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "z": 1,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "z": 2,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "z": 3,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "z": 4,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 0,
+            "y": 1,
+            "z": 5,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 1,
+            "z": 1,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 1,
+            "z": 2,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 1,
+            "z": 3,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 1,
+            "z": 4,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 1,
+            "z": 5,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 0,
+            "y": 2,
+            "z": 0,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 1,
+            "y": 2,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 2,
+            "y": 2,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 3,
+            "y": 2,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 4,
+            "y": 2,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 5,
+            "y": 2,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 6,
+            "y": 2,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 7,
+            "y": 2,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 2,
+            "z": 0,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 0,
+            "y": 2,
+            "z": 6,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 1,
+            "y": 2,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 2,
+            "y": 2,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 3,
+            "y": 2,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 4,
+            "y": 2,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 5,
+            "y": 2,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 6,
+            "y": 2,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 7,
+            "y": 2,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 2,
+            "z": 6,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 0,
+            "y": 2,
+            "z": 1,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 0,
+            "y": 2,
+            "z": 2,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 0,
+            "y": 2,
+            "z": 3,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 0,
+            "y": 2,
+            "z": 4,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 0,
+            "y": 2,
+            "z": 5,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 2,
+            "z": 1,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 2,
+            "z": 2,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 2,
+            "z": 3,
+            "state": "amethyst_block"
+          },
+          {
+            "x": 8,
+            "y": 2,
+            "z": 4,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 2,
+            "z": 5,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 0,
+            "y": 3,
+            "z": 0,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 1,
+            "y": 3,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 2,
+            "y": 3,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 3,
+            "y": 3,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 4,
+            "y": 3,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 5,
+            "y": 3,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 6,
+            "y": 3,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 7,
+            "y": 3,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 3,
+            "z": 0,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 0,
+            "y": 3,
+            "z": 6,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 1,
+            "y": 3,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 2,
+            "y": 3,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 3,
+            "y": 3,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 4,
+            "y": 3,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 5,
+            "y": 3,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 6,
+            "y": 3,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 7,
+            "y": 3,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 3,
+            "z": 6,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 0,
+            "y": 3,
+            "z": 1,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 0,
+            "y": 3,
+            "z": 2,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 0,
+            "y": 3,
+            "z": 3,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 0,
+            "y": 3,
+            "z": 4,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 0,
+            "y": 3,
+            "z": 5,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 3,
+            "z": 1,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 3,
+            "z": 2,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 3,
+            "z": 3,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 3,
+            "z": 4,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 3,
+            "z": 5,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 0,
+            "y": 4,
+            "z": 0,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 1,
+            "y": 4,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 2,
+            "y": 4,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 3,
+            "y": 4,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 4,
+            "y": 4,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 5,
+            "y": 4,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 6,
+            "y": 4,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 7,
+            "y": 4,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 4,
+            "z": 0,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 0,
+            "y": 4,
+            "z": 6,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 1,
+            "y": 4,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 2,
+            "y": 4,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 3,
+            "y": 4,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 4,
+            "y": 4,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 5,
+            "y": 4,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 6,
+            "y": 4,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 7,
+            "y": 4,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 4,
+            "z": 6,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 0,
+            "y": 4,
+            "z": 1,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 0,
+            "y": 4,
+            "z": 2,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 0,
+            "y": 4,
+            "z": 3,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 0,
+            "y": 4,
+            "z": 4,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 0,
+            "y": 4,
+            "z": 5,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 4,
+            "z": 1,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 4,
+            "z": 2,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 4,
+            "z": 3,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 4,
+            "z": 4,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 4,
+            "z": 5,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 0,
+            "y": 5,
+            "z": 0,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 1,
+            "y": 5,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 2,
+            "y": 5,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 3,
+            "y": 5,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 4,
+            "y": 5,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 5,
+            "y": 5,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 6,
+            "y": 5,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 7,
+            "y": 5,
+            "z": 0,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 5,
+            "z": 0,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 0,
+            "y": 5,
+            "z": 6,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 1,
+            "y": 5,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 2,
+            "y": 5,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 3,
+            "y": 5,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 4,
+            "y": 5,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 5,
+            "y": 5,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 6,
+            "y": 5,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 7,
+            "y": 5,
+            "z": 6,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 5,
+            "z": 6,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 0,
+            "y": 5,
+            "z": 1,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 0,
+            "y": 5,
+            "z": 2,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 0,
+            "y": 5,
+            "z": 3,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 0,
+            "y": 5,
+            "z": 4,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 0,
+            "y": 5,
+            "z": 5,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 5,
+            "z": 1,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 5,
+            "z": 2,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 5,
+            "z": 3,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 5,
+            "z": 4,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 8,
+            "y": 5,
+            "z": 5,
+            "state": "purple_stained_glass"
+          },
+          {
+            "x": 0,
+            "y": 6,
+            "z": 0,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 6,
+            "z": 6,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 8,
+            "y": 6,
+            "z": 0,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 8,
+            "y": 6,
+            "z": 6,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 6,
+            "z": 1,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 6,
+            "z": 2,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 6,
+            "z": 3,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 6,
+            "z": 4,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 0,
+            "y": 6,
+            "z": 5,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 6,
+            "z": 0,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 6,
+            "z": 1,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 6,
+            "z": 2,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 6,
+            "z": 3,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 6,
+            "z": 4,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 6,
+            "z": 5,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 1,
+            "y": 6,
+            "z": 6,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 6,
+            "z": 0,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 6,
+            "z": 1,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 6,
+            "z": 2,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 6,
+            "z": 3,
+            "state": "sea_lantern"
+          },
+          {
+            "x": 2,
+            "y": 6,
+            "z": 4,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 6,
+            "z": 5,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 2,
+            "y": 6,
+            "z": 6,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 6,
+            "z": 0,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 6,
+            "z": 1,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 6,
+            "z": 2,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 6,
+            "z": 3,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 6,
+            "z": 4,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 6,
+            "z": 5,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 3,
+            "y": 6,
+            "z": 6,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 6,
+            "z": 0,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 6,
+            "z": 1,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 6,
+            "z": 2,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 6,
+            "z": 3,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 6,
+            "z": 4,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 6,
+            "z": 5,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 4,
+            "y": 6,
+            "z": 6,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 5,
+            "y": 6,
+            "z": 0,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 5,
+            "y": 6,
+            "z": 1,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 5,
+            "y": 6,
+            "z": 2,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 5,
+            "y": 6,
+            "z": 3,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 5,
+            "y": 6,
+            "z": 4,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 5,
+            "y": 6,
+            "z": 5,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 5,
+            "y": 6,
+            "z": 6,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 6,
+            "y": 6,
+            "z": 0,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 6,
+            "y": 6,
+            "z": 1,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 6,
+            "y": 6,
+            "z": 2,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 6,
+            "y": 6,
+            "z": 3,
+            "state": "sea_lantern"
+          },
+          {
+            "x": 6,
+            "y": 6,
+            "z": 4,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 6,
+            "y": 6,
+            "z": 5,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 6,
+            "y": 6,
+            "z": 6,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 7,
+            "y": 6,
+            "z": 0,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 7,
+            "y": 6,
+            "z": 1,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 7,
+            "y": 6,
+            "z": 2,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 7,
+            "y": 6,
+            "z": 3,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 7,
+            "y": 6,
+            "z": 4,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 7,
+            "y": 6,
+            "z": 5,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 7,
+            "y": 6,
+            "z": 6,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 8,
+            "y": 6,
+            "z": 1,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 8,
+            "y": 6,
+            "z": 2,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 8,
+            "y": 6,
+            "z": 3,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 8,
+            "y": 6,
+            "z": 4,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 8,
+            "y": 6,
+            "z": 5,
+            "state": "gray_concrete"
+          },
+          {
+            "x": 10,
+            "y": 1,
+            "z": 3,
+            "state": "polished_deepslate"
+          },
+          {
+            "x": 10,
+            "y": 2,
+            "z": 3,
+            "state": "ender_infection:rift_anchor[active=false,suppressed=false]"
+          }
+        ]
+      }
+    },
+    {
+      "tool": "save_structure",
+      "arguments": {
+        "name": "mother_chamber",
+        "path": "tools/institute_architecture/mother_chamber.nbt"
+      }
+    }
+  ]
+}

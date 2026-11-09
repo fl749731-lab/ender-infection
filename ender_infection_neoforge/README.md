@@ -2,7 +2,7 @@
 
 此目录是 Minecraft 1.21.1 + NeoForge 版本。Forge 1.20.1 工程保留在 `../ender_infection_colored`；两版的游戏存档、运行目录和 JAR 分开使用。
 
-该平台从 v0.12.0-alpha.2 起与 Forge 1.20.1 同步发行，同时提供研究所 API v1。当前为 **v0.12.0-alpha.7**，发布附件见 [alpha.7 发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0-alpha.7)。
+该平台从 v0.12.0-alpha.2 起与 Forge 1.20.1 同步发行，同时提供研究所 API v1。当前稳定版为 **v0.12.0**，发布附件见 [0.12.0 发布页](https://github.com/fl749731-lab/ender-infection/releases/tag/v0.12.0)。
 
 - Java 21；NeoForge 21.1.265；GeckoLib 4.9.3。
 - 版本号读取 Forge 工程的 `build.gradle`，由同一版本号维护。

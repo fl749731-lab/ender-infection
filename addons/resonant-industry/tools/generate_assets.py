@@ -35,6 +35,67 @@ def model(role,active=False,fill=0):
 def shaped(key,pattern,keys,result,count=1):
  write(f'data/{NS}/recipes/{key}.json',{'type':'minecraft:crafting_shaped','pattern':pattern,'key':{k:{'item':v} for k,v in keys.items()},'result':{'item':NS+':'+result,'count':count}})
 
+def handbook_text(zh, en):
+ words = {
+  'contents': ('目录', 'Contents'), 'all_layers': ('全部结构 · 点此逐层', 'All blocks / next layer'),
+  'structure_layer': ('第 %s / %s 层（从底部）', 'Layer %s / %s (bottom up)'),
+  'layer': ('下一结构层', 'Next structure layer'), 'reset_view': ('重置视角', 'Reset view'),
+  'rotate_zoom': ('拖动旋转 · 滚轮缩放', 'Drag / zoom'),
+  'materials': ('查看材料清单', 'Show materials'), 'instructions': ('查看搭建与使用说明', 'Show instructions'),
+  'material_hint': ('点击材料定位', 'Click to locate'),
+  'material_count_all': ('整机', 'Total'), 'material_count_layer': ('本层 / 整机', 'Layer / total'),
+  'material_select': ('点击定位；再次点击取消', 'Click to locate; click again to clear'),
+  'material_count_detail': ('本层 %s，整机 %s', 'This layer: %s; total: %s'),
+  'material_other_layer': ('本层没有该部件；切换结构层查看', 'No matching blocks on this layer; switch layers to view them'),
+  'material_none_here': ('本层无该部件', 'No match on this layer'),
+  'structure_front': ('正面 · 控制器侧', 'Front · controller side'),
+  'scroll': ('滚轮翻阅', 'Scroll to read'),
+  'bench.sample': ('#%s 样品', '#%s Sample'), 'bench.reagent': ('#%s 试剂', '#%s Reagent'),
+  'bench.receiver': ('#%s 接收', '#%s Receiver'), 'bench.spare': ('#%s 备用', '#%s Spare'),
+  'bench.front': ('玩家站在此侧（面对抽屉）', 'Stand here, facing the drawer'),
+  'distillation.heater': ('加热台', 'Heating plate'),
+  'distillation.condenser': ('冷凝装置', 'Condenser'),
+  'distillation.touching': ('紧贴右侧', 'Touching'),
+  'distillation.front': ('站在此侧；两台设备正面同向', 'Stand here; both fronts face you'),
+  'distillation.near_right': ('台面右前方', 'Front-right'),
+  'bench.help': ('台面俯视图，编号对应界面。#1 在右前方，#2 在前排中间。固体原料与燃料放在界面右侧的小格。',
+                 'Top view, matching GUI numbers. #1 is front-right, #2 front-center. Solids and fuel go in the small slots on the right.'),
+ }
+ for key, (z, e) in words.items():
+  zh[f'guide.{NS}.{key}'] = z
+  en[f'guide.{NS}.{key}'] = e
+ for key in list(zh):
+  if key.startswith(('message.', 'gui.', 'guide.')):
+   zh[key] = zh[key].replace('已成形', '已完成组装').replace('未成形', '未组装').replace('成形的机器', '已组装的机器').replace('检查成形', '检查并组装').replace('右键扳手成形', '手持扳手右键控制器组装')
+ zh[f'guide.{NS}.intro.body'] = '先合成控制器、机器蓝图和装配扳手。\n1. 手持蓝图右键控制器，选定要搭建的机器。\n2. 在目录选择这台机器。拖动立体图旋转，滚轮缩放；逐层查看从底部开始，按材料清单摆放。手持扳手对准控制器可查看现场进度与缺件，潜行时逐层检查。\n3. 手持扳手右键控制器，检查完整结构并组装成机器。潜行使用扳手可解除组装，库存与进度保留。\n4. 发电机烧煤供电，处理罐以感染材料和水制浆，离心机再分出试剂。'
+ en[f'guide.{NS}.intro.body'] = 'Craft a controller, blueprint and assembly wrench.\n1. Use the blueprint on the controller.\n2. Pick the machine in Contents. Drag to rotate, scroll to zoom, and inspect layers from bottom to top. Aim a wrench at the controller to see building progress and needed blocks; sneak to check each layer.\n3. Use the wrench on the controller to check and assemble it. Sneak-use to disassemble while keeping inventory and progress.\n4. Burn coal for power, process biomass and water into slurry, then centrifuge it.'
+ zh[f'guide.{NS}.assembly.body'] = '朝向以控制器正面为准，支持四向旋转，结构层从底部开始。\n手持扳手对准控制器后，现场提示显示已放对的方块数、待补或替换的部件，以及应留空却被堵塞的位置数量。切换建材后提示保留，离开 16 格关闭。\n潜行时线框按层轮播，缺件清单同步显示本层，整机进度仍保留。未载入的位置单独标记，不计入缺件。\n方块齐全后仍须手持扳手右键控制器，由服务器检查结构与部件占用后组装。结构损坏、区块卸载、断电或输出满时暂停。'
+ en[f'guide.{NS}.assembly.body'] = 'Use the controller front for orientation. Four rotations are supported; layers start at the bottom.\nAim a wrench at the controller to show matching blocks, parts to add or replace, and blocked spaces that must stay empty. The guide stays when switching to building blocks; move 16 blocks away to hide it.\nSneaking cycles the wireframe and needed-parts list through the layers, while total progress remains visible. Unloaded positions are listed separately, not as missing blocks.\nOnce the blocks match, use the wrench on the controller. The server checks the structure and component ownership before assembly. Damage, unloaded chunks, no power or full outputs pause processing.'
+ zh[f'guide.{NS}.transport.body'] = '物品输出仓每 5 tick 向紧贴其外侧的箱子、木桶或兼容容器最多输送 8 件产物。可接在结构外侧或输出仓底部，满箱时产物留在机器中。\n电缆双向传电；储能箱正面主动输出。流体管接流体输入口与输出口，储液罐正面主动输出。\n取水泵放在水源上方并接电，每秒最多抽一桶水，消耗 100 FE。'
+ en[f'guide.{NS}.transport.body'] = 'Item outlets send up to 8 products every 5 ticks into a touching chest, barrel or compatible inventory outside the structure, including below the outlet. Full containers leave items in the machine.\nCables carry energy. Energy cells and fluid tanks actively output at their front. Pipes connect fluid inlets and outlets.\nA powered pump above water extracts up to one bucket per second for 100 FE.'
+ zh[f'guide.{NS}.distillation.body'] = '1. 图为面对设备正面时的台面俯视图。冷凝装置紧贴加热台右侧，两台同向。\n2. 加热台 #1（右前方）放装有 50 mB 澄清滤液或中和液的器皿。\n3. 冷凝装置自己的 #1（右前方）放空试管或烧杯，接收蒸馏水；不用加热台的 #2 接收。\n4. 在加热台界面右侧燃料槽装入煤或木炭，点击左侧“蒸馏”。达到 100°C 后开始计时。\n5. 完成后，冷凝装置 #1 得到 40 mB 蒸馏水；加热台 #1 保留 10 mB 浓缩液。\n6. 接收器缺失、装有不兼容液体或容量不足时暂停。取回成品后可继续下一批；蒸馏水可用于果酸与碱液提取。'
+ en[f'guide.{NS}.distillation.body'] = '1. Top view from the front: place the condenser directly to the RIGHT of the heating plate, facing the same way.\n2. Heating plate #1 (front-right): place a vessel containing 50 mB clear filtrate or neutralized solution.\n3. Condenser #1 (its own front-right): place an empty tube or beaker to receive the water. Heating plate #2 is not the receiver.\n4. Put coal or charcoal in the heating plate fuel slot, then select Distill. Processing starts at 100 C.\n5. Condenser #1 receives 40 mB distilled water; heating plate #1 retains 10 mB concentrate.\n6. A missing, incompatible or full receiving vessel pauses the process. Collect the water for the next batch or use it for fruit-acid and alkaline extraction.'
+
+def build_guide_text(zh, en):
+ words = {
+  'title': ('%s · 搭建', '%s · Build'),
+  'placed': ('已放对 %s / %s · %s%%', 'Placed %s / %s · %s%%'),
+  'all_layers': ('全部结构（潜行逐层）', 'All layers (sneak to cycle)'),
+  'layer': ('第 %s / %s 层 · %s / %s', 'Layer %s/%s · %s/%s'),
+  'missing_all': ('待补 / 替换（整机）', 'Needed / replace · total'),
+  'missing_layer': ('待补 / 替换（本层）', 'Needed / replace · layer'),
+  'layer_complete': ('本层方块齐全', 'This layer matches'),
+  'clear': ('需清空（整机）：%s 格', 'Clear space (total): %s'),
+  'wrong': ('放错方块（整机）：%s 格', 'Replace (total): %s'),
+  'unknown': ('未载入（整机）：%s 格', 'Unloaded (total): %s'),
+  'ready': ('方块齐全，手持扳手右键检查并组装', 'Blocks match. Use the wrench to check and assemble.'),
+  'formed': ('已组装', 'Assembled'),
+  'hint': ('切换建材仍保留；离开 16 格关闭', 'Stays while placing; leave 16 blocks to hide.'),
+ }
+ for key, (z, e) in words.items():
+  zh[f'hud.{NS}.build.{key}'] = z
+  en[f'hud.{NS}.build.{key}'] = e
+
 def main():
  zh={};en={}
  from formed_models import models
@@ -56,7 +117,21 @@ def main():
  goods={'manual':('共振工业手册','Resonant Industry Handbook','book'),'slurry_canister':('营养浆液桶','Nutrient Slurry Canister','dragon_breath'),'fuel_residue':('燃料残渣','Fuel Residue','charcoal'),'purified_tissue':('纯化组织','Purified Tissue','phantom_membrane'),'generator_blueprint':('燃料发电机蓝图','Fuel Generator Blueprint','map'),'processor_blueprint':('生物质处理罐蓝图','Biomass Processor Blueprint','map'),'centrifuge_blueprint':('工业离心阵列蓝图','Industrial Centrifuge Blueprint','map'),'wrench':('装配扳手','Assembly Wrench','iron_axe')}
  for k,(z,e,tex) in goods.items():
   zh[f'item.{NS}.{k}']=z;en[f'item.{NS}.{k}']=e;write(f'assets/{NS}/models/item/{k}.json',{'parent':'minecraft:item/generated','textures':{'layer0':'minecraft:item/'+tex}})
- wrench={'parent':'minecraft:item/handheld','textures':{'metal':'minecraft:block/iron_block','handle':'minecraft:block/gray_concrete','particle':'minecraft:block/iron_block'},'elements':[cube([7,1,7],[10,13,9],'handle'),cube([4,11,7],[13,14,9],'metal'),cube([4,13,7],[7,16,9],'metal'),cube([10,13,7],[13,16,9],'metal')]};write(f'assets/{NS}/models/item/wrench.json',wrench)
+ # Adjacent sections meet at their edges so the handle and jaws never share visible faces.
+ # item/handheld inherits builtin/generated, which discards these explicit cubes during item baking.
+ wrench={'parent':'minecraft:block/block','gui_light':'front','ambientocclusion':False,
+  'textures':{'metal':'minecraft:block/iron_block','handle':'minecraft:block/gray_concrete','particle':'minecraft:block/iron_block'},
+  'display':{
+   'gui':{'rotation':[0,0,-35],'translation':[0,0,0],'scale':[.9,.9,.9]},
+   'ground':{'rotation':[0,0,0],'translation':[0,2,0],'scale':[.5,.5,.5]},
+   'fixed':{'rotation':[0,180,0],'translation':[0,0,0],'scale':[1,1,1]},
+   'head':{'rotation':[0,180,0],'translation':[0,13,7],'scale':[1,1,1]},
+   'thirdperson_righthand':{'rotation':[0,-90,55],'translation':[0,4,.5],'scale':[.85,.85,.85]},
+   'thirdperson_lefthand':{'rotation':[0,90,-55],'translation':[0,4,.5],'scale':[.85,.85,.85]},
+   'firstperson_righthand':{'rotation':[0,-90,25],'translation':[1.13,3.2,1.13],'scale':[.68,.68,.68]},
+   'firstperson_lefthand':{'rotation':[0,90,-25],'translation':[1.13,3.2,1.13],'scale':[.68,.68,.68]}},
+  'elements':[cube([7,1,7],[10,11,9],'handle'),cube([4,11,7],[13,13,9],'metal'),cube([4,13,7],[7,16,9],'metal'),cube([10,13,7],[13,16,9],'metal')]}
+ write(f'assets/{NS}/models/item/wrench.json',wrench)
  for k,z,e in [('generator','燃料发电机','Fuel Generator'),('processor','生物质处理罐','Biomass Processor'),('centrifuge','工业离心阵列','Industrial Centrifuge')]:zh[f'machine.{NS}.{k}']=z;en[f'machine.{NS}.{k}']=e
  zh[f'fluid.{NS}.nutrient_slurry']='营养浆液';en[f'fluid.{NS}.nutrient_slurry']='Nutrient Slurry'
  texts={'configured':('蓝图已装入。手持扳手对准控制器查看搭建预览，右键扳手检查成形。','Blueprint installed. Aim a wrench at the controller to preview; use the wrench to assemble.'),'configure_busy':('更换蓝图前，请拆解并取空物品、液体和进行中的燃料。','Disassemble and empty items, liquids and reserved fuel before changing blueprints.'),'unbound':('该接口尚未连接成形的机器。','This port is not connected to an assembled machine.'),'formed':('%s 已成形。','%s assembled.'),'unformed':('机器已拆解，库存和加工进度保留在控制器中。','Machine disassembled. Inventory and progress remain in the controller.'),'unloaded':('结构区块尚未载入，机器暂停。','A structure chunk is unloaded; the machine is paused.'),'missing':('结构检查：需要 %s，位置 %s / %s / %s。','Structure check: expected %s at %s / %s / %s.'),'fluid_rejected':('液体类型不符、空间不足，或不足一桶。','Wrong liquid, insufficient room, or less than one bucket available.'),'inventory_full':('背包需要空位放入装满的桶。','Make room for the filled bucket.'),'energy_status':('能量 %s / %s FE；液体 %s / %s mB。','Energy %s / %s FE; liquid %s / %s mB.')}
@@ -88,6 +163,8 @@ def main():
  'status.7':('原料与液体不匹配','No matching recipe'),
  'status.8':('储能已满，燃烧暂停','Buffer full; fuel paused')}
  for key,(z,e) in ui.items():zh[f'gui.{NS}.{key}']=z;en[f'gui.{NS}.{key}']=e
+ handbook_text(zh, en)
+ build_guide_text(zh, en)
  write(f'assets/{NS}/lang/zh_cn.json',zh);write(f'assets/{NS}/lang/en_us.json',en)
  shaped('casing',['III','ICI','III'],{'I':'minecraft:iron_ingot','C':'minecraft:copper_ingot'},'casing',8)
  shaped('controller',['CRC','IAI','CRC'],{'C':'minecraft:copper_ingot','R':'minecraft:redstone','I':'minecraft:iron_ingot','A':'minecraft:amethyst_shard'},'controller')

@@ -1,0 +1,41 @@
+{
+  "checks": {
+    "rooms": true,
+    "stairs": true,
+    "lift": true,
+    "entrance": true,
+    "incidents": true,
+    "bosses": true,
+    "loot_containers": true,
+    "operations": true,
+    "original_storage_retained": true
+  },
+  "furnished_rooms": 48,
+  "prefab_groups": 186,
+  "storage": 2645,
+  "mother_chamber": {
+    "room": "F7",
+    "anchor_pos": [
+      103,
+      5,
+      73
+    ],
+    "mother_pos": [
+      97,
+      4,
+      73
+    ],
+    "mother_stage": 2,
+    "bounds_min": [
+      93,
+      3,
+      70
+    ],
+    "bounds_max": [
+      101,
+      9,
+      76
+    ],
+    "spawn_policy": "once; deferred to loaded server ticks; no replacement after death"
+  }
+}

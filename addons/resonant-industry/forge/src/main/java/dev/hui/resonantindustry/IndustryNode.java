@@ -3,7 +3,7 @@ package dev.hui.resonantindustry;
 import dev.hui.resonantindustry.api.*;
 import java.util.*;
 import net.minecraft.core.*;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.*;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.*;
@@ -19,17 +19,21 @@ import net.minecraft.world.phys.Vec3;
 
 /** Only the controller owns a machine's inventory. Other blocks proxy an identity-checked, loaded owner. */
 public final class IndustryNode extends PlatformNodeEntity implements WorldlyContainer,MenuProvider {
-    private NonNullList<ItemStack> items=NonNullList.withSize(4,ItemStack.EMPTY);
+    public static final int INVENTORY_SIZE=12, DATA_SIZE=38;
+    public static final int[] INPUT_SLOTS={0,4,5,6,7,8}, OUTPUT_SLOTS={2,3,10,11}, CATALYST_SLOTS={1,9};
+    private NonNullList<ItemStack> items=NonNullList.withSize(INVENTORY_SIZE,ItemStack.EMPTY);
     private UUID identity=UUID.randomUUID(),ownerIdentity;
     private BlockPos owner;
-    private String machineId=IndustryApi.GENERATOR,activeRecipe="";
+    private String machineId=IndustryApi.GENERATOR,activeRecipe="",recipeFingerprint="";
+    private int fluidChannel;
     private boolean formed;
     private int energy,progress,duration,burn,status;
     private long checkedTick=Long.MIN_VALUE;
     private boolean checkedValid;
     private final Tank input=new Tank(),output=new Tank();
+    private final Tank[] inputs={input,new Tank(),new Tank(),new Tank()},outputs={output,new Tank(),new Tank(),new Tank()};
     public record Check(boolean valid,boolean unloaded,BlockPos position,String expected){}
-    private static final int[] NONE={},INPUT={0},OUTPUT={2,3};
+    private static final int[] NONE={},INPUT={0,4,5,6,7,8,1,9},OUTPUT={2,3,10,11};
     private final class Tank {
         String fluid="";int amount;
         int fill(String id,int count,int capacity,boolean simulate){
@@ -50,7 +54,12 @@ public final class IndustryNode extends PlatformNodeEntity implements WorldlyCon
     public int inputAmount(){return input.amount;}
     public int outputAmount(){return output.amount;}
     public String inputFluid(){return input.fluid;}
-    private int consumption(){var r=IndustryApi.recipes().get(activeRecipe);return status==5&&r!=null?r.energyPerTick():0;}
+    private int consumption(){var r=IndustryApi.processes().get(activeRecipe);return status==5&&r!=null?r.energyPerTick():0;}
+    public int fluidChannel(){return fluidChannel;}
+    public boolean setFluidChannel(int channel){
+        if(channel<0||channel>=4||!Set.of("fluid_input","fluid_output").contains(role()))return false;
+        fluidChannel=channel;Platform.invalidate(this);sync();return true;
+    }
     private int fluidNumber(String id){return id.isEmpty()?0:net.minecraft.core.registries.BuiltInRegistries.FLUID.getId(net.minecraft.core.registries.BuiltInRegistries.FLUID.get(IndustryContent.id(id)));}
     public MachineDefinition definition(){return IndustryApi.machines().get(machineId);}
     public Direction facing(){return getBlockState().getValue(IndustryBlock.FACING);}
@@ -89,7 +98,7 @@ public final class IndustryNode extends PlatformNodeEntity implements WorldlyCon
         formed=true;checkedTick=Long.MIN_VALUE;status=1;sync();return check;
     }
     public boolean configure(String id){
-        if(!role().equals("controller")||formed||!isEmpty()||input.amount!=0||output.amount!=0||progress!=0||burn!=0||!IndustryApi.machines().containsKey(id))return false;
+        if(!role().equals("controller")||formed||!isEmpty()||Arrays.stream(inputs).anyMatch(t->t.amount!=0)||Arrays.stream(outputs).anyMatch(t->t.amount!=0)||progress!=0||burn!=0||!IndustryApi.machines().containsKey(id))return false;
         machineId=id;activeRecipe="";sync();return true;
     }
     public boolean operational(){
@@ -116,10 +125,14 @@ public final class IndustryNode extends PlatformNodeEntity implements WorldlyCon
         if(role().equals("controller")){if(formed)unform();}
         if(role().equals("controller")||role().equals("battery")||role().equals("tank")||role().equals("pump")){
             for(var stack:items)if(!stack.isEmpty())Containers.dropItemStack(level,worldPosition.getX()+.5,worldPosition.getY()+.5,worldPosition.getZ()+.5,stack);
-            items=NonNullList.withSize(4,ItemStack.EMPTY);
+            items=NonNullList.withSize(INVENTORY_SIZE,ItemStack.EMPTY);
         }
     }
     public InteractionResult interact(ServerPlayer player){
+        if(LabVesselItem.vessel(player.getMainHandItem())){var h=LabPlatform.handler(level,worldPosition,null);LabFluids.report(player,LabFluids.interact(player.getMainHandItem(),h,player.isShiftKeyDown(),level));return InteractionResult.CONSUME;}
+        if(player.isShiftKeyDown()&&player.getMainHandItem().isEmpty()&&setFluidChannel((fluidChannel+1)%4)){
+            tell(player,"fluid_channel",fluidChannel+1);return InteractionResult.CONSUME;
+        }
         if(player.getMainHandItem().getItem() instanceof BlueprintItem blueprint){
             boolean ok=configure(blueprint.machine);tell(player,ok?"configured":"configure_busy");return ok?InteractionResult.CONSUME:InteractionResult.FAIL;
         }
@@ -139,7 +152,7 @@ public final class IndustryNode extends PlatformNodeEntity implements WorldlyCon
     private boolean bucket(ServerPlayer player){
         var held=player.getMainHandItem();String fluid=held.is(Items.WATER_BUCKET)?"minecraft:water":held.is(IndustryContent.item("slurry_canister"))?IndustryApi.SLURRY:"";
         FluidAccess access=null;
-        if(role().equals("controller"))access=fluidView(fluid.isEmpty()?(output.amount>=1000?output:input):input,IndustryApi.recipes().values().stream().anyMatch(r->r.machine().equals(machineId)&&r.fluid().equals(fluid)),true,this);
+        if(role().equals("controller"))access=fluidView(fluid.isEmpty()?(output.amount>=1000?output:input):input,acceptsFluid(0,fluid),true,this);
         else access=fluidAccess(null);
         if(access==null)return false;
         if(!fluid.isEmpty()){
@@ -180,13 +193,14 @@ public final class IndustryNode extends PlatformNodeEntity implements WorldlyCon
     public FluidAccess fluidAccess(Direction side){
         String role=role();if(Set.of("tank","fluid_pipe","pump").contains(role))return fluidView(input,!role.equals("pump"),true,this);
         if(!role.equals("fluid_input")&&!role.equals("fluid_output"))return null;
+        final int channel=fluidChannel;
         return new FluidAccess(){
-            private IndustryNode target(){return isRemoved()?null:owner();}
-            public String fluid(){var n=target();return n==null?"":(role.equals("fluid_input")?n.input:n.output).fluid;}
-            public int amount(){var n=target();return n==null?0:(role.equals("fluid_input")?n.input:n.output).amount;}
+            private IndustryNode target(){return isRemoved()||fluidChannel!=channel?null:owner();}
+            public String fluid(){var n=target();return n==null?"":(role.equals("fluid_input")?n.inputs[channel]:n.outputs[channel]).fluid;}
+            public int amount(){var n=target();return n==null?0:(role.equals("fluid_input")?n.inputs[channel]:n.outputs[channel]).amount;}
             public int capacity(){return 8000;}
-            public int fill(String id,int amount,boolean simulate){var n=target();if(n==null||!role.equals("fluid_input")||IndustryApi.recipes().values().stream().noneMatch(r->r.machine().equals(n.machineId)&&r.fluid().equals(id)))return 0;return n.input.fill(id,amount,capacity(),simulate);}
-            public int drain(int amount,boolean simulate){var n=target();return n==null||!role.equals("fluid_output")?0:n.output.drain(amount,simulate);}
+            public int fill(String id,int amount,boolean simulate){var n=target();if(n==null||!role.equals("fluid_input")||!n.acceptsFluid(channel,id))return 0;return n.inputs[channel].fill(id,amount,capacity(),simulate);}
+            public int drain(int amount,boolean simulate){var n=target();return n==null||!role.equals("fluid_output")?0:n.outputs[channel].drain(amount,simulate);}
         };
     }
     private void sendEnergy(Direction side){
@@ -202,7 +216,35 @@ public final class IndustryNode extends PlatformNodeEntity implements WorldlyCon
         if(role().equals("fluid_pipe")&&neighbor!=null&&neighbor.role().equals("fluid_pipe"))want=Math.max(0,(source.amount()-dest.amount()+1)/2);
         int reserve=dest.fill(source.fluid(),Math.min(want,source.amount()),true);if(reserve<=0)return;
         String id=source.fluid();int removed=source.drain(reserve,false),accepted=dest.fill(id,removed,false);
-        if(accepted<removed){var root=role().equals("fluid_output")?owner():this;if(root!=null)(role().equals("fluid_output")?root.output:root.input).fill(id,removed-Math.max(0,accepted),root.fluidCapacity(),false);}
+            if(accepted<removed){var root=role().equals("fluid_output")?owner():this;if(root!=null)(role().equals("fluid_output")?root.outputs[fluidChannel]:root.input).fill(id,removed-Math.max(0,accepted),root.fluidCapacity(),false);}
+    }
+    private void sendItems(IndustryNode port,MachineDefinition.Cell cell){
+        int remaining=8;
+        var right=facing().getClockWise();
+        var back=facing().getOpposite();
+        for(var side:Direction.values()){
+            var neighbor=new MachineDefinition.Cell(
+                    cell.x()+side.getStepX()*right.getStepX()+side.getStepZ()*right.getStepZ(),
+                    cell.y()+side.getStepY(),
+                    cell.z()+side.getStepX()*back.getStepX()+side.getStepZ()*back.getStepZ());
+            // Only export through a face outside the complete structure volume.
+            if(definition().cells().containsKey(neighbor))continue;
+            var destination=port.worldPosition.relative(side);
+            for(int slot:OUTPUT_SLOTS){
+                var source=items.get(slot);
+                if(source.isEmpty())continue;
+                int offered=Math.min(source.getCount(),remaining);
+                var transfer=source.copy();
+                transfer.setCount(offered);
+                var leftover=Platform.insertItems(level,destination,side.getOpposite(),transfer);
+                int accepted=offered-leftover.getCount();
+                if(accepted<=0)continue;
+                source.shrink(accepted);
+                remaining-=accepted;
+                changed();
+                if(remaining==0)return;
+            }
+        }
     }
     public static void tick(Level l,BlockPos p,BlockState s,IndustryNode n){if(l instanceof ServerLevel&&!n.isRemoved())n.work();}
     private void work(){
@@ -210,8 +252,10 @@ public final class IndustryNode extends PlatformNodeEntity implements WorldlyCon
         if(role().equals("controller")){
             if(operational()){
                 if(definition().generator())generate();else process();
-                if(level.getGameTime()%5==0)for(var cell:definition().cells().entrySet())if(Set.of("energy_port","fluid_output").contains(cell.getValue())){
-                    var port=at(level,world(cell.getKey()));for(var side:Direction.values())if(cell.getValue().equals("energy_port"))port.sendEnergy(side);else port.sendFluid(side);
+                if(level.getGameTime()%5==0)for(var cell:definition().cells().entrySet())if(Set.of("energy_port","fluid_output","item_output").contains(cell.getValue())){
+                    var port=at(level,world(cell.getKey()));
+                    if(cell.getValue().equals("item_output"))sendItems(port,cell.getKey());
+                    else for(var side:Direction.values())if(cell.getValue().equals("energy_port"))port.sendEnergy(side);else port.sendFluid(side);
                 }
             }
             if(level.getGameTime()%10==0)refreshVisuals();return;
@@ -234,20 +278,47 @@ public final class IndustryNode extends PlatformNodeEntity implements WorldlyCon
         if(burn==0){int value=IndustryApi.fuelTicks(IndustryContent.itemId(items.get(0)));if(value==0)return;items.get(0).shrink(1);burn=value;}
         burn--;energy+=64;status=5;changed();
     }
-    private boolean matches(IndustryRecipe r){return (r.inputCount()==0||IndustryContent.itemId(items.get(0)).equals(r.input())&&items.get(0).getCount()>=r.inputCount())&&(r.fluidAmount()==0||input.fluid.equals(r.fluid())&&input.amount>=r.fluidAmount());}
+    private static boolean itemMatches(String selector,ItemStack stack){
+        if(stack.isEmpty())return false;
+        return selector.startsWith("#")?stack.is(net.minecraft.tags.TagKey.create(net.minecraft.core.registries.Registries.ITEM,IndustryContent.id(selector.substring(1)))):IndustryContent.itemId(stack).equals(selector);
+    }
+    private static boolean fluidMatches(String selector,String fluid){
+        if(fluid.isEmpty())return false;
+        if (!selector.startsWith("#")) return selector.equals(fluid);
+        var registry = net.minecraft.core.registries.Registries.FLUID;
+        var key = net.minecraft.resources.ResourceKey.create(registry, IndustryContent.id(fluid));
+        var tag = net.minecraft.tags.TagKey.create(registry, IndustryContent.id(selector.substring(1)));
+        return net.minecraft.core.registries.BuiltInRegistries.FLUID.getHolder(key).map(holder -> holder.is(tag)).orElse(false);
+    }
+    private boolean acceptsFluid(int channel,String fluid){return IndustryApi.processes().values().stream().filter(r->r.machine().equals(machineId)).flatMap(r->r.fluids().stream()).anyMatch(p->p.tank()==channel&&fluidMatches(p.ingredient(),fluid));}
+    private boolean matchesItems(ProcessRecipe r){return r.inputs().stream().allMatch(p->itemMatches(p.ingredient(),items.get(INPUT_SLOTS[p.slot()]))&&items.get(INPUT_SLOTS[p.slot()]).getCount()>=p.amount())
+            &&r.catalysts().stream().allMatch(p->itemMatches(p.ingredient(),items.get(CATALYST_SLOTS[p.slot()]))&&items.get(CATALYST_SLOTS[p.slot()]).getCount()>=p.amount());}
+    private boolean matches(ProcessRecipe r){return matchesItems(r)&&r.fluids().stream().allMatch(p->fluidMatches(p.ingredient(),inputs[p.tank()].fluid)&&inputs[p.tank()].amount>=p.amount());}
+    private boolean stageable(ProcessRecipe r){return matchesItems(r)&&r.fluids().stream().allMatch(p->inputs[p.tank()].amount==0||fluidMatches(p.ingredient(),inputs[p.tank()].fluid));}
     private boolean fits(int slot,String id,int count){if(count==0)return true;var stack=items.get(slot);var item=IndustryContent.item(id);return item!=Items.AIR&&(stack.isEmpty()?count<=item.getDefaultInstance().getMaxStackSize():stack.is(item)&&!stack.hasTag()&&stack.getCount()+count<=stack.getMaxStackSize());}
     private void put(int slot,String id,int count){if(count==0)return;if(items.get(slot).isEmpty())items.set(slot,new ItemStack(IndustryContent.item(id),count));else items.get(slot).grow(count);}
     private void process(){
-        var recipe=IndustryApi.recipes().values().stream().filter(r->r.machine().equals(machineId)&&matches(r)).findFirst().orElse(null);
-        if(recipe==null){status=items.get(0).isEmpty()?1:input.amount==0?3:7;return;}
-        if(!activeRecipe.equals(recipe.id())){progress=0;activeRecipe=recipe.id();}duration=recipe.ticks();
-        if(!fits(2,recipe.output(),recipe.outputCount())||!fits(3,recipe.byproduct(),recipe.byproductCount())||recipe.outputFluidAmount()>0&&output.fill(recipe.outputFluid(),recipe.outputFluidAmount(),fluidCapacity(),true)!=recipe.outputFluidAmount()){status=4;return;}
+        var recipe=IndustryApi.processes().get(activeRecipe);
+        if(recipe!=null&&!recipe.machine().equals(machineId)){progress=0;activeRecipe="";recipeFingerprint="";recipe=null;changed();}
+        if(recipe!=null&&progress>0&&(!recipeFingerprint.isEmpty()&&!recipeFingerprint.equals(IndustryApi.processFingerprint(activeRecipe))||recipeFingerprint.isEmpty()&&!IndustryApi.recipes().containsKey(activeRecipe))){progress=0;activeRecipe="";recipe=null;changed();}
+        if(progress==0||recipe==null){
+            recipe=IndustryApi.processes().values().stream().filter(r->r.machine().equals(machineId)&&stageable(r))
+                .sorted(Comparator.comparingInt(ProcessRecipe::priority).reversed().thenComparing(ProcessRecipe::id)).findFirst().orElse(null);
+            if(recipe==null){progress=0;activeRecipe="";recipeFingerprint="";status=items.get(0).isEmpty()?1:input.amount==0?3:7;return;}
+            if(!activeRecipe.equals(recipe.id()))progress=0;activeRecipe=recipe.id();
+        }
+        recipeFingerprint=IndustryApi.processFingerprint(recipe.id());duration=recipe.ticks();
+        if(!matches(recipe)){status=matchesItems(recipe)?3:7;return;}
+        if(recipe.outputs().stream().anyMatch(p->!fits(OUTPUT_SLOTS[p.slot()],p.ingredient(),p.amount()))
+            ||recipe.outputFluids().stream().anyMatch(p->outputs[p.tank()].fill(p.ingredient(),p.amount(),fluidCapacity(),true)!=p.amount())){status=4;return;}
         if(energy<recipe.energyPerTick()){status=2;return;}
         energy-=recipe.energyPerTick();status=5;progress++;changed();
         if(progress>=duration){
-            items.get(0).shrink(recipe.inputCount());input.drain(recipe.fluidAmount(),false);put(2,recipe.output(),recipe.outputCount());put(3,recipe.byproduct(),recipe.byproductCount());
-            if(recipe.outputFluidAmount()>0)output.fill(recipe.outputFluid(),recipe.outputFluidAmount(),fluidCapacity(),false);
-            progress=0;activeRecipe="";changed();
+            for(var p:recipe.inputs())items.get(INPUT_SLOTS[p.slot()]).shrink(p.amount());
+            for(var p:recipe.fluids())inputs[p.tank()].drain(p.amount(),false);
+            for(var p:recipe.outputs())put(OUTPUT_SLOTS[p.slot()],p.ingredient(),p.amount());
+            for(var p:recipe.outputFluids())outputs[p.tank()].fill(p.ingredient(),p.amount(),fluidCapacity(),false);
+            progress=0;activeRecipe="";recipeFingerprint="";changed();
         }
     }
     private void setVisual(boolean active,int fill){var state=getBlockState();int safe=Math.max(0,Math.min(4,fill));if(state.getValue(IndustryBlock.ACTIVE)!=active||state.getValue(IndustryBlock.FILL)!=safe)level.setBlock(worldPosition,state.setValue(IndustryBlock.ACTIVE,active).setValue(IndustryBlock.FILL,safe),2);}
@@ -261,30 +332,39 @@ public final class IndustryNode extends PlatformNodeEntity implements WorldlyCon
     private void changed(){setChanged();}
     private void sync(){setChanged();if(level!=null&&!level.isClientSide)level.sendBlockUpdated(worldPosition,getBlockState(),getBlockState(),2);}
     private IndustryNode inventory(){return role().equals("controller")?this:owner();}
-    public boolean accepts(ItemStack stack){if(definition()==null)return false;return definition().generator()?IndustryApi.fuelTicks(IndustryContent.itemId(stack))>0:IndustryApi.recipes().values().stream().anyMatch(r->r.machine().equals(machineId)&&r.input().equals(IndustryContent.itemId(stack)));}
-    @Override public int getContainerSize(){return 4;}
+    public boolean accepts(ItemStack stack){return accepts(0,stack);}
+    private boolean accepts(int slot,ItemStack stack){
+        if(definition()==null)return false;
+        if(definition().generator())return slot==0&&IndustryApi.fuelTicks(IndustryContent.itemId(stack))>0;
+        return IndustryApi.processes().values().stream().filter(r->r.machine().equals(machineId)).anyMatch(r->
+            r.inputs().stream().anyMatch(p->INPUT_SLOTS[p.slot()]==slot&&itemMatches(p.ingredient(),stack))
+            ||r.catalysts().stream().anyMatch(p->CATALYST_SLOTS[p.slot()]==slot&&itemMatches(p.ingredient(),stack)));
+    }
+    @Override public int getContainerSize(){return INVENTORY_SIZE;}
     @Override public boolean isEmpty(){var n=role().equals("controller")?this:inventory();return n==null||n.items.stream().allMatch(ItemStack::isEmpty);}
-    @Override public ItemStack getItem(int i){var n=inventory();return n==null||i<0||i>=4?ItemStack.EMPTY:n.items.get(i);}
-    @Override public ItemStack removeItem(int i,int count){var n=inventory();if(n==null||i<0||i>=4)return ItemStack.EMPTY;var result=ContainerHelper.removeItem(n.items,i,count);if(!result.isEmpty())n.changed();return result;}
-    @Override public ItemStack removeItemNoUpdate(int i){var n=inventory();return n==null||i<0||i>=4?ItemStack.EMPTY:ContainerHelper.takeItem(n.items,i);}
-    @Override public void setItem(int i,ItemStack stack){var n=inventory();if(n==null||i<0||i>=4)return;n.items.set(i,stack);if(stack.getCount()>stack.getMaxStackSize())stack.setCount(stack.getMaxStackSize());n.changed();}
+    @Override public ItemStack getItem(int i){var n=inventory();return n==null||i<0||i>=INVENTORY_SIZE?ItemStack.EMPTY:n.items.get(i);}
+    @Override public ItemStack removeItem(int i,int count){var n=inventory();if(n==null||i<0||i>=INVENTORY_SIZE)return ItemStack.EMPTY;var result=ContainerHelper.removeItem(n.items,i,count);if(!result.isEmpty())n.changed();return result;}
+    @Override public ItemStack removeItemNoUpdate(int i){var n=inventory();return n==null||i<0||i>=INVENTORY_SIZE?ItemStack.EMPTY:ContainerHelper.takeItem(n.items,i);}
+    @Override public void setItem(int i,ItemStack stack){var n=inventory();if(n==null||i<0||i>=INVENTORY_SIZE)return;n.items.set(i,stack);if(stack.getCount()>stack.getMaxStackSize())stack.setCount(stack.getMaxStackSize());n.changed();}
     @Override public void clearContent(){var n=inventory();if(n!=null){n.items.clear();n.changed();}}
     @Override public boolean stillValid(Player p){return level!=null&&!isRemoved()&&level.getBlockEntity(worldPosition)==this&&p.distanceToSqr(Vec3.atCenterOf(worldPosition))<=64;}
-    @Override public boolean canPlaceItem(int slot,ItemStack stack){var n=inventory();return slot==0&&n!=null&&n.accepts(stack);}
+    @Override public boolean canPlaceItem(int slot,ItemStack stack){var n=inventory();return n!=null&&n.accepts(slot,stack);}
     @Override public int[] getSlotsForFace(Direction side){return role().equals("item_input")?INPUT:role().equals("item_output")?OUTPUT:NONE;}
     @Override public boolean canPlaceItemThroughFace(int slot,ItemStack stack,Direction side){return role().equals("item_input")&&canPlaceItem(slot,stack);}
-    @Override public boolean canTakeItemThroughFace(int slot,ItemStack stack,Direction side){return role().equals("item_output")&&slot>=2&&inventory()!=null;}
+    @Override public boolean canTakeItemThroughFace(int slot,ItemStack stack,Direction side){return role().equals("item_output")&&Arrays.stream(OUTPUT_SLOTS).anyMatch(s->s==slot)&&inventory()!=null;}
     @Override public Component getDisplayName(){return Component.translatable(definition()==null?"block.resonant_industry.controller":definition().nameKey());}
     @Override public AbstractContainerMenu createMenu(int id,Inventory inv,Player p){return new IndustryMenu(id,inv,this,data);}
     public final ContainerData data=new ContainerData(){
-        public int getCount(){return 22;}
-        public int get(int i){return switch(i){case 0->energy&65535;case 1->energy>>>16;case 2->energyCapacity()&65535;case 3->energyCapacity()>>>16;case 4->progress&65535;case 5->duration&65535;case 6->input.amount;case 7->output.amount;case 8->status;case 9->formed?1:0;case 10->burn&65535;case 11->fluidNumber(input.fluid);case 12->progress>>>16;case 13->duration>>>16;case 14->burn>>>16;case 15->definition()!=null&&definition().generator()&&status==5?64:0;case 16->consumption()&65535;case 17->consumption()>>>16;case 18->fluidNumber(output.fluid);case 19,20->fluidCapacity();case 21->definition()!=null&&definition().generator()?1:0;default->0;};}
+        public int getCount(){return DATA_SIZE;}
+        public int get(int i){if(i>=22&&i<DATA_SIZE){int channel=(i-22)/4;return switch((i-22)%4){case 0->fluidNumber(inputs[channel].fluid);case 1->inputs[channel].amount;case 2->fluidNumber(outputs[channel].fluid);default->outputs[channel].amount;};}return switch(i){case 0->energy&65535;case 1->energy>>>16;case 2->energyCapacity()&65535;case 3->energyCapacity()>>>16;case 4->progress&65535;case 5->duration&65535;case 6->input.amount;case 7->output.amount;case 8->status;case 9->formed?1:0;case 10->burn&65535;case 11->fluidNumber(input.fluid);case 12->progress>>>16;case 13->duration>>>16;case 14->burn>>>16;case 15->definition()!=null&&definition().generator()&&status==5?64:0;case 16->consumption()&65535;case 17->consumption()>>>16;case 18->fluidNumber(output.fluid);case 19,20->fluidCapacity();case 21->definition()!=null&&definition().generator()?1:0;default->0;};}
         public void set(int i,int v){}
     };
     private CompoundTag state(CompoundTag t){
         t.putUUID("Identity",identity);t.putString("Machine",machineId);t.putBoolean("Formed",formed);t.putInt("Energy",energy);t.putInt("Progress",progress);t.putInt("Duration",duration);t.putInt("Burn",burn);t.putString("Recipe",activeRecipe);
         if(owner!=null&&ownerIdentity!=null){t.putLong("Owner",owner.asLong());t.putUUID("OwnerIdentity",ownerIdentity);}
-        t.putString("InputFluid",input.fluid);t.putInt("InputAmount",input.amount);t.putString("OutputFluid",output.fluid);t.putInt("OutputAmount",output.amount);return t;
+        t.putString("InputFluid",input.fluid);t.putInt("InputAmount",input.amount);t.putString("OutputFluid",output.fluid);t.putInt("OutputAmount",output.amount);
+        t.putInt("ProcessVersion",2);t.putInt("FluidChannel",fluidChannel);t.putString("ProcessSignature",recipeFingerprint);
+        var tanks=new ListTag();for(int i=1;i<4;i++){var tank=new CompoundTag();tank.putInt("Channel",i);tank.putString("In",inputs[i].fluid);tank.putInt("InAmount",inputs[i].amount);tank.putString("Out",outputs[i].fluid);tank.putInt("OutAmount",outputs[i].amount);tanks.add(tank);}t.put("ProcessTanks",tanks);return t;
     }
     @Override protected void saveAdditional(CompoundTag t){super.saveAdditional(t);state(t);ContainerHelper.saveAllItems(t,items);}
     @Override public void load(CompoundTag t){
@@ -293,8 +373,13 @@ public final class IndustryNode extends PlatformNodeEntity implements WorldlyCon
         owner=t.contains("Owner",4)?BlockPos.of(t.getLong("Owner")):null;ownerIdentity=t.hasUUID("OwnerIdentity")?t.getUUID("OwnerIdentity"):null;
         input.fluid=t.getString("InputFluid");input.amount=Platform.validFluid(input.fluid)?Math.max(0,Math.min(fluidCapacity(),t.getInt("InputAmount"))):0;
         output.fluid=t.getString("OutputFluid");output.amount=Platform.validFluid(output.fluid)?Math.max(0,Math.min(fluidCapacity(),t.getInt("OutputAmount"))):0;
-        if(input.amount==0)input.fluid="";if(output.amount==0)output.fluid="";items=NonNullList.withSize(4,ItemStack.EMPTY);ContainerHelper.loadAllItems(t,items);checkedTick=Long.MIN_VALUE;
+        if(input.amount==0)input.fluid="";if(output.amount==0)output.fluid="";
+        fluidChannel=Math.max(0,Math.min(3,t.getInt("FluidChannel")));recipeFingerprint=t.getString("ProcessSignature");
+        for(int i=1;i<4;i++){inputs[i].fluid="";inputs[i].amount=0;outputs[i].fluid="";outputs[i].amount=0;}
+        for(var entry:t.getList("ProcessTanks",10)){var tank=(CompoundTag)entry;int i=tank.getInt("Channel");if(i<1||i>=4)continue;readTank(inputs[i],tank.getString("In"),tank.getInt("InAmount"));readTank(outputs[i],tank.getString("Out"),tank.getInt("OutAmount"));}
+        items=NonNullList.withSize(INVENTORY_SIZE,ItemStack.EMPTY);ContainerHelper.loadAllItems(t,items);checkedTick=Long.MIN_VALUE;
     }
+    private void readTank(Tank tank,String id,int amount){tank.amount=Platform.validFluid(id)?Math.max(0,Math.min(fluidCapacity(),amount)):0;tank.fluid=tank.amount>0?id:"";}
     @Override public CompoundTag getUpdateTag(){return state(new CompoundTag());}
     @Override public ClientboundBlockEntityDataPacket getUpdatePacket(){return ClientboundBlockEntityDataPacket.create(this);}
 }

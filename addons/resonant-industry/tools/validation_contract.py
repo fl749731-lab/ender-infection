@@ -16,6 +16,7 @@ LABWARE_FRAMES = (
     "chemistry_stirring", "chemistry_neutralized", "chemistry_crystallizing", "chemistry_crystals",
     "chemistry_stations", "chemistry_handbook", "separation_filtered", "separation_waiting_receiver",
     "separation_distilling", "separation_recovered", "separation_stations", "separation_handbook",
+    "chemistry_narrow_controls", "chemistry_narrow_carried", "chemistry_narrow_transfer",
 )
 
 

@@ -59,6 +59,10 @@ minecraft {
             property 'mixin.env.remapRefMap','true'
             property 'mixin.env.refMapRemappingFile',project.file('build/createSrgToMcp/output.srg').absolutePath
             if (project.hasProperty('industryVisualCheck')) property 'resonant_industry.visualCheck','true'
+            if (project.hasProperty('manualBookmarkCheck')) {
+                workingDirectory project.file('build/manual-bookmark-review')
+                property 'resonant_industry.manualBookmarkCheck', project.property('manualBookmarkCheck')
+            }
         }
         server {
             args '--nogui'

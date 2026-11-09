@@ -6,9 +6,15 @@ import com.mojang.math.Axis;
 import dev.hui.resonantindustry.IndustryContent;
 import dev.hui.resonantindustry.api.IndustryApi;
 import dev.hui.resonantindustry.api.MachineDefinition;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
@@ -23,16 +29,32 @@ public final class IndustryManualScreen extends Screen {
     private static final int PANEL_WIDTH = 390, PANEL_HEIGHT = 222;
     private static final float DEFAULT_YAW = 145;
     private static final String[] PAGES={"intro","generator","processor","centrifuge","transport","assembly","processes","labware","chemistry","experiments","filtration","distillation"};
-    private static int rememberedPage;
-    private static int rememberedLayer = -1;
-    private int page = rememberedPage, layer = rememberedLayer, scroll, maxScroll;
+    private static final Map<Path, ManualBookmark> BOOKMARKS = new HashMap<>();
+    private static final Set<Path> UNSAVED_BOOKMARKS = new HashSet<>();
+    private final Path bookmarkDirectory;
+    private int page, layer = -1, scroll, maxScroll;
     private float yaw = DEFAULT_YAW, pitch = 25, zoom = 1, uiScale = 1;
     private boolean contents, instructions;
     private Button layerButton, previousLayer, resetView, details;
     private final List<Button> chapters = new ArrayList<>();
     private int left, top;
 
-    public IndustryManualScreen() { super(Component.translatable("item.resonant_industry.manual")); }
+    public IndustryManualScreen() { this(Minecraft.getInstance().gameDirectory.toPath()); }
+
+    IndustryManualScreen(Path gameDirectory) {
+        super(Component.translatable("item.resonant_industry.manual"));
+        bookmarkDirectory = gameDirectory.toAbsolutePath().normalize();
+        ManualBookmark saved = BOOKMARKS.computeIfAbsent(bookmarkDirectory, ManualBookmark::load);
+        int restoredPage = List.of(PAGES).indexOf(saved.chapter());
+        if (restoredPage < 0) saved = ManualBookmark.DEFAULT;
+        page = Math.max(0, restoredPage);
+        layer = saved.layer();
+        instructions = saved.instructions();
+        scroll = saved.scroll();
+        yaw = saved.yaw();
+        pitch = saved.pitch();
+        zoom = saved.zoom();
+    }
     @Override public boolean isPauseScreen() { return false; }
     private MachineDefinition machine() { return IndustryApi.machines().get(IndustryApi.MOD_ID + ":" + PAGES[page]); }
 
@@ -47,8 +69,8 @@ public final class IndustryManualScreen extends Screen {
         button(205, 197, 85, Component.translatable("gui.done"), this::onClose);
         previousLayer = button(12, 34, 24, Component.literal("<"), () -> changeLayer(-1));
         layerButton = button(40, 34, 126, label("all_layers"), () -> changeLayer(1));
-        resetView = button(12, 169, 59, label("reset_view"), () -> { yaw = DEFAULT_YAW; pitch = 25; zoom = 1; });
-        details = button(182, 33, 196, label("instructions"), () -> { instructions = !instructions; scroll = 0; syncButtons(); });
+        resetView = button(12, 169, 59, label("reset_view"), () -> { yaw = DEFAULT_YAW; pitch = 25; zoom = 1; remember(); });
+        details = button(182, 33, 196, label("instructions"), () -> { instructions = !instructions; scroll = 0; syncButtons(); remember(); });
         chapters.clear();
         for (int index = 0; index < PAGES.length; index++) {
             final int target = index;
@@ -76,12 +98,14 @@ public final class IndustryManualScreen extends Screen {
         contents = false;
         instructions = false;
         syncButtons();
+        remember();
     }
 
     private void changeLayer(int direction) {
         var machine = machine();
         if (machine != null) layer = Math.floorMod(layer + 1 + direction, machine.height() + 1) - 1;
         syncButtons();
+        remember();
     }
 
     private void syncButtons() {
@@ -91,15 +115,29 @@ public final class IndustryManualScreen extends Screen {
         if (machine != null) {
             layer = Mth.clamp(layer, -1, machine.height() - 1);
             layerButton.setMessage(layer < 0 ? label("all_layers") : label("structure_layer", layer + 1, machine.height()));
+        } else {
+            layer = -1;
+            instructions = false;
         }
         details.setMessage(label(instructions ? "materials" : "instructions"));
         chapters.forEach(button -> button.visible = contents);
     }
 
     @Override public void removed() {
-        rememberedPage = page;
-        rememberedLayer = layer;
+        remember();
         super.removed();
+    }
+
+    ManualBookmark bookmark() {
+        return new ManualBookmark(PAGES[page], layer, instructions, scroll, yaw, pitch, zoom);
+    }
+
+    private void remember() {
+        ManualBookmark current = bookmark();
+        boolean changed = !current.equals(BOOKMARKS.put(bookmarkDirectory, current));
+        if (!changed && !UNSAVED_BOOKMARKS.contains(bookmarkDirectory)) return;
+        if (current.save(bookmarkDirectory)) UNSAVED_BOOKMARKS.remove(bookmarkDirectory);
+        else UNSAVED_BOOKMARKS.add(bookmarkDirectory);
     }
 
     @Override public void render(GuiGraphics g, int mx, int my, float partial) {
@@ -120,7 +158,10 @@ public final class IndustryManualScreen extends Screen {
                     renderStructure(g, machine);
                     if (instructions) renderText(g, 182, 58, 196, 128);
                     else materialTooltip = renderMaterials(g, machine, logicalMouseX, logicalMouseY);
-                } else if (List.of("labware", "chemistry", "experiments", "filtration", "distillation").contains(PAGES[page])) {
+                } else if (PAGES[page].equals("distillation")) {
+                    renderDistillationMap(g);
+                    renderText(g, 12, 113, 366, 72);
+                } else if (List.of("labware", "chemistry", "experiments", "filtration").contains(PAGES[page])) {
                     renderBenchMap(g);
                     renderText(g, 12, 103, 366, 82);
                 } else renderText(g, 12, 34, 366, 151);
@@ -228,6 +269,31 @@ public final class IndustryManualScreen extends Screen {
         }
     }
 
+    private void renderDistillationMap(GuiGraphics g) {
+        renderDistillationDevice(g, left + 13, false);
+        renderDistillationDevice(g, left + 217, true);
+        g.drawCenteredString(font, label("distillation.touching"), left + 195, top + 43, 0xffa5becb);
+        g.fill(left + 178, top + 66, left + 212, top + 68, 0xffa6cdd7);
+        for (int i = 0; i < 5; i++) g.fill(left + 207 + i, top + 62 + i,
+                left + 208 + i, top + 72 - i, 0xffa6cdd7);
+        g.drawCenteredString(font, label("distillation.front"), left + 195, top + 93, 0xffa5becb);
+    }
+
+    private void renderDistillationDevice(GuiGraphics g, int x, boolean receiver) {
+        int y = top + 34;
+        g.fill(x, y, x + 160, y + 53, 0xff101d26);
+        g.drawString(font, label(receiver ? "distillation.condenser" : "distillation.heater"), x + 6, y + 5, 0xffe1cdf2, false);
+        for (int position = 0; position < 6; position++) {
+            int slot = 5 - position;
+            int slotX = x + 6 + position % 3 * 21, slotY = y + 19 + position / 3 * 15;
+            int color = slot == 0 ? (receiver ? 0xff477f87 : 0xff826b9d) : 0xff354653;
+            g.fill(slotX, slotY, slotX + 19, slotY + 13, color);
+            g.drawCenteredString(font, Integer.toString(slot + 1), slotX + 9, slotY + 2, 0xffedf4f6);
+        }
+        g.drawString(font, label(receiver ? "bench.receiver" : "bench.sample", 1), x + 78, y + 25, 0xffedf4f6, false);
+        g.drawString(font, label("distillation.near_right"), x + 78, y + 38, 0xffa5becb, false);
+    }
+
     @Override public void mouseMoved(double mx, double my) {
         super.mouseMoved(mx / uiScale, my / uiScale);
     }
@@ -237,6 +303,7 @@ public final class IndustryManualScreen extends Screen {
     }
 
     @Override public boolean mouseReleased(double mx, double my, int button) {
+        remember();
         return super.mouseReleased(mx / uiScale, my / uiScale, button);
     }
 
@@ -258,10 +325,12 @@ public final class IndustryManualScreen extends Screen {
         my /= uiScale;
         if (overStructure(mx, my)) {
             zoom = Mth.clamp(zoom + (float) delta * .1f, .6f, 1.5f);
+            remember();
             return true;
         }
         if (!contents && maxScroll > 0) {
             scroll = Mth.clamp(scroll - (int) Math.signum(delta) * 2, 0, maxScroll);
+            remember();
             return true;
         }
         return super.mouseScrolled(mx, my, delta);

@@ -79,9 +79,10 @@ def labware_client(loader,major):
     lines=[line for line in options.read_text('utf-8').splitlines() if not line.startswith('lang:')];lines.append('lang:zh_cn');options.write_text('\n'.join(lines)+'\n','utf-8')
     log=dual.run_project('Labware '+loader,(BASE/loader).relative_to(ROOT).as_posix(),major,['runClient','-PlabwareVisualCheck'],f'{loader}-labware-client.log')
     content=log.read_text('utf-8',errors='replace')
-    assert f'LABWARE_VISUAL_PASS step=59 shots={len(LABWARE_FRAMES)}' in content and 'LABWARE_NATIVE_INTERACTIONS_PASS volume=1000' in content and 'LABWARE_VISUAL_FAIL' not in content
+    assert f'LABWARE_VISUAL_PASS step=70 shots={len(LABWARE_FRAMES)}' in content and 'LABWARE_NATIVE_INTERACTIONS_PASS volume=1000' in content and 'LABWARE_VISUAL_FAIL' not in content
     assert 'CHEMISTRY_NATIVE_INTERACTIONS_PASS input=500 remaining=450 evaporated=50 crystals=1' in content
     assert 'SEPARATION_NATIVE_INTERACTIONS_PASS suspension=50 filtrate=50 distilled=40 concentrate=10 calcite=1' in content
+    assert 'LABWARE_NARROW_INTERACTIONS_PASS gui=320x240 volume=100 calcite=2 coal=4' in content
     assert not re.search(r'Parsing error loading recipe resonant_industry:|Missing textures in model resonant_industry:',content),'Broken addon recipe/model in actual client'
     captures=[]
     for name in LABWARE_FRAMES:
@@ -89,6 +90,38 @@ def labware_client(loader,major):
     return {'status':'PASS','log':log.relative_to(ROOT).as_posix(),'screenshots':captures,'conserved_volume_mb':1000,
             'chemistry':{'input_mb':500,'remaining_mb':450,'evaporated_mb':50,'salt_crystals':1},
             'separation':{'suspension_mb':50,'filtrate_mb':50,'distilled_mb':40,'concentrate_mb':10,'precipitate':1}}
+
+def manual_bookmark_client(loader, major):
+    run = BASE / loader / 'build/manual-bookmark-review'
+    run.mkdir(parents=True, exist_ok=True)
+    options = run / 'options.txt'
+    lines = options.read_text('utf-8').splitlines() if options.exists() else []
+    lines = [line for line in lines if not line.startswith(('lang:', 'guiScale:', 'fullscreen:'))]
+    options.write_text('\n'.join(lines + ['lang:zh_cn', 'guiScale:2', 'fullscreen:false']) + '\n', 'utf-8')
+    logs, captures = [], []
+    for stage, names in (
+        ('seed', ('manual-bookmark-structure-seed', 'manual-distillation-layout', 'manual-bookmark-reading-seed')),
+        ('resume', ('manual-bookmark-structure-resume', 'manual-bookmark-reading-resume')),
+    ):
+        log = dual.run_project('Manual bookmark ' + loader, (BASE / loader).relative_to(ROOT).as_posix(), major,
+                               ['runClient', '-PmanualBookmarkCheck=' + stage], f'{loader}-manual-bookmark-{stage}.log')
+        content = log.read_text('utf-8', errors='replace')
+        assert f'MANUAL_BOOKMARK_PASS stage={stage} structure=processor:2 reading=distillation:2' in content, log
+        assert 'MANUAL_BOOKMARK_FAIL' not in content, log
+        if stage == 'seed':
+            assert 'MANUAL_BOOKMARK_INVALID_FILE_PASS' in content, log
+        logs.append(log.relative_to(ROOT).as_posix())
+        for name in names:
+            assert 'MANUAL_BOOKMARK_CAPTURE ' + name in content, log
+            source = run / 'screenshots' / (name + '.png')
+            assert source.is_file(), source
+            destination = OUT / 'clients' / loader / source.name
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(source, destination)
+            captures.append({'path': destination.relative_to(ROOT).as_posix(),
+                             'sha256': hashlib.sha256(destination.read_bytes()).hexdigest()})
+    return {'status': 'PASS', 'processes': 2, 'logs': logs, 'screenshots': captures}
+
 
 def main():
     p=argparse.ArgumentParser();p.add_argument('--loader',choices=['forge','neoforge','both'],default='both');p.add_argument('--clean',action='store_true');p.add_argument('--gametests',action='store_true');p.add_argument('--clients',action='store_true');args=p.parse_args()
@@ -136,6 +169,7 @@ def main():
             for name in INDUSTRY_FRAMES:
                 path=BASE/loader/'build/client-review/screenshots'/f'{name}.png';assert path.is_file();dest=OUT/'clients'/loader/path.name;dest.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(path,dest);captures.append({'path':dest.relative_to(ROOT).as_posix(),'sha256':hashlib.sha256(dest.read_bytes()).hexdigest()})
             result['client_screenshots']=captures
+            result['manual_bookmark_client']=manual_bookmark_client(loader,major)
             if loader=='neoforge':result['labware_client']=labware_client(loader,major)
         reports.append(result)
     result={'status':'PASS','version':version,'published':False,'gametests':args.gametests,'clients':args.clients,'artifacts':reports}

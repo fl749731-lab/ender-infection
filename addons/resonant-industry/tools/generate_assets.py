@@ -46,6 +46,11 @@ def handbook_text(zh, en):
   'bench.sample': ('#%s 样品', '#%s Sample'), 'bench.reagent': ('#%s 试剂', '#%s Reagent'),
   'bench.receiver': ('#%s 接收', '#%s Receiver'), 'bench.spare': ('#%s 备用', '#%s Spare'),
   'bench.front': ('玩家站在此侧（面对抽屉）', 'Stand here, facing the drawer'),
+  'distillation.heater': ('加热台', 'Heating plate'),
+  'distillation.condenser': ('冷凝装置', 'Condenser'),
+  'distillation.touching': ('紧贴右侧', 'Touching'),
+  'distillation.front': ('站在此侧；两台设备正面同向', 'Stand here; both fronts face you'),
+  'distillation.near_right': ('台面右前方', 'Front-right'),
   'bench.help': ('台面俯视图，编号对应界面。#1 在右前方，#2 在前排中间。固体原料与燃料放在界面右侧的小格。',
                  'Top view, matching GUI numbers. #1 is front-right, #2 front-center. Solids and fuel go in the small slots on the right.'),
  }
@@ -59,6 +64,8 @@ def handbook_text(zh, en):
  en[f'guide.{NS}.intro.body'] = 'Craft a controller, blueprint and assembly wrench.\n1. Use the blueprint on the controller.\n2. Pick the machine in Contents. Drag the model to rotate, scroll to zoom, and inspect layers from bottom to top. Build using the materials list.\n3. Use the wrench on the controller to check and assemble it. Sneak-use to disassemble while keeping inventory and progress.\n4. Burn coal for power, process biomass and water into slurry, then centrifuge it.'
  zh[f'guide.{NS}.transport.body'] = '物品输出仓每 5 tick 向紧贴其外侧的箱子、木桶或兼容容器最多输送 8 件产物。可接在结构外侧或输出仓底部，满箱时产物留在机器中。\n电缆双向传电；储能箱正面主动输出。流体管接流体输入口与输出口，储液罐正面主动输出。\n取水泵放在水源上方并接电，每秒最多抽一桶水，消耗 100 FE。'
  en[f'guide.{NS}.transport.body'] = 'Item outlets send up to 8 products every 5 ticks into a touching chest, barrel or compatible inventory outside the structure, including below the outlet. Full containers leave items in the machine.\nCables carry energy. Energy cells and fluid tanks actively output at their front. Pipes connect fluid inlets and outlets.\nA powered pump above water extracts up to one bucket per second for 100 FE.'
+ zh[f'guide.{NS}.distillation.body'] = '1. 图为面对设备正面时的台面俯视图。冷凝装置紧贴加热台右侧，两台同向。\n2. 加热台 #1（右前方）放装有 50 mB 澄清滤液或中和液的器皿。\n3. 冷凝装置自己的 #1（右前方）放空试管或烧杯，接收蒸馏水；不用加热台的 #2 接收。\n4. 在加热台界面右侧燃料槽装入煤或木炭，点击左侧“蒸馏”。达到 100°C 后开始计时。\n5. 完成后，冷凝装置 #1 得到 40 mB 蒸馏水；加热台 #1 保留 10 mB 浓缩液。\n6. 接收器缺失、装有不兼容液体或容量不足时暂停。取回成品后可继续下一批；蒸馏水可用于果酸与碱液提取。'
+ en[f'guide.{NS}.distillation.body'] = '1. Top view from the front: place the condenser directly to the RIGHT of the heating plate, facing the same way.\n2. Heating plate #1 (front-right): place a vessel containing 50 mB clear filtrate or neutralized solution.\n3. Condenser #1 (its own front-right): place an empty tube or beaker to receive the water. Heating plate #2 is not the receiver.\n4. Put coal or charcoal in the heating plate fuel slot, then select Distill. Processing starts at 100 C.\n5. Condenser #1 receives 40 mB distilled water; heating plate #1 retains 10 mB concentrate.\n6. A missing, incompatible or full receiving vessel pauses the process. Collect the water for the next batch or use it for fruit-acid and alkaline extraction.'
 
 def main():
  zh={};en={}

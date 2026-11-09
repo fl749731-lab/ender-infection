@@ -2,12 +2,15 @@ package dev.hui.resonantindustry.client;
 
 import dev.hui.resonantindustry.*;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 
@@ -15,6 +18,9 @@ public final class LabBenchScreen extends AbstractContainerScreen<LabBenchMenu> 
     private static final int SOURCE_COLOR = 0xff288db5;
     private static final int TARGET_COLOR = 0xffb6792f;
     private Button distill;
+    private float uiScale = 1;
+    private int logicalWidth, logicalHeight;
+    private final Map<Button, Component> buttonHelp = new LinkedHashMap<>();
 
     public LabBenchScreen(LabBenchMenu menu, Inventory inv, Component title) {
         super(menu, inv, title);
@@ -22,16 +28,48 @@ public final class LabBenchScreen extends AbstractContainerScreen<LabBenchMenu> 
         imageHeight = 237;
     }
     private void send(int id){if(minecraft.gameMode!=null)minecraft.gameMode.handleInventoryButtonClick(menu.containerId,id);}
-    @Override protected void init(){super.init();for(int i=0;i<6;i++){final int slot=i;int x=leftPos+14+(i%3)*94,y=topPos+55+(i/3)*50;addRenderableWidget(Button.builder(Component.translatable("lab.resonant_industry.from"),b->send(slot)).bounds(x,y,43,16).tooltip(Tooltip.create(slotText("selection_help"))).build());addRenderableWidget(Button.builder(Component.translatable("lab.resonant_industry.to"),b->send(slot+6)).bounds(x+44,y,43,16).tooltip(Tooltip.create(slotText("selection_help"))).build());}
-        addRenderableWidget(Button.builder(Component.translatable("lab.resonant_industry.change_dose"),b->send(12)).bounds(leftPos+14,topPos+126,108,20).build());
-        addRenderableWidget(Button.builder(Component.translatable("lab.resonant_industry.transfer"),b->send(13)).bounds(leftPos+132,topPos+126,174,20).build());
+    @Override protected void init() {
+        uiScale = Math.max(.1f, Math.min(1, Math.min(width / (float) imageWidth, height / (float) imageHeight)));
+        logicalWidth = Mth.ceil(width / uiScale);
+        logicalHeight = Mth.ceil(height / uiScale);
+        int screenWidth = width, screenHeight = height;
+        try {
+            width = logicalWidth;
+            height = logicalHeight;
+            super.init();
+        } finally {
+            width = screenWidth;
+            height = screenHeight;
+        }
+        buttonHelp.clear();
+        for (int i = 0; i < 6; i++) {
+            final int slot = i;
+            int x = 14 + i % 3 * 94, y = 55 + i / 3 * 50;
+            button(x, y, 43, 16, Component.translatable("lab.resonant_industry.from"), slotText("selection_help"), () -> send(slot));
+            button(x + 44, y, 43, 16, Component.translatable("lab.resonant_industry.to"), slotText("selection_help"), () -> send(slot + 6));
+        }
+        button(14, 126, 108, 20, Component.translatable("lab.resonant_industry.change_dose"), null, () -> send(12));
+        button(132, 126, 174, 20, Component.translatable("lab.resonant_industry.transfer"), null, () -> send(13));
         if (menu.station()) {
-            addRenderableWidget(Button.builder(label("start"), b -> send(14)).bounds(leftPos + 322, topPos + 198, 39, 20).build());
-            addRenderableWidget(Button.builder(label("stop"), b -> send(15)).bounds(leftPos + 365, topPos + 198, 39, 20).build());
-            distill = addRenderableWidget(Button.builder(label("distill"), b -> send(16))
-                    .bounds(leftPos + 14, topPos + 157, 57, 20).tooltip(Tooltip.create(label("distill_help"))).build());
+            button(322, 198, 39, 20, label("start"), null, () -> send(14));
+            button(365, 198, 39, 20, label("stop"), null, () -> send(15));
+            distill = button(14, 157, 57, 20, label("distill"), label("distill_help"), () -> send(16));
             distill.visible = menu.heater();
         }
+    }
+
+    private Button button(int x, int y, int w, int h, Component title, Component help, Runnable action) {
+        var button = addRenderableWidget(new Button(leftPos + x, topPos + y, w, h, title,
+                b -> action.run(), narration -> narration.get()) {
+            @Override public void renderString(GuiGraphics g, Font buttonFont, int color) {
+                // Vanilla scrolling labels use scissors that do not inherit the pose scale.
+                String text = buttonFont.plainSubstrByWidth(getMessage().getString(), getWidth() - 4);
+                g.drawCenteredString(buttonFont, text, getX() + getWidth() / 2,
+                        getY() + (getHeight() - 9) / 2 + 1, color);
+            }
+        });
+        buttonHelp.put(button, help);
+        return button;
     }
     @Override protected void containerTick() {
         super.containerTick();
@@ -135,14 +173,60 @@ public final class LabBenchScreen extends AbstractContainerScreen<LabBenchMenu> 
         else if (menu.heater()) g.drawString(font, label(menu.chemistry(10) > 0 ? "condenser_linked" : "condenser_unlinked"), x, 180, ink, false);
     }
     @Override public void render(GuiGraphics g, int mx, int my, float partial) {
-        super.render(g, mx, my, partial);
+        int logicalMouseX = Mth.floor(mx / uiScale), logicalMouseY = Mth.floor(my / uiScale);
+        int screenWidth = width, screenHeight = height;
+        g.pose().pushPose();
+        try {
+            width = logicalWidth;
+            height = logicalHeight;
+            g.pose().scale(uiScale, uiScale, uiScale);
+            // The native container also renders carried items, touch dragging, quick-craft and snapback.
+            // On 1.21.1 it draws its own background, using this temporary logical viewport.
+            super.render(g, logicalMouseX, logicalMouseY, partial);
+        } finally {
+            g.pose().popPose();
+            width = screenWidth;
+            height = screenHeight;
+        }
+        // Tooltips must use the real viewport and mouse position, after leaving the scaled container.
         renderTooltip(g, mx, my);
-        if (hoveredSlot != null && hoveredSlot.hasItem()) return;
+        if (!menu.getCarried().isEmpty() || hoveredSlot != null && hoveredSlot.hasItem()) return;
         for (int i = 0; i < 6; i++) {
-            if (isHovering(14 + i % 3 * 94, 23 + i / 3 * 50, 88, 30, mx, my)) {
+            if (isHovering(14 + i % 3 * 94, 23 + i / 3 * 50, 88, 30, logicalMouseX, logicalMouseY)) {
                 g.renderComponentTooltip(font, slotHelp(i), mx, my);
                 return;
             }
         }
+        for (var entry : buttonHelp.entrySet()) {
+            var button = entry.getKey();
+            if (!button.visible || !button.isHovered()) continue;
+            var help = entry.getValue();
+            if (help != null) g.renderComponentTooltip(font, List.of(help), mx, my);
+            else if (font.width(button.getMessage()) > button.getWidth() - 4)
+                g.renderComponentTooltip(font, List.of(button.getMessage()), mx, my);
+            return;
+        }
     }
+
+    @Override public void mouseMoved(double mx, double my) {
+        super.mouseMoved(mx / uiScale, my / uiScale);
+    }
+
+    @Override public boolean mouseClicked(double mx, double my, int button) {
+        return super.mouseClicked(mx / uiScale, my / uiScale, button);
+    }
+
+    @Override public boolean mouseReleased(double mx, double my, int button) {
+        return super.mouseReleased(mx / uiScale, my / uiScale, button);
+    }
+
+    @Override public boolean mouseDragged(double mx, double my, int button, double dx, double dy) {
+        return super.mouseDragged(mx / uiScale, my / uiScale, button, dx / uiScale, dy / uiScale);
+    }
+
+    // Panel-relative coordinates for native client acceptance and other client-side overlays.
+    double screenX(double panelX) { return (leftPos + panelX) * uiScale; }
+    double screenY(double panelY) { return (topPos + panelY) * uiScale; }
+    float uiScale() { return uiScale; }
+    int hoveredSlotIndex() { return hoveredSlot == null ? -1 : hoveredSlot.index; }
 }

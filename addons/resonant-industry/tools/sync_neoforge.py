@@ -57,9 +57,11 @@ def adapt(s,name):
     s=s.replace('net.minecraftforge.energy','net.neoforged.neoforge.energy').replace('net.minecraftforge.fluids','net.neoforged.neoforge.fluids').replace('net.minecraftforge.items','net.neoforged.neoforge.items')
     s=s.replace('import net.neoforged.fml.common.Mod;','import net.neoforged.fml.common.Mod;\nimport net.neoforged.fml.common.EventBusSubscriber;')
     s=s.replace('@Mod.EventBusSubscriber','@EventBusSubscriber').replace('Mod.EventBusSubscriber.Bus.','EventBusSubscriber.Bus.')
-    if name in ('IndustryVisualCheck.java','LabwareVisualCheck.java'):
+    if name in ('IndustryVisualCheck.java','LabwareVisualCheck.java','ManualBookmarkVisualCheck.java'):
         s=s.replace('import net.neoforged.neoforge.event.TickEvent;','import net.neoforged.neoforge.client.event.ClientTickEvent;')
         s=s.replace('TickEvent.ClientTickEvent event','ClientTickEvent.Post event').replace('||event.phase!=TickEvent.Phase.END','')
+        s=s.replace(' || event.phase != TickEvent.Phase.END', '')
+        s=s.replace('manual.mouseScrolled(x, y, amount)', 'manual.mouseScrolled(x, y, 0, amount)')
         s=s.replace('level.getDataStorage().computeIfAbsent(dev.hui.enderinfection.entity.WorldIntroduction.Data::load,()->dev.hui.enderinfection.entity.WorldIntroduction.Data.forWorldAge(200),"ender_infection_world_introduction")','level.getDataStorage().computeIfAbsent(new net.minecraft.world.level.saveddata.SavedData.Factory<>(()->dev.hui.enderinfection.entity.WorldIntroduction.Data.forWorldAge(200),(tag,registries)->dev.hui.enderinfection.entity.WorldIntroduction.Data.load(tag),null),"ender_infection_world_introduction")')
         s=s.replace('.value().createWorldDimensions());return;','.value().createWorldDimensions(),null);return;')
     if name=='IndustryClient.java':
